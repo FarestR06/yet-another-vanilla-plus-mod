@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.farestr06.yafm.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ExampleMixin",
+    "entity.LivingEntityMixin",
+    "item.MilkBucketItemMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+	}
+}

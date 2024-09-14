@@ -1,0 +1,8 @@
+{
+  "item.reactor.charge": {
+    "sounds": [
+      "mob/ghast/fireball4"
+    ],
+    "subtitle": "subtitles.item.reactor.charge"
+  }
+}

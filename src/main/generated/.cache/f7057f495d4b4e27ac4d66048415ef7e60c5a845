@@ -1,0 +1,6 @@
+// 1.21.1	2024-09-12T18:15:45.0964621	Yet Another Vanilla Plus Mod/Tags for minecraft:block
+cb07bad33330d3bea18e529754609135cb99ec19 data\minecraft\tags\block\soul_speed_blocks.json
+b425966768906cf9f2991697da708f9f17d08f64 data\minecraft\tags\block\mineable\pickaxe.json
+52e52803f990e6e268a24ee63012921345c8f792 data\minecraft\tags\block\walls.json
+1acfd7d2d675c5caaa7cfc72edd8bf050e97fa77 data\minecraft\tags\block\needs_diamond_tool.json
+cb07bad33330d3bea18e529754609135cb99ec19 data\minecraft\tags\block\soul_fire_base_blocks.json

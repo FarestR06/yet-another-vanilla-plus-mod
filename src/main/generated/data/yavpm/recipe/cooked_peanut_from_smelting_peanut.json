@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.35,
+  "group": "peanut",
+  "ingredient": {
+    "item": "yavpm:peanut"
+  },
+  "result": {
+    "id": "yavpm:cooked_peanut"
+  }
+}

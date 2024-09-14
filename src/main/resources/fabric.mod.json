@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "yavpm",
+	"version": "${version}",
+	"name": "Yet Another Vanilla Plus Mod",
+	"description": "",
+	"authors": [
+		"FarestR06"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/yavpm/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+          "com.farestr06.yafm.YetAnotherVanillaPlusMod"
+		],
+		"client": [
+			"com.farestr06.yafm.YetAnotherVanillaPlusModClient"
+		],
+		"fabric-datagen": [
+			"com.farestr06.yafm.datagen.YetAnotherVanillaPlusModDataGenerator"
+		]
+	},
+	"mixins": [
+		"yavpm.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.3",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
