@@ -18,8 +18,6 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 
 public class YavpmItems {
-
-
     public static final Item BANANA = registerItem("banana", new Item(new Item.Settings().food(YavpmFoods.BANANA)));
     public static final Item BANANA_SEEDS = registerItem("banana_seeds", new AliasedBlockItem(YavpmBlocks.BANANA_CROP, new Item.Settings()));
 
@@ -43,7 +41,7 @@ public class YavpmItems {
             new Item.Settings().maxDamage(1024)
     ));
 
-    private static Item registerItem(String id, Item item) {
+    protected static Item registerItem(String id, Item item) {
         return Registry.register(Registries.ITEM, YetAnotherVanillaPlusMod.makeId(id), item);
     }
 

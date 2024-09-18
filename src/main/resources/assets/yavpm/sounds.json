@@ -4,5 +4,12 @@
       "mob/ghast/fireball4"
     ],
     "subtitle": "subtitles.item.reactor.charge"
+  },
+  "entity.chicken.egg_break": {
+    "sounds": [
+      "mob/turtle/egg/egg_break1",
+      "mob/turtle/egg/egg_break2"
+    ],
+    "subtitle": "subtitles.entity.chicken.egg_break"
   }
 }
