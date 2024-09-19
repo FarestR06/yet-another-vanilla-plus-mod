@@ -61,5 +61,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.CHOCOLATE, "Chocolate Bar");
 
         builder.add(YavpmTags.Items.REACTOR_RECHARGERS, "Reactor Rechargers");
+
+        builder.add("subtitles.entity.chicken.egg_break", "Egg breaks");
     }
 }

@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "ExampleMixin",
+    "entity.ChickenEntityMixin",
     "entity.LivingEntityMixin",
     "item.MilkBucketItemMixin"
   ],

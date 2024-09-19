@@ -10,6 +10,7 @@ public class YavpmSounds {
 
     public static final SoundEvent ITEM_REACTOR_CHARGE = register("item.reactor.charge");
     public static final SoundEvent ITEM_SOUL_POWDER_USE = register("item.soul_powder.use");
+    public static final SoundEvent ENTITY_CHICKEN_EGG_BREAK = register("entity.chicken.egg_break");
 
     private static SoundEvent register(String id) {
         Identifier identifier = YetAnotherVanillaPlusMod.makeId(id);

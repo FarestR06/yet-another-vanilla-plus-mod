@@ -50,7 +50,7 @@ public class YavpmItems {
             new Item.Settings().maxDamage(1024)
     ));
 
-    private static Item registerItem(String id, Item item) {
+    protected static Item registerItem(String id, Item item) {
         return Registry.register(Registries.ITEM, YetAnotherVanillaPlusMod.makeId(id), item);
     }
 
