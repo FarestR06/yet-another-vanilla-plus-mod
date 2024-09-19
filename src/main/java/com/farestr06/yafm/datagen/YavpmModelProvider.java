@@ -3,6 +3,7 @@ package com.farestr06.yafm.datagen;
 import com.farestr06.yafm.block.YavpmBlocks;
 import com.farestr06.yafm.block.custom.BananaCropBlock;
 import com.farestr06.yafm.block.custom.PeanutCropBlock;
+import com.farestr06.yafm.block.custom.SaplingCropBlock;
 import com.farestr06.yafm.item.YavpmItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
@@ -20,9 +21,10 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.registerSimpleCubeAll(YavpmBlocks.GLOWING_OBSIDIAN);
         generator.registerSimpleCubeAll(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
 
-
         generator.registerCrop(YavpmBlocks.PEANUT_CROP, PeanutCropBlock.AGE, 0, 1, 2, 3);
         generator.registerCrop(YavpmBlocks.BANANA_CROP, BananaCropBlock.AGE, 0, 1, 2, 3, 4, 5);
+
+        generator.registerCrop(YavpmBlocks.OAK_SAPLING_CROP, SaplingCropBlock.AGE, 0,1,2,3);
 
         createGraniteBrickSet(generator);
         createDioriteBrickSet(generator);
@@ -58,5 +60,7 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.register(YavpmItems.BANANA, Models.GENERATED);
         generator.register(YavpmItems.COOKED_PEANUT, Models.GENERATED);
         generator.register(YavpmItems.CHOCOLATE, Models.GENERATED);
+
+        generator.register(YavpmItems.DIAMOND_ACORN, Models.GENERATED);
     }
 }

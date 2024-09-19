@@ -1,6 +1,9 @@
 {
+  "advancements.adventure.transform_mob.description": "Transform a mob with some Soul Powder",
+  "advancements.adventure.transform_mob.title": "Vanilla Plus Tweakin'",
   "block.yavpm.banana_crop": "Banana Crops",
   "block.yavpm.glowing_obsidian": "Glowing Obsidian",
+  "block.yavpm.oak_sapling_crop": "Oak Sapling Crops",
   "block.yavpm.peanut_crop": "Peanut Crops",
   "block.yavpm.polished_andesite_brick_slab": "Polished Andesite Brick Slab",
   "block.yavpm.polished_andesite_brick_stairs": "Polished Andesite Brick Stairs",
@@ -15,10 +18,12 @@
   "block.yavpm.polished_granite_brick_wall": "Polished Granite Brick Wall",
   "block.yavpm.polished_granite_bricks": "Polished Granite Bricks",
   "block.yavpm.soul_glowing_obsidian": "Soul Glowing Obsidian",
+  "item.yavpm.acorn": "Acorn",
   "item.yavpm.banana": "Banana Bunch",
   "item.yavpm.banana_seeds": "Banana Seeds",
   "item.yavpm.chocolate": "Chocolate Bar",
   "item.yavpm.cooked_peanut": "Roasted Peanut",
+  "item.yavpm.diamond_acorn": "Diamond Acorn",
   "item.yavpm.heated_reactor": "Reactor",
   "item.yavpm.moly": "Magic Herb",
   "item.yavpm.peanut": "Peanut",
@@ -26,5 +31,6 @@
   "item.yavpm.soul_powder": "Soul Powder",
   "resourcePack.yavpm.programmer_art.name": "YAVPM Programmer Art",
   "subtitles.item.reactor.charge": "Reactor charges",
+  "subtitles.item.soul_powder.use": "Soul Powder whooshes",
   "tag.item.yavpm.reactor_rechargers": "Reactor Rechargers"
 }

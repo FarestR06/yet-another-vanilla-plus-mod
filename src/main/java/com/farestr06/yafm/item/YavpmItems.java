@@ -16,15 +16,22 @@ import net.minecraft.item.ItemGroups;
 import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.util.Rarity;
 
 public class YavpmItems {
-
-
     public static final Item BANANA = registerItem("banana", new Item(new Item.Settings().food(YavpmFoods.BANANA)));
     public static final Item BANANA_SEEDS = registerItem("banana_seeds", new AliasedBlockItem(YavpmBlocks.BANANA_CROP, new Item.Settings()));
 
     public static final Item PEANUT = registerItem("peanut", new AliasedBlockItem(YavpmBlocks.PEANUT_CROP, new Item.Settings().food(YavpmFoods.RAW_PEANUT)));
     public static final Item COOKED_PEANUT = registerItem("cooked_peanut", new Item(new Item.Settings().food(YavpmFoods.COOKED_PEANUT)));
+
+    public static final Item ACORN = registerItem("acorn", new AliasedBlockItem(YavpmBlocks.OAK_SAPLING_CROP, new Item.Settings().food(YavpmFoods.ACORN)));
+    public static final Item DIAMOND_ACORN = registerItem("diamond_acorn", new Item(
+            new Item.Settings()
+                    .food(YavpmFoods.DIAMOND_ACORN)
+                    .rarity(Rarity.RARE)
+                    .component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true)
+    ));
 
     public static final Item CHOCOLATE = registerItem("chocolate", new Item(new Item.Settings().food(YavpmFoods.CHOCOLATE)));
 
@@ -50,11 +57,14 @@ public class YavpmItems {
     private static void addToNatural(FabricItemGroupEntries entries) {
         entries.add(BANANA_SEEDS);
         entries.add(PEANUT);
+        entries.add(ACORN);
     }
     private static void addToFoodAndDrink(FabricItemGroupEntries entries) {
         entries.add(BANANA);
         entries.add(PEANUT);
         entries.add(COOKED_PEANUT);
+        entries.add(ACORN);
+        entries.add(DIAMOND_ACORN);
         entries.add(MOLY);
     }
     private static void addToIngredients(FabricItemGroupEntries entries) {

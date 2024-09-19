@@ -3,11 +3,14 @@ package com.farestr06.yafm.block;
 import com.farestr06.yafm.YetAnotherVanillaPlusMod;
 import com.farestr06.yafm.block.custom.BananaCropBlock;
 import com.farestr06.yafm.block.custom.PeanutCropBlock;
+import com.farestr06.yafm.block.custom.SaplingCropBlock;
+import com.farestr06.yafm.item.YavpmItems;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.*;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -31,6 +34,15 @@ public class YavpmBlocks {
     public static final Block PEANUT_CROP = registerBlock("peanut_crop",
             new PeanutCropBlock(AbstractBlock.Settings.copy(Blocks.POTATOES)));
 
+    public static final Block OAK_SAPLING_CROP = registerBlock(
+            "oak_sapling_crop",
+            new SaplingCropBlock(AbstractBlock.Settings.copy(Blocks.OAK_SAPLING)) {
+                @Override
+                protected ItemConvertible getSeedsItem() {
+                    return YavpmItems.ACORN;
+                }
+            }
+    );
 
     public static final Block POLISHED_GRANITE_BRICKS = registerBlockAndItem("polished_granite_bricks", new Block(
             AbstractBlock.Settings.copy(Blocks.STONE_BRICKS)

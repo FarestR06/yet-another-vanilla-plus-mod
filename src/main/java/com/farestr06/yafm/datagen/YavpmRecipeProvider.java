@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.data.server.recipe.RecipeExporter;
+import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
@@ -76,5 +77,14 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(YavpmItems.MOLY), conditionsFromItem(YavpmItems.MOLY))
                 .offerTo(exporter, makeId(getRecipeName(YavpmItems.MOLY)))
         ;
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.DIAMOND_ACORN)
+                .input('#', Items.DIAMOND)
+                .input('%', YavpmItems.ACORN)
+                .pattern("###")
+                .pattern("#%#")
+                .pattern("###")
+                .criterion(hasItem(YavpmItems.ACORN), conditionsFromItem(YavpmItems.ACORN))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.DIAMOND_ACORN)));
     }
 }

@@ -16,9 +16,15 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
     @Override
     public void generateTranslations(RegistryWrapper.WrapperLookup registryLookup, TranslationBuilder builder) {
+        builder.add("advancements.adventure.transform_mob.title", "Vanilla Plus Tweakin'");
+        builder.add("advancements.adventure.transform_mob.description", "Transform a mob with some Soul Powder");
+
         builder.add("resourcePack.yavpm.programmer_art.name", "YAVPM Programmer Art");
+
         builder.add(YavpmBlocks.GLOWING_OBSIDIAN, "Glowing Obsidian");
         builder.add(YavpmBlocks.SOUL_GLOWING_OBSIDIAN, "Soul Glowing Obsidian");
+
+        builder.add("subtitles.item.soul_powder.use", "Soul Powder whooshes");
         builder.add(YavpmItems.SOUL_POWDER, "Soul Powder");
 
         builder.add(YavpmBlocks.POLISHED_GRANITE_BRICKS, "Polished Granite Bricks");
@@ -47,6 +53,10 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.BANANA_CROP, "Banana Crops");
         builder.add(YavpmItems.BANANA, "Banana Bunch");
         builder.add(YavpmItems.BANANA_SEEDS, "Banana Seeds");
+
+        builder.add(YavpmBlocks.OAK_SAPLING_CROP, "Oak Sapling Crops");
+        builder.add(YavpmItems.ACORN, "Acorn");
+        builder.add(YavpmItems.DIAMOND_ACORN, "Diamond Acorn");
 
         builder.add(YavpmItems.CHOCOLATE, "Chocolate Bar");
 

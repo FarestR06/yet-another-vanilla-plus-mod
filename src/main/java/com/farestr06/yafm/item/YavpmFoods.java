@@ -32,4 +32,19 @@ public class YavpmFoods {
             .nutrition(4)
             .saturationModifier(0.8f)
             .build();
+
+    public static final FoodComponent ACORN = new FoodComponent.Builder()
+            .nutrition(4)
+            .saturationModifier(0.3f)
+            .snack()
+            .build();
+    public static final FoodComponent DIAMOND_ACORN = new FoodComponent.Builder()
+            .nutrition(4)
+            .saturationModifier(1.2F)
+            .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 400, 1), 1.0F)
+            .statusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 0), 1.0F)
+            .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 6000, 0), 1.0F)
+            .statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 3), 1.0F)
+            .alwaysEdible()
+            .build();
 }

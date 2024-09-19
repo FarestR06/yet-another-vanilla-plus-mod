@@ -37,11 +37,28 @@ public class YavpmTagProviders {
                     YavpmItems.CHOCOLATE
             );
 
+            getOrCreateTagBuilder(ItemTags.CHICKEN_FOOD).add(
+                    YavpmItems.ACORN,
+                    YavpmItems.DIAMOND_ACORN
+            );
+
+            getOrCreateTagBuilder(ItemTags.PARROT_FOOD).add(
+                    YavpmItems.ACORN,
+                    YavpmItems.DIAMOND_ACORN
+            );
+
+            getOrCreateTagBuilder(ItemTags.PIG_FOOD).add(
+                    YavpmItems.ACORN,
+                    YavpmItems.DIAMOND_ACORN
+            );
+
             getOrCreateTagBuilder(ConventionalItemTags.FOODS).add(
                     YavpmItems.BANANA,
                     YavpmItems.PEANUT,
                     YavpmItems.COOKED_PEANUT,
-                    YavpmItems.MOLY
+                    YavpmItems.MOLY,
+                    YavpmItems.ACORN,
+                    YavpmItems.DIAMOND_ACORN
             );
             getOrCreateTagBuilder(ConventionalItemTags.FRUIT_FOODS).add(
                     YavpmItems.BANANA
@@ -86,6 +103,29 @@ public class YavpmTagProviders {
                      POLISHED_DIORITE_BRICK_WALL,
                      POLISHED_ANDESITE_BRICK_WALL
              );
+        }
+    }
+
+    public static class EntityType extends FabricTagProvider.EntityTypeTagProvider {
+
+        public EntityType(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
+            super(output, completableFuture);
+        }
+
+        @Override
+        protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+            getOrCreateTagBuilder(YavpmTags.EntityTypes.HUMANOID_ZOMBIES).add(
+                    net.minecraft.entity.EntityType.ZOMBIE,
+                    net.minecraft.entity.EntityType.ZOMBIE_VILLAGER,
+                    net.minecraft.entity.EntityType.HUSK,
+                    net.minecraft.entity.EntityType.DROWNED
+            );
+            getOrCreateTagBuilder(YavpmTags.EntityTypes.HUMANOID_SKELETONS).add(
+                    net.minecraft.entity.EntityType.SKELETON,
+                    net.minecraft.entity.EntityType.STRAY,
+                    net.minecraft.entity.EntityType.BOGGED,
+                    net.minecraft.entity.EntityType.WITHER_SKELETON
+            );
         }
     }
 }
