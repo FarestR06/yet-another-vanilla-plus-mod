@@ -24,6 +24,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.GLOWING_OBSIDIAN, "Glowing Obsidian");
         builder.add(YavpmBlocks.SOUL_GLOWING_OBSIDIAN, "Soul Glowing Obsidian");
 
+        builder.add(YavpmBlocks.ELECTRO_GLASS, "Psychic Glass");
+
         builder.add("subtitles.item.soul_powder.use", "Soul Powder whooshes");
         builder.add(YavpmItems.SOUL_POWDER, "Soul Powder");
 

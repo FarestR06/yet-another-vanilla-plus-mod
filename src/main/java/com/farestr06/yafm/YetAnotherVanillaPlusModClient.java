@@ -8,6 +8,7 @@ import net.minecraft.client.render.RenderLayer;
 public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.ELECTRO_GLASS, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.BANANA_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PEANUT_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.OAK_SAPLING_CROP, RenderLayer.getCutout());

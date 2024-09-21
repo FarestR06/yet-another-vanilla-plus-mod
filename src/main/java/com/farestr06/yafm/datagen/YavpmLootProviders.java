@@ -35,7 +35,15 @@ public class YavpmLootProviders {
 
             addDrop(YavpmBlocks.GLOWING_OBSIDIAN);
             addDrop(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
-            
+
+            stoneVariantDrops();
+
+            addDropWithSilkTouch(YavpmBlocks.ELECTRO_GLASS);
+
+            modCropDrops();
+        }
+
+        private void modCropDrops() {
             BlockStatePropertyLootCondition.Builder builder = BlockStatePropertyLootCondition.builder(YavpmBlocks.PEANUT_CROP).properties(StatePredicate.Builder.create()
                     .exactMatch(PeanutCropBlock.AGE, 3));
             this.addDrop(YavpmBlocks.PEANUT_CROP, this.applyExplosionDecay(YavpmBlocks.PEANUT_CROP, LootTable.builder().pool(
@@ -55,7 +63,24 @@ public class YavpmLootProviders {
             BlockStatePropertyLootCondition.Builder oakSaplingBuilder = BlockStatePropertyLootCondition.builder(YavpmBlocks.OAK_SAPLING_CROP).properties(StatePredicate.Builder.create()
                     .exactMatch(SaplingCropBlock.AGE, 3));
             addDrop(YavpmBlocks.OAK_SAPLING_CROP, cropDrops(YavpmBlocks.OAK_SAPLING_CROP, Items.OAK_SAPLING, YavpmItems.ACORN, oakSaplingBuilder));
-            addDrop(YavpmBlocks.OAK_SAPLING_CROP, cropDrops(YavpmBlocks.OAK_SAPLING_CROP, Items.OAK_SAPLING, YavpmItems.ACORN, oakSaplingBuilder));
+        }
+
+        private void stoneVariantDrops() {
+            addDrop(YavpmBlocks.POLISHED_GRANITE_BRICKS);
+            addDrop(YavpmBlocks.POLISHED_DIORITE_BRICKS);
+            addDrop(YavpmBlocks.POLISHED_ANDESITE_BRICKS);
+
+            addDrop(YavpmBlocks.POLISHED_GRANITE_BRICK_STAIRS);
+            addDrop(YavpmBlocks.POLISHED_DIORITE_BRICK_STAIRS);
+            addDrop(YavpmBlocks.POLISHED_ANDESITE_BRICK_STAIRS);
+
+            slabDrops(YavpmBlocks.POLISHED_GRANITE_BRICK_SLAB);
+            slabDrops(YavpmBlocks.POLISHED_DIORITE_BRICK_SLAB);
+            slabDrops(YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB);
+
+            addDrop(YavpmBlocks.POLISHED_GRANITE_BRICK_WALL);
+            addDrop(YavpmBlocks.POLISHED_DIORITE_BRICK_WALL);
+            addDrop(YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL);
         }
     }
 }

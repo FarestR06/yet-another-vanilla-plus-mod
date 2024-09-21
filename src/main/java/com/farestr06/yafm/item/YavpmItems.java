@@ -60,6 +60,7 @@ public class YavpmItems {
         entries.add(ACORN);
     }
     private static void addToFoodAndDrink(FabricItemGroupEntries entries) {
+        entries.add(CHOCOLATE);
         entries.add(BANANA);
         entries.add(PEANUT);
         entries.add(COOKED_PEANUT);

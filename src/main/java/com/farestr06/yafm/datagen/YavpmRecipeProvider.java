@@ -9,7 +9,6 @@ import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Items;
-import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SmokingRecipe;
 import net.minecraft.recipe.book.RecipeCategory;
@@ -35,13 +34,14 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .input(Items.MILK_BUCKET)
                 .input(Items.SUGAR)
                 .criterion(hasItem(Items.COCOA_BEANS), conditionsFromItem(Items.COCOA_BEANS))
-                .offerTo(exporter, makeId(getRecipeName(YavpmItems.CHOCOLATE)));
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.CHOCOLATE)))
+        ;
 
         ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, YavpmItems.SOUL_POWDER, 4)
                 .input(Items.BLAZE_POWDER)
                 .input(Items.BLAZE_POWDER)
                 .input(Items.BLAZE_POWDER)
-                .input(Ingredient.ofItems(Items.SOUL_SAND, Items.SOUL_SOIL))
+                .input(YavpmItems.SOUL_POWDER)
                 .criterion(hasItem(Items.BLAZE_POWDER), conditionsFromItem(Items.BLAZE_POWDER))
                 .offerTo(exporter, makeId(getRecipeName(YavpmItems.SOUL_POWDER)))
         ;
@@ -85,6 +85,14 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .pattern("#%#")
                 .pattern("###")
                 .criterion(hasItem(YavpmItems.ACORN), conditionsFromItem(YavpmItems.ACORN))
-                .offerTo(exporter, makeId(getRecipeName(YavpmItems.DIAMOND_ACORN)));
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.DIAMOND_ACORN)))
+        ;
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.REDSTONE, YavpmBlocks.ELECTRO_GLASS)
+                .input(Items.GLASS)
+                .input(Items.GLOW_INK_SAC)
+                .criterion(hasItem(Items.GLOW_INK_SAC), conditionsFromItem(Items.GLOW_INK_SAC))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.ELECTRO_GLASS)))
+        ;
     }
 }

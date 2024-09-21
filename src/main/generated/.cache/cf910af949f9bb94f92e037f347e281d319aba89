@@ -1,6 +1,6 @@
-// 1.21.1	2024-09-19T09:39:37.3461224	Yet Another Vanilla Plus Mod/Block Loot Tables
-b09cb51d445db8ee90ea6e203cf6e4c09b23f79e data\yavpm\loot_table\blocks\oak_sapling_crop.json
-ec33164f8ea9fb2db34f50861fe3a244aaf10c98 data\yavpm\loot_table\blocks\soul_glowing_obsidian.json
-318e138026c9c84e0bf2959aeba67f90dc306d67 data\yavpm\loot_table\blocks\banana_crop.json
-890acec8e0f3c7566d4c1d3b011b4ca3f04d977a data\yavpm\loot_table\blocks\peanut_crop.json
-a62a3429c1216eefa240f97342ff2c0e449839f6 data\yavpm\loot_table\blocks\glowing_obsidian.json
+// 1.21.1	2024-09-20T12:09:00.79947	Yet Another Vanilla Plus Mod/Block Loot Tables
+890acec8e0f3c7566d4c1d3b011b4ca3f04d977a data/yavpm/loot_table/blocks/peanut_crop.json
+a62a3429c1216eefa240f97342ff2c0e449839f6 data/yavpm/loot_table/blocks/glowing_obsidian.json
+318e138026c9c84e0bf2959aeba67f90dc306d67 data/yavpm/loot_table/blocks/banana_crop.json
+b09cb51d445db8ee90ea6e203cf6e4c09b23f79e data/yavpm/loot_table/blocks/oak_sapling_crop.json
+ec33164f8ea9fb2db34f50861fe3a244aaf10c98 data/yavpm/loot_table/blocks/soul_glowing_obsidian.json
