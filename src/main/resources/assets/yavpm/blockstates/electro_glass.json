@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "yavpm:block/electro_glass_off"
+    },
+    "powered=true": {
+      "model": "yavpm:block/electro_glass_on"
+    }
+  }
+}

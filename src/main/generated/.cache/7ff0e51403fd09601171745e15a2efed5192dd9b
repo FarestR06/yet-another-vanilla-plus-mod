@@ -1,8 +1,8 @@
-// 1.21.1	2024-09-19T09:39:37.3605519	Yet Another Vanilla Plus Mod/Tags for minecraft:item
-f275a7f37363d1bf0a2338331d2e0d2595cfb1ff data\yavpm\tags\item\reactor_rechargers.json
-88d697b8b7cc84ab64ba28a926caecbdc8ee47a1 data\minecraft\tags\item\parrot_poisonous_food.json
-04572f379cdc09e7a30efd9042780a15b33898ab data\minecraft\tags\item\pig_food.json
-04572f379cdc09e7a30efd9042780a15b33898ab data\minecraft\tags\item\parrot_food.json
-04572f379cdc09e7a30efd9042780a15b33898ab data\minecraft\tags\item\chicken_food.json
-65fc3195d692fffc0cb7e91c07b545be344af882 data\c\tags\item\foods\fruit.json
-3451b80b7cab763a478a0002714612c73bc0c340 data\c\tags\item\foods.json
+// 1.21.1	2024-09-20T12:09:00.802494	Yet Another Vanilla Plus Mod/Tags for minecraft:item
+04572f379cdc09e7a30efd9042780a15b33898ab data/minecraft/tags/item/chicken_food.json
+3451b80b7cab763a478a0002714612c73bc0c340 data/c/tags/item/foods.json
+88d697b8b7cc84ab64ba28a926caecbdc8ee47a1 data/minecraft/tags/item/parrot_poisonous_food.json
+04572f379cdc09e7a30efd9042780a15b33898ab data/minecraft/tags/item/pig_food.json
+f275a7f37363d1bf0a2338331d2e0d2595cfb1ff data/yavpm/tags/item/reactor_rechargers.json
+04572f379cdc09e7a30efd9042780a15b33898ab data/minecraft/tags/item/parrot_food.json
+65fc3195d692fffc0cb7e91c07b545be344af882 data/c/tags/item/foods/fruit.json

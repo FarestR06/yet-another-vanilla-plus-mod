@@ -3,6 +3,7 @@ package com.farestr06.yafm.block;
 import com.farestr06.yafm.YetAnotherVanillaPlusMod;
 import com.farestr06.yafm.block.custom.BananaCropBlock;
 import com.farestr06.yafm.block.custom.PeanutCropBlock;
+import com.farestr06.yafm.block.custom.ElectroGlassBlock;
 import com.farestr06.yafm.block.custom.SaplingCropBlock;
 import com.farestr06.yafm.item.YavpmItems;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
@@ -87,14 +88,10 @@ public class YavpmBlocks {
             AbstractBlock.Settings.copy(Blocks.STONE_BRICK_WALL)
     ));
 
-    public static final Block SOULBLOSSOM_PLANKS = registerBlockAndItem(
-            "soulblossom_leaves",
-            new Block(AbstractBlock.Settings.copy(Blocks.CHERRY_PLANKS))
-    );
-    public static final Block SOULBLOSSOM_LEAVES = registerBlockAndItem(
-            "soulblossom_leaves",
-            new LeavesBlock(AbstractBlock.Settings.copy(Blocks.CHERRY_LEAVES))
-    );
+    public static final Block ELECTRO_GLASS = registerBlockAndItem("electro_glass",
+            new ElectroGlassBlock(
+                    AbstractBlock.Settings.copy(Blocks.TINTED_GLASS)
+            ));
 
     private static Block registerBlock(String id, Block block) {
         return Registry.register(Registries.BLOCK, YetAnotherVanillaPlusMod.makeId(id), block);
@@ -108,8 +105,13 @@ public class YavpmBlocks {
         return Registry.register(Registries.ITEM, YetAnotherVanillaPlusMod.makeId(id), new BlockItem(block, new Item.Settings()));
     }
 
+    private static void addToRedstoneBlocks(FabricItemGroupEntries entries) {
+        entries.add(ELECTRO_GLASS);
+    }
 
     private static void addToBuildingBlocks(FabricItemGroupEntries entries) {
+        entries.add(GLOWING_OBSIDIAN);
+        entries.add(SOUL_GLOWING_OBSIDIAN);
         entries.add(POLISHED_GRANITE_BRICKS);
         entries.add(POLISHED_GRANITE_BRICK_STAIRS);
         entries.add(POLISHED_GRANITE_BRICK_SLAB);
@@ -122,13 +124,12 @@ public class YavpmBlocks {
         entries.add(POLISHED_ANDESITE_BRICK_STAIRS);
         entries.add(POLISHED_ANDESITE_BRICK_SLAB);
         entries.add(POLISHED_ANDESITE_BRICK_WALL);
-        entries.add(GLOWING_OBSIDIAN);
-        entries.add(SOUL_GLOWING_OBSIDIAN);
     }
 
     public static void init() {
         YetAnotherVanillaPlusMod.LOGGER.info("Registering blocks for YAVPM!");
 
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(YavpmBlocks::addToBuildingBlocks);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(YavpmBlocks::addToRedstoneBlocks);
     }
 }

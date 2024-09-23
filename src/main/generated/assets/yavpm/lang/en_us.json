@@ -17,6 +17,7 @@
   "block.yavpm.polished_granite_brick_stairs": "Polished Granite Brick Stairs",
   "block.yavpm.polished_granite_brick_wall": "Polished Granite Brick Wall",
   "block.yavpm.polished_granite_bricks": "Polished Granite Bricks",
+  "block.yavpm.psychic_glass": "Psychic Glass",
   "block.yavpm.soul_glowing_obsidian": "Soul Glowing Obsidian",
   "item.yavpm.acorn": "Acorn",
   "item.yavpm.banana": "Banana Bunch",
@@ -30,6 +31,7 @@
   "item.yavpm.reactor": "Reactor",
   "item.yavpm.soul_powder": "Soul Powder",
   "resourcePack.yavpm.programmer_art.name": "YAVPM Programmer Art",
+  "subtitles.entity.chicken.egg_break": "Egg breaks",
   "subtitles.item.reactor.charge": "Reactor charges",
   "subtitles.item.soul_powder.use": "Soul Powder whooshes",
   "tag.item.yavpm.reactor_rechargers": "Reactor Rechargers"
