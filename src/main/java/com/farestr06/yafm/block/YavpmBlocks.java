@@ -87,6 +87,14 @@ public class YavpmBlocks {
             AbstractBlock.Settings.copy(Blocks.STONE_BRICK_WALL)
     ));
 
+    public static final Block SOULBLOSSOM_PLANKS = registerBlockAndItem(
+            "soulblossom_leaves",
+            new Block(AbstractBlock.Settings.copy(Blocks.CHERRY_PLANKS))
+    );
+    public static final Block SOULBLOSSOM_LEAVES = registerBlockAndItem(
+            "soulblossom_leaves",
+            new LeavesBlock(AbstractBlock.Settings.copy(Blocks.CHERRY_LEAVES))
+    );
 
     private static Block registerBlock(String id, Block block) {
         return Registry.register(Registries.BLOCK, YetAnotherVanillaPlusMod.makeId(id), block);
