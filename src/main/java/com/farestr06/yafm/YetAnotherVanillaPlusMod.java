@@ -1,7 +1,9 @@
 package com.farestr06.yafm;
 
 import com.farestr06.yafm.block.YavpmBlocks;
+import com.farestr06.yafm.entity.effect.YavpmStatusEffects;
 import com.farestr06.yafm.item.YavpmItems;
+import com.farestr06.yafm.item.YavpmPotions;
 import com.farestr06.yafm.util.YavpmSounds;
 import net.fabricmc.api.ModInitializer;
 
@@ -37,6 +39,8 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 
 		YavpmSounds.init();
 		YavpmItems.init();
+		YavpmStatusEffects.init();
+		YavpmPotions.init();
 		YavpmBlocks.init();
 
 		try {

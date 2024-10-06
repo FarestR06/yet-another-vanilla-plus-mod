@@ -46,6 +46,7 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .offerTo(exporter, makeId(getRecipeName(YavpmItems.SOUL_POWDER)))
         ;
 
+        // region Glowing Obsidians
         ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.GLOWING_OBSIDIAN, 4)
                 .input(Items.BLAZE_POWDER)
                 .input(Items.OBSIDIAN)
@@ -64,6 +65,7 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(Items.OBSIDIAN), conditionsFromItem(Items.OBSIDIAN))
                 .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.SOUL_GLOWING_OBSIDIAN)))
         ;
+        // endregion
 
         ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Items.MOSS_BLOCK, 4)
                 .input(Items.MOSS_BLOCK)
@@ -93,6 +95,35 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .input(Items.GLOW_INK_SAC)
                 .criterion(hasItem(Items.GLOW_INK_SAC), conditionsFromItem(Items.GLOW_INK_SAC))
                 .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.ELECTRO_GLASS)))
+        ;
+
+        makeStuddedArmorRecipes(exporter);
+    }
+
+    private static void makeStuddedArmorRecipes(RecipeExporter exporter) {
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, YavpmItems.STUDDED_HELMET)
+                .input(Items.LEATHER_HELMET)
+                .input(Items.CHAINMAIL_HELMET)
+                .criterion(hasItem(Items.CHAINMAIL_HELMET), conditionsFromItem(Items.CHAINMAIL_HELMET))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.STUDDED_HELMET)))
+        ;
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, YavpmItems.STUDDED_CHESTPLATE)
+                .input(Items.LEATHER_CHESTPLATE)
+                .input(Items.CHAINMAIL_CHESTPLATE)
+                .criterion(hasItem(Items.CHAINMAIL_CHESTPLATE), conditionsFromItem(Items.CHAINMAIL_CHESTPLATE))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.STUDDED_CHESTPLATE)))
+        ;
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, YavpmItems.STUDDED_LEGGINGS)
+                .input(Items.LEATHER_LEGGINGS)
+                .input(Items.CHAINMAIL_LEGGINGS)
+                .criterion(hasItem(Items.CHAINMAIL_LEGGINGS), conditionsFromItem(Items.CHAINMAIL_LEGGINGS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.STUDDED_LEGGINGS)))
+        ;
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, YavpmItems.STUDDED_BOOTS)
+                .input(Items.LEATHER_BOOTS)
+                .input(Items.CHAINMAIL_BOOTS)
+                .criterion(hasItem(Items.CHAINMAIL_BOOTS), conditionsFromItem(Items.CHAINMAIL_BOOTS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.STUDDED_BOOTS)))
         ;
     }
 }

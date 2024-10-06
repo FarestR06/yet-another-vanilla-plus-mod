@@ -10,49 +10,104 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.component.DataComponentTypes;
-import net.minecraft.item.AliasedBlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroups;
-import net.minecraft.item.Items;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
+import net.minecraft.item.*;
 import net.minecraft.util.Rarity;
 
+import static com.farestr06.api.item.ItemHelper.*;
+import static com.farestr06.yafm.YetAnotherVanillaPlusMod.makeId;
+import static com.farestr06.yafm.item.ModArmorMaterials.STUDDED;
+
 public class YavpmItems {
-    public static final Item BANANA = registerItem("banana", new Item(new Item.Settings().food(YavpmFoods.BANANA)));
-    public static final Item BANANA_SEEDS = registerItem("banana_seeds", new AliasedBlockItem(YavpmBlocks.BANANA_CROP, new Item.Settings()));
+    public static final Item BANANA = makeItem(
+            makeId("banana"),
+            new Item.Settings().food(YavpmFoods.BANANA)
+    );
+    public static final Item BANANA_SEEDS = makeAdvancedItem(
+            makeId("banana_seeds"),
+            new AliasedBlockItem(YavpmBlocks.BANANA_CROP, new Item.Settings())
+    );
 
-    public static final Item PEANUT = registerItem("peanut", new AliasedBlockItem(YavpmBlocks.PEANUT_CROP, new Item.Settings().food(YavpmFoods.RAW_PEANUT)));
-    public static final Item COOKED_PEANUT = registerItem("cooked_peanut", new Item(new Item.Settings().food(YavpmFoods.COOKED_PEANUT)));
+    public static final Item PEANUT = makeAdvancedItem(
+            makeId("peanut"),
+            new AliasedBlockItem(YavpmBlocks.PEANUT_CROP, new Item.Settings().food(YavpmFoods.RAW_PEANUT))
+    );
+    public static final Item COOKED_PEANUT = makeItem(
+            makeId("cooked_peanut"),
+            new Item.Settings().food(YavpmFoods.COOKED_PEANUT)
+    );
 
-    public static final Item ACORN = registerItem("acorn", new AliasedBlockItem(YavpmBlocks.OAK_SAPLING_CROP, new Item.Settings().food(YavpmFoods.ACORN)));
-    public static final Item DIAMOND_ACORN = registerItem("diamond_acorn", new Item(
+    public static final Item ACORN = makeAdvancedItem(
+            makeId("acorn"),
+            new AliasedBlockItem(YavpmBlocks.OAK_SAPLING_CROP, new Item.Settings().food(YavpmFoods.ACORN))
+    );
+    public static final Item DIAMOND_ACORN = makeItem(
+            makeId("diamond_acorn"),
             new Item.Settings()
                     .food(YavpmFoods.DIAMOND_ACORN)
                     .rarity(Rarity.RARE)
                     .component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true)
-    ));
+    );
 
-    public static final Item CHOCOLATE = registerItem("chocolate", new Item(new Item.Settings().food(YavpmFoods.CHOCOLATE)));
+    public static final Item CHOCOLATE = makeItem(
+            makeId("chocolate"),
+            new Item.Settings().food(YavpmFoods.CHOCOLATE)
+    );
 
-    public static final Item SOUL_POWDER = registerItem("soul_powder", new SoulPowderItem(
-            new Item.Settings()
-    ));
+    public static final Item SOUL_POWDER = makeAdvancedItem(
+            makeId("soul_powder"),
+            new SoulPowderItem(new Item.Settings())
+    );
 
-    public static final Item MOLY = registerItem("moly", new MolyItem(
-            new Item.Settings().maxCount(16)
-    ));
+    public static final Item MOLY = makeAdvancedItem(
+            makeId("moly"),
+            new MolyItem(new Item.Settings().maxCount(16))
+    );
 
-    public static final Item REACTOR = registerItem("reactor", new ReactorItem(
-            new Item.Settings().maxDamage(1024)
-    ));
-    public static final Item HEATED_REACTOR = registerItem("heated_reactor", new ReactorItem(
-            new Item.Settings().maxDamage(1024)
-    ));
+    public static final Item REACTOR = makeAdvancedItem(
+            makeId("reactor"),
+            new ReactorItem(new Item.Settings().maxDamage(1024))
+    );
+    public static final Item HEATED_REACTOR = makeAdvancedItem(
+            makeId("heated_reactor"),
+            new ReactorItem(new Item.Settings().maxDamage(1024))
+    );
 
-    protected static Item registerItem(String id, Item item) {
-        return Registry.register(Registries.ITEM, YetAnotherVanillaPlusMod.makeId(id), item);
-    }
+    // region Studded Armor
+
+    public static final Item STUDDED_HELMET = makeAdvancedItem(
+            makeId("studded_helmet"),
+            new ArmorItem(
+                    STUDDED,
+                    ArmorItem.Type.HELMET,
+                    new Item.Settings().maxDamage(ArmorItem.Type.HELMET.getMaxDamage(20))
+            )
+    );
+    public static final Item STUDDED_CHESTPLATE = makeAdvancedItem(
+            makeId("studded_chestplate"),
+            new ArmorItem(
+                    STUDDED,
+                    ArmorItem.Type.CHESTPLATE,
+                    new Item.Settings().maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(20))
+            )
+    );
+    public static final Item STUDDED_LEGGINGS = makeAdvancedItem(
+            makeId("studded_leggings"),
+            new ArmorItem(
+                    STUDDED,
+                    ArmorItem.Type.LEGGINGS,
+                    new Item.Settings().maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(20))
+            )
+    );
+    public static final Item STUDDED_BOOTS = makeAdvancedItem(
+            makeId("studded_boots"),
+            new ArmorItem(
+                    STUDDED,
+                    ArmorItem.Type.BOOTS,
+                    new Item.Settings().maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(20))
+            )
+    );
+
+    // endregion
 
     private static void addToNatural(FabricItemGroupEntries entries) {
         entries.add(BANANA_SEEDS);
@@ -72,6 +127,12 @@ public class YavpmItems {
         entries.add(SOUL_POWDER);
         entries.add(REACTOR);
     }
+    private static void addToCombat(FabricItemGroupEntries entries) {
+        entries.add(STUDDED_HELMET);
+        entries.add(STUDDED_CHESTPLATE);
+        entries.add(STUDDED_LEGGINGS);
+        entries.add(STUDDED_BOOTS);
+    }
 
     public static void init() {
         YetAnotherVanillaPlusMod.LOGGER.info("Registering items for YAVPM!");
@@ -80,10 +141,13 @@ public class YavpmItems {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(YavpmItems::addToNatural);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(YavpmItems::addToFoodAndDrink);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(YavpmItems::addToIngredients);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(YavpmItems::addToCombat);
         FuelRegistry.INSTANCE.add(YavpmItems.HEATED_REACTOR, 1600);
     }
 
     private static void setUpComponents() {
+        // make Glistering Melon edible
+
         DefaultItemComponentEvents.MODIFY.register(context ->
                 context.modify(Items.GLISTERING_MELON_SLICE, builder ->
                         builder.add(DataComponentTypes.FOOD, YavpmFoods.GLISTERING_MELON_SLICE)

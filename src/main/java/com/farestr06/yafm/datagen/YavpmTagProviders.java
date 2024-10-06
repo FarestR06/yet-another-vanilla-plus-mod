@@ -63,6 +63,27 @@ public class YavpmTagProviders {
             getOrCreateTagBuilder(ConventionalItemTags.FRUIT_FOODS).add(
                     YavpmItems.BANANA
             );
+
+            getOrCreateTagBuilder(ItemTags.FREEZE_IMMUNE_WEARABLES).add(
+                    YavpmItems.STUDDED_HELMET,
+                    YavpmItems.STUDDED_CHESTPLATE,
+                    YavpmItems.STUDDED_LEGGINGS,
+                    YavpmItems.STUDDED_BOOTS
+            );
+
+            getOrCreateTagBuilder(ItemTags.DYEABLE).add(
+                    YavpmItems.STUDDED_HELMET,
+                    YavpmItems.STUDDED_CHESTPLATE,
+                    YavpmItems.STUDDED_LEGGINGS,
+                    YavpmItems.STUDDED_BOOTS
+            );
+
+            getOrCreateTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(
+                    YavpmItems.STUDDED_HELMET,
+                    YavpmItems.STUDDED_CHESTPLATE,
+                    YavpmItems.STUDDED_LEGGINGS,
+                    YavpmItems.STUDDED_BOOTS
+            );
         }
     }
 

@@ -24,7 +24,7 @@ import java.util.concurrent.CompletableFuture;
 public class YavpmLootProviders {
     public static class Block extends FabricBlockLootTableProvider {
 
-        RegistryWrapper.Impl<Enchantment> lookup = registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+        final RegistryWrapper.Impl<Enchantment> lookup = registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
 
         protected Block(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
             super(dataOutput, registryLookup);

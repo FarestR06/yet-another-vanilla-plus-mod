@@ -3,12 +3,16 @@
   "package": "com.farestr06.yafm.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ExampleMixin",
+    "entity.AbstractPiglinEntityMixin",
     "entity.ChickenEntityMixin",
+    "entity.DragonFireballEntityMixin",
     "entity.LivingEntityMixin",
     "item.MilkBucketItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1
-	}
+  },
+  "client": [
+    "client.CreeperEntityRendererMixin"
+  ]
 }

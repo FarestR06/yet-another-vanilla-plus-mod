@@ -9,6 +9,8 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(MilkBucketItem.class)
 public class MilkBucketItemMixin {
+
+    // Redirect to nerfed method
     @Redirect(method = "finishUsing", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;clearStatusEffects()Z"))
     private boolean redirected(LivingEntity instance) {
         return ((StatusEffectClearable) instance).yAVPM$clearStatusEffectsWithMilk();

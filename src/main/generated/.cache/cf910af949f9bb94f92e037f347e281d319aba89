@@ -1,6 +1,16 @@
-// 1.21.1	2024-09-20T12:09:00.79947	Yet Another Vanilla Plus Mod/Block Loot Tables
+// 1.21.1	2024-10-05T18:14:34.207798	Yet Another Vanilla Plus Mod/Block Loot Tables
+96873a338e6c8db913912e242deb86061896d9c1 data/yavpm/loot_table/blocks/polished_andesite_bricks.json
+4b39ee77817c06e104225e3d6c02d98bde0aa591 data/yavpm/loot_table/blocks/polished_andesite_brick_stairs.json
 890acec8e0f3c7566d4c1d3b011b4ca3f04d977a data/yavpm/loot_table/blocks/peanut_crop.json
-a62a3429c1216eefa240f97342ff2c0e449839f6 data/yavpm/loot_table/blocks/glowing_obsidian.json
 318e138026c9c84e0bf2959aeba67f90dc306d67 data/yavpm/loot_table/blocks/banana_crop.json
 b09cb51d445db8ee90ea6e203cf6e4c09b23f79e data/yavpm/loot_table/blocks/oak_sapling_crop.json
+a9b4f03cb82ee2f7b02f5fbd468e9a66b7f37090 data/yavpm/loot_table/blocks/polished_diorite_brick_wall.json
 ec33164f8ea9fb2db34f50861fe3a244aaf10c98 data/yavpm/loot_table/blocks/soul_glowing_obsidian.json
+abb0c635f875e97f82b98bca3ad4de5ad5b96640 data/yavpm/loot_table/blocks/polished_andesite_brick_wall.json
+32489f7c58957b9124ec8e366b1d990d4b31a377 data/yavpm/loot_table/blocks/electro_glass.json
+a62a3429c1216eefa240f97342ff2c0e449839f6 data/yavpm/loot_table/blocks/glowing_obsidian.json
+beafe2ee13ab31e435dd7cd022eb7ceff211ac9e data/yavpm/loot_table/blocks/polished_granite_brick_wall.json
+6306d07ec8334b4cbcac04a8633285c8e3b71d56 data/yavpm/loot_table/blocks/polished_granite_bricks.json
+c1e6bfb42034600038296c81ed23d647a0300d13 data/yavpm/loot_table/blocks/polished_diorite_brick_stairs.json
+122bdba2da6ce223449aac9cde2419df9cc7518c data/yavpm/loot_table/blocks/polished_granite_brick_stairs.json
+5d150134d4c27bf85b2a0d75b8233fc327ede84f data/yavpm/loot_table/blocks/polished_diorite_bricks.json

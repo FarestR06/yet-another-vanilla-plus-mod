@@ -8,17 +8,17 @@ import net.minecraft.registry.tag.TagKey;
 
 public class YavpmTags {
     public static class Items {
-        public static TagKey<Item> REACTOR_RECHARGERS = register("reactor_rechargers");
+        public static final TagKey<Item> REACTOR_RECHARGERS = of("reactor_rechargers");
 
-        private static TagKey<Item> register(String path) {
+        private static TagKey<Item> of(String path) {
             return TagKey.of(RegistryKeys.ITEM, YetAnotherVanillaPlusMod.makeId(path));
         }
     }
     public static class EntityTypes {
-        public static TagKey<EntityType<?>> HUMANOID_ZOMBIES = register("humanoid_zombies");
-        public static TagKey<EntityType<?>> HUMANOID_SKELETONS = register("humanoid_skeletons");
+        public static final TagKey<EntityType<?>> HUMANOID_ZOMBIES = of("humanoid_zombies");
+        public static final TagKey<EntityType<?>> HUMANOID_SKELETONS = of("humanoid_skeletons");
 
-        private static TagKey<EntityType<?>> register(String path) {
+        private static TagKey<EntityType<?>> of(String path) {
             return TagKey.of(RegistryKeys.ENTITY_TYPE, YetAnotherVanillaPlusMod.makeId(path));
         }
     }

@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ChickenEntity.class)
 public abstract class ChickenEntityMixin extends AnimalEntity {
-    protected ChickenEntityMixin(EntityType<? extends AnimalEntity> entityType, World world) {
+    private ChickenEntityMixin(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
     }
 
@@ -29,7 +29,7 @@ public abstract class ChickenEntityMixin extends AnimalEntity {
     }
 
     @Unique
-    ChickenEntity thiz = (ChickenEntity) (Object) this;
+    final ChickenEntity thiz = (ChickenEntity) (Object) this;
 
     @Unique
     private boolean isEggLaySuccessful() {

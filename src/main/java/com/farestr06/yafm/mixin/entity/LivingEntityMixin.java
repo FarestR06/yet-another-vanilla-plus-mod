@@ -1,5 +1,6 @@
 package com.farestr06.yafm.mixin.entity;
 
+import com.farestr06.yafm.entity.effect.YavpmStatusEffects;
 import com.farestr06.yafm.util.StatusEffectClearable;
 import net.minecraft.entity.Attackable;
 import net.minecraft.entity.Entity;
@@ -10,19 +11,31 @@ import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity implements Attackable, StatusEffectClearable {
 
     @Shadow protected abstract void onStatusEffectRemoved(StatusEffectInstance effect);
 
-    public LivingEntityMixin(EntityType<?> type, World world) {
+    private LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
     }
 
     @Unique
-    LivingEntity thiz = (LivingEntity) (Object) this;
+    final LivingEntity thiz = (LivingEntity) (Object) this;
 
+    // Increase damage taken with Voided effect
+    @ModifyVariable(method = "damage", at = @At(value = "HEAD"), argsOnly = true)
+    private float voidedMultiplier(float damage) {
+        StatusEffectInstance effect = thiz.getStatusEffect(YavpmStatusEffects.VOIDED);
+        if (effect != null) {
+            return damage * ((effect.getAmplifier() + 1) * 1.5f);
+        } else return damage;
+    }
+
+    // Nerf milk bucket
     @Override
     public boolean yAVPM$clearStatusEffectsWithMilk() {
         if (!thiz.getWorld().isClient) {

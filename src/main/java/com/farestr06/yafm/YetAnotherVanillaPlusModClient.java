@@ -1,9 +1,12 @@
 package com.farestr06.yafm;
 
 import com.farestr06.yafm.block.YavpmBlocks;
+import com.farestr06.yafm.item.YavpmItems;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.component.type.DyedColorComponent;
 
 public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
     @Override
@@ -12,5 +15,12 @@ public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.BANANA_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PEANUT_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.OAK_SAPLING_CROP, RenderLayer.getCutout());
+
+        ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex > 0 ? -1 : DyedColorComponent.getColor(stack, -6265536),
+                YavpmItems.STUDDED_HELMET,
+                YavpmItems.STUDDED_CHESTPLATE,
+                YavpmItems.STUDDED_LEGGINGS,
+                YavpmItems.STUDDED_BOOTS
+        );
     }
 }

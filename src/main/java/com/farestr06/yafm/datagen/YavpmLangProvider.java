@@ -1,6 +1,7 @@
 package com.farestr06.yafm.datagen;
 
 import com.farestr06.yafm.block.YavpmBlocks;
+import com.farestr06.yafm.entity.effect.YavpmStatusEffects;
 import com.farestr06.yafm.item.YavpmItems;
 import com.farestr06.yafm.util.YavpmTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -42,6 +43,24 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.POLISHED_DIORITE_BRICK_WALL, "Polished Diorite Brick Wall");
         builder.add(YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL, "Polished Andesite Brick Wall");
 
+        builder.add(YavpmStatusEffects.VOIDED.value(), "Voided");
+
+        builder.add("enchantment.yavpm.void_strike", "Void Strike");
+        builder.add("enchantment.yavpm.void_strike.desc", "Attacking a target applies a short damage multiplier");
+
+        builder.add(YavpmBlocks.POLISHED_GRANITE_TILES, "Polished Granite Tiles");
+        builder.add(YavpmBlocks.POLISHED_DIORITE_TILES, "Polished Diorite Tiles");
+        builder.add(YavpmBlocks.POLISHED_ANDESITE_TILES, "Polished Andesite Tiles");
+        builder.add(YavpmBlocks.POLISHED_GRANITE_TILE_STAIRS, "Polished Granite Tile Stairs");
+        builder.add(YavpmBlocks.POLISHED_DIORITE_TILE_STAIRS, "Polished Diorite Tile Stairs");
+        builder.add(YavpmBlocks.POLISHED_ANDESITE_TILE_STAIRS, "Polished Andesite Tile Stairs");
+        builder.add(YavpmBlocks.POLISHED_GRANITE_TILE_SLAB, "Polished Granite Tile Slab");
+        builder.add(YavpmBlocks.POLISHED_DIORITE_TILE_SLAB, "Polished Diorite Tile Slab");
+        builder.add(YavpmBlocks.POLISHED_ANDESITE_TILE_SLAB, "Polished Andesite Tile Slab");
+        builder.add(YavpmBlocks.POLISHED_GRANITE_TILE_WALL, "Polished Granite Tile Wall");
+        builder.add(YavpmBlocks.POLISHED_DIORITE_TILE_WALL, "Polished Diorite Tile Wall");
+        builder.add(YavpmBlocks.POLISHED_ANDESITE_TILE_WALL, "Polished Andesite Tile Wall");
+
         builder.add("subtitles.item.reactor.charge", "Reactor charges");
         builder.add(YavpmItems.REACTOR, "Reactor");
         builder.add(YavpmItems.HEATED_REACTOR, "Reactor");
@@ -59,6 +78,37 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.OAK_SAPLING_CROP, "Oak Sapling Crops");
         builder.add(YavpmItems.ACORN, "Acorn");
         builder.add(YavpmItems.DIAMOND_ACORN, "Diamond Acorn");
+
+        builder.add(YavpmItems.STUDDED_HELMET, "Studded Cap");
+        builder.add(YavpmItems.STUDDED_CHESTPLATE, "Studded Tunic");
+        builder.add(YavpmItems.STUDDED_LEGGINGS, "Studded Pants");
+        builder.add(YavpmItems.STUDDED_BOOTS, "Studded Boots");
+
+        builder.add("item.minecraft.potion.effect.voided", "Potion of the Void");
+        builder.add("item.minecraft.potion.effect.long_voided", "Potion of the Void");
+        builder.add("item.minecraft.potion.effect.strong_voided", "Potion of the Void");
+        builder.add("item.minecraft.splash_potion.effect.voided", "Splash Potion of the Void");
+        builder.add("item.minecraft.splash_potion.effect.long_voided", "Splash Potion of the Void");
+        builder.add("item.minecraft.splash_potion.effect.strong_voided", "Splash Potion of the Void");
+        builder.add("item.minecraft.lingering_potion.effect.voided", "Lingering Potion of the Void");
+        builder.add("item.minecraft.lingering_potion.effect.long_voided", "Lingering Potion of the Void");
+        builder.add("item.minecraft.lingering_potion.effect.strong_voided", "Lingering Potion of the Void");
+        builder.add("item.minecraft.tipped_arrow.effect.voided", "Arrow of the Void");
+        builder.add("item.minecraft.tipped_arrow.effect.long_voided", "Arrow of the Void");
+        builder.add("item.minecraft.tipped_arrow.effect.strong_voided", "Arrow of the Void");
+
+        builder.add("item.minecraft.potion.effect.decay", "Potion of Decay");
+        builder.add("item.minecraft.potion.effect.long_decay", "Potion of Decay");
+        builder.add("item.minecraft.potion.effect.strong_decay", "Potion of Decay");
+        builder.add("item.minecraft.splash_potion.effect.decay", "Splash Potion of Decay");
+        builder.add("item.minecraft.splash_potion.effect.long_decay", "Splash Potion of Decay");
+        builder.add("item.minecraft.splash_potion.effect.strong_decay", "Splash Potion of Decay");
+        builder.add("item.minecraft.lingering_potion.effect.decay", "Lingering Potion of Decay");
+        builder.add("item.minecraft.lingering_potion.effect.long_decay", "Lingering Potion of Decay");
+        builder.add("item.minecraft.lingering_potion.effect.strong_decay", "Lingering Potion of Decay");
+        builder.add("item.minecraft.tipped_arrow.effect.decay", "Arrow of Decay");
+        builder.add("item.minecraft.tipped_arrow.effect.long_decay", "Arrow of Decay");
+        builder.add("item.minecraft.tipped_arrow.effect.strong_decay", "Arrow of Decay");
 
         builder.add(YavpmItems.CHOCOLATE, "Chocolate Bar");
 
