@@ -83,6 +83,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.STUDDED_CHESTPLATE, "Studded Tunic");
         builder.add(YavpmItems.STUDDED_LEGGINGS, "Studded Pants");
         builder.add(YavpmItems.STUDDED_BOOTS, "Studded Boots");
+        builder.add("subtitles.item.armor.equip_studded", "Studded armor jingles");
 
         builder.add("item.minecraft.potion.effect.voided", "Potion of the Void");
         builder.add("item.minecraft.potion.effect.long_voided", "Potion of the Void");
@@ -112,6 +113,10 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add(YavpmItems.CHOCOLATE, "Chocolate Bar");
 
+        builder.add("block.yavpm.nether_reactor_core.success", "Active!");
+        builder.add("block.yavpm.nether_reactor_core.bad_structure", "Not the correct pattern!");
+        builder.add("block.yavpm.nether_reactor_core.reactor_dead", "Reactor has already been used!");
+        builder.add("block.yavpm.nether_reactor_core.already_running", "Reactor is already running!");
         builder.add(YavpmTags.Items.REACTOR_RECHARGERS, "Reactor Rechargers");
 
         builder.add("subtitles.entity.chicken.egg_break", "Egg breaks");

@@ -1,10 +1,7 @@
 package com.farestr06.yafm.block;
 
 import com.farestr06.yafm.YetAnotherVanillaPlusMod;
-import com.farestr06.yafm.block.custom.BananaCropBlock;
-import com.farestr06.yafm.block.custom.PeanutCropBlock;
-import com.farestr06.yafm.block.custom.ElectroGlassBlock;
-import com.farestr06.yafm.block.custom.SaplingCropBlock;
+import com.farestr06.yafm.block.custom.*;
 import com.farestr06.yafm.item.YavpmItems;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -16,6 +13,13 @@ import static com.farestr06.api.block.BlockHelper.*;
 import static com.farestr06.yafm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmBlocks {
+
+    public static final Block NETHER_REACTOR_CORE = makeAdvancedBlockAndItem(
+            makeId("nether_reactor_core"),
+            new NetherReactorCoreBlock(
+                    AbstractBlock.Settings.copy(Blocks.BEACON)
+            )
+    );
 
     public static final Block GLOWING_OBSIDIAN = makeBlockAndItem(makeId("glowing_obsidian"),
             AbstractBlock.Settings.copy(Blocks.OBSIDIAN).luminance(state -> 15)
@@ -129,6 +133,10 @@ public class YavpmBlocks {
         entries.add(ELECTRO_GLASS);
     }
 
+    private static void addToFunctionalBlocks(FabricItemGroupEntries entries) {
+        entries.add(NETHER_REACTOR_CORE);
+    }
+
     private static void addToBuildingBlocks(FabricItemGroupEntries entries) {
         entries.add(GLOWING_OBSIDIAN);
         entries.add(SOUL_GLOWING_OBSIDIAN);
@@ -161,6 +169,7 @@ public class YavpmBlocks {
     public static void init() {
         YetAnotherVanillaPlusMod.LOGGER.info("Registering blocks for YAVPM!");
 
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(YavpmBlocks::addToFunctionalBlocks);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(YavpmBlocks::addToBuildingBlocks);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(YavpmBlocks::addToRedstoneBlocks);
     }

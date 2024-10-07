@@ -4,6 +4,9 @@
   "block.yavpm.banana_crop": "Banana Crops",
   "block.yavpm.electro_glass": "Psychic Glass",
   "block.yavpm.glowing_obsidian": "Glowing Obsidian",
+  "block.yavpm.nether_reactor_core.bad_structure": "Not the correct pattern!",
+  "block.yavpm.nether_reactor_core.reactor_dead": "Reactor has already been used!",
+  "block.yavpm.nether_reactor_core.success": "Active!",
   "block.yavpm.oak_sapling_crop": "Oak Sapling Crops",
   "block.yavpm.peanut_crop": "Peanut Crops",
   "block.yavpm.polished_andesite_brick_slab": "Polished Andesite Brick Slab",
@@ -75,6 +78,7 @@
   "item.yavpm.studded_leggings": "Studded Pants",
   "resourcePack.yavpm.programmer_art.name": "YAVPM Programmer Art",
   "subtitles.entity.chicken.egg_break": "Egg breaks",
+  "subtitles.item.armor.equip_studded": "Studded armor jingles",
   "subtitles.item.reactor.charge": "Reactor charges",
   "subtitles.item.soul_powder.use": "Soul Powder whooshes",
   "tag.item.yavpm.reactor_rechargers": "Reactor Rechargers"

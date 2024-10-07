@@ -18,5 +18,16 @@
       "mob/evocation_illager/cast2"
     ],
     "subtitle": "subtitles.item.soul_powder.use"
+  },
+  "item.armor.equip_studded": {
+    "sounds": [
+      "item/armor/equip_chain1",
+      "item/armor/equip_chain2",
+      "item/armor/equip_chain3",
+      "item/armor/equip_chain4",
+      "item/armor/equip_chain5",
+      "item/armor/equip_chain6"
+    ],
+    "subtitle": "subtitles.item.armor.equip_studded"
   }
 }

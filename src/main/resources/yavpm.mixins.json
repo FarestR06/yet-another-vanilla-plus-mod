@@ -6,6 +6,7 @@
     "entity.AbstractPiglinEntityMixin",
     "entity.ChickenEntityMixin",
     "entity.DragonFireballEntityMixin",
+    "entity.HoglinEntityMixin",
     "entity.LivingEntityMixin",
     "item.MilkBucketItemMixin"
   ],

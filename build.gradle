@@ -23,6 +23,7 @@ repositories {
 		name = 'TerraformersMC'
 		url = 'https://maven.terraformersmc.com/'
 	}
+
 }
 
 fabricApi {
