@@ -1,5 +1,6 @@
 package com.farestr06.yafm.datagen;
 
+import com.farestr06.yafm.block.YavpmBlocks;
 import com.farestr06.yafm.item.YavpmItems;
 import com.farestr06.yafm.util.YavpmTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -124,6 +125,41 @@ public class YavpmTagProviders {
                      POLISHED_DIORITE_BRICK_WALL,
                      POLISHED_ANDESITE_BRICK_WALL
              );
+
+            getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN)
+                    .add(
+                            APPLE_LOG,
+                            STRIPPED_APPLE_LOG,
+                            APPLE_WOOD,
+                            STRIPPED_APPLE_WOOD
+                    );
+
+            getOrCreateTagBuilder(BlockTags.PLANKS)
+                    .add(APPLE_PLANKS);
+
+            getOrCreateTagBuilder(BlockTags.WOODEN_FENCES)
+                    .add(APPLE_FENCE);
+
+            getOrCreateTagBuilder(BlockTags.FENCE_GATES)
+                    .add(APPLE_FENCE_GATE);
+
+            getOrCreateTagBuilder(BlockTags.WOODEN_DOORS)
+                    .add(APPLE_DOOR);
+
+            getOrCreateTagBuilder(BlockTags.WOODEN_TRAPDOORS)
+                    .add(APPLE_TRAPDOOR);
+
+            getOrCreateTagBuilder(BlockTags.STANDING_SIGNS)
+                    .add(APPLE_SIGN);
+
+            getOrCreateTagBuilder(BlockTags.WALL_SIGNS)
+                    .add(APPLE_WALL_SIGN);
+
+            getOrCreateTagBuilder(BlockTags.CEILING_HANGING_SIGNS)
+                    .add(APPLE_HANGING_SIGN);
+
+            getOrCreateTagBuilder(BlockTags.WALL_HANGING_SIGNS)
+                    .add(APPLE_WALL_HANGING_SIGN);
         }
     }
 

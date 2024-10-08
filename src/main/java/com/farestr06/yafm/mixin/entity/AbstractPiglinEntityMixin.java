@@ -26,7 +26,7 @@ public abstract class AbstractPiglinEntityMixin extends HostileEntity {
     }
 
     @Unique
-    AbstractPiglinEntity thiz = (AbstractPiglinEntity) (Object) this;
+    final AbstractPiglinEntity thiz = (AbstractPiglinEntity) (Object) this;
 
     // TODO: Make Piglins safe near Nether Reactors
     @Inject(method = "shouldZombify", at = @At(value = "HEAD"), cancellable = true)

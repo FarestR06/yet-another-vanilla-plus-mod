@@ -1,7 +1,9 @@
 package com.farestr06.yafm;
 
 import com.farestr06.yafm.block.YavpmBlocks;
+import com.farestr06.yafm.entity.YavpmBoats;
 import com.farestr06.yafm.item.YavpmItems;
+import com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
@@ -21,6 +23,10 @@ public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
                 YavpmItems.STUDDED_CHESTPLATE,
                 YavpmItems.STUDDED_LEGGINGS,
                 YavpmItems.STUDDED_BOOTS
+        );
+
+        TerraformBoatClientHelper.registerModelLayers(
+                YavpmBoats.APPLE_BOAT_TYPE_ID, false
         );
     }
 }

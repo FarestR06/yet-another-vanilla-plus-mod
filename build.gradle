@@ -17,13 +17,22 @@ repositories {
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
 
-	// TODO: Add Modrinth maven when Farest's API gets approved
-	mavenLocal()
 	maven {
 		name = 'TerraformersMC'
 		url = 'https://maven.terraformersmc.com/'
 	}
 
+	exclusiveContent {
+		forRepository {
+			maven {
+				name = "Modrinth"
+				url = "https://api.modrinth.com/maven"
+			}
+		}
+		filter {
+			includeGroup "maven.modrinth"
+		}
+	}
 }
 
 fabricApi {
@@ -38,9 +47,13 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	// Terraform Wood API
 	modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_version}"
 	include "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_version}"
-	modImplementation "com.farestr06:farests-api:2.4.0+1.21.1"
+
+	// Farest's API
+	modImplementation "maven.modrinth:farests-api:2.4.0-1.21.1"
 }
 
 processResources {

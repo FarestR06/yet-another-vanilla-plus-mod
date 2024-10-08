@@ -30,6 +30,8 @@ public class YavpmModelProvider extends FabricModelProvider {
         createGraniteSet(generator);
         createDioriteSet(generator);
         createAndesiteSet(generator);
+
+        createAppleSet(generator);
     }
 
     @Override
@@ -80,6 +82,19 @@ public class YavpmModelProvider extends FabricModelProvider {
         dioriteTilePool.stairs(YavpmBlocks.POLISHED_DIORITE_TILE_STAIRS);
         dioriteTilePool.slab(YavpmBlocks.POLISHED_DIORITE_TILE_SLAB);
         dioriteTilePool.wall(YavpmBlocks.POLISHED_DIORITE_TILE_WALL);
+    }
+
+    private void createAppleSet(BlockStateModelGenerator generator) {
+        BlockStateModelGenerator.BlockTexturePool applePool = generator.registerCubeAllModelTexturePool(YavpmBlocks.APPLE_PLANKS);
+        applePool.stairs(YavpmBlocks.APPLE_STAIRS);
+        applePool.slab(YavpmBlocks.APPLE_SLAB);
+        applePool.fence(YavpmBlocks.APPLE_FENCE);
+        applePool.fenceGate(YavpmBlocks.APPLE_FENCE_GATE);
+        applePool.button(YavpmBlocks.APPLE_BUTTON);
+        applePool.pressurePlate(YavpmBlocks.APPLE_PRESSURE_PLATE);
+
+        generator.registerDoor(YavpmBlocks.APPLE_DOOR);
+        generator.registerTrapdoor(YavpmBlocks.APPLE_TRAPDOOR);
     }
 
     private static void createStuddedArmor(ItemModelGenerator generator) {

@@ -3,11 +3,18 @@ package com.farestr06.yafm.block;
 import com.farestr06.yafm.YetAnotherVanillaPlusMod;
 import com.farestr06.yafm.block.custom.*;
 import com.farestr06.yafm.item.YavpmItems;
+import com.terraformersmc.terraform.sign.api.block.TerraformHangingSignBlock;
+import com.terraformersmc.terraform.sign.api.block.TerraformSignBlock;
+import com.terraformersmc.terraform.sign.api.block.TerraformWallHangingSignBlock;
+import com.terraformersmc.terraform.sign.api.block.TerraformWallSignBlock;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
+import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.*;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemGroups;
+import net.minecraft.util.Identifier;
 
 import static com.farestr06.api.block.BlockHelper.*;
 import static com.farestr06.yafm.YetAnotherVanillaPlusMod.makeId;
@@ -124,10 +131,123 @@ public class YavpmBlocks {
 
     // endregion
 
-    public static final Block ELECTRO_GLASS = makeAdvancedBlockAndItem(makeId("electro_glass"),
+    public static final Block ELECTRO_GLASS = makeAdvancedBlockAndItem(
+            makeId("electro_glass"),
             new ElectroGlassBlock(
                     AbstractBlock.Settings.copy(Blocks.TINTED_GLASS)
-            ));
+            )
+    );
+
+    // region Applewood
+    public static final Block APPLE_LOG = makeAdvancedBlockAndItem(
+            makeId("apple_log"),
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHERRY_LOG))
+    );
+    public static final Block APPLE_WOOD = makeAdvancedBlockAndItem(
+            makeId("apple_wood"),
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHERRY_WOOD))
+    );
+    public static final Block STRIPPED_APPLE_LOG = makeAdvancedBlockAndItem(
+            makeId("stripped_apple_log"),
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_CHERRY_LOG))
+    );
+    public static final Block STRIPPED_APPLE_WOOD = makeAdvancedBlockAndItem(
+            makeId("stripped_apple_wood"),
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_CHERRY_WOOD))
+    );
+    public static final Block APPLE_LEAVES = makeAdvancedBlockAndItem(
+            makeId("apple_leaves"),
+            new LeavesBlock(AbstractBlock.Settings.copy(Blocks.FLOWERING_AZALEA_LEAVES))
+    );
+
+    public static final Block APPLE_PLANKS = makeBlockAndItem(
+            makeId("apple_planks"),
+            AbstractBlock.Settings.copy(Blocks.CHERRY_PLANKS)
+    );
+    public static final Block APPLE_STAIRS = makeAdvancedBlockAndItem(
+            makeId("apple_stairs"),
+            new StairsBlock(
+                    APPLE_PLANKS.getDefaultState(),
+                    AbstractBlock.Settings.copy(Blocks.CHERRY_STAIRS)
+            )
+    );
+    public static final Block APPLE_SLAB = makeAdvancedBlockAndItem(
+            makeId("apple_slab"),
+            new SlabBlock(AbstractBlock.Settings.copy(Blocks.CHERRY_SLAB))
+    );
+    public static final Block APPLE_FENCE = makeAdvancedBlockAndItem(
+            makeId("apple_fence"),
+            new FenceBlock(AbstractBlock.Settings.copy(Blocks.CHERRY_FENCE))
+    );
+    public static final Block APPLE_FENCE_GATE = makeAdvancedBlockAndItem(
+            makeId("apple_fence_gate"),
+            new FenceGateBlock(WoodType.CHERRY, AbstractBlock.Settings.copy(Blocks.CHERRY_FENCE))
+    );
+    public static final Block APPLE_DOOR = makeAdvancedBlockAndItem(
+            makeId("apple_door"),
+            new DoorBlock(
+                    BlockSetType.CHERRY,
+                    AbstractBlock.Settings.copy(Blocks.CHERRY_DOOR)
+            )
+    );
+    public static final Block APPLE_TRAPDOOR = makeAdvancedBlockAndItem(
+            makeId("apple_trapdoor"),
+            new TrapdoorBlock(
+                    BlockSetType.CHERRY,
+                    AbstractBlock.Settings.copy(Blocks.CHERRY_TRAPDOOR)
+            )
+    );
+    public static final Block APPLE_BUTTON = makeAdvancedBlockAndItem(
+            makeId("apple_button"),
+            new ButtonBlock(
+                    BlockSetType.CHERRY,
+                    30,
+                    AbstractBlock.Settings.copy(Blocks.CHERRY_BUTTON)
+            )
+    );
+    public static final Block APPLE_PRESSURE_PLATE = makeAdvancedBlockAndItem(
+            makeId("apple_pressure_plate"),
+            new PressurePlateBlock(
+                    BlockSetType.CHERRY,
+                    AbstractBlock.Settings.copy(Blocks.CHERRY_PRESSURE_PLATE)
+            )
+    );
+
+    protected static final Identifier APPLE_SIGN_TEXTURE = makeId("entity/signs/apple");
+    protected static final Identifier APPLE_HANGING_SIGN_TEXTURE = makeId("entity/signs/hanging/apple");
+    protected static final Identifier APPLE_HANGING_SIGN_GUI_TEXTURE = makeId("textures/gui/hanging_signs/apple");
+
+    public static final Block APPLE_SIGN = makeAdvancedBlock(
+            makeId("apple_sign"),
+            new TerraformSignBlock(
+                    APPLE_SIGN_TEXTURE,
+                    AbstractBlock.Settings.copy(Blocks.CHERRY_SIGN)
+            )
+    );
+    public static final Block APPLE_WALL_SIGN = makeAdvancedBlock(
+            makeId("apple_wall_sign"),
+            new TerraformWallSignBlock(
+                    APPLE_SIGN_TEXTURE,
+                    AbstractBlock.Settings.copy(Blocks.CHERRY_SIGN)
+            )
+    );
+    public static final Block APPLE_HANGING_SIGN = makeAdvancedBlock(
+            makeId("apple_hanging_sign"),
+            new TerraformHangingSignBlock(
+                    APPLE_HANGING_SIGN_TEXTURE,
+                    APPLE_HANGING_SIGN_GUI_TEXTURE,
+                    AbstractBlock.Settings.copy(Blocks.CHERRY_HANGING_SIGN)
+            )
+    );
+    public static final Block APPLE_WALL_HANGING_SIGN = makeAdvancedBlock(
+            makeId("apple_hanging_sign"),
+            new TerraformWallHangingSignBlock(
+                    APPLE_HANGING_SIGN_TEXTURE,
+                    APPLE_HANGING_SIGN_GUI_TEXTURE,
+                    AbstractBlock.Settings.copy(Blocks.CHERRY_WALL_HANGING_SIGN)
+            )
+    );
+    // endregion
 
     private static void addToRedstoneBlocks(FabricItemGroupEntries entries) {
         entries.add(ELECTRO_GLASS);
@@ -138,8 +258,24 @@ public class YavpmBlocks {
     }
 
     private static void addToBuildingBlocks(FabricItemGroupEntries entries) {
+
+        entries.add(APPLE_LOG);
+        entries.add(APPLE_WOOD);
+        entries.add(STRIPPED_APPLE_LOG);
+        entries.add(STRIPPED_APPLE_WOOD);
+        entries.add(APPLE_PLANKS);
+        entries.add(APPLE_STAIRS);
+        entries.add(APPLE_SLAB);
+        entries.add(APPLE_FENCE);
+        entries.add(APPLE_FENCE_GATE);
+        entries.add(APPLE_DOOR);
+        entries.add(APPLE_TRAPDOOR);
+        entries.add(APPLE_PRESSURE_PLATE);
+        entries.add(APPLE_BUTTON);
+        
         entries.add(GLOWING_OBSIDIAN);
         entries.add(SOUL_GLOWING_OBSIDIAN);
+        
         entries.add(POLISHED_GRANITE_BRICKS);
         entries.add(POLISHED_GRANITE_BRICK_STAIRS);
         entries.add(POLISHED_GRANITE_BRICK_SLAB);
@@ -172,5 +308,24 @@ public class YavpmBlocks {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(YavpmBlocks::addToFunctionalBlocks);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(YavpmBlocks::addToBuildingBlocks);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(YavpmBlocks::addToRedstoneBlocks);
+
+        setUpRegistries();
+    }
+
+    private static void setUpRegistries() {
+        StrippableBlockRegistry.register(APPLE_LOG, STRIPPED_APPLE_LOG);
+        StrippableBlockRegistry.register(APPLE_WOOD, STRIPPED_APPLE_WOOD);
+
+        FlammableBlockRegistry flammables = FlammableBlockRegistry.getDefaultInstance();
+        flammables.add(APPLE_LOG, 5, 5);
+        flammables.add(STRIPPED_APPLE_LOG, 5, 5);
+        flammables.add(APPLE_WOOD, 5, 5);
+        flammables.add(STRIPPED_APPLE_WOOD, 5, 5);
+        flammables.add(APPLE_PLANKS, 5, 20);
+        flammables.add(APPLE_STAIRS, 5, 20);
+        flammables.add(APPLE_SLAB, 5, 20);
+        flammables.add(APPLE_FENCE, 5, 20);
+        flammables.add(APPLE_FENCE_GATE, 5, 20);
+        flammables.add(APPLE_LEAVES, 30, 60);
     }
 }

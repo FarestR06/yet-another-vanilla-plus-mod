@@ -5,6 +5,7 @@ import com.farestr06.yafm.block.YavpmBlocks;
 import com.farestr06.yafm.item.custom.MolyItem;
 import com.farestr06.yafm.item.custom.ReactorItem;
 import com.farestr06.yafm.item.custom.SoulPowderItem;
+import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -15,9 +16,12 @@ import net.minecraft.util.Rarity;
 
 import static com.farestr06.api.item.ItemHelper.*;
 import static com.farestr06.yafm.YetAnotherVanillaPlusMod.makeId;
+import static com.farestr06.yafm.entity.YavpmBoats.*;
 import static com.farestr06.yafm.item.ModArmorMaterials.STUDDED;
 
 public class YavpmItems {
+
+    // region Banana
     public static final Item BANANA = makeItem(
             makeId("banana"),
             new Item.Settings().food(YavpmFoods.BANANA)
@@ -26,7 +30,8 @@ public class YavpmItems {
             makeId("banana_seeds"),
             new AliasedBlockItem(YavpmBlocks.BANANA_CROP, new Item.Settings())
     );
-
+    // endregion
+    // region Peanut
     public static final Item PEANUT = makeAdvancedItem(
             makeId("peanut"),
             new AliasedBlockItem(YavpmBlocks.PEANUT_CROP, new Item.Settings().food(YavpmFoods.RAW_PEANUT))
@@ -35,7 +40,8 @@ public class YavpmItems {
             makeId("cooked_peanut"),
             new Item.Settings().food(YavpmFoods.COOKED_PEANUT)
     );
-
+    // endregion
+    // region Oak
     public static final Item ACORN = makeAdvancedItem(
             makeId("acorn"),
             new AliasedBlockItem(YavpmBlocks.OAK_SAPLING_CROP, new Item.Settings().food(YavpmFoods.ACORN))
@@ -47,6 +53,7 @@ public class YavpmItems {
                     .rarity(Rarity.RARE)
                     .component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true)
     );
+    // endregion
 
     public static final Item CHOCOLATE = makeItem(
             makeId("chocolate"),
@@ -58,6 +65,7 @@ public class YavpmItems {
             new SoulPowderItem(new Item.Settings())
     );
 
+    // Magic Herb
     public static final Item MOLY = makeAdvancedItem(
             makeId("moly"),
             new MolyItem(new Item.Settings().maxCount(16))
@@ -73,7 +81,6 @@ public class YavpmItems {
     );
 
     // region Studded Armor
-
     public static final Item STUDDED_HELMET = makeAdvancedItem(
             makeId("studded_helmet"),
             new ArmorItem(
@@ -106,13 +113,36 @@ public class YavpmItems {
                     new Item.Settings().maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(20))
             )
     );
-
     // endregion
+
+    public static final Item APPLE_SIGN = makeAdvancedItem(
+            makeId("apple_sign"),
+            new SignItem(
+                    new Item.Settings().maxCount(16),
+                    YavpmBlocks.APPLE_SIGN,
+                    YavpmBlocks.APPLE_WALL_SIGN
+            )
+    );
+    public static final Item APPLE_HANGING_SIGN = makeAdvancedItem(
+            makeId("apple_hanging_sign"),
+            new HangingSignItem(
+                    YavpmBlocks.APPLE_HANGING_SIGN,
+                    YavpmBlocks.APPLE_WALL_HANGING_SIGN,
+                    new Item.Settings().maxCount(16)
+            )
+    );
+
+    public static final Item APPLE_BOAT = TerraformBoatItemHelper.registerBoatItem(APPLE_BOAT_ID, APPLE_BOAT_KEY, false);
+    public static final Item APPLE_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(APPLE_CHEST_BOAT_ID, APPLE_BOAT_KEY, false);
 
     private static void addToNatural(FabricItemGroupEntries entries) {
         entries.add(BANANA_SEEDS);
         entries.add(PEANUT);
         entries.add(ACORN);
+    }
+    private static void addToFunctional(FabricItemGroupEntries entries) {
+        entries.add(APPLE_SIGN);
+        entries.add(APPLE_HANGING_SIGN);
     }
     private static void addToFoodAndDrink(FabricItemGroupEntries entries) {
         entries.add(CHOCOLATE);
@@ -127,6 +157,10 @@ public class YavpmItems {
         entries.add(SOUL_POWDER);
         entries.add(REACTOR);
     }
+    private static void addToTools(FabricItemGroupEntries entries) {
+        entries.add(APPLE_BOAT);
+        entries.add(APPLE_CHEST_BOAT);
+    }
     private static void addToCombat(FabricItemGroupEntries entries) {
         entries.add(STUDDED_HELMET);
         entries.add(STUDDED_CHESTPLATE);
@@ -139,8 +173,10 @@ public class YavpmItems {
 
         setUpComponents();
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(YavpmItems::addToNatural);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(YavpmItems::addToFunctional);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(YavpmItems::addToFoodAndDrink);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(YavpmItems::addToIngredients);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(YavpmItems::addToTools);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(YavpmItems::addToCombat);
         FuelRegistry.INSTANCE.add(YavpmItems.HEATED_REACTOR, 1600);
     }

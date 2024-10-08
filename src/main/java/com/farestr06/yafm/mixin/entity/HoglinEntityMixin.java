@@ -25,7 +25,7 @@ public abstract class HoglinEntityMixin extends AnimalEntity implements Monster,
     }
 
     @Unique
-    HoglinEntity thiz = (HoglinEntity) (Object) this;
+    final HoglinEntity thiz = (HoglinEntity) (Object) this;
 
     @Inject(method = "canConvert", at = @At(value = "HEAD"), cancellable = true)
     private void injected(CallbackInfoReturnable<Boolean> cir) {
