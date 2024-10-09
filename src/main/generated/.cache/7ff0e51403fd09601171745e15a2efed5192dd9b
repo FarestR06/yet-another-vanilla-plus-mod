@@ -1,11 +1,24 @@
-// 1.21.1	2024-10-07T14:34:08.0324	Yet Another Vanilla Plus Mod/Tags for minecraft:item
-95eca0c62d45553638cc93a0473b3a32b137e4fe data/minecraft/tags/item/freeze_immune_wearables.json
-04572f379cdc09e7a30efd9042780a15b33898ab data/minecraft/tags/item/chicken_food.json
+// 1.21.1	2024-10-08T19:01:16.05912821	Yet Another Vanilla Plus Mod/Tags for minecraft:item
+b23ddc449940e122dcdba967b4d6d99cdcab5cea data/minecraft/tags/item/hanging_signs.json
 3451b80b7cab763a478a0002714612c73bc0c340 data/c/tags/item/foods.json
-95eca0c62d45553638cc93a0473b3a32b137e4fe data/minecraft/tags/item/trimmable_armor.json
-88d697b8b7cc84ab64ba28a926caecbdc8ee47a1 data/minecraft/tags/item/parrot_poisonous_food.json
-04572f379cdc09e7a30efd9042780a15b33898ab data/minecraft/tags/item/pig_food.json
-f275a7f37363d1bf0a2338331d2e0d2595cfb1ff data/yavpm/tags/item/reactor_rechargers.json
 95eca0c62d45553638cc93a0473b3a32b137e4fe data/minecraft/tags/item/dyeable.json
+3d4b6dc3bea6429bb2d1dda8cebd16ef86bf92cd data/yavpm/tags/item/apple_logs.json
+c4e5597251aef0fb027017e79b87fb67c604e44e data/minecraft/tags/item/wooden_buttons.json
+95eca0c62d45553638cc93a0473b3a32b137e4fe data/minecraft/tags/item/freeze_immune_wearables.json
+3b97ca762eeaaccc5286c21bbc63cfa10b0ab99d data/minecraft/tags/item/planks.json
+e3ab98fc152ed70716c0fe1693fb83062e2a1102 data/minecraft/tags/item/wooden_doors.json
+921b7a251a4f979883b59271e0dc86e70ad74e79 data/minecraft/tags/item/wooden_pressure_plates.json
+95eca0c62d45553638cc93a0473b3a32b137e4fe data/minecraft/tags/item/trimmable_armor.json
+ab454d99c3df2ab089ff89ff56ca4cc9a0bb5d77 data/minecraft/tags/item/signs.json
+04572f379cdc09e7a30efd9042780a15b33898ab data/minecraft/tags/item/chicken_food.json
+88d697b8b7cc84ab64ba28a926caecbdc8ee47a1 data/minecraft/tags/item/parrot_poisonous_food.json
+e0c86df90766adcfbfb66d5e4a74b8613c63374c data/minecraft/tags/item/boats.json
+9cae54457448a1cf945b8b5d9aad3aeff7df18e9 data/minecraft/tags/item/chest_boats.json
+e45fa6ca7af8f8c3fdce26aa0a8ef8c6a466826d data/minecraft/tags/item/wooden_fences.json
+04572f379cdc09e7a30efd9042780a15b33898ab data/minecraft/tags/item/pig_food.json
+f3b3071c7450bbc8a438073616eef45c204a3ade data/minecraft/tags/item/logs_that_burn.json
+6baa355b29752f0ce8a10d160d0b786a3ebef284 data/minecraft/tags/item/wooden_trapdoors.json
 04572f379cdc09e7a30efd9042780a15b33898ab data/minecraft/tags/item/parrot_food.json
+9a8feb370c974654876a955ec0036f0c29a7bf91 data/minecraft/tags/item/fence_gates.json
+f275a7f37363d1bf0a2338331d2e0d2595cfb1ff data/yavpm/tags/item/reactor_rechargers.json
 65fc3195d692fffc0cb7e91c07b545be344af882 data/c/tags/item/foods/fruit.json

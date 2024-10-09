@@ -2,6 +2,7 @@ package com.farestr06.yafm.datagen;
 
 import com.farestr06.yafm.block.YavpmBlocks;
 import com.farestr06.yafm.item.YavpmItems;
+import com.farestr06.yafm.util.YavpmTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
@@ -9,6 +10,7 @@ import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SmokingRecipe;
 import net.minecraft.recipe.book.RecipeCategory;
@@ -98,6 +100,26 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
         ;
 
         makeStuddedArmorRecipes(exporter);
+        makeAppleWoodRecipes(exporter);
+    }
+
+    private static void makeAppleWoodRecipes(RecipeExporter exporter) {
+        offerPlanksRecipe(exporter, YavpmBlocks.APPLE_PLANKS, YavpmTags.Items.APPLE_LOGS, 4);
+
+        createStairsRecipe(YavpmBlocks.APPLE_STAIRS, Ingredient.ofItems(YavpmBlocks.APPLE_PLANKS))
+                .criterion(hasItem(YavpmBlocks.APPLE_PLANKS), conditionsFromItem(YavpmBlocks.APPLE_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.APPLE_STAIRS)));
+
+        offerSlabRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.APPLE_SLAB, YavpmBlocks.APPLE_PLANKS);
+
+        offerShapelessRecipe(exporter, YavpmBlocks.APPLE_BUTTON, YavpmBlocks.APPLE_PLANKS, "apple_button", 1);
+        offerPressurePlateRecipe(exporter, YavpmBlocks.APPLE_PRESSURE_PLATE, YavpmBlocks.APPLE_PLANKS);
+
+        createSignRecipe(YavpmItems.APPLE_SIGN, Ingredient.ofItems(YavpmBlocks.APPLE_PLANKS))
+                .criterion(hasItem(YavpmBlocks.APPLE_PLANKS), conditionsFromItem(YavpmBlocks.APPLE_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.APPLE_SIGN)));
+
+        offerHangingSignRecipe(exporter, YavpmItems.APPLE_HANGING_SIGN, YavpmBlocks.STRIPPED_APPLE_LOG);
     }
 
     private static void makeStuddedArmorRecipes(RecipeExporter exporter) {

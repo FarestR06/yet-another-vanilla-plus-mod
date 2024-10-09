@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "yavpm:block/apple_slab"
+    },
+    "type=double": {
+      "model": "yavpm:block/apple_planks"
+    },
+    "type=top": {
+      "model": "yavpm:block/apple_slab_top"
+    }
+  }
+}

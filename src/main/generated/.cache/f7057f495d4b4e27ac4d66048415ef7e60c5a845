@@ -1,6 +1,19 @@
-// 1.21.1	2024-10-07T14:34:08.030792	Yet Another Vanilla Plus Mod/Tags for minecraft:block
+// 1.21.1	2024-10-08T19:01:16.05716266	Yet Another Vanilla Plus Mod/Tags for minecraft:block
 cb07bad33330d3bea18e529754609135cb99ec19 data/minecraft/tags/block/soul_speed_blocks.json
+3b97ca762eeaaccc5286c21bbc63cfa10b0ab99d data/minecraft/tags/block/planks.json
+e3ab98fc152ed70716c0fe1693fb83062e2a1102 data/minecraft/tags/block/wooden_doors.json
+921b7a251a4f979883b59271e0dc86e70ad74e79 data/minecraft/tags/block/wooden_pressure_plates.json
+6541658c33dc95cfb1bedee4630d06a5857290d7 data/minecraft/tags/block/wall_signs.json
+3d4b6dc3bea6429bb2d1dda8cebd16ef86bf92cd data/yavpm/tags/block/apple_logs.json
+c4e5597251aef0fb027017e79b87fb67c604e44e data/minecraft/tags/block/wooden_buttons.json
 52e52803f990e6e268a24ee63012921345c8f792 data/minecraft/tags/block/walls.json
-b425966768906cf9f2991697da708f9f17d08f64 data/minecraft/tags/block/mineable/pickaxe.json
+f3b3071c7450bbc8a438073616eef45c204a3ade data/minecraft/tags/block/logs_that_burn.json
+b23ddc449940e122dcdba967b4d6d99cdcab5cea data/minecraft/tags/block/ceiling_hanging_signs.json
 1acfd7d2d675c5caaa7cfc72edd8bf050e97fa77 data/minecraft/tags/block/needs_diamond_tool.json
+9a8feb370c974654876a955ec0036f0c29a7bf91 data/minecraft/tags/block/fence_gates.json
+b425966768906cf9f2991697da708f9f17d08f64 data/minecraft/tags/block/mineable/pickaxe.json
+b23ddc449940e122dcdba967b4d6d99cdcab5cea data/minecraft/tags/block/wall_hanging_signs.json
+e45fa6ca7af8f8c3fdce26aa0a8ef8c6a466826d data/minecraft/tags/block/wooden_fences.json
+6baa355b29752f0ce8a10d160d0b786a3ebef284 data/minecraft/tags/block/wooden_trapdoors.json
+ab454d99c3df2ab089ff89ff56ca4cc9a0bb5d77 data/minecraft/tags/block/standing_signs.json
 cb07bad33330d3bea18e529754609135cb99ec19 data/minecraft/tags/block/soul_fire_base_blocks.json

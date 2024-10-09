@@ -31,7 +31,7 @@ public class YavpmModelProvider extends FabricModelProvider {
         createDioriteSet(generator);
         createAndesiteSet(generator);
 
-        createAppleSet(generator);
+        createAppleBlockSet(generator);
     }
 
     @Override
@@ -48,6 +48,9 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.register(YavpmItems.DIAMOND_ACORN, Models.GENERATED);
 
         createStuddedArmor(generator);
+
+        generator.register(YavpmItems.APPLE_BOAT, Models.GENERATED);
+        generator.register(YavpmItems.APPLE_CHEST_BOAT, Models.GENERATED);
     }
 
     private static void createAndesiteSet(BlockStateModelGenerator generator) {
@@ -84,17 +87,13 @@ public class YavpmModelProvider extends FabricModelProvider {
         dioriteTilePool.wall(YavpmBlocks.POLISHED_DIORITE_TILE_WALL);
     }
 
-    private void createAppleSet(BlockStateModelGenerator generator) {
+    private void createAppleBlockSet(BlockStateModelGenerator generator) {
+        generator.registerLog(YavpmBlocks.APPLE_LOG).log(YavpmBlocks.APPLE_LOG).wood(YavpmBlocks.APPLE_WOOD);
+        generator.registerLog(YavpmBlocks.STRIPPED_APPLE_LOG).log(YavpmBlocks.STRIPPED_APPLE_LOG).wood(YavpmBlocks.STRIPPED_APPLE_WOOD);
+        generator.registerSimpleCubeAll(YavpmBlocks.APPLE_LEAVES);
         BlockStateModelGenerator.BlockTexturePool applePool = generator.registerCubeAllModelTexturePool(YavpmBlocks.APPLE_PLANKS);
-        applePool.stairs(YavpmBlocks.APPLE_STAIRS);
-        applePool.slab(YavpmBlocks.APPLE_SLAB);
-        applePool.fence(YavpmBlocks.APPLE_FENCE);
-        applePool.fenceGate(YavpmBlocks.APPLE_FENCE_GATE);
-        applePool.button(YavpmBlocks.APPLE_BUTTON);
-        applePool.pressurePlate(YavpmBlocks.APPLE_PRESSURE_PLATE);
-
-        generator.registerDoor(YavpmBlocks.APPLE_DOOR);
-        generator.registerTrapdoor(YavpmBlocks.APPLE_TRAPDOOR);
+        applePool.family(YavpmBlocks.APPLE_FAMILY);
+        generator.registerHangingSign(YavpmBlocks.STRIPPED_APPLE_LOG, YavpmBlocks.APPLE_HANGING_SIGN, YavpmBlocks.APPLE_WALL_HANGING_SIGN);
     }
 
     private static void createStuddedArmor(ItemModelGenerator generator) {

@@ -12,6 +12,8 @@ import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.*;
+import net.minecraft.data.family.BlockFamilies;
+import net.minecraft.data.family.BlockFamily;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.util.Identifier;
@@ -247,6 +249,12 @@ public class YavpmBlocks {
                     AbstractBlock.Settings.copy(Blocks.CHERRY_WALL_HANGING_SIGN)
             )
     );
+
+    public static final BlockFamily APPLE_FAMILY = BlockFamilies.register(APPLE_PLANKS)
+            .slab(APPLE_SLAB).stairs(APPLE_STAIRS).fence(APPLE_FENCE).fenceGate(APPLE_FENCE_GATE)
+            .door(APPLE_DOOR).trapdoor(APPLE_TRAPDOOR).sign(APPLE_SIGN, APPLE_WALL_SIGN)
+            .pressurePlate(APPLE_PRESSURE_PLATE).button(APPLE_BUTTON)
+            .group("wooden").unlockCriterionName("has_planks").build();
     // endregion
 
     private static void addToRedstoneBlocks(FabricItemGroupEntries entries) {

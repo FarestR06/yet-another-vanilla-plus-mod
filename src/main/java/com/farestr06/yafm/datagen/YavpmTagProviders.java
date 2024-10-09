@@ -19,7 +19,7 @@ public class YavpmTagProviders {
     public static class Item extends FabricTagProvider.ItemTagProvider {
 
         public Item(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
-            super(output, completableFuture);
+            super(output, completableFuture, new Block(output, completableFuture));
         }
 
         @Override
@@ -85,6 +85,26 @@ public class YavpmTagProviders {
                     YavpmItems.STUDDED_LEGGINGS,
                     YavpmItems.STUDDED_BOOTS
             );
+
+            getOrCreateTagBuilder(YavpmTags.Items.APPLE_LOGS).add(
+                    APPLE_LOG.asItem(),
+                    STRIPPED_APPLE_LOG.asItem(),
+                    APPLE_WOOD.asItem(),
+                    STRIPPED_APPLE_WOOD.asItem()
+            );
+
+            getOrCreateTagBuilder(ItemTags.PLANKS).add(APPLE_PLANKS.asItem());
+            getOrCreateTagBuilder(ItemTags.LOGS_THAT_BURN).forceAddTag(YavpmTags.Items.APPLE_LOGS);
+            getOrCreateTagBuilder(ItemTags.WOODEN_FENCES).add(APPLE_FENCE.asItem());
+            getOrCreateTagBuilder(ItemTags.FENCE_GATES).add(APPLE_FENCE_GATE.asItem());
+            getOrCreateTagBuilder(ItemTags.WOODEN_DOORS).add(APPLE_DOOR.asItem());
+            getOrCreateTagBuilder(ItemTags.WOODEN_TRAPDOORS).add(APPLE_TRAPDOOR.asItem());
+            getOrCreateTagBuilder(ItemTags.SIGNS).add(YavpmItems.APPLE_SIGN);
+            getOrCreateTagBuilder(ItemTags.HANGING_SIGNS).add(YavpmItems.APPLE_HANGING_SIGN);
+            getOrCreateTagBuilder(ItemTags.WOODEN_BUTTONS).add(APPLE_BUTTON.asItem());
+            getOrCreateTagBuilder(ItemTags.WOODEN_PRESSURE_PLATES).add(APPLE_PRESSURE_PLATE.asItem());
+            getOrCreateTagBuilder(ItemTags.BOATS).add(YavpmItems.APPLE_BOAT);
+            getOrCreateTagBuilder(ItemTags.CHEST_BOATS).add(YavpmItems.APPLE_CHEST_BOAT);
         }
     }
 
@@ -120,19 +140,21 @@ public class YavpmTagProviders {
                     SOUL_GLOWING_OBSIDIAN
             );
 
-             getOrCreateTagBuilder(BlockTags.WALLS).add(
-                     POLISHED_GRANITE_BRICK_WALL,
-                     POLISHED_DIORITE_BRICK_WALL,
-                     POLISHED_ANDESITE_BRICK_WALL
-             );
+            getOrCreateTagBuilder(BlockTags.WALLS).add(
+                    POLISHED_GRANITE_BRICK_WALL,
+                    POLISHED_DIORITE_BRICK_WALL,
+                    POLISHED_ANDESITE_BRICK_WALL
+            );
 
-            getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN)
-                    .add(
-                            APPLE_LOG,
-                            STRIPPED_APPLE_LOG,
-                            APPLE_WOOD,
-                            STRIPPED_APPLE_WOOD
-                    );
+            getOrCreateTagBuilder(YavpmTags.Blocks.APPLE_LOGS).add(
+                    APPLE_LOG,
+                    STRIPPED_APPLE_LOG,
+                    APPLE_WOOD,
+                    STRIPPED_APPLE_WOOD
+            );
+
+            getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN).forceAddTag(YavpmTags.Blocks.APPLE_LOGS);
+
 
             getOrCreateTagBuilder(BlockTags.PLANKS)
                     .add(APPLE_PLANKS);
@@ -148,6 +170,12 @@ public class YavpmTagProviders {
 
             getOrCreateTagBuilder(BlockTags.WOODEN_TRAPDOORS)
                     .add(APPLE_TRAPDOOR);
+
+            getOrCreateTagBuilder(BlockTags.WOODEN_BUTTONS)
+                    .add(APPLE_BUTTON);
+
+            getOrCreateTagBuilder(BlockTags.WOODEN_PRESSURE_PLATES)
+                    .add(APPLE_PRESSURE_PLATE);
 
             getOrCreateTagBuilder(BlockTags.STANDING_SIGNS)
                     .add(APPLE_SIGN);

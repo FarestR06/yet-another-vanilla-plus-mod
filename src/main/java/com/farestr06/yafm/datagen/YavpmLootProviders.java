@@ -7,6 +7,7 @@ import com.farestr06.yafm.block.custom.SaplingCropBlock;
 import com.farestr06.yafm.item.YavpmItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Items;
@@ -39,6 +40,26 @@ public class YavpmLootProviders {
             stoneVariantDrops();
 
             addDropWithSilkTouch(YavpmBlocks.ELECTRO_GLASS);
+
+            addDrop(YavpmBlocks.APPLE_LOG);
+            addDrop(YavpmBlocks.APPLE_WOOD);
+            addDrop(YavpmBlocks.STRIPPED_APPLE_LOG);
+            addDrop(YavpmBlocks.STRIPPED_APPLE_WOOD);
+            addDrop(YavpmBlocks.APPLE_LEAVES, block -> oakLeavesDrops(block, Blocks.OAK_SAPLING, SAPLING_DROP_CHANCE));
+
+            addDrop(YavpmBlocks.APPLE_PLANKS);
+            addDrop(YavpmBlocks.APPLE_STAIRS);
+            addDrop(YavpmBlocks.APPLE_SLAB, this::slabDrops);
+            addDrop(YavpmBlocks.APPLE_FENCE);
+            addDrop(YavpmBlocks.APPLE_FENCE_GATE);
+            addDrop(YavpmBlocks.APPLE_DOOR, this::doorDrops);
+            addDrop(YavpmBlocks.APPLE_TRAPDOOR);
+            addDrop(YavpmBlocks.APPLE_BUTTON);
+            addDrop(YavpmBlocks.APPLE_PRESSURE_PLATE);
+            addDrop(YavpmBlocks.APPLE_SIGN);
+            addDrop(YavpmBlocks.APPLE_WALL_SIGN);
+            addDrop(YavpmBlocks.APPLE_HANGING_SIGN);
+            addDrop(YavpmBlocks.APPLE_WALL_HANGING_SIGN);
 
             modCropDrops();
         }
@@ -74,9 +95,9 @@ public class YavpmLootProviders {
             addDrop(YavpmBlocks.POLISHED_DIORITE_BRICK_STAIRS);
             addDrop(YavpmBlocks.POLISHED_ANDESITE_BRICK_STAIRS);
 
-            slabDrops(YavpmBlocks.POLISHED_GRANITE_BRICK_SLAB);
-            slabDrops(YavpmBlocks.POLISHED_DIORITE_BRICK_SLAB);
-            slabDrops(YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB);
+            addDrop(YavpmBlocks.POLISHED_GRANITE_BRICK_SLAB, this::slabDrops);
+            addDrop(YavpmBlocks.POLISHED_DIORITE_BRICK_SLAB, this::slabDrops);
+            addDrop(YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB, this::slabDrops);
 
             addDrop(YavpmBlocks.POLISHED_GRANITE_BRICK_WALL);
             addDrop(YavpmBlocks.POLISHED_DIORITE_BRICK_WALL);
