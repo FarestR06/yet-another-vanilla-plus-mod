@@ -120,6 +120,13 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .offerTo(exporter, makeId(getRecipeName(YavpmItems.APPLE_SIGN)));
 
         offerHangingSignRecipe(exporter, YavpmItems.APPLE_HANGING_SIGN, YavpmBlocks.STRIPPED_APPLE_LOG);
+
+        createDoorRecipe(YavpmBlocks.APPLE_DOOR, Ingredient.ofItems(YavpmBlocks.APPLE_PLANKS))
+                .criterion(hasItem(YavpmBlocks.APPLE_PLANKS), conditionsFromItem(YavpmBlocks.APPLE_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.APPLE_DOOR)));
+        createTrapdoorRecipe(YavpmBlocks.APPLE_TRAPDOOR, Ingredient.ofItems(YavpmBlocks.APPLE_PLANKS))
+                .criterion(hasItem(YavpmBlocks.APPLE_PLANKS), conditionsFromItem(YavpmBlocks.APPLE_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.APPLE_TRAPDOOR)));
     }
 
     private static void makeStuddedArmorRecipes(RecipeExporter exporter) {
