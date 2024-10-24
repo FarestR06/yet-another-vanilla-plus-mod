@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "yavpm:block/apple_log",
+    "side": "yavpm:block/apple_log"
+  }
+}

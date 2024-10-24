@@ -9,6 +9,7 @@ import net.minecraft.registry.tag.TagKey;
 public class YavpmTags {
     public static class Items {
         public static final TagKey<Item> REACTOR_RECHARGERS = of("reactor_rechargers");
+        public static final TagKey<Item> APPLE_LOGS = of("apple_logs");
 
         private static TagKey<Item> of(String path) {
             return TagKey.of(RegistryKeys.ITEM, YetAnotherVanillaPlusMod.makeId(path));

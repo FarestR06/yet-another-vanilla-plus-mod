@@ -7,10 +7,10 @@ import com.farestr06.yafm.block.custom.SaplingCropBlock;
 import com.farestr06.yafm.item.YavpmItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
-import net.minecraft.data.client.BlockStateModelGenerator;
-import net.minecraft.data.client.ItemModelGenerator;
-import net.minecraft.data.client.Models;
+import net.minecraft.block.Block;
+import net.minecraft.data.client.*;
 import net.minecraft.item.ArmorItem;
+import net.minecraft.state.property.Properties;
 
 public class YavpmModelProvider extends FabricModelProvider {
     public YavpmModelProvider(FabricDataOutput output) {
@@ -23,7 +23,7 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.registerSimpleCubeAll(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
 
         generator.registerCrop(YavpmBlocks.PEANUT_CROP, PeanutCropBlock.AGE, 0, 1, 2, 3);
-        generator.registerCrop(YavpmBlocks.BANANA_CROP, BananaCropBlock.AGE, 0, 1, 2, 3, 4, 5);
+        registerBananaCrop(generator);
 
         generator.registerCrop(YavpmBlocks.OAK_SAPLING_CROP, SaplingCropBlock.AGE, 0,1,2,3);
 
@@ -47,7 +47,20 @@ public class YavpmModelProvider extends FabricModelProvider {
 
         generator.register(YavpmItems.DIAMOND_ACORN, Models.GENERATED);
 
+        generator.register(YavpmItems.APPLE_BOAT, Models.GENERATED);
+        generator.register(YavpmItems.APPLE_CHEST_BOAT, Models.GENERATED);
+
         createStuddedArmor(generator);
+    }
+
+    private static void registerBananaCrop(BlockStateModelGenerator generator) {
+        Block block = YavpmBlocks.BANANA_CROP;
+        generator.registerItemModel(block.asItem());
+        BlockStateVariantMap blockStateVariantMap = BlockStateVariantMap.create(BananaCropBlock.AGE, Properties.DOUBLE_BLOCK_HALF).register((age, half) -> switch (half) {
+            case UPPER -> BlockStateVariant.create().put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(block, "_top_stage_" + age));
+            case LOWER -> BlockStateVariant.create().put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(block, "_bottom_stage_" + age));
+        });
+        generator.blockStateCollector.accept(VariantsBlockStateSupplier.create(block).coordinate(blockStateVariantMap));
     }
 
     private static void createAndesiteSet(BlockStateModelGenerator generator) {
@@ -84,8 +97,18 @@ public class YavpmModelProvider extends FabricModelProvider {
         dioriteTilePool.wall(YavpmBlocks.POLISHED_DIORITE_TILE_WALL);
     }
 
-    private void createAppleSet(BlockStateModelGenerator generator) {
+    private static void createAppleSet(BlockStateModelGenerator generator) {
+
+        // Apple Logs and Woods
+        generator.registerLog(YavpmBlocks.APPLE_LOG).log(YavpmBlocks.APPLE_LOG).wood(YavpmBlocks.APPLE_WOOD);
+        generator.registerLog(YavpmBlocks.STRIPPED_APPLE_LOG).log(YavpmBlocks.STRIPPED_APPLE_LOG).wood(YavpmBlocks.STRIPPED_APPLE_WOOD);
+
+        generator.registerSimpleCubeAll(YavpmBlocks.APPLE_LEAVES);
+
+        // Apple Planks and Texture Pool
         BlockStateModelGenerator.BlockTexturePool applePool = generator.registerCubeAllModelTexturePool(YavpmBlocks.APPLE_PLANKS);
+
+        // Plank variants
         applePool.stairs(YavpmBlocks.APPLE_STAIRS);
         applePool.slab(YavpmBlocks.APPLE_SLAB);
         applePool.fence(YavpmBlocks.APPLE_FENCE);
@@ -93,6 +116,11 @@ public class YavpmModelProvider extends FabricModelProvider {
         applePool.button(YavpmBlocks.APPLE_BUTTON);
         applePool.pressurePlate(YavpmBlocks.APPLE_PRESSURE_PLATE);
 
+        // Signs
+        applePool.family(YavpmBlocks.APPLE_FAMILY);
+        generator.registerHangingSign(YavpmBlocks.STRIPPED_APPLE_LOG, YavpmBlocks.APPLE_HANGING_SIGN, YavpmBlocks.APPLE_WALL_HANGING_SIGN);
+
+        // Door and Trapdoor
         generator.registerDoor(YavpmBlocks.APPLE_DOOR);
         generator.registerTrapdoor(YavpmBlocks.APPLE_TRAPDOOR);
     }

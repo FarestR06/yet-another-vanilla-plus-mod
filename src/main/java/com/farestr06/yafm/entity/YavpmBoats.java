@@ -26,8 +26,4 @@ public class YavpmBoats {
                 .build();
         Registry.register(TerraformBoatTypeRegistry.INSTANCE, APPLE_BOAT_KEY, appleBoat);
     }
-
-    public static TerraformBoatType getAppleBoat() {
-        return TerraformBoatTypeRegistry.INSTANCE.get(APPLE_BOAT_TYPE_ID);
-    }
 }

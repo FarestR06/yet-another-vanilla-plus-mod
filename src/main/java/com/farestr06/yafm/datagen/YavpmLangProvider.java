@@ -120,5 +120,23 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmTags.Items.REACTOR_RECHARGERS, "Reactor Rechargers");
 
         builder.add("subtitles.entity.chicken.egg_break", "Egg breaks");
+
+        builder.add(YavpmBlocks.APPLE_LOG, "Apple Log");
+        builder.add(YavpmBlocks.APPLE_WOOD, "Apple Wood");
+        builder.add(YavpmBlocks.STRIPPED_APPLE_LOG, "Stripped Apple Log");
+        builder.add(YavpmBlocks.STRIPPED_APPLE_WOOD, "Stripped Apple Wood");
+        builder.add(YavpmBlocks.APPLE_LEAVES, "Apple Leaves");
+        builder.add(YavpmBlocks.APPLE_PLANKS, "Apple Planks");
+        builder.add(YavpmBlocks.APPLE_STAIRS, "Apple Stairs");
+        builder.add(YavpmBlocks.APPLE_SLAB, "Apple Slab");
+        builder.add(YavpmBlocks.APPLE_FENCE, "Apple Fence");
+        builder.add(YavpmBlocks.APPLE_FENCE_GATE, "Apple Fence Gate");
+        builder.add(YavpmBlocks.APPLE_DOOR, "Apple Door");
+        builder.add(YavpmBlocks.APPLE_TRAPDOOR, "Apple Trapdoor");
+        builder.add(YavpmBlocks.APPLE_PRESSURE_PLATE, "Apple Pressure Plate");
+        builder.add(YavpmBlocks.APPLE_BUTTON, "Apple Button");
+        builder.add(YavpmBlocks.APPLE_SIGN, "Apple Sign");
+        builder.add(YavpmBlocks.APPLE_HANGING_SIGN, "Apple Hanging Sign");
+        builder.add(YavpmTags.Items.APPLE_LOGS, "Apple Logs");
     }
 }

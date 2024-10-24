@@ -2,6 +2,7 @@ package com.farestr06.yafm.datagen;
 
 import com.farestr06.yafm.block.YavpmBlocks;
 import com.farestr06.yafm.item.YavpmItems;
+import com.farestr06.yafm.util.YavpmTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
@@ -9,6 +10,7 @@ import net.minecraft.data.server.recipe.RecipeExporter;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Items;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SmokingRecipe;
 import net.minecraft.recipe.book.RecipeCategory;
@@ -98,9 +100,48 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
         ;
 
         makeStuddedArmorRecipes(exporter);
+
+        makeApplewoodRecipes(exporter);
     }
 
-    private static void makeStuddedArmorRecipes(RecipeExporter exporter) {
+    private void makeApplewoodRecipes(RecipeExporter exporter) {
+        offerPlanksRecipe(exporter, YavpmBlocks.APPLE_PLANKS, YavpmTags.Items.APPLE_LOGS, 4);
+
+        createStairsRecipe(YavpmBlocks.APPLE_STAIRS, Ingredient.ofItems(YavpmBlocks.APPLE_PLANKS))
+                .criterion(hasItem(YavpmBlocks.APPLE_PLANKS), conditionsFromItem(YavpmBlocks.APPLE_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.APPLE_STAIRS)));
+
+        createSlabRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.APPLE_SLAB, Ingredient.ofItems(YavpmBlocks.APPLE_PLANKS))
+                .criterion(hasItem(YavpmBlocks.APPLE_PLANKS), conditionsFromItem(YavpmBlocks.APPLE_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.APPLE_SLAB)));
+
+        createFenceRecipe(YavpmBlocks.APPLE_FENCE, Ingredient.ofItems(YavpmBlocks.APPLE_PLANKS))
+                .criterion(hasItem(YavpmBlocks.APPLE_PLANKS), conditionsFromItem(YavpmBlocks.APPLE_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.APPLE_FENCE)));
+
+        createFenceGateRecipe(YavpmBlocks.APPLE_FENCE_GATE, Ingredient.ofItems(YavpmBlocks.APPLE_PLANKS))
+                .criterion(hasItem(YavpmBlocks.APPLE_PLANKS), conditionsFromItem(YavpmBlocks.APPLE_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.APPLE_FENCE_GATE)));
+
+        createDoorRecipe(YavpmBlocks.APPLE_DOOR, Ingredient.ofItems(YavpmBlocks.APPLE_PLANKS))
+                .criterion(hasItem(YavpmBlocks.APPLE_PLANKS), conditionsFromItem(YavpmBlocks.APPLE_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.APPLE_DOOR)));
+
+        createTrapdoorRecipe(YavpmBlocks.APPLE_TRAPDOOR, Ingredient.ofItems(YavpmBlocks.APPLE_PLANKS))
+                .criterion(hasItem(YavpmBlocks.APPLE_PLANKS), conditionsFromItem(YavpmBlocks.APPLE_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.APPLE_TRAPDOOR)));
+
+        createPressurePlateRecipe(RecipeCategory.REDSTONE, YavpmBlocks.APPLE_PRESSURE_PLATE, Ingredient.ofItems(YavpmBlocks.APPLE_PLANKS))
+                .criterion(hasItem(YavpmBlocks.APPLE_PLANKS), conditionsFromItem(YavpmBlocks.APPLE_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.APPLE_PRESSURE_PLATE)));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.REDSTONE, YavpmBlocks.APPLE_BUTTON)
+                .input(YavpmBlocks.APPLE_PLANKS)
+                .criterion(hasItem(YavpmBlocks.APPLE_PLANKS), conditionsFromItem(YavpmBlocks.APPLE_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.APPLE_BUTTON)));
+    }
+
+    private void makeStuddedArmorRecipes(RecipeExporter exporter) {
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, YavpmItems.STUDDED_HELMET)
                 .input(Items.LEATHER_HELMET)
                 .input(Items.CHAINMAIL_HELMET)

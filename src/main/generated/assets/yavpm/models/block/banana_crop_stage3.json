@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/crop",
-  "textures": {
-    "crop": "yavpm:block/banana_crop_stage3"
-  }
-}

@@ -7,6 +7,7 @@ import com.farestr06.yafm.block.custom.SaplingCropBlock;
 import com.farestr06.yafm.item.YavpmItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Items;
@@ -32,6 +33,7 @@ public class YavpmLootProviders {
 
         @Override
         public void generate() {
+            addDropWithSilkTouch(YavpmBlocks.NETHER_REACTOR_CORE);
 
             addDrop(YavpmBlocks.GLOWING_OBSIDIAN);
             addDrop(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
@@ -41,6 +43,8 @@ public class YavpmLootProviders {
             addDropWithSilkTouch(YavpmBlocks.ELECTRO_GLASS);
 
             modCropDrops();
+
+            appleDrops();
         }
 
         private void modCropDrops() {
@@ -81,6 +85,32 @@ public class YavpmLootProviders {
             addDrop(YavpmBlocks.POLISHED_GRANITE_BRICK_WALL);
             addDrop(YavpmBlocks.POLISHED_DIORITE_BRICK_WALL);
             addDrop(YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL);
+        }
+
+        private void appleDrops() {
+            addDrop(YavpmBlocks.APPLE_LOG);
+            addDrop(YavpmBlocks.STRIPPED_APPLE_LOG);
+            addDrop(YavpmBlocks.APPLE_WOOD);
+            addDrop(YavpmBlocks.STRIPPED_APPLE_WOOD);
+
+            // TODO: Add Apple Sapling
+            oakLeavesDrops(YavpmBlocks.APPLE_LEAVES, Blocks.OAK_SAPLING, SAPLING_DROP_CHANCE);
+
+            addDrop(YavpmBlocks.APPLE_PLANKS);
+            addDrop(YavpmBlocks.APPLE_STAIRS);
+            slabDrops(YavpmBlocks.APPLE_SLAB);
+            addDrop(YavpmBlocks.APPLE_FENCE);
+            addDrop(YavpmBlocks.APPLE_FENCE_GATE);
+            addDrop(YavpmBlocks.APPLE_BUTTON);
+            addDrop(YavpmBlocks.APPLE_PRESSURE_PLATE);
+
+            doorDrops(YavpmBlocks.APPLE_DOOR);
+            addDrop(YavpmBlocks.APPLE_TRAPDOOR);
+
+            addDrop(YavpmBlocks.APPLE_SIGN, YavpmItems.APPLE_SIGN);
+            addDrop(YavpmBlocks.APPLE_WALL_SIGN, YavpmItems.APPLE_SIGN);
+            addDrop(YavpmBlocks.APPLE_HANGING_SIGN, YavpmItems.APPLE_HANGING_SIGN);
+            addDrop(YavpmBlocks.APPLE_WALL_HANGING_SIGN, YavpmItems.APPLE_HANGING_SIGN);
         }
     }
 }

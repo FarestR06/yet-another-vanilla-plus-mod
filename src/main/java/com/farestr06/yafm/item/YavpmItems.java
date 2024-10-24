@@ -9,6 +9,7 @@ import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.item.*;
@@ -133,7 +134,7 @@ public class YavpmItems {
     );
 
     public static final Item APPLE_BOAT = TerraformBoatItemHelper.registerBoatItem(APPLE_BOAT_ID, APPLE_BOAT_KEY, false);
-    public static final Item APPLE_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(APPLE_CHEST_BOAT_ID, APPLE_BOAT_KEY, false);
+    public static final Item APPLE_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(APPLE_CHEST_BOAT_ID, APPLE_BOAT_KEY, true);
 
     private static void addToNatural(FabricItemGroupEntries entries) {
         entries.add(BANANA_SEEDS);
@@ -172,18 +173,36 @@ public class YavpmItems {
         YetAnotherVanillaPlusMod.LOGGER.info("Registering items for YAVPM!");
 
         setUpComponents();
+        setUpItemGroups();
+        setUpRegistries();
+    }
+
+    private static void setUpRegistries() {
+        // Make Heated Reactor usable as fuel
+        FuelRegistry.INSTANCE.add(YavpmItems.HEATED_REACTOR, 1600);
+
+        // Make new crops compostable
+        CompostingChanceRegistry compostables = CompostingChanceRegistry.INSTANCE;
+        compostables.add(YavpmBlocks.APPLE_LEAVES.asItem(), 0.3f);
+        compostables.add(BANANA_SEEDS, 0.3f);
+        compostables.add(ACORN, 0.3f);
+        compostables.add(PEANUT, 0.5f);
+        compostables.add(COOKED_PEANUT, 0.5f);
+        compostables.add(BANANA, 0.65f);
+        compostables.add(MOLY, 1f);
+    }
+
+    private static void setUpItemGroups() {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(YavpmItems::addToNatural);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(YavpmItems::addToFunctional);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(YavpmItems::addToFoodAndDrink);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(YavpmItems::addToIngredients);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(YavpmItems::addToTools);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(YavpmItems::addToCombat);
-        FuelRegistry.INSTANCE.add(YavpmItems.HEATED_REACTOR, 1600);
     }
 
     private static void setUpComponents() {
         // make Glistering Melon edible
-
         DefaultItemComponentEvents.MODIFY.register(context ->
                 context.modify(Items.GLISTERING_MELON_SLICE, builder ->
                         builder.add(DataComponentTypes.FOOD, YavpmFoods.GLISTERING_MELON_SLICE)

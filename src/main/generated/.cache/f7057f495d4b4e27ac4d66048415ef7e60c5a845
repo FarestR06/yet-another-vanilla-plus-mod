@@ -1,6 +1,22 @@
-// 1.21.1	2024-10-07T14:34:08.030792	Yet Another Vanilla Plus Mod/Tags for minecraft:block
+// 1.21.1	2024-10-24T11:08:49.294583	Yet Another Vanilla Plus Mod/Tags for minecraft:block
 cb07bad33330d3bea18e529754609135cb99ec19 data/minecraft/tags/block/soul_speed_blocks.json
-52e52803f990e6e268a24ee63012921345c8f792 data/minecraft/tags/block/walls.json
+0b87ad0a11c0a3616dccf9483b69a02c1e415e5f data/minecraft/tags/block/stone_bricks.json
+e3ab98fc152ed70716c0fe1693fb83062e2a1102 data/minecraft/tags/block/wooden_doors.json
+83191c3ea35da9065966f70524cb7c959458f70a data/minecraft/tags/block/crops.json
+9613278ded284306b0b3bbb22bb994205d3e18df data/minecraft/tags/block/needs_iron_tool.json
+00588de8b5f7ec7665f6dce613cb2691813538a8 data/minecraft/tags/block/slabs.json
 b425966768906cf9f2991697da708f9f17d08f64 data/minecraft/tags/block/mineable/pickaxe.json
-1acfd7d2d675c5caaa7cfc72edd8bf050e97fa77 data/minecraft/tags/block/needs_diamond_tool.json
+ab454d99c3df2ab089ff89ff56ca4cc9a0bb5d77 data/minecraft/tags/block/standing_signs.json
 cb07bad33330d3bea18e529754609135cb99ec19 data/minecraft/tags/block/soul_fire_base_blocks.json
+6541658c33dc95cfb1bedee4630d06a5857290d7 data/minecraft/tags/block/wall_signs.json
+3b97ca762eeaaccc5286c21bbc63cfa10b0ab99d data/minecraft/tags/block/planks.json
+9a8feb370c974654876a955ec0036f0c29a7bf91 data/minecraft/tags/block/fence_gates.json
+6baa355b29752f0ce8a10d160d0b786a3ebef284 data/minecraft/tags/block/wooden_trapdoors.json
+28d74c0e141782c43fd9e04c27ee4024b901377a data/minecraft/tags/block/stairs.json
+e45fa6ca7af8f8c3fdce26aa0a8ef8c6a466826d data/minecraft/tags/block/wooden_fences.json
+b23ddc449940e122dcdba967b4d6d99cdcab5cea data/minecraft/tags/block/wall_hanging_signs.json
+0e50cfdd3f069d1e4e1e62c34ebc54dea186bbe2 data/minecraft/tags/block/leaves.json
+3d4b6dc3bea6429bb2d1dda8cebd16ef86bf92cd data/minecraft/tags/block/logs_that_burn.json
+70f7d8b96683b8942715079467bf5a9fe803f647 data/minecraft/tags/block/walls.json
+1acfd7d2d675c5caaa7cfc72edd8bf050e97fa77 data/minecraft/tags/block/needs_diamond_tool.json
+b23ddc449940e122dcdba967b4d6d99cdcab5cea data/minecraft/tags/block/ceiling_hanging_signs.json
