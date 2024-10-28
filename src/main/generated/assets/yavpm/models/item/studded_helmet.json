@@ -63,6 +63,7 @@
     }
   ],
   "textures": {
-    "layer0": "yavpm:item/studded_helmet"
+    "layer0": "yavpm:item/studded_helmet",
+    "layer1": "yavpm:item/studded_helmet_overlay"
   }
 }

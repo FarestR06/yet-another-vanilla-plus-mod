@@ -1,10 +1,10 @@
-// 1.21.1	2024-10-24T11:08:49.294583	Yet Another Vanilla Plus Mod/Tags for minecraft:block
+// 1.21.1	2024-10-27T18:10:58.619119	Yet Another Vanilla Plus Mod/Tags for minecraft:block
 cb07bad33330d3bea18e529754609135cb99ec19 data/minecraft/tags/block/soul_speed_blocks.json
 0b87ad0a11c0a3616dccf9483b69a02c1e415e5f data/minecraft/tags/block/stone_bricks.json
 e3ab98fc152ed70716c0fe1693fb83062e2a1102 data/minecraft/tags/block/wooden_doors.json
 83191c3ea35da9065966f70524cb7c959458f70a data/minecraft/tags/block/crops.json
-9613278ded284306b0b3bbb22bb994205d3e18df data/minecraft/tags/block/needs_iron_tool.json
 00588de8b5f7ec7665f6dce613cb2691813538a8 data/minecraft/tags/block/slabs.json
+9613278ded284306b0b3bbb22bb994205d3e18df data/minecraft/tags/block/needs_iron_tool.json
 b425966768906cf9f2991697da708f9f17d08f64 data/minecraft/tags/block/mineable/pickaxe.json
 ab454d99c3df2ab089ff89ff56ca4cc9a0bb5d77 data/minecraft/tags/block/standing_signs.json
 cb07bad33330d3bea18e529754609135cb99ec19 data/minecraft/tags/block/soul_fire_base_blocks.json

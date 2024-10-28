@@ -2,6 +2,7 @@
   "parent": "minecraft:item/generated",
   "textures": {
     "layer0": "yavpm:item/studded_helmet",
-    "layer1": "minecraft:trims/items/helmet_trim_gold"
+    "layer1": "yavpm:item/studded_helmet_overlay",
+    "layer2": "minecraft:trims/items/helmet_trim_gold"
   }
 }

@@ -29,5 +29,29 @@
       "item/armor/equip_chain6"
     ],
     "subtitle": "subtitles.item.armor.equip_studded"
+  },
+  "entity.moongus.milk.crimson": {
+    "sounds": [
+      {
+        "name": "entity.mooshroom.milk",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.moongus.milk.crimson"
+  },
+  "entity.moongus.milk.warped": {
+    "sounds": [
+      {
+        "name": "entity.mooshroom.milk",
+        "type": "event"
+      }
+    ],
+    "subtitle": "subtitles.entity.moongus.milk.warped"
+  },
+  "entity.moongus.shear": {
+    "sounds": [
+      "mob/sheep/shear"
+    ],
+    "subtitle": "subtitles.item.shears.shear"
   }
 }

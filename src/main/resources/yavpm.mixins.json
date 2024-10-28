@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "com.farestr06.yafm.mixin",
+  "package": "com.farestr06.yavpm.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
     "entity.AbstractPiglinEntityMixin",
@@ -8,12 +8,14 @@
     "entity.DragonFireballEntityMixin",
     "entity.HoglinEntityMixin",
     "entity.LivingEntityMixin",
+    "item.ItemModelGeneratorMixin",
     "item.MilkBucketItemMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
-    "client.CreeperEntityRendererMixin"
+    "client.CreeperEntityRendererMixin",
+    "entity.MooshroomMushroomFeatureRendererMixin"
   ]
 }

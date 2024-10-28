@@ -16,13 +16,13 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-          "com.farestr06.yafm.YetAnotherVanillaPlusMod"
+          "com.farestr06.yavpm.YetAnotherVanillaPlusMod"
 		],
 		"client": [
-			"com.farestr06.yafm.YetAnotherVanillaPlusModClient"
+			"com.farestr06.yavpm.YetAnotherVanillaPlusModClient"
 		],
 		"fabric-datagen": [
-			"com.farestr06.yafm.datagen.YetAnotherVanillaPlusModDataGenerator"
+			"com.farestr06.yavpm.datagen.YetAnotherVanillaPlusModDataGenerator"
 		]
 	},
 	"mixins": [

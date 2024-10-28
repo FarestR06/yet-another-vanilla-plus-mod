@@ -63,6 +63,7 @@
     }
   ],
   "textures": {
-    "layer0": "yavpm:item/studded_chestplate"
+    "layer0": "yavpm:item/studded_chestplate",
+    "layer1": "yavpm:item/studded_chestplate_overlay"
   }
 }

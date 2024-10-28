@@ -63,6 +63,7 @@
     }
   ],
   "textures": {
-    "layer0": "yavpm:item/studded_boots"
+    "layer0": "yavpm:item/studded_boots",
+    "layer1": "yavpm:item/studded_boots_overlay"
   }
 }

@@ -63,6 +63,7 @@
     }
   ],
   "textures": {
-    "layer0": "yavpm:item/studded_leggings"
+    "layer0": "yavpm:item/studded_leggings",
+    "layer1": "yavpm:item/studded_leggings_overlay"
   }
 }
