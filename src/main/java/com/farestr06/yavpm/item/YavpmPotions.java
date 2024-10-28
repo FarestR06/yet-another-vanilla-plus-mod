@@ -18,19 +18,19 @@ public class YavpmPotions {
     public static final RegistryEntry<Potion> DECAY = register("decay", new Potion(
             new StatusEffectInstance(
                     StatusEffects.WITHER,
-                    300
+                    800
             )
     ));
     public static final RegistryEntry<Potion> LONG_DECAY = register("long_decay", new Potion(
             new StatusEffectInstance(
                     StatusEffects.WITHER,
-                    600
+                    1600
             )
     ));
     public static final RegistryEntry<Potion> STRONG_DECAY = register("strong_decay", new Potion(
             new StatusEffectInstance(
                     StatusEffects.WITHER,
-                    150,
+                    400,
                     1
             )
     ));

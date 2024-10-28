@@ -1,9 +1,8 @@
-package com.farestr06.yavpm.block;
+package com.farestr06.yafm.block;
 
-import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
-import com.farestr06.yavpm.block.custom.*;
-import com.farestr06.yavpm.item.YavpmItems;
-import com.farestr06.yavpm.world.YavpmConfiguredFeatures;
+import com.farestr06.yafm.YetAnotherVanillaPlusMod;
+import com.farestr06.yafm.block.custom.*;
+import com.farestr06.yafm.item.YavpmItems;
 import com.terraformersmc.terraform.sign.api.block.TerraformHangingSignBlock;
 import com.terraformersmc.terraform.sign.api.block.TerraformSignBlock;
 import com.terraformersmc.terraform.sign.api.block.TerraformWallHangingSignBlock;
@@ -20,7 +19,7 @@ import net.minecraft.item.ItemGroups;
 import net.minecraft.util.Identifier;
 
 import static com.farestr06.api.block.BlockHelper.*;
-import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
+import static com.farestr06.yafm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmBlocks {
 
@@ -251,16 +250,11 @@ public class YavpmBlocks {
             )
     );
 
-    // For generating Sign Models
     public static final BlockFamily APPLE_FAMILY = BlockFamilies.register(APPLE_PLANKS)
-            .sign(APPLE_SIGN, APPLE_WALL_SIGN)
+            .slab(APPLE_SLAB).stairs(APPLE_STAIRS).fence(APPLE_FENCE).fenceGate(APPLE_FENCE_GATE)
+            .door(APPLE_DOOR).trapdoor(APPLE_TRAPDOOR).sign(APPLE_SIGN, APPLE_WALL_SIGN)
+            .pressurePlate(APPLE_PRESSURE_PLATE).button(APPLE_BUTTON)
             .group("wooden").unlockCriterionName("has_planks").build();
-
-    public static final Block APPLE_SAPLING = makeAdvancedBlockAndItem(
-            makeId("apple_sapling"),
-            new SaplingBlock(YavpmConfiguredFeatures.APPLEWOOD_GENERATOR, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING))
-    );
-
     // endregion
 
     private static void addToRedstoneBlocks(FabricItemGroupEntries entries) {
@@ -269,11 +263,10 @@ public class YavpmBlocks {
 
     private static void addToFunctionalBlocks(FabricItemGroupEntries entries) {
         entries.add(NETHER_REACTOR_CORE);
-        entries.add(YavpmItems.APPLE_SIGN);
-        entries.add(YavpmItems.APPLE_HANGING_SIGN);
     }
 
     private static void addToBuildingBlocks(FabricItemGroupEntries entries) {
+
         entries.add(APPLE_LOG);
         entries.add(APPLE_WOOD);
         entries.add(STRIPPED_APPLE_LOG);
