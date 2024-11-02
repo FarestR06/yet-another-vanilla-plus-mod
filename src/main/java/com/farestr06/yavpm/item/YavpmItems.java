@@ -83,7 +83,7 @@ public class YavpmItems {
 
     public static final Item SEA_SOUP = makeItem(
             makeId("sea_soup"),
-            new Item.Settings().food(YavpmFoods.SEA_SOUP)
+            new Item.Settings().food(YavpmFoods.SEA_SOUP).maxCount(1)
     );
 
     public static final Item CHOCOLATE = makeItem(

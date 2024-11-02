@@ -1,5 +1,9 @@
 {
   "values": [
-    "#yavpm:apple_logs"
+    "#yavpm:apple_logs",
+    "yavpm:apple_log",
+    "yavpm:stripped_apple_log",
+    "yavpm:apple_wood",
+    "yavpm:stripped_apple_wood"
   ]
 }

@@ -118,22 +118,8 @@ public class YavpmModelProvider extends FabricModelProvider {
 
         // Apple Planks and Texture Pool
         BlockStateModelGenerator.BlockTexturePool applePool = generator.registerCubeAllModelTexturePool(YavpmBlocks.APPLE_PLANKS);
-
-        // Plank variants
-        applePool.stairs(YavpmBlocks.APPLE_STAIRS);
-        applePool.slab(YavpmBlocks.APPLE_SLAB);
-        applePool.fence(YavpmBlocks.APPLE_FENCE);
-        applePool.fenceGate(YavpmBlocks.APPLE_FENCE_GATE);
-        applePool.button(YavpmBlocks.APPLE_BUTTON);
-        applePool.pressurePlate(YavpmBlocks.APPLE_PRESSURE_PLATE);
-
-        // Signs
         applePool.family(YavpmBlocks.APPLE_FAMILY);
         generator.registerHangingSign(YavpmBlocks.STRIPPED_APPLE_LOG, YavpmBlocks.APPLE_HANGING_SIGN, YavpmBlocks.APPLE_WALL_HANGING_SIGN);
-
-        // Door and Trapdoor
-        generator.registerDoor(YavpmBlocks.APPLE_DOOR);
-        generator.registerTrapdoor(YavpmBlocks.APPLE_TRAPDOOR);
     }
 
     private static void createStuddedArmor(ItemModelGenerator generator) {

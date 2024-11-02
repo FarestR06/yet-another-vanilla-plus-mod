@@ -1,8 +1,9 @@
-package com.farestr06.yafm.block;
+package com.farestr06.yavpm.block;
 
-import com.farestr06.yafm.YetAnotherVanillaPlusMod;
-import com.farestr06.yafm.block.custom.*;
-import com.farestr06.yafm.item.YavpmItems;
+import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
+import com.farestr06.yavpm.block.custom.*;
+import com.farestr06.yavpm.item.YavpmItems;
+import com.farestr06.yavpm.world.YavpmConfiguredFeatures;
 import com.terraformersmc.terraform.sign.api.block.TerraformHangingSignBlock;
 import com.terraformersmc.terraform.sign.api.block.TerraformSignBlock;
 import com.terraformersmc.terraform.sign.api.block.TerraformWallHangingSignBlock;
@@ -19,7 +20,7 @@ import net.minecraft.item.ItemGroups;
 import net.minecraft.util.Identifier;
 
 import static com.farestr06.api.block.BlockHelper.*;
-import static com.farestr06.yafm.YetAnotherVanillaPlusMod.makeId;
+import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmBlocks {
 
@@ -255,6 +256,11 @@ public class YavpmBlocks {
             .door(APPLE_DOOR).trapdoor(APPLE_TRAPDOOR).sign(APPLE_SIGN, APPLE_WALL_SIGN)
             .pressurePlate(APPLE_PRESSURE_PLATE).button(APPLE_BUTTON)
             .group("wooden").unlockCriterionName("has_planks").build();
+
+    public static final Block APPLE_SAPLING = makeAdvancedBlockAndItem(
+            makeId("apple_sapling"),
+            new SaplingBlock(YavpmConfiguredFeatures.APPLEWOOD_GENERATOR, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING))
+    );
     // endregion
 
     private static void addToRedstoneBlocks(FabricItemGroupEntries entries) {

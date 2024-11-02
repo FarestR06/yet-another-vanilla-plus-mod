@@ -152,6 +152,12 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .input(YavpmBlocks.APPLE_PLANKS)
                 .criterion(hasItem(YavpmBlocks.APPLE_PLANKS), conditionsFromItem(YavpmBlocks.APPLE_PLANKS))
                 .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.APPLE_BUTTON)));
+
+        createSignRecipe(YavpmItems.APPLE_SIGN, Ingredient.ofItems(YavpmBlocks.APPLE_PLANKS))
+                .criterion(hasItem(YavpmBlocks.APPLE_PLANKS), conditionsFromItem(YavpmBlocks.APPLE_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.APPLE_SIGN)));
+
+        offerHangingSignRecipe(exporter, YavpmItems.APPLE_HANGING_SIGN, YavpmBlocks.STRIPPED_APPLE_LOG);
     }
 
     private void makeStuddedArmorRecipes(RecipeExporter exporter) {

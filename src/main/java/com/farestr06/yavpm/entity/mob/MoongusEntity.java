@@ -1,7 +1,6 @@
 package com.farestr06.yavpm.entity.mob;
 
 import com.farestr06.yavpm.util.YavpmSounds;
-import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.util.YavpmTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -31,6 +30,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.*;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
+
+import static com.farestr06.yavpm.item.YavpmItems.MOONGUS_FOOD;
 
 public class MoongusEntity extends MooshroomEntity implements Shearable, VariantHolder<MooshroomEntity.Type> {
 
@@ -134,7 +135,7 @@ public class MoongusEntity extends MooshroomEntity implements Shearable, Variant
                         || (stack.isIn(YavpmTags.Items.WARPED_MOONGUS_FOOD) && this.getVariant() == Type.BROWN)
         ) {
             Item item = stack.getItem();
-            this.potionContents = YavpmItems.MOONGUS_FOOD.get(item);
+            this.potionContents = MOONGUS_FOOD.get(item);
             this.eat(player, hand, stack);
             return ActionResult.success(this.getWorld().isClient);
         } else if (stack.isOf(Items.SHEARS) && this.isShearable()) {

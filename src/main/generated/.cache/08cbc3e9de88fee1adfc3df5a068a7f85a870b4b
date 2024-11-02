@@ -1,4 +1,4 @@
-// 1.21.1	2024-10-27T18:10:58.617986	Yet Another Vanilla Plus Mod/Recipes
+// 1.21.1	2024-11-01T12:20:17.315083	Yet Another Vanilla Plus Mod/Recipes
 2f75569bb8d7cd49548ee6d8ab741299d1e22a3f data/yavpm/advancement/recipes/building_blocks/apple_stairs.json
 6c80c93357c77426a48f22cfa88bc4a50fa6bfbe data/yavpm/advancement/recipes/redstone/apple_fence_gate.json
 059ae50a24b8ff3623124417a3dd9a16800ee9d3 data/yavpm/advancement/recipes/redstone/apple_button.json
@@ -6,6 +6,7 @@
 070f78b408fbff4c1ce081370c592cebdb3cd3cb data/yavpm/recipe/apple_pressure_plate.json
 6fbf4c72e44174f01610e521e1cd685d599d0183 data/yavpm/recipe/apple_planks.json
 dc6434595a85668621bfda7a84ead43aeb1a78b3 data/yavpm/recipe/studded_boots.json
+7df6af3fd4b76edeba8a77b8c9151c7f59280e1a data/yavpm/advancement/recipes/decorations/apple_hanging_sign.json
 a08ce57a986697735aac1341c077e66780ec945e data/yavpm/recipe/glowing_obsidian.json
 b622e4e10aa7758443f772a128986377b6877d39 data/yavpm/recipe/studded_chestplate.json
 180dda09e70f12e06265db673c071b1544b63163 data/yavpm/advancement/recipes/misc/studded_chestplate.json
@@ -17,11 +18,13 @@ eca06b9401078752020f4b3a347486ea51cc78f1 data/yavpm/advancement/recipes/food/mol
 e09043a2bb46f39c1fc9285197aa9c174582c8ff data/yavpm/recipe/soul_powder.json
 60f76cfe6653417194766a1ed40579d52473cadd data/yavpm/recipe/cooked_peanut_from_smoking.json
 2e86702f492b203467aeacde050046898fafedc3 data/yavpm/recipe/studded_leggings.json
+3f72199879dff2fd631f525c76933206e64175a8 data/yavpm/recipe/apple_sign.json
 939c39dc64df48af271c0abc6e2ce71923f04df8 data/yavpm/advancement/recipes/building_blocks/moss_block.json
 3fcb885c5ef3332ae9e13695657fd240f2ba6186 data/yavpm/recipe/studded_helmet.json
 fdda5a957c4d16c56050e704c8bb9d2eb214ea38 data/yavpm/recipe/apple_slab.json
 82f514a970f5b786cd789cc51f8127a180440166 data/yavpm/recipe/apple_fence.json
 e3fac69bfeeb304dc80be81d1904ca86c40f397d data/yavpm/recipe/soul_glowing_obsidian.json
+b60b5d8a33cb3dafaae3a6817a7d0bf104737745 data/yavpm/recipe/apple_hanging_sign.json
 648a2d87788ae434bdbdb57e129d3d546b79dc80 data/yavpm/recipe/diamond_acorn.json
 421e3a4678f06e1b8f52ca2640e7bf627dc39d4d data/yavpm/recipe/apple_stairs.json
 59d9902225708e11f974dba1ccb2f090d2ff3ba1 data/yavpm/advancement/recipes/redstone/apple_door.json
@@ -39,6 +42,7 @@ a4dd9890288856d8cd98796a2ae043dcab9ba668 data/yavpm/advancement/recipes/food/sea
 2fbad836f061dc4125cd3d12226dec70baf46dbb data/yavpm/advancement/recipes/redstone/electro_glass.json
 3d2549e0974ae4e7f24b0e44a84c7a19bcbd96d4 data/yavpm/advancement/recipes/building_blocks/soul_glowing_obsidian.json
 1ca5c8e9c5d0191f734a7190587e2802b388be3d data/yavpm/advancement/recipes/building_blocks/glowing_obsidian.json
+fa3801902e0c802bfc1da9ba3405edd7cead84f6 data/yavpm/advancement/recipes/decorations/apple_sign.json
 91203c2653d74d5b53da4e4aba23c4e8cee384c6 data/yavpm/advancement/recipes/food/chocolate.json
 8f1988516da88eb4038367675ab87287976f8191 data/yavpm/recipe/moly.json
 3ccc4055ea9e944b0156841ad525e3a7307d2aaa data/yavpm/recipe/apple_button.json

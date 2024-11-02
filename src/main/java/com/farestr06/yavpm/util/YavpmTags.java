@@ -1,5 +1,6 @@
 package com.farestr06.yavpm.util;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
@@ -33,6 +34,15 @@ public class YavpmTags {
 
         private static TagKey<Biome> of(String path) {
             return TagKey.of(RegistryKeys.BIOME, makeId(path));
+        }
+    }
+
+    public static class Blocks {
+
+        public static final TagKey<Block> APPLE_LOGS = of("apple_logs");
+
+        private static TagKey<Block> of(String path) {
+            return TagKey.of(RegistryKeys.BLOCK, makeId(path));
         }
     }
 }

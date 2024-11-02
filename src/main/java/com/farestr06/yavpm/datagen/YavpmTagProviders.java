@@ -114,6 +114,12 @@ public class YavpmTagProviders {
                     YavpmItems.STUDDED_LEGGINGS,
                     YavpmItems.STUDDED_BOOTS
             );
+            getOrCreateTagBuilder(ItemTags.FREEZE_IMMUNE_WEARABLES).add(
+                    YavpmItems.STUDDED_HELMET,
+                    YavpmItems.STUDDED_CHESTPLATE,
+                    YavpmItems.STUDDED_LEGGINGS,
+                    YavpmItems.STUDDED_BOOTS
+            );
 
             getOrCreateTagBuilder(ItemTags.DYEABLE).add(
                     YavpmItems.STUDDED_HELMET,
@@ -188,6 +194,15 @@ public class YavpmTagProviders {
         protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
             getOrCreateTagBuilder(BlockTags.SOUL_SPEED_BLOCKS).add(SOUL_GLOWING_OBSIDIAN);
             getOrCreateTagBuilder(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(SOUL_GLOWING_OBSIDIAN);
+
+
+            getOrCreateTagBuilder(YavpmTags.Blocks.APPLE_LOGS).add(
+                    APPLE_LOG,
+                    APPLE_WOOD,
+                    STRIPPED_APPLE_LOG,
+                    STRIPPED_APPLE_WOOD
+            );
+            getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN).forceAddTag(YavpmTags.Blocks.APPLE_LOGS);
 
             // Electro Glass isn't here because normal Glass does not have a required tool.
             getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(

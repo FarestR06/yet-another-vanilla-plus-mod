@@ -1,4 +1,4 @@
-// 1.21.1	2024-10-27T18:10:58.621928	Yet Another Vanilla Plus Mod/Tags for minecraft:item
+// 1.21.1	2024-11-01T12:20:17.31734	Yet Another Vanilla Plus Mod/Tags for minecraft:item
 f3b3071c7450bbc8a438073616eef45c204a3ade data/minecraft/tags/item/logs_that_burn.json
 921b7a251a4f979883b59271e0dc86e70ad74e79 data/minecraft/tags/item/wooden_pressure_plates.json
 9a8feb370c974654876a955ec0036f0c29a7bf91 data/minecraft/tags/item/fence_gates.json
@@ -8,7 +8,7 @@ b97a4384ff13a04df756d2911ddc4da5c90829b7 data/yavpm/tags/item/crimson_moongus_fo
 f275a7f37363d1bf0a2338331d2e0d2595cfb1ff data/yavpm/tags/item/reactor_rechargers.json
 95eca0c62d45553638cc93a0473b3a32b137e4fe data/minecraft/tags/item/dyeable.json
 65fc3195d692fffc0cb7e91c07b545be344af882 data/c/tags/item/foods/fruit.json
-95eca0c62d45553638cc93a0473b3a32b137e4fe data/minecraft/tags/item/freeze_immune_wearables.json
+a32afdb1d2eac8bfff54210398ea4e2f54163394 data/minecraft/tags/item/freeze_immune_wearables.json
 c17d9f635d9512ab1ba1328857e1b78ba885b43b data/c/tags/item/foods/soup.json
 95eca0c62d45553638cc93a0473b3a32b137e4fe data/minecraft/tags/item/trimmable_armor.json
 00588de8b5f7ec7665f6dce613cb2691813538a8 data/minecraft/tags/item/slabs.json
