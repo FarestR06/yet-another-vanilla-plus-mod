@@ -30,7 +30,8 @@ import static com.farestr06.yavpm.item.YavpmArmorMaterials.STUDDED;
 
 public class YavpmItems {
 
-    public static final Map<Item, RegistryEntry<Potion>> MOONGUS_FOOD = new HashMap<>();
+    public static final Map<Item, RegistryEntry<Potion>> CRIMSON_MOONGUS_FOOD = new HashMap<>();
+    public static final Map<Item, RegistryEntry<Potion>> WARPED_MOONGUS_FOOD = new HashMap<>();
 
     // region Banana
     public static final Item BANANA = makeItem(
@@ -226,23 +227,27 @@ public class YavpmItems {
     }
 
     private static void setUpMoongusFood() {
-        MOONGUS_FOOD.put(Items.SUGAR, Potions.NIGHT_VISION);
-        MOONGUS_FOOD.put(Items.RABBIT_FOOT, Potions.LEAPING);
-        MOONGUS_FOOD.put(Items.BLAZE_POWDER, Potions.STRENGTH);
-        MOONGUS_FOOD.put(Items.GLISTERING_MELON_SLICE, Potions.HEALING);
-        MOONGUS_FOOD.put(Items.SPIDER_EYE, Potions.POISON);
-        MOONGUS_FOOD.put(Items.GHAST_TEAR, Potions.REGENERATION);
-        MOONGUS_FOOD.put(Items.MAGMA_CREAM, Potions.HEALING);
-        MOONGUS_FOOD.put(Items.PUFFERFISH, Potions.WATER_BREATHING);
-        MOONGUS_FOOD.put(Items.GOLDEN_CARROT, Potions.NIGHT_VISION);
-        MOONGUS_FOOD.put(Items.TURTLE_HELMET, Potions.TURTLE_MASTER);
-        MOONGUS_FOOD.put(Items.PHANTOM_MEMBRANE, Potions.SLOW_FALLING);
-        MOONGUS_FOOD.put(Items.BREEZE_ROD, Potions.WIND_CHARGED);
-        MOONGUS_FOOD.put(Items.COBWEB, Potions.WEAVING);
-        MOONGUS_FOOD.put(Items.SLIME_BLOCK, Potions.OOZING);
-        MOONGUS_FOOD.put(Items.STONE, Potions.INFESTED);
-        MOONGUS_FOOD.put(Items.WITHER_SKELETON_SKULL, YavpmPotions.DECAY);
-        MOONGUS_FOOD.put(Items.ENDER_EYE, YavpmPotions.VOIDED);
+        CRIMSON_MOONGUS_FOOD.put(Items.SUGAR, Potions.SWIFTNESS);
+        CRIMSON_MOONGUS_FOOD.put(Items.RABBIT_FOOT, Potions.LEAPING);
+        CRIMSON_MOONGUS_FOOD.put(Items.BLAZE_POWDER, Potions.STRENGTH);
+        CRIMSON_MOONGUS_FOOD.put(Items.GLISTERING_MELON_SLICE, Potions.HEALING);
+        CRIMSON_MOONGUS_FOOD.put(Items.SPIDER_EYE, Potions.POISON);
+        CRIMSON_MOONGUS_FOOD.put(Items.GHAST_TEAR, Potions.REGENERATION);
+        CRIMSON_MOONGUS_FOOD.put(Items.MAGMA_CREAM, Potions.HEALING);
+        CRIMSON_MOONGUS_FOOD.put(Items.PUFFERFISH, Potions.WATER_BREATHING);
+        CRIMSON_MOONGUS_FOOD.put(Items.GOLDEN_CARROT, Potions.NIGHT_VISION);
+        CRIMSON_MOONGUS_FOOD.put(Items.TURTLE_HELMET, Potions.TURTLE_MASTER);
+        CRIMSON_MOONGUS_FOOD.put(Items.PHANTOM_MEMBRANE, Potions.SLOW_FALLING);
+        CRIMSON_MOONGUS_FOOD.put(Items.BREEZE_ROD, Potions.WIND_CHARGED);
+        CRIMSON_MOONGUS_FOOD.put(Items.COBWEB, Potions.WEAVING);
+        CRIMSON_MOONGUS_FOOD.put(Items.SLIME_BLOCK, Potions.OOZING);
+        CRIMSON_MOONGUS_FOOD.put(Items.STONE, Potions.INFESTED);
+        CRIMSON_MOONGUS_FOOD.put(Items.WITHER_SKELETON_SKULL, YavpmPotions.DECAY);
+        CRIMSON_MOONGUS_FOOD.put(Items.ENDER_EYE, YavpmPotions.VOIDED);
+
+        WARPED_MOONGUS_FOOD.put(Items.FERMENTED_SPIDER_EYE, Potions.WEAKNESS);
+        WARPED_MOONGUS_FOOD.put(Items.WITHER_SKELETON_SKULL, YavpmPotions.DECAY);
+        WARPED_MOONGUS_FOOD.put(Items.ENDER_EYE, YavpmPotions.VOIDED);
     }
 
     private static void setUpRegistries() {

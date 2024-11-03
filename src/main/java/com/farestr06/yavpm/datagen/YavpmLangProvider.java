@@ -31,6 +31,26 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("subtitles.item.soul_powder.use", "Soul Powder whooshes");
         builder.add(YavpmItems.SOUL_POWDER, "Soul Powder");
 
+
+        builder.add(YavpmStatusEffects.VOIDED.value(), "Voided");
+
+        builder.add("enchantment.yavpm.void_strike", "Void Strike");
+        builder.add("enchantment.yavpm.void_strike.desc", "Attacking a target applies a short damage multiplier.");
+
+
+        builder.add(YavpmBlocks.COBBLED_GRANITE, "Cobbled Granite");
+        builder.add(YavpmBlocks.COBBLED_DIORITE, "Cobbled Diorite");
+        builder.add(YavpmBlocks.COBBLED_ANDESITE, "Cobbled Andesite");
+        builder.add(YavpmBlocks.COBBLED_GRANITE_STAIRS, "Cobbled Granite Stairs");
+        builder.add(YavpmBlocks.COBBLED_DIORITE_STAIRS, "Cobbled Diorite Stairs");
+        builder.add(YavpmBlocks.COBBLED_ANDESITE_STAIRS, "Cobbled Andesite Stairs");
+        builder.add(YavpmBlocks.COBBLED_GRANITE_SLAB, "Cobbled Granite Slab");
+        builder.add(YavpmBlocks.COBBLED_DIORITE_SLAB, "Cobbled Diorite Slab");
+        builder.add(YavpmBlocks.COBBLED_ANDESITE_SLAB, "Cobbled Andesite Slab");
+        builder.add(YavpmBlocks.COBBLED_GRANITE_WALL, "Cobbled Granite Wall");
+        builder.add(YavpmBlocks.COBBLED_DIORITE_WALL, "Cobbled Diorite Wall");
+        builder.add(YavpmBlocks.COBBLED_ANDESITE_WALL, "Cobbled Andesite Wall");
+
         builder.add(YavpmBlocks.POLISHED_GRANITE_BRICKS, "Polished Granite Bricks");
         builder.add(YavpmBlocks.POLISHED_DIORITE_BRICKS, "Polished Diorite Bricks");
         builder.add(YavpmBlocks.POLISHED_ANDESITE_BRICKS, "Polished Andesite Bricks");
@@ -43,11 +63,6 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.POLISHED_GRANITE_BRICK_WALL, "Polished Granite Brick Wall");
         builder.add(YavpmBlocks.POLISHED_DIORITE_BRICK_WALL, "Polished Diorite Brick Wall");
         builder.add(YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL, "Polished Andesite Brick Wall");
-
-        builder.add(YavpmStatusEffects.VOIDED.value(), "Voided");
-
-        builder.add("enchantment.yavpm.void_strike", "Void Strike");
-        builder.add("enchantment.yavpm.void_strike.desc", "Attacking a target applies a short damage multiplier.");
 
         builder.add(YavpmBlocks.POLISHED_GRANITE_TILES, "Polished Granite Tiles");
         builder.add(YavpmBlocks.POLISHED_DIORITE_TILES, "Polished Diorite Tiles");

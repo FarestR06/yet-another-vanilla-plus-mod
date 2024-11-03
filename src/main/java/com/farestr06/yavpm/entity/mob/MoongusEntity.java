@@ -31,7 +31,8 @@ import net.minecraft.world.*;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
-import static com.farestr06.yavpm.item.YavpmItems.MOONGUS_FOOD;
+import static com.farestr06.yavpm.item.YavpmItems.CRIMSON_MOONGUS_FOOD;
+import static com.farestr06.yavpm.item.YavpmItems.WARPED_MOONGUS_FOOD;
 
 public class MoongusEntity extends MooshroomEntity implements Shearable, VariantHolder<MooshroomEntity.Type> {
 
@@ -123,22 +124,29 @@ public class MoongusEntity extends MooshroomEntity implements Shearable, Variant
                 }
                 this.playSound(YavpmSounds.ENTITY_MOONGUS_MILK_CRIMSON, 1, 1);
             } else if (getVariant() == Type.BROWN) {
-                potion = PotionContentsComponent.createStack(Items.POTION, Potions.MUNDANE);
-                potionContents = null;
+                if (potionContents != null) {
+                    potion = PotionContentsComponent.createStack(Items.POTION, potionContents);
+                    potionContents = null;
+                } else {
+                    potion = PotionContentsComponent.createStack(Items.POTION, Potions.MUNDANE);
+                }
                 this.playSound(YavpmSounds.ENTITY_MOONGUS_MILK_WARPED, 1, 1);
             }
             ItemStack exchangedStack = ItemUsage.exchangeStack(stack, player, potion, false);
             player.setStackInHand(hand, exchangedStack);
             return ActionResult.success(this.getWorld().isClient());
-        } else if (
-                (stack.isIn(YavpmTags.Items.CRIMSON_MOONGUS_FOOD) && this.getVariant() == Type.RED)
-                        || (stack.isIn(YavpmTags.Items.WARPED_MOONGUS_FOOD) && this.getVariant() == Type.BROWN)
-        ) {
+        } else if ((stack.isIn(YavpmTags.Items.CRIMSON_MOONGUS_FOOD) && this.getVariant() == Type.RED)) {
             Item item = stack.getItem();
-            this.potionContents = MOONGUS_FOOD.get(item);
+            this.potionContents = CRIMSON_MOONGUS_FOOD.get(item);
             this.eat(player, hand, stack);
             return ActionResult.success(this.getWorld().isClient);
-        } else if (stack.isOf(Items.SHEARS) && this.isShearable()) {
+        } else if (stack.isIn(YavpmTags.Items.WARPED_MOONGUS_FOOD) && this.getVariant() == Type.BROWN) {
+            Item item = stack.getItem();
+            this.potionContents = WARPED_MOONGUS_FOOD.get(item);
+            this.eat(player, hand, stack);
+            return ActionResult.success(this.getWorld().isClient);
+        }
+        else if (stack.isOf(Items.SHEARS) && this.isShearable()) {
             this.shearer = player;
             this.sheared(SoundCategory.PLAYERS);
             this.emitGameEvent(GameEvent.SHEAR, player);

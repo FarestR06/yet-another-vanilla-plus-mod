@@ -1,5 +1,8 @@
 {
   "values": [
+    "yavpm:cobbled_granite_slab",
+    "yavpm:cobbled_diorite_slab",
+    "yavpm:cobbled_andesite_slab",
     "yavpm:polished_granite_brick_slab",
     "yavpm:polished_diorite_brick_slab",
     "yavpm:polished_andesite_brick_slab",

@@ -1,5 +1,8 @@
 {
   "values": [
+    "yavpm:cobbled_granite_stairs",
+    "yavpm:cobbled_diorite_stairs",
+    "yavpm:cobbled_andesite_stairs",
     "yavpm:polished_granite_brick_stairs",
     "yavpm:polished_diorite_brick_stairs",
     "yavpm:polished_andesite_brick_stairs",

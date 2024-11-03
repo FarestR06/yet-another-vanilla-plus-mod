@@ -134,12 +134,17 @@ public class YavpmTagProviders {
                     YavpmItems.STUDDED_LEGGINGS,
                     YavpmItems.STUDDED_BOOTS
             );
-            getOrCreateTagBuilder(ItemTags.STONE_BRICKS).add(
-                    POLISHED_GRANITE_BRICKS.asItem(),
-                    POLISHED_DIORITE_BRICKS.asItem(),
-                    POLISHED_ANDESITE_BRICKS.asItem()
+
+            getOrCreateTagBuilder(ItemTags.STONE_CRAFTING_MATERIALS).add(
+                    COBBLED_GRANITE.asItem(),
+                    COBBLED_DIORITE.asItem(),
+                    COBBLED_ANDESITE.asItem()
             );
+
             getOrCreateTagBuilder(ItemTags.STAIRS).add(
+                    COBBLED_GRANITE_STAIRS.asItem(),
+                    COBBLED_DIORITE_STAIRS.asItem(),
+                    COBBLED_ANDESITE_STAIRS.asItem(),
                     POLISHED_GRANITE_BRICK_STAIRS.asItem(),
                     POLISHED_DIORITE_BRICK_STAIRS.asItem(),
                     POLISHED_ANDESITE_BRICK_STAIRS.asItem(),
@@ -148,6 +153,9 @@ public class YavpmTagProviders {
                     POLISHED_ANDESITE_TILE_STAIRS.asItem()
             );
             getOrCreateTagBuilder(ItemTags.SLABS).add(
+                    COBBLED_GRANITE_SLAB.asItem(),
+                    COBBLED_DIORITE_SLAB.asItem(),
+                    COBBLED_ANDESITE_SLAB.asItem(),
                     POLISHED_GRANITE_BRICK_SLAB.asItem(),
                     POLISHED_DIORITE_BRICK_SLAB.asItem(),
                     POLISHED_ANDESITE_BRICK_SLAB.asItem(),
@@ -156,6 +164,9 @@ public class YavpmTagProviders {
                     POLISHED_ANDESITE_TILE_SLAB.asItem()
             );
             getOrCreateTagBuilder(ItemTags.WALLS).add(
+                    COBBLED_GRANITE_WALL.asItem(),
+                    COBBLED_DIORITE_WALL.asItem(),
+                    COBBLED_ANDESITE_WALL.asItem(),
                     POLISHED_GRANITE_BRICK_WALL.asItem(),
                     POLISHED_DIORITE_BRICK_WALL.asItem(),
                     POLISHED_ANDESITE_BRICK_WALL.asItem(),
@@ -208,6 +219,18 @@ public class YavpmTagProviders {
             getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(
                     GLOWING_OBSIDIAN,
                     SOUL_GLOWING_OBSIDIAN,
+                    COBBLED_GRANITE,
+                    COBBLED_DIORITE,
+                    COBBLED_ANDESITE,
+                    COBBLED_GRANITE_STAIRS,
+                    COBBLED_DIORITE_STAIRS,
+                    COBBLED_ANDESITE_STAIRS,
+                    COBBLED_GRANITE_SLAB,
+                    COBBLED_DIORITE_SLAB,
+                    COBBLED_ANDESITE_SLAB,
+                    COBBLED_GRANITE_WALL,
+                    COBBLED_DIORITE_WALL,
+                    COBBLED_ANDESITE_WALL,
                     POLISHED_GRANITE_BRICKS,
                     POLISHED_GRANITE_BRICK_STAIRS,
                     POLISHED_GRANITE_BRICK_SLAB,
@@ -244,6 +267,9 @@ public class YavpmTagProviders {
             );
 
             getOrCreateTagBuilder(BlockTags.STAIRS).add(
+                    COBBLED_GRANITE_STAIRS,
+                    COBBLED_DIORITE_STAIRS,
+                    COBBLED_ANDESITE_STAIRS,
                     POLISHED_GRANITE_BRICK_STAIRS,
                     POLISHED_DIORITE_BRICK_STAIRS,
                     POLISHED_ANDESITE_BRICK_STAIRS,
@@ -252,6 +278,9 @@ public class YavpmTagProviders {
                     POLISHED_ANDESITE_TILE_STAIRS
             );
             getOrCreateTagBuilder(BlockTags.SLABS).add(
+                    COBBLED_GRANITE_SLAB,
+                    COBBLED_DIORITE_SLAB,
+                    COBBLED_ANDESITE_SLAB,
                     POLISHED_GRANITE_BRICK_SLAB,
                     POLISHED_DIORITE_BRICK_SLAB,
                     POLISHED_ANDESITE_BRICK_SLAB,
@@ -261,6 +290,9 @@ public class YavpmTagProviders {
             );
 
              getOrCreateTagBuilder(BlockTags.WALLS).add(
+                     COBBLED_GRANITE_WALL,
+                     COBBLED_DIORITE_WALL,
+                     COBBLED_ANDESITE_WALL,
                      POLISHED_GRANITE_BRICK_WALL,
                      POLISHED_DIORITE_BRICK_WALL,
                      POLISHED_ANDESITE_BRICK_WALL,

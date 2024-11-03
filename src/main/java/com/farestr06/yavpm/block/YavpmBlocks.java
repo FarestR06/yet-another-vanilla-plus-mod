@@ -55,7 +55,22 @@ public class YavpmBlocks {
             }
     );
 
-    // region Bricks and Tiles
+    // region Igneous Stone
+    public static final Block COBBLED_GRANITE = makeBlockAndItem(makeId("cobbled_granite"), AbstractBlock.Settings.copy(Blocks.COBBLESTONE));
+    public static final Block COBBLED_DIORITE = makeBlockAndItem(makeId("cobbled_diorite"), AbstractBlock.Settings.copy(Blocks.COBBLESTONE));
+    public static final Block COBBLED_ANDESITE = makeBlockAndItem(makeId("cobbled_andesite"), AbstractBlock.Settings.copy(Blocks.COBBLESTONE));
+
+    public static final Block COBBLED_GRANITE_STAIRS = makeAdvancedBlockAndItem(makeId("cobbled_granite_stairs"), new StairsBlock(COBBLED_GRANITE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.COBBLESTONE_STAIRS)));
+    public static final Block COBBLED_DIORITE_STAIRS = makeAdvancedBlockAndItem(makeId("cobbled_diorite_stairs"), new StairsBlock(COBBLED_DIORITE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.COBBLESTONE_STAIRS)));
+    public static final Block COBBLED_ANDESITE_STAIRS = makeAdvancedBlockAndItem(makeId("cobbled_andesite_stairs"), new StairsBlock(COBBLED_ANDESITE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.COBBLESTONE_STAIRS)));
+
+    public static final Block COBBLED_GRANITE_SLAB = makeAdvancedBlockAndItem(makeId("cobbled_granite_slab"), new SlabBlock(AbstractBlock.Settings.copy(Blocks.COBBLESTONE_SLAB)));
+    public static final Block COBBLED_DIORITE_SLAB = makeAdvancedBlockAndItem(makeId("cobbled_diorite_slab"), new SlabBlock(AbstractBlock.Settings.copy(Blocks.COBBLESTONE_SLAB)));
+    public static final Block COBBLED_ANDESITE_SLAB = makeAdvancedBlockAndItem(makeId("cobbled_andesite_slab"), new SlabBlock(AbstractBlock.Settings.copy(Blocks.COBBLESTONE_SLAB)));
+
+    public static final Block COBBLED_GRANITE_WALL = makeAdvancedBlockAndItem(makeId("cobbled_granite_wall"), new WallBlock(AbstractBlock.Settings.copy(Blocks.COBBLESTONE_WALL)));
+    public static final Block COBBLED_DIORITE_WALL = makeAdvancedBlockAndItem(makeId("cobbled_diorite_wall"), new WallBlock(AbstractBlock.Settings.copy(Blocks.COBBLESTONE_WALL)));
+    public static final Block COBBLED_ANDESITE_WALL = makeAdvancedBlockAndItem(makeId("cobbled_andesite_wall"), new WallBlock(AbstractBlock.Settings.copy(Blocks.COBBLESTONE_WALL)));
 
     public static final Block POLISHED_GRANITE_BRICKS = makeBlockAndItem(makeId("polished_granite_bricks"), AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
     public static final Block POLISHED_DIORITE_BRICKS = makeBlockAndItem(makeId("polished_diorite_bricks"), AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
@@ -93,8 +108,8 @@ public class YavpmBlocks {
     public static final Block POLISHED_ANDESITE_BRICK_WALL = makeAdvancedBlockAndItem(makeId("polished_andesite_brick_wall"), new WallBlock(
             AbstractBlock.Settings.copy(Blocks.STONE_BRICK_WALL)
     ));
-    
-    
+
+
     public static final Block POLISHED_GRANITE_TILES = makeBlockAndItem(makeId("polished_granite_tiles"), AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
     public static final Block POLISHED_DIORITE_TILES = makeBlockAndItem(makeId("polished_diorite_tiles"), AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
     public static final Block POLISHED_ANDESITE_TILES = makeBlockAndItem(makeId("polished_andesite_tiles"), AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
@@ -286,10 +301,24 @@ public class YavpmBlocks {
         entries.add(APPLE_TRAPDOOR);
         entries.add(APPLE_PRESSURE_PLATE);
         entries.add(APPLE_BUTTON);
-        
+
+
         entries.add(GLOWING_OBSIDIAN);
         entries.add(SOUL_GLOWING_OBSIDIAN);
-        
+
+        entries.add(COBBLED_GRANITE);
+        entries.add(COBBLED_GRANITE_STAIRS);
+        entries.add(COBBLED_GRANITE_SLAB);
+        entries.add(COBBLED_GRANITE_WALL);
+        entries.add(COBBLED_DIORITE);
+        entries.add(COBBLED_DIORITE_STAIRS);
+        entries.add(COBBLED_DIORITE_SLAB);
+        entries.add(COBBLED_DIORITE_WALL);
+        entries.add(COBBLED_ANDESITE);
+        entries.add(COBBLED_ANDESITE_STAIRS);
+        entries.add(COBBLED_ANDESITE_SLAB);
+        entries.add(COBBLED_ANDESITE_WALL);
+
         entries.add(POLISHED_GRANITE_BRICKS);
         entries.add(POLISHED_GRANITE_BRICK_STAIRS);
         entries.add(POLISHED_GRANITE_BRICK_SLAB);
@@ -302,6 +331,7 @@ public class YavpmBlocks {
         entries.add(POLISHED_ANDESITE_BRICK_STAIRS);
         entries.add(POLISHED_ANDESITE_BRICK_SLAB);
         entries.add(POLISHED_ANDESITE_BRICK_WALL);
+
         entries.add(POLISHED_GRANITE_TILES);
         entries.add(POLISHED_GRANITE_TILE_STAIRS);
         entries.add(POLISHED_GRANITE_TILE_SLAB);

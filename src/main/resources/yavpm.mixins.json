@@ -16,6 +16,7 @@
   },
   "client": [
     "client.CreeperEntityRendererMixin",
+    "client.SplashTextResourceSupplierMixin",
     "entity.MooshroomMushroomFeatureRendererMixin"
   ]
 }

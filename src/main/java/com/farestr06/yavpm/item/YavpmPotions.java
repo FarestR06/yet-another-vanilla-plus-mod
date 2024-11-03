@@ -66,11 +66,11 @@ public class YavpmPotions {
         YetAnotherVanillaPlusMod.LOGGER.info("Registering potions for YAVPM!");
 
         FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> {
-            builder.registerPotionRecipe(Potions.AWKWARD, Ingredient.ofItems(Items.WITHER_SKELETON_SKULL), DECAY);
+            builder.registerPotionRecipe(Potions.WATER, Ingredient.ofItems(Items.WITHER_SKELETON_SKULL), DECAY);
             builder.registerPotionRecipe(DECAY, Ingredient.ofItems(Items.REDSTONE), LONG_DECAY);
             builder.registerPotionRecipe(DECAY, Ingredient.ofItems(Items.GLOWSTONE_DUST), STRONG_DECAY);
 
-            builder.registerPotionRecipe(Potions.AWKWARD, Ingredient.ofItems(Items.ENDER_EYE), VOIDED);
+            builder.registerPotionRecipe(Potions.WATER, Ingredient.ofItems(Items.ENDER_EYE), VOIDED);
             builder.registerPotionRecipe(VOIDED, Ingredient.ofItems(Items.REDSTONE), LONG_VOIDED);
             builder.registerPotionRecipe(VOIDED, Ingredient.ofItems(Items.GLOWSTONE_DUST), STRONG_VOIDED);
         });
