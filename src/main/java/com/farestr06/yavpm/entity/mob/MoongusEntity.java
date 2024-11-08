@@ -139,11 +139,13 @@ public class MoongusEntity extends MooshroomEntity implements Shearable, Variant
             Item item = stack.getItem();
             this.potionContents = CRIMSON_MOONGUS_FOOD.get(item);
             this.eat(player, hand, stack);
+            this.playSound(YavpmSounds.ENTITY_MOONGUS_EAT, 2.0F, 1.0F);
             return ActionResult.success(this.getWorld().isClient);
         } else if (stack.isIn(YavpmTags.Items.WARPED_MOONGUS_FOOD) && this.getVariant() == Type.BROWN) {
             Item item = stack.getItem();
             this.potionContents = WARPED_MOONGUS_FOOD.get(item);
             this.eat(player, hand, stack);
+            this.playSound(YavpmSounds.ENTITY_MOONGUS_EAT, 2.0F, 1.0F);
             return ActionResult.success(this.getWorld().isClient);
         }
         else if (stack.isOf(Items.SHEARS) && this.isShearable()) {

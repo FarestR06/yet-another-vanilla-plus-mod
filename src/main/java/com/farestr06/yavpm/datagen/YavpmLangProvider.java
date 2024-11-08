@@ -32,10 +32,19 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.SOUL_POWDER, "Soul Powder");
 
 
-        builder.add(YavpmStatusEffects.VOIDED.value(), "Voided");
+        builder.add(YavpmStatusEffects.VOID_TOUCHED.value(), "Void Touched");
 
         builder.add("enchantment.yavpm.void_strike", "Void Strike");
         builder.add("enchantment.yavpm.void_strike.desc", "Attacking a target applies a short damage multiplier.");
+
+        builder.add("enchantment.yavpm.critical_hit", "Critical Hit");
+        builder.add("enchantment.yavpm.critical_hit.desc", "Gives you a chance to inflict critical hits dealing triple damage.");
+
+        builder.add("enchantment.yavpm.tempo_theft", "Tempo Theft");
+        builder.add("enchantment.yavpm.tempo_theft.desc", "Steals a small amount of a mob's movement speed and gives it to the player for a short time.");
+
+        builder.add("enchantment.yavpm.longstrider", "Longstrider");
+        builder.add("enchantment.yavpm.longstrider.desc", "Increases the player's stride, letting them climb higher steps and increasing their speed.");
 
 
         builder.add(YavpmBlocks.COBBLED_GRANITE, "Cobbled Granite");
@@ -170,6 +179,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmMobs.MOONGUS, "Moongus");
         builder.add(YavpmTags.Items.CRIMSON_MOONGUS_FOOD, "Crimson Moongus Food");
         builder.add(YavpmTags.Items.WARPED_MOONGUS_FOOD, "Warped Moongus Food");
+        builder.add("subtitles.entity.moongus.eat", "Moongus eats");
         builder.add("subtitles.entity.moongus.milk.crimson", "Moongus gets milked awkwardly");
         builder.add("subtitles.entity.moongus.milk.warped", "Moongus gets milked mundanely");
     }

@@ -1,0 +1,47 @@
+{
+  "description": {
+    "translate": "enchantment.yavpm.critical_hit"
+  },
+  "exclusive_set": "#minecraft:exclusive_set/damage",
+  "supported_items": "#minecraft:enchantable/sword",
+  "primary_items": "#minecraft:enchantable/sword",
+  "weight": 5,
+  "max_level": 3,
+  "min_cost": {
+    "base": 5,
+    "per_level_above_first": 15
+  },
+  "max_cost": {
+    "base": 25,
+    "per_level_above_first": 15
+  },
+  "anvil_cost": 5,
+  "slots": [
+    "mainhand"
+  ],
+  "effects": {
+    "minecraft:damage": [
+      {
+        "effect": {
+          "type": "minecraft:multiply",
+          "factor": 3
+        },
+        "requirements": {
+          "condition": "minecraft:random_chance",
+          "chance": {
+            "type": "minecraft:enchantment_level",
+            "amount": {
+              "type": "minecraft:lookup",
+              "values": [
+                0.1,
+                0.15,
+                0.2
+              ],
+              "fallback": 0.1
+            }
+          }
+        }
+      }
+    ]
+  }
+}

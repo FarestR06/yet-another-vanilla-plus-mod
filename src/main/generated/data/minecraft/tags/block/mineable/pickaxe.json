@@ -25,6 +25,18 @@
     "yavpm:polished_andesite_bricks",
     "yavpm:polished_andesite_brick_stairs",
     "yavpm:polished_andesite_brick_slab",
-    "yavpm:polished_andesite_brick_wall"
+    "yavpm:polished_andesite_brick_wall",
+    "yavpm:polished_granite_tiles",
+    "yavpm:polished_granite_tile_stairs",
+    "yavpm:polished_granite_tile_slab",
+    "yavpm:polished_granite_tile_wall",
+    "yavpm:polished_diorite_tiles",
+    "yavpm:polished_diorite_tile_stairs",
+    "yavpm:polished_diorite_tile_slab",
+    "yavpm:polished_diorite_tile_wall",
+    "yavpm:polished_andesite_tiles",
+    "yavpm:polished_andesite_tile_stairs",
+    "yavpm:polished_andesite_tile_slab",
+    "yavpm:polished_andesite_tile_wall"
   ]
 }

@@ -20,7 +20,7 @@ public class SplashTextResourceSupplierMixin {
     @Inject(method = "get", at = @At(value = "INVOKE", target = "Ljava/util/Calendar;setTime(Ljava/util/Date;)V", shift = At.Shift.AFTER), cancellable = true)
     private void injected(CallbackInfoReturnable<SplashTextRenderer> cir, @Local Calendar calendar) {
 
-        if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY && Random.create().nextFloat() < 0.5) {
+        if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY && Random.create().nextFloat() < 0.16) {
             cir.setReturnValue(IT_IS_SNAPSHOT_DAY__MY_DUDES_);
         }
     }

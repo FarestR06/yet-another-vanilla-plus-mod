@@ -38,21 +38,21 @@ public class YavpmPotions {
 
     public static final RegistryEntry<Potion> VOIDED = register("voided", new Potion(
             new StatusEffectInstance(
-                    YavpmStatusEffects.VOIDED,
+                    YavpmStatusEffects.VOID_TOUCHED,
                     1000
             )
     ));
 
     public static final RegistryEntry<Potion> LONG_VOIDED = register("long_voided", new Potion(
             new StatusEffectInstance(
-                    YavpmStatusEffects.VOIDED,
+                    YavpmStatusEffects.VOID_TOUCHED,
                     1600
             )
     ));
 
     public static final RegistryEntry<Potion> STRONG_VOIDED = register("strong_voided", new Potion(
             new StatusEffectInstance(
-                    YavpmStatusEffects.VOIDED,
+                    YavpmStatusEffects.VOID_TOUCHED,
                     400,
                     2
             )

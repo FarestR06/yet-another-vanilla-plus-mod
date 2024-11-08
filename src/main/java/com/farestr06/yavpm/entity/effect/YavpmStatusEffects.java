@@ -1,13 +1,15 @@
 package com.farestr06.yavpm.entity.effect;
 
+import com.farestr06.api.effect.SimpleStatusEffect;
 import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
 
 public class YavpmStatusEffects {
-    public static final RegistryEntry<StatusEffect> VOIDED = register("voided", new VoidedStatusEffect());
+    public static final RegistryEntry<StatusEffect> VOID_TOUCHED = register("void_touched", new SimpleStatusEffect(StatusEffectCategory.HARMFUL, 0xe079fa));
 
     private static RegistryEntry<StatusEffect> register(String id, StatusEffect statusEffect) {
         return Registry.registerReference(Registries.STATUS_EFFECT, YetAnotherVanillaPlusMod.makeId(id), statusEffect);

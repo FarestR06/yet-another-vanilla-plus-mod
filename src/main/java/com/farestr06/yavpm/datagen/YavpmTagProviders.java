@@ -23,6 +23,15 @@ public class YavpmTagProviders {
 
         @Override
         protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+            getOrCreateTagBuilder(ItemTags.HEAD_ARMOR)
+                    .add(YavpmItems.STUDDED_HELMET);
+            getOrCreateTagBuilder(ItemTags.CHEST_ARMOR)
+                    .add(YavpmItems.STUDDED_CHESTPLATE);
+            getOrCreateTagBuilder(ItemTags.LEG_ARMOR)
+                    .add(YavpmItems.STUDDED_LEGGINGS);
+            getOrCreateTagBuilder(ItemTags.FOOT_ARMOR)
+                    .add(YavpmItems.STUDDED_BOOTS);
+
             getOrCreateTagBuilder(YavpmTags.Items.CRIMSON_MOONGUS_FOOD)
                     .add(
                             Items.SUGAR,
@@ -43,7 +52,9 @@ public class YavpmTagProviders {
                             Items.ENDER_EYE
                     );
             getOrCreateTagBuilder(YavpmTags.Items.WARPED_MOONGUS_FOOD).add(
-                    Items.FERMENTED_SPIDER_EYE
+                    Items.FERMENTED_SPIDER_EYE,
+                    Items.WITHER_SKELETON_SKULL,
+                    Items.ENDER_EYE
             );
             getOrCreateTagBuilder(YavpmTags.Items.REACTOR_RECHARGERS)
                     .add(
@@ -242,7 +253,19 @@ public class YavpmTagProviders {
                     POLISHED_ANDESITE_BRICKS,
                     POLISHED_ANDESITE_BRICK_STAIRS,
                     POLISHED_ANDESITE_BRICK_SLAB,
-                    POLISHED_ANDESITE_BRICK_WALL
+                    POLISHED_ANDESITE_BRICK_WALL,
+                    POLISHED_GRANITE_TILES,
+                    POLISHED_GRANITE_TILE_STAIRS,
+                    POLISHED_GRANITE_TILE_SLAB,
+                    POLISHED_GRANITE_TILE_WALL,
+                    POLISHED_DIORITE_TILES,
+                    POLISHED_DIORITE_TILE_STAIRS,
+                    POLISHED_DIORITE_TILE_SLAB,
+                    POLISHED_DIORITE_TILE_WALL,
+                    POLISHED_ANDESITE_TILES,
+                    POLISHED_ANDESITE_TILE_STAIRS,
+                    POLISHED_ANDESITE_TILE_SLAB,
+                    POLISHED_ANDESITE_TILE_WALL
             );
 
             getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)

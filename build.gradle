@@ -53,7 +53,7 @@ dependencies {
 	include "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_version}"
 
 	// Farest's API
-	modImplementation "maven.modrinth:farests-api:2.4.0-1.21.1"
+	modImplementation "maven.modrinth:farests-api:${project.farests_api_version}"
 }
 
 processResources {

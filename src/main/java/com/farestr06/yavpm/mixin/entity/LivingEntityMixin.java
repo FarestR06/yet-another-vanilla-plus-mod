@@ -29,7 +29,7 @@ public abstract class LivingEntityMixin extends Entity implements Attackable, St
     // Increase damage taken with Voided effect
     @ModifyVariable(method = "damage", at = @At(value = "HEAD"), argsOnly = true)
     private float voidedMultiplier(float damage) {
-        StatusEffectInstance effect = thiz.getStatusEffect(YavpmStatusEffects.VOIDED);
+        StatusEffectInstance effect = thiz.getStatusEffect(YavpmStatusEffects.VOID_TOUCHED);
         if (effect != null) {
             return damage * ((effect.getAmplifier() + 1) * 1.5f);
         } else return damage;

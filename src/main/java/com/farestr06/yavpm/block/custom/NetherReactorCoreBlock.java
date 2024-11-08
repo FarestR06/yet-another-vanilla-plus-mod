@@ -76,7 +76,7 @@ public class NetherReactorCoreBlock extends Block {
                 world.setBlockState(pos, activatedCore);
             }
             world.scheduleBlockTick(pos, this, 6000);
-            player.sendMessage(Text.translatable("block.yavpm.nether_reactor_core.success").formatted(Formatting.DARK_RED));
+            player.sendMessage(Text.translatable("block.yavpm.nether_reactor_core.success").formatted(Formatting.RED));
             return ActionResult.SUCCESS;
         }
         player.sendMessage(Text.translatable("block.yavpm.nether_reactor_core.bad_structure"));

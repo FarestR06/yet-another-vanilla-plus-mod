@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:power",
+    "yavpm:critical_hit",
+    "yavpm:void_strike"
+  ]
+}

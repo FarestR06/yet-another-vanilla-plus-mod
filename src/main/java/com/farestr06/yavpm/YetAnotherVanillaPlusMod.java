@@ -43,13 +43,13 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 
 		LOGGER.info("the j");
 
+		YavpmMobs.init();
 		YavpmBoats.init();
 		YavpmSounds.init();
 		YavpmItems.init();
 		YavpmStatusEffects.init();
 		YavpmPotions.init();
 		YavpmBlocks.init();
-		YavpmMobs.init();
 
 		modifyLoot();
 
@@ -73,6 +73,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
 			if (source.isBuiltin() && key == LootTables.SNIFFER_DIGGING_GAMEPLAY) {
 				LootPool.Builder poolBuilder = LootPool.builder().with(ItemEntry.builder(YavpmItems.TRUFFLE));
+
 				tableBuilder.pool(poolBuilder);
 			}
 		});
