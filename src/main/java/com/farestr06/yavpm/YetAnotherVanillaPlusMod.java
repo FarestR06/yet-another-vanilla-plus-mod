@@ -1,6 +1,7 @@
 package com.farestr06.yavpm;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
+import com.farestr06.yavpm.config.YavpmConfig;
 import com.farestr06.yavpm.entity.YavpmBoats;
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import com.farestr06.yavpm.entity.mob.YavpmMobs;
@@ -42,6 +43,8 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		// Proceed with mild caution.
 
 		LOGGER.info("the j");
+
+		YavpmConfig.HANDLER.load();
 
 		YavpmMobs.init();
 		YavpmBoats.init();

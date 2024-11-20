@@ -22,6 +22,12 @@ repositories {
 		url = 'https://maven.terraformersmc.com/'
 	}
 
+	maven {
+		name 'Xander Maven'
+		url 'https://maven.isxander.dev/releases'
+	}
+
+
 	exclusiveContent {
 		forRepository {
 			maven {
@@ -47,6 +53,12 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+
+	// Yet Another Config Lib
+	modImplementation "dev.isxander:yet-another-config-lib:${project.yacl_version}"
+
+	// Mod Menu
+	modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}")
 
 	// Terraform Wood API
 	modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_version}"

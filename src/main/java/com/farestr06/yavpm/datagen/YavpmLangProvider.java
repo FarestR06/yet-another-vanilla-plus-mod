@@ -18,6 +18,16 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
     @Override
     public void generateTranslations(RegistryWrapper.WrapperLookup registryLookup, TranslationBuilder builder) {
+        builder.add("option.yavpm.title", "Yet Another Vanilla Plus Mod Options");
+        builder.add("option.yavpm.entities_and_effects", "Entity/Mob Effect Options");
+        builder.add("option.yavpm.entities_and_effects.void_touched", "Void Touched Mob Effect Options");
+
+        builder.add("option.yavpm.void_touched_damage_multiplier.title", "Void Touched Damage Multiplier");
+        builder.add("option.yavpm.void_touched_damage_multiplier.desc", "Damage is multiplied by this for each level of Void Touched when applied");
+
+        builder.add("option.yavpm.void_touched_dragon_fireball.title", "Voided Dragon Fireball");
+        builder.add("option.yavpm.void_touched_dragon_fireball.desc", "When set to false, the dragon fireball will behave like it does in vanilla");
+
         builder.add("advancements.adventure.transform_mob.title", "Vanilla Plus Tweakin'");
         builder.add("advancements.adventure.transform_mob.description", "Transform a mob with some Soul Powder");
 

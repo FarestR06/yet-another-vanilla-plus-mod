@@ -1,5 +1,6 @@
 package com.farestr06.yavpm.mixin.entity;
 
+import com.farestr06.yavpm.config.YavpmConfig;
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import com.farestr06.yavpm.util.StatusEffectClearable;
 import net.minecraft.entity.Attackable;
@@ -31,7 +32,7 @@ public abstract class LivingEntityMixin extends Entity implements Attackable, St
     private float voidedMultiplier(float damage) {
         StatusEffectInstance effect = thiz.getStatusEffect(YavpmStatusEffects.VOID_TOUCHED);
         if (effect != null) {
-            return damage * ((effect.getAmplifier() + 1) * 1.5f);
+            return damage * ((effect.getAmplifier() + 1) * YavpmConfig.HANDLER.instance().voidTouchedDamageMultiplier);
         } else return damage;
     }
 
