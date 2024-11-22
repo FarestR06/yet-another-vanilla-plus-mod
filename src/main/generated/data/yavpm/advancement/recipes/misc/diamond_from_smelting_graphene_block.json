@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_graphene_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": "yavpm:graphene_block"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:diamond_from_smelting_graphene_block"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_graphene_block"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:diamond_from_smelting_graphene_block"
+    ]
+  }
+}

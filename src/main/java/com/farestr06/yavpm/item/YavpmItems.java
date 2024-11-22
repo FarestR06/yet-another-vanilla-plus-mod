@@ -92,6 +92,8 @@ public class YavpmItems {
             new Item.Settings().food(YavpmFoods.CHOCOLATE)
     );
 
+    public static final Item GRAPHITE = makeSimpleItem(makeId("graphite"));
+
     public static final Item SOUL_POWDER = makeAdvancedItem(
             makeId("soul_powder"),
             new SoulPowderItem(new Item.Settings())
@@ -172,6 +174,11 @@ public class YavpmItems {
             new SpawnEggItem(YavpmMobs.MOONGUS, MapColor.BRIGHT_TEAL.color, MapColor.RED.color, new Item.Settings())
     );
 
+    public static final Item CARBONFOWL_SPAWN_EGG = makeAdvancedItem(
+            makeId("carbonfowl_spawn_egg"),
+            new SpawnEggItem(YavpmMobs.CARBONFOWL, 0x191919, 0x4aedd9, new Item.Settings())
+    );
+
     private static void addToNatural(FabricItemGroupEntries entries) {
         entries.add(YavpmBlocks.APPLE_LOG);
         entries.add(YavpmBlocks.APPLE_LEAVES);
@@ -198,6 +205,10 @@ public class YavpmItems {
         entries.add(SEA_SOUP);
     }
     private static void addToIngredients(FabricItemGroupEntries entries) {
+        entries.add(GRAPHITE);
+        entries.add(YavpmBlocks.GRAPHITE_BLOCK);
+        entries.add(YavpmBlocks.GRAPHENE_BLOCK);
+
         entries.add(RICE);
         entries.add(MAGIC_BEANS);
         entries.add(SOUL_POWDER);
@@ -214,6 +225,7 @@ public class YavpmItems {
         entries.add(STUDDED_BOOTS);
     }
     private static void addToSpawnEggs(FabricItemGroupEntries entries) {
+        entries.add(CARBONFOWL_SPAWN_EGG);
         entries.add(MOONGUS_SPAWN_EGG);
     }
 
@@ -257,6 +269,7 @@ public class YavpmItems {
         // Make new crops compostable
         CompostingChanceRegistry compostables = CompostingChanceRegistry.INSTANCE;
         compostables.add(YavpmBlocks.APPLE_LEAVES.asItem(), 0.3f);
+        compostables.add(YavpmBlocks.SPIRAL_LEAVES.asItem(), 0.3f);
         compostables.add(BANANA_SEEDS, 0.3f);
         compostables.add(ACORN, 0.3f);
         compostables.add(PEANUT, 0.5f);

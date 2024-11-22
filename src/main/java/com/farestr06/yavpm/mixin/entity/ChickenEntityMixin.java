@@ -1,18 +1,17 @@
 package com.farestr06.yavpm.mixin.entity;
 
-import com.farestr06.yavpm.util.YavpmSounds;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import com.farestr06.yavpm.entity.mob.YavpmMobs;
+import com.farestr06.yavpm.item.YavpmItems;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.ChickenEntity;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.item.ItemConvertible;
+import net.minecraft.item.Items;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(ChickenEntity.class)
 public abstract class ChickenEntityMixin extends AnimalEntity {
@@ -20,32 +19,9 @@ public abstract class ChickenEntityMixin extends AnimalEntity {
         super(entityType, world);
     }
 
-    @Inject(method = "tickMovement", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/ChickenEntity;playSound(Lnet/minecraft/sound/SoundEvent;FF)V"), cancellable = true)
-    private void injected(CallbackInfo ci) {
-        if (!isEggLaySuccessful()) {
-            thiz.playSound(YavpmSounds.ENTITY_CHICKEN_EGG_BREAK, 1.0F, (thiz.getRandom().nextFloat() - thiz.getRandom().nextFloat()) * 0.2F + 1.0F);
-            ci.cancel();
-        }
-    }
-
-    @Unique
-    final ChickenEntity thiz = (ChickenEntity) (Object) this;
-
-    @Unique
-    private boolean isEggLaySuccessful() {
-        BlockPos.Mutable mutable = new BlockPos.Mutable();
-
-        for (int k = (int)thiz.getX() - 4; k < (int)thiz.getX() + 4; k++) {
-            for (int l = (int)thiz.getY() - 4; l < (int)thiz.getY() + 4; l++) {
-                for (int m = (int)thiz.getZ() - 4; m < (int)thiz.getZ() + 4; m++) {
-                    BlockState blockState = thiz.getWorld().getBlockState(mutable.set(k, l, m));
-                    if (!blockState.isOf(Blocks.GRASS_BLOCK)) {
-                        return thiz.getRandom().nextFloat() > 0.35F;
-                    }
-                }
-            }
-        }
-
-        return true;
+    @Redirect(method = "tickMovement", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/ChickenEntity;dropItem(Lnet/minecraft/item/ItemConvertible;)Lnet/minecraft/entity/ItemEntity;"))
+    private ItemEntity injected(ChickenEntity instance, ItemConvertible itemConvertible) {
+        if (instance.getType() == YavpmMobs.CARBONFOWL) return instance.dropItem(YavpmItems.GRAPHITE);
+        else return instance.dropItem(Items.EGG);
     }
 }

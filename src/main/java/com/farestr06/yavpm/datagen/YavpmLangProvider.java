@@ -28,7 +28,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("option.yavpm.void_touched_dragon_fireball.title", "Voided Dragon Fireball");
         builder.add("option.yavpm.void_touched_dragon_fireball.desc", "When set to false, the dragon fireball will behave like it does in vanilla");
 
-        builder.add("advancements.adventure.transform_mob.title", "Vanilla Plus Tweakin'");
+        builder.add("advancements.adventure.transform_mob.title", "Pocket Powder!");
         builder.add("advancements.adventure.transform_mob.description", "Transform a mob with some Soul Powder");
 
         builder.add("resourcePack.yavpm.programmer_art.name", "YAVPM Programmer Art");
@@ -56,6 +56,9 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("enchantment.yavpm.longstrider", "Longstrider");
         builder.add("enchantment.yavpm.longstrider.desc", "Increases the player's stride, letting them climb higher steps and increasing their speed.");
 
+        builder.add(YavpmItems.GRAPHITE, "Graphite");
+        builder.add(YavpmBlocks.GRAPHITE_BLOCK, "Block of Graphite");
+        builder.add(YavpmBlocks.GRAPHENE_BLOCK, "Block of Graphene");
 
         builder.add(YavpmBlocks.COBBLED_GRANITE, "Cobbled Granite");
         builder.add(YavpmBlocks.COBBLED_DIORITE, "Cobbled Diorite");
@@ -164,6 +167,14 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add("subtitles.entity.chicken.egg_break", "Egg breaks");
 
+        builder.add(YavpmBlocks.SPIRAL_STALK, "Spiral Stalk");
+        builder.add(YavpmBlocks.SPIRAL_BRANCH, "Spiral Branch");
+        builder.add(YavpmBlocks.STRIPPED_SPIRAL_STALK, "Stripped Spiral Stalk");
+        builder.add(YavpmBlocks.STRIPPED_SPIRAL_BRANCH, "Stripped Spiral Branch");
+        builder.add(YavpmBlocks.SPIRAL_LEAVES, "Spiral Leaves");
+        builder.add(YavpmBlocks.SPIRAL_PLANKS, "Spiral Planks");
+        builder.add(YavpmTags.Blocks.SPIRAL_STALKS, "Spiral Stalks");
+
         builder.add(YavpmBlocks.APPLE_LOG, "Apple Log");
         builder.add(YavpmBlocks.APPLE_WOOD, "Apple Wood");
         builder.add(YavpmBlocks.STRIPPED_APPLE_LOG, "Stripped Apple Log");
@@ -185,6 +196,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.APPLE_SAPLING, "Apple Sapling");
         builder.add(YavpmTags.Items.APPLE_LOGS, "Apple Logs");
 
+        builder.add(YavpmItems.CARBONFOWL_SPAWN_EGG, "Carbonfowl Spawn Egg");
+        builder.add(YavpmMobs.CARBONFOWL, "Carbonfowl");
         builder.add(YavpmItems.MOONGUS_SPAWN_EGG, "Moongus Spawn Egg");
         builder.add(YavpmMobs.MOONGUS, "Moongus");
         builder.add(YavpmTags.Items.CRIMSON_MOONGUS_FOOD, "Crimson Moongus Food");

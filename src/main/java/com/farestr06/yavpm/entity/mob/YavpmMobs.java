@@ -7,6 +7,7 @@ import net.minecraft.entity.SpawnGroup;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.util.math.Vec3d;
 
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.LOGGER;
@@ -22,6 +23,15 @@ public class YavpmMobs {
                     .makeFireImmune()
     );
 
+    public static final EntityType<CarbonfowlEntity> CARBONFOWL = register(
+            "carbonfowl",
+            EntityType.Builder.create(CarbonfowlEntity::new, SpawnGroup.MONSTER)
+                    .dimensions(0.4F, 0.7F)
+                    .eyeHeight(0.644F)
+                    .passengerAttachments(new Vec3d(0.0, 0.7, -0.1))
+                    .maxTrackingRange(10)
+    );
+
     private static <T extends Entity> EntityType<T> register(String id, EntityType.Builder<T> type) {
         return Registry.register(Registries.ENTITY_TYPE, makeId(id), type.build(id));
     }
@@ -29,5 +39,6 @@ public class YavpmMobs {
     public static void init() {
         LOGGER.info("Registering mobs for YAVPM!!");
         FabricDefaultAttributeRegistry.register(MOONGUS, CowEntity.createCowAttributes().build());
+        FabricDefaultAttributeRegistry.register(CARBONFOWL, CarbonfowlEntity.createCarbonfowlAttributes().build());
     }
 }

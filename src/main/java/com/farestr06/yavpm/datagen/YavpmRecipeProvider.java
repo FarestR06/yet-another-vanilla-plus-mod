@@ -116,6 +116,12 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .offerTo(exporter, makeId(getRecipeName(YavpmItems.SEA_SOUP)));
         makeStuddedArmorRecipes(exporter);
 
+        offerReversibleCompactingRecipes(exporter, RecipeCategory.MISC, YavpmItems.GRAPHITE, RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.GRAPHITE_BLOCK);
+        offerCompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.GRAPHENE_BLOCK, YavpmBlocks.GRAPHITE_BLOCK);
+
+        offerSmelting(exporter, List.of(YavpmBlocks.GRAPHENE_BLOCK), RecipeCategory.MISC, Items.DIAMOND, 1f, 200, "graphene_to_diamond");
+
+        makeSpiralWoodRecipes(exporter);
         makeApplewoodRecipes(exporter);
 
         makeStoneRecipes(exporter);
@@ -134,6 +140,10 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
         CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(YavpmBlocks.COBBLED_ANDESITE), RecipeCategory.BUILDING_BLOCKS, Blocks.ANDESITE.asItem(), 0.1F, 200)
                 .criterion("has_cobbled_andesite", conditionsFromItem(YavpmBlocks.COBBLED_ANDESITE))
                 .offerTo(exporter, makeId("andesite_from_cobbled"));
+    }
+
+    private void makeSpiralWoodRecipes(RecipeExporter exporter) {
+        offerPlanksRecipe(exporter, YavpmBlocks.SPIRAL_PLANKS, YavpmTags.Items.SPIRAL_STALKS, 4);
     }
 
     private void makeApplewoodRecipes(RecipeExporter exporter) {

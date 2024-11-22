@@ -20,6 +20,11 @@ public class YavpmModelProvider extends FabricModelProvider {
         super(output);
     }
 
+    private static final Model TEMPLATE_SPAWN_EGG = new Model(
+            Optional.of(Identifier.ofVanilla("item/template_spawn_egg")),
+            Optional.empty()
+    );
+
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator generator) {
         generator.registerSimpleCubeAll(YavpmBlocks.GLOWING_OBSIDIAN);
@@ -34,7 +39,11 @@ public class YavpmModelProvider extends FabricModelProvider {
         createDioriteSet(generator);
         createAndesiteSet(generator);
 
+        generator.registerSimpleCubeAll(YavpmBlocks.GRAPHITE_BLOCK);
+        generator.registerSimpleCubeAll(YavpmBlocks.GRAPHENE_BLOCK);
+
         createAppleSet(generator);
+        createSpiralSet(generator);
 
         generator.registerTintableCross(YavpmBlocks.APPLE_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
     }
@@ -58,10 +67,15 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.register(YavpmItems.MAGIC_BEANS, Models.GENERATED);
         generator.register(YavpmItems.SEA_SOUP, Models.GENERATED);
 
+        generator.register(YavpmItems.GRAPHITE, Models.GENERATED);
+
         generator.register(YavpmItems.APPLE_BOAT, Models.GENERATED);
         generator.register(YavpmItems.APPLE_CHEST_BOAT, Models.GENERATED);
 
         createStuddedArmor(generator);
+
+        generator.register(YavpmItems.MOONGUS_SPAWN_EGG, TEMPLATE_SPAWN_EGG);
+        generator.register(YavpmItems.CARBONFOWL_SPAWN_EGG, TEMPLATE_SPAWN_EGG);
     }
 
     private static void registerBananaCrop(BlockStateModelGenerator generator) {
@@ -137,18 +151,20 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.registerHangingSign(YavpmBlocks.STRIPPED_APPLE_LOG, YavpmBlocks.APPLE_HANGING_SIGN, YavpmBlocks.APPLE_WALL_HANGING_SIGN);
     }
 
+    private static void createSpiralSet(BlockStateModelGenerator generator) {
+        generator.registerLog(YavpmBlocks.SPIRAL_STALK).log(YavpmBlocks.SPIRAL_STALK).wood(YavpmBlocks.SPIRAL_BRANCH);
+        generator.registerLog(YavpmBlocks.STRIPPED_SPIRAL_STALK).log(YavpmBlocks.STRIPPED_SPIRAL_STALK).wood(YavpmBlocks.STRIPPED_SPIRAL_BRANCH);
+
+        generator.registerSimpleCubeAll(YavpmBlocks.SPIRAL_LEAVES);
+
+        BlockStateModelGenerator.BlockTexturePool spiralPool = generator.registerCubeAllModelTexturePool(YavpmBlocks.SPIRAL_PLANKS);
+    }
+
     private static void createStuddedArmor(ItemModelGenerator generator) {
         generator.registerArmor((ArmorItem) YavpmItems.STUDDED_HELMET);
         generator.registerArmor((ArmorItem) YavpmItems.STUDDED_CHESTPLATE);
         generator.registerArmor((ArmorItem) YavpmItems.STUDDED_LEGGINGS);
         generator.registerArmor((ArmorItem) YavpmItems.STUDDED_BOOTS);
-        generator.register(
-                YavpmItems.MOONGUS_SPAWN_EGG,
-                new Model(
-                        Optional.of(Identifier.ofVanilla("item/template_spawn_egg")),
-                        Optional.empty()
-                )
-        );
 
     }
 }

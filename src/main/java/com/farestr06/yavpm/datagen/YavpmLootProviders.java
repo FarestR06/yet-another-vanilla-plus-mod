@@ -7,7 +7,6 @@ import com.farestr06.yavpm.block.custom.SaplingCropBlock;
 import com.farestr06.yavpm.item.YavpmItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
-import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Items;
@@ -37,6 +36,9 @@ public class YavpmLootProviders {
 
             addDrop(YavpmBlocks.GLOWING_OBSIDIAN);
             addDrop(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
+
+            addDrop(YavpmBlocks.GRAPHITE_BLOCK);
+            addDrop(YavpmBlocks.GRAPHENE_BLOCK);
 
             stoneVariantDrops();
 

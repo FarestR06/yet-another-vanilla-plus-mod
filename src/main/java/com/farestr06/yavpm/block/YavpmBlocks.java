@@ -13,10 +13,12 @@ import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.*;
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.data.family.BlockFamilies;
 import net.minecraft.data.family.BlockFamily;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemGroups;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 
 import static com.farestr06.api.block.BlockHelper.*;
@@ -31,6 +33,7 @@ public class YavpmBlocks {
             )
     );
 
+    // region Glowing Obsidian
     public static final Block GLOWING_OBSIDIAN = makeBlockAndItem(makeId("glowing_obsidian"),
             AbstractBlock.Settings.copy(Blocks.OBSIDIAN).luminance(state -> 15)
     );
@@ -38,7 +41,9 @@ public class YavpmBlocks {
             makeId("soul_glowing_obsidian"),
             AbstractBlock.Settings.copy(Blocks.OBSIDIAN).luminance(state -> 11)
     );
+    // endregion
 
+    // region Crops
     public static final Block BANANA_CROP = makeAdvancedBlock(makeId("banana_crop"),
             new BananaCropBlock(AbstractBlock.Settings.copy(Blocks.POTATOES)));
 
@@ -54,6 +59,7 @@ public class YavpmBlocks {
                 }
             }
     );
+    // endregion
 
     // region Igneous Stone
     public static final Block COBBLED_GRANITE = makeBlockAndItem(makeId("cobbled_granite"), AbstractBlock.Settings.copy(Blocks.COBBLESTONE));
@@ -278,7 +284,29 @@ public class YavpmBlocks {
     );
     // endregion
 
-    private static void addToRedstoneBlocks(FabricItemGroupEntries entries) {
+    // region Spiral Wood
+
+    public static final Block SPIRAL_STALK = makeAdvancedBlockAndItem(makeId("spiral_stalk"), new PillarBlock(AbstractBlock.Settings.copy(Blocks.WARPED_STEM).burnable()));
+    public static final Block SPIRAL_BRANCH = makeAdvancedBlockAndItem(makeId("spiral_branch"), new PillarBlock(AbstractBlock.Settings.copy(Blocks.WARPED_HYPHAE).burnable()));
+    public static final Block STRIPPED_SPIRAL_STALK = makeAdvancedBlockAndItem(makeId("stripped_spiral_stalk"), new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_WARPED_STEM).burnable()));
+    public static final Block STRIPPED_SPIRAL_BRANCH = makeAdvancedBlockAndItem(makeId("stripped_spiral_branch"), new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_WARPED_HYPHAE).burnable()));
+    public static final Block SPIRAL_PLANKS = makeBlockAndItem(makeId("spiral_planks"), AbstractBlock.Settings.copy(Blocks.WARPED_PLANKS).burnable());
+    public static final Block SPIRAL_LEAVES = makeAdvancedBlockAndItem(makeId("spiral_leaves"), new LeavesBlock(AbstractBlock.Settings.copy(Blocks.AZALEA_LEAVES).luminance(value -> 1).emissiveLighting(Blocks::always)));
+
+    // endregion
+
+    // region Graphite and Graphene
+    public static final Block GRAPHITE_BLOCK = makeBlockAndItem(makeId("graphite_block"),
+            AbstractBlock.Settings.copy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.BLACK).strength(2.0f, 2.5f).sounds(BlockSoundGroup.POLISHED_TUFF).instrument(NoteBlockInstrument.BIT));
+    public static final Block GRAPHENE_BLOCK = makeBlockAndItem(makeId("graphene_block"),
+            AbstractBlock.Settings.copy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.BLACK).strength(4.5f, 5.5f).sounds(BlockSoundGroup.STONE).instrument(NoteBlockInstrument.BIT));
+    // endregion
+
+    // region Creative Tabs
+    private static void addToNaturalBlocks(FabricItemGroupEntries entries) {
+        entries.add(APPLE_LEAVES);
+        entries.add(SPIRAL_LEAVES);
+    }private static void addToRedstoneBlocks(FabricItemGroupEntries entries) {
         entries.add(ELECTRO_GLASS);
     }
 
@@ -287,7 +315,6 @@ public class YavpmBlocks {
     }
 
     private static void addToBuildingBlocks(FabricItemGroupEntries entries) {
-
         entries.add(APPLE_LOG);
         entries.add(APPLE_WOOD);
         entries.add(STRIPPED_APPLE_LOG);
@@ -302,6 +329,11 @@ public class YavpmBlocks {
         entries.add(APPLE_PRESSURE_PLATE);
         entries.add(APPLE_BUTTON);
 
+        entries.add(SPIRAL_STALK);
+        entries.add(SPIRAL_BRANCH);
+        entries.add(STRIPPED_SPIRAL_STALK);
+        entries.add(STRIPPED_SPIRAL_BRANCH);
+        entries.add(SPIRAL_PLANKS);
 
         entries.add(GLOWING_OBSIDIAN);
         entries.add(SOUL_GLOWING_OBSIDIAN);
@@ -344,7 +376,11 @@ public class YavpmBlocks {
         entries.add(POLISHED_ANDESITE_TILE_STAIRS);
         entries.add(POLISHED_ANDESITE_TILE_SLAB);
         entries.add(POLISHED_ANDESITE_TILE_WALL);
+
+        entries.add(GRAPHITE_BLOCK);
+        entries.add(GRAPHENE_BLOCK);
     }
+    // endregion
 
     public static void init() {
         YetAnotherVanillaPlusMod.LOGGER.info("Registering blocks for YAVPM!");
@@ -352,6 +388,7 @@ public class YavpmBlocks {
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(YavpmBlocks::addToFunctionalBlocks);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(YavpmBlocks::addToBuildingBlocks);
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(YavpmBlocks::addToRedstoneBlocks);
+        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(YavpmBlocks::addToNaturalBlocks);
 
         setUpRegistries();
     }
@@ -359,6 +396,8 @@ public class YavpmBlocks {
     private static void setUpRegistries() {
         StrippableBlockRegistry.register(APPLE_LOG, STRIPPED_APPLE_LOG);
         StrippableBlockRegistry.register(APPLE_WOOD, STRIPPED_APPLE_WOOD);
+        StrippableBlockRegistry.register(SPIRAL_STALK, STRIPPED_SPIRAL_STALK);
+        StrippableBlockRegistry.register(SPIRAL_BRANCH, STRIPPED_SPIRAL_BRANCH);
 
         FlammableBlockRegistry flammables = FlammableBlockRegistry.getDefaultInstance();
         flammables.add(APPLE_LOG, 5, 5);
@@ -371,5 +410,12 @@ public class YavpmBlocks {
         flammables.add(APPLE_FENCE, 5, 20);
         flammables.add(APPLE_FENCE_GATE, 5, 20);
         flammables.add(APPLE_LEAVES, 30, 60);
+
+        flammables.add(SPIRAL_STALK, 5, 5);
+        flammables.add(SPIRAL_BRANCH, 5, 5);
+        flammables.add(STRIPPED_SPIRAL_STALK, 5, 5);
+        flammables.add(STRIPPED_SPIRAL_BRANCH, 5, 5);
+        flammables.add(SPIRAL_PLANKS, 5, 20);
+        flammables.add(SPIRAL_LEAVES, 30, 60);
     }
 }

@@ -1,5 +1,6 @@
 package com.farestr06.yavpm.datagen;
 
+import com.farestr06.yavpm.entity.mob.YavpmMobs;
 import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.util.YavpmTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -8,6 +9,7 @@ import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.EntityTypeTags;
 import net.minecraft.registry.tag.ItemTags;
 
 import java.util.concurrent.CompletableFuture;
@@ -191,9 +193,15 @@ public class YavpmTagProviders {
                     STRIPPED_APPLE_LOG.asItem(),
                     STRIPPED_APPLE_WOOD.asItem()
             );
-            getOrCreateTagBuilder(ItemTags.LOGS_THAT_BURN).forceAddTag(YavpmTags.Items.APPLE_LOGS);
-            getOrCreateTagBuilder(ItemTags.LEAVES).add(APPLE_LEAVES.asItem());
-            getOrCreateTagBuilder(ItemTags.PLANKS).add(APPLE_PLANKS.asItem());
+            getOrCreateTagBuilder(YavpmTags.Items.SPIRAL_STALKS).add(
+                    SPIRAL_STALK.asItem(),
+                    SPIRAL_BRANCH.asItem(),
+                    STRIPPED_SPIRAL_STALK.asItem(),
+                    STRIPPED_SPIRAL_BRANCH.asItem()
+            );
+            getOrCreateTagBuilder(ItemTags.LOGS_THAT_BURN).forceAddTag(YavpmTags.Items.APPLE_LOGS).forceAddTag(YavpmTags.Items.SPIRAL_STALKS);
+            getOrCreateTagBuilder(ItemTags.LEAVES).add(APPLE_LEAVES.asItem(), SPIRAL_LEAVES.asItem());
+            getOrCreateTagBuilder(ItemTags.PLANKS).add(APPLE_PLANKS.asItem(), SPIRAL_PLANKS.asItem());
             getOrCreateTagBuilder(ItemTags.WOODEN_STAIRS).add(APPLE_STAIRS.asItem());
             getOrCreateTagBuilder(ItemTags.WOODEN_SLABS).add(APPLE_SLAB.asItem());
             getOrCreateTagBuilder(ItemTags.WOODEN_FENCES).add(APPLE_FENCE.asItem());
@@ -224,7 +232,13 @@ public class YavpmTagProviders {
                     STRIPPED_APPLE_LOG,
                     STRIPPED_APPLE_WOOD
             );
-            getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN).forceAddTag(YavpmTags.Blocks.APPLE_LOGS);
+            getOrCreateTagBuilder(YavpmTags.Blocks.SPIRAL_STALKS).add(
+                    SPIRAL_STALK,
+                    SPIRAL_BRANCH,
+                    STRIPPED_SPIRAL_STALK,
+                    STRIPPED_SPIRAL_BRANCH
+            );
+            getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN).forceAddTag(YavpmTags.Blocks.APPLE_LOGS).forceAddTag(YavpmTags.Blocks.SPIRAL_STALKS);
 
             // Electro Glass isn't here because normal Glass does not have a required tool.
             getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(
@@ -269,7 +283,11 @@ public class YavpmTagProviders {
             );
 
             getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
-                    .add(NETHER_REACTOR_CORE);
+                    .add(
+                            NETHER_REACTOR_CORE,
+                            GRAPHITE_BLOCK,
+                            GRAPHENE_BLOCK
+                    );
 
             getOrCreateTagBuilder(BlockTags.CROPS).add(
                     BANANA_CROP,
@@ -333,10 +351,10 @@ public class YavpmTagProviders {
                     );
 
             getOrCreateTagBuilder(BlockTags.LEAVES)
-                    .add(APPLE_LEAVES);
+                    .add(APPLE_LEAVES, SPIRAL_LEAVES);
 
             getOrCreateTagBuilder(BlockTags.PLANKS)
-                    .add(APPLE_PLANKS);
+                    .add(APPLE_PLANKS, SPIRAL_PLANKS);
 
             getOrCreateTagBuilder(BlockTags.WOODEN_FENCES)
                     .add(APPLE_FENCE);
@@ -372,6 +390,11 @@ public class YavpmTagProviders {
 
         @Override
         protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+
+            getOrCreateTagBuilder(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(
+                    YavpmMobs.CARBONFOWL
+            );
+
             getOrCreateTagBuilder(YavpmTags.EntityTypes.HUMANOID_ZOMBIES).add(
                     net.minecraft.entity.EntityType.ZOMBIE,
                     net.minecraft.entity.EntityType.ZOMBIE_VILLAGER,

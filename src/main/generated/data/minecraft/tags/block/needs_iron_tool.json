@@ -1,5 +1,7 @@
 {
   "values": [
-    "yavpm:nether_reactor_core"
+    "yavpm:nether_reactor_core",
+    "yavpm:graphite_block",
+    "yavpm:graphene_block"
   ]
 }

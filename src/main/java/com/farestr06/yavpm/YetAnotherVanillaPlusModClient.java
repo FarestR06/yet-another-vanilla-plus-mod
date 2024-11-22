@@ -2,6 +2,7 @@ package com.farestr06.yavpm;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.entity.YavpmBoats;
+import com.farestr06.yavpm.entity.client.CarbonfowlEntityRenderer;
 import com.farestr06.yavpm.entity.client.MoongusEntityRenderer;
 import com.farestr06.yavpm.entity.mob.YavpmMobs;
 import com.farestr06.yavpm.item.YavpmItems;
@@ -17,6 +18,7 @@ public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         EntityRendererRegistry.register(YavpmMobs.MOONGUS, MoongusEntityRenderer::new);
+        EntityRendererRegistry.register(YavpmMobs.CARBONFOWL, CarbonfowlEntityRenderer::new);
 
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.ELECTRO_GLASS, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.BANANA_CROP, RenderLayer.getCutout());
@@ -24,6 +26,7 @@ public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.OAK_SAPLING_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.APPLE_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.APPLE_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.SPIRAL_LEAVES, RenderLayer.getCutoutMipped());
 
         ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex > 0 ? -1 : DyedColorComponent.getColor(stack, -6265536),
                 YavpmItems.STUDDED_HELMET,
