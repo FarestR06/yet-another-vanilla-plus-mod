@@ -33,6 +33,11 @@ public class YavpmItems {
     public static final Map<Item, RegistryEntry<Potion>> CRIMSON_MOONGUS_FOOD = new HashMap<>();
     public static final Map<Item, RegistryEntry<Potion>> WARPED_MOONGUS_FOOD = new HashMap<>();
 
+    public static final Item WARPED_WART = makeAdvancedItem(
+            makeId("warped_wart"),
+            new AliasedBlockItem(YavpmBlocks.WARPED_WART, new Item.Settings())
+    );
+
     // region Banana
     public static final Item BANANA = makeItem(
             makeId("banana"),
@@ -66,7 +71,7 @@ public class YavpmItems {
                     .component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true)
     );
     // endregion
-
+    // region Food ingredients
     public static final Item TRUFFLE = makeItem(
             makeId("truffle"),
             new Item.Settings().food(YavpmFoods.TRUFFLE)
@@ -81,6 +86,7 @@ public class YavpmItems {
             makeId("magic_beans"),
             new Item.Settings().food(YavpmFoods.MAGIC_BEANS)
     );
+    // endregion
 
     public static final Item SEA_SOUP = makeItem(
             makeId("sea_soup"),

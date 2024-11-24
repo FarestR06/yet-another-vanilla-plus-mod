@@ -7,6 +7,8 @@ import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.util.YavpmTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
+import net.minecraft.block.Blocks;
+import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;
@@ -195,6 +197,11 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.APPLE_CHEST_BOAT, "Apple Boat with Chest");
         builder.add(YavpmBlocks.APPLE_SAPLING, "Apple Sapling");
         builder.add(YavpmTags.Items.APPLE_LOGS, "Apple Logs");
+
+        builder.add(Blocks.NETHER_WART, "Crimson Wart");
+        builder.add(Items.NETHER_WART, "Crimson Wart");
+        builder.add(YavpmBlocks.WARPED_WART, "Warped Wart");
+        builder.add(YavpmItems.WARPED_WART, "Warped Wart");
 
         builder.add(YavpmItems.CARBONFOWL_SPAWN_EGG, "Carbonfowl Spawn Egg");
         builder.add(YavpmMobs.CARBONFOWL, "Carbonfowl");

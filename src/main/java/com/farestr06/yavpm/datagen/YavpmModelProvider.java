@@ -30,6 +30,8 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.registerSimpleCubeAll(YavpmBlocks.GLOWING_OBSIDIAN);
         generator.registerSimpleCubeAll(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
 
+
+        generator.registerCrop(YavpmBlocks.WARPED_WART, Properties.AGE_3, 0, 1, 1, 2);
         generator.registerCrop(YavpmBlocks.PEANUT_CROP, PeanutCropBlock.AGE, 0, 1, 2, 3);
         registerBananaCrop(generator);
 

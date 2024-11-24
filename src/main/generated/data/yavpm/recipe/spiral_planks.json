@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "planks",
+  "ingredients": [
+    {
+      "tag": "yavpm:spiral_stalks"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "yavpm:spiral_planks"
+  }
+}

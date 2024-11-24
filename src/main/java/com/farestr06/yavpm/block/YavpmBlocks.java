@@ -33,6 +33,13 @@ public class YavpmBlocks {
             )
     );
 
+    public static final Block WARPED_WART = makeAdvancedBlockAndItem(
+            makeId("warped_wart"),
+            new WarpedWartCropBlock(
+                    AbstractBlock.Settings.copy(Blocks.NETHER_WART).mapColor(MapColor.TEAL)
+            )
+    );
+
     // region Glowing Obsidian
     public static final Block GLOWING_OBSIDIAN = makeBlockAndItem(makeId("glowing_obsidian"),
             AbstractBlock.Settings.copy(Blocks.OBSIDIAN).luminance(state -> 15)
@@ -286,13 +293,64 @@ public class YavpmBlocks {
 
     // region Spiral Wood
 
-    public static final Block SPIRAL_STALK = makeAdvancedBlockAndItem(makeId("spiral_stalk"), new PillarBlock(AbstractBlock.Settings.copy(Blocks.WARPED_STEM).burnable()));
-    public static final Block SPIRAL_BRANCH = makeAdvancedBlockAndItem(makeId("spiral_branch"), new PillarBlock(AbstractBlock.Settings.copy(Blocks.WARPED_HYPHAE).burnable()));
-    public static final Block STRIPPED_SPIRAL_STALK = makeAdvancedBlockAndItem(makeId("stripped_spiral_stalk"), new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_WARPED_STEM).burnable()));
-    public static final Block STRIPPED_SPIRAL_BRANCH = makeAdvancedBlockAndItem(makeId("stripped_spiral_branch"), new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_WARPED_HYPHAE).burnable()));
-    public static final Block SPIRAL_PLANKS = makeBlockAndItem(makeId("spiral_planks"), AbstractBlock.Settings.copy(Blocks.WARPED_PLANKS).burnable());
-    public static final Block SPIRAL_LEAVES = makeAdvancedBlockAndItem(makeId("spiral_leaves"), new LeavesBlock(AbstractBlock.Settings.copy(Blocks.AZALEA_LEAVES).luminance(value -> 1).emissiveLighting(Blocks::always)));
+    public static final Block SPIRAL_STALK = makeAdvancedBlockAndItem(
+            makeId("spiral_stalk"),
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.WARPED_STEM).burnable())
+    );
+    public static final Block SPIRAL_BRANCH = makeAdvancedBlockAndItem(
+            makeId("spiral_branch"),
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.WARPED_HYPHAE).burnable())
+    );
+    public static final Block STRIPPED_SPIRAL_STALK = makeAdvancedBlockAndItem(
+            makeId("stripped_spiral_stalk"),
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_WARPED_STEM).burnable())
+    );
+    public static final Block STRIPPED_SPIRAL_BRANCH = makeAdvancedBlockAndItem(
+            makeId("stripped_spiral_branch"),
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_WARPED_HYPHAE).burnable())
+    );
+    public static final Block SPIRAL_PLANKS = makeBlockAndItem(
+            makeId("spiral_planks"),
+            AbstractBlock.Settings.copy(Blocks.WARPED_PLANKS).burnable()
+    );
+    public static final Block SPIRAL_LEAVES = makeAdvancedBlockAndItem(
+            makeId("spiral_leaves"),
+            new LeavesBlock(AbstractBlock.Settings.copy(Blocks.AZALEA_LEAVES).luminance(value -> 1).emissiveLighting(Blocks::always))
+    );
+    public static final Block SPIRAL_STAIRS = makeAdvancedBlockAndItem(
+            makeId("spiral_stairs"),
+            new StairsBlock(SPIRAL_PLANKS.getDefaultState(), AbstractBlock.Settings.copy(Blocks.WARPED_STAIRS).burnable())
+    );
+    public static final Block SPIRAL_SLAB = makeAdvancedBlockAndItem(
+            makeId("spiral_slab"),
+            new SlabBlock(AbstractBlock.Settings.copy(Blocks.WARPED_SLAB).burnable())
+    );
+    public static final Block SPIRAL_FENCE = makeAdvancedBlockAndItem(
+            makeId("spiral_fence"),
+            new FenceBlock(AbstractBlock.Settings.copy(Blocks.WARPED_FENCE).burnable())
+    );
+    public static final Block SPIRAL_FENCE_GATE = makeAdvancedBlockAndItem(makeId("spiral_fence_gate"), new FenceGateBlock(
+            WoodType.WARPED,
+            AbstractBlock.Settings.copy(Blocks.WARPED_FENCE_GATE))
+    );
+    public static final Block SPIRAL_BUTTON = makeAdvancedBlockAndItem(
+            makeId("spiral_button"),
+            new ButtonBlock(
+                    BlockSetType.WARPED,
+                    30,
+                    AbstractBlock.Settings.copy(Blocks.WARPED_BUTTON)
+            )
+    );
+    public static final Block SPIRAL_PRESSURE_PLATE = makeAdvancedBlockAndItem(
+            makeId("spiral_pressure_plate"),
+            new PressurePlateBlock(
+                    BlockSetType.WARPED, AbstractBlock.Settings.copy(Blocks.WARPED_PRESSURE_PLATE)
+            )
+    );
 
+    protected static final Identifier SPIRAL_SIGN_TEXTURE = makeId("entity/signs/spiral");
+    protected static final Identifier SPIRAL_HANGING_SIGN_TEXTURE = makeId("entity/signs/hanging/spiral");
+    protected static final Identifier SPIRAL_HANGING_SIGN_GUI_TEXTURE = makeId("textures/gui/hanging_signs/spiral");
     // endregion
 
     // region Graphite and Graphene
@@ -306,14 +364,13 @@ public class YavpmBlocks {
     private static void addToNaturalBlocks(FabricItemGroupEntries entries) {
         entries.add(APPLE_LEAVES);
         entries.add(SPIRAL_LEAVES);
-    }private static void addToRedstoneBlocks(FabricItemGroupEntries entries) {
+    }
+    private static void addToRedstoneBlocks(FabricItemGroupEntries entries) {
         entries.add(ELECTRO_GLASS);
     }
-
     private static void addToFunctionalBlocks(FabricItemGroupEntries entries) {
         entries.add(NETHER_REACTOR_CORE);
     }
-
     private static void addToBuildingBlocks(FabricItemGroupEntries entries) {
         entries.add(APPLE_LOG);
         entries.add(APPLE_WOOD);

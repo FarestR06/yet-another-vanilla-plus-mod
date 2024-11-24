@@ -4,6 +4,7 @@ import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.block.custom.BananaCropBlock;
 import com.farestr06.yavpm.block.custom.PeanutCropBlock;
 import com.farestr06.yavpm.block.custom.SaplingCropBlock;
+import com.farestr06.yavpm.block.custom.WarpedWartCropBlock;
 import com.farestr06.yavpm.item.YavpmItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
@@ -15,6 +16,9 @@ import net.minecraft.loot.LootTable;
 import net.minecraft.loot.condition.BlockStatePropertyLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.ApplyBonusLootFunction;
+import net.minecraft.loot.function.SetCountLootFunction;
+import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
+import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.predicate.StatePredicate;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
@@ -32,6 +36,8 @@ public class YavpmLootProviders {
 
         @Override
         public void generate() {
+            RegistryWrapper.Impl<Enchantment> impl = this.registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+
             addDropWithSilkTouch(YavpmBlocks.NETHER_REACTOR_CORE);
 
             addDrop(YavpmBlocks.GLOWING_OBSIDIAN);
@@ -47,6 +53,32 @@ public class YavpmLootProviders {
             modCropDrops();
 
             appleDrops();
+
+            // region Warped Wart
+            this.addDrop(
+                    YavpmBlocks.WARPED_WART,
+                    block -> LootTable.builder()
+                            .pool(
+                                    this.applyExplosionDecay(
+                                            block,
+                                            LootPool.builder()
+                                                    .rolls(ConstantLootNumberProvider.create(1.0F))
+                                                    .with(
+                                                            ItemEntry.builder(YavpmItems.WARPED_WART)
+                                                                    .apply(
+                                                                            SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 4.0F))
+                                                                                    .conditionally(BlockStatePropertyLootCondition.builder(block).properties(StatePredicate.Builder.create().exactMatch(WarpedWartCropBlock.AGE, 3)))
+                                                                    )
+                                                                    .apply(
+                                                                            ApplyBonusLootFunction.uniformBonusCount(impl.getOrThrow(Enchantments.FORTUNE))
+                                                                                    .conditionally(BlockStatePropertyLootCondition.builder(block).properties(StatePredicate.Builder.create().exactMatch(WarpedWartCropBlock.AGE, 3)))
+                                                                    )
+                                                    )
+                                    )
+                            )
+            );
+            // endregion
+
         }
 
         private void modCropDrops() {

@@ -50,6 +50,8 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .offerTo(exporter, makeId(getRecipeName(YavpmItems.SOUL_POWDER)))
         ;
 
+        offerCompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, Blocks.WARPED_WART_BLOCK, YavpmItems.WARPED_WART);
+
         // region Glowing Obsidians
         ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.GLOWING_OBSIDIAN, 4)
                 .input(Items.BLAZE_POWDER)
