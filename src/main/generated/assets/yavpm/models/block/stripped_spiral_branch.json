@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "yavpm:block/stripped_spiral_stalk",
-    "side": "yavpm:block/stripped_spiral_stalk"
-  }
-}

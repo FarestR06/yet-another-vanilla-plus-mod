@@ -145,7 +145,47 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
     }
 
     private void makeSpiralWoodRecipes(RecipeExporter exporter) {
-        offerPlanksRecipe(exporter, YavpmBlocks.SPIRAL_PLANKS, YavpmTags.Items.SPIRAL_STALKS, 4);
+
+        offerPlanksRecipe(exporter, YavpmBlocks.PRICKLE_PLANKS, YavpmTags.Items.PRICKLE_LOGS, 4);
+
+        createStairsRecipe(YavpmBlocks.PRICKLE_STAIRS, Ingredient.ofItems(YavpmBlocks.PRICKLE_PLANKS))
+                .criterion(hasItem(YavpmBlocks.PRICKLE_PLANKS), conditionsFromItem(YavpmBlocks.PRICKLE_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.PRICKLE_STAIRS)));
+
+        createSlabRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.PRICKLE_SLAB, Ingredient.ofItems(YavpmBlocks.PRICKLE_PLANKS))
+                .criterion(hasItem(YavpmBlocks.PRICKLE_PLANKS), conditionsFromItem(YavpmBlocks.PRICKLE_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.PRICKLE_SLAB)));
+
+        createFenceRecipe(YavpmBlocks.PRICKLE_FENCE, Ingredient.ofItems(YavpmBlocks.PRICKLE_PLANKS))
+                .criterion(hasItem(YavpmBlocks.PRICKLE_PLANKS), conditionsFromItem(YavpmBlocks.PRICKLE_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.PRICKLE_FENCE)));
+
+        createFenceGateRecipe(YavpmBlocks.PRICKLE_FENCE_GATE, Ingredient.ofItems(YavpmBlocks.PRICKLE_PLANKS))
+                .criterion(hasItem(YavpmBlocks.PRICKLE_PLANKS), conditionsFromItem(YavpmBlocks.PRICKLE_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.PRICKLE_FENCE_GATE)));
+
+        createDoorRecipe(YavpmBlocks.PRICKLE_DOOR, Ingredient.ofItems(YavpmBlocks.PRICKLE_PLANKS))
+                .criterion(hasItem(YavpmBlocks.PRICKLE_PLANKS), conditionsFromItem(YavpmBlocks.PRICKLE_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.PRICKLE_DOOR)));
+
+        createTrapdoorRecipe(YavpmBlocks.PRICKLE_TRAPDOOR, Ingredient.ofItems(YavpmBlocks.PRICKLE_PLANKS))
+                .criterion(hasItem(YavpmBlocks.PRICKLE_PLANKS), conditionsFromItem(YavpmBlocks.PRICKLE_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.PRICKLE_TRAPDOOR)));
+
+        createPressurePlateRecipe(RecipeCategory.REDSTONE, YavpmBlocks.PRICKLE_PRESSURE_PLATE, Ingredient.ofItems(YavpmBlocks.PRICKLE_PLANKS))
+                .criterion(hasItem(YavpmBlocks.PRICKLE_PLANKS), conditionsFromItem(YavpmBlocks.PRICKLE_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.PRICKLE_PRESSURE_PLATE)));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.REDSTONE, YavpmBlocks.PRICKLE_BUTTON)
+                .input(YavpmBlocks.PRICKLE_PLANKS)
+                .criterion(hasItem(YavpmBlocks.PRICKLE_PLANKS), conditionsFromItem(YavpmBlocks.PRICKLE_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.PRICKLE_BUTTON)));
+
+        createSignRecipe(YavpmItems.PRICKLE_SIGN, Ingredient.ofItems(YavpmBlocks.PRICKLE_PLANKS))
+                .criterion(hasItem(YavpmBlocks.PRICKLE_PLANKS), conditionsFromItem(YavpmBlocks.PRICKLE_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.PRICKLE_SIGN)));
+
+        offerHangingSignRecipe(exporter, YavpmItems.PRICKLE_HANGING_SIGN, YavpmBlocks.STRIPPED_PRICKLE_LOG);
     }
 
     private void makeApplewoodRecipes(RecipeExporter exporter) {

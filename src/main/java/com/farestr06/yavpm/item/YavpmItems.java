@@ -3,6 +3,7 @@ package com.farestr06.yavpm.item;
 import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.entity.mob.YavpmMobs;
+import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.custom.MolyItem;
 import com.farestr06.yavpm.item.custom.ReactorItem;
 import com.farestr06.yavpm.item.custom.SoulPowderItem;
@@ -171,6 +172,22 @@ public class YavpmItems {
                     new Item.Settings().maxCount(16)
             )
     );
+    public static final Item PRICKLE_SIGN = makeAdvancedItem(
+            makeId("prickle_sign"),
+            new SignItem(
+                    new Item.Settings().maxCount(16),
+                    YavpmBlocks.PRICKLE_SIGN,
+                    YavpmBlocks.PRICKLE_WALL_SIGN
+            )
+    );
+    public static final Item PRICKLE_HANGING_SIGN = makeAdvancedItem(
+            makeId("prickle_hanging_sign"),
+            new HangingSignItem(
+                    YavpmBlocks.PRICKLE_HANGING_SIGN,
+                    YavpmBlocks.PRICKLE_WALL_HANGING_SIGN,
+                    new Item.Settings().maxCount(16)
+            )
+    );
 
     public static final Item APPLE_BOAT = TerraformBoatItemHelper.registerBoatItem(APPLE_BOAT_ID, APPLE_BOAT_KEY, false);
     public static final Item APPLE_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(APPLE_CHEST_BOAT_ID, APPLE_BOAT_KEY, true);
@@ -183,6 +200,13 @@ public class YavpmItems {
     public static final Item CARBONFOWL_SPAWN_EGG = makeAdvancedItem(
             makeId("carbonfowl_spawn_egg"),
             new SpawnEggItem(YavpmMobs.CARBONFOWL, 0x191919, 0x4aedd9, new Item.Settings())
+    );
+    public static final Item VOID_WATER_BUCKET = makeAdvancedItem(
+            makeId("void_water_bucket"),
+            new BucketItem(
+                    YavpmFluids.STILL_VOID_WATER,
+                    new Item.Settings().recipeRemainder(Items.BUCKET).maxCount(1)
+            )
     );
 
     private static void addToNatural(FabricItemGroupEntries entries) {
@@ -221,6 +245,7 @@ public class YavpmItems {
         entries.add(REACTOR);
     }
     private static void addToTools(FabricItemGroupEntries entries) {
+        entries.add(VOID_WATER_BUCKET);
         entries.add(APPLE_BOAT);
         entries.add(APPLE_CHEST_BOAT);
     }
@@ -275,7 +300,6 @@ public class YavpmItems {
         // Make new crops compostable
         CompostingChanceRegistry compostables = CompostingChanceRegistry.INSTANCE;
         compostables.add(YavpmBlocks.APPLE_LEAVES.asItem(), 0.3f);
-        compostables.add(YavpmBlocks.SPIRAL_LEAVES.asItem(), 0.3f);
         compostables.add(BANANA_SEEDS, 0.3f);
         compostables.add(ACORN, 0.3f);
         compostables.add(PEANUT, 0.5f);

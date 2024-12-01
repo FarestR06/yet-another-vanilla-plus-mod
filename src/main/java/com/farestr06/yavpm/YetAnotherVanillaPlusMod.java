@@ -5,9 +5,11 @@ import com.farestr06.yavpm.config.YavpmConfig;
 import com.farestr06.yavpm.entity.YavpmBoats;
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import com.farestr06.yavpm.entity.mob.YavpmMobs;
+import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.item.YavpmPotions;
 import com.farestr06.yavpm.util.YavpmSounds;
+import com.farestr06.yavpm.world.gen.YavpmWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
@@ -53,7 +55,9 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		YavpmStatusEffects.init();
 		YavpmPotions.init();
 		YavpmBlocks.init();
+		YavpmFluids.init();
 
+		YavpmWorldGeneration.generateModWorldGen();
 		modifyLoot();
 
 		try {

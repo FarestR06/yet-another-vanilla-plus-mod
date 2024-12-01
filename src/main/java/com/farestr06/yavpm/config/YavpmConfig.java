@@ -23,4 +23,7 @@ public class YavpmConfig {
 
     @SerialEntry(comment = "When set to false, the dragon fireball will behave like it does in vanilla.")
     public boolean voidTouchedDragonFireball = true;
+
+    @SerialEntry(comment = "When set to true, Void Water can create more infinite sources, much like normal Water can.")
+    public boolean voidWaterSourceConversion = false;
 }

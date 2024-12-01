@@ -1,6 +1,7 @@
 package com.farestr06.yavpm.datagen;
 
 import com.farestr06.yavpm.world.YavpmConfiguredFeatures;
+import com.farestr06.yavpm.world.YavpmPlacedFeatures;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.registry.RegistryBuilder;
@@ -16,6 +17,7 @@ public class YetAnotherVanillaPlusModDataGenerator implements DataGeneratorEntry
 		pack.addProvider(YavpmLootProviders.Block::new);
 		pack.addProvider(YavpmTagProviders.Item::new);
 		pack.addProvider(YavpmTagProviders.Block::new);
+		pack.addProvider(YavpmTagProviders.Fluid::new);
 		pack.addProvider(YavpmTagProviders.EntityType::new);
 		pack.addProvider(YavpmWorldGenerator::new);
 	}
@@ -23,7 +25,6 @@ public class YetAnotherVanillaPlusModDataGenerator implements DataGeneratorEntry
 	@Override
 	public void buildRegistry(RegistryBuilder registryBuilder) {
 		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, YavpmConfiguredFeatures::boostrap);
-		// TODO: Make Apple Trees spawn in Plains biome
-		// registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, YavpmPlacedFeatures::boostrap);
+		registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, YavpmPlacedFeatures::boostrap);
 	}
 }

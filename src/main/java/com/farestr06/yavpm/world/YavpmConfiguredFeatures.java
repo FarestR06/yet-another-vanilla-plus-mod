@@ -1,6 +1,7 @@
 package com.farestr06.yavpm.world;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.SaplingGenerator;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
@@ -31,6 +32,8 @@ public class YavpmConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_APPLE_BEES_002 = registerKey("fancy_apple_bees_002");
     public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_APPLE_BEES_005 = registerKey("fancy_apple_bees_005");
 
+    public static final RegistryKey<ConfiguredFeature<?, ?>> PRICKLE = registerKey("prickle");
+
     public static final SaplingGenerator APPLEWOOD_GENERATOR = new SaplingGenerator(
             "applewood",
             0.1f,
@@ -40,6 +43,13 @@ public class YavpmConfiguredFeatures {
             Optional.of(FANCY_APPLE),
             Optional.of(APPLE_BEES_005),
             Optional.of(FANCY_APPLE_BEES_005)
+    );
+
+    public static final SaplingGenerator PRICKLE_GENERATOR = new SaplingGenerator(
+            "prickle",
+            Optional.empty(),
+            Optional.of(PRICKLE),
+            Optional.empty()
     );
 
 
@@ -58,6 +68,8 @@ public class YavpmConfiguredFeatures {
         register(context, FANCY_APPLE_BEES_0002, Feature.TREE, makeFancyAppleConfig().decorators(List.of(beehiveTreeDecorator0002)).build());
         register(context, FANCY_APPLE_BEES_002, Feature.TREE, makeFancyAppleConfig().decorators(List.of(beehiveTreeDecorator002)).build());
         register(context, FANCY_APPLE_BEES_005, Feature.TREE, makeFancyAppleConfig().decorators(List.of(beehiveTreeDecorator005)).build());
+
+        register(context, PRICKLE, Feature.TREE, makePrickleConfig().build());
     }
 
     public static RegistryKey<ConfiguredFeature<?, ?>> registerKey(String name) {
@@ -67,6 +79,16 @@ public class YavpmConfiguredFeatures {
     private static <FC extends FeatureConfig, F extends Feature<FC>> void register(Registerable<ConfiguredFeature<?, ?>> context,
                                                                                    RegistryKey<ConfiguredFeature<?, ?>> key, F feature, FC configuration) {
         context.register(key, new ConfiguredFeature<>(feature, configuration));
+    }
+
+    private static TreeFeatureConfig.Builder makePrickleConfig() {
+        return new TreeFeatureConfig.Builder(
+                BlockStateProvider.of(YavpmBlocks.PRICKLE_LOG),
+                new StraightTrunkPlacer(8, 1, 0),
+                BlockStateProvider.of(Blocks.AIR),
+                new BlobFoliagePlacer(ConstantIntProvider.ZERO, ConstantIntProvider.ZERO, 0),
+                new TwoLayersFeatureSize(0, 0, 0)
+        );
     }
 
     private static TreeFeatureConfig.Builder makeAppleConfig() {

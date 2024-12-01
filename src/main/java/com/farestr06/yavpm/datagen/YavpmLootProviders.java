@@ -53,6 +53,7 @@ public class YavpmLootProviders {
             modCropDrops();
 
             appleDrops();
+            prickleDrops();
 
             // region Warped Wart
             this.addDrop(
@@ -163,6 +164,30 @@ public class YavpmLootProviders {
             addDrop(YavpmBlocks.APPLE_WALL_HANGING_SIGN, YavpmItems.APPLE_HANGING_SIGN);
 
             addDrop(YavpmBlocks.APPLE_SAPLING);
+        }
+        private void prickleDrops() {
+            addDrop(YavpmBlocks.PRICKLE_LOG);
+            addDrop(YavpmBlocks.STRIPPED_PRICKLE_LOG);
+            addDrop(YavpmBlocks.PRICKLE_WOOD);
+            addDrop(YavpmBlocks.STRIPPED_PRICKLE_WOOD);
+
+            addDrop(YavpmBlocks.PRICKLE_PLANKS);
+            addDrop(YavpmBlocks.PRICKLE_STAIRS);
+            slabDrops(YavpmBlocks.PRICKLE_SLAB);
+            addDrop(YavpmBlocks.PRICKLE_FENCE);
+            addDrop(YavpmBlocks.PRICKLE_FENCE_GATE);
+            addDrop(YavpmBlocks.PRICKLE_BUTTON);
+            addDrop(YavpmBlocks.PRICKLE_PRESSURE_PLATE);
+
+            doorDrops(YavpmBlocks.PRICKLE_DOOR);
+            addDrop(YavpmBlocks.PRICKLE_TRAPDOOR);
+
+            addDrop(YavpmBlocks.PRICKLE_SIGN, YavpmItems.PRICKLE_SIGN);
+            addDrop(YavpmBlocks.PRICKLE_WALL_SIGN, YavpmItems.PRICKLE_SIGN);
+            addDrop(YavpmBlocks.PRICKLE_HANGING_SIGN, YavpmItems.PRICKLE_HANGING_SIGN);
+            addDrop(YavpmBlocks.PRICKLE_WALL_HANGING_SIGN, YavpmItems.PRICKLE_HANGING_SIGN);
+
+            addDrop(YavpmBlocks.PRICKLE_SHOOT);
         }
     }
 }

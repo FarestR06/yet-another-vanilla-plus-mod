@@ -15,7 +15,7 @@ public class YavpmConfigScreen implements ModMenuApi {
             .name(Text.translatable("option.yavpm.void_touched_damage_multiplier.title"))
             .description(OptionDescription.createBuilder()
                     .text(Text.translatable("option.yavpm.void_touched_damage_multiplier.desc"))
-                    // .image(makeId("textures/config/void_touched_damage_multiplier.png"), 128, 128)
+                    .image(makeId("textures/config/void_touched_damage_multiplier.png"), 64, 64)
                     .build()
             )
             .binding(
@@ -29,7 +29,7 @@ public class YavpmConfigScreen implements ModMenuApi {
             .name(Text.translatable("option.yavpm.void_touched_dragon_fireball.title"))
             .description(OptionDescription.createBuilder()
                     .text(Text.translatable("option.yavpm.void_touched_dragon_fireball.desc"))
-                    .image(makeId("textures/config/void_touched_dragon_fireball.png"), 128, 128)
+                    .image(makeId("textures/config/void_touched_dragon_fireball.png"), 64, 64)
                     .build()
             )
             .binding(
@@ -38,11 +38,31 @@ public class YavpmConfigScreen implements ModMenuApi {
                     newVal -> HANDLER.instance().voidTouchedDragonFireball = newVal
             ).controller(TickBoxControllerBuilder::create)
             .build();
+    protected static final Option<Boolean> VOID_WATER_SOURCE_CONVERSION = Option.<Boolean>createBuilder()
+            .name(Text.translatable("option.yavpm.void_water_source_conversion.title"))
+            .description(OptionDescription.createBuilder()
+                    .text(Text.translatable("option.yavpm.void_water_source_conversion.desc"))
+                    // .image(makeId("textures/config/void_water_source_conversion.png"), 64, 64)
+                    .build()
+            )
+            .binding(
+                    true,
+                    () -> HANDLER.instance().voidWaterSourceConversion,
+                    newVal -> HANDLER.instance().voidWaterSourceConversion = newVal
+            ).controller(TickBoxControllerBuilder::create)
+            .build();
 
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
         return screen -> YetAnotherConfigLib.createBuilder()
                 .title(Text.translatable("option.yavpm.title"))
+                .category(ConfigCategory.createBuilder()
+                        .name(Text.translatable("option.yavpm.blocks_and_fluids"))
+                        .group(OptionGroup.createBuilder()
+                                .name(Text.translatable("option.yavpm.blocks_and_fluids.void"))
+                                .option(VOID_WATER_SOURCE_CONVERSION)
+                                .build())
+                        .build())
                 .category(ConfigCategory.createBuilder()
                         .name(Text.translatable("option.yavpm.entities_and_effects"))
                         .group(OptionGroup.createBuilder()

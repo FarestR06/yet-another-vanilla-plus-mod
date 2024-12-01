@@ -1,6 +1,7 @@
 package com.farestr06.yavpm.datagen;
 
 import com.farestr06.yavpm.entity.mob.YavpmMobs;
+import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.util.YavpmTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -193,25 +194,25 @@ public class YavpmTagProviders {
                     STRIPPED_APPLE_LOG.asItem(),
                     STRIPPED_APPLE_WOOD.asItem()
             );
-            getOrCreateTagBuilder(YavpmTags.Items.SPIRAL_STALKS).add(
-                    SPIRAL_STALK.asItem(),
-                    SPIRAL_BRANCH.asItem(),
-                    STRIPPED_SPIRAL_STALK.asItem(),
-                    STRIPPED_SPIRAL_BRANCH.asItem()
+            getOrCreateTagBuilder(YavpmTags.Items.PRICKLE_LOGS).add(
+                    PRICKLE_LOG.asItem(),
+                    PRICKLE_WOOD.asItem(),
+                    STRIPPED_PRICKLE_LOG.asItem(),
+                    STRIPPED_PRICKLE_WOOD.asItem()
             );
-            getOrCreateTagBuilder(ItemTags.LOGS_THAT_BURN).forceAddTag(YavpmTags.Items.APPLE_LOGS).forceAddTag(YavpmTags.Items.SPIRAL_STALKS);
-            getOrCreateTagBuilder(ItemTags.LEAVES).add(APPLE_LEAVES.asItem(), SPIRAL_LEAVES.asItem());
-            getOrCreateTagBuilder(ItemTags.PLANKS).add(APPLE_PLANKS.asItem(), SPIRAL_PLANKS.asItem());
-            getOrCreateTagBuilder(ItemTags.WOODEN_STAIRS).add(APPLE_STAIRS.asItem());
-            getOrCreateTagBuilder(ItemTags.WOODEN_SLABS).add(APPLE_SLAB.asItem());
-            getOrCreateTagBuilder(ItemTags.WOODEN_FENCES).add(APPLE_FENCE.asItem());
-            getOrCreateTagBuilder(ItemTags.FENCE_GATES).add(APPLE_FENCE_GATE.asItem());
-            getOrCreateTagBuilder(ItemTags.WOODEN_DOORS).add(APPLE_DOOR.asItem());
-            getOrCreateTagBuilder(ItemTags.WOODEN_TRAPDOORS).add(APPLE_TRAPDOOR.asItem());
-            getOrCreateTagBuilder(ItemTags.WOODEN_PRESSURE_PLATES).add(APPLE_PRESSURE_PLATE.asItem());
-            getOrCreateTagBuilder(ItemTags.WOODEN_BUTTONS).add(APPLE_BUTTON.asItem());
-            getOrCreateTagBuilder(ItemTags.SIGNS).add(YavpmItems.APPLE_SIGN);
-            getOrCreateTagBuilder(ItemTags.HANGING_SIGNS).add(YavpmItems.APPLE_HANGING_SIGN);
+            getOrCreateTagBuilder(ItemTags.LOGS_THAT_BURN).forceAddTag(YavpmTags.Items.APPLE_LOGS).forceAddTag(YavpmTags.Items.PRICKLE_LOGS);
+            getOrCreateTagBuilder(ItemTags.LEAVES).add(APPLE_LEAVES.asItem());
+            getOrCreateTagBuilder(ItemTags.PLANKS).add(APPLE_PLANKS.asItem(), PRICKLE_PLANKS.asItem());
+            getOrCreateTagBuilder(ItemTags.WOODEN_STAIRS).add(APPLE_STAIRS.asItem(), PRICKLE_STAIRS.asItem());
+            getOrCreateTagBuilder(ItemTags.WOODEN_SLABS).add(APPLE_SLAB.asItem(), PRICKLE_SLAB.asItem());
+            getOrCreateTagBuilder(ItemTags.WOODEN_FENCES).add(APPLE_FENCE.asItem(), PRICKLE_FENCE.asItem());
+            getOrCreateTagBuilder(ItemTags.FENCE_GATES).add(APPLE_FENCE_GATE.asItem(), PRICKLE_FENCE_GATE.asItem());
+            getOrCreateTagBuilder(ItemTags.WOODEN_DOORS).add(APPLE_DOOR.asItem(), PRICKLE_DOOR.asItem());
+            getOrCreateTagBuilder(ItemTags.WOODEN_TRAPDOORS).add(APPLE_TRAPDOOR.asItem(), PRICKLE_TRAPDOOR.asItem());
+            getOrCreateTagBuilder(ItemTags.WOODEN_PRESSURE_PLATES).add(APPLE_PRESSURE_PLATE.asItem(), PRICKLE_PRESSURE_PLATE.asItem());
+            getOrCreateTagBuilder(ItemTags.WOODEN_BUTTONS).add(APPLE_BUTTON.asItem(), PRICKLE_BUTTON.asItem());
+            getOrCreateTagBuilder(ItemTags.SIGNS).add(YavpmItems.APPLE_SIGN, YavpmItems.PRICKLE_SIGN.asItem());
+            getOrCreateTagBuilder(ItemTags.HANGING_SIGNS).add(YavpmItems.APPLE_HANGING_SIGN, YavpmItems.PRICKLE_HANGING_SIGN.asItem());
         }
     }
 
@@ -232,13 +233,13 @@ public class YavpmTagProviders {
                     STRIPPED_APPLE_LOG,
                     STRIPPED_APPLE_WOOD
             );
-            getOrCreateTagBuilder(YavpmTags.Blocks.SPIRAL_STALKS).add(
-                    SPIRAL_STALK,
-                    SPIRAL_BRANCH,
-                    STRIPPED_SPIRAL_STALK,
-                    STRIPPED_SPIRAL_BRANCH
+            getOrCreateTagBuilder(YavpmTags.Blocks.PRICKLE_LOGS).add(
+                    PRICKLE_LOG,
+                    PRICKLE_WOOD,
+                    STRIPPED_PRICKLE_LOG,
+                    STRIPPED_PRICKLE_WOOD
             );
-            getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN).forceAddTag(YavpmTags.Blocks.APPLE_LOGS).forceAddTag(YavpmTags.Blocks.SPIRAL_STALKS);
+            getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN).forceAddTag(YavpmTags.Blocks.APPLE_LOGS).forceAddTag(YavpmTags.Blocks.PRICKLE_LOGS);
 
             // Electro Glass isn't here because normal Glass does not have a required tool.
             getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(
@@ -351,34 +352,46 @@ public class YavpmTagProviders {
                     );
 
             getOrCreateTagBuilder(BlockTags.LEAVES)
-                    .add(APPLE_LEAVES, SPIRAL_LEAVES);
+                    .add(APPLE_LEAVES);
 
             getOrCreateTagBuilder(BlockTags.PLANKS)
-                    .add(APPLE_PLANKS, SPIRAL_PLANKS);
+                    .add(APPLE_PLANKS, PRICKLE_PLANKS);
 
             getOrCreateTagBuilder(BlockTags.WOODEN_FENCES)
-                    .add(APPLE_FENCE);
+                    .add(APPLE_FENCE, PRICKLE_FENCE);
 
             getOrCreateTagBuilder(BlockTags.FENCE_GATES)
-                    .add(APPLE_FENCE_GATE);
+                    .add(APPLE_FENCE_GATE, PRICKLE_FENCE_GATE);
 
             getOrCreateTagBuilder(BlockTags.WOODEN_DOORS)
-                    .add(APPLE_DOOR);
+                    .add(APPLE_DOOR, PRICKLE_DOOR);
 
             getOrCreateTagBuilder(BlockTags.WOODEN_TRAPDOORS)
-                    .add(APPLE_TRAPDOOR);
+                    .add(APPLE_TRAPDOOR, PRICKLE_TRAPDOOR);
 
             getOrCreateTagBuilder(BlockTags.STANDING_SIGNS)
-                    .add(APPLE_SIGN);
+                    .add(APPLE_SIGN, PRICKLE_SIGN);
 
             getOrCreateTagBuilder(BlockTags.WALL_SIGNS)
-                    .add(APPLE_WALL_SIGN);
+                    .add(APPLE_WALL_SIGN, PRICKLE_WALL_SIGN);
 
             getOrCreateTagBuilder(BlockTags.CEILING_HANGING_SIGNS)
-                    .add(APPLE_HANGING_SIGN);
+                    .add(APPLE_HANGING_SIGN, PRICKLE_HANGING_SIGN);
 
             getOrCreateTagBuilder(BlockTags.WALL_HANGING_SIGNS)
-                    .add(APPLE_WALL_HANGING_SIGN);
+                    .add(APPLE_WALL_HANGING_SIGN, PRICKLE_WALL_HANGING_SIGN);
+        }
+    }
+
+    public static class Fluid extends FabricTagProvider.FluidTagProvider {
+
+        public Fluid(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
+            super(output, completableFuture);
+        }
+
+        @Override
+        protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+            getOrCreateTagBuilder(YavpmTags.Fluids.VOID_WATER).add(YavpmFluids.FLOWING_VOID_WATER, YavpmFluids.STILL_VOID_WATER);
         }
     }
 

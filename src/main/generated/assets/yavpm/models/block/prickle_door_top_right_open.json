@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_top_right_open",
+  "textures": {
+    "bottom": "yavpm:block/prickle_door_bottom",
+    "top": "yavpm:block/prickle_door_top"
+  }
+}

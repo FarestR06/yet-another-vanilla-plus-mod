@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "yavpm:block/prickle_slab"
+    },
+    "type=double": {
+      "model": "yavpm:block/prickle_planks"
+    },
+    "type=top": {
+      "model": "yavpm:block/prickle_slab_top"
+    }
+  }
+}

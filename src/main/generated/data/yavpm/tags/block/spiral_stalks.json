@@ -1,8 +1,8 @@
 {
   "values": [
-    "yavpm:spiral_stalk",
-    "yavpm:spiral_branch",
-    "yavpm:stripped_spiral_stalk",
-    "yavpm:stripped_spiral_branch"
+    "yavpm:prickle_log",
+    "yavpm:prickle_wood",
+    "yavpm:stripped_prickle_log",
+    "yavpm:stripped_prickle_wood"
   ]
 }

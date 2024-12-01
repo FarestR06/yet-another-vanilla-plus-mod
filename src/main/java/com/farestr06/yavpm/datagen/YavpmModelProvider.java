@@ -8,6 +8,7 @@ import com.farestr06.yavpm.item.YavpmItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.data.client.*;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.state.property.Properties;
@@ -45,9 +46,12 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.registerSimpleCubeAll(YavpmBlocks.GRAPHENE_BLOCK);
 
         createAppleSet(generator);
-        createSpiralSet(generator);
+        createPrickleSet(generator);
 
         generator.registerTintableCross(YavpmBlocks.APPLE_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
+        generator.registerTintableCross(YavpmBlocks.PRICKLE_SHOOT, BlockStateModelGenerator.TintType.NOT_TINTED);
+
+        generator.registerStateWithModelReference(YavpmBlocks.VOID_WATER, Blocks.WATER);
     }
 
     @Override
@@ -78,6 +82,8 @@ public class YavpmModelProvider extends FabricModelProvider {
 
         generator.register(YavpmItems.MOONGUS_SPAWN_EGG, TEMPLATE_SPAWN_EGG);
         generator.register(YavpmItems.CARBONFOWL_SPAWN_EGG, TEMPLATE_SPAWN_EGG);
+
+        generator.register(YavpmItems.VOID_WATER_BUCKET, Models.GENERATED);
     }
 
     private static void registerBananaCrop(BlockStateModelGenerator generator) {
@@ -153,13 +159,14 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.registerHangingSign(YavpmBlocks.STRIPPED_APPLE_LOG, YavpmBlocks.APPLE_HANGING_SIGN, YavpmBlocks.APPLE_WALL_HANGING_SIGN);
     }
 
-    private static void createSpiralSet(BlockStateModelGenerator generator) {
-        generator.registerLog(YavpmBlocks.SPIRAL_STALK).log(YavpmBlocks.SPIRAL_STALK).wood(YavpmBlocks.SPIRAL_BRANCH);
-        generator.registerLog(YavpmBlocks.STRIPPED_SPIRAL_STALK).log(YavpmBlocks.STRIPPED_SPIRAL_STALK).wood(YavpmBlocks.STRIPPED_SPIRAL_BRANCH);
+    private static void createPrickleSet(BlockStateModelGenerator generator) {
+        generator.registerLog(YavpmBlocks.PRICKLE_LOG).log(YavpmBlocks.PRICKLE_LOG).wood(YavpmBlocks.PRICKLE_WOOD);
+        generator.registerLog(YavpmBlocks.STRIPPED_PRICKLE_LOG).log(YavpmBlocks.STRIPPED_PRICKLE_LOG).wood(YavpmBlocks.STRIPPED_PRICKLE_WOOD);
 
-        generator.registerSimpleCubeAll(YavpmBlocks.SPIRAL_LEAVES);
+        BlockStateModelGenerator.BlockTexturePool pricklePool = generator.registerCubeAllModelTexturePool(YavpmBlocks.PRICKLE_PLANKS);
 
-        BlockStateModelGenerator.BlockTexturePool spiralPool = generator.registerCubeAllModelTexturePool(YavpmBlocks.SPIRAL_PLANKS);
+        pricklePool.family(YavpmBlocks.PRICKLE_FAMILY);
+        generator.registerHangingSign(YavpmBlocks.STRIPPED_PRICKLE_LOG, YavpmBlocks.PRICKLE_HANGING_SIGN, YavpmBlocks.PRICKLE_WALL_HANGING_SIGN);
     }
 
     private static void createStuddedArmor(ItemModelGenerator generator) {

@@ -1,5 +1,6 @@
 {
   "values": [
-    "yavpm:apple_pressure_plate"
+    "yavpm:apple_pressure_plate",
+    "yavpm:prickle_pressure_plate"
   ]
 }

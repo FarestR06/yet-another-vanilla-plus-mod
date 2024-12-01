@@ -2,6 +2,7 @@ package com.farestr06.yavpm.block;
 
 import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.block.custom.*;
+import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.world.YavpmConfiguredFeatures;
 import com.terraformersmc.terraform.sign.api.block.TerraformHangingSignBlock;
@@ -20,6 +21,8 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.BlockView;
 
 import static com.farestr06.api.block.BlockHelper.*;
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
@@ -259,7 +262,7 @@ public class YavpmBlocks {
             makeId("apple_wall_sign"),
             new TerraformWallSignBlock(
                     APPLE_SIGN_TEXTURE,
-                    AbstractBlock.Settings.copy(Blocks.CHERRY_SIGN)
+                    AbstractBlock.Settings.copy(Blocks.CHERRY_WALL_SIGN)
             )
     );
     public static final Block APPLE_HANGING_SIGN = makeAdvancedBlock(
@@ -291,66 +294,124 @@ public class YavpmBlocks {
     );
     // endregion
 
-    // region Spiral Wood
+    // region Prickle Wood
 
-    public static final Block SPIRAL_STALK = makeAdvancedBlockAndItem(
-            makeId("spiral_stalk"),
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.WARPED_STEM).burnable())
+    public static final Block PRICKLE_LOG = makeAdvancedBlockAndItem(
+            makeId("prickle_log"),
+            new PrickleLogBlock(AbstractBlock.Settings.copy(Blocks.WARPED_STEM).burnable())
     );
-    public static final Block SPIRAL_BRANCH = makeAdvancedBlockAndItem(
-            makeId("spiral_branch"),
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.WARPED_HYPHAE).burnable())
+    public static final Block PRICKLE_WOOD = makeAdvancedBlockAndItem(
+            makeId("prickle_wood"),
+            new PrickleLogBlock(AbstractBlock.Settings.copy(Blocks.WARPED_HYPHAE).burnable())
     );
-    public static final Block STRIPPED_SPIRAL_STALK = makeAdvancedBlockAndItem(
-            makeId("stripped_spiral_stalk"),
+    public static final Block STRIPPED_PRICKLE_LOG = makeAdvancedBlockAndItem(
+            makeId("stripped_prickle_log"),
             new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_WARPED_STEM).burnable())
     );
-    public static final Block STRIPPED_SPIRAL_BRANCH = makeAdvancedBlockAndItem(
-            makeId("stripped_spiral_branch"),
+    public static final Block STRIPPED_PRICKLE_WOOD = makeAdvancedBlockAndItem(
+            makeId("stripped_prickle_wood"),
             new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_WARPED_HYPHAE).burnable())
     );
-    public static final Block SPIRAL_PLANKS = makeBlockAndItem(
-            makeId("spiral_planks"),
+    public static final Block PRICKLE_PLANKS = makeBlockAndItem(
+            makeId("prickle_planks"),
             AbstractBlock.Settings.copy(Blocks.WARPED_PLANKS).burnable()
     );
-    public static final Block SPIRAL_LEAVES = makeAdvancedBlockAndItem(
-            makeId("spiral_leaves"),
-            new LeavesBlock(AbstractBlock.Settings.copy(Blocks.AZALEA_LEAVES).luminance(value -> 1).emissiveLighting(Blocks::always))
+    public static final Block PRICKLE_STAIRS = makeAdvancedBlockAndItem(
+            makeId("prickle_stairs"),
+            new StairsBlock(PRICKLE_PLANKS.getDefaultState(), AbstractBlock.Settings.copy(Blocks.WARPED_STAIRS).burnable())
     );
-    public static final Block SPIRAL_STAIRS = makeAdvancedBlockAndItem(
-            makeId("spiral_stairs"),
-            new StairsBlock(SPIRAL_PLANKS.getDefaultState(), AbstractBlock.Settings.copy(Blocks.WARPED_STAIRS).burnable())
-    );
-    public static final Block SPIRAL_SLAB = makeAdvancedBlockAndItem(
-            makeId("spiral_slab"),
+    public static final Block PRICKLE_SLAB = makeAdvancedBlockAndItem(
+            makeId("prickle_slab"),
             new SlabBlock(AbstractBlock.Settings.copy(Blocks.WARPED_SLAB).burnable())
     );
-    public static final Block SPIRAL_FENCE = makeAdvancedBlockAndItem(
-            makeId("spiral_fence"),
+    public static final Block PRICKLE_FENCE = makeAdvancedBlockAndItem(
+            makeId("prickle_fence"),
             new FenceBlock(AbstractBlock.Settings.copy(Blocks.WARPED_FENCE).burnable())
     );
-    public static final Block SPIRAL_FENCE_GATE = makeAdvancedBlockAndItem(makeId("spiral_fence_gate"), new FenceGateBlock(
+    public static final Block PRICKLE_FENCE_GATE = makeAdvancedBlockAndItem(makeId("prickle_fence_gate"), new FenceGateBlock(
             WoodType.WARPED,
             AbstractBlock.Settings.copy(Blocks.WARPED_FENCE_GATE))
     );
-    public static final Block SPIRAL_BUTTON = makeAdvancedBlockAndItem(
-            makeId("spiral_button"),
+    public static final Block PRICKLE_DOOR = makeAdvancedBlockAndItem(
+            makeId("prickle_door"),
+            new DoorBlock(
+                    BlockSetType.CHERRY,
+                    AbstractBlock.Settings.copy(Blocks.CHERRY_DOOR)
+            )
+    );
+    public static final Block PRICKLE_TRAPDOOR = makeAdvancedBlockAndItem(
+            makeId("prickle_trapdoor"),
+            new TrapdoorBlock(
+                    BlockSetType.CHERRY,
+                    AbstractBlock.Settings.copy(Blocks.CHERRY_TRAPDOOR)
+            )
+    );
+    public static final Block PRICKLE_BUTTON = makeAdvancedBlockAndItem(
+            makeId("prickle_button"),
             new ButtonBlock(
                     BlockSetType.WARPED,
                     30,
                     AbstractBlock.Settings.copy(Blocks.WARPED_BUTTON)
             )
     );
-    public static final Block SPIRAL_PRESSURE_PLATE = makeAdvancedBlockAndItem(
-            makeId("spiral_pressure_plate"),
+    public static final Block PRICKLE_PRESSURE_PLATE = makeAdvancedBlockAndItem(
+            makeId("prickle_pressure_plate"),
             new PressurePlateBlock(
-                    BlockSetType.WARPED, AbstractBlock.Settings.copy(Blocks.WARPED_PRESSURE_PLATE)
+                    BlockSetType.WARPED,
+                    AbstractBlock.Settings.copy(Blocks.WARPED_PRESSURE_PLATE)
             )
     );
 
-    protected static final Identifier SPIRAL_SIGN_TEXTURE = makeId("entity/signs/spiral");
-    protected static final Identifier SPIRAL_HANGING_SIGN_TEXTURE = makeId("entity/signs/hanging/spiral");
-    protected static final Identifier SPIRAL_HANGING_SIGN_GUI_TEXTURE = makeId("textures/gui/hanging_signs/spiral");
+    protected static final Identifier PRICKLE_SIGN_TEXTURE = makeId("entity/signs/prickle");
+    protected static final Identifier PRICKLE_HANGING_SIGN_TEXTURE = makeId("entity/signs/hanging/prickle");
+    protected static final Identifier PRICKLE_HANGING_SIGN_GUI_TEXTURE = makeId("textures/gui/hanging_signs/prickle");
+
+    public static final Block PRICKLE_SIGN = makeAdvancedBlock(
+            makeId("prickle_sign"),
+            new TerraformSignBlock(
+                    PRICKLE_SIGN_TEXTURE,
+                    AbstractBlock.Settings.copy(Blocks.WARPED_SIGN)
+            )
+    );
+    public static final Block PRICKLE_WALL_SIGN = makeAdvancedBlock(
+            makeId("prickle_wall_sign"),
+            new TerraformWallSignBlock(
+                    PRICKLE_SIGN_TEXTURE,
+                    AbstractBlock.Settings.copy(Blocks.WARPED_WALL_SIGN)
+            )
+    );
+    public static final Block PRICKLE_HANGING_SIGN = makeAdvancedBlock(
+            makeId("prickle_hanging_sign"),
+            new TerraformHangingSignBlock(
+                    PRICKLE_HANGING_SIGN_TEXTURE,
+                    PRICKLE_HANGING_SIGN_GUI_TEXTURE,
+                    AbstractBlock.Settings.copy(Blocks.WARPED_HANGING_SIGN)
+            )
+    );
+    public static final Block PRICKLE_WALL_HANGING_SIGN = makeAdvancedBlock(
+            makeId("prickle_hanging_sign"),
+            new TerraformWallHangingSignBlock(
+                    PRICKLE_HANGING_SIGN_TEXTURE,
+                    PRICKLE_HANGING_SIGN_GUI_TEXTURE,
+                    AbstractBlock.Settings.copy(Blocks.WARPED_WALL_HANGING_SIGN)
+            )
+    );
+
+    public static final BlockFamily PRICKLE_FAMILY = BlockFamilies.register(PRICKLE_PLANKS)
+            .slab(PRICKLE_SLAB).stairs(PRICKLE_STAIRS).fence(PRICKLE_FENCE).fenceGate(PRICKLE_FENCE_GATE)
+            .door(PRICKLE_DOOR).trapdoor(PRICKLE_TRAPDOOR).sign(PRICKLE_SIGN, PRICKLE_WALL_SIGN)
+            .pressurePlate(PRICKLE_PRESSURE_PLATE).button(PRICKLE_BUTTON)
+            .group("wooden").unlockCriterionName("has_planks").build();
+
+    public static final Block PRICKLE_SHOOT = makeAdvancedBlockAndItem(
+            makeId("prickle_shoot"),
+            new SaplingBlock(YavpmConfiguredFeatures.PRICKLE_GENERATOR, AbstractBlock.Settings.copy(Blocks.WARPED_FUNGUS)) {
+                @Override
+                protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
+                    return floor.isOf(Blocks.END_STONE);
+                }
+            }
+    );
     // endregion
 
     // region Graphite and Graphene
@@ -360,10 +421,16 @@ public class YavpmBlocks {
             AbstractBlock.Settings.copy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.BLACK).strength(4.5f, 5.5f).sounds(BlockSoundGroup.STONE).instrument(NoteBlockInstrument.BIT));
     // endregion
 
+    public static final Block VOID_WATER = makeAdvancedBlock(
+            makeId("void_water"),
+            new FluidBlock(YavpmFluids.STILL_VOID_WATER, AbstractBlock.Settings.copy(Blocks.WATER))
+    );
+
     // region Creative Tabs
     private static void addToNaturalBlocks(FabricItemGroupEntries entries) {
         entries.add(APPLE_LEAVES);
-        entries.add(SPIRAL_LEAVES);
+        entries.add(APPLE_SAPLING);
+        entries.add(PRICKLE_SHOOT);
     }
     private static void addToRedstoneBlocks(FabricItemGroupEntries entries) {
         entries.add(ELECTRO_GLASS);
@@ -386,11 +453,11 @@ public class YavpmBlocks {
         entries.add(APPLE_PRESSURE_PLATE);
         entries.add(APPLE_BUTTON);
 
-        entries.add(SPIRAL_STALK);
-        entries.add(SPIRAL_BRANCH);
-        entries.add(STRIPPED_SPIRAL_STALK);
-        entries.add(STRIPPED_SPIRAL_BRANCH);
-        entries.add(SPIRAL_PLANKS);
+        entries.add(PRICKLE_LOG);
+        entries.add(PRICKLE_WOOD);
+        entries.add(STRIPPED_PRICKLE_LOG);
+        entries.add(STRIPPED_PRICKLE_WOOD);
+        entries.add(PRICKLE_PLANKS);
 
         entries.add(GLOWING_OBSIDIAN);
         entries.add(SOUL_GLOWING_OBSIDIAN);
@@ -453,8 +520,8 @@ public class YavpmBlocks {
     private static void setUpRegistries() {
         StrippableBlockRegistry.register(APPLE_LOG, STRIPPED_APPLE_LOG);
         StrippableBlockRegistry.register(APPLE_WOOD, STRIPPED_APPLE_WOOD);
-        StrippableBlockRegistry.register(SPIRAL_STALK, STRIPPED_SPIRAL_STALK);
-        StrippableBlockRegistry.register(SPIRAL_BRANCH, STRIPPED_SPIRAL_BRANCH);
+        StrippableBlockRegistry.register(PRICKLE_LOG, STRIPPED_PRICKLE_LOG);
+        StrippableBlockRegistry.register(PRICKLE_WOOD, STRIPPED_PRICKLE_WOOD);
 
         FlammableBlockRegistry flammables = FlammableBlockRegistry.getDefaultInstance();
         flammables.add(APPLE_LOG, 5, 5);
@@ -468,11 +535,10 @@ public class YavpmBlocks {
         flammables.add(APPLE_FENCE_GATE, 5, 20);
         flammables.add(APPLE_LEAVES, 30, 60);
 
-        flammables.add(SPIRAL_STALK, 5, 5);
-        flammables.add(SPIRAL_BRANCH, 5, 5);
-        flammables.add(STRIPPED_SPIRAL_STALK, 5, 5);
-        flammables.add(STRIPPED_SPIRAL_BRANCH, 5, 5);
-        flammables.add(SPIRAL_PLANKS, 5, 20);
-        flammables.add(SPIRAL_LEAVES, 30, 60);
+        flammables.add(PRICKLE_LOG, 5, 5);
+        flammables.add(PRICKLE_WOOD, 5, 5);
+        flammables.add(STRIPPED_PRICKLE_LOG, 5, 5);
+        flammables.add(STRIPPED_PRICKLE_WOOD, 5, 5);
+        flammables.add(PRICKLE_PLANKS, 5, 20);
     }
 }

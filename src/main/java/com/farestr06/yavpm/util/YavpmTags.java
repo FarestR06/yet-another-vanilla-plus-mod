@@ -2,6 +2,7 @@ package com.farestr06.yavpm.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
+import net.minecraft.fluid.Fluid;
 import net.minecraft.item.Item;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.TagKey;
@@ -13,7 +14,7 @@ public class YavpmTags {
     public static class Items {
         public static final TagKey<Item> REACTOR_RECHARGERS = of("reactor_rechargers");
         public static final TagKey<Item> APPLE_LOGS = of("apple_logs");
-        public static final TagKey<Item> SPIRAL_STALKS = of("spiral_stalks");
+        public static final TagKey<Item> PRICKLE_LOGS = of("spiral_stalks");
         public static final TagKey<Item> CRIMSON_MOONGUS_FOOD = of("crimson_moongus_food");
         public static final TagKey<Item> WARPED_MOONGUS_FOOD = of("warped_moongus_food");
 
@@ -41,10 +42,18 @@ public class YavpmTags {
     public static class Blocks {
 
         public static final TagKey<Block> APPLE_LOGS = of("apple_logs");
-        public static final TagKey<Block> SPIRAL_STALKS = of("spiral_stalks");
+        public static final TagKey<Block> PRICKLE_LOGS = of("spiral_stalks");
 
         private static TagKey<Block> of(String path) {
             return TagKey.of(RegistryKeys.BLOCK, makeId(path));
+        }
+    }
+
+    public static class Fluids {
+        public static final TagKey<Fluid> VOID_WATER = of("void_water");
+
+        private static TagKey<Fluid> of(String path) {
+            return TagKey.of(RegistryKeys.FLUID, makeId(path));
         }
     }
 }

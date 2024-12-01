@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "yavpm:block/prickle_log",
+    "side": "yavpm:block/prickle_log"
+  }
+}

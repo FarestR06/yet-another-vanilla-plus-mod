@@ -21,14 +21,21 @@ public class YavpmLangProvider extends FabricLanguageProvider {
     @Override
     public void generateTranslations(RegistryWrapper.WrapperLookup registryLookup, TranslationBuilder builder) {
         builder.add("option.yavpm.title", "Yet Another Vanilla Plus Mod Options");
+
+        builder.add("option.yavpm.blocks_and_fluids", "Blocks and Fluids");
+        builder.add("option.yavpm.blocks_and_fluids.void", "Void Block and Void Water");
+
         builder.add("option.yavpm.entities_and_effects", "Entity/Mob Effect Options");
         builder.add("option.yavpm.entities_and_effects.void_touched", "Void Touched Mob Effect Options");
 
         builder.add("option.yavpm.void_touched_damage_multiplier.title", "Void Touched Damage Multiplier");
-        builder.add("option.yavpm.void_touched_damage_multiplier.desc", "Damage is multiplied by this for each level of Void Touched when applied");
+        builder.add("option.yavpm.void_touched_damage_multiplier.desc", "When the Void Touched effect is applied, any damage taken is multiplied by this for each level of the effect.");
 
-        builder.add("option.yavpm.void_touched_dragon_fireball.title", "Voided Dragon Fireball");
-        builder.add("option.yavpm.void_touched_dragon_fireball.desc", "When set to false, the dragon fireball will behave like it does in vanilla");
+        builder.add("option.yavpm.void_touched_dragon_fireball.title", "Void-touched Dragon Fireball");
+        builder.add("option.yavpm.void_touched_dragon_fireball.desc", "When set to false, the dragon fireball will behave like it does in vanilla, dealing damage instead of applying Void Touched.");
+
+        builder.add("option.yavpm.void_water_source_conversion.title", "Void Water converts to source");
+        builder.add("option.yavpm.void_water_source_conversion.desc", "When flowing void water is surrounded on two sides by water sources it converts into a source.");
 
         builder.add("advancements.adventure.transform_mob.title", "Pocket Powder!");
         builder.add("advancements.adventure.transform_mob.description", "Transform a mob with some Soul Powder");
@@ -169,13 +176,23 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add("subtitles.entity.chicken.egg_break", "Egg breaks");
 
-        builder.add(YavpmBlocks.SPIRAL_STALK, "Spiral Stalk");
-        builder.add(YavpmBlocks.SPIRAL_BRANCH, "Spiral Branch");
-        builder.add(YavpmBlocks.STRIPPED_SPIRAL_STALK, "Stripped Spiral Stalk");
-        builder.add(YavpmBlocks.STRIPPED_SPIRAL_BRANCH, "Stripped Spiral Branch");
-        builder.add(YavpmBlocks.SPIRAL_LEAVES, "Spiral Leaves");
-        builder.add(YavpmBlocks.SPIRAL_PLANKS, "Spiral Planks");
-        builder.add(YavpmTags.Blocks.SPIRAL_STALKS, "Spiral Stalks");
+        builder.add(YavpmBlocks.PRICKLE_LOG, "Prickle Log");
+        builder.add(YavpmBlocks.PRICKLE_WOOD, "Prickle Wood");
+        builder.add(YavpmBlocks.STRIPPED_PRICKLE_LOG, "Stripped Prickle Log");
+        builder.add(YavpmBlocks.STRIPPED_PRICKLE_WOOD, "Stripped Prickle Wood");
+        builder.add(YavpmBlocks.PRICKLE_PLANKS, "Prickle Planks");
+        builder.add(YavpmBlocks.PRICKLE_STAIRS, "Prickle Stairs");
+        builder.add(YavpmBlocks.PRICKLE_SLAB, "Prickle Slab");
+        builder.add(YavpmBlocks.PRICKLE_FENCE, "Prickle Fence");
+        builder.add(YavpmBlocks.PRICKLE_FENCE_GATE, "Prickle Fence Gate");
+        builder.add(YavpmBlocks.PRICKLE_DOOR, "Prickle Door");
+        builder.add(YavpmBlocks.PRICKLE_TRAPDOOR, "Prickle Trapdoor");
+        builder.add(YavpmBlocks.PRICKLE_PRESSURE_PLATE, "Prickle Pressure Plate");
+        builder.add(YavpmBlocks.PRICKLE_BUTTON, "Prickle Button");
+        builder.add(YavpmItems.PRICKLE_SIGN, "Prickle Sign");
+        builder.add(YavpmItems.PRICKLE_HANGING_SIGN, "Prickle Hanging Sign");
+        builder.add(YavpmBlocks.PRICKLE_SHOOT, "Prickle Shoot");
+        builder.add(YavpmTags.Blocks.PRICKLE_LOGS, "Prickle Logs");
 
         builder.add(YavpmBlocks.APPLE_LOG, "Apple Log");
         builder.add(YavpmBlocks.APPLE_WOOD, "Apple Wood");
