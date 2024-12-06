@@ -1,11 +1,13 @@
 package com.farestr06.yavpm.world;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
+import com.farestr06.yavpm.block.custom.PrickleLogBlock;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SaplingGenerator;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
@@ -31,6 +33,7 @@ public class YavpmConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_APPLE_BEES_0002 = registerKey("fancy_apple_bees_0002");
     public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_APPLE_BEES_002 = registerKey("fancy_apple_bees_002");
     public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_APPLE_BEES_005 = registerKey("fancy_apple_bees_005");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> PATCH_WITHER_ROSE = registerKey("patch_wither_rose");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> PRICKLE = registerKey("prickle");
 
@@ -70,6 +73,11 @@ public class YavpmConfiguredFeatures {
         register(context, FANCY_APPLE_BEES_005, Feature.TREE, makeFancyAppleConfig().decorators(List.of(beehiveTreeDecorator005)).build());
 
         register(context, PRICKLE, Feature.TREE, makePrickleConfig().build());
+
+
+        register(
+                context, PATCH_WITHER_ROSE, Feature.RANDOM_PATCH, createRandomPatchFeatureConfig(BlockStateProvider.of(Blocks.WITHER_ROSE), 3)
+        );
     }
 
     public static RegistryKey<ConfiguredFeature<?, ?>> registerKey(String name) {
@@ -81,9 +89,17 @@ public class YavpmConfiguredFeatures {
         context.register(key, new ConfiguredFeature<>(feature, configuration));
     }
 
+    private static RandomPatchFeatureConfig createRandomPatchFeatureConfig(BlockStateProvider block, int tries) {
+        return ConfiguredFeatures.createRandomPatchFeatureConfig(tries, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(block)));
+    }
+
     private static TreeFeatureConfig.Builder makePrickleConfig() {
         return new TreeFeatureConfig.Builder(
-                BlockStateProvider.of(YavpmBlocks.PRICKLE_LOG),
+                BlockStateProvider.of(
+                        YavpmBlocks.PRICKLE_LOG.getDefaultState()
+                                .with(PrickleLogBlock.AXIS, Direction.Axis.Y)
+                                .with(PrickleLogBlock.PRICKLY, true)
+                ),
                 new StraightTrunkPlacer(8, 1, 0),
                 BlockStateProvider.of(Blocks.AIR),
                 new BlobFoliagePlacer(ConstantIntProvider.ZERO, ConstantIntProvider.ZERO, 0),

@@ -1,5 +1,6 @@
 package com.farestr06.yavpm.datagen;
 
+import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.entity.mob.YavpmMobs;
 import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.YavpmItems;
@@ -11,11 +12,10 @@ import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.EntityTypeTags;
+import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.registry.tag.ItemTags;
 
 import java.util.concurrent.CompletableFuture;
-
-import static com.farestr06.yavpm.block.YavpmBlocks.*;
 
 public class YavpmTagProviders {
     public static class Item extends FabricTagProvider.ItemTagProvider {
@@ -99,7 +99,7 @@ public class YavpmTagProviders {
                     YavpmItems.ACORN,
                     YavpmItems.DIAMOND_ACORN,
                     YavpmItems.TRUFFLE,
-                    YavpmItems.MAGIC_BEANS,
+                    YavpmItems.MAGIC_BEAN,
                     YavpmItems.SEA_SOUP
             );
             getOrCreateTagBuilder(ConventionalItemTags.FRUIT_FOODS).add(
@@ -150,67 +150,67 @@ public class YavpmTagProviders {
             );
 
             getOrCreateTagBuilder(ItemTags.STONE_CRAFTING_MATERIALS).add(
-                    COBBLED_GRANITE.asItem(),
-                    COBBLED_DIORITE.asItem(),
-                    COBBLED_ANDESITE.asItem()
+                    YavpmBlocks.COBBLED_GRANITE.asItem(),
+                    YavpmBlocks.COBBLED_DIORITE.asItem(),
+                    YavpmBlocks.COBBLED_ANDESITE.asItem()
             );
 
             getOrCreateTagBuilder(ItemTags.STAIRS).add(
-                    COBBLED_GRANITE_STAIRS.asItem(),
-                    COBBLED_DIORITE_STAIRS.asItem(),
-                    COBBLED_ANDESITE_STAIRS.asItem(),
-                    POLISHED_GRANITE_BRICK_STAIRS.asItem(),
-                    POLISHED_DIORITE_BRICK_STAIRS.asItem(),
-                    POLISHED_ANDESITE_BRICK_STAIRS.asItem(),
-                    POLISHED_GRANITE_TILE_STAIRS.asItem(),
-                    POLISHED_DIORITE_TILE_STAIRS.asItem(),
-                    POLISHED_ANDESITE_TILE_STAIRS.asItem()
+                    YavpmBlocks.COBBLED_GRANITE_STAIRS.asItem(),
+                    YavpmBlocks.COBBLED_DIORITE_STAIRS.asItem(),
+                    YavpmBlocks.COBBLED_ANDESITE_STAIRS.asItem(),
+                    YavpmBlocks.POLISHED_GRANITE_BRICK_STAIRS.asItem(),
+                    YavpmBlocks.POLISHED_DIORITE_BRICK_STAIRS.asItem(),
+                    YavpmBlocks.POLISHED_ANDESITE_BRICK_STAIRS.asItem(),
+                    YavpmBlocks.POLISHED_GRANITE_TILE_STAIRS.asItem(),
+                    YavpmBlocks.POLISHED_DIORITE_TILE_STAIRS.asItem(),
+                    YavpmBlocks.POLISHED_ANDESITE_TILE_STAIRS.asItem()
             );
             getOrCreateTagBuilder(ItemTags.SLABS).add(
-                    COBBLED_GRANITE_SLAB.asItem(),
-                    COBBLED_DIORITE_SLAB.asItem(),
-                    COBBLED_ANDESITE_SLAB.asItem(),
-                    POLISHED_GRANITE_BRICK_SLAB.asItem(),
-                    POLISHED_DIORITE_BRICK_SLAB.asItem(),
-                    POLISHED_ANDESITE_BRICK_SLAB.asItem(),
-                    POLISHED_GRANITE_TILE_SLAB.asItem(),
-                    POLISHED_DIORITE_TILE_SLAB.asItem(),
-                    POLISHED_ANDESITE_TILE_SLAB.asItem()
+                    YavpmBlocks.COBBLED_GRANITE_SLAB.asItem(),
+                    YavpmBlocks.COBBLED_DIORITE_SLAB.asItem(),
+                    YavpmBlocks.COBBLED_ANDESITE_SLAB.asItem(),
+                    YavpmBlocks.POLISHED_GRANITE_BRICK_SLAB.asItem(),
+                    YavpmBlocks.POLISHED_DIORITE_BRICK_SLAB.asItem(),
+                    YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB.asItem(),
+                    YavpmBlocks.POLISHED_GRANITE_TILE_SLAB.asItem(),
+                    YavpmBlocks.POLISHED_DIORITE_TILE_SLAB.asItem(),
+                    YavpmBlocks.POLISHED_ANDESITE_TILE_SLAB.asItem()
             );
             getOrCreateTagBuilder(ItemTags.WALLS).add(
-                    COBBLED_GRANITE_WALL.asItem(),
-                    COBBLED_DIORITE_WALL.asItem(),
-                    COBBLED_ANDESITE_WALL.asItem(),
-                    POLISHED_GRANITE_BRICK_WALL.asItem(),
-                    POLISHED_DIORITE_BRICK_WALL.asItem(),
-                    POLISHED_ANDESITE_BRICK_WALL.asItem(),
-                    POLISHED_GRANITE_TILE_WALL.asItem(),
-                    POLISHED_DIORITE_TILE_WALL.asItem(),
-                    POLISHED_ANDESITE_TILE_WALL.asItem()
+                    YavpmBlocks.COBBLED_GRANITE_WALL.asItem(),
+                    YavpmBlocks.COBBLED_DIORITE_WALL.asItem(),
+                    YavpmBlocks.COBBLED_ANDESITE_WALL.asItem(),
+                    YavpmBlocks.POLISHED_GRANITE_BRICK_WALL.asItem(),
+                    YavpmBlocks.POLISHED_DIORITE_BRICK_WALL.asItem(),
+                    YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL.asItem(),
+                    YavpmBlocks.POLISHED_GRANITE_TILE_WALL.asItem(),
+                    YavpmBlocks.POLISHED_DIORITE_TILE_WALL.asItem(),
+                    YavpmBlocks.POLISHED_ANDESITE_TILE_WALL.asItem()
             );
             getOrCreateTagBuilder(YavpmTags.Items.APPLE_LOGS).add(
-                    APPLE_LOG.asItem(),
-                    APPLE_WOOD.asItem(),
-                    STRIPPED_APPLE_LOG.asItem(),
-                    STRIPPED_APPLE_WOOD.asItem()
+                    YavpmBlocks.APPLE_LOG.asItem(),
+                    YavpmBlocks.APPLE_WOOD.asItem(),
+                    YavpmBlocks.STRIPPED_APPLE_LOG.asItem(),
+                    YavpmBlocks.STRIPPED_APPLE_WOOD.asItem()
             );
             getOrCreateTagBuilder(YavpmTags.Items.PRICKLE_LOGS).add(
-                    PRICKLE_LOG.asItem(),
-                    PRICKLE_WOOD.asItem(),
-                    STRIPPED_PRICKLE_LOG.asItem(),
-                    STRIPPED_PRICKLE_WOOD.asItem()
+                    YavpmBlocks.PRICKLE_LOG.asItem(),
+                    YavpmBlocks.PRICKLE_WOOD.asItem(),
+                    YavpmBlocks.STRIPPED_PRICKLE_LOG.asItem(),
+                    YavpmBlocks.STRIPPED_PRICKLE_WOOD.asItem()
             );
             getOrCreateTagBuilder(ItemTags.LOGS_THAT_BURN).forceAddTag(YavpmTags.Items.APPLE_LOGS).forceAddTag(YavpmTags.Items.PRICKLE_LOGS);
-            getOrCreateTagBuilder(ItemTags.LEAVES).add(APPLE_LEAVES.asItem());
-            getOrCreateTagBuilder(ItemTags.PLANKS).add(APPLE_PLANKS.asItem(), PRICKLE_PLANKS.asItem());
-            getOrCreateTagBuilder(ItemTags.WOODEN_STAIRS).add(APPLE_STAIRS.asItem(), PRICKLE_STAIRS.asItem());
-            getOrCreateTagBuilder(ItemTags.WOODEN_SLABS).add(APPLE_SLAB.asItem(), PRICKLE_SLAB.asItem());
-            getOrCreateTagBuilder(ItemTags.WOODEN_FENCES).add(APPLE_FENCE.asItem(), PRICKLE_FENCE.asItem());
-            getOrCreateTagBuilder(ItemTags.FENCE_GATES).add(APPLE_FENCE_GATE.asItem(), PRICKLE_FENCE_GATE.asItem());
-            getOrCreateTagBuilder(ItemTags.WOODEN_DOORS).add(APPLE_DOOR.asItem(), PRICKLE_DOOR.asItem());
-            getOrCreateTagBuilder(ItemTags.WOODEN_TRAPDOORS).add(APPLE_TRAPDOOR.asItem(), PRICKLE_TRAPDOOR.asItem());
-            getOrCreateTagBuilder(ItemTags.WOODEN_PRESSURE_PLATES).add(APPLE_PRESSURE_PLATE.asItem(), PRICKLE_PRESSURE_PLATE.asItem());
-            getOrCreateTagBuilder(ItemTags.WOODEN_BUTTONS).add(APPLE_BUTTON.asItem(), PRICKLE_BUTTON.asItem());
+            getOrCreateTagBuilder(ItemTags.LEAVES).add(YavpmBlocks.APPLE_LEAVES.asItem());
+            getOrCreateTagBuilder(ItemTags.PLANKS).add(YavpmBlocks.APPLE_PLANKS.asItem(), YavpmBlocks.PRICKLE_PLANKS.asItem());
+            getOrCreateTagBuilder(ItemTags.WOODEN_STAIRS).add(YavpmBlocks.APPLE_STAIRS.asItem(), YavpmBlocks.PRICKLE_STAIRS.asItem());
+            getOrCreateTagBuilder(ItemTags.WOODEN_SLABS).add(YavpmBlocks.APPLE_SLAB.asItem(), YavpmBlocks.PRICKLE_SLAB.asItem());
+            getOrCreateTagBuilder(ItemTags.WOODEN_FENCES).add(YavpmBlocks.APPLE_FENCE.asItem(), YavpmBlocks.PRICKLE_FENCE.asItem());
+            getOrCreateTagBuilder(ItemTags.FENCE_GATES).add(YavpmBlocks.APPLE_FENCE_GATE.asItem(), YavpmBlocks.PRICKLE_FENCE_GATE.asItem());
+            getOrCreateTagBuilder(ItemTags.WOODEN_DOORS).add(YavpmBlocks.APPLE_DOOR.asItem(), YavpmBlocks.PRICKLE_DOOR.asItem());
+            getOrCreateTagBuilder(ItemTags.WOODEN_TRAPDOORS).add(YavpmBlocks.APPLE_TRAPDOOR.asItem(), YavpmBlocks.PRICKLE_TRAPDOOR.asItem());
+            getOrCreateTagBuilder(ItemTags.WOODEN_PRESSURE_PLATES).add(YavpmBlocks.APPLE_PRESSURE_PLATE.asItem(), YavpmBlocks.PRICKLE_PRESSURE_PLATE.asItem());
+            getOrCreateTagBuilder(ItemTags.WOODEN_BUTTONS).add(YavpmBlocks.APPLE_BUTTON.asItem(), YavpmBlocks.PRICKLE_BUTTON.asItem());
             getOrCreateTagBuilder(ItemTags.SIGNS).add(YavpmItems.APPLE_SIGN, YavpmItems.PRICKLE_SIGN.asItem());
             getOrCreateTagBuilder(ItemTags.HANGING_SIGNS).add(YavpmItems.APPLE_HANGING_SIGN, YavpmItems.PRICKLE_HANGING_SIGN.asItem());
         }
@@ -223,163 +223,163 @@ public class YavpmTagProviders {
 
         @Override
         protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
-            getOrCreateTagBuilder(BlockTags.SOUL_SPEED_BLOCKS).add(SOUL_GLOWING_OBSIDIAN);
-            getOrCreateTagBuilder(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(SOUL_GLOWING_OBSIDIAN);
+            getOrCreateTagBuilder(BlockTags.SOUL_SPEED_BLOCKS).add(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
+            getOrCreateTagBuilder(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
 
 
             getOrCreateTagBuilder(YavpmTags.Blocks.APPLE_LOGS).add(
-                    APPLE_LOG,
-                    APPLE_WOOD,
-                    STRIPPED_APPLE_LOG,
-                    STRIPPED_APPLE_WOOD
+                    YavpmBlocks.APPLE_LOG,
+                    YavpmBlocks.APPLE_WOOD,
+                    YavpmBlocks.STRIPPED_APPLE_LOG,
+                    YavpmBlocks.STRIPPED_APPLE_WOOD
             );
             getOrCreateTagBuilder(YavpmTags.Blocks.PRICKLE_LOGS).add(
-                    PRICKLE_LOG,
-                    PRICKLE_WOOD,
-                    STRIPPED_PRICKLE_LOG,
-                    STRIPPED_PRICKLE_WOOD
+                    YavpmBlocks.PRICKLE_LOG,
+                    YavpmBlocks.PRICKLE_WOOD,
+                    YavpmBlocks.STRIPPED_PRICKLE_LOG,
+                    YavpmBlocks.STRIPPED_PRICKLE_WOOD
             );
             getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN).forceAddTag(YavpmTags.Blocks.APPLE_LOGS).forceAddTag(YavpmTags.Blocks.PRICKLE_LOGS);
 
             // Electro Glass isn't here because normal Glass does not have a required tool.
             getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(
-                    GLOWING_OBSIDIAN,
-                    SOUL_GLOWING_OBSIDIAN,
-                    COBBLED_GRANITE,
-                    COBBLED_DIORITE,
-                    COBBLED_ANDESITE,
-                    COBBLED_GRANITE_STAIRS,
-                    COBBLED_DIORITE_STAIRS,
-                    COBBLED_ANDESITE_STAIRS,
-                    COBBLED_GRANITE_SLAB,
-                    COBBLED_DIORITE_SLAB,
-                    COBBLED_ANDESITE_SLAB,
-                    COBBLED_GRANITE_WALL,
-                    COBBLED_DIORITE_WALL,
-                    COBBLED_ANDESITE_WALL,
-                    POLISHED_GRANITE_BRICKS,
-                    POLISHED_GRANITE_BRICK_STAIRS,
-                    POLISHED_GRANITE_BRICK_SLAB,
-                    POLISHED_GRANITE_BRICK_WALL,
-                    POLISHED_DIORITE_BRICKS,
-                    POLISHED_DIORITE_BRICK_STAIRS,
-                    POLISHED_DIORITE_BRICK_SLAB,
-                    POLISHED_DIORITE_BRICK_WALL,
-                    POLISHED_ANDESITE_BRICKS,
-                    POLISHED_ANDESITE_BRICK_STAIRS,
-                    POLISHED_ANDESITE_BRICK_SLAB,
-                    POLISHED_ANDESITE_BRICK_WALL,
-                    POLISHED_GRANITE_TILES,
-                    POLISHED_GRANITE_TILE_STAIRS,
-                    POLISHED_GRANITE_TILE_SLAB,
-                    POLISHED_GRANITE_TILE_WALL,
-                    POLISHED_DIORITE_TILES,
-                    POLISHED_DIORITE_TILE_STAIRS,
-                    POLISHED_DIORITE_TILE_SLAB,
-                    POLISHED_DIORITE_TILE_WALL,
-                    POLISHED_ANDESITE_TILES,
-                    POLISHED_ANDESITE_TILE_STAIRS,
-                    POLISHED_ANDESITE_TILE_SLAB,
-                    POLISHED_ANDESITE_TILE_WALL
+                    YavpmBlocks.GLOWING_OBSIDIAN,
+                    YavpmBlocks.SOUL_GLOWING_OBSIDIAN,
+                    YavpmBlocks.COBBLED_GRANITE,
+                    YavpmBlocks.COBBLED_DIORITE,
+                    YavpmBlocks.COBBLED_ANDESITE,
+                    YavpmBlocks.COBBLED_GRANITE_STAIRS,
+                    YavpmBlocks.COBBLED_DIORITE_STAIRS,
+                    YavpmBlocks.COBBLED_ANDESITE_STAIRS,
+                    YavpmBlocks.COBBLED_GRANITE_SLAB,
+                    YavpmBlocks.COBBLED_DIORITE_SLAB,
+                    YavpmBlocks.COBBLED_ANDESITE_SLAB,
+                    YavpmBlocks.COBBLED_GRANITE_WALL,
+                    YavpmBlocks.COBBLED_DIORITE_WALL,
+                    YavpmBlocks.COBBLED_ANDESITE_WALL,
+                    YavpmBlocks.POLISHED_GRANITE_BRICKS,
+                    YavpmBlocks.POLISHED_GRANITE_BRICK_STAIRS,
+                    YavpmBlocks.POLISHED_GRANITE_BRICK_SLAB,
+                    YavpmBlocks.POLISHED_GRANITE_BRICK_WALL,
+                    YavpmBlocks.POLISHED_DIORITE_BRICKS,
+                    YavpmBlocks.POLISHED_DIORITE_BRICK_STAIRS,
+                    YavpmBlocks.POLISHED_DIORITE_BRICK_SLAB,
+                    YavpmBlocks.POLISHED_DIORITE_BRICK_WALL,
+                    YavpmBlocks.POLISHED_ANDESITE_BRICKS,
+                    YavpmBlocks.POLISHED_ANDESITE_BRICK_STAIRS,
+                    YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB,
+                    YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL,
+                    YavpmBlocks.POLISHED_GRANITE_TILES,
+                    YavpmBlocks.POLISHED_GRANITE_TILE_STAIRS,
+                    YavpmBlocks.POLISHED_GRANITE_TILE_SLAB,
+                    YavpmBlocks.POLISHED_GRANITE_TILE_WALL,
+                    YavpmBlocks.POLISHED_DIORITE_TILES,
+                    YavpmBlocks.POLISHED_DIORITE_TILE_STAIRS,
+                    YavpmBlocks.POLISHED_DIORITE_TILE_SLAB,
+                    YavpmBlocks.POLISHED_DIORITE_TILE_WALL,
+                    YavpmBlocks.POLISHED_ANDESITE_TILES,
+                    YavpmBlocks.POLISHED_ANDESITE_TILE_STAIRS,
+                    YavpmBlocks.POLISHED_ANDESITE_TILE_SLAB,
+                    YavpmBlocks.POLISHED_ANDESITE_TILE_WALL
             );
 
             getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
                     .add(
-                            NETHER_REACTOR_CORE,
-                            GRAPHITE_BLOCK,
-                            GRAPHENE_BLOCK
+                            YavpmBlocks.NETHER_REACTOR_CORE,
+                            YavpmBlocks.GRAPHITE_BLOCK,
+                            YavpmBlocks.GRAPHENE_BLOCK
                     );
 
             getOrCreateTagBuilder(BlockTags.CROPS).add(
-                    BANANA_CROP,
-                    PEANUT_CROP,
-                    OAK_SAPLING_CROP
+                    YavpmBlocks.BANANA_CROP,
+                    YavpmBlocks.PEANUT_CROP,
+                    YavpmBlocks.OAK_SAPLING_CROP
             );
 
             getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL).add(
-                    GLOWING_OBSIDIAN,
-                    SOUL_GLOWING_OBSIDIAN
+                    YavpmBlocks.GLOWING_OBSIDIAN,
+                    YavpmBlocks.SOUL_GLOWING_OBSIDIAN
             );
 
 
             getOrCreateTagBuilder(BlockTags.STONE_BRICKS).add(
-                    POLISHED_GRANITE_BRICKS,
-                    POLISHED_DIORITE_BRICKS,
-                    POLISHED_ANDESITE_BRICKS
+                    YavpmBlocks.POLISHED_GRANITE_BRICKS,
+                    YavpmBlocks.POLISHED_DIORITE_BRICKS,
+                    YavpmBlocks.POLISHED_ANDESITE_BRICKS
             );
 
             getOrCreateTagBuilder(BlockTags.STAIRS).add(
-                    COBBLED_GRANITE_STAIRS,
-                    COBBLED_DIORITE_STAIRS,
-                    COBBLED_ANDESITE_STAIRS,
-                    POLISHED_GRANITE_BRICK_STAIRS,
-                    POLISHED_DIORITE_BRICK_STAIRS,
-                    POLISHED_ANDESITE_BRICK_STAIRS,
-                    POLISHED_GRANITE_TILE_STAIRS,
-                    POLISHED_DIORITE_TILE_STAIRS,
-                    POLISHED_ANDESITE_TILE_STAIRS
+                    YavpmBlocks.COBBLED_GRANITE_STAIRS,
+                    YavpmBlocks.COBBLED_DIORITE_STAIRS,
+                    YavpmBlocks.COBBLED_ANDESITE_STAIRS,
+                    YavpmBlocks.POLISHED_GRANITE_BRICK_STAIRS,
+                    YavpmBlocks.POLISHED_DIORITE_BRICK_STAIRS,
+                    YavpmBlocks.POLISHED_ANDESITE_BRICK_STAIRS,
+                    YavpmBlocks.POLISHED_GRANITE_TILE_STAIRS,
+                    YavpmBlocks.POLISHED_DIORITE_TILE_STAIRS,
+                    YavpmBlocks.POLISHED_ANDESITE_TILE_STAIRS
             );
             getOrCreateTagBuilder(BlockTags.SLABS).add(
-                    COBBLED_GRANITE_SLAB,
-                    COBBLED_DIORITE_SLAB,
-                    COBBLED_ANDESITE_SLAB,
-                    POLISHED_GRANITE_BRICK_SLAB,
-                    POLISHED_DIORITE_BRICK_SLAB,
-                    POLISHED_ANDESITE_BRICK_SLAB,
-                    POLISHED_GRANITE_TILE_SLAB,
-                    POLISHED_DIORITE_TILE_SLAB,
-                    POLISHED_ANDESITE_TILE_SLAB
+                    YavpmBlocks.COBBLED_GRANITE_SLAB,
+                    YavpmBlocks.COBBLED_DIORITE_SLAB,
+                    YavpmBlocks.COBBLED_ANDESITE_SLAB,
+                    YavpmBlocks.POLISHED_GRANITE_BRICK_SLAB,
+                    YavpmBlocks.POLISHED_DIORITE_BRICK_SLAB,
+                    YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB,
+                    YavpmBlocks.POLISHED_GRANITE_TILE_SLAB,
+                    YavpmBlocks.POLISHED_DIORITE_TILE_SLAB,
+                    YavpmBlocks.POLISHED_ANDESITE_TILE_SLAB
             );
 
              getOrCreateTagBuilder(BlockTags.WALLS).add(
-                     COBBLED_GRANITE_WALL,
-                     COBBLED_DIORITE_WALL,
-                     COBBLED_ANDESITE_WALL,
-                     POLISHED_GRANITE_BRICK_WALL,
-                     POLISHED_DIORITE_BRICK_WALL,
-                     POLISHED_ANDESITE_BRICK_WALL,
-                     POLISHED_GRANITE_TILE_WALL,
-                     POLISHED_DIORITE_TILE_WALL,
-                     POLISHED_ANDESITE_TILE_WALL
+                     YavpmBlocks.COBBLED_GRANITE_WALL,
+                     YavpmBlocks.COBBLED_DIORITE_WALL,
+                     YavpmBlocks.COBBLED_ANDESITE_WALL,
+                     YavpmBlocks.POLISHED_GRANITE_BRICK_WALL,
+                     YavpmBlocks.POLISHED_DIORITE_BRICK_WALL,
+                     YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL,
+                     YavpmBlocks.POLISHED_GRANITE_TILE_WALL,
+                     YavpmBlocks.POLISHED_DIORITE_TILE_WALL,
+                     YavpmBlocks.POLISHED_ANDESITE_TILE_WALL
              );
 
             getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN)
                     .add(
-                            APPLE_LOG,
-                            STRIPPED_APPLE_LOG,
-                            APPLE_WOOD,
-                            STRIPPED_APPLE_WOOD
+                            YavpmBlocks.APPLE_LOG,
+                            YavpmBlocks.STRIPPED_APPLE_LOG,
+                            YavpmBlocks.APPLE_WOOD,
+                            YavpmBlocks.STRIPPED_APPLE_WOOD
                     );
 
             getOrCreateTagBuilder(BlockTags.LEAVES)
-                    .add(APPLE_LEAVES);
+                    .add(YavpmBlocks.APPLE_LEAVES);
 
             getOrCreateTagBuilder(BlockTags.PLANKS)
-                    .add(APPLE_PLANKS, PRICKLE_PLANKS);
+                    .add(YavpmBlocks.APPLE_PLANKS, YavpmBlocks.PRICKLE_PLANKS);
 
             getOrCreateTagBuilder(BlockTags.WOODEN_FENCES)
-                    .add(APPLE_FENCE, PRICKLE_FENCE);
+                    .add(YavpmBlocks.APPLE_FENCE, YavpmBlocks.PRICKLE_FENCE);
 
             getOrCreateTagBuilder(BlockTags.FENCE_GATES)
-                    .add(APPLE_FENCE_GATE, PRICKLE_FENCE_GATE);
+                    .add(YavpmBlocks.APPLE_FENCE_GATE, YavpmBlocks.PRICKLE_FENCE_GATE);
 
             getOrCreateTagBuilder(BlockTags.WOODEN_DOORS)
-                    .add(APPLE_DOOR, PRICKLE_DOOR);
+                    .add(YavpmBlocks.APPLE_DOOR, YavpmBlocks.PRICKLE_DOOR);
 
             getOrCreateTagBuilder(BlockTags.WOODEN_TRAPDOORS)
-                    .add(APPLE_TRAPDOOR, PRICKLE_TRAPDOOR);
+                    .add(YavpmBlocks.APPLE_TRAPDOOR, YavpmBlocks.PRICKLE_TRAPDOOR);
 
             getOrCreateTagBuilder(BlockTags.STANDING_SIGNS)
-                    .add(APPLE_SIGN, PRICKLE_SIGN);
+                    .add(YavpmBlocks.APPLE_SIGN, YavpmBlocks.PRICKLE_SIGN);
 
             getOrCreateTagBuilder(BlockTags.WALL_SIGNS)
-                    .add(APPLE_WALL_SIGN, PRICKLE_WALL_SIGN);
+                    .add(YavpmBlocks.APPLE_WALL_SIGN, YavpmBlocks.PRICKLE_WALL_SIGN);
 
             getOrCreateTagBuilder(BlockTags.CEILING_HANGING_SIGNS)
-                    .add(APPLE_HANGING_SIGN, PRICKLE_HANGING_SIGN);
+                    .add(YavpmBlocks.APPLE_HANGING_SIGN, YavpmBlocks.PRICKLE_HANGING_SIGN);
 
             getOrCreateTagBuilder(BlockTags.WALL_HANGING_SIGNS)
-                    .add(APPLE_WALL_HANGING_SIGN, PRICKLE_WALL_HANGING_SIGN);
+                    .add(YavpmBlocks.APPLE_WALL_HANGING_SIGN, YavpmBlocks.PRICKLE_WALL_HANGING_SIGN);
         }
     }
 
@@ -392,6 +392,7 @@ public class YavpmTagProviders {
         @Override
         protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
             getOrCreateTagBuilder(YavpmTags.Fluids.VOID_WATER).add(YavpmFluids.FLOWING_VOID_WATER, YavpmFluids.STILL_VOID_WATER);
+            getOrCreateTagBuilder(FluidTags.WATER).add(YavpmFluids.FLOWING_VOID_WATER, YavpmFluids.STILL_VOID_WATER);
         }
     }
 

@@ -1,7 +1,7 @@
 package com.farestr06.yavpm.mixin.entity;
 
-import com.farestr06.yavpm.block.YavpmBlocks;
-import com.farestr06.yavpm.block.custom.NetherReactorCoreBlock;
+import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
+import com.farestr06.yavpm.world.biome.YavpmBiomes;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.mob.AbstractPiglinEntity;
 import net.minecraft.entity.mob.HostileEntity;
@@ -12,8 +12,6 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
-
-import static com.farestr06.yavpm.block.custom.NetherReactorCoreBlock.PHASE;
 
 /**
  * Prevents piglins from zombifying when near a Nether Reactor
@@ -31,19 +29,12 @@ public abstract class AbstractPiglinEntityMixin extends HostileEntity {
     // TODO: Make Piglins safe near Nether Reactors
     @Inject(method = "shouldZombify", at = @At(value = "HEAD"), cancellable = true)
     private void injected(CallbackInfoReturnable<Boolean> cir) {
-        int x = thiz.getBlockX();
-        int y = thiz.getBlockY();
-        int z = thiz.getBlockZ();
-
-        for (int i = x - 8; i < x + 8; i++) {
-            for (int j = y - 3; j < x + 3; j++) {
-                for (int k = z - 8; k < x + 8; k++) {
-                    if (thiz.getWorld().getBlockState(new BlockPos(i, j, k)).equals(YavpmBlocks.NETHER_REACTOR_CORE.getDefaultState().with(PHASE, NetherReactorCoreBlock.Phase.ACTIVE))) {
-                        cir.setReturnValue(false);
-                        break;
-                    }
-                }
-            }
+        if (thiz.hasStatusEffect(YavpmStatusEffects.NETHER_POWER)) {
+            cir.setReturnValue(false);
+        }
+        BlockPos pos = thiz.getBlockPos();
+        if (thiz.getWorld().getBiome(pos).matchesKey(YavpmBiomes.Overworld.WITHERED_SCAR)) {
+            cir.setReturnValue(false);
         }
     }
 }

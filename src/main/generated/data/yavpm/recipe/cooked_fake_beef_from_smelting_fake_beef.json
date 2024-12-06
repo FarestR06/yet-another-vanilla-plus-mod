@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.35,
+  "group": "FAKE_BEEF",
+  "ingredient": {
+    "item": "yavpm:fake_beef"
+  },
+  "result": {
+    "id": "yavpm:cooked_fake_beef"
+  }
+}

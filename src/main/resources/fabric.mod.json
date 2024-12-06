@@ -24,6 +24,9 @@
 		"fabric-datagen": [
 			"com.farestr06.yavpm.datagen.YetAnotherVanillaPlusModDataGenerator"
 		],
+		"terrablender": [
+			"com.farestr06.yavpm.world.biome.YavpmTerraBlenderInit"
+		],
 		"modmenu": [
 			"com.farestr06.yavpm.config.YavpmConfigScreen"
 		]
@@ -36,7 +39,8 @@
 		"minecraft": "~1.21.1",
 		"java": ">=21",
 		"fabric-api": ">=0.110.0+1.21.1",
-		"fr06-api": ">=2.7.0-1.21.1"
+		"fr06-api": ">=2.7.0-1.21.1",
+		"terrablender": ">=4.1.0.5"
 	},
 	"suggests": {
 		"enchdesc": "*"

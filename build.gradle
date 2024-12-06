@@ -17,16 +17,32 @@ repositories {
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
 
+	// Terraform and Mod Menu
 	maven {
 		name = 'TerraformersMC'
 		url = 'https://maven.terraformersmc.com/'
 	}
 
+	// YACL
 	maven {
 		name 'Xander Maven'
 		url 'https://maven.isxander.dev/releases'
 	}
 
+	// Cardinal Components API
+	maven {
+		name = "Ladysnake Mods"
+		url = 'https://maven.ladysnake.org/releases'
+	}
+
+	exclusiveContent {
+		forRepository {
+			maven { url = 'https://maven.minecraftforge.net/' }
+		}
+		filter {
+			includeGroup "com.github.glitchfiend"
+		}
+	}
 
 	exclusiveContent {
 		forRepository {
@@ -63,6 +79,9 @@ dependencies {
 	// Terraform Wood API
 	modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_version}"
 	include "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_version}"
+
+	// Terrablender
+	modImplementation "com.github.glitchfiend:TerraBlender-fabric:${project.terrablender_version}"
 
 	// Farest's API
 	modImplementation "maven.modrinth:farests-api:${project.farests_api_version}"

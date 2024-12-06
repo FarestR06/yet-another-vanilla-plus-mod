@@ -27,10 +27,15 @@ public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.ELECTRO_GLASS, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.BANANA_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PEANUT_CROP, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.MAGIC_BEAN_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.OAK_SAPLING_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.APPLE_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PRICKLE_SHOOT, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.APPLE_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.APPLE_DOOR, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.APPLE_TRAPDOOR, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PRICKLE_DOOR, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PRICKLE_TRAPDOOR, RenderLayer.getCutout());
 
         ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex > 0 ? -1 : DyedColorComponent.getColor(stack, -6265536),
                 YavpmItems.STUDDED_HELMET,

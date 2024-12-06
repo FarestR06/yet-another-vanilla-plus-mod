@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yavpm:block/magic_bean_crop_stage2"
+  }
+}

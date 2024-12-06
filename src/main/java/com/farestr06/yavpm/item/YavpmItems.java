@@ -6,6 +6,7 @@ import com.farestr06.yavpm.entity.mob.YavpmMobs;
 import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.custom.MolyItem;
 import com.farestr06.yavpm.item.custom.ReactorItem;
+import com.farestr06.yavpm.item.custom.RuneItem;
 import com.farestr06.yavpm.item.custom.SoulPowderItem;
 import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
@@ -15,10 +16,13 @@ import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.MapColor;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.FoodComponents;
 import net.minecraft.item.*;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.Potions;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Rarity;
 
 import java.util.HashMap;
@@ -38,6 +42,27 @@ public class YavpmItems {
             makeId("warped_wart"),
             new AliasedBlockItem(YavpmBlocks.WARPED_WART, new Item.Settings())
     );
+
+    // region Runes
+
+    public static final Item RUNE_ATTACK = makeAdvancedItem(
+            makeId("rune_attack"),
+            new RuneItem(Text.translatable("item.yavpm.rune_attack.tooltip").formatted(Formatting.GRAY))
+    );
+    public static final Item RUNE_DURABILITY = makeAdvancedItem(
+            makeId("rune_durability"),
+            new RuneItem(Text.translatable("item.yavpm.rune_durability.tooltip").formatted(Formatting.GRAY))
+    );
+    public static final Item RUNE_SPEED = makeAdvancedItem(
+            makeId("rune_speed"),
+            new RuneItem(Text.translatable("item.yavpm.rune_speed.tooltip").formatted(Formatting.GRAY))
+    );
+    public static final Item RUNE_TOUGHNESS = makeAdvancedItem(
+            makeId("rune_toughness"),
+            new RuneItem(Text.translatable("item.yavpm.rune_toughness.tooltip").formatted(Formatting.GRAY))
+    );
+
+    // endregion
 
     // region Banana
     public static final Item BANANA = makeItem(
@@ -83,9 +108,9 @@ public class YavpmItems {
             new Item.Settings()
     );
 
-    public static final Item MAGIC_BEANS = makeItem(
-            makeId("magic_beans"),
-            new Item.Settings().food(YavpmFoods.MAGIC_BEANS)
+    public static final Item MAGIC_BEAN = makeAdvancedItem(
+            makeId("magic_bean"),
+            new AliasedBlockItem(YavpmBlocks.MAGIC_BEAN_CROP, new Item.Settings().food(YavpmFoods.MAGIC_BEAN))
     );
     // endregion
 
@@ -97,6 +122,15 @@ public class YavpmItems {
     public static final Item CHOCOLATE = makeItem(
             makeId("chocolate"),
             new Item.Settings().food(YavpmFoods.CHOCOLATE)
+    );
+
+    public static final Item FAKE_BEEF = makeItem(
+            makeId("fake_beef"),
+            new Item.Settings().food(FoodComponents.BEEF)
+    );
+    public static final Item COOKED_FAKE_BEEF = makeItem(
+            makeId("cooked_fake_beef"),
+            new Item.Settings().food(FoodComponents.COOKED_BEEF)
     );
 
     public static final Item GRAPHITE = makeSimpleItem(makeId("graphite"));
@@ -112,6 +146,7 @@ public class YavpmItems {
             new MolyItem(new Item.Settings().maxCount(16))
     );
 
+    // region Reactor
     public static final Item REACTOR = makeAdvancedItem(
             makeId("reactor"),
             new ReactorItem(new Item.Settings().maxDamage(1024))
@@ -120,6 +155,7 @@ public class YavpmItems {
             makeId("heated_reactor"),
             new ReactorItem(new Item.Settings().maxDamage(1024))
     );
+    // endregion
 
     // region Studded Armor
     public static final Item STUDDED_HELMET = makeAdvancedItem(
@@ -156,6 +192,7 @@ public class YavpmItems {
     );
     // endregion
 
+    // region Terraform Block Items
     public static final Item APPLE_SIGN = makeAdvancedItem(
             makeId("apple_sign"),
             new SignItem(
@@ -191,7 +228,9 @@ public class YavpmItems {
 
     public static final Item APPLE_BOAT = TerraformBoatItemHelper.registerBoatItem(APPLE_BOAT_ID, APPLE_BOAT_KEY, false);
     public static final Item APPLE_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(APPLE_CHEST_BOAT_ID, APPLE_BOAT_KEY, true);
+    // endregion
 
+    // region Spawn Eggs
     public static final Item MOONGUS_SPAWN_EGG = makeAdvancedItem(
             makeId("moongus_spawn_egg"),
             new SpawnEggItem(YavpmMobs.MOONGUS, MapColor.BRIGHT_TEAL.color, MapColor.RED.color, new Item.Settings())
@@ -201,6 +240,7 @@ public class YavpmItems {
             makeId("carbonfowl_spawn_egg"),
             new SpawnEggItem(YavpmMobs.CARBONFOWL, 0x191919, 0x4aedd9, new Item.Settings())
     );
+    // endregion
     public static final Item VOID_WATER_BUCKET = makeAdvancedItem(
             makeId("void_water_bucket"),
             new BucketItem(
@@ -231,8 +271,10 @@ public class YavpmItems {
         entries.add(ACORN);
         entries.add(DIAMOND_ACORN);
         entries.add(MOLY);
-        entries.add(MAGIC_BEANS);
         entries.add(SEA_SOUP);
+        entries.add(MAGIC_BEAN);
+        entries.add(FAKE_BEEF);
+        entries.add(COOKED_FAKE_BEEF);
     }
     private static void addToIngredients(FabricItemGroupEntries entries) {
         entries.add(GRAPHITE);
@@ -240,9 +282,14 @@ public class YavpmItems {
         entries.add(YavpmBlocks.GRAPHENE_BLOCK);
 
         entries.add(RICE);
-        entries.add(MAGIC_BEANS);
+        entries.add(MAGIC_BEAN);
         entries.add(SOUL_POWDER);
         entries.add(REACTOR);
+
+        entries.add(RUNE_ATTACK);
+        entries.add(RUNE_DURABILITY);
+        entries.add(RUNE_SPEED);
+        entries.add(RUNE_TOUGHNESS);
     }
     private static void addToTools(FabricItemGroupEntries entries) {
         entries.add(VOID_WATER_BUCKET);
@@ -306,7 +353,7 @@ public class YavpmItems {
         compostables.add(COOKED_PEANUT, 0.5f);
         compostables.add(BANANA, 0.65f);
         compostables.add(MOLY, 1f);
-        compostables.add(MAGIC_BEANS, 0.65f);
+        compostables.add(MAGIC_BEAN, 0.65f);
         compostables.add(TRUFFLE, 0.65f);
         compostables.add(SEA_SOUP, 0.65f);
     }

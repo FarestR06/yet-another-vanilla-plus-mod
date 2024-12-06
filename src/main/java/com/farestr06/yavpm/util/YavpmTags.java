@@ -12,6 +12,11 @@ import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmTags {
     public static class Items {
+        public static final TagKey<Item> RUNES = of("runes");
+        public static final TagKey<Item> RUNE_ATTACK_APPLICABLE = of("rune_attack_applicable");
+        public static final TagKey<Item> RUNE_DURABILITY_APPLICABLE = of("rune_durability_applicable");
+        public static final TagKey<Item> RUNE_SPEED_APPLICABLE = of("rune_speed_applicable");
+        public static final TagKey<Item> RUNE_TOUGHNESS_APPLICABLE = of("rune_toughness_applicable");
         public static final TagKey<Item> REACTOR_RECHARGERS = of("reactor_rechargers");
         public static final TagKey<Item> APPLE_LOGS = of("apple_logs");
         public static final TagKey<Item> PRICKLE_LOGS = of("spiral_stalks");

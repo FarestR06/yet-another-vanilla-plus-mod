@@ -39,7 +39,8 @@
       "state": {
         "Name": "yavpm:prickle_log",
         "Properties": {
-          "axis": "y"
+          "axis": "y",
+          "prickly": "true"
         }
       }
     }

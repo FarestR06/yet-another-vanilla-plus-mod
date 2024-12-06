@@ -9,10 +9,12 @@ import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmSounds {
 
+    public static final SoundEvent BLOCK_PRICKLE_LOG_PLUCK = makeEvent(makeId("block.prickle_log.pluck"));
+
     public static final SoundEvent ITEM_REACTOR_CHARGE = makeEvent(makeId("item.reactor.charge"));
     public static final SoundEvent ITEM_SOUL_POWDER_USE = makeEvent(makeId("item.soul_powder.use"));
 
-    public static final SoundEvent ENTITY_CHICKEN_EGG_BREAK = makeEvent(makeId("entity.chicken.egg_break"));
+    public static final RegistryEntry<SoundEvent> MUSIC_OVERWORLD_WITHERED_SCAR = makeReferenceEvent(makeId("music.overworld.withered_scar"));
 
     public static final SoundEvent ENTITY_MOONGUS_SHEAR = makeEvent(makeId("entity.moongus.shear"));
     public static final SoundEvent ENTITY_MOONGUS_EAT = makeEvent(makeId("entity.moongus.eat"));

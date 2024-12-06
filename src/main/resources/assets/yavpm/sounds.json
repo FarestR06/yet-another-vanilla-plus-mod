@@ -1,9 +1,25 @@
 {
-  "item.reactor.charge": {
+  "block.prickle_log.pluck": {
     "sounds": [
-      "mob/ghast/fireball4"
+      "enchant/thorns/hit1",
+      "enchant/thorns/hit2",
+      "enchant/thorns/hit3",
+      "enchant/thorns/hit4"
     ],
-    "subtitle": "subtitles.item.reactor.charge"
+    "subtitle": "subtitles.block.prickle_log.pluck"
+  },
+  "music.overworld.withered_scar": {
+    "sounds": [
+      {
+        "name": "music/game/ancestry",
+        "stream": true
+      },
+      {
+        "name": "music/game/deeper",
+        "stream": true,
+        "volume": 0.4
+      }
+    ]
   },
   "entity.chicken.egg_break": {
     "sounds": [
@@ -12,6 +28,12 @@
     ],
     "subtitle": "subtitles.entity.chicken.egg_break"
   },
+  "item.reactor.charge": {
+  "sounds": [
+    "mob/ghast/fireball4"
+  ],
+  "subtitle": "subtitles.item.reactor.charge"
+},
   "item.soul_powder.use": {
     "sounds": [
       "mob/evocation_illager/cast1",

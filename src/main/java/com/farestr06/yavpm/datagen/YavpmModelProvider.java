@@ -2,9 +2,13 @@ package com.farestr06.yavpm.datagen;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.block.custom.BananaCropBlock;
+import com.farestr06.yavpm.block.custom.MagicBeanCropBlock;
 import com.farestr06.yavpm.block.custom.PeanutCropBlock;
 import com.farestr06.yavpm.block.custom.SaplingCropBlock;
 import com.farestr06.yavpm.item.YavpmItems;
+import it.unimi.dsi.fastutil.ints.Int2ObjectFunction;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.block.Block;
@@ -12,6 +16,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.data.client.*;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.state.property.Properties;
+import net.minecraft.state.property.Property;
 import net.minecraft.util.Identifier;
 
 import java.util.Optional;
@@ -36,7 +41,8 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.registerCrop(YavpmBlocks.PEANUT_CROP, PeanutCropBlock.AGE, 0, 1, 2, 3);
         registerBananaCrop(generator);
 
-        generator.registerCrop(YavpmBlocks.OAK_SAPLING_CROP, SaplingCropBlock.AGE, 0,1,2,3);
+        registerCrossCrop(generator, YavpmBlocks.OAK_SAPLING_CROP, SaplingCropBlock.AGE, 0,1,2,3);
+        registerCrossCrop(generator, YavpmBlocks.MAGIC_BEAN_CROP, MagicBeanCropBlock.AGE, 0,1,1,2,3,4,5);
 
         createGraniteSet(generator);
         createDioriteSet(generator);
@@ -69,8 +75,10 @@ public class YavpmModelProvider extends FabricModelProvider {
 
         generator.register(YavpmItems.TRUFFLE, Models.GENERATED);
 
+        generator.register(YavpmItems.FAKE_BEEF, Models.GENERATED);
+        generator.register(YavpmItems.COOKED_FAKE_BEEF, Models.GENERATED);
+
         generator.register(YavpmItems.RICE, Models.GENERATED);
-        generator.register(YavpmItems.MAGIC_BEANS, Models.GENERATED);
         generator.register(YavpmItems.SEA_SOUP, Models.GENERATED);
 
         generator.register(YavpmItems.GRAPHITE, Models.GENERATED);
@@ -84,6 +92,11 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.register(YavpmItems.CARBONFOWL_SPAWN_EGG, TEMPLATE_SPAWN_EGG);
 
         generator.register(YavpmItems.VOID_WATER_BUCKET, Models.GENERATED);
+
+        generator.register(YavpmItems.RUNE_ATTACK, Models.GENERATED);
+        generator.register(YavpmItems.RUNE_DURABILITY, Models.GENERATED);
+        generator.register(YavpmItems.RUNE_SPEED, Models.GENERATED);
+        generator.register(YavpmItems.RUNE_TOUGHNESS, Models.GENERATED);
     }
 
     private static void registerBananaCrop(BlockStateModelGenerator generator) {
@@ -175,5 +188,25 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.registerArmor((ArmorItem) YavpmItems.STUDDED_LEGGINGS);
         generator.registerArmor((ArmorItem) YavpmItems.STUDDED_BOOTS);
 
+    }
+
+    public final void registerCrossCrop(BlockStateModelGenerator generator, Block crop, Property<Integer> ageProperty, int... ageTextureIndices) {
+        if (ageProperty.getValues().size() != ageTextureIndices.length) {
+            throw new IllegalArgumentException();
+        } else {
+            Int2ObjectMap<Identifier> int2ObjectMap = new Int2ObjectOpenHashMap<>();
+            BlockStateVariantMap blockStateVariantMap = BlockStateVariantMap.create(ageProperty)
+                    .register(
+                            integer -> {
+                                int i = ageTextureIndices[integer];
+                                Identifier identifier = int2ObjectMap.computeIfAbsent(
+                                        i, (Int2ObjectFunction<? extends Identifier>)(j -> generator.createSubModel(crop, "_stage" + i, Models.CROSS, TextureMap::cross))
+                                );
+                                return BlockStateVariant.create().put(VariantSettings.MODEL, identifier);
+                            }
+                    );
+            generator.registerItemModel(crop.asItem());
+            generator.blockStateCollector.accept(VariantsBlockStateSupplier.create(crop).coordinate(blockStateVariantMap));
+        }
     }
 }

@@ -42,6 +42,24 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add("resourcePack.yavpm.programmer_art.name", "YAVPM Programmer Art");
 
+        builder.add(YavpmBlocks.VOID_WATER, "Void Water");
+        builder.add(YavpmItems.VOID_WATER_BUCKET, "Void Water Bucket");
+
+        builder.add(YavpmTags.Items.RUNES, "Runes");
+        builder.add(YavpmTags.Items.RUNE_ATTACK_APPLICABLE, "Upgradable with Attack Up Rune");
+        builder.add(YavpmTags.Items.RUNE_DURABILITY_APPLICABLE, "Upgradable with Durability Up Rune");
+        builder.add(YavpmTags.Items.RUNE_SPEED_APPLICABLE, "Upgradable with Speed Up Rune");
+        builder.add(YavpmTags.Items.RUNE_TOUGHNESS_APPLICABLE, "Upgradable with Toughness Up Rune");
+
+        builder.add(YavpmItems.RUNE_ATTACK, "Attack Up Rune");
+        builder.add("item.yavpm.rune_attack.tooltip", "Increases a weapon's base damage by 50 percent.");
+        builder.add(YavpmItems.RUNE_DURABILITY, "Durability Up Rune");
+        builder.add("item.yavpm.rune_durability.tooltip", "Increases a tool's maximum durability by 50 percent.");
+        builder.add(YavpmItems.RUNE_SPEED, "Speed Up Rune");
+        builder.add("item.yavpm.rune_speed.tooltip", "Increases a tool's mining speed by 50 percent.");
+        builder.add(YavpmItems.RUNE_TOUGHNESS, "Toughness Up Rune");
+        builder.add("item.yavpm.rune_toughness.tooltip", "Increases an armor piece's toughness by 50 percent.");
+
         builder.add(YavpmBlocks.GLOWING_OBSIDIAN, "Glowing Obsidian");
         builder.add(YavpmBlocks.SOUL_GLOWING_OBSIDIAN, "Soul Glowing Obsidian");
 
@@ -129,9 +147,13 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.TRUFFLE, "Truffle");
 
         builder.add(YavpmItems.RICE, "Rice");
-        builder.add(YavpmItems.MAGIC_BEANS, "Magic Beans");
+        builder.add(YavpmBlocks.MAGIC_BEAN_CROP, "Magic Bean Crops");
+        builder.add(YavpmItems.MAGIC_BEAN, "Magic Bean");
 
         builder.add(YavpmItems.SEA_SOUP, "Sea Soup");
+
+        builder.add(YavpmItems.FAKE_BEEF, "Fake Raw Beef");
+        builder.add(YavpmItems.COOKED_FAKE_BEEF, "Fake Steak");
 
         builder.add(YavpmItems.STUDDED_HELMET, "Studded Cap");
         builder.add(YavpmItems.STUDDED_CHESTPLATE, "Studded Tunic");
@@ -192,7 +214,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.PRICKLE_SIGN, "Prickle Sign");
         builder.add(YavpmItems.PRICKLE_HANGING_SIGN, "Prickle Hanging Sign");
         builder.add(YavpmBlocks.PRICKLE_SHOOT, "Prickle Shoot");
-        builder.add(YavpmTags.Blocks.PRICKLE_LOGS, "Prickle Logs");
+        builder.add(YavpmTags.Items.PRICKLE_LOGS, "Prickle Logs");
+        builder.add("subtitles.block.prickle_log.pluck", "Prickle Log plucks");
 
         builder.add(YavpmBlocks.APPLE_LOG, "Apple Log");
         builder.add(YavpmBlocks.APPLE_WOOD, "Apple Wood");
@@ -229,5 +252,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("subtitles.entity.moongus.eat", "Moongus eats");
         builder.add("subtitles.entity.moongus.milk.crimson", "Moongus gets milked awkwardly");
         builder.add("subtitles.entity.moongus.milk.warped", "Moongus gets milked mundanely");
+
+        builder.add("biome.yavpm.orchard_peaks", "Orchard Peaks");
+        builder.add("biome.yavpm.withered_scar", "Withered Scar");
     }
 }

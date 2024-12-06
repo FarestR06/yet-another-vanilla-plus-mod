@@ -1,10 +1,7 @@
 package com.farestr06.yavpm.datagen;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
-import com.farestr06.yavpm.block.custom.BananaCropBlock;
-import com.farestr06.yavpm.block.custom.PeanutCropBlock;
-import com.farestr06.yavpm.block.custom.SaplingCropBlock;
-import com.farestr06.yavpm.block.custom.WarpedWartCropBlock;
+import com.farestr06.yavpm.block.custom.*;
 import com.farestr06.yavpm.item.YavpmItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
@@ -36,7 +33,6 @@ public class YavpmLootProviders {
 
         @Override
         public void generate() {
-            RegistryWrapper.Impl<Enchantment> impl = this.registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
 
             addDropWithSilkTouch(YavpmBlocks.NETHER_REACTOR_CORE);
 
@@ -71,7 +67,7 @@ public class YavpmLootProviders {
                                                                                     .conditionally(BlockStatePropertyLootCondition.builder(block).properties(StatePredicate.Builder.create().exactMatch(WarpedWartCropBlock.AGE, 3)))
                                                                     )
                                                                     .apply(
-                                                                            ApplyBonusLootFunction.uniformBonusCount(impl.getOrThrow(Enchantments.FORTUNE))
+                                                                            ApplyBonusLootFunction.uniformBonusCount(lookup.getOrThrow(Enchantments.FORTUNE))
                                                                                     .conditionally(BlockStatePropertyLootCondition.builder(block).properties(StatePredicate.Builder.create().exactMatch(WarpedWartCropBlock.AGE, 3)))
                                                                     )
                                                     )
@@ -83,25 +79,36 @@ public class YavpmLootProviders {
         }
 
         private void modCropDrops() {
-            BlockStatePropertyLootCondition.Builder builder = BlockStatePropertyLootCondition.builder(YavpmBlocks.PEANUT_CROP).properties(StatePredicate.Builder.create()
+            BlockStatePropertyLootCondition.Builder peanutConditionBuilder = BlockStatePropertyLootCondition.builder(YavpmBlocks.PEANUT_CROP).properties(StatePredicate.Builder.create()
                     .exactMatch(PeanutCropBlock.AGE, 3));
             this.addDrop(YavpmBlocks.PEANUT_CROP, this.applyExplosionDecay(YavpmBlocks.PEANUT_CROP, LootTable.builder().pool(
                     LootPool.builder().with(
                             ItemEntry.builder(YavpmItems.PEANUT)
-                    )).pool(LootPool.builder().conditionally(builder)
+                    )).pool(LootPool.builder().conditionally(peanutConditionBuilder)
                     .with(ItemEntry.builder(YavpmItems.PEANUT)
                             .apply(ApplyBonusLootFunction.binomialWithBonusCount
                                     (lookup.getOrThrow(Enchantments.FORTUNE), 0.5714286f, 3)
                             )))));
 
-            BlockStatePropertyLootCondition.Builder builder2 = BlockStatePropertyLootCondition.builder(YavpmBlocks.BANANA_CROP).properties(StatePredicate.Builder.create()
+            BlockStatePropertyLootCondition.Builder magicBeanConditionBuilder = BlockStatePropertyLootCondition.builder(YavpmBlocks.PEANUT_CROP).properties(StatePredicate.Builder.create()
+                    .exactMatch(MagicBeanCropBlock.AGE, 6));
+            this.addDrop(YavpmBlocks.MAGIC_BEAN_CROP, this.applyExplosionDecay(YavpmBlocks.MAGIC_BEAN_CROP, LootTable.builder().pool(
+                    LootPool.builder().with(
+                            ItemEntry.builder(YavpmItems.MAGIC_BEAN)
+                    )).pool(LootPool.builder().conditionally(magicBeanConditionBuilder)
+                    .with(ItemEntry.builder(YavpmItems.MAGIC_BEAN)
+                            .apply(ApplyBonusLootFunction.binomialWithBonusCount
+                                    (lookup.getOrThrow(Enchantments.FORTUNE), 0.5714286f, 5)
+                            )))));
+
+            BlockStatePropertyLootCondition.Builder bananaConditionBuilder = BlockStatePropertyLootCondition.builder(YavpmBlocks.BANANA_CROP).properties(StatePredicate.Builder.create()
                     .exactMatch(BananaCropBlock.AGE, 5));
 
-            addDrop(YavpmBlocks.BANANA_CROP, cropDrops(YavpmBlocks.BANANA_CROP, YavpmItems.BANANA, YavpmItems.BANANA_SEEDS, builder2));
+            addDrop(YavpmBlocks.BANANA_CROP, cropDrops(YavpmBlocks.BANANA_CROP, YavpmItems.BANANA, YavpmItems.BANANA_SEEDS, bananaConditionBuilder));
 
-            BlockStatePropertyLootCondition.Builder oakSaplingBuilder = BlockStatePropertyLootCondition.builder(YavpmBlocks.OAK_SAPLING_CROP).properties(StatePredicate.Builder.create()
+            BlockStatePropertyLootCondition.Builder oakSaplingConditionBuilder = BlockStatePropertyLootCondition.builder(YavpmBlocks.OAK_SAPLING_CROP).properties(StatePredicate.Builder.create()
                     .exactMatch(SaplingCropBlock.AGE, 3));
-            addDrop(YavpmBlocks.OAK_SAPLING_CROP, cropDrops(YavpmBlocks.OAK_SAPLING_CROP, Items.OAK_SAPLING, YavpmItems.ACORN, oakSaplingBuilder));
+            addDrop(YavpmBlocks.OAK_SAPLING_CROP, cropDrops(YavpmBlocks.OAK_SAPLING_CROP, Items.OAK_SAPLING, YavpmItems.ACORN, oakSaplingConditionBuilder));
         }
 
         private void stoneVariantDrops() {

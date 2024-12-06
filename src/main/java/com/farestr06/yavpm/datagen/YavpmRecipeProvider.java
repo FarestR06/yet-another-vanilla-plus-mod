@@ -30,16 +30,8 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
 
     @Override
     public void generate(RecipeExporter exporter) {
-        offerSmelting(exporter, List.of(YavpmItems.PEANUT), RecipeCategory.FOOD, YavpmItems.COOKED_PEANUT, 0.35f, 200, "peanut");
-        offerFoodCookingRecipe(exporter, "smoking", RecipeSerializer.SMOKING, SmokingRecipe::new, 100, YavpmItems.PEANUT, YavpmItems.COOKED_PEANUT, 0.35f);
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.CHOCOLATE, 4)
-                .input(Items.COCOA_BEANS)
-                .input(Items.MILK_BUCKET)
-                .input(Items.SUGAR)
-                .criterion(hasItem(Items.COCOA_BEANS), conditionsFromItem(Items.COCOA_BEANS))
-                .offerTo(exporter, makeId(getRecipeName(YavpmItems.CHOCOLATE)))
-        ;
+        makeFoods(exporter);
 
         ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, YavpmItems.SOUL_POWDER, 4)
                 .input(Items.BLAZE_POWDER)
@@ -86,6 +78,62 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .offerTo(exporter, makeId(getRecipeName(YavpmItems.MOLY)))
         ;
 
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.REDSTONE, YavpmBlocks.ELECTRO_GLASS)
+                .input(Items.GLASS)
+                .input(Items.GLOW_INK_SAC)
+                .criterion(hasItem(Items.GLOW_INK_SAC), conditionsFromItem(Items.GLOW_INK_SAC))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.ELECTRO_GLASS)))
+        ;
+
+        makeStuddedArmorRecipes(exporter);
+
+        offerReversibleCompactingRecipes(exporter, RecipeCategory.MISC, YavpmItems.GRAPHITE, RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.GRAPHITE_BLOCK);
+        offerCompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.GRAPHENE_BLOCK, YavpmBlocks.GRAPHITE_BLOCK);
+
+        offerSmelting(exporter, List.of(YavpmBlocks.GRAPHENE_BLOCK), RecipeCategory.MISC, Items.DIAMOND, 1f, 200, "graphene_to_diamond");
+
+        makePrickleWoodRecipes(exporter);
+        makeApplewoodRecipes(exporter);
+
+        makeStoneVariantRecipes(exporter);
+    }
+
+    private static void makeFoods(RecipeExporter exporter) {
+        offerSmelting(exporter, List.of(YavpmItems.PEANUT), RecipeCategory.FOOD, YavpmItems.COOKED_PEANUT, 0.35f, 200, "peanut");
+        offerFoodCookingRecipe(exporter, "smoking", RecipeSerializer.SMOKING, SmokingRecipe::new, 100, YavpmItems.PEANUT, YavpmItems.COOKED_PEANUT, 0.35f);
+        offerSmelting(exporter, List.of(YavpmItems.FAKE_BEEF), RecipeCategory.FOOD, YavpmItems.COOKED_FAKE_BEEF, 0.35f, 200, "FAKE_BEEF");
+        offerFoodCookingRecipe(exporter, "smoking", RecipeSerializer.SMOKING, SmokingRecipe::new, 100, YavpmItems.FAKE_BEEF, YavpmItems.COOKED_FAKE_BEEF, 0.35f);
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.FAKE_BEEF, 2)
+                .input('#', YavpmItems.MAGIC_BEAN)
+                .pattern("##")
+                .pattern("##")
+                .pattern("##")
+                .criterion(hasItem(YavpmItems.MAGIC_BEAN), conditionsFromItem(YavpmItems.MAGIC_BEAN))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.FAKE_BEEF)));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.CHOCOLATE, 4)
+                .input(Items.COCOA_BEANS)
+                .input(Items.MILK_BUCKET)
+                .input(Items.SUGAR)
+                .criterion(hasItem(Items.COCOA_BEANS), conditionsFromItem(Items.COCOA_BEANS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.CHOCOLATE)))
+        ;
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.SEA_SOUP)
+                .input(Items.TROPICAL_FISH)
+                .input(YavpmItems.RICE)
+                .input(Items.DRIED_KELP)
+                .input(YavpmItems.MAGIC_BEAN)
+                .input(Items.BOWL)
+                .criterion("has_sea_soup", conditionsFromItem(YavpmItems.SEA_SOUP))
+                .criterion("has_bowl", conditionsFromItem(Items.BOWL))
+                .criterion("has_tropical_fish", conditionsFromItem(Items.TROPICAL_FISH))
+                .criterion("has_rice", conditionsFromItem(YavpmItems.RICE))
+                .criterion("has_dried_kelp", conditionsFromItem(Items.DRIED_KELP))
+                .criterion("has_magic_beans", conditionsFromItem(YavpmItems.MAGIC_BEAN))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.SEA_SOUP)));
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.DIAMOND_ACORN)
                 .input('#', Items.DIAMOND)
                 .input('%', YavpmItems.ACORN)
@@ -95,42 +143,9 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(YavpmItems.ACORN), conditionsFromItem(YavpmItems.ACORN))
                 .offerTo(exporter, makeId(getRecipeName(YavpmItems.DIAMOND_ACORN)))
         ;
-
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.REDSTONE, YavpmBlocks.ELECTRO_GLASS)
-                .input(Items.GLASS)
-                .input(Items.GLOW_INK_SAC)
-                .criterion(hasItem(Items.GLOW_INK_SAC), conditionsFromItem(Items.GLOW_INK_SAC))
-                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.ELECTRO_GLASS)))
-        ;
-
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.SEA_SOUP)
-                .input(Items.TROPICAL_FISH)
-                .input(YavpmItems.RICE)
-                .input(Items.DRIED_KELP)
-                .input(YavpmItems.MAGIC_BEANS)
-                .input(Items.BOWL)
-                .criterion("has_sea_soup", conditionsFromItem(YavpmItems.SEA_SOUP))
-                .criterion("has_bowl", conditionsFromItem(Items.BOWL))
-                .criterion("has_tropical_fish", conditionsFromItem(Items.TROPICAL_FISH))
-                .criterion("has_rice", conditionsFromItem(YavpmItems.RICE))
-                .criterion("has_dried_kelp", conditionsFromItem(Items.DRIED_KELP))
-                .criterion("has_magic_beans", conditionsFromItem(YavpmItems.MAGIC_BEANS))
-                .offerTo(exporter, makeId(getRecipeName(YavpmItems.SEA_SOUP)));
-        makeStuddedArmorRecipes(exporter);
-
-        offerReversibleCompactingRecipes(exporter, RecipeCategory.MISC, YavpmItems.GRAPHITE, RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.GRAPHITE_BLOCK);
-        offerCompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.GRAPHENE_BLOCK, YavpmBlocks.GRAPHITE_BLOCK);
-
-        offerSmelting(exporter, List.of(YavpmBlocks.GRAPHENE_BLOCK), RecipeCategory.MISC, Items.DIAMOND, 1f, 200, "graphene_to_diamond");
-
-        makeSpiralWoodRecipes(exporter);
-        makeApplewoodRecipes(exporter);
-
-        makeStoneRecipes(exporter);
     }
 
-    private static void makeStoneRecipes(RecipeExporter exporter) {
-
+    private static void makeStoneVariantRecipes(RecipeExporter exporter) {
         CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(YavpmBlocks.COBBLED_GRANITE), RecipeCategory.BUILDING_BLOCKS, Blocks.GRANITE.asItem(), 0.1F, 200)
                 .criterion("has_cobbled_granite", conditionsFromItem(YavpmBlocks.COBBLED_GRANITE))
                 .offerTo(exporter, makeId("granite_from_cobbled"));
@@ -144,8 +159,7 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .offerTo(exporter, makeId("andesite_from_cobbled"));
     }
 
-    private void makeSpiralWoodRecipes(RecipeExporter exporter) {
-
+    private void makePrickleWoodRecipes(RecipeExporter exporter) {
         offerPlanksRecipe(exporter, YavpmBlocks.PRICKLE_PLANKS, YavpmTags.Items.PRICKLE_LOGS, 4);
 
         createStairsRecipe(YavpmBlocks.PRICKLE_STAIRS, Ingredient.ofItems(YavpmBlocks.PRICKLE_PLANKS))

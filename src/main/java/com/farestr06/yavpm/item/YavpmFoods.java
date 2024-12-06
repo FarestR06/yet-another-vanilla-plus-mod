@@ -11,7 +11,7 @@ public class YavpmFoods {
             .saturationModifier(1.0f)
             .build();
 
-    public static final FoodComponent MAGIC_BEANS = new FoodComponent.Builder()
+    public static final FoodComponent MAGIC_BEAN = new FoodComponent.Builder()
             .nutrition(2)
             .saturationModifier(0.3f)
             .build();

@@ -2,8 +2,8 @@ package com.farestr06.yavpm.block;
 
 import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.block.custom.*;
+import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import com.farestr06.yavpm.fluid.YavpmFluids;
-import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.world.YavpmConfiguredFeatures;
 import com.terraformersmc.terraform.sign.api.block.TerraformHangingSignBlock;
 import com.terraformersmc.terraform.sign.api.block.TerraformSignBlock;
@@ -17,12 +17,15 @@ import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.data.family.BlockFamilies;
 import net.minecraft.data.family.BlockFamily;
-import net.minecraft.item.ItemConvertible;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 
 import static com.farestr06.api.block.BlockHelper.*;
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
@@ -62,12 +65,12 @@ public class YavpmBlocks {
 
     public static final Block OAK_SAPLING_CROP = makeAdvancedBlock(
             makeId("oak_sapling_crop"),
-            new SaplingCropBlock(AbstractBlock.Settings.copy(Blocks.OAK_SAPLING)) {
-                @Override
-                protected ItemConvertible getSeedsItem() {
-                    return YavpmItems.ACORN;
-                }
-            }
+            new SaplingCropBlock(AbstractBlock.Settings.copy(Blocks.OAK_SAPLING))
+    );
+
+    public static final Block MAGIC_BEAN_CROP = makeAdvancedBlock(
+            makeId("magic_bean_crop"),
+            new MagicBeanCropBlock(AbstractBlock.Settings.copy(Blocks.POTATOES))
     );
     // endregion
 
@@ -295,7 +298,6 @@ public class YavpmBlocks {
     // endregion
 
     // region Prickle Wood
-
     public static final Block PRICKLE_LOG = makeAdvancedBlockAndItem(
             makeId("prickle_log"),
             new PrickleLogBlock(AbstractBlock.Settings.copy(Blocks.WARPED_STEM).burnable())
@@ -335,15 +337,15 @@ public class YavpmBlocks {
     public static final Block PRICKLE_DOOR = makeAdvancedBlockAndItem(
             makeId("prickle_door"),
             new DoorBlock(
-                    BlockSetType.CHERRY,
-                    AbstractBlock.Settings.copy(Blocks.CHERRY_DOOR)
+                    BlockSetType.WARPED,
+                    AbstractBlock.Settings.copy(Blocks.WARPED_DOOR)
             )
     );
     public static final Block PRICKLE_TRAPDOOR = makeAdvancedBlockAndItem(
             makeId("prickle_trapdoor"),
             new TrapdoorBlock(
-                    BlockSetType.CHERRY,
-                    AbstractBlock.Settings.copy(Blocks.CHERRY_TRAPDOOR)
+                    BlockSetType.WARPED,
+                    AbstractBlock.Settings.copy(Blocks.WARPED_TRAPDOOR)
             )
     );
     public static final Block PRICKLE_BUTTON = makeAdvancedBlockAndItem(
@@ -423,7 +425,16 @@ public class YavpmBlocks {
 
     public static final Block VOID_WATER = makeAdvancedBlock(
             makeId("void_water"),
-            new FluidBlock(YavpmFluids.STILL_VOID_WATER, AbstractBlock.Settings.copy(Blocks.WATER))
+            new FluidBlock(YavpmFluids.STILL_VOID_WATER, AbstractBlock.Settings.copy(Blocks.WATER)) {
+                @Override
+                protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+                    if (!world.isClient) {
+                        if (entity instanceof LivingEntity livingEntity) {
+                            livingEntity.addStatusEffect(new StatusEffectInstance(YavpmStatusEffects.VOID_TOUCHED, 30));
+                        }
+                    }
+                }
+            }
     );
 
     // region Creative Tabs
@@ -458,6 +469,14 @@ public class YavpmBlocks {
         entries.add(STRIPPED_PRICKLE_LOG);
         entries.add(STRIPPED_PRICKLE_WOOD);
         entries.add(PRICKLE_PLANKS);
+        entries.add(PRICKLE_STAIRS);
+        entries.add(PRICKLE_SLAB);
+        entries.add(PRICKLE_FENCE);
+        entries.add(PRICKLE_FENCE_GATE);
+        entries.add(PRICKLE_DOOR);
+        entries.add(PRICKLE_TRAPDOOR);
+        entries.add(PRICKLE_PRESSURE_PLATE);
+        entries.add(PRICKLE_BUTTON);
 
         entries.add(GLOWING_OBSIDIAN);
         entries.add(SOUL_GLOWING_OBSIDIAN);
