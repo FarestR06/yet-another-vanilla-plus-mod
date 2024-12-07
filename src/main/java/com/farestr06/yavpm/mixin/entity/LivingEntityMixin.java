@@ -2,7 +2,6 @@ package com.farestr06.yavpm.mixin.entity;
 
 import com.farestr06.yavpm.config.YavpmConfig;
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
-import com.farestr06.yavpm.util.StatusEffectClearable;
 import net.minecraft.entity.Attackable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -10,15 +9,12 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(LivingEntity.class)
-public abstract class LivingEntityMixin extends Entity implements Attackable, StatusEffectClearable {
-
-    @Shadow protected abstract void onStatusEffectRemoved(StatusEffectInstance effect);
+public abstract class LivingEntityMixin extends Entity implements Attackable {
 
     private LivingEntityMixin(EntityType<?> type, World world) {
         super(type, world);
@@ -36,18 +32,4 @@ public abstract class LivingEntityMixin extends Entity implements Attackable, St
         } else return damage;
     }
 
-    // Nerf milk bucket
-    @Override
-    public boolean yAVPM$clearStatusEffectsWithMilk() {
-        if (!thiz.getWorld().isClient) {
-            boolean bl = false;
-            for (StatusEffectInstance effect : thiz.getStatusEffects()) {
-                if (StatusEffectClearable.isClearableByMilk(effect)) {
-                    onStatusEffectRemoved(effect);
-                    bl = true;
-                }
-            }
-            return bl;
-        } else return false;
-    }
 }

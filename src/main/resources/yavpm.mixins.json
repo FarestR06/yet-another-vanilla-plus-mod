@@ -9,8 +9,7 @@
     "entity.DragonFireballEntityMixin",
     "entity.HoglinEntityMixin",
     "entity.LivingEntityMixin",
-    "item.ItemModelGeneratorMixin",
-    "item.MilkBucketItemMixin"
+    "item.ItemModelGeneratorMixin"
   ],
   "injectors": {
     "defaultRequire": 1

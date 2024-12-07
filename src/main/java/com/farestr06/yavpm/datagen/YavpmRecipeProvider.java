@@ -104,6 +104,12 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
         offerSmelting(exporter, List.of(YavpmItems.FAKE_BEEF), RecipeCategory.FOOD, YavpmItems.COOKED_FAKE_BEEF, 0.35f, 200, "FAKE_BEEF");
         offerFoodCookingRecipe(exporter, "smoking", RecipeSerializer.SMOKING, SmokingRecipe::new, 100, YavpmItems.FAKE_BEEF, YavpmItems.COOKED_FAKE_BEEF, 0.35f);
 
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.CHEESE, 4)
+                .input(Items.MILK_BUCKET)
+                .input(Items.BROWN_MUSHROOM)
+                .criterion(hasItem(Items.MILK_BUCKET), conditionsFromItem(Items.MILK_BUCKET))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.CHEESE)));
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.FAKE_BEEF, 2)
                 .input('#', YavpmItems.MAGIC_BEAN)
                 .pattern("##")
@@ -111,6 +117,19 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .pattern("##")
                 .criterion(hasItem(YavpmItems.MAGIC_BEAN), conditionsFromItem(YavpmItems.MAGIC_BEAN))
                 .offerTo(exporter, makeId(getRecipeName(YavpmItems.FAKE_BEEF)));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.FAKE_MILK_BUCKET)
+                .input(YavpmItems.MAGIC_BEAN, 4)
+                .input(Items.BUCKET)
+                .criterion(hasItem(YavpmItems.MAGIC_BEAN), conditionsFromItem(YavpmItems.MAGIC_BEAN))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.FAKE_MILK_BUCKET)));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.TOFU, 4)
+                .input(YavpmItems.FAKE_MILK_BUCKET)
+                .input(Items.BROWN_MUSHROOM)
+                .criterion(hasItem(YavpmItems.FAKE_MILK_BUCKET), conditionsFromItem(YavpmItems.FAKE_MILK_BUCKET))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.TOFU)));
+
 
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.CHOCOLATE, 4)
                 .input(Items.COCOA_BEANS)

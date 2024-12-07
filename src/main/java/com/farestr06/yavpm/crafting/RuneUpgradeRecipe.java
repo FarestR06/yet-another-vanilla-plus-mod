@@ -62,8 +62,15 @@ public class RuneUpgradeRecipe extends SpecialCraftingRecipe {
             return speedRuneCalculate(tool);
         }
         if (rune.isOf(YavpmItems.RUNE_TOUGHNESS) && tool.isIn(YavpmTags.Items.RUNE_TOUGHNESS_APPLICABLE)) {
-            return speedRuneCalculate(tool);
+            return toughnessRuneCalculate(tool);
         }
+        return ItemStack.EMPTY;
+    }
+
+    private ItemStack toughnessRuneCalculate(ItemStack tool) {
+        ComponentMap.Builder map = ComponentMap.builder();
+
+        // TODO: Finish RuneUpgradeRecipe
         return ItemStack.EMPTY;
     }
 

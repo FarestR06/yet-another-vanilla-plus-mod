@@ -4,10 +4,7 @@ import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.entity.mob.YavpmMobs;
 import com.farestr06.yavpm.fluid.YavpmFluids;
-import com.farestr06.yavpm.item.custom.MolyItem;
-import com.farestr06.yavpm.item.custom.ReactorItem;
-import com.farestr06.yavpm.item.custom.RuneItem;
-import com.farestr06.yavpm.item.custom.SoulPowderItem;
+import com.farestr06.yavpm.item.custom.*;
 import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
@@ -17,6 +14,7 @@ import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.MapColor;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.FoodComponents;
+import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.item.*;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.Potions;
@@ -124,6 +122,24 @@ public class YavpmItems {
             new Item.Settings().food(YavpmFoods.CHOCOLATE)
     );
 
+    public static final Item FORTUNE_COOKIE = makeAdvancedItem(
+            makeId("fortune_cookie"),
+            new FortuneCookieItem(new Item.Settings().food(FoodComponents.COOKIE))
+    );
+
+    public static final Item LUCKY_SLIP = makeAdvancedItem(
+            makeId("lucky_slip"),
+            new LuckySlipItem(
+                    new Item.Settings()
+                            .rarity(Rarity.UNCOMMON)
+                            .maxCount(1)
+                            .component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true)
+                            .component(DataComponentTypes.STORED_ENCHANTMENTS, ItemEnchantmentsComponent.DEFAULT)
+            )
+    );
+
+    public static final Item CHEESE = makeItem(makeId("cheese"), new Item.Settings().food(YavpmFoods.CHEESE));
+
     public static final Item FAKE_BEEF = makeItem(
             makeId("fake_beef"),
             new Item.Settings().food(FoodComponents.BEEF)
@@ -132,6 +148,12 @@ public class YavpmItems {
             makeId("cooked_fake_beef"),
             new Item.Settings().food(FoodComponents.COOKED_BEEF)
     );
+    public static final Item FAKE_MILK_BUCKET = makeAdvancedItem(
+            makeId("fake_milk_bucket"),
+            new MilkBucketItem(new Item.Settings().recipeRemainder(Items.BUCKET).maxCount(1))
+    );
+
+    public static final Item TOFU = makeItem(makeId("tofu"), new Item.Settings().food(YavpmFoods.CHEESE));
 
     public static final Item GRAPHITE = makeSimpleItem(makeId("graphite"));
 
@@ -254,8 +276,8 @@ public class YavpmItems {
         entries.add(YavpmBlocks.APPLE_LEAVES);
         entries.add(YavpmBlocks.APPLE_SAPLING);
         entries.add(BANANA_SEEDS);
-        entries.add(BANANA_SEEDS);
         entries.add(PEANUT);
+        entries.add(MAGIC_BEAN);
         entries.add(ACORN);
     }
     private static void addToFunctional(FabricItemGroupEntries entries) {
@@ -265,6 +287,7 @@ public class YavpmItems {
     private static void addToFoodAndDrink(FabricItemGroupEntries entries) {
         entries.add(TRUFFLE);
         entries.add(CHOCOLATE);
+        entries.add(CHEESE);
         entries.add(BANANA);
         entries.add(PEANUT);
         entries.add(COOKED_PEANUT);
@@ -275,6 +298,8 @@ public class YavpmItems {
         entries.add(MAGIC_BEAN);
         entries.add(FAKE_BEEF);
         entries.add(COOKED_FAKE_BEEF);
+        entries.add(FAKE_MILK_BUCKET);
+        entries.add(TOFU);
     }
     private static void addToIngredients(FabricItemGroupEntries entries) {
         entries.add(GRAPHITE);
@@ -293,6 +318,8 @@ public class YavpmItems {
     }
     private static void addToTools(FabricItemGroupEntries entries) {
         entries.add(VOID_WATER_BUCKET);
+        entries.add(FAKE_MILK_BUCKET);
+        entries.add(FORTUNE_COOKIE);
         entries.add(APPLE_BOAT);
         entries.add(APPLE_CHEST_BOAT);
     }

@@ -35,62 +35,66 @@ public class YavpmTagProviders {
             getOrCreateTagBuilder(ItemTags.FOOT_ARMOR)
                     .add(YavpmItems.STUDDED_BOOTS);
 
-            getOrCreateTagBuilder(YavpmTags.Items.CRIMSON_MOONGUS_FOOD)
-                    .add(
-                            Items.SUGAR,
-                            Items.RABBIT_FOOT,
-                            Items.BLAZE_POWDER,
-                            Items.GLISTERING_MELON_SLICE,
-                            Items.SPIDER_EYE,
-                            Items.GHAST_TEAR,
-                            Items.MAGMA_CREAM,
-                            Items.PUFFERFISH,
-                            Items.GOLDEN_CARROT,
-                            Items.TURTLE_HELMET,
-                            Items.PHANTOM_MEMBRANE,
-                            Items.BREEZE_ROD,
-                            Items.SLIME_BLOCK,
-                            Items.STONE,
-                            Items.WITHER_SKELETON_SKULL,
-                            Items.ENDER_EYE
-                    );
+            getOrCreateTagBuilder(YavpmTags.Items.CRIMSON_MOONGUS_FOOD).add(
+                    Items.SUGAR,
+                    Items.RABBIT_FOOT,
+                    Items.BLAZE_POWDER,
+                    Items.GLISTERING_MELON_SLICE,
+                    Items.SPIDER_EYE,
+                    Items.GHAST_TEAR,
+                    Items.MAGMA_CREAM,
+                    Items.PUFFERFISH,
+                    Items.GOLDEN_CARROT,
+                    Items.TURTLE_HELMET,
+                    Items.PHANTOM_MEMBRANE,
+                    Items.BREEZE_ROD,
+                    Items.SLIME_BLOCK,
+                    Items.STONE,
+                    Items.WITHER_SKELETON_SKULL,
+                    Items.ENDER_EYE
+            );
             getOrCreateTagBuilder(YavpmTags.Items.WARPED_MOONGUS_FOOD).add(
                     Items.FERMENTED_SPIDER_EYE,
                     Items.WITHER_SKELETON_SKULL,
                     Items.ENDER_EYE
             );
-            getOrCreateTagBuilder(YavpmTags.Items.REACTOR_RECHARGERS)
-                    .add(
-                            Items.BLAZE_POWDER,
-                            Items.BLAZE_ROD,
-                            Items.FIRE_CHARGE,
-                            Items.MAGMA_CREAM,
-                            Items.MAGMA_BLOCK,
-                            Items.LAVA_BUCKET
-                    );
+            getOrCreateTagBuilder(YavpmTags.Items.REACTOR_RECHARGERS).add(
+                    Items.BLAZE_POWDER,
+                    Items.BLAZE_ROD,
+                    Items.FIRE_CHARGE,
+                    Items.MAGMA_CREAM,
+                    Items.MAGMA_BLOCK,
+                    Items.LAVA_BUCKET
+            );
 
             getOrCreateTagBuilder(ItemTags.PARROT_POISONOUS_FOOD).add(
                     YavpmItems.CHOCOLATE
             );
-
             getOrCreateTagBuilder(ItemTags.CHICKEN_FOOD).add(
                     YavpmItems.ACORN,
                     YavpmItems.DIAMOND_ACORN,
                     YavpmItems.BANANA_SEEDS
             );
-
             getOrCreateTagBuilder(ItemTags.PARROT_FOOD).add(
                     YavpmItems.ACORN,
                     YavpmItems.DIAMOND_ACORN,
                     YavpmItems.BANANA_SEEDS
             );
-
             getOrCreateTagBuilder(ItemTags.PIG_FOOD).add(
                     YavpmItems.ACORN,
                     YavpmItems.DIAMOND_ACORN,
                     YavpmItems.TRUFFLE
             );
-
+            getOrCreateTagBuilder(ItemTags.WOLF_FOOD).add(
+                    YavpmItems.COOKED_PEANUT,
+                    YavpmItems.CHEESE,
+                    YavpmItems.FAKE_BEEF,
+                    YavpmItems.COOKED_FAKE_BEEF,
+                    YavpmItems.TOFU
+            );
+            getOrCreateTagBuilder(ConventionalItemTags.MILK_BUCKETS).add(
+                    YavpmItems.FAKE_MILK_BUCKET
+            );
             getOrCreateTagBuilder(ConventionalItemTags.FOODS).add(
                     YavpmItems.BANANA,
                     YavpmItems.PEANUT,

@@ -20,7 +20,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "yavpm:peanut_crop",
+          "block": "yavpm:magic_bean_crop",
           "condition": "minecraft:block_state_property",
           "properties": {
             "age": "6"
@@ -36,7 +36,7 @@
               "formula": "minecraft:binomial_with_bonus_count",
               "function": "minecraft:apply_bonus",
               "parameters": {
-                "extra": 5,
+                "extra": 4,
                 "probability": 0.5714286
               }
             }

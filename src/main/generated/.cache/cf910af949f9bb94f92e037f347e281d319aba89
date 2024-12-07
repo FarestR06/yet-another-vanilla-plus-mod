@@ -1,10 +1,10 @@
-// 1.21.1	2024-12-06T18:53:04.679753	Yet Another Vanilla Plus Mod/Block Loot Tables
+// 1.21.1	2024-12-06T22:10:46.191556	Yet Another Vanilla Plus Mod/Block Loot Tables
 e759c8d3b3c76a3f019653888b32156e755aa536 data/yavpm/loot_table/blocks/graphite_block.json
 57e746f79ef273aef043f4034edf2334b32f2e25 data/yavpm/loot_table/blocks/stripped_prickle_log.json
 3b9e9d53bd2954b08270c3d3f23de8d9f1346a7d data/yavpm/loot_table/blocks/prickle_log.json
 4b39ee77817c06e104225e3d6c02d98bde0aa591 data/yavpm/loot_table/blocks/polished_andesite_brick_stairs.json
 5ac968508e41c4946b36f410c3cb0f6db4adc972 data/yavpm/loot_table/blocks/apple_trapdoor.json
-890acec8e0f3c7566d4c1d3b011b4ca3f04d977a data/yavpm/loot_table/blocks/peanut_crop.json
+ee57413bf33ae49011e43051707d064fbd4ffe8a data/yavpm/loot_table/blocks/peanut_crop.json
 272923d65074caea1fa7f1d13ca676a378f1c1f0 data/yavpm/loot_table/blocks/stripped_apple_log.json
 c45798c2538dfc05f6f6e7bd4c27675bb6e0c9d8 data/minecraft/loot_table/blocks/cherry_hanging_sign.json
 318e138026c9c84e0bf2959aeba67f90dc306d67 data/yavpm/loot_table/blocks/banana_crop.json
@@ -13,7 +13,7 @@ c45798c2538dfc05f6f6e7bd4c27675bb6e0c9d8 data/minecraft/loot_table/blocks/cherry
 f1a78b2a24eba2811b03a74eab16185e192f6a5d data/yavpm/loot_table/blocks/cobbled_granite.json
 18ca4741f07a13463fd9ae88d454a5d879498998 data/yavpm/loot_table/blocks/graphene_block.json
 fffccb51b45ab72791c947fbbf340810cad394d8 data/yavpm/loot_table/blocks/cobbled_andesite_wall.json
-4eacf4d9e0aaf2ad9100e854038ebf9efbd455f4 data/yavpm/loot_table/blocks/magic_bean_crop.json
+0a6ebab0f748384d0ff30b9367ea4d6a02ac0f67 data/yavpm/loot_table/blocks/magic_bean_crop.json
 333516e768cf67ac3b0282f1a918718cf70dd029 data/yavpm/loot_table/blocks/prickle_hanging_sign.json
 f5e286d048abc7349f543c385259cfa69a52e25c data/yavpm/loot_table/blocks/prickle_stairs.json
 3cefbd66b13e4dac62e4aa18a8ceca7a8224fcc7 data/yavpm/loot_table/blocks/cobbled_andesite.json

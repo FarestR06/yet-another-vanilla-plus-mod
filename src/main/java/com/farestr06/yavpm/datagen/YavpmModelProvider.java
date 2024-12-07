@@ -71,12 +71,19 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.register(YavpmItems.COOKED_PEANUT, Models.GENERATED);
         generator.register(YavpmItems.CHOCOLATE, Models.GENERATED);
 
+        generator.register(YavpmItems.FORTUNE_COOKIE, Models.GENERATED);
+        generator.register(YavpmItems.LUCKY_SLIP, Models.GENERATED);
+
         generator.register(YavpmItems.DIAMOND_ACORN, Models.GENERATED);
 
         generator.register(YavpmItems.TRUFFLE, Models.GENERATED);
 
+        generator.register(YavpmItems.CHEESE, Models.GENERATED);
+
         generator.register(YavpmItems.FAKE_BEEF, Models.GENERATED);
         generator.register(YavpmItems.COOKED_FAKE_BEEF, Models.GENERATED);
+        generator.register(YavpmItems.FAKE_MILK_BUCKET, Models.GENERATED);
+        generator.register(YavpmItems.TOFU, Models.GENERATED);
 
         generator.register(YavpmItems.RICE, Models.GENERATED);
         generator.register(YavpmItems.SEA_SOUP, Models.GENERATED);

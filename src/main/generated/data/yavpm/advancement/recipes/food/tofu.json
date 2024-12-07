@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_fake_milk_bucket": {
+      "conditions": {
+        "items": [
+          {
+            "items": "yavpm:fake_milk_bucket"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "yavpm:tofu"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_fake_milk_bucket"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "yavpm:tofu"
+    ]
+  }
+}

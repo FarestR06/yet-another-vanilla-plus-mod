@@ -68,6 +68,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("subtitles.item.soul_powder.use", "Soul Powder whooshes");
         builder.add(YavpmItems.SOUL_POWDER, "Soul Powder");
 
+        builder.add(YavpmItems.FORTUNE_COOKIE, "Fortune Cookie");
+        builder.add(YavpmItems.LUCKY_SLIP, "Lucky Slip");
 
         builder.add(YavpmStatusEffects.VOID_TOUCHED.value(), "Void Touched");
 
@@ -147,13 +149,18 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.TRUFFLE, "Truffle");
 
         builder.add(YavpmItems.RICE, "Rice");
+
+        builder.add(YavpmItems.CHEESE, "Cheese");
+
         builder.add(YavpmBlocks.MAGIC_BEAN_CROP, "Magic Bean Crops");
         builder.add(YavpmItems.MAGIC_BEAN, "Magic Bean");
+        builder.add(YavpmItems.FAKE_BEEF, "Fake Raw Beef");
+        builder.add(YavpmItems.COOKED_FAKE_BEEF, "Fake Steak");
+        builder.add(YavpmItems.FAKE_MILK_BUCKET, "Fake Milk Bucket");
+        builder.add(YavpmItems.TOFU, "Tofu");
 
         builder.add(YavpmItems.SEA_SOUP, "Sea Soup");
 
-        builder.add(YavpmItems.FAKE_BEEF, "Fake Raw Beef");
-        builder.add(YavpmItems.COOKED_FAKE_BEEF, "Fake Steak");
 
         builder.add(YavpmItems.STUDDED_HELMET, "Studded Cap");
         builder.add(YavpmItems.STUDDED_CHESTPLATE, "Studded Tunic");

@@ -87,10 +87,10 @@ public class YavpmLootProviders {
                     )).pool(LootPool.builder().conditionally(peanutConditionBuilder)
                     .with(ItemEntry.builder(YavpmItems.PEANUT)
                             .apply(ApplyBonusLootFunction.binomialWithBonusCount
-                                    (lookup.getOrThrow(Enchantments.FORTUNE), 0.5714286f, 3)
+                                    (lookup.getOrThrow(Enchantments.FORTUNE), 0.5714286f, 7)
                             )))));
 
-            BlockStatePropertyLootCondition.Builder magicBeanConditionBuilder = BlockStatePropertyLootCondition.builder(YavpmBlocks.PEANUT_CROP).properties(StatePredicate.Builder.create()
+            BlockStatePropertyLootCondition.Builder magicBeanConditionBuilder = BlockStatePropertyLootCondition.builder(YavpmBlocks.MAGIC_BEAN_CROP).properties(StatePredicate.Builder.create()
                     .exactMatch(MagicBeanCropBlock.AGE, 6));
             this.addDrop(YavpmBlocks.MAGIC_BEAN_CROP, this.applyExplosionDecay(YavpmBlocks.MAGIC_BEAN_CROP, LootTable.builder().pool(
                     LootPool.builder().with(
@@ -98,7 +98,7 @@ public class YavpmLootProviders {
                     )).pool(LootPool.builder().conditionally(magicBeanConditionBuilder)
                     .with(ItemEntry.builder(YavpmItems.MAGIC_BEAN)
                             .apply(ApplyBonusLootFunction.binomialWithBonusCount
-                                    (lookup.getOrThrow(Enchantments.FORTUNE), 0.5714286f, 5)
+                                    (lookup.getOrThrow(Enchantments.FORTUNE), 0.5714286f, 4)
                             )))));
 
             BlockStatePropertyLootCondition.Builder bananaConditionBuilder = BlockStatePropertyLootCondition.builder(YavpmBlocks.BANANA_CROP).properties(StatePredicate.Builder.create()

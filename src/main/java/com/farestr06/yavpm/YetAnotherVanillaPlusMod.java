@@ -3,6 +3,7 @@ package com.farestr06.yavpm;
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.config.YavpmConfig;
 import com.farestr06.yavpm.entity.YavpmBoats;
+import com.farestr06.yavpm.entity.YavpmCustomTrades;
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import com.farestr06.yavpm.entity.mob.YavpmMobs;
 import com.farestr06.yavpm.fluid.YavpmFluids;
@@ -56,6 +57,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		YavpmPotions.init();
 		YavpmBlocks.init();
 		YavpmFluids.init();
+		YavpmCustomTrades.init();
 
 		YavpmWorldGeneration.generateModWorldGen();
 		modifyLoot();

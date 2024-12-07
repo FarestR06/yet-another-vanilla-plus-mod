@@ -11,6 +11,11 @@ public class YavpmFoods {
             .saturationModifier(1.0f)
             .build();
 
+    public static final FoodComponent CHEESE = new FoodComponent.Builder()
+            .nutrition(5)
+            .saturationModifier(0.3f)
+            .build();
+
     public static final FoodComponent MAGIC_BEAN = new FoodComponent.Builder()
             .nutrition(2)
             .saturationModifier(0.3f)
@@ -30,7 +35,7 @@ public class YavpmFoods {
 
     public static final FoodComponent RAW_PEANUT = new FoodComponent.Builder()
             .nutrition(1)
-            .saturationModifier(0.3f)
+            .saturationModifier(0.2f)
             .statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 250), 1f)
             .snack()
             .build();

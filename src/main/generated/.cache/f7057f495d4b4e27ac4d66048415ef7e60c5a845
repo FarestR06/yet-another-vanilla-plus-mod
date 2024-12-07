@@ -1,4 +1,4 @@
-// 1.21.1	2024-12-06T18:53:04.68372	Yet Another Vanilla Plus Mod/Tags for minecraft:block
+// 1.21.1	2024-12-06T22:10:46.199426	Yet Another Vanilla Plus Mod/Tags for minecraft:block
 cb07bad33330d3bea18e529754609135cb99ec19 data/minecraft/tags/block/soul_speed_blocks.json
 0b87ad0a11c0a3616dccf9483b69a02c1e415e5f data/minecraft/tags/block/stone_bricks.json
 f42aa5653ac2162f7b687c7b48a496414e34e750 data/minecraft/tags/block/wooden_doors.json
@@ -12,8 +12,8 @@ cb07bad33330d3bea18e529754609135cb99ec19 data/minecraft/tags/block/soul_fire_bas
 99ee48d11d3a4ca1907767763c8001356750dac5 data/minecraft/tags/block/wall_signs.json
 53a13473b30a0ca862cb74b2b2575e0e92cb13ca data/yavpm/tags/block/spiral_stalks.json
 c10552c7201d4f94dd29bed7a6bc468d32d3815b data/minecraft/tags/block/planks.json
-2d495c7d3ff0838cdef99bc209abcff628bfe82b data/minecraft/tags/block/wooden_trapdoors.json
 902c786e24c219f4a7ac8c77fde3d5787688accf data/minecraft/tags/block/fence_gates.json
+2d495c7d3ff0838cdef99bc209abcff628bfe82b data/minecraft/tags/block/wooden_trapdoors.json
 e9c8309894f99cbf081ea53958f49608746124fc data/minecraft/tags/block/stairs.json
 a2d21883b0bfc3391a45a96b613e6a10012f5baa data/minecraft/tags/block/wooden_fences.json
 d19949f137012f4cff58d3e28b1f5f3e8b57d548 data/minecraft/tags/block/wall_hanging_signs.json

@@ -1,4 +1,4 @@
-// 1.21.1	2024-12-06T18:53:04.681541	Yet Another Vanilla Plus Mod/Recipes
+// 1.21.1	2024-12-06T22:10:46.196832	Yet Another Vanilla Plus Mod/Recipes
 6c80c93357c77426a48f22cfa88bc4a50fa6bfbe data/yavpm/advancement/recipes/redstone/apple_fence_gate.json
 059ae50a24b8ff3623124417a3dd9a16800ee9d3 data/yavpm/advancement/recipes/redstone/apple_button.json
 dc6434595a85668621bfda7a84ead43aeb1a78b3 data/yavpm/recipe/studded_boots.json
@@ -22,6 +22,7 @@ c3518f402bc6fa60ee7dd48679b3f44a398627e1 data/yavpm/recipe/prickle_door.json
 648a2d87788ae434bdbdb57e129d3d546b79dc80 data/yavpm/recipe/diamond_acorn.json
 59d9902225708e11f974dba1ccb2f090d2ff3ba1 data/yavpm/advancement/recipes/redstone/apple_door.json
 f46ba83bec5781f3284ff145dd2c4008e8803967 data/yavpm/advancement/recipes/building_blocks/warped_wart_block.json
+b9b4a4682e336c9ca033cf6a95126b807648ead8 data/yavpm/recipe/tofu.json
 85ce62f95f81d7bd82d6cb8a127aa7f9f01ac5c8 data/yavpm/advancement/recipes/redstone/prickle_trapdoor.json
 a13c6b6ac984df1c01a2f905ad1828da9ba12f3a data/yavpm/advancement/recipes/food/diamond_acorn.json
 a47ed350c049ca6d4eab6d095a87c61592ea97e4 data/yavpm/recipe/cooked_fake_beef_from_smelting_fake_beef.json
@@ -75,18 +76,23 @@ c2f8401eac195518c98df8a036ad2874ce7ec18c data/yavpm/recipe/prickle_slab.json
 c2b88fd952271f07211f10c34422a464d27ac4b2 data/yavpm/recipe/cooked_fake_beef_from_smoking.json
 421e3a4678f06e1b8f52ca2640e7bf627dc39d4d data/yavpm/recipe/apple_stairs.json
 4e7940ca1dcf4a0c08c4fbd037f4ea4a471bad5b data/yavpm/advancement/recipes/misc/studded_leggings.json
+5dfcdbd6459eb6817d3f2f63ee806f6c78d05a49 data/yavpm/recipe/cheese.json
+9ef6192f2445c94a23c4e7a3c514ef4f3ae76900 data/yavpm/advancement/recipes/food/fake_milk_bucket.json
+602686da5132ddf064890e67655536c585e393f9 data/yavpm/advancement/recipes/food/cheese.json
 db051c8aa64e7eb4d54832a910c4ec90a19bdc9c data/yavpm/advancement/recipes/food/cooked_peanut_from_smelting_peanut.json
 b7ee99fea13247b9700a99fc037894f3895a7e7f data/yavpm/advancement/recipes/redstone/apple_pressure_plate.json
 0935a5a1cba457c0621ed3ea6f49b4215cde85ce data/yavpm/advancement/recipes/food/fake_beef.json
 098576aea9d84fedf230c1e3e6a67e6d1dd62720 data/yavpm/recipe/apple_fence_gate.json
 a3cd1de0406e5f4dfcc6dcb4aed13507f00f4f51 data/yavpm/advancement/recipes/misc/studded_helmet.json
 7c991a4062a5401a544d130003064576b4eb91a3 data/yavpm/advancement/recipes/building_blocks/prickle_planks.json
+728042518092e6f1d31099bb7594a9ddd6f1451a data/yavpm/advancement/recipes/food/tofu.json
 c64db5c4177c4a70dc025e94b81bf0997b474705 data/yavpm/advancement/recipes/misc/studded_boots.json
 9469ff89c7a5b6f8713312aa70455fee41a3077a data/yavpm/recipe/prickle_fence_gate.json
 3a0d6a5a3d336a94c23923300827394b505ea43a data/yavpm/advancement/recipes/building_blocks/andesite_from_cobbled.json
 074f8ab9f6f2c729484caa66c313155d61ad0971 data/yavpm/advancement/recipes/redstone/apple_trapdoor.json
 2fbad836f061dc4125cd3d12226dec70baf46dbb data/yavpm/advancement/recipes/redstone/electro_glass.json
 1ffa28b45396fccb6a65d2b6c572da2d579a8616 data/yavpm/recipe/warped_wart_block.json
+9be022d34547593fcfb7f99ee2b8c0dfb7ca6ca5 data/yavpm/recipe/fake_milk_bucket.json
 713744aff332b04dd5b0f157c2147598bbeb0097 data/yavpm/advancement/recipes/food/cooked_fake_beef_from_smoking.json
 1ca5c8e9c5d0191f734a7190587e2802b388be3d data/yavpm/advancement/recipes/building_blocks/glowing_obsidian.json
 8f1988516da88eb4038367675ab87287976f8191 data/yavpm/recipe/moly.json
