@@ -32,12 +32,16 @@ import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmBlocks {
 
+    // TODO: Finish Nether Reactor Core
+    /*
     public static final Block NETHER_REACTOR_CORE = makeAdvancedBlockAndItem(
             makeId("nether_reactor_core"),
             new NetherReactorCoreBlock(
                     AbstractBlock.Settings.copy(Blocks.BEACON)
             )
     );
+
+     */
 
     public static final Block WARPED_WART = makeAdvancedBlockAndItem(
             makeId("warped_wart"),
@@ -128,7 +132,6 @@ public class YavpmBlocks {
             AbstractBlock.Settings.copy(Blocks.STONE_BRICK_WALL)
     ));
 
-
     public static final Block POLISHED_GRANITE_TILES = makeBlockAndItem(makeId("polished_granite_tiles"), AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
     public static final Block POLISHED_DIORITE_TILES = makeBlockAndItem(makeId("polished_diorite_tiles"), AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
     public static final Block POLISHED_ANDESITE_TILES = makeBlockAndItem(makeId("polished_andesite_tiles"), AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
@@ -167,6 +170,11 @@ public class YavpmBlocks {
     ));
 
     // endregion
+
+    public static final Block KIMBERLITE = makeBlockAndItem(
+            makeId("kimberlite"),
+            AbstractBlock.Settings.copy(Blocks.RAW_GOLD_BLOCK)
+    );
 
     public static final Block ELECTRO_GLASS = makeAdvancedBlockAndItem(
             makeId("electro_glass"),
@@ -430,7 +438,7 @@ public class YavpmBlocks {
                 protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
                     if (!world.isClient) {
                         if (entity instanceof LivingEntity livingEntity) {
-                            livingEntity.addStatusEffect(new StatusEffectInstance(YavpmStatusEffects.VOID_TOUCHED, 30));
+                            livingEntity.addStatusEffect(new StatusEffectInstance(YavpmStatusEffects.VOID_TOUCHED, 220));
                         }
                     }
                 }
@@ -442,12 +450,16 @@ public class YavpmBlocks {
         entries.add(APPLE_LEAVES);
         entries.add(APPLE_SAPLING);
         entries.add(PRICKLE_SHOOT);
+        entries.add(KIMBERLITE);
     }
     private static void addToRedstoneBlocks(FabricItemGroupEntries entries) {
         entries.add(ELECTRO_GLASS);
     }
     private static void addToFunctionalBlocks(FabricItemGroupEntries entries) {
-        entries.add(NETHER_REACTOR_CORE);
+        entries.add(APPLE_DOOR);
+        entries.add(APPLE_TRAPDOOR);
+        entries.add(PRICKLE_DOOR);
+        entries.add(PRICKLE_TRAPDOOR);
     }
     private static void addToBuildingBlocks(FabricItemGroupEntries entries) {
         entries.add(APPLE_LOG);
@@ -522,6 +534,8 @@ public class YavpmBlocks {
 
         entries.add(GRAPHITE_BLOCK);
         entries.add(GRAPHENE_BLOCK);
+
+        entries.add(KIMBERLITE);
     }
     // endregion
 

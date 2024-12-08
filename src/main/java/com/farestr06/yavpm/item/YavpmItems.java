@@ -55,10 +55,6 @@ public class YavpmItems {
             makeId("rune_speed"),
             new RuneItem(Text.translatable("item.yavpm.rune_speed.tooltip").formatted(Formatting.GRAY))
     );
-    public static final Item RUNE_TOUGHNESS = makeAdvancedItem(
-            makeId("rune_toughness"),
-            new RuneItem(Text.translatable("item.yavpm.rune_toughness.tooltip").formatted(Formatting.GRAY))
-    );
 
     // endregion
 
@@ -112,6 +108,11 @@ public class YavpmItems {
     );
     // endregion
 
+    public static final Item SUSHI = makeItem(
+            makeId("sushi"),
+            new Item.Settings().food(FoodComponents.COOKED_COD)
+    );
+
     public static final Item SEA_SOUP = makeItem(
             makeId("sea_soup"),
             new Item.Settings().food(YavpmFoods.SEA_SOUP).maxCount(1)
@@ -140,6 +141,9 @@ public class YavpmItems {
 
     public static final Item CHEESE = makeItem(makeId("cheese"), new Item.Settings().food(YavpmFoods.CHEESE));
 
+    public static final Item BEAN_TOAST = makeItem(makeId("bean_toast"), new Item.Settings().food(YavpmFoods.BEAN_TOAST));
+    public static final Item COOKED_EGG = makeItem(makeId("cooked_egg"), new Item.Settings().food(YavpmFoods.COOKED_EGG));
+
     public static final Item FAKE_BEEF = makeItem(
             makeId("fake_beef"),
             new Item.Settings().food(FoodComponents.BEEF)
@@ -155,17 +159,13 @@ public class YavpmItems {
 
     public static final Item TOFU = makeItem(makeId("tofu"), new Item.Settings().food(YavpmFoods.CHEESE));
 
+    public static final Item RAW_DIAMOND = makeSimpleItem(makeId("raw_diamond"));
     public static final Item GRAPHITE = makeSimpleItem(makeId("graphite"));
-
-    public static final Item SOUL_POWDER = makeAdvancedItem(
-            makeId("soul_powder"),
-            new SoulPowderItem(new Item.Settings())
-    );
 
     // Magic Herb
     public static final Item MOLY = makeAdvancedItem(
             makeId("moly"),
-            new MolyItem(new Item.Settings().maxCount(16))
+            new MolyItem(new Item.Settings().maxCount(16).food(YavpmFoods.MOLY))
     );
 
     // region Reactor
@@ -267,7 +267,7 @@ public class YavpmItems {
             makeId("void_water_bucket"),
             new BucketItem(
                     YavpmFluids.STILL_VOID_WATER,
-                    new Item.Settings().recipeRemainder(Items.BUCKET).maxCount(1)
+                    new Item.Settings().recipeRemainder(Items.BUCKET)
             )
     );
 
@@ -288,12 +288,15 @@ public class YavpmItems {
         entries.add(TRUFFLE);
         entries.add(CHOCOLATE);
         entries.add(CHEESE);
+        entries.add(BEAN_TOAST);
+        entries.add(COOKED_EGG);
         entries.add(BANANA);
         entries.add(PEANUT);
         entries.add(COOKED_PEANUT);
         entries.add(ACORN);
         entries.add(DIAMOND_ACORN);
         entries.add(MOLY);
+        entries.add(SUSHI);
         entries.add(SEA_SOUP);
         entries.add(MAGIC_BEAN);
         entries.add(FAKE_BEEF);
@@ -302,19 +305,18 @@ public class YavpmItems {
         entries.add(TOFU);
     }
     private static void addToIngredients(FabricItemGroupEntries entries) {
+        entries.add(RAW_DIAMOND);
         entries.add(GRAPHITE);
         entries.add(YavpmBlocks.GRAPHITE_BLOCK);
         entries.add(YavpmBlocks.GRAPHENE_BLOCK);
 
         entries.add(RICE);
         entries.add(MAGIC_BEAN);
-        entries.add(SOUL_POWDER);
         entries.add(REACTOR);
 
         entries.add(RUNE_ATTACK);
         entries.add(RUNE_DURABILITY);
         entries.add(RUNE_SPEED);
-        entries.add(RUNE_TOUGHNESS);
     }
     private static void addToTools(FabricItemGroupEntries entries) {
         entries.add(VOID_WATER_BUCKET);

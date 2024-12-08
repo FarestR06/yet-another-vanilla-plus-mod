@@ -3,7 +3,7 @@
   "category": "building",
   "ingredients": [
     {
-      "item": "yavpm:soul_powder"
+      "tag": "minecraft:soul_fire_base_blocks"
     },
     {
       "item": "minecraft:obsidian"

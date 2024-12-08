@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "minecraft:bread"
+    },
+    {
+      "item": "yavpm:magic_bean"
+    },
+    {
+      "item": "yavpm:magic_bean"
+    },
+    {
+      "item": "yavpm:magic_bean"
+    },
+    {
+      "item": "yavpm:magic_bean"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "yavpm:bean_toast"
+  }
+}

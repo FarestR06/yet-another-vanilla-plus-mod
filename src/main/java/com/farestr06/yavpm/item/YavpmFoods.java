@@ -6,6 +6,10 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.Items;
 
 public class YavpmFoods {
+    public static final FoodComponent MOLY = new FoodComponent.Builder()
+            .nutrition(20)
+            .saturationModifier(2f)
+            .build();
     public static final FoodComponent TRUFFLE = new FoodComponent.Builder()
             .nutrition(3)
             .saturationModifier(1.0f)
@@ -49,6 +53,16 @@ public class YavpmFoods {
     public static final FoodComponent CHOCOLATE = new FoodComponent.Builder()
             .nutrition(4)
             .saturationModifier(0.8f)
+            .build();
+
+    public static final FoodComponent BEAN_TOAST = new FoodComponent.Builder()
+            .nutrition(7)
+            .saturationModifier(0.9f)
+            .build();
+
+    public static final FoodComponent COOKED_EGG = new FoodComponent.Builder()
+            .nutrition(4)
+            .saturationModifier(0.4f)
             .build();
 
     public static final FoodComponent ACORN = new FoodComponent.Builder()

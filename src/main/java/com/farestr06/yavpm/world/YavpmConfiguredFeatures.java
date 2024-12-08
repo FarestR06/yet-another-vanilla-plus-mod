@@ -7,6 +7,9 @@ import net.minecraft.block.SaplingGenerator;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.structure.rule.RuleTest;
+import net.minecraft.structure.rule.TagMatchRuleTest;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.world.gen.feature.*;
@@ -25,6 +28,8 @@ import java.util.OptionalInt;
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmConfiguredFeatures {
+
+    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_KIMBERLITE = registerKey("ore_kimberlite");
     public static final RegistryKey<ConfiguredFeature<?, ?>> APPLE = registerKey("apple");
     public static final RegistryKey<ConfiguredFeature<?, ?>> APPLE_BEES_0002 = registerKey("apple_bees_0002");
     public static final RegistryKey<ConfiguredFeature<?, ?>> APPLE_BEES_002 = registerKey("apple_bees_002");
@@ -57,6 +62,9 @@ public class YavpmConfiguredFeatures {
 
 
     public static void boostrap(Registerable<ConfiguredFeature<?, ?>> context) {
+
+        RuleTest ruleTest = new TagMatchRuleTest(BlockTags.BASE_STONE_OVERWORLD);
+        ConfiguredFeatures.register(context, ORE_KIMBERLITE, Feature.ORE, new OreFeatureConfig(ruleTest, YavpmBlocks.KIMBERLITE.getDefaultState(), 16));
 
         BeehiveTreeDecorator beehiveTreeDecorator0002 = new BeehiveTreeDecorator(0.002F);
         BeehiveTreeDecorator beehiveTreeDecorator002 = new BeehiveTreeDecorator(0.02F);

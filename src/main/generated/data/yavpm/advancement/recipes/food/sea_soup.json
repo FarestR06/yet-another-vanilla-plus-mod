@@ -1,36 +1,6 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_bowl": {
-      "conditions": {
-        "items": [
-          {
-            "items": "minecraft:bowl"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_dried_kelp": {
-      "conditions": {
-        "items": [
-          {
-            "items": "minecraft:dried_kelp"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_magic_beans": {
-      "conditions": {
-        "items": [
-          {
-            "items": "yavpm:magic_bean"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "has_rice": {
       "conditions": {
         "items": [
@@ -41,42 +11,17 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_sea_soup": {
-      "conditions": {
-        "items": [
-          {
-            "items": "yavpm:sea_soup"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "has_the_recipe": {
       "conditions": {
         "recipe": "yavpm:sea_soup"
       },
       "trigger": "minecraft:recipe_unlocked"
-    },
-    "has_tropical_fish": {
-      "conditions": {
-        "items": [
-          {
-            "items": "minecraft:tropical_fish"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
     }
   },
   "requirements": [
     [
       "has_the_recipe",
-      "has_sea_soup",
-      "has_bowl",
-      "has_tropical_fish",
-      "has_rice",
-      "has_dried_kelp",
-      "has_magic_beans"
+      "has_rice"
     ]
   ],
   "rewards": {

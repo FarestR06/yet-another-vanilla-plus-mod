@@ -11,6 +11,7 @@ import net.minecraft.recipe.SpecialCraftingRecipe;
 import net.minecraft.recipe.book.CraftingRecipeCategory;
 import net.minecraft.recipe.input.CraftingRecipeInput;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.util.Rarity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
@@ -34,8 +35,7 @@ public class RuneUpgradeRecipe extends SpecialCraftingRecipe {
         }
         return rune.isOf(YavpmItems.RUNE_ATTACK) && tool.isIn(YavpmTags.Items.RUNE_ATTACK_APPLICABLE)
         || rune.isOf(YavpmItems.RUNE_DURABILITY) && tool.isIn(YavpmTags.Items.RUNE_DURABILITY_APPLICABLE)
-        || rune.isOf(YavpmItems.RUNE_SPEED) && tool.isIn(YavpmTags.Items.RUNE_SPEED_APPLICABLE)
-        || rune.isOf(YavpmItems.RUNE_TOUGHNESS) && tool.isIn(YavpmTags.Items.RUNE_TOUGHNESS_APPLICABLE);
+        || rune.isOf(YavpmItems.RUNE_SPEED) && tool.isIn(YavpmTags.Items.RUNE_SPEED_APPLICABLE);
     }
 
     @Override
@@ -61,21 +61,13 @@ public class RuneUpgradeRecipe extends SpecialCraftingRecipe {
         if (rune.isOf(YavpmItems.RUNE_SPEED) && tool.isIn(YavpmTags.Items.RUNE_SPEED_APPLICABLE)) {
             return speedRuneCalculate(tool);
         }
-        if (rune.isOf(YavpmItems.RUNE_TOUGHNESS) && tool.isIn(YavpmTags.Items.RUNE_TOUGHNESS_APPLICABLE)) {
-            return toughnessRuneCalculate(tool);
-        }
-        return ItemStack.EMPTY;
-    }
-
-    private ItemStack toughnessRuneCalculate(ItemStack tool) {
-        ComponentMap.Builder map = ComponentMap.builder();
-
-        // TODO: Finish RuneUpgradeRecipe
         return ItemStack.EMPTY;
     }
 
     private ItemStack speedRuneCalculate(ItemStack tool) {
         ComponentMap.Builder map = ComponentMap.builder();
+        ItemStack newTool = tool.copy();
+        newTool.set(DataComponentTypes.RARITY, Rarity.UNCOMMON);
         if (tool.getItem() instanceof ToolItem toolItem) {
             ToolMaterial material = toolItem.getMaterial();
             float originalSpeed = material.getMiningSpeedMultiplier();
@@ -130,30 +122,34 @@ public class RuneUpgradeRecipe extends SpecialCraftingRecipe {
                         )
                 );
             }
-            tool.applyComponentsFrom(map.build());
-            return tool;
+            newTool.applyComponentsFrom(map.build());
+            return newTool;
         }
         return ItemStack.EMPTY;
     }
 
     private ItemStack durabilityRuneCalculate(ItemStack tool) {
         ComponentMap.Builder map = ComponentMap.builder();
+        ItemStack newTool = tool.copy();
+        newTool.set(DataComponentTypes.RARITY, Rarity.UNCOMMON);
         int durability = MathHelper.ceil(tool.getMaxDamage() * 1.5f);
         map.add(DataComponentTypes.MAX_DAMAGE, durability);
         map.add(DataComponentTypes.DAMAGE, 0);
-        tool.applyComponentsFrom(map.build());
-        return tool;
+        newTool.applyComponentsFrom(map.build());
+        return newTool;
     }
 
     private static ItemStack attackRuneCalculate(ItemStack tool) {
         ComponentMap.Builder map = ComponentMap.builder();
+        ItemStack newTool = tool.copy();
+        newTool.set(DataComponentTypes.RARITY, Rarity.UNCOMMON);
         if (tool.getItem() instanceof SwordItem sword) {
             ToolMaterial material = sword.getMaterial();
             int damage = MathHelper.ceil(material.getAttackDamage() * 1.5f);
             float speed = material.getMiningSpeedMultiplier();
             map.add(DataComponentTypes.ATTRIBUTE_MODIFIERS, SwordItem.createAttributeModifiers(material, damage, speed));
-            tool.applyComponentsFrom(map.build());
-            return tool;
+            newTool.applyComponentsFrom(map.build());
+            return newTool;
         }
         if (tool.getItem() instanceof AxeItem axe) {
             ToolMaterial material = axe.getMaterial();
@@ -161,8 +157,8 @@ public class RuneUpgradeRecipe extends SpecialCraftingRecipe {
             float originalSpeed = material.getMiningSpeedMultiplier();
             float speed = Math.max(originalSpeed, originalSpeed * 1.5f);
             map.add(DataComponentTypes.ATTRIBUTE_MODIFIERS, SwordItem.createAttributeModifiers(material, damage, speed));
-            tool.applyComponentsFrom(map.build());
-            return tool;
+            newTool.applyComponentsFrom(map.build());
+            return newTool;
         }
         return ItemStack.EMPTY;
     }
@@ -174,6 +170,6 @@ public class RuneUpgradeRecipe extends SpecialCraftingRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return null;
+        return YavpmRecipeSerializers.RUNE_UPGRADE;
     }
 }

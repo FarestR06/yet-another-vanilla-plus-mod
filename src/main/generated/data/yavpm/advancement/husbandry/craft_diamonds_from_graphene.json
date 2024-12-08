@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:husbandry/breed_an_animal",
+  "criteria": {
+    "craft_diamonds": {
+      "conditions": {
+        "recipe_id": "yavpm:diamond_from_smelting_graphene_block"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.husbandry.craft_diamonds_from_graphene.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "yavpm:graphene_block"
+    },
+    "title": {
+      "translate": "advancements.husbandry.craft_diamonds_from_graphene.title"
+    }
+  },
+  "requirements": [
+    [
+      "craft_diamonds"
+    ]
+  ],
+  "rewards": {
+    "experience": 75
+  },
+  "sends_telemetry_event": true
+}

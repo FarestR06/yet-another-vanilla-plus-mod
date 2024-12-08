@@ -1,26 +1,48 @@
 package com.farestr06.yavpm.datagen;
 
+import com.farestr06.api.util.LootHelper;
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.block.custom.*;
+import com.farestr06.yavpm.entity.mob.YavpmMobs;
 import com.farestr06.yavpm.item.YavpmItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableProvider;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
+import net.minecraft.loot.condition.AnyOfLootCondition;
 import net.minecraft.loot.condition.BlockStatePropertyLootCondition;
+import net.minecraft.loot.condition.EntityPropertiesLootCondition;
+import net.minecraft.loot.condition.RandomChanceLootCondition;
+import net.minecraft.loot.context.LootContext;
+import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.ApplyBonusLootFunction;
+import net.minecraft.loot.function.EnchantedCountIncreaseLootFunction;
+import net.minecraft.loot.function.FurnaceSmeltLootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
+import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.StatePredicate;
+import net.minecraft.predicate.entity.EntityEquipmentPredicate;
+import net.minecraft.predicate.entity.EntityFlagsPredicate;
+import net.minecraft.predicate.entity.EntityPredicate;
+import net.minecraft.predicate.item.EnchantmentPredicate;
+import net.minecraft.predicate.item.EnchantmentsPredicate;
+import net.minecraft.predicate.item.ItemPredicate;
+import net.minecraft.predicate.item.ItemSubPredicateTypes;
+import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.EnchantmentTags;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.function.BiConsumer;
 
 public class YavpmLootProviders {
     public static class Block extends FabricBlockLootTableProvider {
@@ -34,11 +56,10 @@ public class YavpmLootProviders {
         @Override
         public void generate() {
 
-            addDropWithSilkTouch(YavpmBlocks.NETHER_REACTOR_CORE);
-
             addDrop(YavpmBlocks.GLOWING_OBSIDIAN);
             addDrop(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
 
+            LootHelper.BlockHelper.createGravelLikeDrop(this, lookup, YavpmBlocks.KIMBERLITE, YavpmItems.RAW_DIAMOND);
             addDrop(YavpmBlocks.GRAPHITE_BLOCK);
             addDrop(YavpmBlocks.GRAPHENE_BLOCK);
 
@@ -195,6 +216,97 @@ public class YavpmLootProviders {
             addDrop(YavpmBlocks.PRICKLE_WALL_HANGING_SIGN, YavpmItems.PRICKLE_HANGING_SIGN);
 
             addDrop(YavpmBlocks.PRICKLE_SHOOT);
+        }
+    }
+
+    public static class Entity extends SimpleFabricLootTableProvider {
+
+        final RegistryWrapper.WrapperLookup lookup;
+
+        public Entity(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+            super(output, registryLookup, LootContextTypes.ENTITY);
+            lookup = registryLookup.join();
+        }
+
+        @Override
+        public void accept(BiConsumer<RegistryKey<LootTable>, LootTable.Builder> lootTableBiConsumer) {
+            // region Carbonfowl
+            lootTableBiConsumer.accept(YavpmMobs.CARBONFOWL.getLootTableId(), LootTable.builder().pool(
+                    LootPool.builder()
+                            .rolls(ConstantLootNumberProvider.create(1.0F))
+                            .with(
+                                    ItemEntry.builder(Items.FEATHER)
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 2.0F)))
+                                            .apply(EnchantedCountIncreaseLootFunction.builder(lookup, UniformLootNumberProvider.create(0.0F, 1.0F)))
+                            )
+                    ).pool(
+                            LootPool.builder()
+                                    .rolls(ConstantLootNumberProvider.create(1.0F))
+                                    .with(
+                                            ItemEntry.builder(Items.CHICKEN)
+                                                    .apply(FurnaceSmeltLootFunction.builder().conditionally(this.createSmeltLootCondition()))
+                                                    .apply(EnchantedCountIncreaseLootFunction.builder(lookup, UniformLootNumberProvider.create(0.0F, 1.0F)))
+                                    )
+                    ).pool(
+                            LootPool.builder()
+                                    .rolls(ConstantLootNumberProvider.create(1.0f))
+                                    .with(
+                                            ItemEntry.builder(Items.DIAMOND)
+                                                    .apply(EnchantedCountIncreaseLootFunction.builder(
+                                                            lookup,
+                                                            UniformLootNumberProvider.create(
+                                                                    0f,
+                                                                    1f
+                                                            )
+                                                    ))
+                                    ).conditionally(RandomChanceLootCondition.builder(0.2f))
+                    )
+            );
+            // endregion
+            // region Moongus
+            lootTableBiConsumer.accept(YavpmMobs.MOONGUS.getLootTableId(), LootTable.builder().pool(
+                            LootPool.builder()
+                                    .rolls(ConstantLootNumberProvider.create(1.0F))
+                                    .with(
+                                            ItemEntry.builder(Items.LEATHER)
+                                                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 2.0F)))
+                                                    .apply(EnchantedCountIncreaseLootFunction.builder(this.lookup, UniformLootNumberProvider.create(0.0F, 1.0F)))
+                                    )
+                    )
+                    .pool(
+                            LootPool.builder()
+                                    .rolls(ConstantLootNumberProvider.create(1.0F))
+                                    .with(
+                                            ItemEntry.builder(Items.BEEF)
+                                                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F)))
+                                                    .apply(FurnaceSmeltLootFunction.builder().conditionally(this.createSmeltLootCondition()))
+                                                    .apply(EnchantedCountIncreaseLootFunction.builder(this.lookup, UniformLootNumberProvider.create(0.0F, 1.0F)))
+                                    )
+                    ));
+            // endregion
+        }
+
+        protected final AnyOfLootCondition.Builder createSmeltLootCondition() {
+            RegistryWrapper.Impl<Enchantment> impl = this.lookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+            return AnyOfLootCondition.builder(
+                    EntityPropertiesLootCondition.builder(
+                            LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().flags(EntityFlagsPredicate.Builder.create().onFire(true))
+                    ),
+                    EntityPropertiesLootCondition.builder(
+                            LootContext.EntityTarget.DIRECT_ATTACKER,
+                            EntityPredicate.Builder.create()
+                                    .equipment(
+                                            EntityEquipmentPredicate.Builder.create()
+                                                    .mainhand(
+                                                            ItemPredicate.Builder.create()
+                                                                    .subPredicate(
+                                                                            ItemSubPredicateTypes.ENCHANTMENTS,
+                                                                            EnchantmentsPredicate.enchantments(List.of(new EnchantmentPredicate(impl.getOrThrow(EnchantmentTags.SMELTS_LOOT), NumberRange.IntRange.ANY)))
+                                                                    )
+                                                    )
+                                    )
+                    )
+            );
         }
     }
 }

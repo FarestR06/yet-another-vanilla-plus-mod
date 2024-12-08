@@ -1,0 +1,36 @@
+{
+  "parent": "minecraft:husbandry/plant_seed",
+  "criteria": {
+    "ate_fake_animal_product": {
+      "conditions": {
+        "item": {
+          "items": [
+            "yavpm:fake_beef",
+            "yavpm:cooked_fake_beef",
+            "yavpm:fake_milk_bucket",
+            "yavpm:tofu"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.husbandry.eat_fake_animal_product.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "yavpm:magic_bean"
+    },
+    "title": {
+      "translate": "advancements.husbandry.eat_fake_animal_product.title"
+    }
+  },
+  "requirements": [
+    [
+      "ate_fake_animal_product"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

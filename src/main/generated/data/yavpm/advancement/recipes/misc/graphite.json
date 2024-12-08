@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_graphite_block": {
+    "has_graphite": {
       "conditions": {
         "items": [
           {
-            "items": "yavpm:graphite_block"
+            "items": "yavpm:graphite"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:graphite"
+        "recipe": "yavpm:graphite"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_graphite_block"
+      "has_graphite"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:graphite"
+      "yavpm:graphite"
     ]
   }
 }

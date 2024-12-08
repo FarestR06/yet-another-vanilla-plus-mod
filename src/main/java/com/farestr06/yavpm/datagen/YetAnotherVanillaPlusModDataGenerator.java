@@ -1,5 +1,6 @@
 package com.farestr06.yavpm.datagen;
 
+import com.farestr06.yavpm.item.enchantment.YavpmEnchantments;
 import com.farestr06.yavpm.world.YavpmConfiguredFeatures;
 import com.farestr06.yavpm.world.YavpmPlacedFeatures;
 import com.farestr06.yavpm.world.biome.YavpmBiomes;
@@ -16,10 +17,13 @@ public class YetAnotherVanillaPlusModDataGenerator implements DataGeneratorEntry
 		pack.addProvider(YavpmModelProvider::new);
 		pack.addProvider(YavpmRecipeProvider::new);
 		pack.addProvider(YavpmLootProviders.Block::new);
+		pack.addProvider(YavpmLootProviders.Entity::new);
 		pack.addProvider(YavpmTagProviders.Item::new);
 		pack.addProvider(YavpmTagProviders.Block::new);
 		pack.addProvider(YavpmTagProviders.Fluid::new);
 		pack.addProvider(YavpmTagProviders.EntityType::new);
+		pack.addProvider(YavpmAdvancementProvider::new);
+		pack.addProvider(YavpmMiscDataGenerator::new);
 		pack.addProvider(YavpmWorldGenerator::new);
 	}
 
@@ -27,6 +31,7 @@ public class YetAnotherVanillaPlusModDataGenerator implements DataGeneratorEntry
 	public void buildRegistry(RegistryBuilder registryBuilder) {
 		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, YavpmConfiguredFeatures::boostrap);
 		registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, YavpmPlacedFeatures::boostrap);
+		registryBuilder.addRegistry(RegistryKeys.ENCHANTMENT, YavpmEnchantments::bootstrap);
 		registryBuilder.addRegistry(RegistryKeys.BIOME, YavpmBiomes.Overworld::bootstrap);
 	}
 }

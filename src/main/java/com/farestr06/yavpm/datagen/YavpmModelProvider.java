@@ -48,6 +48,7 @@ public class YavpmModelProvider extends FabricModelProvider {
         createDioriteSet(generator);
         createAndesiteSet(generator);
 
+        generator.registerSimpleCubeAll(YavpmBlocks.KIMBERLITE);
         generator.registerSimpleCubeAll(YavpmBlocks.GRAPHITE_BLOCK);
         generator.registerSimpleCubeAll(YavpmBlocks.GRAPHENE_BLOCK);
 
@@ -62,7 +63,6 @@ public class YavpmModelProvider extends FabricModelProvider {
 
     @Override
     public void generateItemModels(ItemModelGenerator generator) {
-        generator.register(YavpmItems.SOUL_POWDER, Models.GENERATED);
         generator.register(YavpmItems.REACTOR, Models.GENERATED);
         generator.register(YavpmItems.HEATED_REACTOR, Models.GENERATED);
         generator.register(YavpmItems.MOLY, Models.GENERATED);
@@ -80,15 +80,20 @@ public class YavpmModelProvider extends FabricModelProvider {
 
         generator.register(YavpmItems.CHEESE, Models.GENERATED);
 
+        generator.register(YavpmItems.BEAN_TOAST, Models.GENERATED);
+        generator.register(YavpmItems.COOKED_EGG, Models.GENERATED);
+
         generator.register(YavpmItems.FAKE_BEEF, Models.GENERATED);
         generator.register(YavpmItems.COOKED_FAKE_BEEF, Models.GENERATED);
         generator.register(YavpmItems.FAKE_MILK_BUCKET, Models.GENERATED);
         generator.register(YavpmItems.TOFU, Models.GENERATED);
 
         generator.register(YavpmItems.RICE, Models.GENERATED);
+        generator.register(YavpmItems.SUSHI, Models.GENERATED);
         generator.register(YavpmItems.SEA_SOUP, Models.GENERATED);
 
         generator.register(YavpmItems.GRAPHITE, Models.GENERATED);
+        generator.register(YavpmItems.RAW_DIAMOND, Models.GENERATED);
 
         generator.register(YavpmItems.APPLE_BOAT, Models.GENERATED);
         generator.register(YavpmItems.APPLE_CHEST_BOAT, Models.GENERATED);
@@ -103,7 +108,6 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.register(YavpmItems.RUNE_ATTACK, Models.GENERATED);
         generator.register(YavpmItems.RUNE_DURABILITY, Models.GENERATED);
         generator.register(YavpmItems.RUNE_SPEED, Models.GENERATED);
-        generator.register(YavpmItems.RUNE_TOUGHNESS, Models.GENERATED);
     }
 
     private static void registerBananaCrop(BlockStateModelGenerator generator) {

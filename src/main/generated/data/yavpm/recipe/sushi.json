@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "K": {
+      "item": "minecraft:dried_kelp"
+    },
+    "R": {
+      "item": "yavpm:rice"
+    },
+    "T": {
+      "item": "minecraft:tropical_fish"
+    }
+  },
+  "pattern": [
+    "KRK",
+    "RTR",
+    "KRK"
+  ],
+  "result": {
+    "count": 3,
+    "id": "yavpm:sushi"
+  }
+}

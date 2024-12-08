@@ -3,7 +3,7 @@
   "category": "food",
   "cookingtime": 200,
   "experience": 0.35,
-  "group": "FAKE_BEEF",
+  "group": "fake_beef",
   "ingredient": {
     "item": "yavpm:fake_beef"
   },

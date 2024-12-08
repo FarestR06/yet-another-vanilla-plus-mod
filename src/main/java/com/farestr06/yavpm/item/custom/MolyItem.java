@@ -21,16 +21,13 @@ public class MolyItem extends Item {
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        if (user instanceof ServerPlayerEntity serverPlayerEntity) {
-            Criteria.CONSUME_ITEM.trigger(serverPlayerEntity, stack);
-            serverPlayerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
-        }
-
         if (!world.isClient) {
             user.clearStatusEffects();
+            if (!user.isDead()) {
+                user.heal(user.getMaxHealth());
+            }
         }
-        stack.decrementUnlessCreative(1, user);
-        return stack;
+        return super.finishUsing(stack, world, user);
     }
 
     @Override

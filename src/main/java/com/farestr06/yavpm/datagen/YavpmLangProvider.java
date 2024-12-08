@@ -4,6 +4,7 @@ import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import com.farestr06.yavpm.entity.mob.YavpmMobs;
 import com.farestr06.yavpm.item.YavpmItems;
+import com.farestr06.yavpm.item.enchantment.YavpmEnchantments;
 import com.farestr06.yavpm.util.YavpmTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
@@ -37,8 +38,23 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("option.yavpm.void_water_source_conversion.title", "Void Water converts to source");
         builder.add("option.yavpm.void_water_source_conversion.desc", "When flowing void water is surrounded on two sides by water sources it converts into a source.");
 
-        builder.add("advancements.adventure.transform_mob.title", "Pocket Powder!");
-        builder.add("advancements.adventure.transform_mob.description", "Transform a mob with some Soul Powder");
+        builder.add("advancements.husbandry.eat_fake_animal_product.title", "Fake Steaks");
+        builder.add("advancements.husbandry.eat_fake_animal_product.description", "Spare a cow's life and eat a Magic Bean-based alternative");
+        builder.add("advancements.husbandry.lip_smacker.title", "Lip Smacker");
+        builder.add("advancements.husbandry.lip_smacker.description", "You'd be surprised by how much wolves enjoy peanuts");
+        builder.add("advancements.husbandry.lucky_ticket.title", "Lucky Ticket");
+        builder.add("advancements.husbandry.lucky_ticket.description", "Eat a Fortune Cookie for a Lucky Slip");
+        builder.add("advancements.husbandry.craft_diamonds_from_graphene.title", "Infinite Diamond Glitch");
+        builder.add("advancements.husbandry.craft_diamonds_from_graphene.description", "Collect Graphite from a Carbonfowl and turn it into Diamonds");
+
+        builder.add("advancements.adventure.upgrade_tool_with_rune.title", "Power Up");
+        builder.add("advancements.adventure.upgrade_tool_with_rune.description", "Upgrade your equipment with a Rune");
+
+        builder.add("advancements.nether.convert_cow_to_moongus.title", "Fungus Amongus");
+        builder.add("advancements.nether.convert_cow_to_moongus.description", "Convert a Cow into a Moongus");
+
+        builder.add("advancements.end.pluck_needles_from_prickle_log.title", "Plucky Prickle");
+        builder.add("advancements.end.pluck_needles_from_prickle_log.description", "Pluck the needles off a Prickle Tree");
 
         builder.add("resourcePack.yavpm.programmer_art.name", "YAVPM Programmer Art");
 
@@ -49,31 +65,25 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmTags.Items.RUNE_ATTACK_APPLICABLE, "Upgradable with Attack Up Rune");
         builder.add(YavpmTags.Items.RUNE_DURABILITY_APPLICABLE, "Upgradable with Durability Up Rune");
         builder.add(YavpmTags.Items.RUNE_SPEED_APPLICABLE, "Upgradable with Speed Up Rune");
-        builder.add(YavpmTags.Items.RUNE_TOUGHNESS_APPLICABLE, "Upgradable with Toughness Up Rune");
 
         builder.add(YavpmItems.RUNE_ATTACK, "Attack Up Rune");
-        builder.add("item.yavpm.rune_attack.tooltip", "Increases a weapon's base damage by 50 percent.");
+        builder.add("item.yavpm.rune_attack.tooltip", "Increases a weapon's base damage by 50 percent when used in a Crafting Table.");
         builder.add(YavpmItems.RUNE_DURABILITY, "Durability Up Rune");
-        builder.add("item.yavpm.rune_durability.tooltip", "Increases a tool's maximum durability by 50 percent.");
+        builder.add("item.yavpm.rune_durability.tooltip", "Increases a tool's maximum durability by 50 percent when used in a Crafting Table.");
         builder.add(YavpmItems.RUNE_SPEED, "Speed Up Rune");
-        builder.add("item.yavpm.rune_speed.tooltip", "Increases a tool's mining speed by 50 percent.");
-        builder.add(YavpmItems.RUNE_TOUGHNESS, "Toughness Up Rune");
-        builder.add("item.yavpm.rune_toughness.tooltip", "Increases an armor piece's toughness by 50 percent.");
+        builder.add("item.yavpm.rune_speed.tooltip", "Increases a tool's mining speed by 50 percent when used in a Crafting Table.");
 
         builder.add(YavpmBlocks.GLOWING_OBSIDIAN, "Glowing Obsidian");
         builder.add(YavpmBlocks.SOUL_GLOWING_OBSIDIAN, "Soul Glowing Obsidian");
 
         builder.add(YavpmBlocks.ELECTRO_GLASS, "Psychic Glass");
 
-        builder.add("subtitles.item.soul_powder.use", "Soul Powder whooshes");
-        builder.add(YavpmItems.SOUL_POWDER, "Soul Powder");
-
         builder.add(YavpmItems.FORTUNE_COOKIE, "Fortune Cookie");
         builder.add(YavpmItems.LUCKY_SLIP, "Lucky Slip");
 
         builder.add(YavpmStatusEffects.VOID_TOUCHED.value(), "Void Touched");
 
-        builder.add("enchantment.yavpm.void_strike", "Void Strike");
+        builder.addEnchantment(YavpmEnchantments.VOID_STRIKE, "Void Strike");
         builder.add("enchantment.yavpm.void_strike.desc", "Attacking a target applies a short damage multiplier.");
 
         builder.add("enchantment.yavpm.critical_hit", "Critical Hit");
@@ -85,6 +95,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("enchantment.yavpm.longstrider", "Longstrider");
         builder.add("enchantment.yavpm.longstrider.desc", "Increases the player's stride, letting them climb higher steps and increasing their speed.");
 
+        builder.add(YavpmItems.RAW_DIAMOND, "Raw Diamond");
         builder.add(YavpmItems.GRAPHITE, "Graphite");
         builder.add(YavpmBlocks.GRAPHITE_BLOCK, "Block of Graphite");
         builder.add(YavpmBlocks.GRAPHENE_BLOCK, "Block of Graphene");
@@ -152,6 +163,9 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add(YavpmItems.CHEESE, "Cheese");
 
+        builder.add(YavpmItems.BEAN_TOAST, "Bean Toast");
+        builder.add(YavpmItems.COOKED_EGG, "Fried Egg");
+
         builder.add(YavpmBlocks.MAGIC_BEAN_CROP, "Magic Bean Crops");
         builder.add(YavpmItems.MAGIC_BEAN, "Magic Bean");
         builder.add(YavpmItems.FAKE_BEEF, "Fake Raw Beef");
@@ -159,8 +173,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.FAKE_MILK_BUCKET, "Fake Milk Bucket");
         builder.add(YavpmItems.TOFU, "Tofu");
 
+        builder.add(YavpmItems.SUSHI, "Sushi");
         builder.add(YavpmItems.SEA_SOUP, "Sea Soup");
-
 
         builder.add(YavpmItems.STUDDED_HELMET, "Studded Cap");
         builder.add(YavpmItems.STUDDED_CHESTPLATE, "Studded Tunic");
@@ -196,7 +210,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add(YavpmItems.CHOCOLATE, "Chocolate Bar");
 
-        builder.add(YavpmBlocks.NETHER_REACTOR_CORE, "Nether Reactor Core");
+        // builder.add(YavpmBlocks.NETHER_REACTOR_CORE, "Nether Reactor Core");
         builder.add("block.yavpm.nether_reactor_core.success", "Active!");
         builder.add("block.yavpm.nether_reactor_core.bad_structure", "Not the correct pattern!");
         builder.add("block.yavpm.nether_reactor_core.reactor_dead", "Reactor has already been used!");
@@ -247,6 +261,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add(Blocks.NETHER_WART, "Crimson Wart");
         builder.add(Items.NETHER_WART, "Crimson Wart");
+        builder.add(Blocks.NETHER_WART_BLOCK, "Crimson Wart Block");
         builder.add(YavpmBlocks.WARPED_WART, "Warped Wart");
         builder.add(YavpmItems.WARPED_WART, "Warped Wart");
 

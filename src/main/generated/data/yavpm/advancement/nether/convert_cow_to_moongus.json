@@ -1,0 +1,44 @@
+{
+  "parent": "minecraft:nether/brew_potion",
+  "criteria": {
+    "fed_cow_wart": {
+      "conditions": {
+        "entity": [
+          {
+            "condition": "minecraft:entity_properties",
+            "entity": "this",
+            "predicate": {
+              "type": "minecraft:cow"
+            }
+          }
+        ],
+        "item": {
+          "items": [
+            "minecraft:nether_wart_block",
+            "minecraft:warped_wart_block"
+          ]
+        }
+      },
+      "trigger": "minecraft:player_interacted_with_entity"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.nether.convert_cow_to_moongus.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:nether_wart_block"
+    },
+    "title": {
+      "translate": "advancements.nether.convert_cow_to_moongus.title"
+    }
+  },
+  "requirements": [
+    [
+      "fed_cow_wart"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

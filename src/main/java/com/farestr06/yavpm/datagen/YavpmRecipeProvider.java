@@ -1,22 +1,21 @@
 package com.farestr06.yavpm.datagen;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
+import com.farestr06.yavpm.crafting.RuneUpgradeRecipe;
 import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.util.YavpmTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.block.Blocks;
-import net.minecraft.data.server.recipe.CookingRecipeJsonBuilder;
-import net.minecraft.data.server.recipe.RecipeExporter;
-import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
+import net.minecraft.data.server.recipe.*;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.SmokingRecipe;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.ItemTags;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -33,16 +32,19 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
 
         makeFoods(exporter);
 
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, YavpmItems.SOUL_POWDER, 4)
-                .input(Items.BLAZE_POWDER)
-                .input(Items.BLAZE_POWDER)
-                .input(Items.BLAZE_POWDER)
-                .input(YavpmItems.SOUL_POWDER)
-                .criterion(hasItem(Items.BLAZE_POWDER), conditionsFromItem(Items.BLAZE_POWDER))
-                .offerTo(exporter, makeId(getRecipeName(YavpmItems.SOUL_POWDER)))
-        ;
-
+        // region Warts
         offerCompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, Blocks.WARPED_WART_BLOCK, YavpmItems.WARPED_WART);
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.NETHER_WART, 4)
+                .input(Items.NETHER_WART_BLOCK)
+                .criterion(hasItem(Items.NETHER_WART_BLOCK), conditionsFromItem(Items.NETHER_WART_BLOCK))
+                .offerTo(exporter, makeId(getRecipeName(Items.NETHER_WART)));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, YavpmItems.WARPED_WART, 4)
+                .input(Items.WARPED_WART_BLOCK)
+                .criterion(hasItem(Items.WARPED_WART_BLOCK), conditionsFromItem(Items.WARPED_WART_BLOCK))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.WARPED_WART)));
+        // endregion
 
         // region Glowing Obsidians
         ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.GLOWING_OBSIDIAN, 4)
@@ -55,7 +57,7 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.GLOWING_OBSIDIAN)))
         ;
         ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.SOUL_GLOWING_OBSIDIAN, 4)
-                .input(YavpmItems.SOUL_POWDER)
+                .input(Ingredient.fromTag(ItemTags.SOUL_FIRE_BASE_BLOCKS))
                 .input(Items.OBSIDIAN)
                 .input(Items.OBSIDIAN)
                 .input(Items.OBSIDIAN)
@@ -64,13 +66,6 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.SOUL_GLOWING_OBSIDIAN)))
         ;
         // endregion
-
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.BUILDING_BLOCKS, Items.MOSS_BLOCK, 4)
-                .input(Items.MOSS_BLOCK)
-                .input(ConventionalItemTags.FERTILIZERS)
-                .criterion(hasItem(Items.MOSS_BLOCK), conditionsFromItem(Items.MOSS_BLOCK))
-                .offerTo(exporter, makeId(getRecipeName(Items.MOSS_BLOCK)))
-        ;
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.MOLY, 3)
                 .input(YavpmItems.MOLY)
                 .input(ConventionalItemTags.FERTILIZERS)
@@ -85,12 +80,21 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.ELECTRO_GLASS)))
         ;
 
+        ComplexRecipeJsonBuilder.create(RuneUpgradeRecipe::new).offerTo(exporter, makeId("rune_upgrade"));
+
         makeStuddedArmorRecipes(exporter);
 
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.BLACK_DYE, 3)
+                .input(YavpmItems.GRAPHITE)
+                .criterion(hasItem(YavpmItems.GRAPHITE), conditionsFromItem(YavpmItems.GRAPHITE))
+                .offerTo(exporter, makeId(getRecipeName(Items.BLACK_DYE)));
         offerReversibleCompactingRecipes(exporter, RecipeCategory.MISC, YavpmItems.GRAPHITE, RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.GRAPHITE_BLOCK);
         offerCompactingRecipe(exporter, RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.GRAPHENE_BLOCK, YavpmBlocks.GRAPHITE_BLOCK);
 
-        offerSmelting(exporter, List.of(YavpmBlocks.GRAPHENE_BLOCK), RecipeCategory.MISC, Items.DIAMOND, 1f, 200, "graphene_to_diamond");
+        offerSmelting(exporter, List.of(YavpmBlocks.GRAPHENE_BLOCK), RecipeCategory.MISC, Items.DIAMOND, 1f, 400, "graphene_to_diamond");
+        offerBlasting(exporter, List.of(YavpmBlocks.GRAPHENE_BLOCK), RecipeCategory.MISC, Items.DIAMOND, 1f, 200, "graphene_to_diamond");
+        offerSmelting(exporter, List.of(YavpmItems.RAW_DIAMOND), RecipeCategory.MISC, Items.DIAMOND, 1f, 400, "_diamond_from_raw");
+        offerBlasting(exporter, List.of(YavpmItems.RAW_DIAMOND), RecipeCategory.MISC, Items.DIAMOND, 1f, 200, "_diamond_from_raw");
 
         makePrickleWoodRecipes(exporter);
         makeApplewoodRecipes(exporter);
@@ -101,8 +105,16 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
     private static void makeFoods(RecipeExporter exporter) {
         offerSmelting(exporter, List.of(YavpmItems.PEANUT), RecipeCategory.FOOD, YavpmItems.COOKED_PEANUT, 0.35f, 200, "peanut");
         offerFoodCookingRecipe(exporter, "smoking", RecipeSerializer.SMOKING, SmokingRecipe::new, 100, YavpmItems.PEANUT, YavpmItems.COOKED_PEANUT, 0.35f);
-        offerSmelting(exporter, List.of(YavpmItems.FAKE_BEEF), RecipeCategory.FOOD, YavpmItems.COOKED_FAKE_BEEF, 0.35f, 200, "FAKE_BEEF");
+        offerSmelting(exporter, List.of(YavpmItems.FAKE_BEEF), RecipeCategory.FOOD, YavpmItems.COOKED_FAKE_BEEF, 0.35f, 200, "fake_beef");
         offerFoodCookingRecipe(exporter, "smoking", RecipeSerializer.SMOKING, SmokingRecipe::new, 100, YavpmItems.FAKE_BEEF, YavpmItems.COOKED_FAKE_BEEF, 0.35f);
+        offerSmelting(exporter, List.of(Items.EGG), RecipeCategory.FOOD, YavpmItems.COOKED_EGG, 0.35f, 200, "cooked_egg");
+        offerFoodCookingRecipe(exporter, "smoking", RecipeSerializer.SMOKING, SmokingRecipe::new, 100, Items.EGG, YavpmItems.COOKED_EGG, 0.35f);
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.BEAN_TOAST, 4)
+                .input(Items.BREAD)
+                .input(YavpmItems.MAGIC_BEAN, 4)
+                .criterion(hasItem(YavpmItems.MAGIC_BEAN), conditionsFromItem(YavpmItems.MAGIC_BEAN))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.BEAN_TOAST)));
 
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.CHEESE, 4)
                 .input(Items.MILK_BUCKET)
@@ -139,18 +151,23 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .offerTo(exporter, makeId(getRecipeName(YavpmItems.CHOCOLATE)))
         ;
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.SUSHI, 3)
+                .input('T', Items.TROPICAL_FISH)
+                .input('K', Items.DRIED_KELP)
+                .input('R', YavpmItems.RICE)
+                .pattern("KRK")
+                .pattern("RTR")
+                .pattern("KRK")
+                .criterion(hasItem(YavpmItems.RICE), conditionsFromItem(YavpmItems.RICE))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.SUSHI)));
+
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.SEA_SOUP)
                 .input(Items.TROPICAL_FISH)
                 .input(YavpmItems.RICE)
                 .input(Items.DRIED_KELP)
                 .input(YavpmItems.MAGIC_BEAN)
                 .input(Items.BOWL)
-                .criterion("has_sea_soup", conditionsFromItem(YavpmItems.SEA_SOUP))
-                .criterion("has_bowl", conditionsFromItem(Items.BOWL))
-                .criterion("has_tropical_fish", conditionsFromItem(Items.TROPICAL_FISH))
                 .criterion("has_rice", conditionsFromItem(YavpmItems.RICE))
-                .criterion("has_dried_kelp", conditionsFromItem(Items.DRIED_KELP))
-                .criterion("has_magic_beans", conditionsFromItem(YavpmItems.MAGIC_BEAN))
                 .offerTo(exporter, makeId(getRecipeName(YavpmItems.SEA_SOUP)));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.DIAMOND_ACORN)

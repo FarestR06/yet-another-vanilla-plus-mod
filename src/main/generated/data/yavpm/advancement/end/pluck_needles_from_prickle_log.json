@@ -1,0 +1,33 @@
+{
+  "parent": "minecraft:end/enter_end_gateway",
+  "criteria": {
+    "pluck": {
+      "conditions": {
+        "items": [
+          {
+            "items": "yavpm:prickle_shoot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.end.pluck_needles_from_prickle_log.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "minecraft:shears"
+    },
+    "title": {
+      "translate": "advancements.end.pluck_needles_from_prickle_log.title"
+    }
+  },
+  "requirements": [
+    [
+      "pluck"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

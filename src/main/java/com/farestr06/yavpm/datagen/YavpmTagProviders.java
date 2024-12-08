@@ -26,6 +26,26 @@ public class YavpmTagProviders {
 
         @Override
         protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+            getOrCreateTagBuilder(YavpmTags.Items.RUNES).add(
+                    YavpmItems.RUNE_ATTACK,
+                    YavpmItems.RUNE_DURABILITY,
+                    YavpmItems.RUNE_SPEED
+            );
+
+            getOrCreateTagBuilder(YavpmTags.Items.RUNE_ATTACK_APPLICABLE)
+                    .forceAddTag(ItemTags.SWORDS)
+                    .forceAddTag(ItemTags.AXES);
+
+            getOrCreateTagBuilder(YavpmTags.Items.RUNE_DURABILITY_APPLICABLE)
+                    .forceAddTag(ItemTags.DURABILITY_ENCHANTABLE);
+
+            getOrCreateTagBuilder(YavpmTags.Items.RUNE_SPEED_APPLICABLE)
+                    .forceAddTag(ItemTags.SWORDS)
+                    .forceAddTag(ItemTags.AXES)
+                    .forceAddTag(ItemTags.HOES)
+                    .forceAddTag(ItemTags.PICKAXES)
+                    .forceAddTag(ItemTags.SHOVELS);
+
             getOrCreateTagBuilder(ItemTags.HEAD_ARMOR)
                     .add(YavpmItems.STUDDED_HELMET);
             getOrCreateTagBuilder(ItemTags.CHEST_ARMOR)
@@ -153,6 +173,12 @@ public class YavpmTagProviders {
                     YavpmItems.STUDDED_BOOTS
             );
 
+            getOrCreateTagBuilder(ItemTags.STONE_TOOL_MATERIALS).add(
+                    YavpmBlocks.COBBLED_GRANITE.asItem(),
+                    YavpmBlocks.COBBLED_DIORITE.asItem(),
+                    YavpmBlocks.COBBLED_ANDESITE.asItem()
+            );
+
             getOrCreateTagBuilder(ItemTags.STONE_CRAFTING_MATERIALS).add(
                     YavpmBlocks.COBBLED_GRANITE.asItem(),
                     YavpmBlocks.COBBLED_DIORITE.asItem(),
@@ -230,6 +256,8 @@ public class YavpmTagProviders {
             getOrCreateTagBuilder(BlockTags.SOUL_SPEED_BLOCKS).add(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
             getOrCreateTagBuilder(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
 
+            getOrCreateTagBuilder(BlockTags.HOE_MINEABLE)
+                    .add(YavpmBlocks.APPLE_LEAVES);
 
             getOrCreateTagBuilder(YavpmTags.Blocks.APPLE_LOGS).add(
                     YavpmBlocks.APPLE_LOG,
@@ -249,6 +277,8 @@ public class YavpmTagProviders {
             getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(
                     YavpmBlocks.GLOWING_OBSIDIAN,
                     YavpmBlocks.SOUL_GLOWING_OBSIDIAN,
+                    YavpmBlocks.GRAPHITE_BLOCK,
+                    YavpmBlocks.GRAPHENE_BLOCK,
                     YavpmBlocks.COBBLED_GRANITE,
                     YavpmBlocks.COBBLED_DIORITE,
                     YavpmBlocks.COBBLED_ANDESITE,
@@ -284,12 +314,12 @@ public class YavpmTagProviders {
                     YavpmBlocks.POLISHED_ANDESITE_TILES,
                     YavpmBlocks.POLISHED_ANDESITE_TILE_STAIRS,
                     YavpmBlocks.POLISHED_ANDESITE_TILE_SLAB,
-                    YavpmBlocks.POLISHED_ANDESITE_TILE_WALL
+                    YavpmBlocks.POLISHED_ANDESITE_TILE_WALL,
+                    YavpmBlocks.KIMBERLITE
             );
 
             getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
                     .add(
-                            YavpmBlocks.NETHER_REACTOR_CORE,
                             YavpmBlocks.GRAPHITE_BLOCK,
                             YavpmBlocks.GRAPHENE_BLOCK
                     );

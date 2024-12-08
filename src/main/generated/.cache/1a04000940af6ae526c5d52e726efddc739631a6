@@ -1,12 +1,15 @@
-// 1.21.1	2024-12-06T22:10:46.198811	Yet Another Vanilla Plus Mod/World Gen
+// 1.21.1	2024-12-08T13:51:54.26462	Yet Another Vanilla Plus Mod/World Gen
 b4dd851dfa0ec3c431fa485f6e79759d6bda362a data/yavpm/worldgen/configured_feature/fancy_apple_bees_002.json
 9a467425e4cf4c3b1f9f218efe3e7ecf04c31ede data/yavpm/worldgen/configured_feature/fancy_apple_bees_005.json
+ec8acc2a90be99d8cb32111d8d36f94acfd06ed7 data/yavpm/worldgen/placed_feature/ore_kimberlite_upper.json
 968a7f6dd81be4261c3db52f6181b823f86e0b80 data/yavpm/worldgen/biome/withered_scar.json
+a8b28691d54ea7ac07b05a218e30ca9e7139dbbe data/yavpm/worldgen/configured_feature/ore_kimberlite.json
 4f57347986cca2715af89b370f1151a1d2fd32de data/yavpm/worldgen/configured_feature/apple_bees_005.json
 6bc6aafaf56abf6461a16d8b446353f9d420f4e6 data/yavpm/worldgen/configured_feature/apple_bees_002.json
 bfc560c6bc47e4a9bba13e0cdfaf7952ddffb660 data/yavpm/worldgen/configured_feature/apple_bees_0002.json
 815a7c6fc039800b1e1d6a2234e0145b068afacc data/yavpm/worldgen/configured_feature/apple.json
 54d82a6775bb6506dbce85e2330e6d0e7c3411ee data/yavpm/worldgen/placed_feature/patch_wither_rose_placed.json
+d3c04093ab3ed695dc302b00dbf8e0082bd16d6a data/yavpm/worldgen/placed_feature/ore_kimberlite_lower.json
 6a8a362bbbb8b3626262d5baf2f174b0c64863b0 data/yavpm/worldgen/configured_feature/prickle.json
 559b04a838a53fc8dc140cf4c1378e27d27b08af data/yavpm/worldgen/placed_feature/apple_placed_in_orchard_grove.json
 c0d021888b865ad5b93239d462908845a872af29 data/yavpm/worldgen/placed_feature/apple_placed.json

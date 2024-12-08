@@ -1,0 +1,31 @@
+{
+  "parent": "minecraft:adventure/trade",
+  "criteria": {
+    "upgrade_tool": {
+      "conditions": {
+        "recipe_id": "yavpm:rune_upgrade"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.adventure.upgrade_tool_with_rune.description"
+    },
+    "frame": "goal",
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "yavpm:rune_durability"
+    },
+    "title": {
+      "translate": "advancements.adventure.upgrade_tool_with_rune.title"
+    }
+  },
+  "requirements": [
+    [
+      "upgrade_tool"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

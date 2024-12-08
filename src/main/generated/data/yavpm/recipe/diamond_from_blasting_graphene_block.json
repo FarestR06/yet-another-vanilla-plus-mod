@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:blasting",
+  "category": "misc",
+  "cookingtime": 200,
+  "experience": 1.0,
+  "group": "graphene_to_diamond",
+  "ingredient": {
+    "item": "yavpm:graphene_block"
+  },
+  "result": {
+    "id": "minecraft:diamond"
+  }
+}

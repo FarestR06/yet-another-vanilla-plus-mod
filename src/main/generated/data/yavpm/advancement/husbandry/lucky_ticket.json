@@ -1,0 +1,31 @@
+{
+  "parent": "minecraft:husbandry/plant_seed",
+  "criteria": {
+    "ate_fortune_cookie": {
+      "conditions": {
+        "item": {
+          "items": "yavpm:fortune_cookie"
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.husbandry.lucky_ticket.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "yavpm:fortune_cookie"
+    },
+    "title": {
+      "translate": "advancements.husbandry.lucky_ticket.title"
+    }
+  },
+  "requirements": [
+    [
+      "ate_fortune_cookie"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 400,
+  "experience": 1.0,
+  "group": "_diamond_from_raw",
+  "ingredient": {
+    "item": "yavpm:raw_diamond"
+  },
+  "result": {
+    "id": "minecraft:diamond"
+  }
+}

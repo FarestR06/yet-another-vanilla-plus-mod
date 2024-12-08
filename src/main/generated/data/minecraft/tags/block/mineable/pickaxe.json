@@ -2,6 +2,8 @@
   "values": [
     "yavpm:glowing_obsidian",
     "yavpm:soul_glowing_obsidian",
+    "yavpm:graphite_block",
+    "yavpm:graphene_block",
     "yavpm:cobbled_granite",
     "yavpm:cobbled_diorite",
     "yavpm:cobbled_andesite",
@@ -37,6 +39,7 @@
     "yavpm:polished_andesite_tiles",
     "yavpm:polished_andesite_tile_stairs",
     "yavpm:polished_andesite_tile_slab",
-    "yavpm:polished_andesite_tile_wall"
+    "yavpm:polished_andesite_tile_wall",
+    "yavpm:kimberlite"
   ]
 }

@@ -12,6 +12,7 @@ import net.minecraft.village.TradedItem;
 import net.minecraft.village.VillagerProfession;
 
 import java.util.List;
+import java.util.Optional;
 
 public class YavpmCustomTrades {
     private static final float LOW_MULTIPLIER = 0.05f;
@@ -35,14 +36,22 @@ public class YavpmCustomTrades {
                     LOW_MULTIPLIER
             ));
         });
-        TradeOfferHelper.registerVillagerOffers(VillagerProfession.FARMER, 3, factories ->
-                factories.add((entity, random) -> new TradeOffer(
-                new TradedItem(Items.EMERALD, random.nextBetween(3, 32)),
-                new ItemStack(YavpmItems.FORTUNE_COOKIE),
-                6,
-                10,
-                HIGH_MULTIPLIER
-        )));
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.FARMER, 3, factories -> {
+            factories.add((entity, random) -> new TradeOffer(
+                    new TradedItem(Items.EMERALD, random.nextBetween(3, 32)),
+                    new ItemStack(YavpmItems.FORTUNE_COOKIE),
+                    4,
+                    10,
+                    HIGH_MULTIPLIER
+            ));
+            factories.add((entity, random) -> new TradeOffer(
+                    new TradedItem(Items.EMERALD, 3),
+                    new ItemStack(YavpmItems.RICE, 16),
+                    12,
+                    10,
+                    LOW_MULTIPLIER
+            ));
+        });
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.FARMER, 5, factories ->
                 factories.add((entity, random) -> new TradeOffer(
                 new TradedItem(Items.EMERALD, random.nextBetween(1, 16)),
@@ -51,6 +60,23 @@ public class YavpmCustomTrades {
                 30,
                 HIGH_MULTIPLIER
         )));
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.FISHERMAN, 4, factories -> {
+            factories.add((entity, random) -> new TradeOffer(
+                    new TradedItem(Items.EMERALD, 4),
+                    new ItemStack(YavpmItems.SUSHI, 4),
+                    12,
+                    15,
+                    LOW_MULTIPLIER
+            ));
+            factories.add((entity, random) -> new TradeOffer(
+                    new TradedItem(Items.EMERALD, 4),
+                    Optional.of(new TradedItem(Items.BOWL)),
+                    new ItemStack(YavpmItems.SEA_SOUP),
+                    12,
+                    15,
+                    LOW_MULTIPLIER
+            ));
+        });
         TradeOfferHelper.registerWanderingTraderOffers(1, factories -> {
             factories.add((entity, random) -> new TradeOffer(
                     new TradedItem(Items.EMERALD),
@@ -81,6 +107,13 @@ public class YavpmCustomTrades {
                     0f
             ));
             factories.add((entity, random) -> new TradeOffer(
+                    new TradedItem(Items.EMERALD, 3),
+                    new ItemStack(YavpmItems.MOLY),
+                    16,
+                    0,
+                    0f
+            ));
+            factories.add((entity, random) -> new TradeOffer(
                     new TradedItem(Items.EMERALD, 5),
                     new ItemStack(YavpmBlocks.APPLE_SAPLING),
                     8,
@@ -88,9 +121,9 @@ public class YavpmCustomTrades {
                     0f
             ));
             factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, 8),
+                    new TradedItem(Items.EMERALD, 24),
                     chooseRune(random),
-                    8,
+                    1,
                     0,
                     0f
             ));
@@ -101,8 +134,7 @@ public class YavpmCustomTrades {
         List<Item> items = List.of(
                 YavpmItems.RUNE_ATTACK,
                 YavpmItems.RUNE_DURABILITY,
-                YavpmItems.RUNE_SPEED,
-                YavpmItems.RUNE_TOUGHNESS
+                YavpmItems.RUNE_SPEED
         );
 
         Item item = items.get(rand.nextInt(4));
