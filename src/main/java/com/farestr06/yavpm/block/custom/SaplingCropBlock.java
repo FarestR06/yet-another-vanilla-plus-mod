@@ -1,6 +1,5 @@
 package com.farestr06.yavpm.block.custom;
 
-import com.farestr06.yavpm.item.YavpmItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropBlock;
@@ -9,7 +8,7 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 
-public class SaplingCropBlock extends CropBlock {
+public abstract class SaplingCropBlock extends CropBlock {
     public SaplingCropBlock(Settings settings) {
         super(settings);
     }
@@ -33,7 +32,5 @@ public class SaplingCropBlock extends CropBlock {
     }
 
     @Override
-    protected ItemConvertible getSeedsItem() {
-        return YavpmItems.ACORN;
-    }
+    protected abstract ItemConvertible getSeedsItem();
 }

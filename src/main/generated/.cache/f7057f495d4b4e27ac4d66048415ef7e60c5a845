@@ -1,25 +1,29 @@
-// 1.21.1	2024-12-08T13:51:54.265065	Yet Another Vanilla Plus Mod/Tags for minecraft:block
+// 1.21.1	2024-12-12T13:55:59.77979	Yet Another Vanilla Plus Mod/Tags for minecraft:block
 cb07bad33330d3bea18e529754609135cb99ec19 data/minecraft/tags/block/soul_speed_blocks.json
 0e50cfdd3f069d1e4e1e62c34ebc54dea186bbe2 data/minecraft/tags/block/mineable/hoe.json
+1f9e37de653eee143f25e7e38d84ecf8ebca15a8 data/minecraft/tags/block/mineable/axe.json
+daac9cf0828ec900379b08e8534fd70c4164cf7d data/c/tags/block/stripped_logs.json
 629cdbb8075c3d564170b826c37088c264df2bab data/minecraft/tags/block/needs_iron_tool.json
 195cee5a4bb87783e884d2524dc2e8c4d0e50870 data/minecraft/tags/block/slabs.json
 902c786e24c219f4a7ac8c77fde3d5787688accf data/minecraft/tags/block/fence_gates.json
 2d495c7d3ff0838cdef99bc209abcff628bfe82b data/minecraft/tags/block/wooden_trapdoors.json
+1acfd7d2d675c5caaa7cfc72edd8bf050e97fa77 data/c/tags/block/obsidians.json
 a2d21883b0bfc3391a45a96b613e6a10012f5baa data/minecraft/tags/block/wooden_fences.json
 d19949f137012f4cff58d3e28b1f5f3e8b57d548 data/minecraft/tags/block/wall_hanging_signs.json
 0e50cfdd3f069d1e4e1e62c34ebc54dea186bbe2 data/minecraft/tags/block/leaves.json
 32dfa78c24f64d72c83288a2f3c3f04046876f43 data/minecraft/tags/block/walls.json
 1acfd7d2d675c5caaa7cfc72edd8bf050e97fa77 data/minecraft/tags/block/needs_diamond_tool.json
+53a13473b30a0ca862cb74b2b2575e0e92cb13ca data/yavpm/tags/block/prickle_logs.json
 0b87ad0a11c0a3616dccf9483b69a02c1e415e5f data/minecraft/tags/block/stone_bricks.json
 f42aa5653ac2162f7b687c7b48a496414e34e750 data/minecraft/tags/block/wooden_doors.json
 83191c3ea35da9065966f70524cb7c959458f70a data/minecraft/tags/block/crops.json
+9e85ce486fcbf21bf9d17f9ef1bbd8933115e1a9 data/minecraft/tags/block/mineable/pickaxe.json
 d25380cfc030df26989a2c2d32133f2818089265 data/minecraft/tags/block/standing_signs.json
-b4f71a4d70680789f9257e24e52c18ddf897f975 data/minecraft/tags/block/mineable/pickaxe.json
 cb07bad33330d3bea18e529754609135cb99ec19 data/minecraft/tags/block/soul_fire_base_blocks.json
 1eb3808c624477422ebd1accf95624f2d29543b9 data/yavpm/tags/block/apple_logs.json
 99ee48d11d3a4ca1907767763c8001356750dac5 data/minecraft/tags/block/wall_signs.json
-53a13473b30a0ca862cb74b2b2575e0e92cb13ca data/yavpm/tags/block/spiral_stalks.json
 c10552c7201d4f94dd29bed7a6bc468d32d3815b data/minecraft/tags/block/planks.json
 e9c8309894f99cbf081ea53958f49608746124fc data/minecraft/tags/block/stairs.json
-17654d7dbb7752de96e921c56185d71134dcf6f1 data/minecraft/tags/block/logs_that_burn.json
+a9889ac7bb76e5d66783c7a8a4d3de28f13f34fd data/minecraft/tags/block/logs_that_burn.json
 d19949f137012f4cff58d3e28b1f5f3e8b57d548 data/minecraft/tags/block/ceiling_hanging_signs.json
+1ed5d62b9eb9323eb1ebc515dad9770ee021ba68 data/c/tags/block/stripped_woods.json

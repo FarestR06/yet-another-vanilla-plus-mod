@@ -1,6 +1,6 @@
 package com.farestr06.yavpm.mixin.entity;
 
-import com.farestr06.yavpm.entity.mob.YavpmMobs;
+import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.item.YavpmItems;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
@@ -21,7 +21,7 @@ public abstract class ChickenEntityMixin extends AnimalEntity {
 
     @Redirect(method = "tickMovement", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/ChickenEntity;dropItem(Lnet/minecraft/item/ItemConvertible;)Lnet/minecraft/entity/ItemEntity;"))
     private ItemEntity injected(ChickenEntity instance, ItemConvertible itemConvertible) {
-        if (instance.getType() == YavpmMobs.CARBONFOWL) return instance.dropItem(YavpmItems.GRAPHITE);
+        if (instance.getType() == YavpmEntities.CARBONFOWL) return instance.dropItem(YavpmItems.GRAPHITE);
         else return instance.dropItem(Items.EGG);
     }
 }

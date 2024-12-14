@@ -3,6 +3,7 @@
   "package": "com.farestr06.yavpm.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "block.PowderSnowBlockMixin",
     "entity.AbstractPiglinEntityMixin",
     "entity.ChickenEntityMixin",
     "entity.CowEntityMixin",

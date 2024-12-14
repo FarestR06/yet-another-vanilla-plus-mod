@@ -4,13 +4,15 @@ import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.config.YavpmConfig;
 import com.farestr06.yavpm.crafting.YavpmRecipeSerializers;
 import com.farestr06.yavpm.entity.YavpmBoats;
-import com.farestr06.yavpm.entity.YavpmCustomTrades;
+import com.farestr06.yavpm.entity.YavpmTrades;
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
-import com.farestr06.yavpm.entity.mob.YavpmMobs;
+import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.fluid.YavpmFluids;
+import com.farestr06.yavpm.item.ItemGroupHelper;
 import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.item.YavpmPotions;
 import com.farestr06.yavpm.util.YavpmSounds;
+import com.farestr06.yavpm.util.YavpmTags;
 import com.farestr06.yavpm.world.gen.YavpmWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 
@@ -34,6 +36,7 @@ import net.minecraft.loot.condition.RandomChanceWithEnchantedBonusLootCondition;
 import net.minecraft.loot.condition.TableBonusLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.entry.LeafEntry;
+import net.minecraft.loot.function.EnchantRandomlyLootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
@@ -68,7 +71,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 
 		YavpmConfig.HANDLER.load();
 
-		YavpmMobs.init();
+		YavpmEntities.init();
 		YavpmBoats.init();
 		YavpmSounds.init();
 		YavpmItems.init();
@@ -76,8 +79,9 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		YavpmPotions.init();
 		YavpmBlocks.init();
 		YavpmFluids.init();
+		ItemGroupHelper.modifyEntries();
 		YavpmRecipeSerializers.init();
-		YavpmCustomTrades.init();
+		YavpmTrades.init();
 
 		YavpmWorldGeneration.generateModWorldGen();
 		modifyLoot();
@@ -101,6 +105,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 	private static void modifyLoot() {
 		LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
 			if (source.isBuiltin()) {
+				RegistryWrapper.Impl<Enchantment> enchantmentImpl = registries.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
 				// region Entities
 				if (key == LootTables.SNIFFER_DIGGING_GAMEPLAY) {
 					LootPool.Builder poolBuilder = LootPool.builder()
@@ -135,6 +140,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 							.with(ItemEntry.builder(YavpmItems.RUNE_SPEED))
 							.conditionally(RandomChanceLootCondition.builder(0.005f));
 
+
 					tableBuilder.pool(poolBuilder1).pool(poolBuilder2);
 				}
 				if (key == LootTables.ANCIENT_CITY_CHEST) {
@@ -144,16 +150,6 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 							.with(ItemEntry.builder(YavpmItems.RUNE_DURABILITY))
 							.with(ItemEntry.builder(YavpmItems.RUNE_SPEED))
 							.conditionally(RandomChanceLootCondition.builder(0.015f));
-
-					tableBuilder.pool(poolBuilder);
-				}
-				if (key == LootTables.STRONGHOLD_CORRIDOR_CHEST) {
-					LootPool.Builder poolBuilder = LootPool.builder()
-							.rolls(ConstantLootNumberProvider.create(1f))
-							.with(ItemEntry.builder(YavpmItems.RUNE_ATTACK))
-							.with(ItemEntry.builder(YavpmItems.RUNE_DURABILITY))
-							.with(ItemEntry.builder(YavpmItems.RUNE_SPEED))
-							.conditionally(RandomChanceLootCondition.builder(0.01f));
 
 					tableBuilder.pool(poolBuilder);
 				}
@@ -225,11 +221,39 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 
 					tableBuilder.pool(poolBuilder);
 				}
+				if (key == LootTables.STRONGHOLD_CORRIDOR_CHEST) {
+					LootPool.Builder poolBuilder = LootPool.builder()
+							.rolls(ConstantLootNumberProvider.create(1f))
+							.with(ItemEntry.builder(YavpmItems.RUNE_ATTACK))
+							.with(ItemEntry.builder(YavpmItems.RUNE_DURABILITY))
+							.with(ItemEntry.builder(YavpmItems.RUNE_SPEED))
+							.conditionally(RandomChanceLootCondition.builder(0.01f));
+
+					tableBuilder.pool(poolBuilder);
+				}
 				if (key == LootTables.STRONGHOLD_CROSSING_CHEST) {
 					LootPool.Builder poolBuilder = LootPool.builder()
 							.rolls(ConstantLootNumberProvider.create(1f))
 							.with(ItemEntry.builder(Items.MUSIC_DISC_11))
 							.conditionally(RandomChanceLootCondition.builder(0.11f));
+
+					tableBuilder.pool(poolBuilder);
+				}
+				if (key == LootTables.STRONGHOLD_LIBRARY_CHEST) {
+					LootPool.Builder poolBuilder = LootPool.builder()
+							.rolls(ConstantLootNumberProvider.create(1f))
+							.with(ItemEntry.builder(Items.BOOK).apply(EnchantRandomlyLootFunction.builder(registries).options(
+									enchantmentImpl.getOrThrow(YavpmTags.Enchantments.END_ENCHANTMENTS))))
+							.conditionally(RandomChanceLootCondition.builder(0.11f));
+
+					tableBuilder.pool(poolBuilder);
+				}
+				if (key == LootTables.END_CITY_TREASURE_CHEST) {
+					LootPool.Builder poolBuilder = LootPool.builder()
+							.rolls(ConstantLootNumberProvider.create(1f))
+							.with(ItemEntry.builder(Items.BOOK).apply(EnchantRandomlyLootFunction.builder(registries).options(
+									enchantmentImpl.getOrThrow(YavpmTags.Enchantments.END_ENCHANTMENTS))))
+							.conditionally(RandomChanceLootCondition.builder(0.22f));
 
 					tableBuilder.pool(poolBuilder);
 				}

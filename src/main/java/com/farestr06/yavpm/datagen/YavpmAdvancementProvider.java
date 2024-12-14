@@ -29,7 +29,7 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
     protected static final AdvancementEntry eatFakeAnimalProduct = Advancement.Builder.create()
             .parent(VanillaAdvancements.Husbandry.PLANT_SEED)
             .display(
-                    YavpmItems.MAGIC_BEAN,
+                    YavpmItems.COOKED_FAKE_BEEF,
                     Text.translatable("advancements.husbandry.eat_fake_animal_product.title"),
                     Text.translatable("advancements.husbandry.eat_fake_animal_product.description"),
                     null,

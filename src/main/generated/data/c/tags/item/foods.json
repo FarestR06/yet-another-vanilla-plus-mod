@@ -3,11 +3,18 @@
     "yavpm:banana",
     "yavpm:peanut",
     "yavpm:cooked_peanut",
+    "yavpm:cooked_egg",
+    "yavpm:cheese",
     "yavpm:moly",
     "yavpm:acorn",
     "yavpm:diamond_acorn",
     "yavpm:truffle",
     "yavpm:magic_bean",
+    "yavpm:bean_toast",
+    "yavpm:fake_beef",
+    "yavpm:cooked_fake_beef",
+    "yavpm:tofu",
+    "yavpm:sushi",
     "yavpm:sea_soup"
   ]
 }

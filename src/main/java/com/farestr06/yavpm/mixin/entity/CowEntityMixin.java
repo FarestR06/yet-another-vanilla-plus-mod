@@ -1,6 +1,6 @@
 package com.farestr06.yavpm.mixin.entity;
 
-import com.farestr06.yavpm.entity.mob.YavpmMobs;
+import com.farestr06.yavpm.entity.YavpmEntities;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -30,10 +30,10 @@ public abstract class CowEntityMixin extends AnimalEntity {
     @Inject(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"), cancellable = true)
     private void injected(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir, @Local ItemStack stack) {
         if (stack.isOf(Items.NETHER_WART_BLOCK)) {
-            thiz.convertTo(YavpmMobs.MOONGUS, false).setVariant(MooshroomEntity.Type.RED);
+            thiz.convertTo(YavpmEntities.MOONGUS, false).setVariant(MooshroomEntity.Type.RED);
             cir.setReturnValue(ActionResult.success(thiz.getWorld().isClient));
         } else if (stack.isOf(Items.WARPED_WART_BLOCK)) {
-            thiz.convertTo(YavpmMobs.MOONGUS, false).setVariant(MooshroomEntity.Type.BROWN);
+            thiz.convertTo(YavpmEntities.MOONGUS, false).setVariant(MooshroomEntity.Type.BROWN);
             cir.setReturnValue(ActionResult.success(thiz.getWorld().isClient));
         }
     }

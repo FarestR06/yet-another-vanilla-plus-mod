@@ -1,7 +1,6 @@
 package com.farestr06.yavpm.world;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
-import com.farestr06.yavpm.block.custom.PrickleLogBlock;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SaplingGenerator;
 import net.minecraft.registry.Registerable;
@@ -10,14 +9,18 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.structure.rule.RuleTest;
 import net.minecraft.structure.rule.TagMatchRuleTest;
-import net.minecraft.util.math.Direction;
+import net.minecraft.util.collection.DataPool;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
+import net.minecraft.util.math.intprovider.IntProvider;
+import net.minecraft.util.math.intprovider.UniformIntProvider;
+import net.minecraft.util.math.intprovider.WeightedListIntProvider;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
 import net.minecraft.world.gen.foliage.LargeOakFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.treedecorator.BeehiveTreeDecorator;
+import net.minecraft.world.gen.trunk.CherryTrunkPlacer;
 import net.minecraft.world.gen.trunk.LargeOakTrunkPlacer;
 import net.minecraft.world.gen.trunk.StraightTrunkPlacer;
 
@@ -38,9 +41,11 @@ public class YavpmConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_APPLE_BEES_0002 = registerKey("fancy_apple_bees_0002");
     public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_APPLE_BEES_002 = registerKey("fancy_apple_bees_002");
     public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_APPLE_BEES_005 = registerKey("fancy_apple_bees_005");
+
     public static final RegistryKey<ConfiguredFeature<?, ?>> PATCH_WITHER_ROSE = registerKey("patch_wither_rose");
 
     public static final RegistryKey<ConfiguredFeature<?, ?>> PRICKLE = registerKey("prickle");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> FANCY_PRICKLE = registerKey("fancy_prickle");
 
     public static final SaplingGenerator APPLEWOOD_GENERATOR = new SaplingGenerator(
             "applewood",
@@ -55,8 +60,12 @@ public class YavpmConfiguredFeatures {
 
     public static final SaplingGenerator PRICKLE_GENERATOR = new SaplingGenerator(
             "prickle",
+            0.15f,
+            Optional.empty(),
             Optional.empty(),
             Optional.of(PRICKLE),
+            Optional.of(FANCY_PRICKLE),
+            Optional.empty(),
             Optional.empty()
     );
 
@@ -81,6 +90,7 @@ public class YavpmConfiguredFeatures {
         register(context, FANCY_APPLE_BEES_005, Feature.TREE, makeFancyAppleConfig().decorators(List.of(beehiveTreeDecorator005)).build());
 
         register(context, PRICKLE, Feature.TREE, makePrickleConfig().build());
+        register(context, FANCY_PRICKLE, Feature.TREE, makeFancyPrickleConfig().build());
 
 
         register(
@@ -103,16 +113,34 @@ public class YavpmConfiguredFeatures {
 
     private static TreeFeatureConfig.Builder makePrickleConfig() {
         return new TreeFeatureConfig.Builder(
-                BlockStateProvider.of(
-                        YavpmBlocks.PRICKLE_LOG.getDefaultState()
-                                .with(PrickleLogBlock.AXIS, Direction.Axis.Y)
-                                .with(PrickleLogBlock.PRICKLY, true)
-                ),
-                new StraightTrunkPlacer(8, 1, 0),
+                BlockStateProvider.of(YavpmBlocks.PRICKLE_LOG),
+                new StraightTrunkPlacer(6, 3, 0),
                 BlockStateProvider.of(Blocks.AIR),
                 new BlobFoliagePlacer(ConstantIntProvider.ZERO, ConstantIntProvider.ZERO, 0),
                 new TwoLayersFeatureSize(0, 0, 0)
-        );
+        ).dirtProvider(BlockStateProvider.of(Blocks.END_STONE));
+    }
+
+
+    private static TreeFeatureConfig.Builder makeFancyPrickleConfig() {
+        return (new TreeFeatureConfig.Builder(
+                BlockStateProvider.of(YavpmBlocks.PRICKLE_LOG),
+                new CherryTrunkPlacer(
+                        6,
+                        1,
+                        2,
+                        new WeightedListIntProvider(
+                                DataPool.<IntProvider>builder().add(ConstantIntProvider.create(1), 1)
+                                        .add(ConstantIntProvider.create(1), 1)
+                                        .add(ConstantIntProvider.create(2), 1)
+                                        .build()
+                        ),
+                        UniformIntProvider.create(2, 4), UniformIntProvider.create(-4, -3), UniformIntProvider.create(-1, 0)
+                ),
+                BlockStateProvider.of(Blocks.AIR),
+                new BlobFoliagePlacer(ConstantIntProvider.ZERO, ConstantIntProvider.ZERO, 0),
+                new TwoLayersFeatureSize(0, 0, 0)
+        ).dirtProvider(BlockStateProvider.of(Blocks.END_STONE)));
     }
 
     private static TreeFeatureConfig.Builder makeAppleConfig() {

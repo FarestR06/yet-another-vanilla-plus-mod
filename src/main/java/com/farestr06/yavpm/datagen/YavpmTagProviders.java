@@ -1,19 +1,21 @@
 package com.farestr06.yavpm.datagen;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
-import com.farestr06.yavpm.entity.mob.YavpmMobs;
+import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.YavpmItems;
+import com.farestr06.yavpm.item.enchantment.YavpmEnchantments;
 import com.farestr06.yavpm.util.YavpmTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.item.Items;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.registry.tag.EntityTypeTags;
-import net.minecraft.registry.tag.FluidTags;
-import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.registry.tag.*;
+import net.minecraft.world.biome.BiomeKeys;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -46,6 +48,12 @@ public class YavpmTagProviders {
                     .forceAddTag(ItemTags.PICKAXES)
                     .forceAddTag(ItemTags.SHOVELS);
 
+            getOrCreateTagBuilder(ConventionalItemTags.ARMORS).add(
+                    YavpmItems.STUDDED_HELMET,
+                    YavpmItems.STUDDED_CHESTPLATE,
+                    YavpmItems.STUDDED_LEGGINGS,
+                    YavpmItems.STUDDED_BOOTS
+            );
             getOrCreateTagBuilder(ItemTags.HEAD_ARMOR)
                     .add(YavpmItems.STUDDED_HELMET);
             getOrCreateTagBuilder(ItemTags.CHEST_ARMOR)
@@ -54,6 +62,17 @@ public class YavpmTagProviders {
                     .add(YavpmItems.STUDDED_LEGGINGS);
             getOrCreateTagBuilder(ItemTags.FOOT_ARMOR)
                     .add(YavpmItems.STUDDED_BOOTS);
+            getOrCreateTagBuilder(ItemTags.FREEZE_IMMUNE_WEARABLES).add(
+                    YavpmItems.STUDDED_HELMET,
+                    YavpmItems.STUDDED_CHESTPLATE,
+                    YavpmItems.STUDDED_LEGGINGS,
+                    YavpmItems.STUDDED_BOOTS
+            );
+
+            getOrCreateTagBuilder(ConventionalItemTags.RAW_MATERIALS).add(
+                    YavpmItems.RAW_DIAMOND,
+                    YavpmBlocks.GRAPHENE_BLOCK.asItem()
+            );
 
             getOrCreateTagBuilder(YavpmTags.Items.CRIMSON_MOONGUS_FOOD).add(
                     Items.SUGAR,
@@ -119,15 +138,32 @@ public class YavpmTagProviders {
                     YavpmItems.BANANA,
                     YavpmItems.PEANUT,
                     YavpmItems.COOKED_PEANUT,
+                    YavpmItems.COOKED_EGG,
+                    YavpmItems.CHEESE,
                     YavpmItems.MOLY,
                     YavpmItems.ACORN,
                     YavpmItems.DIAMOND_ACORN,
                     YavpmItems.TRUFFLE,
                     YavpmItems.MAGIC_BEAN,
+                    YavpmItems.BEAN_TOAST,
+                    YavpmItems.FAKE_BEEF,
+                    YavpmItems.COOKED_FAKE_BEEF,
+                    YavpmItems.TOFU,
+                    YavpmItems.SUSHI,
                     YavpmItems.SEA_SOUP
+            );
+            getOrCreateTagBuilder(ConventionalItemTags.RAW_MEAT_FOODS).add(
+                    YavpmItems.FAKE_BEEF
+            );
+            getOrCreateTagBuilder(ConventionalItemTags.COOKED_MEAT_FOODS).add(
+                    YavpmItems.COOKED_FAKE_BEEF
             );
             getOrCreateTagBuilder(ConventionalItemTags.FRUIT_FOODS).add(
                     YavpmItems.BANANA
+            );
+            getOrCreateTagBuilder(ConventionalItemTags.VEGETABLE_FOODS).add(
+                    YavpmItems.MOLY,
+                    YavpmItems.MAGIC_BEAN
             );
             getOrCreateTagBuilder(ConventionalItemTags.SOUP_FOODS).add(
                     YavpmItems.SEA_SOUP
@@ -141,9 +177,26 @@ public class YavpmTagProviders {
                     YavpmItems.TRUFFLE,
                     YavpmItems.BANANA_SEEDS
             );
+            getOrCreateTagBuilder(ConventionalItemTags.COOKIE_FOODS)
+                    .add(YavpmItems.FORTUNE_COOKIE);
+            getOrCreateTagBuilder(ConventionalItemTags.CANDY_FOODS)
+                    .add(YavpmItems.CHOCOLATE);
+            getOrCreateTagBuilder(ConventionalItemTags.FOOD_POISONING_FOODS).add(
+                    YavpmItems.PEANUT
+            );
+            getOrCreateTagBuilder(YavpmTags.Items.TANUKI_FOODS)
+                    .forceAddTag(ConventionalItemTags.BERRY_FOODS);
+
+            getOrCreateTagBuilder(ConventionalItemTags.MILK_BUCKETS)
+                    .add(YavpmItems.FAKE_MILK_BUCKET);
+
             getOrCreateTagBuilder(ConventionalItemTags.CROPS).add(
                     YavpmItems.ACORN,
-                    YavpmItems.BANANA_SEEDS
+                    Items.OAK_SAPLING,
+                    YavpmItems.BANANA,
+                    YavpmItems.BANANA_SEEDS,
+                    YavpmItems.PEANUT,
+                    YavpmItems.MAGIC_BEAN
             );
 
             getOrCreateTagBuilder(ItemTags.FREEZE_IMMUNE_WEARABLES).add(
@@ -172,7 +225,10 @@ public class YavpmTagProviders {
                     YavpmItems.STUDDED_LEGGINGS,
                     YavpmItems.STUDDED_BOOTS
             );
-
+            getOrCreateTagBuilder(ConventionalItemTags.OBSIDIANS).add(
+                    YavpmBlocks.GLOWING_OBSIDIAN.asItem(),
+                    YavpmBlocks.SOUL_GLOWING_OBSIDIAN.asItem()
+            );
             getOrCreateTagBuilder(ItemTags.STONE_TOOL_MATERIALS).add(
                     YavpmBlocks.COBBLED_GRANITE.asItem(),
                     YavpmBlocks.COBBLED_DIORITE.asItem(),
@@ -218,6 +274,14 @@ public class YavpmTagProviders {
                     YavpmBlocks.POLISHED_DIORITE_TILE_WALL.asItem(),
                     YavpmBlocks.POLISHED_ANDESITE_TILE_WALL.asItem()
             );
+            getOrCreateTagBuilder(ConventionalItemTags.STRIPPED_LOGS).add(
+                    YavpmBlocks.STRIPPED_APPLE_LOG.asItem(),
+                    YavpmBlocks.STRIPPED_PRICKLE_LOG.asItem()
+            );
+            getOrCreateTagBuilder(ConventionalItemTags.STRIPPED_WOODS).add(
+                    YavpmBlocks.STRIPPED_APPLE_WOOD.asItem(),
+                    YavpmBlocks.STRIPPED_PRICKLE_WOOD.asItem()
+            );
             getOrCreateTagBuilder(YavpmTags.Items.APPLE_LOGS).add(
                     YavpmBlocks.APPLE_LOG.asItem(),
                     YavpmBlocks.APPLE_WOOD.asItem(),
@@ -256,9 +320,22 @@ public class YavpmTagProviders {
             getOrCreateTagBuilder(BlockTags.SOUL_SPEED_BLOCKS).add(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
             getOrCreateTagBuilder(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
 
+            getOrCreateTagBuilder(ConventionalBlockTags.OBSIDIANS).add(
+                    YavpmBlocks.GLOWING_OBSIDIAN,
+                    YavpmBlocks.SOUL_GLOWING_OBSIDIAN
+            );
+
             getOrCreateTagBuilder(BlockTags.HOE_MINEABLE)
                     .add(YavpmBlocks.APPLE_LEAVES);
 
+            getOrCreateTagBuilder(ConventionalBlockTags.STRIPPED_LOGS).add(
+                    YavpmBlocks.STRIPPED_APPLE_LOG,
+                    YavpmBlocks.STRIPPED_PRICKLE_LOG
+            );
+            getOrCreateTagBuilder(ConventionalBlockTags.STRIPPED_WOODS).add(
+                    YavpmBlocks.STRIPPED_APPLE_WOOD,
+                    YavpmBlocks.STRIPPED_PRICKLE_WOOD
+            );
             getOrCreateTagBuilder(YavpmTags.Blocks.APPLE_LOGS).add(
                     YavpmBlocks.APPLE_LOG,
                     YavpmBlocks.APPLE_WOOD,
@@ -272,6 +349,8 @@ public class YavpmTagProviders {
                     YavpmBlocks.STRIPPED_PRICKLE_WOOD
             );
             getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN).forceAddTag(YavpmTags.Blocks.APPLE_LOGS).forceAddTag(YavpmTags.Blocks.PRICKLE_LOGS);
+
+            getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(YavpmBlocks.FAKE_LOG);
 
             // Electro Glass isn't here because normal Glass does not have a required tool.
             getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(
@@ -315,7 +394,8 @@ public class YavpmTagProviders {
                     YavpmBlocks.POLISHED_ANDESITE_TILE_STAIRS,
                     YavpmBlocks.POLISHED_ANDESITE_TILE_SLAB,
                     YavpmBlocks.POLISHED_ANDESITE_TILE_WALL,
-                    YavpmBlocks.KIMBERLITE
+                    YavpmBlocks.KIMBERLITE,
+                    YavpmBlocks.FAKE_ORE
             );
 
             getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
@@ -440,7 +520,7 @@ public class YavpmTagProviders {
         protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
 
             getOrCreateTagBuilder(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(
-                    YavpmMobs.CARBONFOWL
+                    YavpmEntities.CARBONFOWL
             );
 
             getOrCreateTagBuilder(YavpmTags.EntityTypes.HUMANOID_ZOMBIES).add(
@@ -454,6 +534,91 @@ public class YavpmTagProviders {
                     net.minecraft.entity.EntityType.STRAY,
                     net.minecraft.entity.EntityType.BOGGED,
                     net.minecraft.entity.EntityType.WITHER_SKELETON
+            );
+
+            getOrCreateTagBuilder(YavpmTags.EntityTypes.SENSITIVE_TO_ILLAGERS_BANE)
+                    .forceAddTag(EntityTypeTags.ILLAGER)
+                    .forceAddTag(EntityTypeTags.ILLAGER_FRIENDS);
+
+            getOrCreateTagBuilder(YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_25).add(
+                    net.minecraft.entity.EntityType.PHANTOM
+            );
+            getOrCreateTagBuilder(YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_50).add(
+                    net.minecraft.entity.EntityType.ENDERMITE
+            );
+            getOrCreateTagBuilder(YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_75).add(
+                    net.minecraft.entity.EntityType.ENDERMAN,
+                    net.minecraft.entity.EntityType.SHULKER
+            );
+            getOrCreateTagBuilder(YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_100).add(
+                    net.minecraft.entity.EntityType.ENDER_DRAGON
+            );
+        }
+    }
+
+    public static class Biome extends FabricTagProvider<net.minecraft.world.biome.Biome> {
+        public Biome(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+            super(output, RegistryKeys.BIOME, registriesFuture);
+        }
+
+        @Override
+        protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+            getOrCreateTagBuilder(YavpmTags.Biomes.SPAWNS_CRIMSON_MOONGUS)
+                    .add(BiomeKeys.CRIMSON_FOREST);
+            getOrCreateTagBuilder(YavpmTags.Biomes.SPAWNS_WARPED_MOONGUS)
+                    .add(BiomeKeys.WARPED_FOREST)
+                    .forceAddTag(ConventionalBiomeTags.IS_END);
+
+            getOrCreateTagBuilder(YavpmTags.Biomes.FAKE_LOG_IS_SPRUCE)
+                    .forceAddTag(ConventionalBiomeTags.IS_TAIGA)
+                    .forceAddTag(ConventionalBiomeTags.IS_MOUNTAIN)
+                    .forceAddTag(ConventionalBiomeTags.IS_CONIFEROUS_TREE);
+
+            getOrCreateTagBuilder(YavpmTags.Biomes.FAKE_LOG_IS_BIRCH)
+                    .forceAddTag(ConventionalBiomeTags.IS_BIRCH_FOREST);
+
+            getOrCreateTagBuilder(YavpmTags.Biomes.FAKE_LOG_IS_JUNGLE)
+                    .forceAddTag(ConventionalBiomeTags.IS_JUNGLE)
+                    .forceAddTag(ConventionalBiomeTags.IS_JUNGLE_TREE);
+
+            getOrCreateTagBuilder(YavpmTags.Biomes.FAKE_LOG_IS_ACACIA)
+                    .forceAddTag(ConventionalBiomeTags.IS_SAVANNA)
+                    .forceAddTag(ConventionalBiomeTags.IS_SAVANNA_TREE);
+
+            getOrCreateTagBuilder(YavpmTags.Biomes.FAKE_LOG_IS_CHERRY)
+                    .forceAddTag(ConventionalBiomeTags.IS_FLORAL);
+
+            getOrCreateTagBuilder(YavpmTags.Biomes.FAKE_LOG_IS_DARK_OAK)
+                    .add(BiomeKeys.DARK_FOREST);
+
+            getOrCreateTagBuilder(YavpmTags.Biomes.FAKE_LOG_IS_MANGROVE)
+                    .forceAddTag(ConventionalBiomeTags.IS_SWAMP);
+        }
+    }
+
+    public static class Enchantment extends FabricTagProvider.EnchantmentTagProvider {
+
+        public Enchantment(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
+            super(output, completableFuture);
+        }
+
+        @Override
+        protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+            getOrCreateTagBuilder(EnchantmentTags.NON_TREASURE).add(
+                    YavpmEnchantments.ILLAGERS_BANE,
+                    YavpmEnchantments.STIFFNESS
+            );
+            getOrCreateTagBuilder(EnchantmentTags.TREASURE).add(
+                    YavpmEnchantments.VOID_STRIKE,
+                    YavpmEnchantments.ENDERBANE
+            );
+            getOrCreateTagBuilder(EnchantmentTags.TRADEABLE).add(
+                    YavpmEnchantments.ENDERBANE
+            );
+            getOrCreateTagBuilder(YavpmTags.Enchantments.END_ENCHANTMENTS).add(
+                    YavpmEnchantments.VOID_STRIKE,
+                    YavpmEnchantments.ENDERBANE,
+                    YavpmEnchantments.STIFFNESS
             );
         }
     }

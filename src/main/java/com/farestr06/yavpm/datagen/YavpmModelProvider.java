@@ -67,6 +67,8 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.register(YavpmItems.HEATED_REACTOR, Models.GENERATED);
         generator.register(YavpmItems.MOLY, Models.GENERATED);
 
+        generator.register(YavpmItems.PHANTOM_CHORD, Models.GENERATED);
+
         generator.register(YavpmItems.BANANA, Models.GENERATED);
         generator.register(YavpmItems.COOKED_PEANUT, Models.GENERATED);
         generator.register(YavpmItems.CHOCOLATE, Models.GENERATED);
@@ -102,6 +104,8 @@ public class YavpmModelProvider extends FabricModelProvider {
 
         generator.register(YavpmItems.MOONGUS_SPAWN_EGG, TEMPLATE_SPAWN_EGG);
         generator.register(YavpmItems.CARBONFOWL_SPAWN_EGG, TEMPLATE_SPAWN_EGG);
+        generator.register(YavpmItems.TANUKI_SPAWN_EGG, TEMPLATE_SPAWN_EGG);
+        generator.register(YavpmItems.VOID_PHANTOM_SPAWN_EGG, TEMPLATE_SPAWN_EGG);
 
         generator.register(YavpmItems.VOID_WATER_BUCKET, Models.GENERATED);
 

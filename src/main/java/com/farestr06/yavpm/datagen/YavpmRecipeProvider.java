@@ -144,14 +144,14 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
 
 
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.CHOCOLATE, 4)
-                .input(Items.COCOA_BEANS)
-                .input(Items.MILK_BUCKET)
+                .input(ConventionalItemTags.COCOA_BEAN_CROPS)
+                .input(ConventionalItemTags.MILK_BUCKETS)
                 .input(Items.SUGAR)
                 .criterion(hasItem(Items.COCOA_BEANS), conditionsFromItem(Items.COCOA_BEANS))
                 .offerTo(exporter, makeId(getRecipeName(YavpmItems.CHOCOLATE)))
         ;
 
-        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.SUSHI, 3)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.SUSHI, 6)
                 .input('T', Items.TROPICAL_FISH)
                 .input('K', Items.DRIED_KELP)
                 .input('R', YavpmItems.RICE)

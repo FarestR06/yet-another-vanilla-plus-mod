@@ -15,6 +15,8 @@ import net.minecraft.util.Rarity;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
+import static com.farestr06.yavpm.config.YavpmConfig.HANDLER;
+
 public class RuneUpgradeRecipe extends SpecialCraftingRecipe {
     public RuneUpgradeRecipe(CraftingRecipeCategory category) {
         super(category);
@@ -71,13 +73,13 @@ public class RuneUpgradeRecipe extends SpecialCraftingRecipe {
         if (tool.getItem() instanceof ToolItem toolItem) {
             ToolMaterial material = toolItem.getMaterial();
             float originalSpeed = material.getMiningSpeedMultiplier();
-            float speed = Math.max(originalSpeed, originalSpeed * 1.5f);
+            float speed = Math.max(originalSpeed, originalSpeed * HANDLER.instance().runeSpeedUpgradeFactor);
             if (toolItem instanceof SwordItem) {
                 map.add(
                         DataComponentTypes.ATTRIBUTE_MODIFIERS,
                         SwordItem.createAttributeModifiers(
                                 material,
-                                MathHelper.ceil(material.getAttackDamage()),
+                                3,
                                 speed
                         )
                 );
@@ -87,7 +89,7 @@ public class RuneUpgradeRecipe extends SpecialCraftingRecipe {
                         DataComponentTypes.ATTRIBUTE_MODIFIERS,
                         ShovelItem.createAttributeModifiers(
                                 material,
-                                MathHelper.ceil(material.getAttackDamage()),
+                                1.5f,
                                 speed
                         )
                 );
@@ -97,7 +99,7 @@ public class RuneUpgradeRecipe extends SpecialCraftingRecipe {
                         DataComponentTypes.ATTRIBUTE_MODIFIERS,
                         PickaxeItem.createAttributeModifiers(
                                 material,
-                                MathHelper.ceil(material.getAttackDamage()),
+                                1f,
                                 speed
                         )
                 );
@@ -107,7 +109,7 @@ public class RuneUpgradeRecipe extends SpecialCraftingRecipe {
                         DataComponentTypes.ATTRIBUTE_MODIFIERS,
                         AxeItem.createAttributeModifiers(
                                 material,
-                                MathHelper.ceil(material.getAttackDamage()),
+                                6f,
                                 speed
                         )
                 );
@@ -117,7 +119,7 @@ public class RuneUpgradeRecipe extends SpecialCraftingRecipe {
                         DataComponentTypes.ATTRIBUTE_MODIFIERS,
                         HoeItem.createAttributeModifiers(
                                 material,
-                                MathHelper.ceil(material.getAttackDamage()),
+                                0f,
                                 speed
                         )
                 );
@@ -132,7 +134,7 @@ public class RuneUpgradeRecipe extends SpecialCraftingRecipe {
         ComponentMap.Builder map = ComponentMap.builder();
         ItemStack newTool = tool.copy();
         newTool.set(DataComponentTypes.RARITY, Rarity.UNCOMMON);
-        int durability = MathHelper.ceil(tool.getMaxDamage() * 1.5f);
+        int durability = MathHelper.ceil(tool.getMaxDamage() * HANDLER.instance().runeDurabilityUpgradeFactor);
         map.add(DataComponentTypes.MAX_DAMAGE, durability);
         map.add(DataComponentTypes.DAMAGE, 0);
         newTool.applyComponentsFrom(map.build());
@@ -145,7 +147,7 @@ public class RuneUpgradeRecipe extends SpecialCraftingRecipe {
         newTool.set(DataComponentTypes.RARITY, Rarity.UNCOMMON);
         if (tool.getItem() instanceof SwordItem sword) {
             ToolMaterial material = sword.getMaterial();
-            int damage = MathHelper.ceil(material.getAttackDamage() * 1.5f);
+            int damage = MathHelper.ceil(material.getAttackDamage() * HANDLER.instance().runeAttackUpgradeFactor);
             float speed = material.getMiningSpeedMultiplier();
             map.add(DataComponentTypes.ATTRIBUTE_MODIFIERS, SwordItem.createAttributeModifiers(material, damage, speed));
             newTool.applyComponentsFrom(map.build());
@@ -153,9 +155,8 @@ public class RuneUpgradeRecipe extends SpecialCraftingRecipe {
         }
         if (tool.getItem() instanceof AxeItem axe) {
             ToolMaterial material = axe.getMaterial();
-            int damage = MathHelper.ceil(material.getAttackDamage() * 1.5f);
-            float originalSpeed = material.getMiningSpeedMultiplier();
-            float speed = Math.max(originalSpeed, originalSpeed * 1.5f);
+            int damage = MathHelper.ceil(material.getAttackDamage() * HANDLER.instance().runeAttackUpgradeFactor);
+            float speed = material.getMiningSpeedMultiplier();
             map.add(DataComponentTypes.ATTRIBUTE_MODIFIERS, SwordItem.createAttributeModifiers(material, damage, speed));
             newTool.applyComponentsFrom(map.build());
             return newTool;

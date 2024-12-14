@@ -1,6 +1,10 @@
 {
   "values": [
     "yavpm:acorn",
-    "yavpm:banana_seeds"
+    "minecraft:oak_sapling",
+    "yavpm:banana",
+    "yavpm:banana_seeds",
+    "yavpm:peanut",
+    "yavpm:magic_bean"
   ]
 }

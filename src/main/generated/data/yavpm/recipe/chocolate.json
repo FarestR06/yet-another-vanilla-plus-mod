@@ -3,10 +3,10 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "minecraft:cocoa_beans"
+      "tag": "c:crops/cocoa_bean"
     },
     {
-      "item": "minecraft:milk_bucket"
+      "tag": "c:buckets/milk"
     },
     {
       "item": "minecraft:sugar"

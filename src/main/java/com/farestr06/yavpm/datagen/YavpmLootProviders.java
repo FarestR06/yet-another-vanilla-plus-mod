@@ -3,7 +3,7 @@ package com.farestr06.yavpm.datagen;
 import com.farestr06.api.util.LootHelper;
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.block.custom.*;
-import com.farestr06.yavpm.entity.mob.YavpmMobs;
+import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.item.YavpmItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
@@ -231,7 +231,7 @@ public class YavpmLootProviders {
         @Override
         public void accept(BiConsumer<RegistryKey<LootTable>, LootTable.Builder> lootTableBiConsumer) {
             // region Carbonfowl
-            lootTableBiConsumer.accept(YavpmMobs.CARBONFOWL.getLootTableId(), LootTable.builder().pool(
+            lootTableBiConsumer.accept(YavpmEntities.CARBONFOWL.getLootTableId(), LootTable.builder().pool(
                     LootPool.builder()
                             .rolls(ConstantLootNumberProvider.create(1.0F))
                             .with(
@@ -264,26 +264,34 @@ public class YavpmLootProviders {
             );
             // endregion
             // region Moongus
-            lootTableBiConsumer.accept(YavpmMobs.MOONGUS.getLootTableId(), LootTable.builder().pool(
+            lootTableBiConsumer.accept(YavpmEntities.MOONGUS.getLootTableId(), LootTable.builder().pool(
                             LootPool.builder()
                                     .rolls(ConstantLootNumberProvider.create(1.0F))
                                     .with(
                                             ItemEntry.builder(Items.LEATHER)
-                                                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 2.0F)))
-                                                    .apply(EnchantedCountIncreaseLootFunction.builder(this.lookup, UniformLootNumberProvider.create(0.0F, 1.0F)))
+                                                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0f, 2f)))
+                                                    .apply(EnchantedCountIncreaseLootFunction.builder(this.lookup, UniformLootNumberProvider.create(0f, 1f)))
                                     )
                     )
                     .pool(
                             LootPool.builder()
-                                    .rolls(ConstantLootNumberProvider.create(1.0F))
+                                    .rolls(ConstantLootNumberProvider.create(1f))
                                     .with(
                                             ItemEntry.builder(Items.BEEF)
-                                                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 3.0F)))
+                                                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
                                                     .apply(FurnaceSmeltLootFunction.builder().conditionally(this.createSmeltLootCondition()))
-                                                    .apply(EnchantedCountIncreaseLootFunction.builder(this.lookup, UniformLootNumberProvider.create(0.0F, 1.0F)))
+                                                    .apply(EnchantedCountIncreaseLootFunction.builder(this.lookup, UniformLootNumberProvider.create(0f, 1f)))
                                     )
                     ));
             // endregion
+            lootTableBiConsumer.accept(YavpmEntities.TANUKI.getLootTableId(), LootTable.builder().pool(
+                    LootPool.builder()
+                            .rolls(ConstantLootNumberProvider.create(1f))
+                            .with(
+                                    ItemEntry.builder(Items.CHERRY_LEAVES)
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
+                                            .apply(EnchantedCountIncreaseLootFunction.builder(this.lookup, UniformLootNumberProvider.create(0f, 2f))))
+            ));
         }
 
         protected final AnyOfLootCondition.Builder createSmeltLootCondition() {

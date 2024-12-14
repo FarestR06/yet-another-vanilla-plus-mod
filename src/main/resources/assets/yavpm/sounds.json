@@ -52,6 +52,87 @@
     ],
     "subtitle": "subtitles.item.armor.equip_studded"
   },
+  "entity.tanuki.ambient": {
+    "sounds": [
+      {
+        "name": "mob/fox/idle1",
+        "volume": 0.8
+      },
+      "mob/fox/idle2",
+      "mob/fox/idle3",
+      "mob/fox/idle4",
+      "mob/fox/idle5",
+      "mob/fox/idle6",
+      {
+        "name": "mob/fox/sniff1",
+        "volume": 0.6
+      },
+      {
+        "name": "mob/fox/sniff2",
+        "volume": 0.6
+      },
+      {
+        "name": "mob/fox/sniff3",
+        "volume": 0.6
+      },
+      {
+        "name": "mob/fox/sniff4",
+        "volume": 0.6
+      }
+    ],
+    "subtitle": "subtitles.entity.tanuki.ambient"
+  },
+  "entity.tanuki.death": {
+    "sounds": [
+      {
+        "name": "mob/fox/death1",
+        "volume": 0.9
+      },
+      {
+        "name": "mob/fox/death2",
+        "volume": 0.9
+      }
+    ],
+    "subtitle": "subtitles.entity.tanuki.death"
+  },
+  "entity.tanuki.eat": {
+    "sounds": [
+      {
+        "name": "mob/fox/eat1",
+        "volume": 0.65
+      },
+      {
+        "name": "mob/fox/eat2",
+        "volume": 0.65
+      },
+      {
+        "name": "mob/fox/eat3",
+        "volume": 0.65
+      }
+    ],
+    "subtitle": "subtitles.entity.tanuki.eat"
+  },
+  "entity.tanuki.hurt": {
+    "sounds": [
+      {
+        "name": "mob/fox/hurt1",
+        "volume": 0.75
+      },
+      {
+        "name": "mob/fox/hurt2",
+        "volume": 0.75
+      },
+      {
+        "name": "mob/fox/hurt3",
+        "volume": 0.75
+      },
+      {
+        "name": "mob/fox/hurt4",
+        "volume": 0.75
+      }
+    ],
+    "subtitle": "subtitles.entity.tanuki.hurt"
+  },
   "entity.moongus.milk.crimson": {
     "sounds": [
       {

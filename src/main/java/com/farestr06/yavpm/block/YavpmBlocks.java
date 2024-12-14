@@ -2,15 +2,16 @@ package com.farestr06.yavpm.block;
 
 import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.block.custom.*;
+import com.farestr06.yavpm.block.custom.fake.FakeLogBlock;
+import com.farestr06.yavpm.block.custom.fake.FakeOreBlock;
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import com.farestr06.yavpm.fluid.YavpmFluids;
+import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.world.YavpmConfiguredFeatures;
 import com.terraformersmc.terraform.sign.api.block.TerraformHangingSignBlock;
 import com.terraformersmc.terraform.sign.api.block.TerraformSignBlock;
 import com.terraformersmc.terraform.sign.api.block.TerraformWallHangingSignBlock;
 import com.terraformersmc.terraform.sign.api.block.TerraformWallSignBlock;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.*;
@@ -20,7 +21,7 @@ import net.minecraft.data.family.BlockFamily;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.item.ItemGroups;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
@@ -29,6 +30,7 @@ import net.minecraft.world.World;
 
 import static com.farestr06.api.block.BlockHelper.*;
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
+import static com.farestr06.yavpm.config.YavpmConfig.HANDLER;
 
 public class YavpmBlocks {
 
@@ -52,11 +54,11 @@ public class YavpmBlocks {
 
     // region Glowing Obsidian
     public static final Block GLOWING_OBSIDIAN = makeBlockAndItem(makeId("glowing_obsidian"),
-            AbstractBlock.Settings.copy(Blocks.OBSIDIAN).luminance(state -> 15)
+            AbstractBlock.Settings.copy(Blocks.OBSIDIAN).luminance(state -> HANDLER.instance().glowingObsidianLuminance)
     );
     public static final Block SOUL_GLOWING_OBSIDIAN = makeBlockAndItem(
             makeId("soul_glowing_obsidian"),
-            AbstractBlock.Settings.copy(Blocks.OBSIDIAN).luminance(state -> 11)
+            AbstractBlock.Settings.copy(Blocks.OBSIDIAN).luminance(state -> HANDLER.instance().soulGlowingObsidianLuminance)
     );
     // endregion
 
@@ -69,7 +71,12 @@ public class YavpmBlocks {
 
     public static final Block OAK_SAPLING_CROP = makeAdvancedBlock(
             makeId("oak_sapling_crop"),
-            new SaplingCropBlock(AbstractBlock.Settings.copy(Blocks.OAK_SAPLING))
+            new SaplingCropBlock(AbstractBlock.Settings.copy(Blocks.OAK_SAPLING)) {
+                @Override
+                protected ItemConvertible getSeedsItem() {
+                    return YavpmItems.ACORN;
+                }
+            }
     );
 
     public static final Block MAGIC_BEAN_CROP = makeAdvancedBlock(
@@ -431,6 +438,17 @@ public class YavpmBlocks {
             AbstractBlock.Settings.copy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.BLACK).strength(4.5f, 5.5f).sounds(BlockSoundGroup.STONE).instrument(NoteBlockInstrument.BIT));
     // endregion
 
+    // region Fake
+    public static final Block FAKE_LOG = makeAdvancedBlock(
+            makeId("fake_log"),
+            new FakeLogBlock()
+    );
+    public static final Block FAKE_ORE = makeAdvancedBlock(
+            makeId("fake_ore"),
+            new FakeOreBlock()
+    );
+    // endregion
+
     public static final Block VOID_WATER = makeAdvancedBlock(
             makeId("void_water"),
             new FluidBlock(YavpmFluids.STILL_VOID_WATER, AbstractBlock.Settings.copy(Blocks.WATER)) {
@@ -445,107 +463,8 @@ public class YavpmBlocks {
             }
     );
 
-    // region Creative Tabs
-    private static void addToNaturalBlocks(FabricItemGroupEntries entries) {
-        entries.add(APPLE_LEAVES);
-        entries.add(APPLE_SAPLING);
-        entries.add(PRICKLE_SHOOT);
-        entries.add(KIMBERLITE);
-    }
-    private static void addToRedstoneBlocks(FabricItemGroupEntries entries) {
-        entries.add(ELECTRO_GLASS);
-    }
-    private static void addToFunctionalBlocks(FabricItemGroupEntries entries) {
-        entries.add(APPLE_DOOR);
-        entries.add(APPLE_TRAPDOOR);
-        entries.add(PRICKLE_DOOR);
-        entries.add(PRICKLE_TRAPDOOR);
-    }
-    private static void addToBuildingBlocks(FabricItemGroupEntries entries) {
-        entries.add(APPLE_LOG);
-        entries.add(APPLE_WOOD);
-        entries.add(STRIPPED_APPLE_LOG);
-        entries.add(STRIPPED_APPLE_WOOD);
-        entries.add(APPLE_PLANKS);
-        entries.add(APPLE_STAIRS);
-        entries.add(APPLE_SLAB);
-        entries.add(APPLE_FENCE);
-        entries.add(APPLE_FENCE_GATE);
-        entries.add(APPLE_DOOR);
-        entries.add(APPLE_TRAPDOOR);
-        entries.add(APPLE_PRESSURE_PLATE);
-        entries.add(APPLE_BUTTON);
-
-        entries.add(PRICKLE_LOG);
-        entries.add(PRICKLE_WOOD);
-        entries.add(STRIPPED_PRICKLE_LOG);
-        entries.add(STRIPPED_PRICKLE_WOOD);
-        entries.add(PRICKLE_PLANKS);
-        entries.add(PRICKLE_STAIRS);
-        entries.add(PRICKLE_SLAB);
-        entries.add(PRICKLE_FENCE);
-        entries.add(PRICKLE_FENCE_GATE);
-        entries.add(PRICKLE_DOOR);
-        entries.add(PRICKLE_TRAPDOOR);
-        entries.add(PRICKLE_PRESSURE_PLATE);
-        entries.add(PRICKLE_BUTTON);
-
-        entries.add(GLOWING_OBSIDIAN);
-        entries.add(SOUL_GLOWING_OBSIDIAN);
-
-        entries.add(COBBLED_GRANITE);
-        entries.add(COBBLED_GRANITE_STAIRS);
-        entries.add(COBBLED_GRANITE_SLAB);
-        entries.add(COBBLED_GRANITE_WALL);
-        entries.add(COBBLED_DIORITE);
-        entries.add(COBBLED_DIORITE_STAIRS);
-        entries.add(COBBLED_DIORITE_SLAB);
-        entries.add(COBBLED_DIORITE_WALL);
-        entries.add(COBBLED_ANDESITE);
-        entries.add(COBBLED_ANDESITE_STAIRS);
-        entries.add(COBBLED_ANDESITE_SLAB);
-        entries.add(COBBLED_ANDESITE_WALL);
-
-        entries.add(POLISHED_GRANITE_BRICKS);
-        entries.add(POLISHED_GRANITE_BRICK_STAIRS);
-        entries.add(POLISHED_GRANITE_BRICK_SLAB);
-        entries.add(POLISHED_GRANITE_BRICK_WALL);
-        entries.add(POLISHED_DIORITE_BRICKS);
-        entries.add(POLISHED_DIORITE_BRICK_STAIRS);
-        entries.add(POLISHED_DIORITE_BRICK_SLAB);
-        entries.add(POLISHED_DIORITE_BRICK_WALL);
-        entries.add(POLISHED_ANDESITE_BRICKS);
-        entries.add(POLISHED_ANDESITE_BRICK_STAIRS);
-        entries.add(POLISHED_ANDESITE_BRICK_SLAB);
-        entries.add(POLISHED_ANDESITE_BRICK_WALL);
-
-        entries.add(POLISHED_GRANITE_TILES);
-        entries.add(POLISHED_GRANITE_TILE_STAIRS);
-        entries.add(POLISHED_GRANITE_TILE_SLAB);
-        entries.add(POLISHED_GRANITE_TILE_WALL);
-        entries.add(POLISHED_DIORITE_TILES);
-        entries.add(POLISHED_DIORITE_TILE_STAIRS);
-        entries.add(POLISHED_DIORITE_TILE_SLAB);
-        entries.add(POLISHED_DIORITE_TILE_WALL);
-        entries.add(POLISHED_ANDESITE_TILES);
-        entries.add(POLISHED_ANDESITE_TILE_STAIRS);
-        entries.add(POLISHED_ANDESITE_TILE_SLAB);
-        entries.add(POLISHED_ANDESITE_TILE_WALL);
-
-        entries.add(GRAPHITE_BLOCK);
-        entries.add(GRAPHENE_BLOCK);
-
-        entries.add(KIMBERLITE);
-    }
-    // endregion
-
     public static void init() {
         YetAnotherVanillaPlusMod.LOGGER.info("Registering blocks for YAVPM!");
-
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(YavpmBlocks::addToFunctionalBlocks);
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(YavpmBlocks::addToBuildingBlocks);
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(YavpmBlocks::addToRedstoneBlocks);
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(YavpmBlocks::addToNaturalBlocks);
 
         setUpRegistries();
     }
@@ -568,10 +487,14 @@ public class YavpmBlocks {
         flammables.add(APPLE_FENCE_GATE, 5, 20);
         flammables.add(APPLE_LEAVES, 30, 60);
 
-        flammables.add(PRICKLE_LOG, 5, 5);
-        flammables.add(PRICKLE_WOOD, 5, 5);
-        flammables.add(STRIPPED_PRICKLE_LOG, 5, 5);
-        flammables.add(STRIPPED_PRICKLE_WOOD, 5, 5);
-        flammables.add(PRICKLE_PLANKS, 5, 20);
+        flammables.add(PRICKLE_LOG, 2, 2);
+        flammables.add(STRIPPED_PRICKLE_LOG, 2, 2);
+        flammables.add(PRICKLE_WOOD, 2, 2);
+        flammables.add(STRIPPED_PRICKLE_WOOD, 2, 2);
+        flammables.add(PRICKLE_PLANKS, 2, 10);
+        flammables.add(PRICKLE_STAIRS, 2, 10);
+        flammables.add(PRICKLE_SLAB, 2, 10);
+        flammables.add(PRICKLE_FENCE, 2, 10);
+        flammables.add(PRICKLE_FENCE_GATE, 2, 10);
     }
 }

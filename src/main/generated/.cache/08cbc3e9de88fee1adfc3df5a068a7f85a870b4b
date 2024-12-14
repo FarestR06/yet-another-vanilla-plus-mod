@@ -1,4 +1,4 @@
-// 1.21.1	2024-12-08T13:51:54.263676	Yet Another Vanilla Plus Mod/Recipes
+// 1.21.1	2024-12-12T13:55:59.777736	Yet Another Vanilla Plus Mod/Recipes
 6c80c93357c77426a48f22cfa88bc4a50fa6bfbe data/yavpm/advancement/recipes/redstone/apple_fence_gate.json
 059ae50a24b8ff3623124417a3dd9a16800ee9d3 data/yavpm/advancement/recipes/redstone/apple_button.json
 25483accc665207cf9c9cc86176d46887a65dc64 data/yavpm/recipe/diamond_from_blasting_raw_diamond.json
@@ -36,7 +36,7 @@ a13c6b6ac984df1c01a2f905ad1828da9ba12f3a data/yavpm/advancement/recipes/food/dia
 9682c58ed4b0ff85e3aaec5eaa0c1dbb9f1445ae data/yavpm/recipe/granite_from_cobbled.json
 7edfa38911072c7a42fd58e9989d7468df7795a4 data/yavpm/advancement/recipes/food/cooked_egg_from_smoking.json
 17b3e4e76ebab05a88ad5778ef5fe97e85d495cc data/yavpm/recipe/diamond_from_blasting_graphene_block.json
-44386a3111b9969e5d5dfd2335c268ac3360a869 data/yavpm/recipe/chocolate.json
+6ce07fee2dcf84b2a86d3d3172948e57191640c8 data/yavpm/recipe/chocolate.json
 83fae3a4259be2f4faf6002de7f0dda5a3dfce5b data/yavpm/advancement/recipes/food/sea_soup.json
 2704d9942af251e47b57ec03d2b7f2f3faf988db data/yavpm/recipe/cooked_egg_from_smoking.json
 dbf78e6215fdfb99cfc4eaffbf3e021b1e9cd6d9 data/yavpm/advancement/recipes/misc/graphite.json
@@ -114,7 +114,7 @@ c64db5c4177c4a70dc025e94b81bf0997b474705 data/yavpm/advancement/recipes/misc/stu
 00f05227d51d8a286e9b100a74200420fb081435 data/yavpm/recipe/nether_wart.json
 2f0ef9402e194fc701e8bf8c019e193d0ba60cfb data/yavpm/advancement/recipes/food/sushi.json
 91203c2653d74d5b53da4e4aba23c4e8cee384c6 data/yavpm/advancement/recipes/food/chocolate.json
-4c1b35cfa5ad4ac0466950cefc7c3387a6fdf31c data/yavpm/recipe/sushi.json
+efdb22806311352421c95b0ff05caa4574ce9fea data/yavpm/recipe/sushi.json
 8f1988516da88eb4038367675ab87287976f8191 data/yavpm/recipe/moly.json
 9bfaed03cdece18d210bae332a6cfa4ea4d47b03 data/yavpm/recipe/diorite_from_cobbled.json
 22d51aa9333a31c35bbadb6e94a13b839c2ef25a data/yavpm/advancement/recipes/decorations/apple_fence.json

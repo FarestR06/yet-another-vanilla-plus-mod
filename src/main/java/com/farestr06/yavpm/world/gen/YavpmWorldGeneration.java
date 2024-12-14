@@ -1,6 +1,6 @@
 package com.farestr06.yavpm.world.gen;
 
-import com.farestr06.yavpm.entity.mob.YavpmMobs;
+import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.world.YavpmPlacedFeatures;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -17,12 +17,45 @@ public class YavpmWorldGeneration {
 
     private static void modfiyMobSpawns() {
         BiomeModifications.addSpawn(
-                BiomeSelectors.includeByKey(BiomeKeys.LUSH_CAVES),
+                BiomeSelectors.includeByKey(
+                        BiomeKeys.WINDSWEPT_HILLS,
+                        BiomeKeys.WINDSWEPT_FOREST,
+                        BiomeKeys.JAGGED_PEAKS,
+                        BiomeKeys.GROVE,
+                        BiomeKeys.CHERRY_GROVE
+                ),
+                SpawnGroup.CREATURE,
+                YavpmEntities.TANUKI,
+                8,
+                2,
+                4
+        );
+
+        BiomeModifications.addSpawn(
+                BiomeSelectors.tag(ConventionalBiomeTags.IS_CAVE),
                 SpawnGroup.MONSTER,
-                YavpmMobs.CARBONFOWL,
+                YavpmEntities.CARBONFOWL,
                 18,
                 1,
                 3
+        );
+
+        BiomeModifications.addSpawn(
+                BiomeSelectors.tag(ConventionalBiomeTags.IS_NETHER_FOREST),
+                SpawnGroup.CREATURE,
+                YavpmEntities.MOONGUS,
+                30,
+                4,
+                4
+        );
+
+        BiomeModifications.addSpawn(
+                BiomeSelectors.tag(ConventionalBiomeTags.IS_END),
+                SpawnGroup.MONSTER,
+                YavpmEntities.VOID_PHANTOM,
+                15,
+                1,
+                2
         );
     }
 

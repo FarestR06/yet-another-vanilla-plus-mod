@@ -36,7 +36,7 @@ public class YavpmPotions {
     ));
 
 
-    public static final RegistryEntry<Potion> VOIDED = register("voided", new Potion(
+    public static final RegistryEntry<Potion> VOID_TOUCHED = register("void_touched", new Potion(
             new StatusEffectInstance(
                     YavpmStatusEffects.VOID_TOUCHED,
                     1000
@@ -70,9 +70,9 @@ public class YavpmPotions {
             builder.registerPotionRecipe(DECAY, Ingredient.ofItems(Items.REDSTONE), LONG_DECAY);
             builder.registerPotionRecipe(DECAY, Ingredient.ofItems(Items.GLOWSTONE_DUST), STRONG_DECAY);
 
-            builder.registerPotionRecipe(Potions.WATER, Ingredient.ofItems(Items.ENDER_EYE), VOIDED);
-            builder.registerPotionRecipe(VOIDED, Ingredient.ofItems(Items.REDSTONE), LONG_VOIDED);
-            builder.registerPotionRecipe(VOIDED, Ingredient.ofItems(Items.GLOWSTONE_DUST), STRONG_VOIDED);
+            builder.registerPotionRecipe(Potions.WATER, Ingredient.ofItems(Items.ENDER_EYE), VOID_TOUCHED);
+            builder.registerPotionRecipe(VOID_TOUCHED, Ingredient.ofItems(Items.REDSTONE), LONG_VOIDED);
+            builder.registerPotionRecipe(VOID_TOUCHED, Ingredient.ofItems(Items.GLOWSTONE_DUST), STRONG_VOIDED);
         });
     }
 }

@@ -2,9 +2,9 @@ package com.farestr06.yavpm;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.entity.YavpmBoats;
-import com.farestr06.yavpm.entity.client.CarbonfowlEntityRenderer;
-import com.farestr06.yavpm.entity.client.MoongusEntityRenderer;
-import com.farestr06.yavpm.entity.mob.YavpmMobs;
+import com.farestr06.yavpm.entity.YavpmEntities;
+import com.farestr06.yavpm.entity.mob.client.*;
+import com.farestr06.yavpm.entity.mob.client.model.TanukiEntityModel;
 import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.YavpmItems;
 import com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper;
@@ -13,6 +13,7 @@ import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.component.type.DyedColorComponent;
@@ -21,9 +22,23 @@ import net.minecraft.util.Identifier;
 public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        EntityRendererRegistry.register(YavpmMobs.MOONGUS, MoongusEntityRenderer::new);
-        EntityRendererRegistry.register(YavpmMobs.CARBONFOWL, CarbonfowlEntityRenderer::new);
+        setUpEntities();
 
+        setUpBlocks();
+
+        ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex > 0 ? -1 : DyedColorComponent.getColor(stack, -6265536),
+                YavpmItems.STUDDED_HELMET,
+                YavpmItems.STUDDED_CHESTPLATE,
+                YavpmItems.STUDDED_LEGGINGS,
+                YavpmItems.STUDDED_BOOTS
+        );
+
+        TerraformBoatClientHelper.registerModelLayers(
+                YavpmBoats.APPLE_BOAT_TYPE_ID, false
+        );
+    }
+
+    private static void setUpBlocks() {
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.ELECTRO_GLASS, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.BANANA_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PEANUT_CROP, RenderLayer.getCutout());
@@ -37,13 +52,6 @@ public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PRICKLE_DOOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PRICKLE_TRAPDOOR, RenderLayer.getCutout());
 
-        ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex > 0 ? -1 : DyedColorComponent.getColor(stack, -6265536),
-                YavpmItems.STUDDED_HELMET,
-                YavpmItems.STUDDED_CHESTPLATE,
-                YavpmItems.STUDDED_LEGGINGS,
-                YavpmItems.STUDDED_BOOTS
-        );
-
         FluidRenderHandlerRegistry.INSTANCE.register(YavpmFluids.STILL_VOID_WATER, YavpmFluids.FLOWING_VOID_WATER, new SimpleFluidRenderHandler(
                 Identifier.ofVanilla("block/water_still"),
                 Identifier.ofVanilla("block/water_flow"),
@@ -51,9 +59,14 @@ public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
         ));
 
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), YavpmFluids.STILL_VOID_WATER, YavpmFluids.FLOWING_VOID_WATER);
+    }
 
-        TerraformBoatClientHelper.registerModelLayers(
-                YavpmBoats.APPLE_BOAT_TYPE_ID, false
-        );
+    private static void setUpEntities() {
+        EntityRendererRegistry.register(YavpmEntities.MOONGUS, MoongusEntityRenderer::new);
+        EntityRendererRegistry.register(YavpmEntities.CARBONFOWL, CarbonfowlEntityRenderer::new);
+        EntityRendererRegistry.register(YavpmEntities.VOID_PHANTOM, VoidPhantomEntityRenderer::new);
+
+        EntityRendererRegistry.register(YavpmEntities.TANUKI, TanukiEntityRenderer::new);
+        EntityModelLayerRegistry.registerModelLayer(YavpmModelLayers.TANUKI, TanukiEntityModel::getTexturedModelData);
     }
 }

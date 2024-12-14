@@ -25,6 +25,7 @@ public class YavpmFoods {
             .saturationModifier(0.3f)
             .build();
 
+    public static final FoodComponent SUSHI = new FoodComponent.Builder().nutrition(4).saturationModifier(0.4F).build();
     public static final FoodComponent SEA_SOUP = createFoodBowl(7).build();
 
     public static final FoodComponent GLISTERING_MELON_SLICE = new FoodComponent.Builder()

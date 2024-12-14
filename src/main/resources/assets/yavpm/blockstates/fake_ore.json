@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "ore_type=coal,deepslate=false": {
+      "model": "minecraft:block/coal_ore"
+    },
+    "ore_type=iron,deepslate=false": {
+      "model": "minecraft:block/iron_ore"
+    },
+    "ore_type=gold,deepslate=false": {
+      "model": "minecraft:block/gold_ore"
+    },
+    "ore_type=copper,deepslate=false": {
+      "model": "minecraft:block/copper_ore"
+    },
+    "ore_type=lapis,deepslate=false": {
+      "model": "minecraft:block/lapis_ore"
+    },
+    "ore_type=diamond,deepslate=false": {
+      "model": "minecraft:block/diamond_ore"
+    },
+    "ore_type=emerald,deepslate=false": {
+      "model": "minecraft:block/emerald_ore"
+    },
+    "ore_type=redstone,deepslate=false": {
+      "model": "minecraft:block/redstone_ore"
+    },
+    "ore_type=coal,deepslate=true": {
+      "model": "minecraft:block/deepslate_coal_ore"
+    },
+    "ore_type=iron,deepslate=true": {
+      "model": "minecraft:block/deepslate_iron_ore"
+    },
+    "ore_type=gold,deepslate=true": {
+      "model": "minecraft:block/deepslate_gold_ore"
+    },
+    "ore_type=copper,deepslate=true": {
+      "model": "minecraft:block/deepslate_copper"
+    },
+    "ore_type=lapis,deepslate=true": {
+      "model": "minecraft:block/deepslate_lapis"
+    },
+    "ore_type=diamond,deepslate=true": {
+      "model": "minecraft:block/deepslate_diamond_ore"
+    },
+    "ore_type=emerald,deepslate=true": {
+      "model": "minecraft:block/deepslate_emerald_ore"
+    },
+    "ore_type=redstone,deepslate=true": {
+      "model": "minecraft:block/deepslate_redstone_ore"
+    }
+  }
+}

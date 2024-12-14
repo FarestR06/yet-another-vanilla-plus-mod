@@ -9,4 +9,4 @@ This weirdly cute little Mooshroom variant lives in the Crimson and Warped Fores
 Since they're infested with Nether Wart, they can be milked for potions with a Glass Bottle,
 similar to how their Overworld cousins can be milked for Mushroom and Suspicious Stews with
 a bowl. **Crimson Moongi produce awkward potions**, so you can feed them brewing ingredients to apply an effect to the Potion.
-**For potions that cannot be brewed in an Awkard Potion, you can feed the ingredients to a Warped Moongus** instead of a Crimson Moomgus.
+**For potions that cannot be brewed in an Awkard Potion, you can feed the ingredients to a Warped Moongus** instead of a Crimson Moongus.

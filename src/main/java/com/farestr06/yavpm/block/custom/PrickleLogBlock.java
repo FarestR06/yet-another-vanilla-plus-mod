@@ -9,6 +9,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.state.StateManager;
@@ -26,13 +27,21 @@ public class PrickleLogBlock extends PillarBlock {
 
     public PrickleLogBlock(Settings settings) {
         super(settings);
-        setDefaultState(getStateManager().getDefaultState().with(PRICKLY, false));
+        this.setDefaultState(this.getDefaultState().with(PRICKLY, true));
+    }
+
+    @Override
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        return super.getPlacementState(ctx).with(PRICKLY, false);
     }
 
     @Override
     public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
         if (!world.isClient) {
-            if (state.get(Properties.AXIS).isHorizontal() || state.isOf(YavpmBlocks.PRICKLE_WOOD)) {
+            if (
+                    (state.get(Properties.AXIS).isHorizontal()
+                    || state.isOf(YavpmBlocks.PRICKLE_WOOD)) && !state.get(PRICKLY)
+            ) {
                 if (entity instanceof LivingEntity livingEntity) {
                     livingEntity.damage(livingEntity.getDamageSources().cactus(), 1.5f);
                 }

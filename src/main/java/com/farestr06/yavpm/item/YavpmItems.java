@@ -2,13 +2,11 @@ package com.farestr06.yavpm.item;
 
 import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.block.YavpmBlocks;
-import com.farestr06.yavpm.entity.mob.YavpmMobs;
+import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.custom.*;
 import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
-import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
 import net.minecraft.block.MapColor;
@@ -41,6 +39,8 @@ public class YavpmItems {
             new AliasedBlockItem(YavpmBlocks.WARPED_WART, new Item.Settings())
     );
 
+    public static final Item PHANTOM_CHORD = makeSimpleItem(makeId("phantom_chord"));
+
     // region Runes
 
     public static final Item RUNE_ATTACK = makeAdvancedItem(
@@ -57,7 +57,6 @@ public class YavpmItems {
     );
 
     // endregion
-
     // region Banana
     public static final Item BANANA = makeItem(
             makeId("banana"),
@@ -110,7 +109,7 @@ public class YavpmItems {
 
     public static final Item SUSHI = makeItem(
             makeId("sushi"),
-            new Item.Settings().food(FoodComponents.COOKED_COD)
+            new Item.Settings().food(YavpmFoods.SUSHI)
     );
 
     public static final Item SEA_SOUP = makeItem(
@@ -144,6 +143,7 @@ public class YavpmItems {
     public static final Item BEAN_TOAST = makeItem(makeId("bean_toast"), new Item.Settings().food(YavpmFoods.BEAN_TOAST));
     public static final Item COOKED_EGG = makeItem(makeId("cooked_egg"), new Item.Settings().food(YavpmFoods.COOKED_EGG));
 
+    // region Fake Animal Product
     public static final Item FAKE_BEEF = makeItem(
             makeId("fake_beef"),
             new Item.Settings().food(FoodComponents.BEEF)
@@ -156,6 +156,7 @@ public class YavpmItems {
             makeId("fake_milk_bucket"),
             new MilkBucketItem(new Item.Settings().recipeRemainder(Items.BUCKET).maxCount(1))
     );
+    // endregion
 
     public static final Item TOFU = makeItem(makeId("tofu"), new Item.Settings().food(YavpmFoods.CHEESE));
 
@@ -253,14 +254,24 @@ public class YavpmItems {
     // endregion
 
     // region Spawn Eggs
-    public static final Item MOONGUS_SPAWN_EGG = makeAdvancedItem(
-            makeId("moongus_spawn_egg"),
-            new SpawnEggItem(YavpmMobs.MOONGUS, MapColor.BRIGHT_TEAL.color, MapColor.RED.color, new Item.Settings())
-    );
-
     public static final Item CARBONFOWL_SPAWN_EGG = makeAdvancedItem(
             makeId("carbonfowl_spawn_egg"),
-            new SpawnEggItem(YavpmMobs.CARBONFOWL, 0x191919, 0x4aedd9, new Item.Settings())
+            new SpawnEggItem(YavpmEntities.CARBONFOWL, 0x191919, 0x4aedd9, new Item.Settings())
+    );
+
+    public static final Item MOONGUS_SPAWN_EGG = makeAdvancedItem(
+            makeId("moongus_spawn_egg"),
+            new SpawnEggItem(YavpmEntities.MOONGUS, MapColor.BRIGHT_TEAL.color, MapColor.RED.color, new Item.Settings())
+    );
+
+    public static final Item TANUKI_SPAWN_EGG = makeAdvancedItem(
+            makeId("tanuki_spawn_egg"),
+            new SpawnEggItem(YavpmEntities.TANUKI, 0x5d4f59, 0xb69578, new Item.Settings())
+    );
+
+    public static final Item VOID_PHANTOM_SPAWN_EGG = makeAdvancedItem(
+            makeId("void_phantom_spawn_egg"),
+            new SpawnEggItem(YavpmEntities.VOID_PHANTOM, 0x060080, 0xf54bfa, new Item.Settings())
     );
     // endregion
     public static final Item VOID_WATER_BUCKET = makeAdvancedItem(
@@ -271,76 +282,10 @@ public class YavpmItems {
             )
     );
 
-    private static void addToNatural(FabricItemGroupEntries entries) {
-        entries.add(YavpmBlocks.APPLE_LOG);
-        entries.add(YavpmBlocks.APPLE_LEAVES);
-        entries.add(YavpmBlocks.APPLE_SAPLING);
-        entries.add(BANANA_SEEDS);
-        entries.add(PEANUT);
-        entries.add(MAGIC_BEAN);
-        entries.add(ACORN);
-    }
-    private static void addToFunctional(FabricItemGroupEntries entries) {
-        entries.add(APPLE_SIGN);
-        entries.add(APPLE_HANGING_SIGN);
-    }
-    private static void addToFoodAndDrink(FabricItemGroupEntries entries) {
-        entries.add(TRUFFLE);
-        entries.add(CHOCOLATE);
-        entries.add(CHEESE);
-        entries.add(BEAN_TOAST);
-        entries.add(COOKED_EGG);
-        entries.add(BANANA);
-        entries.add(PEANUT);
-        entries.add(COOKED_PEANUT);
-        entries.add(ACORN);
-        entries.add(DIAMOND_ACORN);
-        entries.add(MOLY);
-        entries.add(SUSHI);
-        entries.add(SEA_SOUP);
-        entries.add(MAGIC_BEAN);
-        entries.add(FAKE_BEEF);
-        entries.add(COOKED_FAKE_BEEF);
-        entries.add(FAKE_MILK_BUCKET);
-        entries.add(TOFU);
-    }
-    private static void addToIngredients(FabricItemGroupEntries entries) {
-        entries.add(RAW_DIAMOND);
-        entries.add(GRAPHITE);
-        entries.add(YavpmBlocks.GRAPHITE_BLOCK);
-        entries.add(YavpmBlocks.GRAPHENE_BLOCK);
-
-        entries.add(RICE);
-        entries.add(MAGIC_BEAN);
-        entries.add(REACTOR);
-
-        entries.add(RUNE_ATTACK);
-        entries.add(RUNE_DURABILITY);
-        entries.add(RUNE_SPEED);
-    }
-    private static void addToTools(FabricItemGroupEntries entries) {
-        entries.add(VOID_WATER_BUCKET);
-        entries.add(FAKE_MILK_BUCKET);
-        entries.add(FORTUNE_COOKIE);
-        entries.add(APPLE_BOAT);
-        entries.add(APPLE_CHEST_BOAT);
-    }
-    private static void addToCombat(FabricItemGroupEntries entries) {
-        entries.add(STUDDED_HELMET);
-        entries.add(STUDDED_CHESTPLATE);
-        entries.add(STUDDED_LEGGINGS);
-        entries.add(STUDDED_BOOTS);
-    }
-    private static void addToSpawnEggs(FabricItemGroupEntries entries) {
-        entries.add(CARBONFOWL_SPAWN_EGG);
-        entries.add(MOONGUS_SPAWN_EGG);
-    }
-
     public static void init() {
         YetAnotherVanillaPlusMod.LOGGER.info("Registering items for YAVPM!");
 
         setUpComponents();
-        setUpItemGroups();
         setUpRegistries();
         setUpMoongusFood();
     }
@@ -362,11 +307,11 @@ public class YavpmItems {
         CRIMSON_MOONGUS_FOOD.put(Items.SLIME_BLOCK, Potions.OOZING);
         CRIMSON_MOONGUS_FOOD.put(Items.STONE, Potions.INFESTED);
         CRIMSON_MOONGUS_FOOD.put(Items.WITHER_SKELETON_SKULL, YavpmPotions.DECAY);
-        CRIMSON_MOONGUS_FOOD.put(Items.ENDER_EYE, YavpmPotions.VOIDED);
+        CRIMSON_MOONGUS_FOOD.put(Items.ENDER_EYE, YavpmPotions.VOID_TOUCHED);
 
         WARPED_MOONGUS_FOOD.put(Items.FERMENTED_SPIDER_EYE, Potions.WEAKNESS);
         WARPED_MOONGUS_FOOD.put(Items.WITHER_SKELETON_SKULL, YavpmPotions.DECAY);
-        WARPED_MOONGUS_FOOD.put(Items.ENDER_EYE, YavpmPotions.VOIDED);
+        WARPED_MOONGUS_FOOD.put(Items.ENDER_EYE, YavpmPotions.VOID_TOUCHED);
     }
 
     private static void setUpRegistries() {
@@ -385,16 +330,6 @@ public class YavpmItems {
         compostables.add(MAGIC_BEAN, 0.65f);
         compostables.add(TRUFFLE, 0.65f);
         compostables.add(SEA_SOUP, 0.65f);
-    }
-
-    private static void setUpItemGroups() {
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(YavpmItems::addToNatural);
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(YavpmItems::addToFunctional);
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(YavpmItems::addToFoodAndDrink);
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(YavpmItems::addToIngredients);
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(YavpmItems::addToTools);
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(YavpmItems::addToCombat);
-        ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(YavpmItems::addToSpawnEggs);
     }
 
     private static void setUpComponents() {

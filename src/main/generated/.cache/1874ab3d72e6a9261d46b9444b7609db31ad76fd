@@ -1,4 +1,9 @@
-// 1.21.1	2024-12-08T13:51:54.265233	Yet Another Vanilla Plus Mod/Tags for minecraft:entity_type
+// 1.21.1	2024-12-12T13:55:59.770784	Yet Another Vanilla Plus Mod/Tags for minecraft:entity_type
 2400512e7e5706a8ce65fb6c2df83377236ddc54 data/minecraft/tags/entity_type/fall_damage_immune.json
+5bd4a93460d1b11374db58ba8722ea5c95017c90 data/yavpm/tags/entity_type/sensitive_to_enderbane_25.json
+558d0b528fb404dce033375a886694da0a08326b data/yavpm/tags/entity_type/sensitive_to_illagers_bane.json
+e00f2931577049b9a4400a87ed9c249373be376c data/yavpm/tags/entity_type/sensitive_to_enderbane_100.json
 437e9fb8f764a695ff40e300662ff5b609f38e62 data/yavpm/tags/entity_type/humanoid_zombies.json
+4266c893b9d2a02bc0df316f75d05b3a9412122d data/yavpm/tags/entity_type/sensitive_to_enderbane_75.json
 0f085062ced42ff4e452297022f7c5400d42d01c data/yavpm/tags/entity_type/humanoid_skeletons.json
+edf64deed56924f50118492f25104511eb052cab data/yavpm/tags/entity_type/sensitive_to_enderbane_50.json

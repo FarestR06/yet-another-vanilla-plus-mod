@@ -87,6 +87,10 @@ dependencies {
 	modImplementation "maven.modrinth:farests-api:${project.farests_api_version}"
 }
 
+loom {
+	accessWidenerPath = file("src/main/resources/yavpm.accesswidener")
+}
+
 processResources {
 	inputs.property "version", project.version
 

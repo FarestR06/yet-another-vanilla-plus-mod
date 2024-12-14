@@ -1,8 +1,10 @@
 package com.farestr06.yavpm.entity.mob;
 
+import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.util.YavpmSounds;
 import com.farestr06.yavpm.util.YavpmTags;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.component.type.PotionContentsComponent;
 import net.minecraft.entity.*;
@@ -69,12 +71,13 @@ public class MoongusEntity extends MooshroomEntity implements Shearable, Variant
     @Nullable
     @Override
     public MooshroomEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        return YavpmMobs.MOONGUS.create(serverWorld);
+        return YavpmEntities.MOONGUS.create(serverWorld);
     }
 
     @Override
     public boolean canSpawn(WorldAccess world, SpawnReason spawnReason) {
-        return super.canSpawn(world, spawnReason);
+        BlockState state = world.getBlockState(getBlockPos().down());
+        return state.isOf(Blocks.CRIMSON_NYLIUM) || state.isOf(Blocks.WARPED_NYLIUM);
     }
 
     @Override

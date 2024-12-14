@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "wood_type=oak": {
+      "model": "minecraft:block/oak_log"
+    },
+    "wood_type=spruce": {
+      "model": "minecraft:block/spruce_log"
+    },
+    "wood_type=birch": {
+      "model": "minecraft:block/birch_log"
+    },
+    "wood_type=jungle": {
+      "model": "minecraft:block/jungle_log"
+    },
+    "wood_type=acacia": {
+      "model": "minecraft:block/acacia_log"
+    },
+    "wood_type=cherry": {
+      "model": "minecraft:block/cherry_log"
+    },
+    "wood_type=dark_oak": {
+      "model": "minecraft:block/dark_oak_log"
+    },
+    "wood_type=mangrove": {
+      "model": "minecraft:block/mangrove_log"
+    }
+  }
+}

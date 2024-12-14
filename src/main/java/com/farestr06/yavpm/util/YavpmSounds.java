@@ -21,6 +21,11 @@ public class YavpmSounds {
     public static final SoundEvent ENTITY_MOONGUS_MILK_CRIMSON = makeEvent(makeId("entity.moongus.milk.crimson"));
     public static final SoundEvent ENTITY_MOONGUS_MILK_WARPED = makeEvent(makeId("entity.moongus.milk.warped"));
 
+    public static final SoundEvent ENTITY_TANUKI_AMBIENT = makeEvent(makeId("entity.tanuki.ambient"));
+    public static final SoundEvent ENTITY_TANUKI_DEATH = makeEvent(makeId("entity.tanuki.death"));
+    public static final SoundEvent ENTITY_TANUKI_HURT = makeEvent(makeId("entity.tanuki.hurt"));
+    public static final SoundEvent ENTITY_TANUKI_EAT = makeEvent(makeId("entity.tanuki.eat"));
+
     public static final RegistryEntry<SoundEvent> ITEM_ARMOR_EQUIP_STUDDED = makeReferenceEvent(makeId("item.armor.equip_studded"));
 
     public static void init() {

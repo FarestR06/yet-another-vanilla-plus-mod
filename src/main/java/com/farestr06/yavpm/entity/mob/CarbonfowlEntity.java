@@ -1,5 +1,6 @@
 package com.farestr06.yavpm.entity.mob;
 
+import com.farestr06.yavpm.entity.YavpmEntities;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -74,7 +75,7 @@ public class CarbonfowlEntity extends ChickenEntity implements Angerable {
 
     @Override
     public @Nullable ChickenEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        return YavpmMobs.CARBONFOWL.create(serverWorld);
+        return YavpmEntities.CARBONFOWL.create(serverWorld);
     }
 
     protected boolean isFlappingWings() {

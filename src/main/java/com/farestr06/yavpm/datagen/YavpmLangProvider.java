@@ -2,7 +2,7 @@ package com.farestr06.yavpm.datagen;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
-import com.farestr06.yavpm.entity.mob.YavpmMobs;
+import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.item.enchantment.YavpmEnchantments;
 import com.farestr06.yavpm.util.YavpmTags;
@@ -23,22 +23,51 @@ public class YavpmLangProvider extends FabricLanguageProvider {
     public void generateTranslations(RegistryWrapper.WrapperLookup registryLookup, TranslationBuilder builder) {
         builder.add("option.yavpm.title", "Yet Another Vanilla Plus Mod Options");
 
-        builder.add("option.yavpm.blocks_and_fluids", "Blocks and Fluids");
+        builder.add("option.yavpm.blocks_and_fluids", "Blocks/Fluids");
+        builder.add("option.yavpm.blocks_and_fluids.glowing_obsidian", "Glowing Obsidian");
         builder.add("option.yavpm.blocks_and_fluids.void", "Void Block and Void Water");
 
-        builder.add("option.yavpm.entities_and_effects", "Entity/Mob Effect Options");
-        builder.add("option.yavpm.entities_and_effects.void_touched", "Void Touched Mob Effect Options");
+        builder.add("option.yavpm.items", "Items");
+        builder.add("option.yavpm.items.runes", "Upgrade Runes");
+
+        builder.add("option.yavpm.entities_and_effects", "Entities/Mob Effects");
+
+        builder.add("option.yavpm.entities_and_effects.tanuki", "Tanuki");
+
+        builder.add("option.yavpm.tanuki_base_transform_delay.title", "Tanuki Transformation Base Delay");
+        builder.add("option.yavpm.tanuki_base_transform_delay.desc", "Tanukis will attempt to transform after at least this many ticks. Default is 2000.");
+
+        builder.add("option.yavpm.tanuki_random_transform_delay.title", "Tanuki Transformation Additional Delay");
+        builder.add("option.yavpm.tanuki_random_transform_delay.desc", "In addition to the base delay, Tanukis will also wait up to this many ticks. Default is 4000.");
+
+        builder.add("option.yavpm.tanuki_transform_chance.title", "Tanuki Transformation Success Rate");
+        builder.add("option.yavpm.tanuki_transform_chance.desc", "When a Tanuki tries to transform, the chance of it succeeding is determined by this value. Default is 0.33f.");
+
+        builder.add("option.yavpm.entities_and_effects.void_touched", "Void Touched Mob Effect");
 
         builder.add("option.yavpm.void_touched_damage_multiplier.title", "Void Touched Damage Multiplier");
-        builder.add("option.yavpm.void_touched_damage_multiplier.desc", "When the Void Touched effect is applied, any damage taken is multiplied by this for each level of the effect.");
+        builder.add("option.yavpm.void_touched_damage_multiplier.desc", "When the Void Touched effect is applied, any damage taken is multiplied by this for each level of the effect. Default is 1.5f.");
 
         builder.add("option.yavpm.void_touched_dragon_fireball.title", "Void-touched Dragon Fireball");
-        builder.add("option.yavpm.void_touched_dragon_fireball.desc", "When set to false, the dragon fireball will behave like it does in vanilla, dealing damage instead of applying Void Touched.");
+        builder.add("option.yavpm.void_touched_dragon_fireball.desc", "When set to false, the dragon fireball will behave like it does in vanilla, dealing damage instead of applying Void Touched. Default is true.");
 
-        builder.add("option.yavpm.void_water_source_conversion.title", "Void Water converts to source");
-        builder.add("option.yavpm.void_water_source_conversion.desc", "When flowing void water is surrounded on two sides by water sources it converts into a source.");
+        builder.add("option.yavpm.glowing_obsidian_luminance.title", "Glowing Obsidian Luminance");
+        builder.add("option.yavpm.glowing_obsidian_luminance.desc", "Glowing Obsidian blocks will emit the specified light level. Default is 15.");
 
-        builder.add("advancements.husbandry.eat_fake_animal_product.title", "Fake Steaks");
+        builder.add("option.yavpm.soul_glowing_obsidian_luminance.title", "Soul Glowing Obsidian Luminance");
+        builder.add("option.yavpm.soul_glowing_obsidian_luminance.desc", "Soul Glowing Obsidian blocks will emit the specified light level. Default is 11.");
+
+        builder.add("option.yavpm.void_water_source_conversion.title", "Void Water Converts To Source");
+        builder.add("option.yavpm.void_water_source_conversion.desc", "When flowing void water is surrounded on two sides by water sources it converts into a source. Default is false.");
+
+        builder.add("option.yavpm.rune_attack_upgrade_factor.title", "Attack Up Rune Upgrade Factor");
+        builder.add("option.yavpm.rune_attack_upgrade_factor.desc", "When an Attack Up Rune is applied to equipment, its attack power is multiplied by this factor. Default is 1.2f,");
+        builder.add("option.yavpm.rune_durability_upgrade_factor.title", "Durability Up Rune Upgrade Factor");
+        builder.add("option.yavpm.rune_durability_upgrade_factor.desc", "When an Durability Up Rune is applied to equipment, its maximum durability is multiplied by this factor. Default is 1.2f,");
+        builder.add("option.yavpm.rune_speed_upgrade_factor.title", "Speed Up Rune Upgrade Factor");
+        builder.add("option.yavpm.rune_speed_upgrade_factor.desc", "When an Speed Up Rune is applied to equipment, its mining speed is multiplied by this factor. Default is 1.2f,");
+
+        builder.add("advancements.husbandry.eat_fake_animal_product.title", "Steak n' Fake");
         builder.add("advancements.husbandry.eat_fake_animal_product.description", "Spare a cow's life and eat a Magic Bean-based alternative");
         builder.add("advancements.husbandry.lip_smacker.title", "Lip Smacker");
         builder.add("advancements.husbandry.lip_smacker.description", "You'd be surprised by how much wolves enjoy peanuts");
@@ -85,6 +114,12 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.addEnchantment(YavpmEnchantments.VOID_STRIKE, "Void Strike");
         builder.add("enchantment.yavpm.void_strike.desc", "Attacking a target applies a short damage multiplier.");
+        builder.addEnchantment(YavpmEnchantments.ILLAGERS_BANE, "Illager's Bane");
+        builder.add("enchantment.yavpm.illagers_bane.desc", "Attacks deal extra damage to Illagers and their allies.");
+        builder.addEnchantment(YavpmEnchantments.ENDERBANE, "Enderbane");
+        builder.add("enchantment.yavpm.enderbane.desc", "Extra damage is dealt to mobs under the influence of the §kEnder Dragon§r.");
+        builder.addEnchantment(YavpmEnchantments.STIFFNESS, "Stiffness");
+        builder.add("enchantment.yavpm.stiffness.desc", "Applies a protection effect to Elytra, reducing damage from most sources.");
 
         builder.add("enchantment.yavpm.critical_hit", "Critical Hit");
         builder.add("enchantment.yavpm.critical_hit.desc", "Gives you a chance to inflict critical hits dealing triple damage.");
@@ -95,6 +130,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("enchantment.yavpm.longstrider", "Longstrider");
         builder.add("enchantment.yavpm.longstrider.desc", "Increases the player's stride, letting them climb higher steps and increasing their speed.");
 
+        builder.add(YavpmBlocks.KIMBERLITE, "Kimberlite");
         builder.add(YavpmItems.RAW_DIAMOND, "Raw Diamond");
         builder.add(YavpmItems.GRAPHITE, "Graphite");
         builder.add(YavpmBlocks.GRAPHITE_BLOCK, "Block of Graphite");
@@ -265,15 +301,25 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.WARPED_WART, "Warped Wart");
         builder.add(YavpmItems.WARPED_WART, "Warped Wart");
 
+        builder.add(YavpmItems.PHANTOM_CHORD, "Phantom Chord");
+
         builder.add(YavpmItems.CARBONFOWL_SPAWN_EGG, "Carbonfowl Spawn Egg");
-        builder.add(YavpmMobs.CARBONFOWL, "Carbonfowl");
+        builder.add(YavpmEntities.CARBONFOWL, "Carbonfowl");
         builder.add(YavpmItems.MOONGUS_SPAWN_EGG, "Moongus Spawn Egg");
-        builder.add(YavpmMobs.MOONGUS, "Moongus");
+        builder.add(YavpmEntities.MOONGUS, "Moongus");
+        builder.add(YavpmItems.TANUKI_SPAWN_EGG, "Tanuki Spawn Egg");
+
+        builder.add(YavpmEntities.TANUKI, "Tanuki");
         builder.add(YavpmTags.Items.CRIMSON_MOONGUS_FOOD, "Crimson Moongus Food");
         builder.add(YavpmTags.Items.WARPED_MOONGUS_FOOD, "Warped Moongus Food");
         builder.add("subtitles.entity.moongus.eat", "Moongus eats");
         builder.add("subtitles.entity.moongus.milk.crimson", "Moongus gets milked awkwardly");
         builder.add("subtitles.entity.moongus.milk.warped", "Moongus gets milked mundanely");
+
+        builder.add("subtitles.entity.tanuki.ambient", "Tanuki squeaks");
+        builder.add("subtitles.entity.tanuki.death", "Tanuki dies");
+        builder.add("subtitles.entity.tanuki.eat", "Tanuki eats");
+        builder.add("subtitles.entity.tanuki.hurt", "Tanuki hurts");
 
         builder.add("biome.yavpm.orchard_peaks", "Orchard Peaks");
         builder.add("biome.yavpm.withered_scar", "Withered Scar");

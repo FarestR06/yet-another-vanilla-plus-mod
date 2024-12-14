@@ -13,6 +13,6 @@ public class YavpmRecipeSerializers {
         makeId("crafting_special_rune_upgrade"), new SpecialRecipeSerializer<>(RuneUpgradeRecipe::new));
 
     public static void init() {
-        YetAnotherVanillaPlusMod.LOGGER.info("Registering SuspiciousSandwichRecipe serializer!");
+        YetAnotherVanillaPlusMod.LOGGER.info("Registering recipe serializers!");
     }
 }
