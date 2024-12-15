@@ -8,7 +8,9 @@ import net.minecraft.block.SculkShriekerBlock;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.mob.PiglinEntity;
 import net.minecraft.entity.mob.VexEntity;
+import net.minecraft.entity.mob.ZombifiedPiglinEntity;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -79,32 +81,34 @@ public class SoulPowderItem extends Item {
                     .setVariant(chooseMooshroomType(entity.getRandom()));
             return useSuccess(stack, user);
         }
-
         if (entity.getType().equals(EntityType.MOOSHROOM)) {
             ((MooshroomEntity) entity).convertTo(EntityType.COW, false);
             return useSuccess(stack, user);
         }
-
         if (entity instanceof PigEntity pig) {
             pig.convertTo(EntityType.PIGLIN, false);
             return useSuccess(stack, user);
         }
-
+        if (entity instanceof PiglinEntity piglin) {
+            piglin.convertTo(EntityType.PIG, false);
+            return useSuccess(stack, user);
+        }
+        if (entity instanceof ZombifiedPiglinEntity zombiePiglin) {
+            zombiePiglin.convertTo(EntityType.PIG, false);
+            return useSuccess(stack, user);
+        }
         if (entity instanceof AllayEntity allay) {
             allay.convertTo(EntityType.VEX, true);
             return useSuccess(stack, user);
         }
-
         if (entity instanceof VexEntity vex) {
             vex.convertTo(EntityType.ALLAY, true);
             return useSuccess(stack, user);
         }
-
         if (entity.getType().isIn(EntityTypeTags.ILLAGER)) {
             ((MobEntity) entity).convertTo(EntityType.VILLAGER, false);
             return useSuccess(stack, user);
         }
-
         if (entity.getType().isIn(YavpmTags.EntityTypes.HUMANOID_ZOMBIES)) {
             ((MobEntity) entity).convertTo(
                     ZOMBIE_TYPES.get(entity.getRandom().nextInt(ZOMBIE_TYPES.size())),

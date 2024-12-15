@@ -43,18 +43,31 @@ public class YavpmPotions {
             )
     ));
 
-    public static final RegistryEntry<Potion> LONG_VOIDED = register("long_voided", new Potion(
+    public static final RegistryEntry<Potion> LONG_VOID_TOUCHED = register("long_void_touched", new Potion(
             new StatusEffectInstance(
                     YavpmStatusEffects.VOID_TOUCHED,
                     1600
             )
     ));
 
-    public static final RegistryEntry<Potion> STRONG_VOIDED = register("strong_voided", new Potion(
+    public static final RegistryEntry<Potion> STRONG_VOID_TOUCHED = register("strong_void_touched", new Potion(
             new StatusEffectInstance(
                     YavpmStatusEffects.VOID_TOUCHED,
                     400,
                     2
+            )
+    ));
+
+    public static final RegistryEntry<Potion> CHOKING = register("choking", new Potion(
+            new StatusEffectInstance(
+                    YavpmStatusEffects.CHOKING,
+                    90
+            )
+    ));
+    public static final RegistryEntry<Potion> LONG_CHOKING = register("long_choking", new Potion(
+            new StatusEffectInstance(
+                    YavpmStatusEffects.CHOKING,
+                    240
             )
     ));
 
@@ -71,8 +84,24 @@ public class YavpmPotions {
             builder.registerPotionRecipe(DECAY, Ingredient.ofItems(Items.GLOWSTONE_DUST), STRONG_DECAY);
 
             builder.registerPotionRecipe(Potions.WATER, Ingredient.ofItems(Items.ENDER_EYE), VOID_TOUCHED);
-            builder.registerPotionRecipe(VOID_TOUCHED, Ingredient.ofItems(Items.REDSTONE), LONG_VOIDED);
-            builder.registerPotionRecipe(VOID_TOUCHED, Ingredient.ofItems(Items.GLOWSTONE_DUST), STRONG_VOIDED);
+            builder.registerPotionRecipe(VOID_TOUCHED, Ingredient.ofItems(Items.REDSTONE), LONG_VOID_TOUCHED);
+            builder.registerPotionRecipe(VOID_TOUCHED, Ingredient.ofItems(Items.GLOWSTONE_DUST), STRONG_VOID_TOUCHED);
+
+            builder.registerPotionRecipe(
+                    Potions.WATER_BREATHING,
+                    Ingredient.ofItems(Items.FERMENTED_SPIDER_EYE),
+                    CHOKING
+            );
+            builder.registerPotionRecipe(
+                    Potions.LONG_WATER_BREATHING,
+                    Ingredient.ofItems(Items.FERMENTED_SPIDER_EYE),
+                    LONG_CHOKING
+            );
+            builder.registerPotionRecipe(
+                    CHOKING,
+                    Ingredient.ofItems(Items.REDSTONE),
+                    LONG_CHOKING
+            );
         });
     }
 }

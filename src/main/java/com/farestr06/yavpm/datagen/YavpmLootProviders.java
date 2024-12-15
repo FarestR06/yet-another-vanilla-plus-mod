@@ -13,10 +13,7 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
-import net.minecraft.loot.condition.AnyOfLootCondition;
-import net.minecraft.loot.condition.BlockStatePropertyLootCondition;
-import net.minecraft.loot.condition.EntityPropertiesLootCondition;
-import net.minecraft.loot.condition.RandomChanceLootCondition;
+import net.minecraft.loot.condition.*;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.loot.entry.ItemEntry;
@@ -229,9 +226,9 @@ public class YavpmLootProviders {
         }
 
         @Override
-        public void accept(BiConsumer<RegistryKey<LootTable>, LootTable.Builder> lootTableBiConsumer) {
+        public void accept(BiConsumer<RegistryKey<LootTable>, LootTable.Builder> biConsumer) {
             // region Carbonfowl
-            lootTableBiConsumer.accept(YavpmEntities.CARBONFOWL.getLootTableId(), LootTable.builder().pool(
+            biConsumer.accept(YavpmEntities.CARBONFOWL.getLootTableId(), LootTable.builder().pool(
                     LootPool.builder()
                             .rolls(ConstantLootNumberProvider.create(1.0F))
                             .with(
@@ -264,7 +261,7 @@ public class YavpmLootProviders {
             );
             // endregion
             // region Moongus
-            lootTableBiConsumer.accept(YavpmEntities.MOONGUS.getLootTableId(), LootTable.builder().pool(
+            biConsumer.accept(YavpmEntities.MOONGUS.getLootTableId(), LootTable.builder().pool(
                             LootPool.builder()
                                     .rolls(ConstantLootNumberProvider.create(1.0F))
                                     .with(
@@ -284,7 +281,8 @@ public class YavpmLootProviders {
                                     )
                     ));
             // endregion
-            lootTableBiConsumer.accept(YavpmEntities.TANUKI.getLootTableId(), LootTable.builder().pool(
+            // region Tanuki
+            biConsumer.accept(YavpmEntities.TANUKI.getLootTableId(), LootTable.builder().pool(
                     LootPool.builder()
                             .rolls(ConstantLootNumberProvider.create(1f))
                             .with(
@@ -292,6 +290,30 @@ public class YavpmLootProviders {
                                             .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
                                             .apply(EnchantedCountIncreaseLootFunction.builder(this.lookup, UniformLootNumberProvider.create(0f, 2f))))
             ));
+            // endregion
+            // region Void Phantom
+            biConsumer.accept(YavpmEntities.VOID_PHANTOM.getLootTableId(),
+                    LootTable.builder()
+                            .pool(
+                                    LootPool.builder()
+                                            .rolls(ConstantLootNumberProvider.create(1f))
+                                            .with(
+                                                    ItemEntry.builder(Items.PHANTOM_MEMBRANE)
+                                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 1.0F)))
+                                                            .apply(EnchantedCountIncreaseLootFunction.builder(lookup, UniformLootNumberProvider.create(0.0F, 1.0F)))
+                                            )
+                                            .conditionally(KilledByPlayerLootCondition.builder())
+                                            .conditionally(RandomChanceLootCondition.builder(0.67f))
+                            ).pool(
+                                    LootPool.builder()
+                                            .rolls(ConstantLootNumberProvider.create(1f))
+                                            .with(
+                                                    ItemEntry.builder(YavpmItems.PHANTOM_CHORD)
+                                            )
+                                            .conditionally(KilledByPlayerLootCondition.builder())
+                                            .conditionally(RandomChanceWithEnchantedBonusLootCondition.builder(lookup, 0.005f, 0.005f)))
+            );
+            // endregion
         }
 
         protected final AnyOfLootCondition.Builder createSmeltLootCondition() {

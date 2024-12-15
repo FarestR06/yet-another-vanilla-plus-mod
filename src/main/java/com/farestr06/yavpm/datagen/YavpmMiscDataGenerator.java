@@ -15,6 +15,7 @@ public class YavpmMiscDataGenerator extends FabricDynamicRegistryProvider {
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
+        entries.addAll(registries.getWrapperOrThrow(RegistryKeys.DAMAGE_TYPE));
         entries.addAll(registries.getWrapperOrThrow(RegistryKeys.ENCHANTMENT));
     }
 

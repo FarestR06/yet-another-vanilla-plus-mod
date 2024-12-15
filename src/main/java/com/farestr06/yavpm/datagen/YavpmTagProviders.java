@@ -1,6 +1,7 @@
 package com.farestr06.yavpm.datagen;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
+import com.farestr06.yavpm.entity.YavpmDamageTypes;
 import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.YavpmItems;
@@ -552,6 +553,36 @@ public class YavpmTagProviders {
             );
             getOrCreateTagBuilder(YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_100).add(
                     net.minecraft.entity.EntityType.ENDER_DRAGON
+            );
+        }
+    }
+
+    public static class DamageType extends FabricTagProvider<net.minecraft.entity.damage.DamageType> {
+        public DamageType(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+            super(output, RegistryKeys.DAMAGE_TYPE, registriesFuture);
+        }
+
+        @Override
+        protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+            getOrCreateTagBuilder(DamageTypeTags.NO_KNOCKBACK).add(
+                    YavpmDamageTypes.CUT,
+                    YavpmDamageTypes.CHOKE
+            );
+            getOrCreateTagBuilder(DamageTypeTags.BYPASSES_ARMOR).add(
+                    YavpmDamageTypes.CUT,
+                    YavpmDamageTypes.CHOKE
+            );
+            getOrCreateTagBuilder(DamageTypeTags.NO_IMPACT).add(
+                    YavpmDamageTypes.CUT
+            );
+            getOrCreateTagBuilder(DamageTypeTags.WITHER_IMMUNE_TO).add(
+                    YavpmDamageTypes.CUT
+            );
+            getOrCreateTagBuilder(DamageTypeTags.BYPASSES_EFFECTS).add(
+                    YavpmDamageTypes.CUT
+            );
+            getOrCreateTagBuilder(DamageTypeTags.BYPASSES_INVULNERABILITY).add(
+                    YavpmDamageTypes.CHOKE
             );
         }
     }

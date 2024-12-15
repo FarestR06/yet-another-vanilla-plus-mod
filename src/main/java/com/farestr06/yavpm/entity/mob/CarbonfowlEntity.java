@@ -28,7 +28,7 @@ public class CarbonfowlEntity extends ChickenEntity implements Angerable {
 
     private static final Ingredient BREEDING_INGREDIENT = Ingredient.ofItems(Items.GLOW_BERRIES);
     private static final TrackedData<Integer> ANGER_TIME = DataTracker.registerData(CarbonfowlEntity.class, TrackedDataHandlerRegistry.INTEGER);
-    private static final UniformIntProvider ANGER_TIME_RANGE = TimeHelper.betweenSeconds(20, 39);
+    private static final UniformIntProvider ANGER_TIME_RANGE = TimeHelper.betweenSeconds(12, 36);
     private float flapEffects;
     @Nullable
     private UUID angryAt;
@@ -62,10 +62,10 @@ public class CarbonfowlEntity extends ChickenEntity implements Angerable {
 
     public static DefaultAttributeContainer.Builder createCarbonfowlAttributes() {
         return MobEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 8.0)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.5)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 4.0)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.5)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25)
-                .add(EntityAttributes.GENERIC_ARMOR, 5);
+                .add(EntityAttributes.GENERIC_ARMOR, 7.5);
     }
 
     @Override

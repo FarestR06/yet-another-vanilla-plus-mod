@@ -67,7 +67,6 @@ public class YavpmEnchantments {
                         )
         );
         // endregion
-
         // region Illager's Bane
         register(
                 registerable,
@@ -110,7 +109,6 @@ public class YavpmEnchantments {
                         )
         );
         // endregion
-
         // region Enderbane
         register(registerable,
                 ENDERBANE,
@@ -164,7 +162,6 @@ public class YavpmEnchantments {
                         )
         );
         // endregion
-
         // region Stiffness
         register(
                 registerable,
@@ -182,7 +179,7 @@ public class YavpmEnchantments {
                         )
                 ).addEffect(
                         EnchantmentEffectComponentTypes.DAMAGE_PROTECTION,
-                        new AddEnchantmentEffect(EnchantmentLevelBasedValue.linear(1f, 0.5f)),
+                        new AddEnchantmentEffect(EnchantmentLevelBasedValue.linear(1.5f, 0.5f)),
                         DamageSourcePropertiesLootCondition.builder(DamageSourcePredicate.Builder.create().tag(TagPredicate.unexpected(DamageTypeTags.BYPASSES_INVULNERABILITY)))
                 )
         );

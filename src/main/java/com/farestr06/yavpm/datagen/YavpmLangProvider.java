@@ -32,7 +32,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add("option.yavpm.entities_and_effects", "Entities/Mob Effects");
 
-        builder.add("option.yavpm.entities_and_effects.tanuki", "Tanuki");
+        builder.add("option.yavpm.entities_and_effects.tanuki", "Tanuki Mob");
 
         builder.add("option.yavpm.tanuki_base_transform_delay.title", "Tanuki Transformation Base Delay");
         builder.add("option.yavpm.tanuki_base_transform_delay.desc", "Tanukis will attempt to transform after at least this many ticks. Default is 2000.");
@@ -72,7 +72,9 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("advancements.husbandry.lip_smacker.title", "Lip Smacker");
         builder.add("advancements.husbandry.lip_smacker.description", "You'd be surprised by how much wolves enjoy peanuts");
         builder.add("advancements.husbandry.lucky_ticket.title", "Lucky Ticket");
-        builder.add("advancements.husbandry.lucky_ticket.description", "Eat a Fortune Cookie for a Lucky Slip");
+        builder.add("advancements.husbandry.lucky_ticket.description", "Eat a Fortune Cookie and receive your fortune");
+        builder.add("advancements.husbandry.eat_all_food_bowls.title", "For the Soul");
+        builder.add("advancements.husbandry.eat_all_food_bowls.description", "Eat all soups and stews");
         builder.add("advancements.husbandry.craft_diamonds_from_graphene.title", "Infinite Diamond Glitch");
         builder.add("advancements.husbandry.craft_diamonds_from_graphene.description", "Collect Graphite from a Carbonfowl and turn it into Diamonds");
 
@@ -94,6 +96,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmTags.Items.RUNE_ATTACK_APPLICABLE, "Upgradable with Attack Up Rune");
         builder.add(YavpmTags.Items.RUNE_DURABILITY_APPLICABLE, "Upgradable with Durability Up Rune");
         builder.add(YavpmTags.Items.RUNE_SPEED_APPLICABLE, "Upgradable with Speed Up Rune");
+        builder.add(YavpmTags.Items.ENCHANTABLE_GLIDER, "Upgradable with Speed Up Rune");
 
         builder.add(YavpmItems.RUNE_ATTACK, "Attack Up Rune");
         builder.add("item.yavpm.rune_attack.tooltip", "Increases a weapon's base damage by 50 percent when used in a Crafting Table.");
@@ -111,6 +114,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.LUCKY_SLIP, "Lucky Slip");
 
         builder.add(YavpmStatusEffects.VOID_TOUCHED.value(), "Void Touched");
+        builder.add(YavpmStatusEffects.NETHER_POWER.value(), "Nether Power");
+        builder.add(YavpmStatusEffects.CHOKING.value(), "Choking");
 
         builder.addEnchantment(YavpmEnchantments.VOID_STRIKE, "Void Strike");
         builder.add("enchantment.yavpm.void_strike.desc", "Attacking a target applies a short damage multiplier.");
@@ -119,7 +124,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.addEnchantment(YavpmEnchantments.ENDERBANE, "Enderbane");
         builder.add("enchantment.yavpm.enderbane.desc", "Extra damage is dealt to mobs under the influence of the §kEnder Dragon§r.");
         builder.addEnchantment(YavpmEnchantments.STIFFNESS, "Stiffness");
-        builder.add("enchantment.yavpm.stiffness.desc", "Applies a protection effect to Elytra, reducing damage from most sources.");
+        builder.add("enchantment.yavpm.stiffness.desc", "Applies a weak protection effect to Elytra, reducing damage from most sources.");
 
         builder.add("enchantment.yavpm.critical_hit", "Critical Hit");
         builder.add("enchantment.yavpm.critical_hit.desc", "Gives you a chance to inflict critical hits dealing triple damage.");
@@ -211,6 +216,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add(YavpmItems.SUSHI, "Sushi");
         builder.add(YavpmItems.SEA_SOUP, "Sea Soup");
+        builder.add(YavpmItems.CHICKEN_SOUP, "Chicken Soup");
 
         builder.add(YavpmItems.STUDDED_HELMET, "Studded Cap");
         builder.add(YavpmItems.STUDDED_CHESTPLATE, "Studded Tunic");
@@ -218,18 +224,18 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.STUDDED_BOOTS, "Studded Boots");
         builder.add("subtitles.item.armor.equip_studded", "Studded armor jingles");
 
-        builder.add("item.minecraft.potion.effect.voided", "Potion of the Void");
-        builder.add("item.minecraft.potion.effect.long_voided", "Potion of the Void");
-        builder.add("item.minecraft.potion.effect.strong_voided", "Potion of the Void");
-        builder.add("item.minecraft.splash_potion.effect.voided", "Splash Potion of the Void");
-        builder.add("item.minecraft.splash_potion.effect.long_voided", "Splash Potion of the Void");
-        builder.add("item.minecraft.splash_potion.effect.strong_voided", "Splash Potion of the Void");
-        builder.add("item.minecraft.lingering_potion.effect.voided", "Lingering Potion of the Void");
-        builder.add("item.minecraft.lingering_potion.effect.long_voided", "Lingering Potion of the Void");
-        builder.add("item.minecraft.lingering_potion.effect.strong_voided", "Lingering Potion of the Void");
-        builder.add("item.minecraft.tipped_arrow.effect.voided", "Arrow of the Void");
-        builder.add("item.minecraft.tipped_arrow.effect.long_voided", "Arrow of the Void");
-        builder.add("item.minecraft.tipped_arrow.effect.strong_voided", "Arrow of the Void");
+        builder.add("item.minecraft.potion.effect.void_touched", "Potion of the Void");
+        builder.add("item.minecraft.potion.effect.long_void_touched", "Potion of the Void");
+        builder.add("item.minecraft.potion.effect.strong_void_touched", "Potion of the Void");
+        builder.add("item.minecraft.splash_potion.effect.void_touched", "Splash Potion of the Void");
+        builder.add("item.minecraft.splash_potion.effect.long_void_touched", "Splash Potion of the Void");
+        builder.add("item.minecraft.splash_potion.effect.strong_void_touched", "Splash Potion of the Void");
+        builder.add("item.minecraft.lingering_potion.effect.void_touched", "Lingering Potion of the Void");
+        builder.add("item.minecraft.lingering_potion.effect.long_void_touched", "Lingering Potion of the Void");
+        builder.add("item.minecraft.lingering_potion.effect.strong_void_touched", "Lingering Potion of the Void");
+        builder.add("item.minecraft.tipped_arrow.effect.void_touched", "Arrow of the Void");
+        builder.add("item.minecraft.tipped_arrow.effect.long_void_touched", "Arrow of the Void");
+        builder.add("item.minecraft.tipped_arrow.effect.strong_void_touched", "Arrow of the Void");
 
         builder.add("item.minecraft.potion.effect.decay", "Potion of Decay");
         builder.add("item.minecraft.potion.effect.long_decay", "Potion of Decay");
@@ -243,6 +249,15 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("item.minecraft.tipped_arrow.effect.decay", "Arrow of Decay");
         builder.add("item.minecraft.tipped_arrow.effect.long_decay", "Arrow of Decay");
         builder.add("item.minecraft.tipped_arrow.effect.strong_decay", "Arrow of Decay");
+
+        builder.add("item.minecraft.potion.effect.choking", "Potion of Choking");
+        builder.add("item.minecraft.potion.effect.long_choking", "Potion of Choking");
+        builder.add("item.minecraft.splash_potion.effect.choking", "Splash Potion of Choking");
+        builder.add("item.minecraft.splash_potion.effect.long_choking", "Splash Potion of Choking");
+        builder.add("item.minecraft.lingering_potion.effect.choking", "Lingering Potion of Choking");
+        builder.add("item.minecraft.lingering_potion.effect.long_choking", "Lingering Potion of Choking");
+        builder.add("item.minecraft.tipped_arrow.effect.choking", "Arrow of Choking");
+        builder.add("item.minecraft.tipped_arrow.effect.long_choking", "Arrow of Choking");
 
         builder.add(YavpmItems.CHOCOLATE, "Chocolate Bar");
 
@@ -303,13 +318,23 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add(YavpmItems.PHANTOM_CHORD, "Phantom Chord");
 
+        builder.add("death.attack.cut", "%1$s was cut to pieces");
+        builder.add("death.attack.cut.player", "%1$s was cut to pieces by %2$s");
+        builder.add("death.attack.cut.item", "%1$s was cut to pieces by %2$s using %3$s");
+
+        builder.add("death.attack.choke", "%1$s choked to death");
+        builder.add("death.attack.choke.player", "%1$s was smoked out by %2$s");
+
         builder.add(YavpmItems.CARBONFOWL_SPAWN_EGG, "Carbonfowl Spawn Egg");
         builder.add(YavpmEntities.CARBONFOWL, "Carbonfowl");
         builder.add(YavpmItems.MOONGUS_SPAWN_EGG, "Moongus Spawn Egg");
         builder.add(YavpmEntities.MOONGUS, "Moongus");
         builder.add(YavpmItems.TANUKI_SPAWN_EGG, "Tanuki Spawn Egg");
+        builder.add(YavpmEntities.VOID_PHANTOM, "Void Phantom Spawn Egg");
+        builder.add(YavpmItems.VOID_PHANTOM_SPAWN_EGG, "Void Phantom Spawn Egg");
 
         builder.add(YavpmEntities.TANUKI, "Tanuki");
+        builder.add(YavpmTags.Items.TANUKI_FOODS, "Tanuki Food");
         builder.add(YavpmTags.Items.CRIMSON_MOONGUS_FOOD, "Crimson Moongus Food");
         builder.add(YavpmTags.Items.WARPED_MOONGUS_FOOD, "Warped Moongus Food");
         builder.add("subtitles.entity.moongus.eat", "Moongus eats");

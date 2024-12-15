@@ -22,9 +22,8 @@ import net.minecraft.util.Identifier;
 public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        setUpEntities();
-
         setUpBlocks();
+        setUpEntities();
 
         ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex > 0 ? -1 : DyedColorComponent.getColor(stack, -6265536),
                 YavpmItems.STUDDED_HELMET,

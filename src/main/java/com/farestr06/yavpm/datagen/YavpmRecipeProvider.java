@@ -82,7 +82,7 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
 
         ComplexRecipeJsonBuilder.create(RuneUpgradeRecipe::new).offerTo(exporter, makeId("rune_upgrade"));
 
-        makeStuddedArmorRecipes(exporter);
+        makeEquipmentRecipes(exporter);
 
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, Items.BLACK_DYE, 3)
                 .input(YavpmItems.GRAPHITE)
@@ -167,8 +167,17 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .input(Items.DRIED_KELP)
                 .input(YavpmItems.MAGIC_BEAN)
                 .input(Items.BOWL)
-                .criterion("has_rice", conditionsFromItem(YavpmItems.RICE))
+                .criterion(hasItem(Items.TROPICAL_FISH), conditionsFromItem(Items.TROPICAL_FISH))
                 .offerTo(exporter, makeId(getRecipeName(YavpmItems.SEA_SOUP)));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.CHICKEN_SOUP)
+                .input(Items.COOKED_CHICKEN)
+                .input(Items.CARROT)
+                .input(Items.BROWN_MUSHROOM)
+                .input(YavpmItems.RICE)
+                .input(Items.BOWL)
+                .criterion(hasItem(Items.COOKED_CHICKEN), conditionsFromItem(Items.COOKED_CHICKEN))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.CHICKEN_SOUP)));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.DIAMOND_ACORN)
                 .input('#', Items.DIAMOND)
@@ -281,7 +290,7 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
         offerHangingSignRecipe(exporter, YavpmItems.APPLE_HANGING_SIGN, YavpmBlocks.STRIPPED_APPLE_LOG);
     }
 
-    private void makeStuddedArmorRecipes(RecipeExporter exporter) {
+    private void makeEquipmentRecipes(RecipeExporter exporter) {
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, YavpmItems.STUDDED_HELMET)
                 .input(Items.LEATHER_HELMET)
                 .input(Items.CHAINMAIL_HELMET)
@@ -306,5 +315,13 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(Items.CHAINMAIL_BOOTS), conditionsFromItem(Items.CHAINMAIL_BOOTS))
                 .offerTo(exporter, makeId(getRecipeName(YavpmItems.STUDDED_BOOTS)))
         ;
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.ELYTRA)
+                .input('C', YavpmItems.PHANTOM_CHORD)
+                .input('M', Items.PHANTOM_MEMBRANE)
+                .pattern("CCC")
+                .pattern("M M")
+                .pattern("M M")
+                .criterion(hasItem(YavpmItems.PHANTOM_CHORD), conditionsFromItem(YavpmItems.PHANTOM_CHORD))
+                .offerTo(exporter, makeId(getRecipeName(Items.ELYTRA)));
     }
 }

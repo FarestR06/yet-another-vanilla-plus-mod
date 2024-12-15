@@ -94,6 +94,8 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.register(YavpmItems.SUSHI, Models.GENERATED);
         generator.register(YavpmItems.SEA_SOUP, Models.GENERATED);
 
+        generator.register(YavpmItems.CHICKEN_SOUP, Models.GENERATED);
+
         generator.register(YavpmItems.GRAPHITE, Models.GENERATED);
         generator.register(YavpmItems.RAW_DIAMOND, Models.GENERATED);
 

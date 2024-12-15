@@ -19,6 +19,7 @@ public class YavpmTrades {
     private static final float HIGH_MULTIPLIER = 0.2f;
 
     public static void init() {
+        // region Farmer
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.FARMER, 1, factories -> {
             factories.add((entity, random) -> new TradeOffer(
                     new TradedItem(YavpmItems.MAGIC_BEAN, 24),
@@ -37,9 +38,9 @@ public class YavpmTrades {
         });
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.FARMER, 3, factories -> {
             factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, random.nextBetween(3, 32)),
+                    new TradedItem(Items.EMERALD, random.nextBetween(16, 32)),
                     new ItemStack(YavpmItems.FORTUNE_COOKIE),
-                    4,
+                    8,
                     10,
                     HIGH_MULTIPLIER
             ));
@@ -53,15 +54,33 @@ public class YavpmTrades {
         });
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.FARMER, 5, factories ->
                 factories.add((entity, random) -> new TradeOffer(
-                new TradedItem(Items.EMERALD, random.nextBetween(1, 16)),
+                new TradedItem(Items.EMERALD, random.nextBetween(8, 16)),
                 new ItemStack(YavpmItems.FORTUNE_COOKIE),
-                3,
+                2,
                 30,
                 HIGH_MULTIPLIER
         )));
+        // endregion
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.BUTCHER, 1, factories ->
+                factories.add((entity, random) -> new TradeOffer(
+                        new TradedItem(Items.EMERALD),
+                        new ItemStack(YavpmItems.CHICKEN_SOUP),
+                        12,
+                        1,
+                        LOW_MULTIPLIER
+                ))
+        );
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.BUTCHER, 5, factories ->
+                factories.add((entity, random) -> new TradeOffer(
+                new TradedItem(Items.EMERALD, 3),
+                new ItemStack(YavpmItems.CHEESE, 6),
+                12,
+                30,
+                LOW_MULTIPLIER
+        )));
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.FISHERMAN, 4, factories -> {
             factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, 4),
+                    new TradedItem(Items.EMERALD, 3),
                     new ItemStack(YavpmItems.SUSHI, 4),
                     12,
                     15,
@@ -69,13 +88,51 @@ public class YavpmTrades {
             ));
             factories.add((entity, random) -> new TradeOffer(
                     new TradedItem(Items.EMERALD, 4),
-                    Optional.of(new TradedItem(Items.BOWL)),
                     new ItemStack(YavpmItems.SEA_SOUP),
                     12,
                     15,
                     LOW_MULTIPLIER
             ));
         });
+        // region Armorer
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.ARMORER, 4, factories -> {
+            factories.add((entity, random) -> new TradeOffer(
+                    new TradedItem(Items.EMERALD, random.nextBetween(7, 18)),
+                    Optional.of(new TradedItem(Items.LEATHER_HELMET)),
+                    new ItemStack(YavpmItems.STUDDED_HELMET),
+                    5,
+                    15,
+                    HIGH_MULTIPLIER
+            ));
+            factories.add((entity, random) -> new TradeOffer(
+                    new TradedItem(Items.EMERALD, random.nextBetween(7, 18)),
+                    Optional.of(new TradedItem(Items.LEATHER_LEGGINGS)),
+                    new ItemStack(YavpmItems.STUDDED_LEGGINGS),
+                    5,
+                    15,
+                    HIGH_MULTIPLIER
+            ));
+        });
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.ARMORER, 5, factories -> {
+            factories.add((entity, random) -> new TradeOffer(
+                    new TradedItem(Items.EMERALD, random.nextBetween(7, 18)),
+                    Optional.of(new TradedItem(Items.LEATHER_CHESTPLATE)),
+                    new ItemStack(YavpmItems.STUDDED_CHESTPLATE),
+                    5,
+                    15,
+                    HIGH_MULTIPLIER
+            ));
+            factories.add((entity, random) -> new TradeOffer(
+                    new TradedItem(Items.EMERALD, random.nextBetween(7, 18)),
+                    Optional.of(new TradedItem(Items.LEATHER_BOOTS)),
+                    new ItemStack(YavpmItems.STUDDED_BOOTS),
+                    5,
+                    15,
+                    HIGH_MULTIPLIER
+            ));
+        });
+        // endregion
+        // region Wandering Trader
         TradeOfferHelper.registerWanderingTraderOffers(1, factories -> {
             factories.add((entity, random) -> new TradeOffer(
                     new TradedItem(Items.EMERALD),
@@ -120,13 +177,14 @@ public class YavpmTrades {
                     0f
             ));
             factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, 24),
+                    new TradedItem(Items.EMERALD, 10),
                     chooseRune(random),
                     1,
                     0,
                     0f
             ));
         });
+        // endregion
     }
 
     private static ItemStack chooseRune(Random rand) {

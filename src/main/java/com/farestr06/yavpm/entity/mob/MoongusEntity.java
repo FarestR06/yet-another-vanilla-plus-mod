@@ -1,5 +1,6 @@
 package com.farestr06.yavpm.entity.mob;
 
+import com.farestr06.yavpm.entity.YavpmDamageTypes;
 import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.util.YavpmSounds;
 import com.farestr06.yavpm.util.YavpmTags;
@@ -44,7 +45,6 @@ public class MoongusEntity extends MooshroomEntity implements Shearable, Variant
 
     private static final TrackedData<String> TYPE = DataTracker.registerData(MoongusEntity.class, TrackedDataHandlerRegistry.STRING);
     private boolean isSheared = false;
-    private PlayerEntity shearer;
 
     public MoongusEntity(EntityType<? extends MooshroomEntity> entityType, World world) {
         super(entityType, world);
@@ -83,8 +83,8 @@ public class MoongusEntity extends MooshroomEntity implements Shearable, Variant
     @Override
     public void tick() {
         super.tick();
-        if (isSheared) {
-            this.damage(this.getWorld().getDamageSources().playerAttack(shearer), 1);
+        if (isSheared && age % 30 == 0) {
+            this.damage(YavpmDamageTypes.cut(this.getWorld()), 1.5f);
         }
     }
 
@@ -152,7 +152,6 @@ public class MoongusEntity extends MooshroomEntity implements Shearable, Variant
             return ActionResult.success(this.getWorld().isClient);
         }
         else if (stack.isOf(Items.SHEARS) && this.isShearable()) {
-            this.shearer = player;
             this.sheared(SoundCategory.PLAYERS);
             this.emitGameEvent(GameEvent.SHEAR, player);
             if (!this.getWorld().isClient) {
@@ -160,7 +159,7 @@ public class MoongusEntity extends MooshroomEntity implements Shearable, Variant
             }
             return ActionResult.success(this.getWorld().isClient);
         }
-        return ActionResult.PASS;
+        return super.interactMob(player, hand);
     }
 
     @Override

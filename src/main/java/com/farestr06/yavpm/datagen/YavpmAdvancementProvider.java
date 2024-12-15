@@ -11,12 +11,15 @@ import net.minecraft.advancement.AdvancementFrame;
 import net.minecraft.advancement.AdvancementRewards;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.entity.EntityType;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.predicate.entity.EntityPredicate;
 import net.minecraft.predicate.item.ItemPredicate;
+import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.text.Text;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
@@ -24,7 +27,6 @@ import java.util.function.Consumer;
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmAdvancementProvider extends FabricAdvancementProvider {
-
     // region Husbandry
     protected static final AdvancementEntry eatFakeAnimalProduct = Advancement.Builder.create()
             .parent(VanillaAdvancements.Husbandry.PLANT_SEED)
@@ -81,6 +83,22 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                     )
             )).build(makeId("husbandry/lucky_ticket"));
 
+    protected static final AdvancementEntry eatAllFoodBowls =
+            requireFoodBowlItemsEaten(Advancement.Builder.create())
+                    .parent(VanillaAdvancements.Husbandry.ROOT)
+                    .display(
+                            Items.SUSPICIOUS_STEW,
+                            Text.translatable("advancements.husbandry.eat_all_food_bowls.title"),
+                            Text.translatable("advancements.husbandry.eat_all_food_bowls.description"),
+                            null,
+                            AdvancementFrame.CHALLENGE,
+                            true,
+                            true,
+                            false
+                    )
+                    .rewards(AdvancementRewards.Builder.experience(50))
+                    .build(makeId("husbandry/eat_all_food_bowls"));
+
     protected static final AdvancementEntry craftDiamondsFromGraphene = Advancement.Builder.create()
             .parent(VanillaAdvancements.Husbandry.BREED_AN_ANIMAL)
             .display(
@@ -98,7 +116,6 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
             .rewards(AdvancementRewards.Builder.experience(75))
             .build(makeId("husbandry/craft_diamonds_from_graphene"));
     // endregion
-
     // region Adventure
     protected static final AdvancementEntry upgradeToolWithRune = Advancement.Builder.create()
             .parent(VanillaAdvancements.Adventure.TRADE)
@@ -116,7 +133,6 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
             ))
             .build(makeId("adventure/upgrade_tool_with_rune"));
     // endregion
-
     // region Nether
     protected static final AdvancementEntry convertCowToMoongus = Advancement.Builder.create()
             .parent(VanillaAdvancements.Nether.BREW_POTION)
@@ -135,7 +151,6 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                             EntityPredicate.Builder.create().type(EntityType.COW)))
             )).build(makeId("nether/convert_cow_to_moongus"));
     // endregion
-
     // region End
     protected static final AdvancementEntry pluckNeedlesFromPrickleLog = Advancement.Builder.create()
             .parent(VanillaAdvancements.End.ENTER_END_GATEWAY)
@@ -161,9 +176,27 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
         consumer.accept(eatFakeAnimalProduct);
         consumer.accept(lipSmacker);
         consumer.accept(luckyTicket);
+        consumer.accept(eatAllFoodBowls);
         consumer.accept(craftDiamondsFromGraphene);
         consumer.accept(upgradeToolWithRune);
         consumer.accept(convertCowToMoongus);
         consumer.accept(pluckNeedlesFromPrickleLog);
     }
+
+    private static Advancement.Builder requireFoodBowlItemsEaten(Advancement.Builder builder) {
+        List<Item> bowls = List.of(
+                Items.BEETROOT_SOUP,
+                Items.MUSHROOM_STEW,
+                Items.RABBIT_STEW,
+                Items.SUSPICIOUS_STEW,
+                YavpmItems.SEA_SOUP,
+                YavpmItems.CHICKEN_SOUP
+        );
+        for (Item item : bowls) {
+            builder.criterion(Registries.ITEM.getId(item).getPath(), ConsumeItemCriterion.Conditions.item(item));
+        }
+
+        return builder;
+    }
+
 }

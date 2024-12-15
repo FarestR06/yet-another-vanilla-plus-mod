@@ -18,23 +18,28 @@ public class YavpmConfig {
                     .build()
             ).build();
 
+    // region Entities/Mob Effects
+    // region Tanuki Mob
     @SerialEntry(comment = "Tanukis will attempt to transform after at least this many ticks. Default is 2000.")
     public int tanukiBaseTransformDelay = 2000;
     @SerialEntry(comment = "In addition to the base delay, Tanukis will also wait up to this many ticks. Default is 4000.")
     public int tanukiRandomTransformDelay = 2000;
     @SerialEntry(comment = "When a Tanuki tries to transform, the chance of it succeeding is determined by this value. Default is 0.33f.")
     public float tanukiTransformChance = 0.33f;
+    // endregion
+    // region Void Touched Mob Effect
     @SerialEntry(comment = "Damage is multiplied by this for each level of Void Touched when applied. Default is 1.5f.")
     public float voidTouchedDamageMultiplier = 1.5f;
     @SerialEntry(comment = "When set to false, the dragon fireball will behave like it does in vanilla. Default is true.")
     public boolean voidTouchedDragonFireball = true;
+    // endregion
+    // endregion
 
-    // region Blocks
+    // region Blocks/Fluids
     @SerialEntry(comment = "Glowing Obsidian blocks emit the specified light level. Default is 15.")
     public int glowingObsidianLuminance = 15;
     @SerialEntry(comment = "Soul Glowing Obsidian blocks will emit the specified light level. Default is 11.")
     public int soulGlowingObsidianLuminance = 11;
-
     @SerialEntry(comment = "When set to true, Void Water can create more infinite sources, like how vanilla Water can. Default is false.")
     public boolean voidWaterSourceConversion = false;
     // endregion

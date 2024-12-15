@@ -44,7 +44,7 @@ public class TanukiEntity extends AnimalEntity {
     protected void initGoals() {
         this.goalSelector.add(0, new SwimGoal(this));
         this.goalSelector.add(0, new PowderSnowJumpGoal(this, this.getWorld()));
-        this.goalSelector.add(1, new EscapeDangerGoal(this, 2));
+        this.goalSelector.add(1, new EscapeDangerGoal(this, 1.8));
         this.goalSelector.add(2, new AnimalMateGoal(this, 1));
         this.goalSelector.add(3, new TemptGoal(this, 1.15, stack -> stack.isIn(YavpmTags.Items.TANUKI_FOODS), false));
         this.goalSelector.add(4, new FollowParentGoal(this, 1.25));
@@ -131,13 +131,6 @@ public class TanukiEntity extends AnimalEntity {
             } else {
                 fake = ((FakeOreBlock) YavpmBlocks.FAKE_ORE).makeFakeBlockState(rand, blockPos);
             }
-            /*
-            if (rand.nextBoolean()) {
-                fake = ((FakeLogBlock) YavpmBlocks.FAKE_LOG).makeFakeBlockState(rand);
-            } else {
-                fake = ((FakeOreBlock) YavpmBlocks.FAKE_ORE).makeFakeBlockState(rand);
-            }
-             */
             this.emitGameEvent(GameEvent.BLOCK_PLACE);
             worldAccess.setBlockState(blockPos, fake, Block.NOTIFY_ALL);
             this.playSpawnEffects();

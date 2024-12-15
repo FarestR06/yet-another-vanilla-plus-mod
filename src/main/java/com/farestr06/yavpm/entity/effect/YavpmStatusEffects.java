@@ -10,7 +10,8 @@ import net.minecraft.registry.entry.RegistryEntry;
 
 public class YavpmStatusEffects {
     public static final RegistryEntry<StatusEffect> VOID_TOUCHED = register("void_touched", new SimpleStatusEffect(StatusEffectCategory.HARMFUL, 0xe079fa));
-    public static final RegistryEntry<StatusEffect> NETHER_POWER = register("nether_power", new SimpleStatusEffect(StatusEffectCategory.BENEFICIAL, 0xe079fa));
+    public static final RegistryEntry<StatusEffect> CHOKING = register("choking", new ChokingStatusEffect());
+    public static final RegistryEntry<StatusEffect> NETHER_POWER = register("nether_power", new SimpleStatusEffect(StatusEffectCategory.BENEFICIAL, 0x590000));
 
     private static RegistryEntry<StatusEffect> register(String id, StatusEffect statusEffect) {
         return Registry.registerReference(Registries.STATUS_EFFECT, YetAnotherVanillaPlusMod.makeId(id), statusEffect);
