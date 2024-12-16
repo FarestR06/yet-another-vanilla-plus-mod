@@ -1,5 +1,6 @@
 {
   "values": [
-    "minecraft:endermite"
+    "minecraft:endermite",
+    "yavpm:void_phantom"
   ]
 }

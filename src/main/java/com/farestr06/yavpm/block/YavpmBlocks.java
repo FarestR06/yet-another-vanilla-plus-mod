@@ -431,6 +431,123 @@ public class YavpmBlocks {
     );
     // endregion
 
+    // region Persimmon Wood
+    public static final Block PERSIMMON_LOG = makeAdvancedBlockAndItem(
+            makeId("persimmon_log"),
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHERRY_LOG))
+    );
+    public static final Block PERSIMMON_WOOD = makeAdvancedBlockAndItem(
+            makeId("persimmon_wood"),
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHERRY_WOOD))
+    );
+    public static final Block STRIPPED_PERSIMMON_LOG = makeAdvancedBlockAndItem(
+            makeId("stripped_persimmon_log"),
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_CHERRY_LOG))
+    );
+    public static final Block STRIPPED_PERSIMMON_WOOD = makeAdvancedBlockAndItem(
+            makeId("stripped_persimmon_wood"),
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_CHERRY_WOOD))
+    );
+    public static final Block PERSIMMON_LEAVES = makeAdvancedBlockAndItem(
+            makeId("persimmon_leaves"),
+            new LeavesBlock(AbstractBlock.Settings.copy(Blocks.FLOWERING_AZALEA_LEAVES))
+    );
+
+    public static final Block PERSIMMON_PLANKS = makeBlockAndItem(
+            makeId("persimmon_planks"),
+            AbstractBlock.Settings.copy(Blocks.CHERRY_PLANKS)
+    );
+    public static final Block PERSIMMON_STAIRS = makeAdvancedBlockAndItem(
+            makeId("persimmon_stairs"),
+            new StairsBlock(
+                    PERSIMMON_PLANKS.getDefaultState(),
+                    AbstractBlock.Settings.copy(Blocks.CHERRY_STAIRS)
+            )
+    );
+    public static final Block PERSIMMON_SLAB = makeAdvancedBlockAndItem(
+            makeId("persimmon_slab"),
+            new SlabBlock(AbstractBlock.Settings.copy(Blocks.CHERRY_SLAB))
+    );
+    public static final Block PERSIMMON_FENCE = makeAdvancedBlockAndItem(
+            makeId("persimmon_fence"),
+            new FenceBlock(AbstractBlock.Settings.copy(Blocks.CHERRY_FENCE))
+    );
+    public static final Block PERSIMMON_FENCE_GATE = makeAdvancedBlockAndItem(
+            makeId("persimmon_fence_gate"),
+            new FenceGateBlock(WoodType.CHERRY, AbstractBlock.Settings.copy(Blocks.CHERRY_FENCE))
+    );
+    public static final Block PERSIMMON_DOOR = makeAdvancedBlockAndItem(
+            makeId("persimmon_door"),
+            new DoorBlock(
+                    BlockSetType.CHERRY,
+                    AbstractBlock.Settings.copy(Blocks.CHERRY_DOOR)
+            )
+    );
+    public static final Block PERSIMMON_TRAPDOOR = makeAdvancedBlockAndItem(
+            makeId("persimmon_trapdoor"),
+            new TrapdoorBlock(
+                    BlockSetType.CHERRY,
+                    AbstractBlock.Settings.copy(Blocks.CHERRY_TRAPDOOR)
+            )
+    );
+    public static final Block PERSIMMON_BUTTON = makeAdvancedBlockAndItem(
+            makeId("persimmon_button"),
+            new ButtonBlock(
+                    BlockSetType.CHERRY,
+                    30,
+                    AbstractBlock.Settings.copy(Blocks.CHERRY_BUTTON)
+            )
+    );
+    public static final Block PERSIMMON_PRESSURE_PLATE = makeAdvancedBlockAndItem(
+            makeId("persimmon_pressure_plate"),
+            new PressurePlateBlock(
+                    BlockSetType.CHERRY,
+                    AbstractBlock.Settings.copy(Blocks.CHERRY_PRESSURE_PLATE)
+            )
+    );
+
+    protected static final Identifier PERSIMMON_SIGN_TEXTURE = makeId("entity/signs/persimmon");
+    protected static final Identifier PERSIMMON_HANGING_SIGN_TEXTURE = makeId("entity/signs/hanging/persimmon");
+    protected static final Identifier PERSIMMON_HANGING_SIGN_GUI_TEXTURE = makeId("textures/gui/hanging_signs/persimmon");
+
+    public static final Block PERSIMMON_SIGN = makeAdvancedBlock(
+            makeId("persimmon_sign"),
+            new TerraformSignBlock(
+                    PERSIMMON_SIGN_TEXTURE,
+                    AbstractBlock.Settings.copy(Blocks.CHERRY_SIGN)
+            )
+    );
+    public static final Block PERSIMMON_WALL_SIGN = makeAdvancedBlock(
+            makeId("persimmon_wall_sign"),
+            new TerraformWallSignBlock(
+                    PERSIMMON_SIGN_TEXTURE,
+                    AbstractBlock.Settings.copy(Blocks.CHERRY_WALL_SIGN)
+            )
+    );
+    public static final Block PERSIMMON_HANGING_SIGN = makeAdvancedBlock(
+            makeId("persimmon_hanging_sign"),
+            new TerraformHangingSignBlock(
+                    PERSIMMON_HANGING_SIGN_TEXTURE,
+                    PERSIMMON_HANGING_SIGN_GUI_TEXTURE,
+                    AbstractBlock.Settings.copy(Blocks.CHERRY_HANGING_SIGN)
+            )
+    );
+    public static final Block PERSIMMON_WALL_HANGING_SIGN = makeAdvancedBlock(
+            makeId("persimmon_hanging_sign"),
+            new TerraformWallHangingSignBlock(
+                    PERSIMMON_HANGING_SIGN_TEXTURE,
+                    PERSIMMON_HANGING_SIGN_GUI_TEXTURE,
+                    AbstractBlock.Settings.copy(Blocks.CHERRY_WALL_HANGING_SIGN)
+            )
+    );
+
+    public static final BlockFamily PERSIMMON_FAMILY = BlockFamilies.register(PERSIMMON_PLANKS)
+            .slab(PERSIMMON_SLAB).stairs(PERSIMMON_STAIRS).fence(PERSIMMON_FENCE).fenceGate(PERSIMMON_FENCE_GATE)
+            .door(PERSIMMON_DOOR).trapdoor(PERSIMMON_TRAPDOOR).sign(PERSIMMON_SIGN, PERSIMMON_WALL_SIGN)
+            .pressurePlate(PERSIMMON_PRESSURE_PLATE).button(PERSIMMON_BUTTON)
+            .group("wooden").unlockCriterionName("has_planks").build();
+    // endregion
+
     // region Graphite and Graphene
     public static final Block GRAPHITE_BLOCK = makeBlockAndItem(makeId("graphite_block"),
             AbstractBlock.Settings.copy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.BLACK).strength(2.0f, 2.5f).sounds(BlockSoundGroup.POLISHED_TUFF).instrument(NoteBlockInstrument.BIT));

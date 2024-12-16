@@ -39,7 +39,10 @@ public class YavpmItems {
             new AliasedBlockItem(YavpmBlocks.WARPED_WART, new Item.Settings())
     );
 
-    public static final Item PHANTOM_CHORD = makeSimpleItem(makeId("phantom_chord"));
+    public static final Item PHANTOM_CHORD = makeItem(
+            makeId("phantom_chord"),
+            new Item.Settings().rarity(Rarity.UNCOMMON)
+    );
 
     // region Runes
 
@@ -90,6 +93,16 @@ public class YavpmItems {
                     .component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true)
     );
     // endregion
+    // region Persimmon Fruit
+    public static final Item PERSIMMON = makeItem(
+            makeId("persimmon"),
+            new Item.Settings().food(FoodComponents.APPLE)
+    );
+    public static final Item GOLDEN_PERSIMMON = makeItem(
+            makeId("golden_persimmon"),
+            new Item.Settings().food(FoodComponents.GOLDEN_APPLE).rarity(Rarity.RARE)
+    );
+    // endregion
     // region Food ingredients
     public static final Item TRUFFLE = makeItem(
             makeId("truffle"),
@@ -111,7 +124,6 @@ public class YavpmItems {
             makeId("sushi"),
             new Item.Settings().food(YavpmFoods.SUSHI)
     );
-
     public static final Item SEA_SOUP = makeItem(
             makeId("sea_soup"),
             new Item.Settings().food(YavpmFoods.SEA_SOUP).maxCount(1)
@@ -119,6 +131,13 @@ public class YavpmItems {
     public static final Item CHICKEN_SOUP = makeItem(
             makeId("chicken_soup"),
             new Item.Settings().food(YavpmFoods.CHICKEN_SOUP).maxCount(1)
+    );
+    public static final Item FANCY_MUSHROOM_STEW = makeItem(
+            makeId("fancy_mushroom_stew"),
+            new Item.Settings().food(YavpmFoods.FANCY_MUSHROOM_STEW)
+                    .component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true)
+                    .rarity(Rarity.EPIC)
+                    .maxCount(1)
     );
 
     public static final Item CHOCOLATE = makeItem(
@@ -170,7 +189,7 @@ public class YavpmItems {
     // Magic Herb
     public static final Item MOLY = makeAdvancedItem(
             makeId("moly"),
-            new MolyItem(new Item.Settings().maxCount(16).food(YavpmFoods.MOLY))
+            new MolyItem(new Item.Settings().rarity(Rarity.UNCOMMON).food(YavpmFoods.MOLY).maxCount(16))
     );
 
     // region Reactor
@@ -253,8 +272,29 @@ public class YavpmItems {
             )
     );
 
+    public static final Item PERSIMMON_SIGN = makeAdvancedItem(
+            makeId("persimmon_sign"),
+            new SignItem(
+                    new Item.Settings().maxCount(16),
+                    YavpmBlocks.PERSIMMON_SIGN,
+                    YavpmBlocks.PERSIMMON_WALL_SIGN
+            )
+    );
+    public static final Item PERSIMMON_HANGING_SIGN = makeAdvancedItem(
+            makeId("persimmon_hanging_sign"),
+            new HangingSignItem(
+                    YavpmBlocks.PERSIMMON_HANGING_SIGN,
+                    YavpmBlocks.PERSIMMON_WALL_HANGING_SIGN,
+                    new Item.Settings().maxCount(16)
+            )
+    );
+
+
     public static final Item APPLE_BOAT = TerraformBoatItemHelper.registerBoatItem(APPLE_BOAT_ID, APPLE_BOAT_KEY, false);
     public static final Item APPLE_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(APPLE_CHEST_BOAT_ID, APPLE_BOAT_KEY, true);
+
+    public static final Item PERSIMMON_BOAT = TerraformBoatItemHelper.registerBoatItem(PERSIMMON_BOAT_ID, PERSIMMON_BOAT_KEY, false);
+    public static final Item PERSIMMON_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(PERSIMMON_CHEST_BOAT_ID, PERSIMMON_BOAT_KEY, true);
     // endregion
 
     // region Spawn Eggs

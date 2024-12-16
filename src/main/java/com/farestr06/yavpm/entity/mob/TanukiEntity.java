@@ -24,7 +24,6 @@ import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
@@ -122,7 +121,7 @@ public class TanukiEntity extends AnimalEntity {
     private void transform() {
         WorldAccess worldAccess = this.getWorld();
         Random rand = this.getRandom();
-        BlockPos blockPos = BlockPos.ofFloored(this.getX(), this.getY() + 0.5, this.getZ()).offset(Direction.random(rand));
+        BlockPos blockPos = this.getBlockPos();
         BlockState blockState = worldAccess.getBlockState(blockPos);
         if (blockState.isIn(BlockTags.AIR)) {
             BlockState fake;

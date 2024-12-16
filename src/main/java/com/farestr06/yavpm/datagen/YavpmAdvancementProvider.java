@@ -28,7 +28,7 @@ import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmAdvancementProvider extends FabricAdvancementProvider {
     // region Husbandry
-    protected static final AdvancementEntry eatFakeAnimalProduct = Advancement.Builder.create()
+    protected static final AdvancementEntry EAT_FAKE_ANIMAL_PRODUCT = Advancement.Builder.create()
             .parent(VanillaAdvancements.Husbandry.PLANT_SEED)
             .display(
                     YavpmItems.COOKED_FAKE_BEEF,
@@ -48,7 +48,7 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                     )
             )).build(makeId("husbandry/eat_fake_animal_product"));
 
-    protected static final AdvancementEntry lipSmacker = Advancement.Builder.create()
+    protected static final AdvancementEntry LIP_SMACKER = Advancement.Builder.create()
             .parent(VanillaAdvancements.Husbandry.TAME_AN_ANIMAL)
             .display(
                     YavpmItems.COOKED_PEANUT,
@@ -65,8 +65,7 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                             EntityPredicate.Builder.create().type(EntityType.WOLF)))
             )).build(makeId("husbandry/lip_smacker"));
 
-
-    protected static final AdvancementEntry luckyTicket = Advancement.Builder.create()
+    protected static final AdvancementEntry LUCKY_TICKET = Advancement.Builder.create()
             .parent(VanillaAdvancements.Husbandry.PLANT_SEED)
             .display(
                     YavpmItems.FORTUNE_COOKIE,
@@ -83,7 +82,7 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                     )
             )).build(makeId("husbandry/lucky_ticket"));
 
-    protected static final AdvancementEntry eatAllFoodBowls =
+    protected static final AdvancementEntry EAT_ALL_FOOD_BOWLS =
             requireFoodBowlItemsEaten(Advancement.Builder.create())
                     .parent(VanillaAdvancements.Husbandry.ROOT)
                     .display(
@@ -99,7 +98,7 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                     .rewards(AdvancementRewards.Builder.experience(50))
                     .build(makeId("husbandry/eat_all_food_bowls"));
 
-    protected static final AdvancementEntry craftDiamondsFromGraphene = Advancement.Builder.create()
+    protected static final AdvancementEntry CRAFT_DIAMONDS_FROM_GRAPHENE = Advancement.Builder.create()
             .parent(VanillaAdvancements.Husbandry.BREED_AN_ANIMAL)
             .display(
                     YavpmBlocks.GRAPHENE_BLOCK,
@@ -117,7 +116,7 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
             .build(makeId("husbandry/craft_diamonds_from_graphene"));
     // endregion
     // region Adventure
-    protected static final AdvancementEntry upgradeToolWithRune = Advancement.Builder.create()
+    protected static final AdvancementEntry UPGRADE_TOOL_WITH_RUNE = Advancement.Builder.create()
             .parent(VanillaAdvancements.Adventure.TRADE)
             .display(
                     YavpmItems.RUNE_DURABILITY,
@@ -134,7 +133,7 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
             .build(makeId("adventure/upgrade_tool_with_rune"));
     // endregion
     // region Nether
-    protected static final AdvancementEntry convertCowToMoongus = Advancement.Builder.create()
+    protected static final AdvancementEntry CONVERT_COW_TO_MOONGUS = Advancement.Builder.create()
             .parent(VanillaAdvancements.Nether.BREW_POTION)
             .display(
                     Items.NETHER_WART_BLOCK,
@@ -152,7 +151,7 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
             )).build(makeId("nether/convert_cow_to_moongus"));
     // endregion
     // region End
-    protected static final AdvancementEntry pluckNeedlesFromPrickleLog = Advancement.Builder.create()
+    protected static final AdvancementEntry PLUCK_NEEDLES_FROM_PRICKLE_LOG = Advancement.Builder.create()
             .parent(VanillaAdvancements.End.ENTER_END_GATEWAY)
             .display(
                     Items.SHEARS,
@@ -165,6 +164,23 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                     false
             ).criterion("pluck", InventoryChangedCriterion.Conditions.items(YavpmBlocks.PRICKLE_SHOOT))
             .build(makeId("end/pluck_needles_from_prickle_log"));
+
+    protected static final AdvancementEntry CRAFT_AN_ELYTRA = Advancement.Builder.create()
+            .parent(VanillaAdvancements.End.FIND_ELYTRA)
+            .display(
+                    YavpmItems.PHANTOM_CHORD,
+                    Text.translatable("advancements.end.craft_an_elytra.title"),
+                    Text.translatable("advancements.end.craft_an_elytra.description"),
+                    null,
+                    AdvancementFrame.CHALLENGE,
+                    true,
+                    true,
+                    true
+            ).criterion("craft_elytra", RecipeCraftedCriterion.Conditions.create(
+                    makeId("elytra")
+            ))
+            .rewards(AdvancementRewards.Builder.experience(75))
+            .build(makeId("end/craft_an_elytra"));
     // endregion
 
     protected YavpmAdvancementProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
@@ -173,14 +189,19 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
 
     @Override
     public void generateAdvancement(RegistryWrapper.WrapperLookup registryLookup, Consumer<AdvancementEntry> consumer) {
-        consumer.accept(eatFakeAnimalProduct);
-        consumer.accept(lipSmacker);
-        consumer.accept(luckyTicket);
-        consumer.accept(eatAllFoodBowls);
-        consumer.accept(craftDiamondsFromGraphene);
-        consumer.accept(upgradeToolWithRune);
-        consumer.accept(convertCowToMoongus);
-        consumer.accept(pluckNeedlesFromPrickleLog);
+        // Husbandry
+        consumer.accept(EAT_FAKE_ANIMAL_PRODUCT);
+        consumer.accept(LIP_SMACKER);
+        consumer.accept(LUCKY_TICKET);
+        consumer.accept(EAT_ALL_FOOD_BOWLS);
+        consumer.accept(CRAFT_DIAMONDS_FROM_GRAPHENE);
+        // Adventure
+        consumer.accept(UPGRADE_TOOL_WITH_RUNE);
+        // Nether
+        consumer.accept(CONVERT_COW_TO_MOONGUS);
+        // End
+        consumer.accept(PLUCK_NEEDLES_FROM_PRICKLE_LOG);
+        consumer.accept(CRAFT_AN_ELYTRA);
     }
 
     private static Advancement.Builder requireFoodBowlItemsEaten(Advancement.Builder builder) {
@@ -190,7 +211,8 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                 Items.RABBIT_STEW,
                 Items.SUSPICIOUS_STEW,
                 YavpmItems.SEA_SOUP,
-                YavpmItems.CHICKEN_SOUP
+                YavpmItems.CHICKEN_SOUP,
+                YavpmItems.FANCY_MUSHROOM_STEW
         );
         for (Item item : bowls) {
             builder.criterion(Registries.ITEM.getId(item).getPath(), ConsumeItemCriterion.Conditions.item(item));

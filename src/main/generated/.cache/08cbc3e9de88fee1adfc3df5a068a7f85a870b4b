@@ -1,4 +1,4 @@
-// 1.21.1	2024-12-15T13:33:35.586850893	Yet Another Vanilla Plus Mod/Recipes
+// 1.21.1	2024-12-15T19:26:57.182642596	Yet Another Vanilla Plus Mod/Recipes
 059ae50a24b8ff3623124417a3dd9a16800ee9d3 data/yavpm/advancement/recipes/redstone/apple_button.json
 fa3801902e0c802bfc1da9ba3405edd7cead84f6 data/yavpm/advancement/recipes/decorations/apple_sign.json
 6c80c93357c77426a48f22cfa88bc4a50fa6bfbe data/yavpm/advancement/recipes/redstone/apple_fence_gate.json
@@ -26,6 +26,7 @@ dc6434595a85668621bfda7a84ead43aeb1a78b3 data/yavpm/recipe/studded_boots.json
 71b619c0e65e262d7229afff0fed0d25061381f7 data/yavpm/recipe/andesite_from_cobbled.json
 c64db5c4177c4a70dc025e94b81bf0997b474705 data/yavpm/advancement/recipes/misc/studded_boots.json
 00fa80eb38d2938bfe68da0af7b784e92776f239 data/yavpm/advancement/recipes/building_blocks/graphite_block.json
+6faae9c24e9fb48a3624d2b4529e4733d8f697ca data/yavpm/recipe/apple_boat.json
 7ead29669c410cb10f500588edb86607dde18f19 data/yavpm/recipe/prickle_pressure_plate.json
 82f514a970f5b786cd789cc51f8127a180440166 data/yavpm/recipe/apple_fence.json
 fdda5a957c4d16c56050e704c8bb9d2eb214ea38 data/yavpm/recipe/apple_slab.json
@@ -41,6 +42,7 @@ f6832b230dcd91fb54ededb1da60b41cab7e17e3 data/yavpm/recipe/prickle_button.json
 7df6af3fd4b76edeba8a77b8c9151c7f59280e1a data/yavpm/advancement/recipes/decorations/apple_hanging_sign.json
 7870f81e0252a76ff6c88b8d78bbd9b01ba1bba3 data/yavpm/advancement/recipes/redstone/prickle_pressure_plate.json
 070f78b408fbff4c1ce081370c592cebdb3cd3cb data/yavpm/recipe/apple_pressure_plate.json
+c0c581c5eccc1b50651d3b627bd752a0e4ce0f04 data/yavpm/advancement/recipes/food/fancy_mushroom_stew.json
 2f75569bb8d7cd49548ee6d8ab741299d1e22a3f data/yavpm/advancement/recipes/building_blocks/apple_stairs.json
 54a9a2a6e37dcbf982876af3e684fa83e3b992f4 data/yavpm/advancement/recipes/building_blocks/diorite_from_cobbled.json
 112a74f841b39b1f5e2c0e826edfdfffbf461bfc data/yavpm/advancement/recipes/misc/diamond_from_blasting_raw_diamond.json
@@ -68,6 +70,7 @@ b7ee99fea13247b9700a99fc037894f3895a7e7f data/yavpm/advancement/recipes/redstone
 6a5e66b0ee3006ea5cd103161ee641cc1ecb499f data/yavpm/advancement/recipes/food/cooked_peanut_from_smoking.json
 421e3a4678f06e1b8f52ca2640e7bf627dc39d4d data/yavpm/recipe/apple_stairs.json
 c2f8401eac195518c98df8a036ad2874ce7ec18c data/yavpm/recipe/prickle_slab.json
+1d4946ea0fab956aa8491d5d3d3fc619e0122e2c data/yavpm/recipe/apple_chest_boat.json
 180dda09e70f12e06265db673c071b1544b63163 data/yavpm/advancement/recipes/misc/studded_chestplate.json
 9f86ceecb233f2692142bdb21a789459e7eded6f data/yavpm/recipe/prickle_planks.json
 9bfaed03cdece18d210bae332a6cfa4ea4d47b03 data/yavpm/recipe/diorite_from_cobbled.json
@@ -75,6 +78,7 @@ c2f8401eac195518c98df8a036ad2874ce7ec18c data/yavpm/recipe/prickle_slab.json
 8e4c37f51d59062005d6f7fc2841e87f90b1c5c3 data/yavpm/advancement/recipes/food/cooked_fake_beef_from_smelting_fake_beef.json
 14ecd55730a5c420322487ee49a2d24436facec6 data/yavpm/advancement/recipes/food/chicken_soup.json
 05f0e1ed3df1835e106699511d9f6ac4089a7ce2 data/yavpm/advancement/recipes/building_blocks/apple_planks.json
+0a3fce1b000d46e4e69242dc7fab38ff124d147a data/yavpm/recipe/fancy_mushroom_stew.json
 502922f2875d9b7b5809e57481780fa1d4e7c03d data/yavpm/recipe/prickle_fence.json
 65add38f3a5e27fa378f4cb3eddc0570a124dca5 data/yavpm/recipe/apple_door.json
 2e86702f492b203467aeacde050046898fafedc3 data/yavpm/recipe/studded_leggings.json
@@ -105,6 +109,7 @@ a4b7b5284127faa621d254c6ac7a593810380435 data/yavpm/recipe/soul_glowing_obsidian
 81219032e34038207e0fe7bd001a67302bda6445 data/yavpm/recipe/prickle_sign.json
 85ce62f95f81d7bd82d6cb8a127aa7f9f01ac5c8 data/yavpm/advancement/recipes/redstone/prickle_trapdoor.json
 25483accc665207cf9c9cc86176d46887a65dc64 data/yavpm/recipe/diamond_from_blasting_raw_diamond.json
+c610d1cc7dc6795094324a7bb4a7b831e7491b47 data/yavpm/advancement/recipes/transportation/apple_boat.json
 7edfa38911072c7a42fd58e9989d7468df7795a4 data/yavpm/advancement/recipes/food/cooked_egg_from_smoking.json
 c13f312a624b0c35e45585693977ece2829c2db8 data/yavpm/recipe/prickle_hanging_sign.json
 c2b88fd952271f07211f10c34422a464d27ac4b2 data/yavpm/recipe/cooked_fake_beef_from_smoking.json
@@ -118,6 +123,7 @@ c3518f402bc6fa60ee7dd48679b3f44a398627e1 data/yavpm/recipe/prickle_door.json
 7c991a4062a5401a544d130003064576b4eb91a3 data/yavpm/advancement/recipes/building_blocks/prickle_planks.json
 713744aff332b04dd5b0f157c2147598bbeb0097 data/yavpm/advancement/recipes/food/cooked_fake_beef_from_smoking.json
 6fbf4c72e44174f01610e521e1cd685d599d0183 data/yavpm/recipe/apple_planks.json
+5c53a331989cdb010df1657116bd0fd8f688cc74 data/yavpm/advancement/recipes/transportation/apple_chest_boat.json
 2f0ef9402e194fc701e8bf8c019e193d0ba60cfb data/yavpm/advancement/recipes/food/sushi.json
 17b3e4e76ebab05a88ad5778ef5fe97e85d495cc data/yavpm/recipe/diamond_from_blasting_graphene_block.json
 b60b5d8a33cb3dafaae3a6817a7d0bf104737745 data/yavpm/recipe/apple_hanging_sign.json

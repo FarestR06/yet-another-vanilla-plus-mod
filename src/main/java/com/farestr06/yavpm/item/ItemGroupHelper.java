@@ -32,6 +32,21 @@ public class ItemGroupHelper {
         entries.add(YavpmBlocks.APPLE_TRAPDOOR);
         entries.add(YavpmBlocks.APPLE_PRESSURE_PLATE);
         entries.add(YavpmBlocks.APPLE_BUTTON);
+
+        entries.add(YavpmBlocks.PERSIMMON_LOG);
+        entries.add(YavpmBlocks.PERSIMMON_WOOD);
+        entries.add(YavpmBlocks.STRIPPED_PERSIMMON_LOG);
+        entries.add(YavpmBlocks.STRIPPED_PERSIMMON_WOOD);
+        entries.add(YavpmBlocks.PERSIMMON_PLANKS);
+        entries.add(YavpmBlocks.PERSIMMON_STAIRS);
+        entries.add(YavpmBlocks.PERSIMMON_SLAB);
+        entries.add(YavpmBlocks.PERSIMMON_FENCE);
+        entries.add(YavpmBlocks.PERSIMMON_FENCE_GATE);
+        entries.add(YavpmBlocks.PERSIMMON_DOOR);
+        entries.add(YavpmBlocks.PERSIMMON_TRAPDOOR);
+        entries.add(YavpmBlocks.PERSIMMON_PRESSURE_PLATE);
+        entries.add(YavpmBlocks.PERSIMMON_BUTTON);
+
         entries.add(YavpmBlocks.PRICKLE_LOG);
         entries.add(YavpmBlocks.PRICKLE_WOOD);
         entries.add(YavpmBlocks.STRIPPED_PRICKLE_LOG);
@@ -45,6 +60,8 @@ public class ItemGroupHelper {
         entries.add(YavpmBlocks.PRICKLE_TRAPDOOR);
         entries.add(YavpmBlocks.PRICKLE_PRESSURE_PLATE);
         entries.add(YavpmBlocks.PRICKLE_BUTTON);
+
+
         entries.add(YavpmBlocks.COBBLED_GRANITE);
         entries.add(YavpmBlocks.COBBLED_GRANITE_STAIRS);
         entries.add(YavpmBlocks.COBBLED_GRANITE_SLAB);
@@ -57,6 +74,7 @@ public class ItemGroupHelper {
         entries.add(YavpmBlocks.POLISHED_GRANITE_TILE_STAIRS);
         entries.add(YavpmBlocks.POLISHED_GRANITE_TILE_SLAB);
         entries.add(YavpmBlocks.POLISHED_GRANITE_TILE_WALL);
+
         entries.add(YavpmBlocks.COBBLED_DIORITE);
         entries.add(YavpmBlocks.COBBLED_DIORITE_STAIRS);
         entries.add(YavpmBlocks.COBBLED_DIORITE_SLAB);
@@ -69,6 +87,7 @@ public class ItemGroupHelper {
         entries.add(YavpmBlocks.POLISHED_DIORITE_TILE_STAIRS);
         entries.add(YavpmBlocks.POLISHED_DIORITE_TILE_SLAB);
         entries.add(YavpmBlocks.POLISHED_DIORITE_TILE_WALL);
+
         entries.add(YavpmBlocks.COBBLED_ANDESITE);
         entries.add(YavpmBlocks.COBBLED_ANDESITE_STAIRS);
         entries.add(YavpmBlocks.COBBLED_ANDESITE_SLAB);
@@ -81,6 +100,7 @@ public class ItemGroupHelper {
         entries.add(YavpmBlocks.POLISHED_ANDESITE_TILE_STAIRS);
         entries.add(YavpmBlocks.POLISHED_ANDESITE_TILE_SLAB);
         entries.add(YavpmBlocks.POLISHED_ANDESITE_TILE_WALL);
+
         entries.add(YavpmBlocks.KIMBERLITE);
         entries.add(YavpmBlocks.GRAPHITE_BLOCK);
         entries.add(YavpmBlocks.GRAPHENE_BLOCK);
@@ -91,9 +111,11 @@ public class ItemGroupHelper {
         entries.add(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
         entries.add(YavpmBlocks.KIMBERLITE);
         entries.add(YavpmBlocks.APPLE_LOG);
+        entries.add(YavpmBlocks.PERSIMMON_LOG);
         entries.add(YavpmBlocks.PRICKLE_LOG);
         entries.add(YavpmBlocks.APPLE_LEAVES);
         entries.add(YavpmBlocks.APPLE_SAPLING);
+        entries.add(YavpmBlocks.PERSIMMON_LEAVES);
         entries.add(YavpmBlocks.PRICKLE_SHOOT);
         entries.add(YavpmItems.ACORN);
         entries.add(YavpmItems.BANANA_SEEDS);
@@ -107,6 +129,8 @@ public class ItemGroupHelper {
         entries.add(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
         entries.add(YavpmItems.APPLE_SIGN);
         entries.add(YavpmItems.APPLE_HANGING_SIGN);
+        entries.add(YavpmItems.PERSIMMON_SIGN);
+        entries.add(YavpmItems.PERSIMMON_HANGING_SIGN);
         entries.add(YavpmItems.PRICKLE_SIGN);
         entries.add(YavpmItems.PRICKLE_HANGING_SIGN);
     }
@@ -120,6 +144,8 @@ public class ItemGroupHelper {
         entries.add(YavpmItems.FAKE_MILK_BUCKET);
         entries.add(YavpmItems.APPLE_BOAT);
         entries.add(YavpmItems.APPLE_CHEST_BOAT);
+        entries.add(YavpmItems.PERSIMMON_BOAT);
+        entries.add(YavpmItems.PERSIMMON_CHEST_BOAT);
         entries.add(YavpmItems.FORTUNE_COOKIE);
     }
 
@@ -131,6 +157,10 @@ public class ItemGroupHelper {
     }
 
     private static void foodAndDrink(FabricItemGroupEntries entries) {
+        entries.add(YavpmItems.ACORN);
+        entries.add(YavpmItems.DIAMOND_ACORN);
+        entries.add(YavpmItems.PERSIMMON);
+        entries.add(YavpmItems.GOLDEN_PERSIMMON);
         entries.add(YavpmItems.BANANA);
         entries.add(YavpmItems.MAGIC_BEAN);
         entries.add(YavpmItems.TRUFFLE);
@@ -142,7 +172,10 @@ public class ItemGroupHelper {
         entries.add(YavpmItems.BEAN_TOAST);
         entries.add(YavpmItems.SUSHI);
         entries.add(YavpmItems.SEA_SOUP);
+        entries.add(YavpmItems.CHICKEN_SOUP);
+        entries.add(YavpmItems.FANCY_MUSHROOM_STEW);
         entries.add(YavpmItems.FAKE_MILK_BUCKET);
+        entries.add(YavpmItems.MOLY);
         entries.add(YavpmItems.FORTUNE_COOKIE);
     }
 

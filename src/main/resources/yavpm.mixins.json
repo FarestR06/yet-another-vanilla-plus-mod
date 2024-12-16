@@ -10,6 +10,7 @@
     "entity.DragonFireballEntityMixin",
     "entity.HoglinEntityMixin",
     "entity.LivingEntityMixin",
+    "entity.PhantomEntityMixin",
     "item.ItemModelGeneratorMixin"
   ],
   "injectors": {

@@ -38,9 +38,9 @@ public class YavpmTrades {
         });
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.FARMER, 3, factories -> {
             factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, random.nextBetween(16, 32)),
+                    new TradedItem(Items.EMERALD, random.nextBetween(24, 32)),
                     new ItemStack(YavpmItems.FORTUNE_COOKIE),
-                    8,
+                    4,
                     10,
                     HIGH_MULTIPLIER
             ));
@@ -56,7 +56,7 @@ public class YavpmTrades {
                 factories.add((entity, random) -> new TradeOffer(
                 new TradedItem(Items.EMERALD, random.nextBetween(8, 16)),
                 new ItemStack(YavpmItems.FORTUNE_COOKIE),
-                2,
+                1,
                 30,
                 HIGH_MULTIPLIER
         )));
@@ -87,7 +87,7 @@ public class YavpmTrades {
                     LOW_MULTIPLIER
             ));
             factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, 4),
+                    new TradedItem(Items.EMERALD, 5),
                     new ItemStack(YavpmItems.SEA_SOUP),
                     12,
                     15,
@@ -173,6 +173,13 @@ public class YavpmTrades {
                     new TradedItem(Items.EMERALD, 5),
                     new ItemStack(YavpmBlocks.APPLE_SAPLING),
                     8,
+                    0,
+                    0f
+            ));
+            factories.add((entity, random) -> new TradeOffer(
+                    new TradedItem(Items.EMERALD, 8),
+                    new ItemStack(YavpmItems.MOLY),
+                    3,
                     0,
                     0f
             ));

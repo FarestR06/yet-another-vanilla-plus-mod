@@ -15,6 +15,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.client.*;
 import net.minecraft.item.ArmorItem;
+import net.minecraft.item.Items;
 import net.minecraft.state.property.Properties;
 import net.minecraft.state.property.Property;
 import net.minecraft.util.Identifier;
@@ -53,6 +54,7 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.registerSimpleCubeAll(YavpmBlocks.GRAPHENE_BLOCK);
 
         createAppleSet(generator);
+        createPersimmonSet(generator);
         createPrickleSet(generator);
 
         generator.registerTintableCross(YavpmBlocks.APPLE_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
@@ -78,7 +80,11 @@ public class YavpmModelProvider extends FabricModelProvider {
 
         generator.register(YavpmItems.DIAMOND_ACORN, Models.GENERATED);
 
+        generator.register(YavpmItems.PERSIMMON, Models.GENERATED);
+        generator.register(YavpmItems.GOLDEN_PERSIMMON, Models.GENERATED);
+
         generator.register(YavpmItems.TRUFFLE, Models.GENERATED);
+        generator.register(YavpmItems.FANCY_MUSHROOM_STEW, Items.MUSHROOM_STEW, Models.GENERATED);
 
         generator.register(YavpmItems.CHEESE, Models.GENERATED);
 
@@ -101,6 +107,9 @@ public class YavpmModelProvider extends FabricModelProvider {
 
         generator.register(YavpmItems.APPLE_BOAT, Models.GENERATED);
         generator.register(YavpmItems.APPLE_CHEST_BOAT, Models.GENERATED);
+
+        generator.register(YavpmItems.PERSIMMON_BOAT, Models.GENERATED);
+        generator.register(YavpmItems.PERSIMMON_CHEST_BOAT, Models.GENERATED);
 
         createStuddedArmor(generator);
 
@@ -176,7 +185,6 @@ public class YavpmModelProvider extends FabricModelProvider {
     }
 
     private static void createAppleSet(BlockStateModelGenerator generator) {
-
         // Apple Logs and Woods
         generator.registerLog(YavpmBlocks.APPLE_LOG).log(YavpmBlocks.APPLE_LOG).wood(YavpmBlocks.APPLE_WOOD);
         generator.registerLog(YavpmBlocks.STRIPPED_APPLE_LOG).log(YavpmBlocks.STRIPPED_APPLE_LOG).wood(YavpmBlocks.STRIPPED_APPLE_WOOD);
@@ -187,6 +195,19 @@ public class YavpmModelProvider extends FabricModelProvider {
         BlockStateModelGenerator.BlockTexturePool applePool = generator.registerCubeAllModelTexturePool(YavpmBlocks.APPLE_PLANKS);
         applePool.family(YavpmBlocks.APPLE_FAMILY);
         generator.registerHangingSign(YavpmBlocks.STRIPPED_APPLE_LOG, YavpmBlocks.APPLE_HANGING_SIGN, YavpmBlocks.APPLE_WALL_HANGING_SIGN);
+    }
+
+    private static void createPersimmonSet(BlockStateModelGenerator generator) {
+        // Persimmon Logs and Woods
+        generator.registerLog(YavpmBlocks.PERSIMMON_LOG).log(YavpmBlocks.PERSIMMON_LOG).wood(YavpmBlocks.PERSIMMON_WOOD);
+        generator.registerLog(YavpmBlocks.STRIPPED_PERSIMMON_LOG).log(YavpmBlocks.STRIPPED_PERSIMMON_LOG).wood(YavpmBlocks.STRIPPED_PERSIMMON_WOOD);
+
+        generator.registerSimpleCubeAll(YavpmBlocks.PERSIMMON_LEAVES);
+
+        // Persimmon Planks and Texture Pool
+        BlockStateModelGenerator.BlockTexturePool persimmonPool = generator.registerCubeAllModelTexturePool(YavpmBlocks.PERSIMMON_PLANKS);
+        persimmonPool.family(YavpmBlocks.PERSIMMON_FAMILY);
+        generator.registerHangingSign(YavpmBlocks.STRIPPED_PERSIMMON_LOG, YavpmBlocks.PERSIMMON_HANGING_SIGN, YavpmBlocks.PERSIMMON_WALL_HANGING_SIGN);
     }
 
     private static void createPrickleSet(BlockStateModelGenerator generator) {

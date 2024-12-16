@@ -21,6 +21,7 @@ public class YavpmTags {
         public static final TagKey<Item> ENCHANTABLE_GLIDER = of("enchantable/glider");
         public static final TagKey<Item> REACTOR_RECHARGERS = of("reactor_rechargers");
         public static final TagKey<Item> APPLE_LOGS = of("apple_logs");
+        public static final TagKey<Item> PERSIMMON_LOGS = of("persimmon_logs");
         public static final TagKey<Item> PRICKLE_LOGS = of("spiral_stalks");
         public static final TagKey<Item> CRIMSON_MOONGUS_FOOD = of("crimson_moongus_food");
         public static final TagKey<Item> WARPED_MOONGUS_FOOD = of("warped_moongus_food");
@@ -62,6 +63,7 @@ public class YavpmTags {
     public static class Blocks {
 
         public static final TagKey<Block> APPLE_LOGS = of("apple_logs");
+        public static final TagKey<Block> PERSIMMON_LOGS = of("persimmon_logs");
         public static final TagKey<Block> PRICKLE_LOGS = of("prickle_logs");
 
         private static TagKey<Block> of(String path) {

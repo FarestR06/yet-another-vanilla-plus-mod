@@ -15,9 +15,11 @@ import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.minecraft.client.color.world.BiomeColors;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.component.type.DyedColorComponent;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.biome.FoliageColors;
 
 public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
     @Override
@@ -32,8 +34,14 @@ public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
                 YavpmItems.STUDDED_BOOTS
         );
 
+        ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) ->
+                world != null && pos != null ? BiomeColors.getFoliageColor(world, pos) : FoliageColors.getDefaultColor(), YavpmBlocks.PERSIMMON_LEAVES);
+
         TerraformBoatClientHelper.registerModelLayers(
                 YavpmBoats.APPLE_BOAT_TYPE_ID, false
+        );
+        TerraformBoatClientHelper.registerModelLayers(
+                YavpmBoats.PERSIMMON_BOAT_TYPE_ID, false
         );
     }
 
@@ -48,6 +56,9 @@ public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.APPLE_LEAVES, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.APPLE_DOOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.APPLE_TRAPDOOR, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PERSIMMON_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PERSIMMON_DOOR, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PERSIMMON_TRAPDOOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PRICKLE_DOOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PRICKLE_TRAPDOOR, RenderLayer.getCutout());
 

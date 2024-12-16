@@ -31,6 +31,6 @@ public class YavpmDamageTypes {
 
     public static void bootstrap(Registerable<DamageType> context) {
         context.register(CUT, new DamageType("cut", DamageScaling.NEVER, 0.1f));
-        context.register(CHOKE, new DamageType("cut", DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER, 0f, DamageEffects.DROWNING));
+        context.register(CHOKE, new DamageType("choke", DamageScaling.WHEN_CAUSED_BY_LIVING_NON_PLAYER, 0f, DamageEffects.DROWNING));
     }
 }

@@ -103,7 +103,9 @@ public class CarbonfowlEntity extends ChickenEntity implements Angerable {
 
     @Override
     public void setAngryAt(@Nullable UUID angryAt) {
-        this.angryAt = angryAt;
+        if (!this.isBaby()) {
+            this.angryAt = angryAt;
+        }
     }
 
     @Override

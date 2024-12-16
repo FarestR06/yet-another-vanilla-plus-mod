@@ -17,6 +17,7 @@ import net.minecraft.loot.condition.*;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.entry.LeafEntry;
 import net.minecraft.loot.function.ApplyBonusLootFunction;
 import net.minecraft.loot.function.EnchantedCountIncreaseLootFunction;
 import net.minecraft.loot.function.FurnaceSmeltLootFunction;
@@ -67,6 +68,7 @@ public class YavpmLootProviders {
             modCropDrops();
 
             appleDrops();
+            persimmonDrops();
             prickleDrops();
 
             // region Warped Wart
@@ -189,6 +191,39 @@ public class YavpmLootProviders {
             addDrop(YavpmBlocks.APPLE_WALL_HANGING_SIGN, YavpmItems.APPLE_HANGING_SIGN);
 
             addDrop(YavpmBlocks.APPLE_SAPLING);
+        }
+        private void persimmonDrops() {
+            addDrop(YavpmBlocks.PERSIMMON_LOG);
+            addDrop(YavpmBlocks.STRIPPED_PERSIMMON_LOG);
+            addDrop(YavpmBlocks.PERSIMMON_WOOD);
+            addDrop(YavpmBlocks.STRIPPED_PERSIMMON_WOOD);
+
+            leavesDrops(YavpmBlocks.PERSIMMON_LEAVES, YavpmBlocks.PERSIMMON_LEAVES, SAPLING_DROP_CHANCE)
+                    .pool(
+                            LootPool.builder()
+                                    .rolls(ConstantLootNumberProvider.create(1.0F))
+                                    .conditionally(this.createWithoutShearsOrSilkTouchCondition())
+                                    .with(
+                                            ((LeafEntry.Builder<?>)this.addSurvivesExplosionCondition(YavpmBlocks.PERSIMMON_LEAVES, ItemEntry.builder(YavpmItems.PERSIMMON)))
+                                                    .conditionally(TableBonusLootCondition.builder(lookup.getOrThrow(Enchantments.FORTUNE), 0.004f, 0.006f, 0.008f, 0.01f, 0.025f))
+                                    )
+                    );
+
+            addDrop(YavpmBlocks.PERSIMMON_PLANKS);
+            addDrop(YavpmBlocks.PERSIMMON_STAIRS);
+            slabDrops(YavpmBlocks.PERSIMMON_SLAB);
+            addDrop(YavpmBlocks.PERSIMMON_FENCE);
+            addDrop(YavpmBlocks.PERSIMMON_FENCE_GATE);
+            addDrop(YavpmBlocks.PERSIMMON_BUTTON);
+            addDrop(YavpmBlocks.PERSIMMON_PRESSURE_PLATE);
+
+            doorDrops(YavpmBlocks.PERSIMMON_DOOR);
+            addDrop(YavpmBlocks.PERSIMMON_TRAPDOOR);
+
+            addDrop(YavpmBlocks.PERSIMMON_SIGN, YavpmItems.PERSIMMON_SIGN);
+            addDrop(YavpmBlocks.PERSIMMON_WALL_SIGN, YavpmItems.PERSIMMON_SIGN);
+            addDrop(YavpmBlocks.PERSIMMON_HANGING_SIGN, YavpmItems.PERSIMMON_HANGING_SIGN);
+            addDrop(YavpmBlocks.PERSIMMON_WALL_HANGING_SIGN, YavpmItems.PERSIMMON_HANGING_SIGN);
         }
         private void prickleDrops() {
             addDrop(YavpmBlocks.PRICKLE_LOG);

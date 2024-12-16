@@ -1,7 +1,7 @@
-// 1.21.1	2024-12-15T13:33:35.586720781	Yet Another Vanilla Plus Mod/Misc Data
-ebe2be31c9a20807bbd01e6da76617ec9291385b data/yavpm/enchantment/void_strike.json
+// 1.21.1	2024-12-15T19:26:57.182539584	Yet Another Vanilla Plus Mod/Misc Data
 40904e59e397924b3ab171c3ddb5e26bcfec1133 data/yavpm/enchantment/stiffness.json
+ebe2be31c9a20807bbd01e6da76617ec9291385b data/yavpm/enchantment/void_strike.json
 61a226ea1ff52d75c68a6b60730325b350001d3d data/yavpm/enchantment/illagers_bane.json
 18b219b721a8bfbfa50ee14dad22253b475ccf78 data/yavpm/damage_type/cut.json
-dd32ee8d20b8d820db1ef6d47a61e16d9e50161b data/yavpm/damage_type/choke.json
+f2307d7b847db8e2973b81472cb9522c900e3059 data/yavpm/damage_type/choke.json
 c2dabf02449ef90c93072be5d6a5ae1fbc706d93 data/yavpm/enchantment/enderbane.json

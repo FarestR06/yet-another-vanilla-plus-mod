@@ -86,6 +86,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add("advancements.end.pluck_needles_from_prickle_log.title", "Plucky Prickle");
         builder.add("advancements.end.pluck_needles_from_prickle_log.description", "Pluck the needles off a Prickle Tree");
+        builder.add("advancements.end.craft_an_elytra.title", "Amateur Aviation");
+        builder.add("advancements.end.craft_an_elytra.description", "Make your own pair of elytra");
 
         builder.add("resourcePack.yavpm.programmer_art.name", "YAVPM Programmer Art");
 
@@ -96,14 +98,14 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmTags.Items.RUNE_ATTACK_APPLICABLE, "Upgradable with Attack Up Rune");
         builder.add(YavpmTags.Items.RUNE_DURABILITY_APPLICABLE, "Upgradable with Durability Up Rune");
         builder.add(YavpmTags.Items.RUNE_SPEED_APPLICABLE, "Upgradable with Speed Up Rune");
-        builder.add(YavpmTags.Items.ENCHANTABLE_GLIDER, "Upgradable with Speed Up Rune");
+        builder.add(YavpmTags.Items.ENCHANTABLE_GLIDER, "Glider Enchantable");
 
         builder.add(YavpmItems.RUNE_ATTACK, "Attack Up Rune");
-        builder.add("item.yavpm.rune_attack.tooltip", "Increases a weapon's base damage by 50 percent when used in a Crafting Table.");
+        builder.add("item.yavpm.rune_attack.tooltip", "Permanently increases a weapon's base damage when used in a Crafting Table.");
         builder.add(YavpmItems.RUNE_DURABILITY, "Durability Up Rune");
-        builder.add("item.yavpm.rune_durability.tooltip", "Increases a tool's maximum durability by 50 percent when used in a Crafting Table.");
+        builder.add("item.yavpm.rune_durability.tooltip", "Permanently increases a tool's maximum durability when used in a Crafting Table.");
         builder.add(YavpmItems.RUNE_SPEED, "Speed Up Rune");
-        builder.add("item.yavpm.rune_speed.tooltip", "Increases a tool's mining speed by 50 percent when used in a Crafting Table.");
+        builder.add("item.yavpm.rune_speed.tooltip", "Permanently increases a tool's mining speed when used in a Crafting Table.");
 
         builder.add(YavpmBlocks.GLOWING_OBSIDIAN, "Glowing Obsidian");
         builder.add(YavpmBlocks.SOUL_GLOWING_OBSIDIAN, "Soul Glowing Obsidian");
@@ -198,6 +200,9 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.ACORN, "Acorn");
         builder.add(YavpmItems.DIAMOND_ACORN, "Diamond Acorn");
 
+        builder.add(YavpmItems.PERSIMMON, "Persimmon");
+        builder.add(YavpmItems.GOLDEN_PERSIMMON, "Golden Persimmon");
+
         builder.add(YavpmItems.TRUFFLE, "Truffle");
 
         builder.add(YavpmItems.RICE, "Rice");
@@ -215,8 +220,10 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.TOFU, "Tofu");
 
         builder.add(YavpmItems.SUSHI, "Sushi");
+
         builder.add(YavpmItems.SEA_SOUP, "Sea Soup");
         builder.add(YavpmItems.CHICKEN_SOUP, "Chicken Soup");
+        builder.add(YavpmItems.FANCY_MUSHROOM_STEW, "Fancy Mushroom Stew");
 
         builder.add(YavpmItems.STUDDED_HELMET, "Studded Cap");
         builder.add(YavpmItems.STUDDED_CHESTPLATE, "Studded Tunic");
@@ -309,6 +316,27 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.APPLE_CHEST_BOAT, "Apple Boat with Chest");
         builder.add(YavpmBlocks.APPLE_SAPLING, "Apple Sapling");
         builder.add(YavpmTags.Items.APPLE_LOGS, "Apple Logs");
+
+        builder.add(YavpmBlocks.PERSIMMON_LOG, "Persimmon Log");
+        builder.add(YavpmBlocks.PERSIMMON_WOOD, "Persimmon Wood");
+        builder.add(YavpmBlocks.STRIPPED_PERSIMMON_LOG, "Stripped Persimmon Log");
+        builder.add(YavpmBlocks.STRIPPED_PERSIMMON_WOOD, "Stripped Persimmon Wood");
+        builder.add(YavpmBlocks.PERSIMMON_LEAVES, "Persimmon Leaves");
+        builder.add(YavpmBlocks.PERSIMMON_PLANKS, "Persimmon Planks");
+        builder.add(YavpmBlocks.PERSIMMON_STAIRS, "Persimmon Stairs");
+        builder.add(YavpmBlocks.PERSIMMON_SLAB, "Persimmon Slab");
+        builder.add(YavpmBlocks.PERSIMMON_FENCE, "Persimmon Fence");
+        builder.add(YavpmBlocks.PERSIMMON_FENCE_GATE, "Persimmon Fence Gate");
+        builder.add(YavpmBlocks.PERSIMMON_DOOR, "Persimmon Door");
+        builder.add(YavpmBlocks.PERSIMMON_TRAPDOOR, "Persimmon Trapdoor");
+        builder.add(YavpmBlocks.PERSIMMON_PRESSURE_PLATE, "Persimmon Pressure Plate");
+        builder.add(YavpmBlocks.PERSIMMON_BUTTON, "Persimmon Button");
+        builder.add(YavpmBlocks.PERSIMMON_SIGN, "Persimmon Sign");
+        builder.add(YavpmBlocks.PERSIMMON_HANGING_SIGN, "Persimmon Hanging Sign");
+        builder.add(YavpmItems.PERSIMMON_BOAT, "Persimmon Boat");
+        builder.add(YavpmItems.PERSIMMON_CHEST_BOAT, "Persimmon Boat with Chest");
+        // TODO: Add Persimmon Sapling
+        builder.add(YavpmTags.Items.PERSIMMON_LOGS, "Persimmon Logs");
 
         builder.add(Blocks.NETHER_WART, "Crimson Wart");
         builder.add(Items.NETHER_WART, "Crimson Wart");

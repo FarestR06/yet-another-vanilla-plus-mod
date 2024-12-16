@@ -98,6 +98,7 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
 
         makePrickleWoodRecipes(exporter);
         makeApplewoodRecipes(exporter);
+        makePersimmonRecipes(exporter);
 
         makeStoneVariantRecipes(exporter);
     }
@@ -178,6 +179,16 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .input(Items.BOWL)
                 .criterion(hasItem(Items.COOKED_CHICKEN), conditionsFromItem(Items.COOKED_CHICKEN))
                 .offerTo(exporter, makeId(getRecipeName(YavpmItems.CHICKEN_SOUP)));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.FANCY_MUSHROOM_STEW)
+                .input(Items.RED_MUSHROOM)
+                .input(Items.BROWN_MUSHROOM)
+                .input(Items.CRIMSON_FUNGUS)
+                .input(Items.WARPED_FUNGUS)
+                .input(YavpmItems.TRUFFLE)
+                .input(Items.BOWL)
+                .criterion(hasItem(YavpmItems.TRUFFLE), conditionsFromItem(YavpmItems.TRUFFLE))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.FANCY_MUSHROOM_STEW)));
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.DIAMOND_ACORN)
                 .input('#', Items.DIAMOND)
@@ -283,11 +294,60 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(YavpmBlocks.APPLE_PLANKS), conditionsFromItem(YavpmBlocks.APPLE_PLANKS))
                 .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.APPLE_BUTTON)));
 
+        offerBoatRecipe(exporter, YavpmItems.APPLE_BOAT, YavpmBlocks.APPLE_PLANKS);
+        offerChestBoatRecipe(exporter, YavpmItems.APPLE_CHEST_BOAT, YavpmBlocks.APPLE_PLANKS);
+
         createSignRecipe(YavpmItems.APPLE_SIGN, Ingredient.ofItems(YavpmBlocks.APPLE_PLANKS))
                 .criterion(hasItem(YavpmBlocks.APPLE_PLANKS), conditionsFromItem(YavpmBlocks.APPLE_PLANKS))
                 .offerTo(exporter, makeId(getRecipeName(YavpmItems.APPLE_SIGN)));
 
         offerHangingSignRecipe(exporter, YavpmItems.APPLE_HANGING_SIGN, YavpmBlocks.STRIPPED_APPLE_LOG);
+    }
+
+    private void makePersimmonRecipes(RecipeExporter exporter) {
+        offerPlanksRecipe(exporter, YavpmBlocks.PERSIMMON_PLANKS, YavpmTags.Items.PERSIMMON_LOGS, 4);
+
+        createStairsRecipe(YavpmBlocks.PERSIMMON_STAIRS, Ingredient.ofItems(YavpmBlocks.PERSIMMON_PLANKS))
+                .criterion(hasItem(YavpmBlocks.PERSIMMON_PLANKS), conditionsFromItem(YavpmBlocks.PERSIMMON_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.PERSIMMON_STAIRS)));
+
+        createSlabRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.PERSIMMON_SLAB, Ingredient.ofItems(YavpmBlocks.PERSIMMON_PLANKS))
+                .criterion(hasItem(YavpmBlocks.PERSIMMON_PLANKS), conditionsFromItem(YavpmBlocks.PERSIMMON_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.PERSIMMON_SLAB)));
+
+        createFenceRecipe(YavpmBlocks.PERSIMMON_FENCE, Ingredient.ofItems(YavpmBlocks.PERSIMMON_PLANKS))
+                .criterion(hasItem(YavpmBlocks.PERSIMMON_PLANKS), conditionsFromItem(YavpmBlocks.PERSIMMON_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.PERSIMMON_FENCE)));
+
+        createFenceGateRecipe(YavpmBlocks.PERSIMMON_FENCE_GATE, Ingredient.ofItems(YavpmBlocks.PERSIMMON_PLANKS))
+                .criterion(hasItem(YavpmBlocks.PERSIMMON_PLANKS), conditionsFromItem(YavpmBlocks.PERSIMMON_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.PERSIMMON_FENCE_GATE)));
+
+        createDoorRecipe(YavpmBlocks.PERSIMMON_DOOR, Ingredient.ofItems(YavpmBlocks.PERSIMMON_PLANKS))
+                .criterion(hasItem(YavpmBlocks.PERSIMMON_PLANKS), conditionsFromItem(YavpmBlocks.PERSIMMON_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.PERSIMMON_DOOR)));
+
+        createTrapdoorRecipe(YavpmBlocks.PERSIMMON_TRAPDOOR, Ingredient.ofItems(YavpmBlocks.PERSIMMON_PLANKS))
+                .criterion(hasItem(YavpmBlocks.PERSIMMON_PLANKS), conditionsFromItem(YavpmBlocks.PERSIMMON_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.PERSIMMON_TRAPDOOR)));
+
+        createPressurePlateRecipe(RecipeCategory.REDSTONE, YavpmBlocks.PERSIMMON_PRESSURE_PLATE, Ingredient.ofItems(YavpmBlocks.PERSIMMON_PLANKS))
+                .criterion(hasItem(YavpmBlocks.PERSIMMON_PLANKS), conditionsFromItem(YavpmBlocks.PERSIMMON_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.PERSIMMON_PRESSURE_PLATE)));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.REDSTONE, YavpmBlocks.PERSIMMON_BUTTON)
+                .input(YavpmBlocks.PERSIMMON_PLANKS)
+                .criterion(hasItem(YavpmBlocks.PERSIMMON_PLANKS), conditionsFromItem(YavpmBlocks.PERSIMMON_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.PERSIMMON_BUTTON)));
+
+        offerBoatRecipe(exporter, YavpmItems.PERSIMMON_BOAT, YavpmBlocks.PERSIMMON_PLANKS);
+        offerChestBoatRecipe(exporter, YavpmItems.PERSIMMON_CHEST_BOAT, YavpmBlocks.PERSIMMON_PLANKS);
+
+        createSignRecipe(YavpmItems.PERSIMMON_SIGN, Ingredient.ofItems(YavpmBlocks.PERSIMMON_PLANKS))
+                .criterion(hasItem(YavpmBlocks.PERSIMMON_PLANKS), conditionsFromItem(YavpmBlocks.PERSIMMON_PLANKS))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.PERSIMMON_SIGN)));
+
+        offerHangingSignRecipe(exporter, YavpmItems.PERSIMMON_HANGING_SIGN, YavpmBlocks.STRIPPED_PERSIMMON_LOG);
     }
 
     private void makeEquipmentRecipes(RecipeExporter exporter) {

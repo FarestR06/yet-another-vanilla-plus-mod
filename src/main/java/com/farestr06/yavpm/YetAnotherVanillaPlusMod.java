@@ -56,11 +56,12 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		YavpmPotions.init();
 		YavpmBlocks.init();
 		YavpmFluids.init();
-		ItemGroupHelper.modifyEntries();
 		YavpmRecipeSerializers.init();
 		YavpmTrades.init();
 
 		YavpmWorldGeneration.generateModWorldGen();
+
+		ItemGroupHelper.modifyEntries();
 		LootHelper.modifyLoot();
 
 		try {

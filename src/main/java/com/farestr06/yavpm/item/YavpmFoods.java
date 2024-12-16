@@ -9,10 +9,11 @@ public class YavpmFoods {
     public static final FoodComponent MOLY = new FoodComponent.Builder()
             .nutrition(20)
             .saturationModifier(2f)
+            .alwaysEdible()
             .build();
     public static final FoodComponent TRUFFLE = new FoodComponent.Builder()
             .nutrition(3)
-            .saturationModifier(1.0f)
+            .saturationModifier(1f)
             .build();
 
     public static final FoodComponent CHEESE = new FoodComponent.Builder()
@@ -25,9 +26,20 @@ public class YavpmFoods {
             .saturationModifier(0.3f)
             .build();
 
-    public static final FoodComponent SUSHI = new FoodComponent.Builder().nutrition(4).saturationModifier(0.4F).build();
+    public static final FoodComponent SUSHI = new FoodComponent.Builder().nutrition(4).saturationModifier(0.4f).build();
     public static final FoodComponent SEA_SOUP = createFoodBowl(7).build();
     public static final FoodComponent CHICKEN_SOUP = createFoodBowl(9).build();
+
+    public static final FoodComponent FANCY_MUSHROOM_STEW = new FoodComponent.Builder()
+            .nutrition(4)
+            .saturationModifier(1.2F)
+            .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 400, 1), 1f)
+            .statusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 0), 1f)
+            .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 6000, 0), 1f)
+            .statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 3), 1f)
+            .usingConvertsTo(Items.BOWL)
+            .alwaysEdible()
+            .build();
 
     public static final FoodComponent GLISTERING_MELON_SLICE = new FoodComponent.Builder()
             .nutrition(6)
@@ -75,10 +87,10 @@ public class YavpmFoods {
     public static final FoodComponent DIAMOND_ACORN = new FoodComponent.Builder()
             .nutrition(4)
             .saturationModifier(1.2F)
-            .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 400, 1), 1.0F)
-            .statusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 0), 1.0F)
-            .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 6000, 0), 1.0F)
-            .statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 3), 1.0F)
+            .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1f)
+            .statusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 3000, 0), 1f)
+            .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 3000, 0), 1f)
+            .statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 1200, 3), 1f)
             .alwaysEdible()
             .build();
 

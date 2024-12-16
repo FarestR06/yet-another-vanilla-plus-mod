@@ -1,9 +1,10 @@
-// 1.21.1	2024-12-15T13:33:35.587803327	Yet Another Vanilla Plus Mod/Advancements
+// 1.21.1	2024-12-15T19:26:57.183583577	Yet Another Vanilla Plus Mod/Advancements
 21d8ffd1f5934e2a6ae76c527ed92db8085cdb8f data/yavpm/advancement/nether/convert_cow_to_moongus.json
 cbf52782e412cac678b2d6df4dfe5d8e6e99e078 data/yavpm/advancement/husbandry/craft_diamonds_from_graphene.json
 6f008185e8cc58c69eaf5bb44d88671994e14d33 data/yavpm/advancement/husbandry/eat_fake_animal_product.json
 016e676a33c12e73e82282cc0c20b0d5da87d399 data/yavpm/advancement/end/pluck_needles_from_prickle_log.json
-62040045c81a05854d2fba1147cf2a6a568c020e data/yavpm/advancement/husbandry/eat_all_food_bowls.json
+93a4d6d4e9e4de7fcb654814e97cef6d23a9c892 data/yavpm/advancement/husbandry/eat_all_food_bowls.json
+5363c3692018d67298b6d2d5f567a15d6ffe21b2 data/yavpm/advancement/end/craft_an_elytra.json
 aa072f9bdc3c00d83caa7dc7154947cdce994e39 data/yavpm/advancement/adventure/upgrade_tool_with_rune.json
 fefd9050335bf170cabceb561c648c3797a14f7b data/yavpm/advancement/husbandry/lucky_ticket.json
 9ed4ab9f56fd35436fff505e7e490d54b5e81936 data/yavpm/advancement/husbandry/lip_smacker.json

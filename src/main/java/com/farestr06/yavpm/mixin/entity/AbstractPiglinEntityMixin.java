@@ -26,7 +26,6 @@ public abstract class AbstractPiglinEntityMixin extends HostileEntity {
     @Unique
     final AbstractPiglinEntity thiz = (AbstractPiglinEntity) (Object) this;
 
-    // TODO: Make Piglins safe near Nether Reactors
     @Inject(method = "shouldZombify", at = @At(value = "HEAD"), cancellable = true)
     private void injected(CallbackInfoReturnable<Boolean> cir) {
         if (thiz.hasStatusEffect(YavpmStatusEffects.NETHER_POWER)) {

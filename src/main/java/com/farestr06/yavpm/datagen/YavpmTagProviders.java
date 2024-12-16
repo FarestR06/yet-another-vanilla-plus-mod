@@ -49,6 +49,10 @@ public class YavpmTagProviders {
                     .forceAddTag(ItemTags.PICKAXES)
                     .forceAddTag(ItemTags.SHOVELS);
 
+            getOrCreateTagBuilder(YavpmTags.Items.ENCHANTABLE_GLIDER).add(
+                    Items.ELYTRA
+            );
+
             getOrCreateTagBuilder(ConventionalItemTags.ARMORS).add(
                     YavpmItems.STUDDED_HELMET,
                     YavpmItems.STUDDED_CHESTPLATE,
@@ -275,12 +279,24 @@ public class YavpmTagProviders {
                     YavpmBlocks.POLISHED_DIORITE_TILE_WALL.asItem(),
                     YavpmBlocks.POLISHED_ANDESITE_TILE_WALL.asItem()
             );
+
+            getOrCreateTagBuilder(ItemTags.BOATS).add(
+                    YavpmItems.APPLE_BOAT,
+                    YavpmItems.PERSIMMON_BOAT
+            );
+            getOrCreateTagBuilder(ItemTags.CHEST_BOATS).add(
+                    YavpmItems.APPLE_CHEST_BOAT,
+                    YavpmItems.PERSIMMON_CHEST_BOAT
+            );
+
             getOrCreateTagBuilder(ConventionalItemTags.STRIPPED_LOGS).add(
                     YavpmBlocks.STRIPPED_APPLE_LOG.asItem(),
+                    YavpmBlocks.STRIPPED_PERSIMMON_LOG.asItem(),
                     YavpmBlocks.STRIPPED_PRICKLE_LOG.asItem()
             );
             getOrCreateTagBuilder(ConventionalItemTags.STRIPPED_WOODS).add(
                     YavpmBlocks.STRIPPED_APPLE_WOOD.asItem(),
+                    YavpmBlocks.STRIPPED_PERSIMMON_WOOD.asItem(),
                     YavpmBlocks.STRIPPED_PRICKLE_WOOD.asItem()
             );
             getOrCreateTagBuilder(YavpmTags.Items.APPLE_LOGS).add(
@@ -289,15 +305,25 @@ public class YavpmTagProviders {
                     YavpmBlocks.STRIPPED_APPLE_LOG.asItem(),
                     YavpmBlocks.STRIPPED_APPLE_WOOD.asItem()
             );
+            getOrCreateTagBuilder(YavpmTags.Items.PERSIMMON_LOGS).add(
+                    YavpmBlocks.PERSIMMON_LOG.asItem(),
+                    YavpmBlocks.PERSIMMON_WOOD.asItem(),
+                    YavpmBlocks.STRIPPED_PERSIMMON_LOG.asItem(),
+                    YavpmBlocks.STRIPPED_PERSIMMON_WOOD.asItem()
+            );
             getOrCreateTagBuilder(YavpmTags.Items.PRICKLE_LOGS).add(
                     YavpmBlocks.PRICKLE_LOG.asItem(),
                     YavpmBlocks.PRICKLE_WOOD.asItem(),
                     YavpmBlocks.STRIPPED_PRICKLE_LOG.asItem(),
                     YavpmBlocks.STRIPPED_PRICKLE_WOOD.asItem()
             );
-            getOrCreateTagBuilder(ItemTags.LOGS_THAT_BURN).forceAddTag(YavpmTags.Items.APPLE_LOGS).forceAddTag(YavpmTags.Items.PRICKLE_LOGS);
-            getOrCreateTagBuilder(ItemTags.LEAVES).add(YavpmBlocks.APPLE_LEAVES.asItem());
-            getOrCreateTagBuilder(ItemTags.PLANKS).add(YavpmBlocks.APPLE_PLANKS.asItem(), YavpmBlocks.PRICKLE_PLANKS.asItem());
+            getOrCreateTagBuilder(ItemTags.LOGS_THAT_BURN).forceAddTag(YavpmTags.Items.APPLE_LOGS).forceAddTag(YavpmTags.Items.PERSIMMON_LOGS).forceAddTag(YavpmTags.Items.PRICKLE_LOGS);
+            getOrCreateTagBuilder(ItemTags.LEAVES).add(YavpmBlocks.APPLE_LEAVES.asItem(), YavpmBlocks.PERSIMMON_LEAVES.asItem());
+            getOrCreateTagBuilder(ItemTags.PLANKS).add(
+                    YavpmBlocks.APPLE_PLANKS.asItem(),
+                    YavpmBlocks.PERSIMMON_PLANKS.asItem(),
+                    YavpmBlocks.PRICKLE_PLANKS.asItem()
+            );
             getOrCreateTagBuilder(ItemTags.WOODEN_STAIRS).add(YavpmBlocks.APPLE_STAIRS.asItem(), YavpmBlocks.PRICKLE_STAIRS.asItem());
             getOrCreateTagBuilder(ItemTags.WOODEN_SLABS).add(YavpmBlocks.APPLE_SLAB.asItem(), YavpmBlocks.PRICKLE_SLAB.asItem());
             getOrCreateTagBuilder(ItemTags.WOODEN_FENCES).add(YavpmBlocks.APPLE_FENCE.asItem(), YavpmBlocks.PRICKLE_FENCE.asItem());
@@ -327,14 +353,16 @@ public class YavpmTagProviders {
             );
 
             getOrCreateTagBuilder(BlockTags.HOE_MINEABLE)
-                    .add(YavpmBlocks.APPLE_LEAVES);
+                    .add(YavpmBlocks.APPLE_LEAVES, YavpmBlocks.PERSIMMON_LEAVES);
 
             getOrCreateTagBuilder(ConventionalBlockTags.STRIPPED_LOGS).add(
                     YavpmBlocks.STRIPPED_APPLE_LOG,
+                    YavpmBlocks.STRIPPED_PERSIMMON_LOG,
                     YavpmBlocks.STRIPPED_PRICKLE_LOG
             );
             getOrCreateTagBuilder(ConventionalBlockTags.STRIPPED_WOODS).add(
                     YavpmBlocks.STRIPPED_APPLE_WOOD,
+                    YavpmBlocks.STRIPPED_PERSIMMON_WOOD,
                     YavpmBlocks.STRIPPED_PRICKLE_WOOD
             );
             getOrCreateTagBuilder(YavpmTags.Blocks.APPLE_LOGS).add(
@@ -343,13 +371,22 @@ public class YavpmTagProviders {
                     YavpmBlocks.STRIPPED_APPLE_LOG,
                     YavpmBlocks.STRIPPED_APPLE_WOOD
             );
+            getOrCreateTagBuilder(YavpmTags.Blocks.PERSIMMON_LOGS).add(
+                    YavpmBlocks.PERSIMMON_LOG,
+                    YavpmBlocks.PERSIMMON_WOOD,
+                    YavpmBlocks.STRIPPED_PERSIMMON_LOG,
+                    YavpmBlocks.STRIPPED_PERSIMMON_WOOD
+            );
             getOrCreateTagBuilder(YavpmTags.Blocks.PRICKLE_LOGS).add(
                     YavpmBlocks.PRICKLE_LOG,
                     YavpmBlocks.PRICKLE_WOOD,
                     YavpmBlocks.STRIPPED_PRICKLE_LOG,
                     YavpmBlocks.STRIPPED_PRICKLE_WOOD
             );
-            getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN).forceAddTag(YavpmTags.Blocks.APPLE_LOGS).forceAddTag(YavpmTags.Blocks.PRICKLE_LOGS);
+            getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN)
+                    .forceAddTag(YavpmTags.Blocks.APPLE_LOGS)
+                    .forceAddTag(YavpmTags.Blocks.PERSIMMON_LOGS)
+                    .forceAddTag(YavpmTags.Blocks.PRICKLE_LOGS);
 
             getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(YavpmBlocks.FAKE_LOG);
 
@@ -467,10 +504,10 @@ public class YavpmTagProviders {
                     );
 
             getOrCreateTagBuilder(BlockTags.LEAVES)
-                    .add(YavpmBlocks.APPLE_LEAVES);
+                    .add(YavpmBlocks.APPLE_LEAVES, YavpmBlocks.PERSIMMON_LEAVES);
 
             getOrCreateTagBuilder(BlockTags.PLANKS)
-                    .add(YavpmBlocks.APPLE_PLANKS, YavpmBlocks.PRICKLE_PLANKS);
+                    .add(YavpmBlocks.APPLE_PLANKS, YavpmBlocks.PERSIMMON_PLANKS, YavpmBlocks.PRICKLE_PLANKS);
 
             getOrCreateTagBuilder(BlockTags.WOODEN_FENCES)
                     .add(YavpmBlocks.APPLE_FENCE, YavpmBlocks.PRICKLE_FENCE);
@@ -545,7 +582,8 @@ public class YavpmTagProviders {
                     net.minecraft.entity.EntityType.PHANTOM
             );
             getOrCreateTagBuilder(YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_50).add(
-                    net.minecraft.entity.EntityType.ENDERMITE
+                    net.minecraft.entity.EntityType.ENDERMITE,
+                    YavpmEntities.VOID_PHANTOM
             );
             getOrCreateTagBuilder(YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_75).add(
                     net.minecraft.entity.EntityType.ENDERMAN,
@@ -637,13 +675,14 @@ public class YavpmTagProviders {
         protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
             getOrCreateTagBuilder(EnchantmentTags.NON_TREASURE).add(
                     YavpmEnchantments.ILLAGERS_BANE,
-                    YavpmEnchantments.STIFFNESS
+                    YavpmEnchantments.ENDERBANE
             );
             getOrCreateTagBuilder(EnchantmentTags.TREASURE).add(
                     YavpmEnchantments.VOID_STRIKE,
-                    YavpmEnchantments.ENDERBANE
+                    YavpmEnchantments.STIFFNESS
             );
             getOrCreateTagBuilder(EnchantmentTags.TRADEABLE).add(
+                    YavpmEnchantments.VOID_STRIKE,
                     YavpmEnchantments.ENDERBANE
             );
             getOrCreateTagBuilder(YavpmTags.Enchantments.END_ENCHANTMENTS).add(

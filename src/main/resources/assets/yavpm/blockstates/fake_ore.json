@@ -34,10 +34,10 @@
       "model": "minecraft:block/deepslate_gold_ore"
     },
     "ore_type=copper,deepslate=true": {
-      "model": "minecraft:block/deepslate_copper"
+      "model": "minecraft:block/deepslate_copper_ore"
     },
     "ore_type=lapis,deepslate=true": {
-      "model": "minecraft:block/deepslate_lapis"
+      "model": "minecraft:block/deepslate_lapis_ore"
     },
     "ore_type=diamond,deepslate=true": {
       "model": "minecraft:block/deepslate_diamond_ore"
