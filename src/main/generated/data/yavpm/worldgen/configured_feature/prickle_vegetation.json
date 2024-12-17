@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": "yavpm:prickle_placed",
+    "features": [
+      {
+        "chance": 0.3,
+        "feature": "yavpm:fancy_prickle_placed"
+      }
+    ]
+  }
+}

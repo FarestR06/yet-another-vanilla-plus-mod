@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column_horizontal",
+  "textures": {
+    "end": "yavpm:block/stripped_persimmon_log_top",
+    "side": "yavpm:block/stripped_persimmon_log"
+  }
+}

@@ -1,0 +1,5 @@
+// 1.21.1	2024-12-16T20:07:56.432900545	Yet Another Vanilla Plus Mod/Tags for minecraft:enchantment
+8aedfc345c9795f951c5362cf788b9aca4ae8ba2 data/minecraft/tags/enchantment/non_treasure.json
+31c8ca6ebb3ed529b979bd6db1bd591a01161cd1 data/minecraft/tags/enchantment/tradeable.json
+a4a528837ba988f766acade9b94c73e9fe81c730 data/minecraft/tags/enchantment/treasure.json
+922c1d4e08f3fa186918ed1c6aa6b38bcaee27c1 data/yavpm/tags/enchantment/end_enchantments.json

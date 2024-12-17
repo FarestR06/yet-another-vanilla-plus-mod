@@ -1,0 +1,101 @@
+{
+  "parent": "minecraft:husbandry/root",
+  "criteria": {
+    "beetroot_soup": {
+      "conditions": {
+        "item": {
+          "items": "minecraft:beetroot_soup"
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "chicken_soup": {
+      "conditions": {
+        "item": {
+          "items": "yavpm:chicken_soup"
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "fancy_mushroom_stew": {
+      "conditions": {
+        "item": {
+          "items": "yavpm:fancy_mushroom_stew"
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "mushroom_stew": {
+      "conditions": {
+        "item": {
+          "items": "minecraft:mushroom_stew"
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "rabbit_stew": {
+      "conditions": {
+        "item": {
+          "items": "minecraft:rabbit_stew"
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "sea_soup": {
+      "conditions": {
+        "item": {
+          "items": "yavpm:sea_soup"
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    },
+    "suspicious_stew": {
+      "conditions": {
+        "item": {
+          "items": "minecraft:suspicious_stew"
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.husbandry.eat_all_food_bowls.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "count": 1,
+      "id": "minecraft:suspicious_stew"
+    },
+    "title": {
+      "translate": "advancements.husbandry.eat_all_food_bowls.title"
+    }
+  },
+  "requirements": [
+    [
+      "beetroot_soup"
+    ],
+    [
+      "mushroom_stew"
+    ],
+    [
+      "rabbit_stew"
+    ],
+    [
+      "suspicious_stew"
+    ],
+    [
+      "sea_soup"
+    ],
+    [
+      "chicken_soup"
+    ],
+    [
+      "fancy_mushroom_stew"
+    ]
+  ],
+  "rewards": {
+    "experience": 50
+  },
+  "sends_telemetry_event": true
+}

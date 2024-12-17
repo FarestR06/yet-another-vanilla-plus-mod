@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "yavpm:block/persimmon_slab"
+    },
+    "type=double": {
+      "model": "yavpm:block/persimmon_planks"
+    },
+    "type=top": {
+      "model": "yavpm:block/persimmon_slab_top"
+    }
+  }
+}

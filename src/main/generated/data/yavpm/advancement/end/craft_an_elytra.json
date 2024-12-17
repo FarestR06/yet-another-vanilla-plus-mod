@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:end/elytra",
+  "criteria": {
+    "craft_elytra": {
+      "conditions": {
+        "recipe_id": "yavpm:elytra"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.end.craft_an_elytra.description"
+    },
+    "frame": "challenge",
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "yavpm:phantom_chord"
+    },
+    "title": {
+      "translate": "advancements.end.craft_an_elytra.title"
+    }
+  },
+  "requirements": [
+    [
+      "craft_elytra"
+    ]
+  ],
+  "rewards": {
+    "experience": 75
+  },
+  "sends_telemetry_event": true
+}

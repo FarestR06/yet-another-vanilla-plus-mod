@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:random_selector",
+  "config": {
+    "default": "yavpm:persimmon_placed",
+    "features": [
+      {
+        "chance": 0.2,
+        "feature": "yavpm:fancy_persimmon_placed"
+      }
+    ]
+  }
+}
