@@ -5,6 +5,7 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.biome.source.util.MultiNoiseUtil;
 import terrablender.api.ParameterUtils;
 import terrablender.api.Region;
@@ -40,6 +41,9 @@ public class YavpmOverworldRegion extends Region {
                 .weirdness(ParameterUtils.Weirdness.PEAK_NORMAL)
                 .depth(ParameterUtils.Depth.SURFACE)
                 .build().forEach(point -> builder.add(point, YavpmBiomes.Overworld.ORCHARD_PEAKS));
+
+        addModifiedVanillaOverworldBiomes(mapper, modifiedVanillaOverworldBuilder ->
+                modifiedVanillaOverworldBuilder.replaceBiome(BiomeKeys.DARK_FOREST, YavpmBiomes.Overworld.EBONY_FOREST));
 
         // Add our points to the mapper
         builder.build().forEach(mapper);

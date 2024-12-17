@@ -202,7 +202,7 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.registerLog(YavpmBlocks.PERSIMMON_LOG).log(YavpmBlocks.PERSIMMON_LOG).wood(YavpmBlocks.PERSIMMON_WOOD);
         generator.registerLog(YavpmBlocks.STRIPPED_PERSIMMON_LOG).log(YavpmBlocks.STRIPPED_PERSIMMON_LOG).wood(YavpmBlocks.STRIPPED_PERSIMMON_WOOD);
 
-        generator.registerSimpleCubeAll(YavpmBlocks.PERSIMMON_LEAVES);
+        generator.registerSingleton(YavpmBlocks.PERSIMMON_LEAVES, TexturedModel.LEAVES);
 
         // Persimmon Planks and Texture Pool
         BlockStateModelGenerator.BlockTexturePool persimmonPool = generator.registerCubeAllModelTexturePool(YavpmBlocks.PERSIMMON_PLANKS);

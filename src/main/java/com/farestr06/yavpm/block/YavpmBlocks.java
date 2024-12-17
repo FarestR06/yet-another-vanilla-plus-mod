@@ -7,7 +7,7 @@ import com.farestr06.yavpm.block.custom.fake.FakeOreBlock;
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.YavpmItems;
-import com.farestr06.yavpm.world.YavpmConfiguredFeatures;
+import com.farestr06.yavpm.world.feature.configured.YavpmTreeConfiguredFeatures;
 import com.terraformersmc.terraform.sign.api.block.TerraformHangingSignBlock;
 import com.terraformersmc.terraform.sign.api.block.TerraformSignBlock;
 import com.terraformersmc.terraform.sign.api.block.TerraformWallHangingSignBlock;
@@ -308,7 +308,7 @@ public class YavpmBlocks {
 
     public static final Block APPLE_SAPLING = makeAdvancedBlockAndItem(
             makeId("apple_sapling"),
-            new SaplingBlock(YavpmConfiguredFeatures.APPLEWOOD_GENERATOR, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING))
+            new SaplingBlock(YavpmTreeConfiguredFeatures.APPLEWOOD_GENERATOR, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING))
     );
     // endregion
 
@@ -422,7 +422,7 @@ public class YavpmBlocks {
 
     public static final Block PRICKLE_SHOOT = makeAdvancedBlockAndItem(
             makeId("prickle_shoot"),
-            new SaplingBlock(YavpmConfiguredFeatures.PRICKLE_GENERATOR, AbstractBlock.Settings.copy(Blocks.WARPED_FUNGUS)) {
+            new SaplingBlock(YavpmTreeConfiguredFeatures.PRICKLE_GENERATOR, AbstractBlock.Settings.copy(Blocks.WARPED_FUNGUS)) {
                 @Override
                 protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
                     return floor.isOf(Blocks.END_STONE);
@@ -546,6 +546,11 @@ public class YavpmBlocks {
             .door(PERSIMMON_DOOR).trapdoor(PERSIMMON_TRAPDOOR).sign(PERSIMMON_SIGN, PERSIMMON_WALL_SIGN)
             .pressurePlate(PERSIMMON_PRESSURE_PLATE).button(PERSIMMON_BUTTON)
             .group("wooden").unlockCriterionName("has_planks").build();
+
+    public static final Block PERSIMMON_SAPLING = makeAdvancedBlockAndItem(
+            makeId("persimmon_sapling"),
+            new SaplingBlock(YavpmTreeConfiguredFeatures.PERSIMMON_GENERATOR, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING))
+    );
     // endregion
 
     // region Graphite and Graphene

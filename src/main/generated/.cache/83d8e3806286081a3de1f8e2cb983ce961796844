@@ -1,4 +1,4 @@
-// 1.21.1	2024-12-15T19:26:57.180258509	Yet Another Vanilla Plus Mod/Model Definitions
+// 1.21.1	2024-12-16T20:07:56.430449631	Yet Another Vanilla Plus Mod/Model Definitions
 0ed0cd365ceb2102ed43322168601fd1240c316b assets/yavpm/models/block/warped_wart_stage2.json
 8e0ee44dbd78139f418fa99923dc6fc3fbb34e5c assets/yavpm/models/item/persimmon_chest_boat.json
 128e7828b3ca75619690e7c16b5acea2b03c8864 assets/yavpm/models/item/cheese.json
@@ -63,8 +63,8 @@ ae82b62cb3031dd0cc769c51db4ef499d0ee114d assets/yavpm/models/item/stripped_prick
 f10f171f0d74582635288b27e1ec76955e05c07b assets/yavpm/models/item/polished_diorite_bricks.json
 b04be35a34d3522b87972f2e4ca33b70f5a92285 assets/yavpm/models/item/kimberlite.json
 7dcbc6cdee995ad41aa589c0cc0b13fd04f759fd assets/yavpm/blockstates/polished_andesite_brick_slab.json
-aaf5a5afbd1a9763654a6f6131f8fdaf3ca91285 assets/yavpm/models/item/polished_andesite_brick_slab.json
 366a33396266e5c83aa5efcf20c8e46608023274 assets/yavpm/blockstates/cobbled_granite_stairs.json
+aaf5a5afbd1a9763654a6f6131f8fdaf3ca91285 assets/yavpm/models/item/polished_andesite_brick_slab.json
 7f6cd03465cdf96e5fc6914653fe92667017603d assets/yavpm/blockstates/polished_granite_tile_wall.json
 3ea9723916b14e6a025e96d3827e8bc61c8fcafc assets/yavpm/models/item/studded_leggings_iron_trim.json
 1a2f2fcc075f441fb2b51d3a84f72dc0de243308 assets/yavpm/models/item/studded_chestplate_copper_trim.json
@@ -233,8 +233,8 @@ e231cd7cea09175b1eb905bdeb76ca3c8ba28eb1 assets/yavpm/models/item/warped_wart.js
 495c84dc02d248d0dbb559a95f34fbcdf417a53e assets/yavpm/models/item/reactor.json
 d6f6d521af2d20ef22af231c22725eec37f2757d assets/yavpm/blockstates/persimmon_door.json
 fb263dc111400ea1dba816ec71e2eed61fb8ccee assets/yavpm/models/item/prickle_stairs.json
-27c5e73a9a5bd7e00778a059415738d2f94828c1 assets/yavpm/models/item/prickle_hanging_sign.json
 81a86b0abbc07ce5ba14c375a8cd62959e94dd5e assets/yavpm/models/item/studded_chestplate_gold_trim.json
+27c5e73a9a5bd7e00778a059415738d2f94828c1 assets/yavpm/models/item/prickle_hanging_sign.json
 848c73cd8a0dc9fe5b2fc4d0744f30ec3ef0e0cc assets/yavpm/models/block/persimmon_pressure_plate.json
 35219630ad8b8ab2b96421de206148dd6e6b98f7 assets/yavpm/models/block/prickle_shoot.json
 1859aa647285f21114455dd713f31416ef4bd569 assets/yavpm/models/block/persimmon_door_bottom_right_open.json
@@ -445,7 +445,7 @@ bc00c0d1259f5c732483501e88b3d6872d04416a assets/yavpm/models/block/soul_glowing_
 8fef931362e6e2d3d9d806b3abcb9ede72ece500 assets/yavpm/blockstates/polished_diorite_brick_stairs.json
 b5153478256a4381f59bafe0d0a5d2d3bf3d4f0b assets/yavpm/models/block/prickle_wood.json
 7bdc9495faf95284064a3e373166db5eee813d65 assets/yavpm/models/item/polished_diorite_tile_wall.json
-b7c6ed18fb4cd1d65dee64713e6a9c0a631f282b assets/yavpm/models/block/persimmon_leaves.json
+94d835fad707d5fb727f4cf74c0d2370db8c818a assets/yavpm/models/block/persimmon_leaves.json
 79554708a230a97fc4465183e1d5b7134e472da9 assets/yavpm/blockstates/cobbled_diorite.json
 c43a62749a75b582e55da812d5c0033415f9f87a assets/yavpm/blockstates/apple_log.json
 492e9c6bde0f25d4aee0ebb52afaf494fe8c85a8 assets/yavpm/blockstates/prickle_wood.json
@@ -490,8 +490,8 @@ bac45ba3b10ca1bf8f71dfa461621d4bc0636ece assets/yavpm/models/item/studded_leggin
 185d8753815f5acd2c7bdcaafb3d60e2f235aa4b assets/yavpm/models/item/persimmon.json
 9636172cff47ebfb4b49444122bb65ca3297406f assets/yavpm/models/item/chocolate.json
 5cc130505545b6e9a764a41423459c545e69a5e0 assets/yavpm/blockstates/polished_diorite_bricks.json
-56901f1a424227cdab250178680ec7a19f1b0270 assets/yavpm/blockstates/prickle_hanging_sign.json
 b5d96de1168287cfd6e2b9bcb0dec2b94b43b152 assets/yavpm/blockstates/prickle_sign.json
+56901f1a424227cdab250178680ec7a19f1b0270 assets/yavpm/blockstates/prickle_hanging_sign.json
 bbc94f0f1de8e5c4f5962296b25eed2e67f53507 assets/yavpm/models/item/studded_leggings_quartz_trim.json
 ef0fe73330777a8eb31944711e521b18d139e0c6 assets/yavpm/models/block/persimmon_door_top_left_open.json
 5f79f45f6caf97f180205e3403ea5c3fa735292e assets/yavpm/models/block/polished_andesite_tile_stairs_outer.json

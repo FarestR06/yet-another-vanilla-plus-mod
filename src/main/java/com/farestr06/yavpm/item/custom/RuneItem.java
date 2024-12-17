@@ -5,6 +5,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.text.Text;
+import net.minecraft.util.Rarity;
 
 import java.util.List;
 
@@ -12,7 +13,7 @@ public class RuneItem extends Item {
     protected final Text tooltip;
 
     public RuneItem(Text tooltip) {
-        super(new Settings().component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true));
+        super(new Settings().rarity(Rarity.EPIC).component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true));
         this.tooltip = tooltip;
     }
 

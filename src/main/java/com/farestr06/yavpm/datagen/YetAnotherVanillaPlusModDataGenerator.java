@@ -2,9 +2,9 @@ package com.farestr06.yavpm.datagen;
 
 import com.farestr06.yavpm.entity.YavpmDamageTypes;
 import com.farestr06.yavpm.item.enchantment.YavpmEnchantments;
-import com.farestr06.yavpm.world.YavpmConfiguredFeatures;
-import com.farestr06.yavpm.world.YavpmPlacedFeatures;
+import com.farestr06.yavpm.world.feature.configured.YavpmConfiguredFeatureBootstrapper;
 import com.farestr06.yavpm.world.biome.YavpmBiomes;
+import com.farestr06.yavpm.world.feature.placed.YavpmPlacedFeatureBootstrapper;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.minecraft.registry.RegistryBuilder;
@@ -35,8 +35,8 @@ public class YetAnotherVanillaPlusModDataGenerator implements DataGeneratorEntry
 	public void buildRegistry(RegistryBuilder registryBuilder) {
 		registryBuilder.addRegistry(RegistryKeys.DAMAGE_TYPE, YavpmDamageTypes::bootstrap);
 		registryBuilder.addRegistry(RegistryKeys.ENCHANTMENT, YavpmEnchantments::bootstrap);
-		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, YavpmConfiguredFeatures::boostrap);
-		registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, YavpmPlacedFeatures::boostrap);
+		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, YavpmConfiguredFeatureBootstrapper::bootstrap);
+		registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, YavpmPlacedFeatureBootstrapper::boostrap);
 		registryBuilder.addRegistry(RegistryKeys.BIOME, YavpmBiomes.Overworld::bootstrap);
 	}
 }

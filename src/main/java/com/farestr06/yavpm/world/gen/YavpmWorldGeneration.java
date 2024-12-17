@@ -1,7 +1,7 @@
 package com.farestr06.yavpm.world.gen;
 
 import com.farestr06.yavpm.entity.YavpmEntities;
-import com.farestr06.yavpm.world.YavpmPlacedFeatures;
+import com.farestr06.yavpm.world.feature.placed.YavpmVegetationPlacedFeatures;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags;
@@ -63,13 +63,13 @@ public class YavpmWorldGeneration {
         BiomeModifications.addFeature(
                 BiomeSelectors.tag(ConventionalBiomeTags.IS_PLAINS),
                 GenerationStep.Feature.VEGETAL_DECORATION,
-                YavpmPlacedFeatures.APPLE_PLACED
+                YavpmVegetationPlacedFeatures.APPLE_VEGETAION_PLACED
         );
 
         BiomeModifications.addFeature(
                 BiomeSelectors.includeByKey(BiomeKeys.END_BARRENS),
                 GenerationStep.Feature.VEGETAL_DECORATION,
-                YavpmPlacedFeatures.PRICKLE_PLACED
+                YavpmVegetationPlacedFeatures.PRICKLE_VEGETAION_PLACED
         );
     }
 }

@@ -3,15 +3,12 @@ package com.farestr06.yavpm.entity;
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.item.YavpmItems;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradedItem;
 import net.minecraft.village.VillagerProfession;
 
-import java.util.List;
 import java.util.Optional;
 
 public class YavpmTrades {
@@ -183,25 +180,7 @@ public class YavpmTrades {
                     0,
                     0f
             ));
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, 10),
-                    chooseRune(random),
-                    1,
-                    0,
-                    0f
-            ));
         });
         // endregion
-    }
-
-    private static ItemStack chooseRune(Random rand) {
-        List<Item> items = List.of(
-                YavpmItems.RUNE_ATTACK,
-                YavpmItems.RUNE_DURABILITY,
-                YavpmItems.RUNE_SPEED
-        );
-
-        Item item = items.get(rand.nextInt(4));
-        return new ItemStack(item);
     }
 }

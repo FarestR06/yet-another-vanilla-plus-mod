@@ -78,7 +78,7 @@
     ],
     [
       "minecraft:glow_lichen",
-      "yavpm:apple_placed_in_orchard_grove",
+      "yavpm:apple_orchard_grove_vegetation_placed",
       "minecraft:flower_default",
       "minecraft:patch_grass_badlands",
       "minecraft:brown_mushroom_normal",

@@ -40,7 +40,7 @@ public class PrickleLogBlock extends PillarBlock {
         if (!world.isClient) {
             if (
                     (state.get(Properties.AXIS).isHorizontal()
-                    || state.isOf(YavpmBlocks.PRICKLE_WOOD)) && !state.get(PRICKLY)
+                    || state.isOf(YavpmBlocks.PRICKLE_WOOD)) && state.get(PRICKLY)
             ) {
                 if (entity instanceof LivingEntity livingEntity) {
                     livingEntity.damage(livingEntity.getDamageSources().cactus(), 1.5f);

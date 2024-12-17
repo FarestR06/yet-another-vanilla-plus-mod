@@ -74,7 +74,32 @@ public class LootHelper {
                             .with(ItemEntry.builder(YavpmItems.RUNE_ATTACK))
                             .with(ItemEntry.builder(YavpmItems.RUNE_DURABILITY))
                             .with(ItemEntry.builder(YavpmItems.RUNE_SPEED))
-                            .conditionally(RandomChanceLootCondition.builder(0.03f));
+                            .conditionally(RandomChanceLootCondition.builder(0.05f));
+
+                    tableBuilder.pool(poolBuilder);
+                }
+                if (key == LootTables.TRIAL_CHAMBER_CONSUMABLES_SPAWNER) {
+                    LootPool.Builder poolBuilder = LootPool.builder()
+                            .rolls(ConstantLootNumberProvider.create(1f))
+                            .with(ItemEntry.builder(YavpmItems.COOKED_PEANUT)
+                                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 4f)))
+                                    .weight(24)
+                            )
+                            .with(ItemEntry.builder(YavpmItems.COOKED_PEANUT)
+                                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 4f)))
+                                    .weight(24)
+                            )
+                            .with(ItemEntry.builder(YavpmItems.PERSIMMON)
+                                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 2f)))
+                                    .weight(20)
+                            )
+                            .with(ItemEntry.builder(YavpmItems.GOLDEN_PERSIMMON)
+                                    .weight(4)
+                            )
+                            .with(ItemEntry.builder(YavpmItems.MOLY)
+                                    .weight(2)
+                            )
+                            .conditionally(RandomChanceLootCondition.builder(0.33f));
 
                     tableBuilder.pool(poolBuilder);
                 }

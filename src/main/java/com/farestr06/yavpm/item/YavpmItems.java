@@ -45,20 +45,18 @@ public class YavpmItems {
     );
 
     // region Runes
-
     public static final Item RUNE_ATTACK = makeAdvancedItem(
             makeId("rune_attack"),
-            new RuneItem(Text.translatable("item.yavpm.rune_attack.tooltip").formatted(Formatting.GRAY))
+            new RuneItem(Text.translatable("item.yavpm.rune_attack.tooltip").formatted(Formatting.RED))
     );
     public static final Item RUNE_DURABILITY = makeAdvancedItem(
             makeId("rune_durability"),
-            new RuneItem(Text.translatable("item.yavpm.rune_durability.tooltip").formatted(Formatting.GRAY))
+            new RuneItem(Text.translatable("item.yavpm.rune_durability.tooltip").formatted(Formatting.BLUE))
     );
     public static final Item RUNE_SPEED = makeAdvancedItem(
             makeId("rune_speed"),
-            new RuneItem(Text.translatable("item.yavpm.rune_speed.tooltip").formatted(Formatting.GRAY))
+            new RuneItem(Text.translatable("item.yavpm.rune_speed.tooltip").formatted(Formatting.YELLOW))
     );
-
     // endregion
     // region Banana
     public static final Item BANANA = makeItem(

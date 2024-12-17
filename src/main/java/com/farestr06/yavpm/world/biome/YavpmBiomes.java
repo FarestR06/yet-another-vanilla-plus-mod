@@ -1,7 +1,8 @@
 package com.farestr06.yavpm.world.biome;
 
 import com.farestr06.yavpm.util.YavpmSounds;
-import com.farestr06.yavpm.world.YavpmPlacedFeatures;
+import com.farestr06.yavpm.world.feature.placed.YavpmMiscPlacedFeatures;
+import com.farestr06.yavpm.world.feature.placed.YavpmVegetationPlacedFeatures;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registerable;
@@ -21,6 +22,7 @@ public class YavpmBiomes {
     public static class Overworld {
         public static final RegistryKey<Biome> ORCHARD_PEAKS = of("orchard_peaks");
         public static final RegistryKey<Biome> WITHERED_SCAR = of("withered_scar");
+        public static final RegistryKey<Biome> EBONY_FOREST = of("ebony_forest");
 
         private static RegistryKey<Biome> of(String id) {
             return RegistryKey.of(RegistryKeys.BIOME, makeId(id));
@@ -29,6 +31,7 @@ public class YavpmBiomes {
         public static void bootstrap(Registerable<Biome> context) {
             context.register(ORCHARD_PEAKS, makeOrchardGrove(context));
             context.register(WITHERED_SCAR, makeWitheredScar(context));
+            context.register(EBONY_FOREST, makeEbonyForest(context));
         }
 
         public static void globalOverworldGeneration(GenerationSettings.LookupBackedBuilder builder) {
@@ -57,7 +60,7 @@ public class YavpmBiomes {
 
             DefaultBiomeFeatures.addInfestedStone(biomeBuilder);
 
-            biomeBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, YavpmPlacedFeatures.APPLE_PLACED_IN_ORCHARD_GROVE);
+            biomeBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, YavpmVegetationPlacedFeatures.APPLE_ORCHARD_GROVE_VEGETAION_PLACED);
             DefaultBiomeFeatures.addDefaultFlowers(biomeBuilder);
             DefaultBiomeFeatures.addDefaultGrass(biomeBuilder);
             DefaultBiomeFeatures.addDefaultMushrooms(biomeBuilder);
@@ -79,6 +82,46 @@ public class YavpmBiomes {
                     .build();
         }
 
+        private static Biome makeEbonyForest(Registerable<Biome> context) {
+            SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
+
+            DefaultBiomeFeatures.addFarmAnimals(spawnBuilder);
+            DefaultBiomeFeatures.addBatsAndMonsters(spawnBuilder);
+
+
+            GenerationSettings.LookupBackedBuilder biomeBuilder =
+                    new GenerationSettings.LookupBackedBuilder(context.getRegistryLookup(RegistryKeys.PLACED_FEATURE),
+                            context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER));
+
+            globalOverworldGeneration(biomeBuilder);
+
+            DefaultBiomeFeatures.addDefaultOres(biomeBuilder);
+
+            biomeBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, YavpmVegetationPlacedFeatures.PERSIMMON_VEGETAION_PLACED);
+            DefaultBiomeFeatures.addDefaultFlowers(biomeBuilder);
+            DefaultBiomeFeatures.addDefaultGrass(biomeBuilder);
+            DefaultBiomeFeatures.addDefaultMushrooms(biomeBuilder);
+            DefaultBiomeFeatures.addDefaultVegetation(biomeBuilder);
+
+            return new Biome.Builder()
+                    .precipitation(true)
+                    .downfall(0.8f)
+                    .temperature(0.7f)
+                    .generationSettings(biomeBuilder.build())
+                    .spawnSettings(spawnBuilder.build())
+                    .effects(
+                            new BiomeEffects.Builder()
+                                    .waterColor(4159204)
+                                    .waterFogColor(329011)
+                                    .fogColor(12638463)
+                                    .skyColor(OverworldBiomeCreator.getSkyColor(0.7f))
+                                    .grassColorModifier(BiomeEffects.GrassColorModifier.DARK_FOREST)
+                                    .moodSound(BiomeMoodSound.CAVE)
+                                    .music(MusicType.GAME)
+                                    .build()
+                    ).build();
+        }
+
         private static Biome makeWitheredScar(Registerable<Biome> context) {
             SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
 
@@ -94,7 +137,7 @@ public class YavpmBiomes {
             DefaultBiomeFeatures.addDefaultOres(biomeBuilder);
             DefaultBiomeFeatures.addExtraGoldOre(biomeBuilder);
 
-            biomeBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, YavpmPlacedFeatures.PATCH_WITHER_ROSE_PLACED);
+            biomeBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, YavpmMiscPlacedFeatures.PATCH_WITHER_ROSE_PLACED);
             DefaultBiomeFeatures.addDefaultGrass(biomeBuilder);
 
 
