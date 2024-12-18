@@ -29,6 +29,6 @@ public class YavpmSounds {
     public static final RegistryEntry<SoundEvent> ITEM_ARMOR_EQUIP_STUDDED = makeReferenceEvent(makeId("item.armor.equip_studded"));
 
     public static void init() {
-        YetAnotherVanillaPlusMod.LOGGER.info("Registering blocks for YAVPM!");
+        YetAnotherVanillaPlusMod.LOGGER.info("Registering sounds for YAVPM!");
     }
 }

@@ -19,6 +19,8 @@ public class YavpmTags {
         public static final TagKey<Item> RUNE_DURABILITY_APPLICABLE = of("rune_durability_applicable");
         public static final TagKey<Item> RUNE_SPEED_APPLICABLE = of("rune_speed_applicable");
         public static final TagKey<Item> ENCHANTABLE_GLIDER = of("enchantable/glider");
+        public static final TagKey<Item> ENCHANTABLE_WOLF_ARMOR = of("enchantable/wolf_armor");
+        public static final TagKey<Item> ENCHANTABLE_HORSE_ARMOR = of("enchantable/horse_armor");
         public static final TagKey<Item> REACTOR_RECHARGERS = of("reactor_rechargers");
         public static final TagKey<Item> APPLE_LOGS = of("apple_logs");
         public static final TagKey<Item> PERSIMMON_LOGS = of("persimmon_logs");
@@ -61,7 +63,6 @@ public class YavpmTags {
     }
 
     public static class Blocks {
-
         public static final TagKey<Block> APPLE_LOGS = of("apple_logs");
         public static final TagKey<Block> PERSIMMON_LOGS = of("persimmon_logs");
         public static final TagKey<Block> PRICKLE_LOGS = of("prickle_logs");
@@ -80,6 +81,8 @@ public class YavpmTags {
     }
     public static class Enchantments {
         public static final TagKey<Enchantment> END_ENCHANTMENTS = of("end_enchantments");
+        public static final TagKey<Enchantment> EXCLUSIVE_SET_WOLF_ARMOR_OFFENSE = of("exclusive_set/wolf_armor/offense");
+        public static final TagKey<Enchantment> EXCLUSIVE_SET_WOLF_ARMOR_DEFENSE = of("exclusive_set/wolf_armor/defense");
 
         private static TagKey<Enchantment> of(String path) {
             return TagKey.of(RegistryKeys.ENCHANTMENT, makeId(path));

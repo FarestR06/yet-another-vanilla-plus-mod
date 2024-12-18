@@ -1,5 +1,6 @@
 package com.farestr06.yavpm.world.gen;
 
+import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.world.feature.placed.YavpmVegetationPlacedFeatures;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
@@ -11,11 +12,13 @@ import net.minecraft.world.gen.GenerationStep;
 
 public class YavpmWorldGeneration {
     public static void generateModWorldGen() {
+        YetAnotherVanillaPlusMod.LOGGER.info("Modifying worldgen for YAVPM!");
         generateTrees();
         modfiyMobSpawns();
     }
 
     private static void modfiyMobSpawns() {
+        YetAnotherVanillaPlusMod.LOGGER.debug("Spawning mobs...");
         BiomeModifications.addSpawn(
                 BiomeSelectors.includeByKey(
                         BiomeKeys.WINDSWEPT_HILLS,
@@ -44,22 +47,23 @@ public class YavpmWorldGeneration {
                 BiomeSelectors.tag(ConventionalBiomeTags.IS_NETHER_FOREST),
                 SpawnGroup.CREATURE,
                 YavpmEntities.MOONGUS,
-                30,
-                4,
-                4
+                15,
+                2,
+                3
         );
 
         BiomeModifications.addSpawn(
                 BiomeSelectors.tag(ConventionalBiomeTags.IS_END),
                 SpawnGroup.MONSTER,
                 YavpmEntities.VOID_PHANTOM,
-                8,
+                4,
                 1,
                 1
         );
     }
 
     private static void generateTrees() {
+        YetAnotherVanillaPlusMod.LOGGER.debug("Growing trees...");
         BiomeModifications.addFeature(
                 BiomeSelectors.tag(ConventionalBiomeTags.IS_PLAINS),
                 GenerationStep.Feature.VEGETAL_DECORATION,

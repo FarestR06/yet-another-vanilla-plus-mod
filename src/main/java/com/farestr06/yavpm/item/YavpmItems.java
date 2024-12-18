@@ -333,6 +333,7 @@ public class YavpmItems {
     }
 
     private static void setUpMoongusFood() {
+        YetAnotherVanillaPlusMod.LOGGER.debug("Registering Moongus foods...");
         CRIMSON_MOONGUS_FOOD.put(Items.SUGAR, Potions.SWIFTNESS);
         CRIMSON_MOONGUS_FOOD.put(Items.RABBIT_FOOT, Potions.LEAPING);
         CRIMSON_MOONGUS_FOOD.put(Items.BLAZE_POWDER, Potions.STRENGTH);
@@ -357,24 +358,36 @@ public class YavpmItems {
     }
 
     private static void setUpRegistries() {
+        YetAnotherVanillaPlusMod.LOGGER.debug("Making Reactor usable as fuel...");
         // Make Heated Reactor usable as fuel
         FuelRegistry.INSTANCE.add(YavpmItems.HEATED_REACTOR, 1600);
 
+
+        YetAnotherVanillaPlusMod.LOGGER.debug("Making items compostable...");
         // Make new crops compostable
         CompostingChanceRegistry compostables = CompostingChanceRegistry.INSTANCE;
         compostables.add(YavpmBlocks.APPLE_LEAVES.asItem(), 0.3f);
+        compostables.add(YavpmBlocks.PERSIMMON_LEAVES.asItem(), 0.3f);
+        compostables.add(YavpmBlocks.APPLE_SAPLING.asItem(), 0.3f);
+        compostables.add(YavpmBlocks.PERSIMMON_SAPLING.asItem(), 0.3f);
+        compostables.add(YavpmBlocks.PRICKLE_SHOOT.asItem(), 0.3f);
         compostables.add(BANANA_SEEDS, 0.3f);
         compostables.add(ACORN, 0.3f);
+
         compostables.add(PEANUT, 0.5f);
         compostables.add(COOKED_PEANUT, 0.5f);
+        compostables.add(MAGIC_BEAN, 0.5f);
+
         compostables.add(BANANA, 0.65f);
+        compostables.add(PERSIMMON, 0.65f);
+
         compostables.add(MOLY, 1f);
-        compostables.add(MAGIC_BEAN, 0.65f);
-        compostables.add(TRUFFLE, 0.65f);
-        compostables.add(SEA_SOUP, 0.65f);
+        compostables.add(TRUFFLE, 1f);
     }
 
     private static void setUpComponents() {
+
+        YetAnotherVanillaPlusMod.LOGGER.debug("Modifying default item components...");
         // make Glistering Melon edible
         DefaultItemComponentEvents.MODIFY.register(context ->
                 context.modify(Items.GLISTERING_MELON_SLICE, builder ->

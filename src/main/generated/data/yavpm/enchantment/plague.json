@@ -1,0 +1,57 @@
+{
+  "anvil_cost": 8,
+  "description": {
+    "translate": "enchantment.yavpm.plague"
+  },
+  "effects": {
+    "minecraft:post_attack": [
+      {
+        "affected": "attacker",
+        "effect": {
+          "type": "minecraft:apply_mob_effect",
+          "max_amplifier": {
+            "type": "minecraft:linear",
+            "base": 0.0,
+            "per_level_above_first": 1.0
+          },
+          "max_duration": {
+            "type": "minecraft:linear",
+            "base": 2.0,
+            "per_level_above_first": 2.0
+          },
+          "min_amplifier": 0.0,
+          "min_duration": 2.0,
+          "to_apply": "minecraft:poison"
+        },
+        "enchanted": "victim",
+        "requirements": {
+          "chance": {
+            "type": "minecraft:enchantment_level",
+            "amount": {
+              "type": "minecraft:linear",
+              "base": 0.2,
+              "per_level_above_first": 0.2
+            }
+          },
+          "condition": "minecraft:random_chance"
+        }
+      }
+    ]
+  },
+  "exclusive_set": "#yavpm:exclusive_set/wolf_armor/defense",
+  "max_cost": {
+    "base": 60,
+    "per_level_above_first": 20
+  },
+  "max_level": 2,
+  "min_cost": {
+    "base": 10,
+    "per_level_above_first": 20
+  },
+  "primary_items": "#yavpm:enchantable/wolf_armor",
+  "slots": [
+    "body"
+  ],
+  "supported_items": "#yavpm:enchantable/wolf_armor",
+  "weight": 7
+}

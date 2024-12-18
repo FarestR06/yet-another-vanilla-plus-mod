@@ -1,6 +1,9 @@
 {
   "values": [
     "yavpm:illagers_bane",
-    "yavpm:enderbane"
+    "yavpm:enderbane",
+    "yavpm:mauling",
+    "yavpm:lap_dog",
+    "yavpm:gallop"
   ]
 }

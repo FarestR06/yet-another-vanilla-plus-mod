@@ -79,14 +79,17 @@ public class YavpmPotions {
         YetAnotherVanillaPlusMod.LOGGER.info("Registering potions for YAVPM!");
 
         FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> {
+            YetAnotherVanillaPlusMod.LOGGER.debug("Creating Potions of Decay...");
             builder.registerPotionRecipe(Potions.WATER, Ingredient.ofItems(Items.WITHER_SKELETON_SKULL), DECAY);
             builder.registerPotionRecipe(DECAY, Ingredient.ofItems(Items.REDSTONE), LONG_DECAY);
             builder.registerPotionRecipe(DECAY, Ingredient.ofItems(Items.GLOWSTONE_DUST), STRONG_DECAY);
 
+            YetAnotherVanillaPlusMod.LOGGER.debug("Creating Potions of the Void...");
             builder.registerPotionRecipe(Potions.WATER, Ingredient.ofItems(Items.ENDER_EYE), VOID_TOUCHED);
             builder.registerPotionRecipe(VOID_TOUCHED, Ingredient.ofItems(Items.REDSTONE), LONG_VOID_TOUCHED);
             builder.registerPotionRecipe(VOID_TOUCHED, Ingredient.ofItems(Items.GLOWSTONE_DUST), STRONG_VOID_TOUCHED);
 
+            YetAnotherVanillaPlusMod.LOGGER.debug("Creating Potions of Choking...");
             builder.registerPotionRecipe(
                     Potions.WATER_BREATHING,
                     Ingredient.ofItems(Items.FERMENTED_SPIDER_EYE),

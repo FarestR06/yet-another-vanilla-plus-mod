@@ -25,6 +25,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.event.GameEvent;
@@ -55,13 +56,16 @@ public class TanukiEntity extends AnimalEntity {
     @Override
     public void tickMovement() {
         super.tickMovement();
-        if (
-                !this.getWorld().isClient && this.isAlive() && !this.isBaby()
-                && --this.tryTransformTime <= 0 && this.getRandom().nextFloat() <= HANDLER.instance().tanukiTransformChance
-        ) {
-            transform();
-        } else {
-            this.tryTransformTime = this.random.nextInt(4000) + 2000;
+        if (this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
+            if (
+                    !this.getWorld().isClient && this.isAlive() && !this.isBaby() && --this.tryTransformTime <= 0
+            ) {
+                if (this.getRandom().nextFloat() <= HANDLER.instance().tanukiTransformChance) {
+                    transform();
+                } else {
+                    this.tryTransformTime = this.random.nextInt(4000) + 2000;
+                }
+            }
         }
     }
 

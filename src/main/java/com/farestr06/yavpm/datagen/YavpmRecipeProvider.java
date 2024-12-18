@@ -66,12 +66,6 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.SOUL_GLOWING_OBSIDIAN)))
         ;
         // endregion
-        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.MOLY, 3)
-                .input(YavpmItems.MOLY)
-                .input(ConventionalItemTags.FERTILIZERS)
-                .criterion(hasItem(YavpmItems.MOLY), conditionsFromItem(YavpmItems.MOLY))
-                .offerTo(exporter, makeId(getRecipeName(YavpmItems.MOLY)))
-        ;
 
         ShapelessRecipeJsonBuilder.create(RecipeCategory.REDSTONE, YavpmBlocks.ELECTRO_GLASS)
                 .input(Items.GLASS)
@@ -93,8 +87,8 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
 
         offerSmelting(exporter, List.of(YavpmBlocks.GRAPHENE_BLOCK), RecipeCategory.MISC, Items.DIAMOND, 1f, 400, "graphene_to_diamond");
         offerBlasting(exporter, List.of(YavpmBlocks.GRAPHENE_BLOCK), RecipeCategory.MISC, Items.DIAMOND, 1f, 200, "graphene_to_diamond");
-        offerSmelting(exporter, List.of(YavpmItems.RAW_DIAMOND), RecipeCategory.MISC, Items.DIAMOND, 1f, 400, "_diamond_from_raw");
-        offerBlasting(exporter, List.of(YavpmItems.RAW_DIAMOND), RecipeCategory.MISC, Items.DIAMOND, 1f, 200, "_diamond_from_raw");
+        offerSmelting(exporter, List.of(YavpmItems.RAW_DIAMOND), RecipeCategory.MISC, Items.DIAMOND, 1f, 400, "diamond_from_raw");
+        offerBlasting(exporter, List.of(YavpmItems.RAW_DIAMOND), RecipeCategory.MISC, Items.DIAMOND, 1f, 200, "diamond_from_raw");
 
         makePrickleWoodRecipes(exporter);
         makeApplewoodRecipes(exporter);
@@ -119,7 +113,7 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
 
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.CHEESE, 4)
                 .input(Items.MILK_BUCKET)
-                .input(Items.BROWN_MUSHROOM)
+                .input(YavpmItems.WARPED_WART)
                 .criterion(hasItem(Items.MILK_BUCKET), conditionsFromItem(Items.MILK_BUCKET))
                 .offerTo(exporter, makeId(getRecipeName(YavpmItems.CHEESE)));
 
@@ -139,7 +133,7 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
 
         ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.TOFU, 4)
                 .input(YavpmItems.FAKE_MILK_BUCKET)
-                .input(Items.BROWN_MUSHROOM)
+                .input(YavpmItems.WARPED_WART)
                 .criterion(hasItem(YavpmItems.FAKE_MILK_BUCKET), conditionsFromItem(YavpmItems.FAKE_MILK_BUCKET))
                 .offerTo(exporter, makeId(getRecipeName(YavpmItems.TOFU)));
 

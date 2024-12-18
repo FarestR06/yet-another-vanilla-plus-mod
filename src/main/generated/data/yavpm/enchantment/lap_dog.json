@@ -1,0 +1,30 @@
+{
+  "anvil_cost": 1,
+  "description": {
+    "translate": "enchantment.yavpm.lap_dog"
+  },
+  "effects": {
+    "minecraft:tick": [
+      {
+        "effect": {
+          "type": "yavpm:lap_dog"
+        }
+      }
+    ]
+  },
+  "exclusive_set": "#yavpm:exclusive_set/wolf_armor/defense",
+  "max_cost": {
+    "base": 12,
+    "per_level_above_first": 11
+  },
+  "max_level": 3,
+  "min_cost": {
+    "base": 1,
+    "per_level_above_first": 11
+  },
+  "slots": [
+    "body"
+  ],
+  "supported_items": "#yavpm:enchantable/wolf_armor",
+  "weight": 10
+}

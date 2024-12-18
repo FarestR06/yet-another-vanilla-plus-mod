@@ -52,6 +52,15 @@ public class YavpmTagProviders {
             getOrCreateTagBuilder(YavpmTags.Items.ENCHANTABLE_GLIDER).add(
                     Items.ELYTRA
             );
+            getOrCreateTagBuilder(YavpmTags.Items.ENCHANTABLE_WOLF_ARMOR).add(
+                    Items.WOLF_ARMOR
+            );
+            getOrCreateTagBuilder(YavpmTags.Items.ENCHANTABLE_HORSE_ARMOR).add(
+                    Items.LEATHER_HORSE_ARMOR,
+                    Items.GOLDEN_HORSE_ARMOR,
+                    Items.IRON_HORSE_ARMOR,
+                    Items.DIAMOND_HORSE_ARMOR
+            );
 
             getOrCreateTagBuilder(ConventionalItemTags.ARMORS).add(
                     YavpmItems.STUDDED_HELMET,
@@ -202,6 +211,12 @@ public class YavpmTagProviders {
                     YavpmItems.BANANA_SEEDS,
                     YavpmItems.PEANUT,
                     YavpmItems.MAGIC_BEAN
+            );
+
+            getOrCreateTagBuilder(ItemTags.SAPLINGS).add(
+                    YavpmBlocks.APPLE_SAPLING.asItem(),
+                    YavpmBlocks.PERSIMMON_SAPLING.asItem(),
+                    YavpmBlocks.PRICKLE_SHOOT.asItem()
             );
 
             getOrCreateTagBuilder(ItemTags.FREEZE_IMMUNE_WEARABLES).add(
@@ -503,6 +518,12 @@ public class YavpmTagProviders {
                             YavpmBlocks.STRIPPED_APPLE_WOOD
                     );
 
+            getOrCreateTagBuilder(BlockTags.SAPLINGS).add(
+                    YavpmBlocks.APPLE_SAPLING,
+                    YavpmBlocks.PERSIMMON_SAPLING,
+                    YavpmBlocks.PRICKLE_SHOOT
+            );
+
             getOrCreateTagBuilder(BlockTags.LEAVES)
                     .add(YavpmBlocks.APPLE_LEAVES, YavpmBlocks.PERSIMMON_LEAVES);
 
@@ -611,7 +632,8 @@ public class YavpmTagProviders {
                     YavpmDamageTypes.CHOKE
             );
             getOrCreateTagBuilder(DamageTypeTags.NO_IMPACT).add(
-                    YavpmDamageTypes.CUT
+                    YavpmDamageTypes.CUT,
+                    YavpmDamageTypes.CHOKE
             );
             getOrCreateTagBuilder(DamageTypeTags.WITHER_IMMUNE_TO).add(
                     YavpmDamageTypes.CUT
@@ -675,7 +697,10 @@ public class YavpmTagProviders {
         protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
             getOrCreateTagBuilder(EnchantmentTags.NON_TREASURE).add(
                     YavpmEnchantments.ILLAGERS_BANE,
-                    YavpmEnchantments.ENDERBANE
+                    YavpmEnchantments.ENDERBANE,
+                    YavpmEnchantments.MAULING,
+                    YavpmEnchantments.LAP_DOG,
+                    YavpmEnchantments.GALLOP
             );
             getOrCreateTagBuilder(EnchantmentTags.TREASURE).add(
                     YavpmEnchantments.VOID_STRIKE,
@@ -689,6 +714,16 @@ public class YavpmTagProviders {
                     YavpmEnchantments.VOID_STRIKE,
                     YavpmEnchantments.ENDERBANE,
                     YavpmEnchantments.STIFFNESS
+            );
+            getOrCreateTagBuilder(YavpmTags.Enchantments.EXCLUSIVE_SET_WOLF_ARMOR_OFFENSE).add(
+                    YavpmEnchantments.MAULING,
+                    YavpmEnchantments.BLEED_OUT,
+                    YavpmEnchantments.CRUSHING
+            );
+            getOrCreateTagBuilder(YavpmTags.Enchantments.EXCLUSIVE_SET_WOLF_ARMOR_DEFENSE).add(
+                    YavpmEnchantments.LAP_DOG,
+                    YavpmEnchantments.PARRY,
+                    YavpmEnchantments.PLAGUE
             );
         }
     }

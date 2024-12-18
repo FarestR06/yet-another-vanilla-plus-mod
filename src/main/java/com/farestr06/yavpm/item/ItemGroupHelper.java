@@ -1,5 +1,6 @@
 package com.farestr06.yavpm.item;
 
+import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.block.YavpmBlocks;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -7,14 +8,33 @@ import net.minecraft.item.ItemGroups;
 
 public class ItemGroupHelper {
     public static void modifyEntries() {
+        YetAnotherVanillaPlusMod.LOGGER.info("Modifying item groups for YAVPM!");
+
+        YetAnotherVanillaPlusMod.LOGGER.debug("Modifying Building Blocks item group...");
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.BUILDING_BLOCKS).register(ItemGroupHelper::buildingBlocks);
+
+        YetAnotherVanillaPlusMod.LOGGER.debug("Modifying Natural item group...");
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.NATURAL).register(ItemGroupHelper::naturalBlocks);
+
+        YetAnotherVanillaPlusMod.LOGGER.debug("Modifying Functional item group...");
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FUNCTIONAL).register(ItemGroupHelper::functionalBlocks);
+
+        YetAnotherVanillaPlusMod.LOGGER.debug("Modifying Redstone item group...");
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.REDSTONE).register(ItemGroupHelper::redstone);
+
+        YetAnotherVanillaPlusMod.LOGGER.debug("Modifying Tools item group...");
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.TOOLS).register(ItemGroupHelper::tools);
+
+        YetAnotherVanillaPlusMod.LOGGER.debug("Modifying Combat item group...");
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.COMBAT).register(ItemGroupHelper::combat);
+
+        YetAnotherVanillaPlusMod.LOGGER.debug("Modifying Food and Drink item group...");
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.FOOD_AND_DRINK).register(ItemGroupHelper::foodAndDrink);
+
+        YetAnotherVanillaPlusMod.LOGGER.debug("Modifying Ingredients item group...");
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.INGREDIENTS).register(ItemGroupHelper::ingredients);
+
+        YetAnotherVanillaPlusMod.LOGGER.debug("Modifying Spawn Eggs item group...");
         ItemGroupEvents.modifyEntriesEvent(ItemGroups.SPAWN_EGGS).register(ItemGroupHelper::spawnEggs);
     }
 

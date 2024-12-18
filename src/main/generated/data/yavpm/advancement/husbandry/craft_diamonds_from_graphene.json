@@ -1,7 +1,13 @@
 {
   "parent": "minecraft:husbandry/breed_an_animal",
   "criteria": {
-    "craft_diamonds": {
+    "craft_diamonds_via_blasting": {
+      "conditions": {
+        "recipe_id": "yavpm:diamond_from_blasting_graphene_block"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "craft_diamonds_via_smelting": {
       "conditions": {
         "recipe_id": "yavpm:diamond_from_smelting_graphene_block"
       },
@@ -23,11 +29,12 @@
   },
   "requirements": [
     [
-      "craft_diamonds"
+      "craft_diamonds_via_smelting",
+      "craft_diamonds_via_blasting"
     ]
   ],
   "rewards": {
-    "experience": 75
+    "experience": 100
   },
   "sends_telemetry_event": true
 }

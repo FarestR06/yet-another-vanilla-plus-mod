@@ -79,7 +79,7 @@ public class YavpmLootProviders {
                                     this.applyExplosionDecay(
                                             block,
                                             LootPool.builder()
-                                                    .rolls(ConstantLootNumberProvider.create(1.0F))
+                                                    .rolls(ConstantLootNumberProvider.create(1f))
                                                     .with(
                                                             ItemEntry.builder(YavpmItems.WARPED_WART)
                                                                     .apply(
@@ -198,10 +198,10 @@ public class YavpmLootProviders {
             addDrop(YavpmBlocks.PERSIMMON_WOOD);
             addDrop(YavpmBlocks.STRIPPED_PERSIMMON_WOOD);
 
-            leavesDrops(YavpmBlocks.PERSIMMON_LEAVES, YavpmBlocks.PERSIMMON_LEAVES, SAPLING_DROP_CHANCE)
+            leavesDrops(YavpmBlocks.PERSIMMON_LEAVES, YavpmBlocks.PERSIMMON_SAPLING, SAPLING_DROP_CHANCE)
                     .pool(
                             LootPool.builder()
-                                    .rolls(ConstantLootNumberProvider.create(1.0F))
+                                    .rolls(ConstantLootNumberProvider.create(1f))
                                     .conditionally(this.createWithoutShearsOrSilkTouchCondition())
                                     .with(
                                             ((LeafEntry.Builder<?>)this.addSurvivesExplosionCondition(YavpmBlocks.PERSIMMON_LEAVES, ItemEntry.builder(YavpmItems.PERSIMMON)))
@@ -265,19 +265,19 @@ public class YavpmLootProviders {
             // region Carbonfowl
             biConsumer.accept(YavpmEntities.CARBONFOWL.getLootTableId(), LootTable.builder().pool(
                     LootPool.builder()
-                            .rolls(ConstantLootNumberProvider.create(1.0F))
+                            .rolls(ConstantLootNumberProvider.create(1f))
                             .with(
                                     ItemEntry.builder(Items.FEATHER)
-                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 2.0F)))
-                                            .apply(EnchantedCountIncreaseLootFunction.builder(lookup, UniformLootNumberProvider.create(0.0F, 1.0F)))
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0f, 2.0F)))
+                                            .apply(EnchantedCountIncreaseLootFunction.builder(lookup, UniformLootNumberProvider.create(0f, 1f)))
                             )
                     ).pool(
                             LootPool.builder()
-                                    .rolls(ConstantLootNumberProvider.create(1.0F))
+                                    .rolls(ConstantLootNumberProvider.create(1f))
                                     .with(
                                             ItemEntry.builder(Items.CHICKEN)
                                                     .apply(FurnaceSmeltLootFunction.builder().conditionally(this.createSmeltLootCondition()))
-                                                    .apply(EnchantedCountIncreaseLootFunction.builder(lookup, UniformLootNumberProvider.create(0.0F, 1.0F)))
+                                                    .apply(EnchantedCountIncreaseLootFunction.builder(lookup, UniformLootNumberProvider.create(0f, 1f)))
                                     )
                     ).pool(
                             LootPool.builder()
@@ -298,7 +298,7 @@ public class YavpmLootProviders {
             // region Moongus
             biConsumer.accept(YavpmEntities.MOONGUS.getLootTableId(), LootTable.builder().pool(
                             LootPool.builder()
-                                    .rolls(ConstantLootNumberProvider.create(1.0F))
+                                    .rolls(ConstantLootNumberProvider.create(1f))
                                     .with(
                                             ItemEntry.builder(Items.LEATHER)
                                                     .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0f, 2f)))
@@ -322,8 +322,8 @@ public class YavpmLootProviders {
                             .rolls(ConstantLootNumberProvider.create(1f))
                             .with(
                                     ItemEntry.builder(Items.CHERRY_LEAVES)
-                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
-                                            .apply(EnchantedCountIncreaseLootFunction.builder(this.lookup, UniformLootNumberProvider.create(0f, 2f))))
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0f, 1f)))
+                                            .apply(EnchantedCountIncreaseLootFunction.builder(this.lookup, UniformLootNumberProvider.create(1f, 3f))))
             ));
             // endregion
             // region Void Phantom
@@ -334,8 +334,8 @@ public class YavpmLootProviders {
                                             .rolls(ConstantLootNumberProvider.create(1f))
                                             .with(
                                                     ItemEntry.builder(Items.PHANTOM_MEMBRANE)
-                                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0.0F, 1.0F)))
-                                                            .apply(EnchantedCountIncreaseLootFunction.builder(lookup, UniformLootNumberProvider.create(0.0F, 1.0F)))
+                                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0f, 1f)))
+                                                            .apply(EnchantedCountIncreaseLootFunction.builder(lookup, UniformLootNumberProvider.create(0f, 1f)))
                                             )
                                             .conditionally(KilledByPlayerLootCondition.builder())
                                             .conditionally(RandomChanceLootCondition.builder(0.67f))

@@ -1,0 +1,42 @@
+{
+  "anvil_cost": 2,
+  "description": {
+    "translate": "enchantment.yavpm.bleed_out"
+  },
+  "effects": {
+    "minecraft:post_attack": [
+      {
+        "affected": "victim",
+        "effect": {
+          "type": "minecraft:apply_mob_effect",
+          "max_amplifier": 0.0,
+          "max_duration": {
+            "type": "minecraft:linear",
+            "base": 2.0,
+            "per_level_above_first": 1.0
+          },
+          "min_amplifier": 0.0,
+          "min_duration": 2.0,
+          "to_apply": "minecraft:wither"
+        },
+        "enchanted": "attacker"
+      }
+    ]
+  },
+  "exclusive_set": "#yavpm:exclusive_set/wolf_armor/offense",
+  "max_cost": {
+    "base": 25,
+    "per_level_above_first": 8
+  },
+  "max_level": 4,
+  "min_cost": {
+    "base": 5,
+    "per_level_above_first": 8
+  },
+  "primary_items": "#yavpm:enchantable/wolf_armor",
+  "slots": [
+    "body"
+  ],
+  "supported_items": "#yavpm:enchantable/wolf_armor",
+  "weight": 7
+}

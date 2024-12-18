@@ -58,6 +58,7 @@ public class YavpmModelProvider extends FabricModelProvider {
         createPrickleSet(generator);
 
         generator.registerTintableCross(YavpmBlocks.APPLE_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
+        generator.registerTintableCross(YavpmBlocks.PERSIMMON_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
         generator.registerTintableCross(YavpmBlocks.PRICKLE_SHOOT, BlockStateModelGenerator.TintType.NOT_TINTED);
 
         generator.registerStateWithModelReference(YavpmBlocks.VOID_WATER, Blocks.WATER);

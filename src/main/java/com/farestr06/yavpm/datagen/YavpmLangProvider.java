@@ -69,8 +69,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add("advancements.husbandry.eat_fake_animal_product.title", "Steak n' Fake");
         builder.add("advancements.husbandry.eat_fake_animal_product.description", "Spare a cow's life and eat a Magic Bean-based alternative");
-        builder.add("advancements.husbandry.lip_smacker.title", "Lip Smacker");
-        builder.add("advancements.husbandry.lip_smacker.description", "You'd be surprised by how much wolves enjoy peanuts");
+        builder.add("advancements.husbandry.fed_wolf_peanut.title", "Lip Smacker");
+        builder.add("advancements.husbandry.fed_wolf_peanut.description", "You'd be surprised by how much wolves enjoy peanuts");
         builder.add("advancements.husbandry.lucky_ticket.title", "Lucky Ticket");
         builder.add("advancements.husbandry.lucky_ticket.description", "Eat a Fortune Cookie and receive your fortune");
         builder.add("advancements.husbandry.eat_all_food_bowls.title", "For the Soul");
@@ -125,8 +125,20 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("enchantment.yavpm.illagers_bane.desc", "Attacks deal extra damage to Illagers and their allies.");
         builder.addEnchantment(YavpmEnchantments.ENDERBANE, "Enderbane");
         builder.add("enchantment.yavpm.enderbane.desc", "Extra damage is dealt to mobs under the influence of the §kEnder Dragon§r.");
+
         builder.addEnchantment(YavpmEnchantments.STIFFNESS, "Stiffness");
         builder.add("enchantment.yavpm.stiffness.desc", "Applies a weak protection effect to Elytra, reducing damage from most sources.");
+
+        builder.addEnchantment(YavpmEnchantments.MAULING, "Mauling");
+        builder.addEnchantment(YavpmEnchantments.BLEED_OUT, "Bleed Out");
+        builder.addEnchantment(YavpmEnchantments.CRUSHING, "Crushing");
+        builder.addEnchantment(YavpmEnchantments.RETRIEVE, "Retrieve");
+        builder.addEnchantment(YavpmEnchantments.LAP_DOG, "Lap Dog");
+        builder.addEnchantment(YavpmEnchantments.PARRY, "Parry");
+        builder.addEnchantment(YavpmEnchantments.PLAGUE, "Plague");
+
+        builder.addEnchantment(YavpmEnchantments.GALLOP, "Gallop");
+        builder.addEnchantment(YavpmEnchantments.BOUNDING, "Bounding");
 
         builder.add("enchantment.yavpm.critical_hit", "Critical Hit");
         builder.add("enchantment.yavpm.critical_hit.desc", "Gives you a chance to inflict critical hits dealing triple damage.");
@@ -335,7 +347,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.PERSIMMON_HANGING_SIGN, "Persimmon Hanging Sign");
         builder.add(YavpmItems.PERSIMMON_BOAT, "Persimmon Boat");
         builder.add(YavpmItems.PERSIMMON_CHEST_BOAT, "Persimmon Boat with Chest");
-        // TODO: Add Persimmon Sapling
+        builder.add(YavpmBlocks.PERSIMMON_SAPLING, "Persimmon Sapling");
         builder.add(YavpmTags.Items.PERSIMMON_LOGS, "Persimmon Logs");
 
         builder.add(Blocks.NETHER_WART, "Crimson Wart");
@@ -358,13 +370,14 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.MOONGUS_SPAWN_EGG, "Moongus Spawn Egg");
         builder.add(YavpmEntities.MOONGUS, "Moongus");
         builder.add(YavpmItems.TANUKI_SPAWN_EGG, "Tanuki Spawn Egg");
-        builder.add(YavpmEntities.VOID_PHANTOM, "Void Phantom Spawn Egg");
-        builder.add(YavpmItems.VOID_PHANTOM_SPAWN_EGG, "Void Phantom Spawn Egg");
-
         builder.add(YavpmEntities.TANUKI, "Tanuki");
-        builder.add(YavpmTags.Items.TANUKI_FOODS, "Tanuki Food");
+        builder.add(YavpmItems.VOID_PHANTOM_SPAWN_EGG, "Void Phantom Spawn Egg");
+        builder.add(YavpmEntities.VOID_PHANTOM, "Void Phantom");
+
         builder.add(YavpmTags.Items.CRIMSON_MOONGUS_FOOD, "Crimson Moongus Food");
         builder.add(YavpmTags.Items.WARPED_MOONGUS_FOOD, "Warped Moongus Food");
+        builder.add(YavpmTags.Items.TANUKI_FOODS, "Tanuki Food");
+
         builder.add("subtitles.entity.moongus.eat", "Moongus eats");
         builder.add("subtitles.entity.moongus.milk.crimson", "Moongus gets milked awkwardly");
         builder.add("subtitles.entity.moongus.milk.warped", "Moongus gets milked mundanely");
@@ -376,5 +389,6 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add("biome.yavpm.orchard_peaks", "Orchard Peaks");
         builder.add("biome.yavpm.withered_scar", "Withered Scar");
+        builder.add("biome.yavpm.ebony_forest", "Ebony Forest");
     }
 }

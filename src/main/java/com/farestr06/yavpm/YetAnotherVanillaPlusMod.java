@@ -11,14 +11,38 @@ import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.ItemGroupHelper;
 import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.item.YavpmPotions;
-import com.farestr06.yavpm.util.LootHelper;
+import com.farestr06.yavpm.item.enchantment.effect.YavpmEnchantmentEffects;
 import com.farestr06.yavpm.util.YavpmSounds;
+import com.farestr06.yavpm.util.YavpmTags;
 import com.farestr06.yavpm.world.gen.YavpmWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.block.Blocks;
+import net.minecraft.data.server.loottable.BlockLootTableGenerator;
+import net.minecraft.data.server.loottable.vanilla.VanillaBlockLootTableGenerator;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.Enchantments;
+import net.minecraft.entity.EntityType;
+import net.minecraft.item.Items;
+import net.minecraft.loot.LootPool;
+import net.minecraft.loot.LootTable;
+import net.minecraft.loot.LootTables;
+import net.minecraft.loot.condition.KilledByPlayerLootCondition;
+import net.minecraft.loot.condition.RandomChanceLootCondition;
+import net.minecraft.loot.condition.RandomChanceWithEnchantedBonusLootCondition;
+import net.minecraft.loot.condition.TableBonusLootCondition;
+import net.minecraft.loot.entry.ItemEntry;
+import net.minecraft.loot.entry.LeafEntry;
+import net.minecraft.loot.function.EnchantRandomlyLootFunction;
+import net.minecraft.loot.function.SetCountLootFunction;
+import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
+import net.minecraft.loot.provider.number.UniformLootNumberProvider;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
@@ -58,11 +82,12 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		YavpmFluids.init();
 		YavpmRecipeSerializers.init();
 		YavpmTrades.init();
+		YavpmEnchantmentEffects.init();
 
 		YavpmWorldGeneration.generateModWorldGen();
 
 		ItemGroupHelper.modifyEntries();
-		LootHelper.modifyLoot();
+		modifyLoot();
 
 		try {
 			if (ResourceManagerHelper.registerBuiltinResourcePack(
@@ -80,4 +105,281 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		}
 	}
 
+	public static void modifyLoot() {
+		LOGGER.info("Modifying loot for YAVPM!");
+		LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
+			RegistryWrapper.Impl<Enchantment> enchantmentImpl = registries.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+			if (source.isBuiltin() && key.equals(LootTables.SNIFFER_DIGGING_GAMEPLAY)) {
+				LootPool.Builder poolBuilder = LootPool.builder()
+						.with(ItemEntry.builder(YavpmItems.TRUFFLE))
+						.with(ItemEntry.builder(YavpmItems.MAGIC_BEAN));
+
+				tableBuilder.pool(poolBuilder);
+			}
+			if (source.isBuiltin() && key.equals(EntityType.ZOMBIE.getLootTableId())) {
+				LootPool.Builder poolBuilder = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(YavpmItems.MAGIC_BEAN).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f))))
+						.with(ItemEntry.builder(YavpmItems.PEANUT).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f))))
+						.conditionally(KilledByPlayerLootCondition.builder())
+						.conditionally(RandomChanceWithEnchantedBonusLootCondition.builder(registries, 0.025F, 0.01F));
+
+				tableBuilder.pool(poolBuilder);
+			}
+			if (source.isBuiltin() && key.equals(LootTables.SIMPLE_DUNGEON_CHEST)) {
+				LootPool.Builder poolBuilder1 = LootPool.builder()
+						.rolls(UniformLootNumberProvider.create(1f,3f))
+						.with(ItemEntry.builder(YavpmItems.PEANUT).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 5.0F))))
+						.conditionally(RandomChanceLootCondition.builder(0.35f));
+
+				LootPool.Builder poolBuilder2 = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(YavpmItems.RUNE_ATTACK))
+						.with(ItemEntry.builder(YavpmItems.RUNE_DURABILITY))
+						.with(ItemEntry.builder(YavpmItems.RUNE_SPEED))
+						.conditionally(RandomChanceLootCondition.builder(0.005f));
+
+
+				tableBuilder.pool(poolBuilder1).pool(poolBuilder2);
+			}
+			if (source.isBuiltin() && key.equals(LootTables.ANCIENT_CITY_CHEST)) {
+				LootPool.Builder poolBuilder = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(YavpmItems.RUNE_ATTACK))
+						.with(ItemEntry.builder(YavpmItems.RUNE_DURABILITY))
+						.with(ItemEntry.builder(YavpmItems.RUNE_SPEED))
+						.conditionally(RandomChanceLootCondition.builder(0.05f));
+
+				tableBuilder.pool(poolBuilder);
+			}
+			if (source.isBuiltin() && key.equals(LootTables.TRIAL_CHAMBER_CONSUMABLES_SPAWNER)) {
+				LootPool.Builder poolBuilder = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(YavpmItems.COOKED_PEANUT)
+								.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 4f)))
+								.weight(24)
+						)
+						.with(ItemEntry.builder(YavpmItems.COOKED_PEANUT)
+								.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 4f)))
+								.weight(24)
+						)
+						.with(ItemEntry.builder(YavpmItems.PERSIMMON)
+								.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 2f)))
+								.weight(20)
+						)
+						.with(ItemEntry.builder(YavpmItems.GOLDEN_PERSIMMON)
+								.weight(2)
+						)
+						.with(ItemEntry.builder(YavpmItems.MOLY)
+								.weight(2)
+						)
+						.conditionally(RandomChanceLootCondition.builder(0.4f));
+
+				tableBuilder.pool(poolBuilder);
+			}
+			if (source.isBuiltin() && key.equals(LootTables.CAT_MORNING_GIFT_GAMEPLAY)) {
+				LootPool.Builder poolBuilder = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(YavpmItems.MAGIC_BEAN)
+								.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
+								.weight(12)
+						)
+						.with(ItemEntry.builder(Items.CARROT)
+								.weight(12)
+						)
+						.with(ItemEntry.builder(YavpmItems.MOLY).weight(1))
+						.conditionally(RandomChanceLootCondition.builder(0.18f));
+
+				tableBuilder.pool(poolBuilder);
+			}
+			if (source.isBuiltin() && key.equals(LootTables.UNDERWATER_RUIN_BIG_CHEST)) {
+				LootPool.Builder poolBuilder = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(Items.MUSIC_DISC_MALL))
+						.conditionally(RandomChanceLootCondition.builder(0.19f));
+
+				tableBuilder.pool(poolBuilder);
+			}
+			if (source.isBuiltin() && key.equals(LootTables.WOODLAND_MANSION_CHEST)) {
+				LootPool.Builder poolBuilder1 = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(Items.MUSIC_DISC_STAL))
+						.conditionally(RandomChanceLootCondition.builder(0.19f));
+
+				LootPool.Builder poolBuilder2 = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(YavpmItems.RUNE_ATTACK))
+						.with(ItemEntry.builder(YavpmItems.RUNE_DURABILITY))
+						.with(ItemEntry.builder(YavpmItems.RUNE_SPEED))
+						.conditionally(RandomChanceLootCondition.builder(0.008f));
+
+				tableBuilder.pool(poolBuilder1).pool(poolBuilder2);
+			}
+			if (source.isBuiltin() && key.equals(LootTables.DESERT_PYRAMID_CHEST)) {
+				LootPool.Builder poolbuilder1 = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(YavpmItems.MOLY))
+						.conditionally(RandomChanceLootCondition.builder(ConstantLootNumberProvider.create(0.08f)));
+
+				LootPool.Builder poolBuilder2 = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(Items.MUSIC_DISC_FAR))
+						.conditionally(RandomChanceLootCondition.builder(0.19f));
+
+				LootPool.Builder poolBuilder3 = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(YavpmItems.RUNE_ATTACK))
+						.with(ItemEntry.builder(YavpmItems.RUNE_DURABILITY))
+						.with(ItemEntry.builder(YavpmItems.RUNE_SPEED))
+						.conditionally(RandomChanceLootCondition.builder(0.005f));
+
+				tableBuilder.pool(poolbuilder1).pool(poolBuilder2).pool(poolBuilder3);
+			}
+			if (source.isBuiltin() && key.equals(LootTables.JUNGLE_TEMPLE_CHEST)) {
+				LootPool.Builder poolBuilder1 = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(YavpmItems.BANANA_SEEDS)).apply(
+								SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 6f))
+						)
+						.with(ItemEntry.builder(YavpmItems.RICE)).apply(
+								SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 8f))
+						)
+						.conditionally(RandomChanceLootCondition.builder(0.24f));
+
+				LootPool.Builder poolBuilder2 = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(Items.MUSIC_DISC_CHIRP))
+						.conditionally(RandomChanceLootCondition.builder(0.19f));
+
+				LootPool.Builder poolBuilder3 = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(YavpmItems.FORTUNE_COOKIE))
+						.conditionally(RandomChanceLootCondition.builder(0.24f));
+
+				tableBuilder.pool(poolBuilder1).pool(poolBuilder2).pool(poolBuilder3);
+			}
+			if (source.isBuiltin() && key.equals(LootTables.IGLOO_CHEST_CHEST)) {
+				LootPool.Builder poolBuilder = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(Items.MUSIC_DISC_BLOCKS))
+						.conditionally(RandomChanceLootCondition.builder(0.19f));
+
+				tableBuilder.pool(poolBuilder);
+			}
+			if (source.isBuiltin() && key.equals(LootTables.STRONGHOLD_CORRIDOR_CHEST)) {
+				LootPool.Builder poolBuilder = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(YavpmItems.RUNE_ATTACK))
+						.with(ItemEntry.builder(YavpmItems.RUNE_DURABILITY))
+						.with(ItemEntry.builder(YavpmItems.RUNE_SPEED))
+						.conditionally(RandomChanceLootCondition.builder(0.012f));
+
+				tableBuilder.pool(poolBuilder);
+			}
+			if (source.isBuiltin() && key.equals(LootTables.STRONGHOLD_CROSSING_CHEST)) {
+				LootPool.Builder poolBuilder1 = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(Items.MUSIC_DISC_11))
+						.conditionally(RandomChanceLootCondition.builder(0.19f));
+
+				LootPool.Builder poolBuilder2 = LootPool.builder()
+						.rolls(UniformLootNumberProvider.create(1f, 2f))
+						.with(ItemEntry.builder(Items.WHEAT_SEEDS).apply(
+								SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f))
+						))
+						.with(ItemEntry.builder(Items.CARROT).apply(
+								SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f))
+						))
+						.with(ItemEntry.builder(Items.POTATO).apply(
+								SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f))
+						))
+						.with(ItemEntry.builder(YavpmItems.MAGIC_BEAN).apply(
+								SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f))
+						))
+						.with(ItemEntry.builder(YavpmItems.PEANUT).apply(
+								SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f))
+						));
+
+				LootPool.Builder poolBuilder3 = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(Items.APPLE).weight(15))
+						.with(ItemEntry.builder(Items.GOLDEN_APPLE).weight(5))
+						.with(ItemEntry.builder(YavpmItems.PERSIMMON).weight(15))
+						.with(ItemEntry.builder(YavpmItems.GOLDEN_PERSIMMON).weight(5))
+						.with(ItemEntry.builder(Items.ENCHANTED_GOLDEN_APPLE).weight(1))
+						.conditionally(RandomChanceLootCondition.builder(0.2f));
+
+				tableBuilder.pool(poolBuilder1).pool(poolBuilder2).pool(poolBuilder3);
+			}
+			if (source.isBuiltin() && key.equals(LootTables.STRONGHOLD_LIBRARY_CHEST)) {
+				LootPool.Builder poolBuilder = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(Items.BOOK).apply(EnchantRandomlyLootFunction.builder(registries).options(
+								enchantmentImpl.getOrThrow(YavpmTags.Enchantments.END_ENCHANTMENTS))))
+						.conditionally(RandomChanceLootCondition.builder(0.67f));
+
+				tableBuilder.pool(poolBuilder);
+			}
+			if (source.isBuiltin() && key.equals(LootTables.END_CITY_TREASURE_CHEST)) {
+				LootPool.Builder poolBuilder1 = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(Items.BOOK).apply(EnchantRandomlyLootFunction.builder(registries).options(
+								enchantmentImpl.getOrThrow(YavpmTags.Enchantments.END_ENCHANTMENTS))))
+						.conditionally(RandomChanceLootCondition.builder(0.2f));
+				LootPool.Builder poolBuilder2 = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(YavpmItems.PHANTOM_CHORD))
+						.conditionally(RandomChanceLootCondition.builder(0.011f));
+
+				tableBuilder.pool(poolBuilder1).pool(poolBuilder2);
+			}
+			if (source.isBuiltin() && key.equals(LootTables.NETHER_BRIDGE_CHEST)) {
+				LootPool.Builder poolBuilder = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(Items.MUSIC_DISC_WARD))
+						.conditionally(RandomChanceLootCondition.builder(0.19f));
+
+				tableBuilder.pool(poolBuilder);
+			}
+			if (source.isBuiltin() && key.equals(LootTables.BURIED_TREASURE_CHEST)) {
+				LootPool.Builder poolBuilder = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(Items.MUSIC_DISC_MELLOHI))
+						.with(ItemEntry.builder(Items.MUSIC_DISC_WAIT))
+						.conditionally(RandomChanceLootCondition.builder(0.19f));
+
+				tableBuilder.pool(poolBuilder);
+			}
+		});
+
+		LootTableEvents.REPLACE.register((key, original, source, registries) -> {
+			BlockLootTableGenerator generator = new VanillaBlockLootTableGenerator(registries);
+			if (source.isBuiltin() && key == Blocks.OAK_LEAVES.getLootTableKey()) {
+				return newOakLeavesDrops(registries, generator).build();
+			}
+			if (source.isBuiltin() && key == Blocks.GRANITE.getLootTableKey()) {
+				return generator.drops(Blocks.GRANITE, YavpmBlocks.COBBLED_GRANITE).build();
+			}
+			if (source.isBuiltin() && key == Blocks.DIORITE.getLootTableKey()) {
+				return generator.drops(Blocks.DIORITE, YavpmBlocks.COBBLED_DIORITE).build();
+			}
+			if (source.isBuiltin() && key == Blocks.ANDESITE.getLootTableKey()) {
+				return generator.drops(Blocks.ANDESITE, YavpmBlocks.COBBLED_ANDESITE).build();
+			}
+			return original;
+		});
+	}
+	private static LootTable.Builder newOakLeavesDrops(RegistryWrapper.WrapperLookup lookup, BlockLootTableGenerator generator) {
+		RegistryWrapper.Impl<Enchantment> impl = lookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+		return generator.leavesDrops(Blocks.OAK_LEAVES, Blocks.OAK_SAPLING, 0.05F, 0.0625F, 0.083333336F, 0.1F)
+				.pool(
+						LootPool.builder()
+								.rolls(ConstantLootNumberProvider.create(1.0F))
+								.conditionally(generator.createWithoutShearsOrSilkTouchCondition())
+								.with(
+										((LeafEntry.Builder<?>)generator.addSurvivesExplosionCondition(Blocks.OAK_LEAVES, ItemEntry.builder(YavpmItems.ACORN)))
+												.conditionally(TableBonusLootCondition.builder(impl.getOrThrow(Enchantments.FORTUNE), 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))
+								)
+				);
+	}
 }

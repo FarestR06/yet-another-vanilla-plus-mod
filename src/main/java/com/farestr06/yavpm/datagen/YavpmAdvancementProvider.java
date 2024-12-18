@@ -5,10 +5,7 @@ import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.item.YavpmItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
-import net.minecraft.advancement.Advancement;
-import net.minecraft.advancement.AdvancementEntry;
-import net.minecraft.advancement.AdvancementFrame;
-import net.minecraft.advancement.AdvancementRewards;
+import net.minecraft.advancement.*;
 import net.minecraft.advancement.criterion.*;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
@@ -48,12 +45,12 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                     )
             )).build(makeId("husbandry/eat_fake_animal_product"));
 
-    protected static final AdvancementEntry LIP_SMACKER = Advancement.Builder.create()
+    protected static final AdvancementEntry FED_WOLF_PEANUT = Advancement.Builder.create()
             .parent(VanillaAdvancements.Husbandry.TAME_AN_ANIMAL)
             .display(
                     YavpmItems.COOKED_PEANUT,
-                    Text.translatable("advancements.husbandry.lip_smacker.title"),
-                    Text.translatable("advancements.husbandry.lip_smacker.description"),
+                    Text.translatable("advancements.husbandry.fed_wolf_peanut.title"),
+                    Text.translatable("advancements.husbandry.fed_wolf_peanut.description"),
                     null,
                     AdvancementFrame.TASK,
                     true,
@@ -63,7 +60,7 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                     ItemPredicate.Builder.create().items(YavpmItems.COOKED_PEANUT),
                     Optional.of(EntityPredicate.contextPredicateFromEntityPredicate(
                             EntityPredicate.Builder.create().type(EntityType.WOLF)))
-            )).build(makeId("husbandry/lip_smacker"));
+            )).build(makeId("husbandry/fed_wolf_peanut"));
 
     protected static final AdvancementEntry LUCKY_TICKET = Advancement.Builder.create()
             .parent(VanillaAdvancements.Husbandry.PLANT_SEED)
@@ -84,7 +81,7 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
 
     protected static final AdvancementEntry EAT_ALL_FOOD_BOWLS =
             requireFoodBowlItemsEaten(Advancement.Builder.create())
-                    .parent(VanillaAdvancements.Husbandry.ROOT)
+                    .parent(VanillaAdvancements.Husbandry.PLANT_SEED)
                     .display(
                             Items.SUSPICIOUS_STEW,
                             Text.translatable("advancements.husbandry.eat_all_food_bowls.title"),
@@ -109,10 +106,15 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                     true,
                     true,
                     false
-            ).criterion("craft_diamonds", RecipeCraftedCriterion.Conditions.create(
+            )
+            .criteriaMerger(AdvancementRequirements.CriterionMerger.OR)
+            .criterion("craft_diamonds_via_smelting", RecipeCraftedCriterion.Conditions.create(
                     makeId("diamond_from_smelting_graphene_block")
             ))
-            .rewards(AdvancementRewards.Builder.experience(75))
+            .criterion("craft_diamonds_via_blasting", RecipeCraftedCriterion.Conditions.create(
+                    makeId("diamond_from_blasting_graphene_block")
+            ))
+            .rewards(AdvancementRewards.Builder.experience(100))
             .build(makeId("husbandry/craft_diamonds_from_graphene"));
     // endregion
     // region Adventure
@@ -191,7 +193,7 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
     public void generateAdvancement(RegistryWrapper.WrapperLookup registryLookup, Consumer<AdvancementEntry> consumer) {
         // Husbandry
         consumer.accept(EAT_FAKE_ANIMAL_PRODUCT);
-        consumer.accept(LIP_SMACKER);
+        consumer.accept(FED_WOLF_PEANUT);
         consumer.accept(LUCKY_TICKET);
         consumer.accept(EAT_ALL_FOOD_BOWLS);
         consumer.accept(CRAFT_DIAMONDS_FROM_GRAPHENE);

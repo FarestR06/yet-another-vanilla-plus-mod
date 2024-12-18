@@ -587,16 +587,19 @@ public class YavpmBlocks {
 
     public static void init() {
         YetAnotherVanillaPlusMod.LOGGER.info("Registering blocks for YAVPM!");
-
         setUpRegistries();
     }
 
     private static void setUpRegistries() {
+        YetAnotherVanillaPlusMod.LOGGER.debug("Making logs strippable...");
         StrippableBlockRegistry.register(APPLE_LOG, STRIPPED_APPLE_LOG);
         StrippableBlockRegistry.register(APPLE_WOOD, STRIPPED_APPLE_WOOD);
+        StrippableBlockRegistry.register(PERSIMMON_LOG, STRIPPED_PERSIMMON_LOG);
+        StrippableBlockRegistry.register(PERSIMMON_WOOD, STRIPPED_PERSIMMON_WOOD);
         StrippableBlockRegistry.register(PRICKLE_LOG, STRIPPED_PRICKLE_LOG);
         StrippableBlockRegistry.register(PRICKLE_WOOD, STRIPPED_PRICKLE_WOOD);
 
+        YetAnotherVanillaPlusMod.LOGGER.debug("Making blocks flammable...");
         FlammableBlockRegistry flammables = FlammableBlockRegistry.getDefaultInstance();
         flammables.add(APPLE_LOG, 5, 5);
         flammables.add(STRIPPED_APPLE_LOG, 5, 5);
@@ -608,6 +611,17 @@ public class YavpmBlocks {
         flammables.add(APPLE_FENCE, 5, 20);
         flammables.add(APPLE_FENCE_GATE, 5, 20);
         flammables.add(APPLE_LEAVES, 30, 60);
+
+        flammables.add(PERSIMMON_LOG, 5, 5);
+        flammables.add(STRIPPED_PERSIMMON_LOG, 5, 5);
+        flammables.add(PERSIMMON_WOOD, 5, 5);
+        flammables.add(STRIPPED_PERSIMMON_WOOD, 5, 5);
+        flammables.add(PERSIMMON_PLANKS, 5, 20);
+        flammables.add(PERSIMMON_STAIRS, 5, 20);
+        flammables.add(PERSIMMON_SLAB, 5, 20);
+        flammables.add(PERSIMMON_FENCE, 5, 20);
+        flammables.add(PERSIMMON_FENCE_GATE, 5, 20);
+        flammables.add(PERSIMMON_LEAVES, 30, 60);
 
         flammables.add(PRICKLE_LOG, 2, 2);
         flammables.add(STRIPPED_PRICKLE_LOG, 2, 2);

@@ -21,7 +21,7 @@
   },
   "display": {
     "description": {
-      "translate": "advancements.husbandry.lip_smacker.description"
+      "translate": "advancements.husbandry.fed_wolf_peanut.description"
     },
     "hidden": true,
     "icon": {
@@ -29,7 +29,7 @@
       "id": "yavpm:cooked_peanut"
     },
     "title": {
-      "translate": "advancements.husbandry.lip_smacker.title"
+      "translate": "advancements.husbandry.fed_wolf_peanut.title"
     }
   },
   "requirements": [

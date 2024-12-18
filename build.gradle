@@ -35,6 +35,7 @@ repositories {
 		url = 'https://maven.ladysnake.org/releases'
 	}
 
+	// Terrablender
 	exclusiveContent {
 		forRepository {
 			maven { url = 'https://maven.minecraftforge.net/' }
@@ -44,6 +45,7 @@ repositories {
 		}
 	}
 
+	// Farest's API
 	exclusiveContent {
 		forRepository {
 			maven {

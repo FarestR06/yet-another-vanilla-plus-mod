@@ -1,0 +1,34 @@
+{
+  "anvil_cost": 5,
+  "description": {
+    "translate": "enchantment.yavpm.bounding"
+  },
+  "effects": {
+    "minecraft:attributes": [
+      {
+        "amount": {
+          "type": "minecraft:linear",
+          "base": 0.25,
+          "per_level_above_first": 0.75
+        },
+        "attribute": "minecraft:generic.jump_strength",
+        "id": "minecraft:enchantment.bounding",
+        "operation": "add_value"
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 25,
+    "per_level_above_first": 10
+  },
+  "max_level": 2,
+  "min_cost": {
+    "base": 10,
+    "per_level_above_first": 10
+  },
+  "slots": [
+    "body"
+  ],
+  "supported_items": "#yavpm:enchantable/horse_armor",
+  "weight": 14
+}

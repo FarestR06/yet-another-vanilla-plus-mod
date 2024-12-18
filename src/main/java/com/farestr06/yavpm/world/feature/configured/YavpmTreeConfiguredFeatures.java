@@ -165,7 +165,7 @@ public class YavpmTreeConfiguredFeatures {
     private static TreeFeatureConfig.Builder makePersimmonConfig() {
         return new TreeFeatureConfig.Builder(
                 BlockStateProvider.of(YavpmBlocks.PERSIMMON_LOG),
-                new BendingTrunkPlacer(4, 2, 0, 3, UniformIntProvider.create(2, 3)),
+                new BendingTrunkPlacer(4, 2, 0, 3, UniformIntProvider.create(1, 2)),
                 BlockStateProvider.of(YavpmBlocks.PERSIMMON_LEAVES),
                 new RandomSpreadFoliagePlacer(ConstantIntProvider.create(3), ConstantIntProvider.create(0), ConstantIntProvider.create(2), 40),
                 new TwoLayersFeatureSize(1, 0, 1)

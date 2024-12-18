@@ -1,5 +1,6 @@
 package com.farestr06.yavpm.entity;
 
+import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.entity.mob.CarbonfowlEntity;
 import com.farestr06.yavpm.entity.mob.MoongusEntity;
 import com.farestr06.yavpm.entity.mob.TanukiEntity;
@@ -59,10 +60,18 @@ public class YavpmEntities {
     }
 
     public static void init() {
-        LOGGER.info("Registering mobs for YAVPM!!");
+        LOGGER.info("Registering entities for YAVPM!!");
+
+        YetAnotherVanillaPlusMod.LOGGER.debug("Creating Moongus attributes...");
         FabricDefaultAttributeRegistry.register(MOONGUS, CowEntity.createCowAttributes().build());
+
+        YetAnotherVanillaPlusMod.LOGGER.debug("Creating Carbonfowl attributes...");
         FabricDefaultAttributeRegistry.register(CARBONFOWL, CarbonfowlEntity.createCarbonfowlAttributes().build());
+
+        YetAnotherVanillaPlusMod.LOGGER.debug("Creating Tanuki attributes...");
         FabricDefaultAttributeRegistry.register(TANUKI, TanukiEntity.createTanukiAttributes().build());
+
+        YetAnotherVanillaPlusMod.LOGGER.debug("Creating Void Phantom attributes...");
         FabricDefaultAttributeRegistry.register(VOID_PHANTOM, HostileEntity.createHostileAttributes().build());
     }
 }

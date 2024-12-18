@@ -12,6 +12,6 @@ public class YavpmFluids {
     public static final FlowableFluid FLOWING_VOID_WATER = Registry.register(Registries.FLUID, makeId("flowing_void_water"), new VoidWaterFluid.Flowing());
 
     public static void init() {
-        YetAnotherVanillaPlusMod.LOGGER.info("Registering fluids and buckets for YAVPM!");
+        YetAnotherVanillaPlusMod.LOGGER.info("Registering fluids for YAVPM!");
     }
 }

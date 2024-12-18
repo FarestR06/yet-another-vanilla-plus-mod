@@ -27,7 +27,7 @@ public class YavpmVegetationPlacedFeatures {
                 context,
                 APPLE_VEGETAION_PLACED,
                 configuredFeatureRegistryEntryLookup.getOrThrow(YavpmVegetationConfiguredFeatures.APPLE_VEGETAION),
-                VegetationPlacedFeatures.treeModifiers(PlacedFeatures.createCountExtraModifier(1, 0.1F, 1))
+                VegetationPlacedFeatures.treeModifiers(PlacedFeatures.createCountExtraModifier(0, 0.1F, 1))
         );
         register(
                 context,
@@ -39,13 +39,13 @@ public class YavpmVegetationPlacedFeatures {
                 context,
                 PERSIMMON_VEGETAION_PLACED,
                 configuredFeatureRegistryEntryLookup.getOrThrow(YavpmVegetationConfiguredFeatures.PERSIMMON_VEGETAION),
-                VegetationPlacedFeatures.treeModifiers(PlacedFeatures.createCountExtraModifier(5, 0.1F, 1))
+                VegetationPlacedFeatures.treeModifiers(PlacedFeatures.createCountExtraModifier(6, 0.1F, 1))
         );
         register(
                 context,
                 PRICKLE_VEGETAION_PLACED,
                 configuredFeatureRegistryEntryLookup.getOrThrow(YavpmVegetationConfiguredFeatures.PRICKLE_VEGETATION),
-                VegetationPlacedFeatures.treeModifiers(PlacedFeatures.createCountExtraModifier(1, 0.1F, 1))
+                VegetationPlacedFeatures.treeModifiers(PlacedFeatures.createCountExtraModifier(1, 0.05f, 1))
         );
     }
 
