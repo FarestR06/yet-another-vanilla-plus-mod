@@ -37,19 +37,13 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.registerSimpleCubeAll(YavpmBlocks.GLOWING_OBSIDIAN);
         generator.registerSimpleCubeAll(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
 
-
-        generator.registerCrop(YavpmBlocks.WARPED_WART, Properties.AGE_3, 0, 1, 1, 2);
-        generator.registerCrop(YavpmBlocks.PEANUT_CROP, PeanutCropBlock.AGE, 0, 1, 2, 3);
-        registerBananaCrop(generator);
-
-        registerCrossCrop(generator, YavpmBlocks.OAK_SAPLING_CROP, SaplingCropBlock.AGE, 0,1,2,3);
-        registerCrossCrop(generator, YavpmBlocks.MAGIC_BEAN_CROP, MagicBeanCropBlock.AGE, 0,1,1,2,3,4,5);
+        crops(generator);
 
         createGraniteSet(generator);
         createDioriteSet(generator);
         createAndesiteSet(generator);
 
-        generator.registerSimpleCubeAll(YavpmBlocks.KIMBERLITE);
+        createKimberliteSet(generator);
         generator.registerSimpleCubeAll(YavpmBlocks.GRAPHITE_BLOCK);
         generator.registerSimpleCubeAll(YavpmBlocks.GRAPHENE_BLOCK);
 
@@ -68,9 +62,38 @@ public class YavpmModelProvider extends FabricModelProvider {
     public void generateItemModels(ItemModelGenerator generator) {
         generator.register(YavpmItems.REACTOR, Models.GENERATED);
         generator.register(YavpmItems.HEATED_REACTOR, Models.GENERATED);
-        generator.register(YavpmItems.MOLY, Models.GENERATED);
+
+        generator.register(YavpmItems.BABY_KEY, Models.GENERATED);
 
         generator.register(YavpmItems.PHANTOM_CHORD, Models.GENERATED);
+
+        food(generator);
+
+        generator.register(YavpmItems.GRAPHITE, Models.GENERATED);
+        generator.register(YavpmItems.RAW_DIAMOND, Models.GENERATED);
+
+        generator.register(YavpmItems.APPLE_BOAT, Models.GENERATED);
+        generator.register(YavpmItems.APPLE_CHEST_BOAT, Models.GENERATED);
+
+        generator.register(YavpmItems.PERSIMMON_BOAT, Models.GENERATED);
+        generator.register(YavpmItems.PERSIMMON_CHEST_BOAT, Models.GENERATED);
+
+        createStuddedArmor(generator);
+
+        generator.register(YavpmItems.MOONGUS_SPAWN_EGG, TEMPLATE_SPAWN_EGG);
+        generator.register(YavpmItems.CARBONFOWL_SPAWN_EGG, TEMPLATE_SPAWN_EGG);
+        generator.register(YavpmItems.TANUKI_SPAWN_EGG, TEMPLATE_SPAWN_EGG);
+        generator.register(YavpmItems.VOID_PHANTOM_SPAWN_EGG, TEMPLATE_SPAWN_EGG);
+
+        generator.register(YavpmItems.VOID_WATER_BUCKET, Models.GENERATED);
+
+        generator.register(YavpmItems.RUNE_ATTACK, Models.GENERATED);
+        generator.register(YavpmItems.RUNE_DURABILITY, Models.GENERATED);
+        generator.register(YavpmItems.RUNE_SPEED, Models.GENERATED);
+    }
+
+    private static void food(ItemModelGenerator generator) {
+        generator.register(YavpmItems.MOLY, Models.GENERATED);
 
         generator.register(YavpmItems.BANANA, Models.GENERATED);
         generator.register(YavpmItems.COOKED_PEANUT, Models.GENERATED);
@@ -102,28 +125,15 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.register(YavpmItems.SEA_SOUP, Models.GENERATED);
 
         generator.register(YavpmItems.CHICKEN_SOUP, Models.GENERATED);
+    }
 
-        generator.register(YavpmItems.GRAPHITE, Models.GENERATED);
-        generator.register(YavpmItems.RAW_DIAMOND, Models.GENERATED);
+    private void crops(BlockStateModelGenerator generator) {
+        generator.registerCrop(YavpmBlocks.WARPED_WART, Properties.AGE_3, 0, 1, 1, 2);
+        generator.registerCrop(YavpmBlocks.PEANUT_CROP, PeanutCropBlock.AGE, 0, 1, 2, 3);
+        registerBananaCrop(generator);
 
-        generator.register(YavpmItems.APPLE_BOAT, Models.GENERATED);
-        generator.register(YavpmItems.APPLE_CHEST_BOAT, Models.GENERATED);
-
-        generator.register(YavpmItems.PERSIMMON_BOAT, Models.GENERATED);
-        generator.register(YavpmItems.PERSIMMON_CHEST_BOAT, Models.GENERATED);
-
-        createStuddedArmor(generator);
-
-        generator.register(YavpmItems.MOONGUS_SPAWN_EGG, TEMPLATE_SPAWN_EGG);
-        generator.register(YavpmItems.CARBONFOWL_SPAWN_EGG, TEMPLATE_SPAWN_EGG);
-        generator.register(YavpmItems.TANUKI_SPAWN_EGG, TEMPLATE_SPAWN_EGG);
-        generator.register(YavpmItems.VOID_PHANTOM_SPAWN_EGG, TEMPLATE_SPAWN_EGG);
-
-        generator.register(YavpmItems.VOID_WATER_BUCKET, Models.GENERATED);
-
-        generator.register(YavpmItems.RUNE_ATTACK, Models.GENERATED);
-        generator.register(YavpmItems.RUNE_DURABILITY, Models.GENERATED);
-        generator.register(YavpmItems.RUNE_SPEED, Models.GENERATED);
+        registerCrossCrop(generator, YavpmBlocks.OAK_SAPLING_CROP, SaplingCropBlock.AGE, 0,1,2,3);
+        registerCrossCrop(generator, YavpmBlocks.MAGIC_BEAN_CROP, MagicBeanCropBlock.AGE, 0,1,1,2,3,4,5);
     }
 
     private static void registerBananaCrop(BlockStateModelGenerator generator) {
@@ -136,7 +146,26 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.blockStateCollector.accept(VariantsBlockStateSupplier.create(block).coordinate(blockStateVariantMap));
     }
 
+    private static void createKimberliteSet(BlockStateModelGenerator generator) {
+        BlockStateModelGenerator.BlockTexturePool kimberlitePool = generator.registerCubeAllModelTexturePool(YavpmBlocks.KIMBERLITE);
+        kimberlitePool.stairs(YavpmBlocks.KIMBERLITE_STAIRS);
+        kimberlitePool.slab(YavpmBlocks.KIMBERLITE_SLAB);
+        kimberlitePool.wall(YavpmBlocks.KIMBERLITE_WALL);
+
+        BlockStateModelGenerator.BlockTexturePool polishedKimberlitePool = generator.registerCubeAllModelTexturePool(YavpmBlocks.POLISHED_KIMBERLITE);
+        polishedKimberlitePool.stairs(YavpmBlocks.POLISHED_KIMBERLITE_STAIRS);
+        polishedKimberlitePool.slab(YavpmBlocks.POLISHED_KIMBERLITE_SLAB);
+        polishedKimberlitePool.wall(YavpmBlocks.POLISHED_KIMBERLITE_WALL);
+
+        BlockStateModelGenerator.BlockTexturePool polishedKimberliteBrickPool = generator.registerCubeAllModelTexturePool(YavpmBlocks.POLISHED_KIMBERLITE_BRICKS);
+        polishedKimberliteBrickPool.stairs(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_STAIRS);
+        polishedKimberliteBrickPool.slab(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_SLAB);
+        polishedKimberliteBrickPool.wall(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_WALL);
+    }
     private static void createAndesiteSet(BlockStateModelGenerator generator) {
+        BlockStateModelGenerator.BlockTexturePool polishedPool = generator.registerCubeAllModelTexturePool(Blocks.POLISHED_ANDESITE);
+        polishedPool.wall(YavpmBlocks.POLISHED_ANDESITE_WALL);
+
         BlockStateModelGenerator.BlockTexturePool cobbledAndesitePool = generator.registerCubeAllModelTexturePool(YavpmBlocks.COBBLED_ANDESITE);
         cobbledAndesitePool.stairs(YavpmBlocks.COBBLED_ANDESITE_STAIRS);
         cobbledAndesitePool.slab(YavpmBlocks.COBBLED_ANDESITE_SLAB);
@@ -153,6 +182,9 @@ public class YavpmModelProvider extends FabricModelProvider {
         andesiteTilePool.wall(YavpmBlocks.POLISHED_ANDESITE_TILE_WALL);
     }
     private static void createGraniteSet(BlockStateModelGenerator generator) {
+        BlockStateModelGenerator.BlockTexturePool polishedPool = generator.registerCubeAllModelTexturePool(Blocks.POLISHED_GRANITE);
+        polishedPool.wall(YavpmBlocks.POLISHED_GRANITE_WALL);
+
         BlockStateModelGenerator.BlockTexturePool cobbledGranitePool = generator.registerCubeAllModelTexturePool(YavpmBlocks.COBBLED_GRANITE);
         cobbledGranitePool.stairs(YavpmBlocks.COBBLED_GRANITE_STAIRS);
         cobbledGranitePool.slab(YavpmBlocks.COBBLED_GRANITE_SLAB);
@@ -169,6 +201,9 @@ public class YavpmModelProvider extends FabricModelProvider {
         graniteTilePool.wall(YavpmBlocks.POLISHED_GRANITE_TILE_WALL);
     }
     private static void createDioriteSet(BlockStateModelGenerator generator) {
+        BlockStateModelGenerator.BlockTexturePool polishedPool = generator.registerCubeAllModelTexturePool(Blocks.POLISHED_DIORITE);
+        polishedPool.wall(YavpmBlocks.POLISHED_DIORITE_WALL);
+
         BlockStateModelGenerator.BlockTexturePool cobbledDioritePool = generator.registerCubeAllModelTexturePool(YavpmBlocks.COBBLED_DIORITE);
         cobbledDioritePool.stairs(YavpmBlocks.COBBLED_DIORITE_STAIRS);
         cobbledDioritePool.slab(YavpmBlocks.COBBLED_DIORITE_SLAB);

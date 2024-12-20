@@ -1,6 +1,7 @@
 package com.farestr06.yavpm.entity.mob;
 
 import com.farestr06.yavpm.entity.YavpmEntities;
+import com.farestr06.yavpm.util.YavpmTags;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -26,7 +27,7 @@ import java.util.UUID;
 
 public class CarbonfowlEntity extends ChickenEntity implements Angerable {
 
-    private static final Ingredient BREEDING_INGREDIENT = Ingredient.ofItems(Items.GLOW_BERRIES);
+    private static final Ingredient BREEDING_INGREDIENT = Ingredient.fromTag(YavpmTags.Items.CARBONFOWL_FOODS);
     private static final TrackedData<Integer> ANGER_TIME = DataTracker.registerData(CarbonfowlEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final UniformIntProvider ANGER_TIME_RANGE = TimeHelper.betweenSeconds(12, 36);
     private float flapEffects;

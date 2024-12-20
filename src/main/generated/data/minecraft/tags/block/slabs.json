@@ -8,6 +8,9 @@
     "yavpm:polished_andesite_brick_slab",
     "yavpm:polished_granite_tile_slab",
     "yavpm:polished_diorite_tile_slab",
-    "yavpm:polished_andesite_tile_slab"
+    "yavpm:polished_andesite_tile_slab",
+    "yavpm:apple_slab",
+    "yavpm:persimmon_slab",
+    "yavpm:prickle_slab"
   ]
 }

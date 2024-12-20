@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "P": {
+      "item": "minecraft:carved_pumpkin"
+    }
+  },
+  "pattern": [
+    "G ",
+    "GG",
+    "P "
+  ],
+  "result": {
+    "count": 1,
+    "id": "yavpm:baby_key"
+  }
+}

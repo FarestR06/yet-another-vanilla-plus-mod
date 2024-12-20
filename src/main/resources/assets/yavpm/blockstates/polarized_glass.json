@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "yavpm:block/polarized_glass_off"
+    },
+    "powered=true": {
+      "model": "yavpm:block/polarized_glass_on"
+    }
+  }
+}

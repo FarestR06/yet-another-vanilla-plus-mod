@@ -24,6 +24,28 @@ import java.util.function.Consumer;
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmAdvancementProvider extends FabricAdvancementProvider {
+    // region Story
+    protected static final AdvancementEntry SMELT_KIMBERLITE = Advancement.Builder.create()
+            .parent(VanillaAdvancements.Story.MINE_STONE)
+            .display(
+                    YavpmItems.RAW_DIAMOND,
+                    Text.translatable("advancements.story.smelt_kimberlite.title"),
+                    Text.translatable("advancements.story.smelt_kimberlite.description"),
+                    null,
+                    AdvancementFrame.TASK,
+                    true,
+                    true,
+                    true
+            )
+            .criteriaMerger(AdvancementRequirements.CriterionMerger.OR)
+            .criterion("craft_diamonds_via_smelting", RecipeCraftedCriterion.Conditions.create(
+                    makeId("diamond_from_smelting_raw_diamond")
+            ))
+            .criterion("craft_diamonds_via_blasting", RecipeCraftedCriterion.Conditions.create(
+                    makeId("diamond_from_blasting_raw_diamond")
+            ))
+            .build(makeId("story/smelt_kimberlite"));
+    // endregion
     // region Husbandry
     protected static final AdvancementEntry EAT_FAKE_ANIMAL_PRODUCT = Advancement.Builder.create()
             .parent(VanillaAdvancements.Husbandry.PLANT_SEED)
@@ -191,6 +213,8 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
 
     @Override
     public void generateAdvancement(RegistryWrapper.WrapperLookup registryLookup, Consumer<AdvancementEntry> consumer) {
+        // Story
+        consumer.accept(SMELT_KIMBERLITE);
         // Husbandry
         consumer.accept(EAT_FAKE_ANIMAL_PRODUCT);
         consumer.accept(FED_WOLF_PEANUT);

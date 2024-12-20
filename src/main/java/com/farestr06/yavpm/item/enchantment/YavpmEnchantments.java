@@ -39,6 +39,7 @@ import net.minecraft.util.Identifier;
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmEnchantments {
+    public static final RegistryKey<Enchantment> CRITICAL_HIT = registerKey("critical_hit");
     public static final RegistryKey<Enchantment> VOID_STRIKE = registerKey("void_strike");
     public static final RegistryKey<Enchantment> ILLAGERS_BANE = registerKey("illagers_bane");
     public static final RegistryKey<Enchantment> ENDERBANE = registerKey("enderbane");
@@ -63,6 +64,33 @@ public class YavpmEnchantments {
         var items = registerable.getRegistryLookup(RegistryKeys.ITEM);
         var damageTypes = registerable.getRegistryLookup(RegistryKeys.DAMAGE_TYPE);
 
+        // region Critical Hit
+        register(
+                registerable,
+                CRITICAL_HIT,
+                Enchantment.builder(
+                        Enchantment.definition(
+                                items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
+                                items.getOrThrow(ItemTags.SWORD_ENCHANTABLE),
+                                2,
+                                3,
+                                Enchantment.leveledCost(10, 5),
+                                Enchantment.leveledCost(15, 5),
+                                6,
+                                AttributeModifierSlot.MAINHAND
+                        ))
+                        .exclusiveSet(enchantments.getOrThrow(EnchantmentTags.DAMAGE_EXCLUSIVE_SET))
+                        .addEffect(
+                                EnchantmentEffectComponentTypes.DAMAGE,
+                                new MultiplyEnchantmentEffect(EnchantmentLevelBasedValue.constant(2.5f)),
+                                RandomChanceLootCondition.builder(
+                                        EnchantmentLevelLootNumberProvider.create(
+                                                EnchantmentLevelBasedValue.linear(0.1f, 0.05f)
+                                        )
+                                )
+                        )
+        );
+        // endregion
         // region Void Strike
         register(
                 registerable,

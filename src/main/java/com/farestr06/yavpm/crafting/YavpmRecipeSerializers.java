@@ -11,6 +11,8 @@ import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 public class YavpmRecipeSerializers {
     public static final RecipeSerializer<RuneUpgradeRecipe> RUNE_UPGRADE = Registry.register(Registries.RECIPE_SERIALIZER,
         makeId("crafting_special_rune_upgrade"), new SpecialRecipeSerializer<>(RuneUpgradeRecipe::new));
+    public static final RecipeSerializer<ReactorRechargeRecipe> REACTOR_RECHARGE = Registry.register(Registries.RECIPE_SERIALIZER,
+        makeId("crafting_special_reactor_recharge"), new SpecialRecipeSerializer<>(ReactorRechargeRecipe::new));
 
     public static void init() {
         YetAnotherVanillaPlusMod.LOGGER.info("Registering recipe serializers for YAVPM!");

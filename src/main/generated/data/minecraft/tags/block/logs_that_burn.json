@@ -2,10 +2,6 @@
   "values": [
     "#yavpm:apple_logs",
     "#yavpm:persimmon_logs",
-    "#yavpm:prickle_logs",
-    "yavpm:apple_log",
-    "yavpm:stripped_apple_log",
-    "yavpm:apple_wood",
-    "yavpm:stripped_apple_wood"
+    "#yavpm:prickle_logs"
   ]
 }

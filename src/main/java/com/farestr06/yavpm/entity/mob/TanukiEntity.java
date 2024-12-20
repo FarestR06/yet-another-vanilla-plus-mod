@@ -20,6 +20,7 @@ import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
@@ -34,6 +35,7 @@ import org.jetbrains.annotations.Nullable;
 import static com.farestr06.yavpm.config.YavpmConfig.HANDLER;
 
 public class TanukiEntity extends AnimalEntity {
+    private static final Ingredient BREEDING_INGREDIENT = Ingredient.fromTag(YavpmTags.Items.TANUKI_FOODS);
     public int tryTransformTime = this.random.nextInt(HANDLER.instance().tanukiRandomTransformDelay) + HANDLER.instance().tanukiBaseTransformDelay;
 
     public TanukiEntity(EntityType<? extends AnimalEntity> entityType, World world) {
@@ -71,7 +73,7 @@ public class TanukiEntity extends AnimalEntity {
 
     @Override
     public boolean isBreedingItem(ItemStack stack) {
-        return stack.isIn(ConventionalItemTags.BERRY_FOODS);
+        return BREEDING_INGREDIENT.test(stack);
     }
 
     @Override

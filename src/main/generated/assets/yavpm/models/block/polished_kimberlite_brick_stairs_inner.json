@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "yavpm:block/polished_kimberlite_bricks",
+    "side": "yavpm:block/polished_kimberlite_bricks",
+    "top": "yavpm:block/polished_kimberlite_bricks"
+  }
+}

@@ -8,6 +8,7 @@ import com.farestr06.yavpm.item.YavpmItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableProvider;
+import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Items;
@@ -63,7 +64,7 @@ public class YavpmLootProviders {
 
             stoneVariantDrops();
 
-            addDropWithSilkTouch(YavpmBlocks.ELECTRO_GLASS);
+            addDropWithSilkTouch(YavpmBlocks.POLARIZED_GLASS);
 
             modCropDrops();
 
@@ -132,6 +133,22 @@ public class YavpmLootProviders {
         }
 
         private void stoneVariantDrops() {
+            kimberliteDrops();
+            addDrop(YavpmBlocks.POLISHED_KIMBERLITE);
+            addDrop(YavpmBlocks.POLISHED_KIMBERLITE_BRICKS);
+
+            addDrop(YavpmBlocks.KIMBERLITE_STAIRS);
+            addDrop(YavpmBlocks.POLISHED_KIMBERLITE_STAIRS);
+            addDrop(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_STAIRS);
+
+            slabDrops(YavpmBlocks.KIMBERLITE_SLAB);
+            slabDrops(YavpmBlocks.POLISHED_KIMBERLITE_SLAB);
+            slabDrops(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_SLAB);
+
+            addDrop(YavpmBlocks.KIMBERLITE_WALL);
+            addDrop(YavpmBlocks.POLISHED_KIMBERLITE_WALL);
+            addDrop(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_WALL);
+
 
             addDrop(YavpmBlocks.COBBLED_GRANITE);
             addDrop(YavpmBlocks.COBBLED_DIORITE);
@@ -164,6 +181,23 @@ public class YavpmLootProviders {
             addDrop(YavpmBlocks.POLISHED_GRANITE_BRICK_WALL);
             addDrop(YavpmBlocks.POLISHED_DIORITE_BRICK_WALL);
             addDrop(YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL);
+        }
+
+        private void kimberliteDrops() {
+            this.addDrop(
+                    YavpmBlocks.KIMBERLITE,
+                    block -> this.dropsWithSilkTouch(
+                            block,
+                            this.addSurvivesExplosionCondition(
+                                    block,
+                                    ItemEntry.builder(YavpmItems.RAW_DIAMOND)
+                                            .conditionally(TableBonusLootCondition.builder(
+                                                    lookup.getOrThrow(Enchantments.FORTUNE),
+                                                    0.01f, 0.02f, 0.04f, 0.08f))
+                                            .alternatively(ItemEntry.builder(block))
+                            )
+                    )
+            );
         }
 
         private void appleDrops() {

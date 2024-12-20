@@ -1,0 +1,37 @@
+{
+  "parent": "minecraft:story/mine_stone",
+  "criteria": {
+    "craft_diamonds_via_blasting": {
+      "conditions": {
+        "recipe_id": "yavpm:diamond_from_blasting_raw_diamond"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    },
+    "craft_diamonds_via_smelting": {
+      "conditions": {
+        "recipe_id": "yavpm:diamond_from_smelting_raw_diamond"
+      },
+      "trigger": "minecraft:recipe_crafted"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.story.smelt_kimberlite.description"
+    },
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "yavpm:raw_diamond"
+    },
+    "title": {
+      "translate": "advancements.story.smelt_kimberlite.title"
+    }
+  },
+  "requirements": [
+    [
+      "craft_diamonds_via_smelting",
+      "craft_diamonds_via_blasting"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

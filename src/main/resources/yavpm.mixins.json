@@ -3,6 +3,7 @@
   "package": "com.farestr06.yavpm.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "block.LockableContainerBlockEntityAccessor",
     "block.PowderSnowBlockMixin",
     "entity.AbstractPiglinEntityMixin",
     "entity.ChickenEntityMixin",
@@ -18,7 +19,7 @@
   },
   "client": [
     "client.CreeperEntityRendererMixin",
-    "client.SplashTextResourceSupplierMixin",
-    "entity.MooshroomMushroomFeatureRendererMixin"
+    "client.MooshroomMushroomFeatureRendererMixin",
+    "client.SplashTextResourceSupplierMixin"
   ]
 }

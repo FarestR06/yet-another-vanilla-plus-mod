@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "yavpm:block/kimberlite_slab"
+    },
+    "type=double": {
+      "model": "yavpm:block/kimberlite"
+    },
+    "type=top": {
+      "model": "yavpm:block/kimberlite_slab_top"
+    }
+  }
+}

@@ -23,9 +23,9 @@ public class YavpmConfig {
     @SerialEntry(comment = "Tanukis will attempt to transform after at least this many ticks. Default is 2000.")
     public int tanukiBaseTransformDelay = 2000;
     @SerialEntry(comment = "In addition to the base delay, Tanukis will also wait up to this many ticks. Default is 4000.")
-    public int tanukiRandomTransformDelay = 2000;
-    @SerialEntry(comment = "When a Tanuki tries to transform, the chance of it succeeding is determined by this value. Default is 0.33f.")
-    public float tanukiTransformChance = 0.33f;
+    public int tanukiRandomTransformDelay = 4000;
+    @SerialEntry(comment = "When a Tanuki tries to transform, the chance of it succeeding is determined by this value. Default is 0.3f.")
+    public float tanukiTransformChance = 0.3f;
     // endregion
     // region Void Touched Mob Effect
     @SerialEntry(comment = "Damage is multiplied by this for each level of Void Touched when applied. Default is 1.5f.")
@@ -40,8 +40,8 @@ public class YavpmConfig {
     public int glowingObsidianLuminance = 15;
     @SerialEntry(comment = "Soul Glowing Obsidian blocks will emit the specified light level. Default is 11.")
     public int soulGlowingObsidianLuminance = 11;
-    @SerialEntry(comment = "When set to true, Void Water can create more infinite sources, like how vanilla Water can. Default is false.")
-    public boolean voidWaterSourceConversion = false;
+    @SerialEntry(comment = "When set to true, Void Water can create more infinite sources, like how vanilla Water can. Default is true.")
+    public boolean voidWaterSourceConversion = true;
     // endregion
     // region Items
     @SerialEntry(comment = "When an Attack Up Rune is applied to equipment, its attack power is multiplied by this factor. Default is 1.2f,")

@@ -122,6 +122,18 @@ public class ItemGroupHelper {
         entries.add(YavpmBlocks.POLISHED_ANDESITE_TILE_WALL);
 
         entries.add(YavpmBlocks.KIMBERLITE);
+        entries.add(YavpmBlocks.KIMBERLITE_STAIRS);
+        entries.add(YavpmBlocks.KIMBERLITE_SLAB);
+        entries.add(YavpmBlocks.KIMBERLITE_WALL);
+        entries.add(YavpmBlocks.POLISHED_KIMBERLITE);
+        entries.add(YavpmBlocks.POLISHED_KIMBERLITE_STAIRS);
+        entries.add(YavpmBlocks.POLISHED_KIMBERLITE_SLAB);
+        entries.add(YavpmBlocks.POLISHED_KIMBERLITE_WALL);
+        entries.add(YavpmBlocks.POLISHED_KIMBERLITE_BRICKS);
+        entries.add(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_STAIRS);
+        entries.add(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_SLAB);
+        entries.add(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_WALL);
+
         entries.add(YavpmBlocks.GRAPHITE_BLOCK);
         entries.add(YavpmBlocks.GRAPHENE_BLOCK);
     }
@@ -156,7 +168,7 @@ public class ItemGroupHelper {
     }
 
     private static void redstone(FabricItemGroupEntries entries) {
-        entries.add(YavpmBlocks.ELECTRO_GLASS);
+        entries.add(YavpmBlocks.POLARIZED_GLASS);
     }
 
     private static void tools(FabricItemGroupEntries entries) {
@@ -167,6 +179,8 @@ public class ItemGroupHelper {
         entries.add(YavpmItems.PERSIMMON_BOAT);
         entries.add(YavpmItems.PERSIMMON_CHEST_BOAT);
         entries.add(YavpmItems.FORTUNE_COOKIE);
+        entries.add(YavpmItems.REACTOR);
+        entries.add(YavpmItems.BABY_KEY);
     }
 
     private static void combat(FabricItemGroupEntries entries) {

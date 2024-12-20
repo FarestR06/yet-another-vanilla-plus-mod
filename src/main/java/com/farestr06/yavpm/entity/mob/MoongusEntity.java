@@ -180,8 +180,12 @@ public class MoongusEntity extends MooshroomEntity implements Shearable, Variant
         }
     }
 
+    public boolean isSheared() {
+        return isSheared;
+    }
+
     @Override
     public boolean isShearable() {
-        return this.isAlive() && !this.isBaby();
+        return this.isAlive() && !this.isBaby() && !this.isSheared;
     }
 }

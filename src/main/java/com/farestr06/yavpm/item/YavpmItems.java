@@ -201,6 +201,11 @@ public class YavpmItems {
     );
     // endregion
 
+    public static final Item BABY_KEY = makeAdvancedItem(
+            makeId("baby_key"),
+            new BabyKeyItem(new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON))
+    );
+
     // region Studded Armor
     public static final Item STUDDED_HELMET = makeAdvancedItem(
             makeId("studded_helmet"),

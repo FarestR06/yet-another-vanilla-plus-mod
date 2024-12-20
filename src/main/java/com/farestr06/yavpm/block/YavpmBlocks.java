@@ -129,6 +129,16 @@ public class YavpmBlocks {
             AbstractBlock.Settings.copy(Blocks.STONE_BRICK_SLAB)
     ));
 
+    public static final Block POLISHED_GRANITE_WALL = makeAdvancedBlockAndItem(makeId("polished_granite_wall"), new WallBlock(
+            AbstractBlock.Settings.copy(Blocks.GRANITE_WALL)
+    ));
+    public static final Block POLISHED_DIORITE_WALL = makeAdvancedBlockAndItem(makeId("polished_diorite_wall"), new WallBlock(
+            AbstractBlock.Settings.copy(Blocks.DIORITE_WALL)
+    ));
+    public static final Block POLISHED_ANDESITE_WALL = makeAdvancedBlockAndItem(makeId("polished_andesite_wall"), new WallBlock(
+            AbstractBlock.Settings.copy(Blocks.ANDESITE_WALL)
+    ));
+
     public static final Block POLISHED_GRANITE_BRICK_WALL = makeAdvancedBlockAndItem(makeId("polished_granite_brick_wall"), new WallBlock(
             AbstractBlock.Settings.copy(Blocks.STONE_BRICK_WALL)
     ));
@@ -176,16 +186,106 @@ public class YavpmBlocks {
             AbstractBlock.Settings.copy(Blocks.STONE_BRICK_WALL)
     ));
 
+    public static final BlockFamily COBBLED_GRANITE_FAMILY = new BlockFamily.Builder(COBBLED_GRANITE)
+            .slab(COBBLED_GRANITE_SLAB).stairs(COBBLED_GRANITE_STAIRS).wall(COBBLED_GRANITE_WALL).build();
+    public static final BlockFamily COBBLED_DIORITE_FAMILY = new BlockFamily.Builder(COBBLED_DIORITE)
+            .slab(COBBLED_DIORITE_SLAB).stairs(COBBLED_DIORITE_STAIRS).wall(COBBLED_DIORITE_WALL).build();
+    public static final BlockFamily COBBLED_ANDESITE_FAMILY = new BlockFamily.Builder(COBBLED_ANDESITE)
+            .slab(COBBLED_ANDESITE_SLAB).stairs(COBBLED_ANDESITE_STAIRS).wall(COBBLED_ANDESITE_WALL).build();
+
+    public static final BlockFamily POLISHED_GRANITE_BRICK_FAMILY = new BlockFamily.Builder(POLISHED_GRANITE_BRICKS)
+            .slab(POLISHED_GRANITE_BRICK_SLAB).stairs(POLISHED_GRANITE_BRICK_STAIRS).wall(POLISHED_GRANITE_BRICK_WALL).build();
+    public static final BlockFamily POLISHED_DIORITE_BRICK_FAMILY = new BlockFamily.Builder(POLISHED_DIORITE_BRICKS)
+            .slab(POLISHED_DIORITE_BRICK_SLAB).stairs(POLISHED_DIORITE_BRICK_STAIRS).wall(POLISHED_DIORITE_BRICK_WALL).build();
+    public static final BlockFamily POLISHED_ANDESITE_BRICK_FAMILY = new BlockFamily.Builder(POLISHED_ANDESITE_BRICKS)
+            .slab(POLISHED_ANDESITE_BRICK_SLAB).stairs(POLISHED_ANDESITE_BRICK_STAIRS).wall(POLISHED_ANDESITE_BRICK_WALL).build();
+
+    public static final BlockFamily POLISHED_GRANITE_TILE_FAMILY = new BlockFamily.Builder(POLISHED_GRANITE_TILES)
+            .slab(POLISHED_GRANITE_TILE_SLAB).stairs(POLISHED_GRANITE_TILE_STAIRS).wall(POLISHED_GRANITE_TILE_WALL).build();
+    public static final BlockFamily POLISHED_DIORITE_TILE_FAMILY = new BlockFamily.Builder(POLISHED_DIORITE_TILES)
+            .slab(POLISHED_DIORITE_TILE_SLAB).stairs(POLISHED_DIORITE_TILE_STAIRS).wall(POLISHED_DIORITE_TILE_WALL).build();
+    public static final BlockFamily POLISHED_ANDESITE_TILE_FAMILY = new BlockFamily.Builder(POLISHED_ANDESITE_TILES)
+            .slab(POLISHED_ANDESITE_TILE_SLAB).stairs(POLISHED_ANDESITE_TILE_STAIRS).wall(POLISHED_ANDESITE_TILE_WALL).build();
+
     // endregion
 
+    // region Kimberlite
     public static final Block KIMBERLITE = makeBlockAndItem(
             makeId("kimberlite"),
-            AbstractBlock.Settings.copy(Blocks.RAW_GOLD_BLOCK)
+            AbstractBlock.Settings.copy(Blocks.COBBLED_DEEPSLATE).requiresTool().instrument(NoteBlockInstrument.PLING)
+    );
+    public static final Block POLISHED_KIMBERLITE = makeBlockAndItem(
+            makeId("polished_kimberlite"),
+            AbstractBlock.Settings.copy(Blocks.POLISHED_DEEPSLATE).requiresTool().instrument(NoteBlockInstrument.PLING)
+    );
+    public static final Block POLISHED_KIMBERLITE_BRICKS = makeBlockAndItem(
+            makeId("polished_kimberlite_bricks"),
+            AbstractBlock.Settings.copy(Blocks.DEEPSLATE_BRICKS).requiresTool()
+                    .instrument(NoteBlockInstrument.PLING)
     );
 
-    public static final Block ELECTRO_GLASS = makeAdvancedBlockAndItem(
-            makeId("electro_glass"),
-            new ElectroGlassBlock(
+    public static final Block KIMBERLITE_STAIRS = makeAdvancedBlockAndItem(
+            makeId("kimberlite_stairs"),
+            new StairsBlock(KIMBERLITE.getDefaultState(),
+                    AbstractBlock.Settings.copy(Blocks.COBBLED_DEEPSLATE_STAIRS).requiresTool()
+                            .instrument(NoteBlockInstrument.PLING))
+    );
+    public static final Block KIMBERLITE_SLAB = makeAdvancedBlockAndItem(
+            makeId("kimberlite_slab"),
+            new SlabBlock(AbstractBlock.Settings.copy(Blocks.COBBLED_DEEPSLATE_SLAB).requiresTool()
+                    .instrument(NoteBlockInstrument.PLING))
+    );
+    public static final Block KIMBERLITE_WALL = makeAdvancedBlockAndItem(
+            makeId("kimberlite_wall"),
+            new WallBlock(AbstractBlock.Settings.copy(Blocks.COBBLED_DEEPSLATE_WALL).requiresTool()
+                    .instrument(NoteBlockInstrument.PLING))
+    );
+
+    public static final Block POLISHED_KIMBERLITE_STAIRS = makeAdvancedBlockAndItem(
+            makeId("polished_kimberlite_stairs"),
+            new StairsBlock(POLISHED_KIMBERLITE.getDefaultState(),
+                    AbstractBlock.Settings.copy(Blocks.POLISHED_DEEPSLATE_STAIRS).requiresTool()
+                            .instrument(NoteBlockInstrument.PLING))
+    );
+    public static final Block POLISHED_KIMBERLITE_SLAB = makeAdvancedBlockAndItem(
+            makeId("polished_kimberlite_slab"),
+            new SlabBlock(AbstractBlock.Settings.copy(Blocks.POLISHED_DEEPSLATE_SLAB).requiresTool()
+                    .instrument(NoteBlockInstrument.PLING))
+    );
+    public static final Block POLISHED_KIMBERLITE_WALL = makeAdvancedBlockAndItem(
+            makeId("polished_kimberlite_wall"),
+            new WallBlock(AbstractBlock.Settings.copy(Blocks.POLISHED_DEEPSLATE_WALL).requiresTool()
+                    .instrument(NoteBlockInstrument.PLING))
+    );
+
+    public static final Block POLISHED_KIMBERLITE_BRICK_STAIRS = makeAdvancedBlockAndItem(
+            makeId("polished_kimberlite_brick_stairs"),
+            new StairsBlock(POLISHED_KIMBERLITE_BRICKS.getDefaultState(),
+                    AbstractBlock.Settings.copy(Blocks.DEEPSLATE_BRICK_STAIRS).requiresTool()
+                            .instrument(NoteBlockInstrument.PLING))
+    );
+    public static final Block POLISHED_KIMBERLITE_BRICK_SLAB = makeAdvancedBlockAndItem(
+            makeId("polished_kimberlite_brick_slab"),
+            new SlabBlock(AbstractBlock.Settings.copy(Blocks.DEEPSLATE_BRICK_SLAB).requiresTool()
+                    .instrument(NoteBlockInstrument.PLING))
+    );
+    public static final Block POLISHED_KIMBERLITE_BRICK_WALL = makeAdvancedBlockAndItem(
+            makeId("polished_kimberlite_brick_wall"),
+            new WallBlock(AbstractBlock.Settings.copy(Blocks.DEEPSLATE_BRICK_WALL).requiresTool()
+                    .instrument(NoteBlockInstrument.PLING))
+    );
+
+    public static final BlockFamily KIMBERLITE_FAMILY = new BlockFamily.Builder(KIMBERLITE)
+            .slab(KIMBERLITE_SLAB).stairs(KIMBERLITE_STAIRS).wall(KIMBERLITE_WALL).build();
+    public static final BlockFamily POLISHED_KIMBERLITE_FAMILY = new BlockFamily.Builder(POLISHED_KIMBERLITE)
+            .slab(POLISHED_KIMBERLITE_SLAB).stairs(POLISHED_KIMBERLITE_STAIRS).wall(POLISHED_KIMBERLITE_WALL).build();
+    public static final BlockFamily POLISHED_KIMBERLITE_BRICK_FAMILY = new BlockFamily.Builder(POLISHED_KIMBERLITE_BRICKS)
+            .slab(POLISHED_KIMBERLITE_BRICK_SLAB).stairs(POLISHED_KIMBERLITE_BRICK_STAIRS).wall(POLISHED_KIMBERLITE_BRICK_WALL).build();
+    // endregion
+
+    public static final Block POLARIZED_GLASS = makeAdvancedBlockAndItem(
+            makeId("polarized_glass"),
+            new PolarizedGlassBlock(
                     AbstractBlock.Settings.copy(Blocks.TINTED_GLASS)
             )
     );
@@ -434,75 +534,75 @@ public class YavpmBlocks {
     // region Persimmon Wood
     public static final Block PERSIMMON_LOG = makeAdvancedBlockAndItem(
             makeId("persimmon_log"),
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHERRY_LOG))
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_LOG))
     );
     public static final Block PERSIMMON_WOOD = makeAdvancedBlockAndItem(
             makeId("persimmon_wood"),
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHERRY_WOOD))
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_WOOD))
     );
     public static final Block STRIPPED_PERSIMMON_LOG = makeAdvancedBlockAndItem(
             makeId("stripped_persimmon_log"),
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_CHERRY_LOG))
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_OAK_LOG))
     );
     public static final Block STRIPPED_PERSIMMON_WOOD = makeAdvancedBlockAndItem(
             makeId("stripped_persimmon_wood"),
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_CHERRY_WOOD))
+            new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_OAK_WOOD))
     );
     public static final Block PERSIMMON_LEAVES = makeAdvancedBlockAndItem(
             makeId("persimmon_leaves"),
-            new LeavesBlock(AbstractBlock.Settings.copy(Blocks.FLOWERING_AZALEA_LEAVES))
+            new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES))
     );
 
     public static final Block PERSIMMON_PLANKS = makeBlockAndItem(
             makeId("persimmon_planks"),
-            AbstractBlock.Settings.copy(Blocks.CHERRY_PLANKS)
+            AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)
     );
     public static final Block PERSIMMON_STAIRS = makeAdvancedBlockAndItem(
             makeId("persimmon_stairs"),
             new StairsBlock(
                     PERSIMMON_PLANKS.getDefaultState(),
-                    AbstractBlock.Settings.copy(Blocks.CHERRY_STAIRS)
+                    AbstractBlock.Settings.copy(Blocks.OAK_STAIRS)
             )
     );
     public static final Block PERSIMMON_SLAB = makeAdvancedBlockAndItem(
             makeId("persimmon_slab"),
-            new SlabBlock(AbstractBlock.Settings.copy(Blocks.CHERRY_SLAB))
+            new SlabBlock(AbstractBlock.Settings.copy(Blocks.OAK_SLAB))
     );
     public static final Block PERSIMMON_FENCE = makeAdvancedBlockAndItem(
             makeId("persimmon_fence"),
-            new FenceBlock(AbstractBlock.Settings.copy(Blocks.CHERRY_FENCE))
+            new FenceBlock(AbstractBlock.Settings.copy(Blocks.OAK_FENCE))
     );
     public static final Block PERSIMMON_FENCE_GATE = makeAdvancedBlockAndItem(
             makeId("persimmon_fence_gate"),
-            new FenceGateBlock(WoodType.CHERRY, AbstractBlock.Settings.copy(Blocks.CHERRY_FENCE))
+            new FenceGateBlock(WoodType.OAK, AbstractBlock.Settings.copy(Blocks.OAK_FENCE))
     );
     public static final Block PERSIMMON_DOOR = makeAdvancedBlockAndItem(
             makeId("persimmon_door"),
             new DoorBlock(
-                    BlockSetType.CHERRY,
-                    AbstractBlock.Settings.copy(Blocks.CHERRY_DOOR)
+                    BlockSetType.OAK,
+                    AbstractBlock.Settings.copy(Blocks.OAK_DOOR)
             )
     );
     public static final Block PERSIMMON_TRAPDOOR = makeAdvancedBlockAndItem(
             makeId("persimmon_trapdoor"),
             new TrapdoorBlock(
-                    BlockSetType.CHERRY,
-                    AbstractBlock.Settings.copy(Blocks.CHERRY_TRAPDOOR)
+                    BlockSetType.OAK,
+                    AbstractBlock.Settings.copy(Blocks.OAK_TRAPDOOR)
             )
     );
     public static final Block PERSIMMON_BUTTON = makeAdvancedBlockAndItem(
             makeId("persimmon_button"),
             new ButtonBlock(
-                    BlockSetType.CHERRY,
+                    BlockSetType.OAK,
                     30,
-                    AbstractBlock.Settings.copy(Blocks.CHERRY_BUTTON)
+                    AbstractBlock.Settings.copy(Blocks.OAK_BUTTON)
             )
     );
     public static final Block PERSIMMON_PRESSURE_PLATE = makeAdvancedBlockAndItem(
             makeId("persimmon_pressure_plate"),
             new PressurePlateBlock(
-                    BlockSetType.CHERRY,
-                    AbstractBlock.Settings.copy(Blocks.CHERRY_PRESSURE_PLATE)
+                    BlockSetType.OAK,
+                    AbstractBlock.Settings.copy(Blocks.OAK_PRESSURE_PLATE)
             )
     );
 
@@ -514,14 +614,14 @@ public class YavpmBlocks {
             makeId("persimmon_sign"),
             new TerraformSignBlock(
                     PERSIMMON_SIGN_TEXTURE,
-                    AbstractBlock.Settings.copy(Blocks.CHERRY_SIGN)
+                    AbstractBlock.Settings.copy(Blocks.OAK_SIGN)
             )
     );
     public static final Block PERSIMMON_WALL_SIGN = makeAdvancedBlock(
             makeId("persimmon_wall_sign"),
             new TerraformWallSignBlock(
                     PERSIMMON_SIGN_TEXTURE,
-                    AbstractBlock.Settings.copy(Blocks.CHERRY_WALL_SIGN)
+                    AbstractBlock.Settings.copy(Blocks.OAK_WALL_SIGN)
             )
     );
     public static final Block PERSIMMON_HANGING_SIGN = makeAdvancedBlock(
@@ -529,7 +629,7 @@ public class YavpmBlocks {
             new TerraformHangingSignBlock(
                     PERSIMMON_HANGING_SIGN_TEXTURE,
                     PERSIMMON_HANGING_SIGN_GUI_TEXTURE,
-                    AbstractBlock.Settings.copy(Blocks.CHERRY_HANGING_SIGN)
+                    AbstractBlock.Settings.copy(Blocks.OAK_HANGING_SIGN)
             )
     );
     public static final Block PERSIMMON_WALL_HANGING_SIGN = makeAdvancedBlock(
@@ -537,7 +637,7 @@ public class YavpmBlocks {
             new TerraformWallHangingSignBlock(
                     PERSIMMON_HANGING_SIGN_TEXTURE,
                     PERSIMMON_HANGING_SIGN_GUI_TEXTURE,
-                    AbstractBlock.Settings.copy(Blocks.CHERRY_WALL_HANGING_SIGN)
+                    AbstractBlock.Settings.copy(Blocks.OAK_WALL_HANGING_SIGN)
             )
     );
 
@@ -555,9 +655,9 @@ public class YavpmBlocks {
 
     // region Graphite and Graphene
     public static final Block GRAPHITE_BLOCK = makeBlockAndItem(makeId("graphite_block"),
-            AbstractBlock.Settings.copy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.BLACK).strength(2.0f, 2.5f).sounds(BlockSoundGroup.POLISHED_TUFF).instrument(NoteBlockInstrument.BIT));
+            AbstractBlock.Settings.copy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.BLACK).strength(2f, 2.5f).sounds(BlockSoundGroup.TUFF));
     public static final Block GRAPHENE_BLOCK = makeBlockAndItem(makeId("graphene_block"),
-            AbstractBlock.Settings.copy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.BLACK).strength(4.5f, 5.5f).sounds(BlockSoundGroup.STONE).instrument(NoteBlockInstrument.BIT));
+            AbstractBlock.Settings.copy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.BLACK).strength(6f, 7.5f).sounds(BlockSoundGroup.POLISHED_TUFF));
     // endregion
 
     // region Fake

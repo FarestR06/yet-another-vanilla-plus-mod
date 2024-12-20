@@ -41,6 +41,17 @@
     "yavpm:polished_andesite_tile_slab",
     "yavpm:polished_andesite_tile_wall",
     "yavpm:kimberlite",
+    "yavpm:polished_kimberlite",
+    "yavpm:polished_kimberlite_bricks",
+    "yavpm:kimberlite_stairs",
+    "yavpm:polished_kimberlite_stairs",
+    "yavpm:polished_kimberlite_brick_stairs",
+    "yavpm:kimberlite_slab",
+    "yavpm:polished_kimberlite_slab",
+    "yavpm:polished_kimberlite_brick_slab",
+    "yavpm:kimberlite_wall",
+    "yavpm:polished_kimberlite_wall",
+    "yavpm:polished_kimberlite_brick_wall",
     "yavpm:fake_ore"
   ]
 }

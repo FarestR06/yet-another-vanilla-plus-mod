@@ -88,7 +88,7 @@ public class YavpmConfigScreen implements ModMenuApi {
                     .build()
             )
             .binding(
-                    0.33f,
+                    0.3f,
                     () -> HANDLER.instance().tanukiTransformChance,
                     newVal -> HANDLER.instance().tanukiTransformChance = newVal
             ).controller(opt -> FloatFieldControllerBuilder.create(opt).range(0f, 1f))
@@ -154,7 +154,6 @@ public class YavpmConfigScreen implements ModMenuApi {
             .name(Text.translatable("option.yavpm.void_water_source_conversion.title"))
             .description(OptionDescription.createBuilder()
                     .text(Text.translatable("option.yavpm.void_water_source_conversion.desc"))
-                    // .image(makeId("textures/config/void_water_source_conversion.png"), 64, 64)
                     .build()
             )
             .binding(

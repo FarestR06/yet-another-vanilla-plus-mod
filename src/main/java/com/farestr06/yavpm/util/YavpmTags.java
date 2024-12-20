@@ -13,20 +13,26 @@ import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmTags {
     public static class Items {
+        public static final TagKey<Item> CARBONFOWL_FOODS = of("carbonfowl_foods");
         public static final TagKey<Item> TANUKI_FOODS = of("tanuki_foods");
+
+        public static final TagKey<Item> CRIMSON_MOONGUS_FOOD = of("crimson_moongus_food");
+        public static final TagKey<Item> WARPED_MOONGUS_FOOD = of("warped_moongus_food");
+
         public static final TagKey<Item> RUNES = of("runes");
         public static final TagKey<Item> RUNE_ATTACK_APPLICABLE = of("rune_attack_applicable");
         public static final TagKey<Item> RUNE_DURABILITY_APPLICABLE = of("rune_durability_applicable");
         public static final TagKey<Item> RUNE_SPEED_APPLICABLE = of("rune_speed_applicable");
+
         public static final TagKey<Item> ENCHANTABLE_GLIDER = of("enchantable/glider");
         public static final TagKey<Item> ENCHANTABLE_WOLF_ARMOR = of("enchantable/wolf_armor");
         public static final TagKey<Item> ENCHANTABLE_HORSE_ARMOR = of("enchantable/horse_armor");
+
         public static final TagKey<Item> REACTOR_RECHARGERS = of("reactor_rechargers");
+
         public static final TagKey<Item> APPLE_LOGS = of("apple_logs");
         public static final TagKey<Item> PERSIMMON_LOGS = of("persimmon_logs");
         public static final TagKey<Item> PRICKLE_LOGS = of("spiral_stalks");
-        public static final TagKey<Item> CRIMSON_MOONGUS_FOOD = of("crimson_moongus_food");
-        public static final TagKey<Item> WARPED_MOONGUS_FOOD = of("warped_moongus_food");
 
         private static TagKey<Item> of(String path) {
             return TagKey.of(RegistryKeys.ITEM, makeId(path));
@@ -61,7 +67,6 @@ public class YavpmTags {
             return TagKey.of(RegistryKeys.BIOME, makeId(path));
         }
     }
-
     public static class Blocks {
         public static final TagKey<Block> APPLE_LOGS = of("apple_logs");
         public static final TagKey<Block> PERSIMMON_LOGS = of("persimmon_logs");
@@ -71,7 +76,6 @@ public class YavpmTags {
             return TagKey.of(RegistryKeys.BLOCK, makeId(path));
         }
     }
-
     public static class Fluids {
         public static final TagKey<Fluid> VOID_WATER = of("void_water");
 

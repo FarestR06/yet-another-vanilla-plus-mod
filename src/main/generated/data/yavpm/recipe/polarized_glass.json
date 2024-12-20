@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "G": {
+      "item": "minecraft:glow_ink_sac"
+    },
+    "T": {
+      "item": "minecraft:tinted_glass"
+    }
+  },
+  "pattern": [
+    "TTT",
+    "TGT",
+    "TTT"
+  ],
+  "result": {
+    "count": 1,
+    "id": "yavpm:polarized_glass"
+  }
+}

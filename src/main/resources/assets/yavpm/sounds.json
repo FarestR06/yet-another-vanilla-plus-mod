@@ -8,6 +8,12 @@
     ],
     "subtitle": "subtitles.block.prickle_log.pluck"
   },
+  "block.note_block.grind": {
+    "sounds": [
+      "yavpm:note/grind"
+    ],
+    "subtitle": "subtitles.block.note_block.note"
+  },
   "music.overworld.withered_scar": {
     "sounds": [
       {
@@ -28,18 +34,32 @@
     ],
     "subtitle": "subtitles.entity.chicken.egg_break"
   },
-  "item.reactor.charge": {
+  "item.baby_key.scared": {
     "sounds": [
-      "mob/ghast/fireball4"
+      "yavpm:mob/baby_key/scared1",
+      "yavpm:mob/baby_key/scared2",
+      "yavpm:mob/baby_key/scared3",
+      "yavpm:mob/baby_key/scared4"
     ],
-    "subtitle": "subtitles.item.reactor.charge"
+    "subtitle": "subtitles.item.baby_key.scared"
   },
-  "item.soul_powder.use": {
+  "item.baby_key.lock": {
     "sounds": [
-      "mob/evocation_illager/cast1",
-      "mob/evocation_illager/cast2"
+      "yavpm:mob/baby_key/happy1",
+      "yavpm:mob/baby_key/happy2",
+      "yavpm:mob/baby_key/happy3",
+      "yavpm:mob/baby_key/happy4"
     ],
-    "subtitle": "subtitles.item.soul_powder.use"
+    "subtitle": "subtitles.item.baby_key.lock"
+  },
+  "item.baby_key.unlock": {
+    "sounds": [
+      "yavpm:mob/baby_key/happy1",
+      "yavpm:mob/baby_key/happy2",
+      "yavpm:mob/baby_key/happy3",
+      "yavpm:mob/baby_key/happy4"
+    ],
+    "subtitle": "subtitles.item.baby_key.unlock"
   },
   "item.armor.equip_studded": {
     "sounds": [

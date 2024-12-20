@@ -1,15 +1,9 @@
 package com.farestr06.yavpm.item.custom;
 
 import com.farestr06.yavpm.item.YavpmItems;
-import com.farestr06.yavpm.util.YavpmSounds;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.StackReference;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.screen.slot.Slot;
 import net.minecraft.text.Text;
-import net.minecraft.util.ClickType;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.math.random.Random;
 
@@ -26,27 +20,6 @@ public class ReactorItem extends Item {
             return super.getName(stack).copy().formatted(Formatting.GOLD);
         }
         return super.getName(stack);
-    }
-
-    @Override
-    public boolean onClicked(ItemStack stack, ItemStack otherStack, Slot slot, ClickType clickType, PlayerEntity player, StackReference cursorStackReference) {
-        if (stack.isOf(YavpmItems.REACTOR) && otherStack.isOf(Items.BLAZE_POWDER)) {
-            player.playSound(YavpmSounds.ITEM_REACTOR_CHARGE);
-            if (otherStack.isOf(Items.LAVA_BUCKET) && !player.isCreative()) {
-                otherStack.setCount(0);
-                player.giveItemStack(new ItemStack(Items.BUCKET));
-            } else {
-                otherStack.decrementUnlessCreative(1, player);
-            }
-
-            ItemStack newStack = new ItemStack(YavpmItems.HEATED_REACTOR);
-            newStack.setDamage(stack.getDamage());
-
-            stack.setCount(0);
-            player.giveItemStack(newStack);
-            return true;
-        }
-        return false;
     }
 
     @Override
