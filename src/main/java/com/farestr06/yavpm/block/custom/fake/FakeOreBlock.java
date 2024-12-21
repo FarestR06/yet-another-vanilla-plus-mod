@@ -25,12 +25,6 @@ public class FakeOreBlock extends AbstractFakeBlock {
         builder.add(DEEPSLATE);
     }
 
-    @Override
-    public BlockState makeFakeBlockState(Random rand) {
-        boolean bl = rand.nextBoolean();
-        return this.getDefaultState().with(TYPE, choose(rand)).with(DEEPSLATE, bl);
-    }
-
     public BlockState makeFakeBlockState(Random rand, BlockPos pos) {
         if (pos.getY() > 0) {
             return this.getDefaultState().with(TYPE, choose(rand)).with(DEEPSLATE, true);

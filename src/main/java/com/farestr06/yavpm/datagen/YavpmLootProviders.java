@@ -8,7 +8,6 @@ import com.farestr06.yavpm.item.YavpmItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableProvider;
-import net.minecraft.block.Blocks;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Items;
@@ -72,6 +71,8 @@ public class YavpmLootProviders {
             persimmonDrops();
             prickleDrops();
 
+            fakeDrops();
+
             // region Warped Wart
             this.addDrop(
                     YavpmBlocks.WARPED_WART,
@@ -97,6 +98,66 @@ public class YavpmLootProviders {
             );
             // endregion
 
+        }
+
+        private void fakeDrops() {
+            addDrop(YavpmBlocks.FAKE_LOG, LootTable.builder()
+                    .pool(
+                            LootPool.builder().rolls(ConstantLootNumberProvider.create(1f))
+                                    .with(ItemEntry.builder(Items.ACACIA_PLANKS)
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 5f)))
+                                    )
+                                    .with(ItemEntry.builder(Items.BIRCH_PLANKS)
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 5f)))
+                                    )
+                                    .with(ItemEntry.builder(Items.CHERRY_PLANKS)
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 5f)))
+                                    )
+                                    .with(ItemEntry.builder(Items.DARK_OAK_PLANKS)
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 5f)))
+                                    )
+                                    .with(ItemEntry.builder(Items.JUNGLE_PLANKS)
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 5f)))
+                                    )
+                                    .with(ItemEntry.builder(Items.OAK_PLANKS)
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 5f)))
+                                    )
+                                    .with(ItemEntry.builder(Items.MANGROVE_PLANKS)
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 5f)))
+                                    )
+                                    .with(ItemEntry.builder(Items.SPRUCE_PLANKS)
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 5f)))
+                                    )
+                                    .with(ItemEntry.builder(YavpmBlocks.APPLE_PLANKS.asItem())
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 5f)))
+                                    )
+                                    .with(ItemEntry.builder(YavpmBlocks.PERSIMMON_PLANKS.asItem())
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 5f)))
+                                    ).conditionally(RandomChanceLootCondition.builder(0.4f))
+                    )
+            );
+            addDrop(YavpmBlocks.FAKE_ORE, LootTable.builder()
+                    .pool(
+                            LootPool.builder().rolls(ConstantLootNumberProvider.create(1f))
+                                    .with(ItemEntry.builder(Items.COAL)
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
+                                    ).with(ItemEntry.builder(Items.RAW_COPPER)
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
+                                    ).with(ItemEntry.builder(Items.RAW_IRON)
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
+                                    ).with(ItemEntry.builder(Items.RAW_GOLD)
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
+                                    ).with(ItemEntry.builder(Items.LAPIS_LAZULI)
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
+                                    ).with(ItemEntry.builder(Items.DIAMOND)
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
+                                    ).with(ItemEntry.builder(Items.EMERALD)
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
+                                    ).with(ItemEntry.builder(Items.REDSTONE)
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
+                                    ).conditionally(RandomChanceLootCondition.builder(0.4f))
+                    )
+            );
         }
 
         private void modCropDrops() {

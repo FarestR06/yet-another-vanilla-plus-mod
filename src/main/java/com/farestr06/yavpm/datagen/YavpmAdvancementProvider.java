@@ -7,10 +7,13 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
 import net.minecraft.advancement.*;
 import net.minecraft.advancement.criterion.*;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
+import net.minecraft.predicate.BlockPredicate;
 import net.minecraft.predicate.entity.EntityPredicate;
+import net.minecraft.predicate.entity.LocationPredicate;
 import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryWrapper;
@@ -140,6 +143,37 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
             .build(makeId("husbandry/craft_diamonds_from_graphene"));
     // endregion
     // region Adventure
+    protected static final AdvancementEntry LOCK_CONTAINER = Advancement.Builder.create()
+            .parent(VanillaAdvancements.Adventure.SUMMON_IRON_GOLEM)
+            .display(
+                    YavpmItems.BABY_KEY,
+                    Text.translatable("advancements.adventure.lock_container.title"),
+                    Text.translatable("advancements.adventure.lock_container.description"),
+                    null,
+                    AdvancementFrame.TASK,
+                    true,
+                    true,
+                    false
+            ).criterion(
+                    "lock",
+                    ItemCriterion.Conditions.createItemUsedOnBlock(
+                            LocationPredicate.Builder.create().block(BlockPredicate.Builder.create().blocks(
+                                    Blocks.BARREL,
+                                    Blocks.BLAST_FURNACE,
+                                    Blocks.BREWING_STAND,
+                                    Blocks.CHEST,
+                                    Blocks.CRAFTER,
+                                    Blocks.DISPENSER,
+                                    Blocks.DROPPER,
+                                    Blocks.FURNACE,
+                                    Blocks.HOPPER,
+                                    Blocks.SHULKER_BOX,
+                                    Blocks.SMOKER,
+                                    Blocks.TRAPPED_CHEST
+                            )),
+                            ItemPredicate.Builder.create().items(YavpmItems.BABY_KEY)
+                    ))
+            .build(makeId("adventure/lock_container"));
     protected static final AdvancementEntry UPGRADE_TOOL_WITH_RUNE = Advancement.Builder.create()
             .parent(VanillaAdvancements.Adventure.TRADE)
             .display(
@@ -222,6 +256,7 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
         consumer.accept(EAT_ALL_FOOD_BOWLS);
         consumer.accept(CRAFT_DIAMONDS_FROM_GRAPHENE);
         // Adventure
+        consumer.accept(LOCK_CONTAINER);
         consumer.accept(UPGRADE_TOOL_WITH_RUNE);
         // Nether
         consumer.accept(CONVERT_COW_TO_MOONGUS);

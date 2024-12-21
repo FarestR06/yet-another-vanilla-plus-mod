@@ -1,0 +1,57 @@
+{
+  "parent": "minecraft:adventure/summon_iron_golem",
+  "criteria": {
+    "lock": {
+      "conditions": {
+        "location": [
+          {
+            "condition": "minecraft:location_check",
+            "predicate": {
+              "block": {
+                "blocks": [
+                  "minecraft:barrel",
+                  "minecraft:blast_furnace",
+                  "minecraft:brewing_stand",
+                  "minecraft:chest",
+                  "minecraft:crafter",
+                  "minecraft:dispenser",
+                  "minecraft:dropper",
+                  "minecraft:furnace",
+                  "minecraft:hopper",
+                  "minecraft:shulker_box",
+                  "minecraft:smoker",
+                  "minecraft:trapped_chest"
+                ]
+              }
+            }
+          },
+          {
+            "condition": "minecraft:match_tool",
+            "predicate": {
+              "items": "yavpm:baby_key"
+            }
+          }
+        ]
+      },
+      "trigger": "minecraft:item_used_on_block"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.adventure.lock_container.description"
+    },
+    "icon": {
+      "count": 1,
+      "id": "yavpm:baby_key"
+    },
+    "title": {
+      "translate": "advancements.adventure.lock_container.title"
+    }
+  },
+  "requirements": [
+    [
+      "lock"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

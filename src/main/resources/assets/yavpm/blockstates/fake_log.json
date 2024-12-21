@@ -23,6 +23,12 @@
     },
     "wood_type=mangrove": {
       "model": "minecraft:block/mangrove_log"
+    },
+    "wood_type=apple": {
+      "model": "yavpm:block/apple_log"
+    },
+    "wood_type=persimmon": {
+      "model": "yavpm:block/persimmon_log"
     }
   }
 }

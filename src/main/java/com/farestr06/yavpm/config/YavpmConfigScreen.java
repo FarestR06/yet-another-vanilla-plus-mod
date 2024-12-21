@@ -32,6 +32,10 @@ public class YavpmConfigScreen implements ModMenuApi {
                         .name(Text.translatable("option.yavpm.items"))
                         .group(OptionGroup.createBuilder()
                                 .name(Text.translatable("option.yavpm.items.runes"))
+                                .description(OptionDescription.of(
+                                        Text.translatable("option.yavpm.items.runes.desc1"),
+                                        Text.translatable("option.yavpm.items.runes.desc2")
+                                ))
                                 .option(RUNE_ATTACK_UPGRADE_FACTOR)
                                 .option(RUNE_DURABILITY_UPGRADE_FACTOR)
                                 .option(RUNE_SPEED_UPGRADE_FACTOR)
@@ -41,12 +45,19 @@ public class YavpmConfigScreen implements ModMenuApi {
                         .name(Text.translatable("option.yavpm.entities_and_effects"))
                         .group(OptionGroup.createBuilder()
                                 .name(Text.translatable("option.yavpm.entities_and_effects.tanuki"))
+                                .description(OptionDescription.of(
+                                        Text.translatable("option.yavpm.entities_and_effects.tanuki.desc1"),
+                                        Text.translatable("option.yavpm.entities_and_effects.tanuki.desc2")
+                                ))
                                 .option(TANUKI_TRANSFORM_CHANCE)
                                 .option(TANUKI_BASE_TRANSFORM_DELAY)
                                 .option(TANUKI_RANDOM_TRANSFORM_DELAY)
                                 .build())
                         .group(OptionGroup.createBuilder()
                                 .name(Text.translatable("option.yavpm.entities_and_effects.void_touched"))
+                                .description(OptionDescription.of(
+                                        Text.translatable("option.yavpm.entities_and_effects.void_touched.desc")
+                                ))
                                 .option(VOID_TOUCHED_DAMAGE_MULTIPLIER)
                                 .option(VOID_TOUCHED_DRAGON_FIREBALL)
                                 .build())

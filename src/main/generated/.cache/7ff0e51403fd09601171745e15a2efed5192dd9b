@@ -1,4 +1,4 @@
-// 1.21.1	2024-12-20T13:34:50.045316	Yet Another Vanilla Plus Mod/Tags for minecraft:item
+// 1.21.1	2024-12-20T14:51:28.278661	Yet Another Vanilla Plus Mod/Tags for minecraft:item
 e4de44b64a769cb6126e0a64e8a3aacff9833795 data/c/tags/item/stripped_woods.json
 63a5efa04106a4f747df0f0eb0203691d15b76ce data/minecraft/tags/item/logs_that_burn.json
 d841cf7e075636b408025f0af7dabd2429aaf42f data/minecraft/tags/item/wooden_pressure_plates.json
@@ -33,8 +33,8 @@ ddddcd9ef8cd706876a4c5b9fb1bb011516a430c data/yavpm/tags/item/rune_attack_applic
 464fd087c4f769dde3c0c4f57904892df2f1115f data/c/tags/item/foods/cooked_meat.json
 5cbb74a5c8aa8fe9f4c9e93d31afc6a66e3c6851 data/minecraft/tags/item/wooden_stairs.json
 b406923cfbfd4cbf548e1b749ff7d957b9d44489 data/minecraft/tags/item/head_armor.json
-95eca0c62d45553638cc93a0473b3a32b137e4fe data/minecraft/tags/item/dyeable.json
 f275a7f37363d1bf0a2338331d2e0d2595cfb1ff data/yavpm/tags/item/reactor_rechargers.json
+95eca0c62d45553638cc93a0473b3a32b137e4fe data/minecraft/tags/item/dyeable.json
 1acfd7d2d675c5caaa7cfc72edd8bf050e97fa77 data/c/tags/item/obsidians.json
 023be715877cb6033c3e30eb45440eb56daa8d72 data/yavpm/tags/item/enchantable/wolf_armor.json
 65fc3195d692fffc0cb7e91c07b545be344af882 data/c/tags/item/foods/fruit.json

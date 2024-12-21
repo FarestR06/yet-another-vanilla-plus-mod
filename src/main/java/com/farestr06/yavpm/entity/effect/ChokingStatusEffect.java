@@ -12,7 +12,9 @@ public class ChokingStatusEffect extends StatusEffect {
 
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-        entity.damage(YavpmDamageTypes.choke(entity.getWorld()), (amplifier + 1) * 2);
+        if (!entity.isInCreativeMode()) {
+            entity.damage(YavpmDamageTypes.choke(entity.getWorld()), (amplifier + 1) * 2);
+        }
         return super.applyUpdateEffect(entity, amplifier);
     }
 

@@ -78,6 +78,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add("advancements.adventure.upgrade_tool_with_rune.title", "Power Up");
         builder.add("advancements.adventure.upgrade_tool_with_rune.description", "Upgrade your equipment with a Rune");
+        builder.add("advancements.adventure.lock_container.title", "Blocksmith");
+        builder.add("advancements.adventure.lock_container.description", "Lock a container with a Key Golem");
 
         builder.add("advancements.nether.convert_cow_to_moongus.title", "Fungus Amongus");
         builder.add("advancements.nether.convert_cow_to_moongus.description", "Convert a Cow into a Moongus");
@@ -401,10 +403,14 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add("option.yavpm.items", "Items");
         builder.add("option.yavpm.items.runes", "Upgrade Runes");
+        builder.add("option.yavpm.items.runes.desc1", "These rare stone tablets contain a magical aura that permanently upgrades your equipment! Sounds too good to be true, doesn't it?");
+        builder.add("option.yavpm.items.runes.desc2", "Well, as you probably guessed, there's a catch. These Runes are exceedingly rare, so don't expect to make indestructable equipment any time soon.");
 
         builder.add("option.yavpm.entities_and_effects", "Entities/Mob Effects");
 
         builder.add("option.yavpm.entities_and_effects.tanuki", "Tanuki Mob");
+        builder.add("option.yavpm.entities_and_effects.tanuki.desc1", "The Tanuki is a mob found in the mountains. Pretty cute, huh? Every couple of minutes, a Tanuki will attempt to turn into a fake block, as they do in Japanese folklore.");
+        builder.add("option.yavpm.entities_and_effects.tanuki.desc2", "However, the transformation will only succeed sometimes, and it will always fail if the \"Allow destructive mob actions\" game rule is disabled. While this mob may seem useless, the fake blocks DO have a chance of dropping some loot when mined.");
 
         builder.add("option.yavpm.tanuki_base_transform_delay.title", "Tanuki Transformation Base Delay");
         builder.add("option.yavpm.tanuki_base_transform_delay.desc", "Tanukis will attempt to transform after at least this many ticks. Default is 2000.");
@@ -416,6 +422,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("option.yavpm.tanuki_transform_chance.desc", "When a Tanuki tries to transform, the chance of it succeeding is determined by this value. Default is 0.3f.");
 
         builder.add("option.yavpm.entities_and_effects.void_touched", "Void Touched Mob Effect");
+        builder.add("option.yavpm.entities_and_effects.void_touched.desc", "The Void Touched effect is quite dangerous. While the effect is active, any damage you take will be multiplied for each level you have applied! If you decide to go slay the Ender Dragon, this effect may just be your downfall.");
 
         builder.add("option.yavpm.void_touched_damage_multiplier.title", "Void Touched Damage Multiplier");
         builder.add("option.yavpm.void_touched_damage_multiplier.desc", "When the Void Touched effect is applied, any damage taken is multiplied by this for each level of the effect. Default is 1.5f.");

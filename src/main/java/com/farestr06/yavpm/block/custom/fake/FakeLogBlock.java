@@ -10,7 +10,6 @@ import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.biome.Biome;
 
@@ -24,11 +23,6 @@ public class FakeLogBlock extends AbstractFakeBlock{
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(TYPE);
-    }
-
-    @Override
-    public BlockState makeFakeBlockState(Random rand) {
-        return this.getDefaultState().with(TYPE, choose(rand));
     }
 
     public BlockState makeFakeBlockState(BlockPos pos, WorldAccess world) {
@@ -61,36 +55,6 @@ public class FakeLogBlock extends AbstractFakeBlock{
         return WoodType.OAK;
     }
 
-    private WoodType choose(Random rand) {
-        int type = rand.nextInt(8);
-        switch (type) {
-            case 1 -> {
-                return WoodType.SPRUCE;
-            }
-            case 2 -> {
-                return WoodType.BIRCH;
-            }
-            case 3 -> {
-                return WoodType.JUNGLE;
-            }
-            case 4 -> {
-                return WoodType.ACACIA;
-            }
-            case 5 -> {
-                return WoodType.CHERRY;
-            }
-            case 6 -> {
-                return WoodType.DARK_OAK;
-            }
-            case 7 -> {
-                return WoodType.MANGROVE;
-            }
-            default -> {
-                return WoodType.OAK;
-            }
-        }
-    }
-
     public enum WoodType implements StringIdentifiable {
         OAK("oak"),
         SPRUCE("spruce"),
@@ -99,7 +63,9 @@ public class FakeLogBlock extends AbstractFakeBlock{
         ACACIA("acacia"),
         CHERRY("cherry"),
         DARK_OAK("dark_oak"),
-        MANGROVE("mangrove");
+        MANGROVE("mangrove"),
+        APPLE("apple"),
+        PERSIMMON("persimmon");
 
         private final String name;
 
