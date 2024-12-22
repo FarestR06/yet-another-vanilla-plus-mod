@@ -1,5 +1,6 @@
 package com.farestr06.yavpm.item;
 
+import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.util.YavpmSounds;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
@@ -55,5 +56,9 @@ public class YavpmArmorMaterials {
 
     public static RegistryEntry<ArmorMaterial> registerArmorMaterial(String name, Supplier<ArmorMaterial> materialSupplier) {
         return Registry.registerReference(Registries.ARMOR_MATERIAL, makeId(name), materialSupplier.get());
+    }
+
+    public static void init() {
+        YetAnotherVanillaPlusMod.LOGGER.info("Registering armor materials for YAVPM!");
     }
 }

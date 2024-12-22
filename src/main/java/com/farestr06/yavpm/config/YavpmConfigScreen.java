@@ -6,12 +6,16 @@ import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.api.controller.BooleanControllerBuilder;
 import dev.isxander.yacl3.api.controller.FloatFieldControllerBuilder;
 import dev.isxander.yacl3.api.controller.IntegerFieldControllerBuilder;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 import static com.farestr06.yavpm.config.YavpmConfig.HANDLER;
 
 public class YavpmConfigScreen implements ModMenuApi {
+    private static final Style SGA = Style.EMPTY.withFont(Identifier.ofVanilla("alt"));
+    
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
         return screen -> YetAnotherConfigLib.createBuilder()
@@ -60,6 +64,14 @@ public class YavpmConfigScreen implements ModMenuApi {
                                 ))
                                 .option(VOID_TOUCHED_DAMAGE_MULTIPLIER)
                                 .option(VOID_TOUCHED_DRAGON_FIREBALL)
+                                .build())
+                        .build())
+                .category(ConfigCategory.createBuilder()
+                        .name(Text.translatable("option.yavpm.easter_eggs").setStyle(SGA))
+                        .group(OptionGroup.createBuilder()
+                                .name(Text.translatable("option.yavpm.easter_eggs.splashes").setStyle(SGA))
+                                .option(SNAPSHOT_DAY)
+                                .option(FARESTS_BIRTHDAY)
                                 .build())
                         .build())
                 .save(HANDLER::save)
@@ -213,6 +225,34 @@ public class YavpmConfigScreen implements ModMenuApi {
                     () -> HANDLER.instance().runeSpeedUpgradeFactor,
                     newVal -> HANDLER.instance().runeSpeedUpgradeFactor = newVal
             ).controller(opt -> FloatFieldControllerBuilder.create(opt).range(1f, 2.5f))
+            .build();
+    // endregion
+    
+    // region Easter Eggs
+    protected static final Option<Float> SNAPSHOT_DAY = Option.<Float>createBuilder()
+            .name(Text.translatable("option.yavpm.snapshot_day.title").setStyle(SGA))
+            .description(OptionDescription.createBuilder()
+                    .text(Text.translatable("option.yavpm.snapshot_day.desc").setStyle(SGA))
+                    .build()
+            )
+            .binding(
+                    1.2f,
+                    () -> HANDLER.instance().snapshotDaySplashChance,
+                    newVal -> HANDLER.instance().snapshotDaySplashChance = newVal
+            ).controller(opt -> FloatFieldControllerBuilder.create(opt).range(0f, 1f))
+            .build();
+
+    protected static final Option<Boolean> FARESTS_BIRTHDAY = Option.<Boolean>createBuilder()
+            .name(Text.translatable("option.yavpm.farests_birthday.title").setStyle(SGA))
+            .description(OptionDescription.createBuilder()
+                    .text(Text.translatable("option.yavpm.farests_birthday.desc").setStyle(SGA))
+                    .build()
+            )
+            .binding(
+                    true,
+                    () -> HANDLER.instance().farestsBirthday,
+                    newVal -> HANDLER.instance().farestsBirthday = newVal
+            ).controller(BooleanControllerBuilder::create)
             .build();
     // endregion
 }

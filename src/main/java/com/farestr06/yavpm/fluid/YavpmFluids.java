@@ -8,7 +8,7 @@ import net.minecraft.registry.Registry;
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmFluids {
-    public static final FlowableFluid STILL_VOID_WATER = Registry.register(Registries.FLUID, makeId("void_water"), new VoidWaterFluid.Still());
+    public static final FlowableFluid STILL_VOID_WATER = Registry.register(Registries.FLUID, makeId("still_void_water"), new VoidWaterFluid.Still());
     public static final FlowableFluid FLOWING_VOID_WATER = Registry.register(Registries.FLUID, makeId("flowing_void_water"), new VoidWaterFluid.Flowing());
 
     public static void init() {

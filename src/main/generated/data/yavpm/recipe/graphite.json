@@ -3,11 +3,11 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "yavpm:graphite"
+      "item": "yavpm:graphite_block"
     }
   ],
   "result": {
-    "count": 3,
-    "id": "minecraft:black_dye"
+    "count": 9,
+    "id": "yavpm:graphite"
   }
 }

@@ -8,6 +8,6 @@ import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 public class YavpmTerraBlenderInit implements TerraBlenderApi {
     @Override
     public void onTerraBlenderInitialized() {
-        Regions.register(new YavpmOverworldRegion(makeId("overworld"), 4));
+        Regions.register(new YavpmOverworldRegion(makeId("overworld"), 1));
     }
 }

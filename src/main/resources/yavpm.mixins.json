@@ -5,11 +5,9 @@
   "mixins": [
     "block.LockableContainerBlockEntityAccessor",
     "block.PowderSnowBlockMixin",
-    "entity.AbstractPiglinEntityMixin",
     "entity.ChickenEntityMixin",
     "entity.CowEntityMixin",
     "entity.DragonFireballEntityMixin",
-    "entity.HoglinEntityMixin",
     "entity.LivingEntityMixin",
     "entity.PhantomEntityMixin",
     "item.ItemModelGeneratorMixin"

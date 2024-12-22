@@ -9,6 +9,7 @@ import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.ItemGroupHelper;
+import com.farestr06.yavpm.item.YavpmArmorMaterials;
 import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.item.YavpmPotions;
 import com.farestr06.yavpm.item.enchantment.effect.YavpmEnchantmentEffects;
@@ -18,9 +19,6 @@ import com.farestr06.yavpm.world.gen.YavpmWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.loottable.BlockLootTableGenerator;
 import net.minecraft.data.server.loottable.vanilla.VanillaBlockLootTableGenerator;
@@ -43,12 +41,9 @@ import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.NoSuchElementException;
 
 public class YetAnotherVanillaPlusMod implements ModInitializer {
 	public static final String MOD_ID = "yavpm";
@@ -68,27 +63,35 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		LOGGER.info("the j");
+		LOGGER.info("Go go gadget YAVPM!");
 
 		YavpmConfig.HANDLER.load();
 
-		YavpmEntities.init();
-		YavpmBoats.init();
-		YavpmSounds.init();
+		ItemGroupHelper.modifyEntries();
+
 		YavpmItems.init();
-		YavpmStatusEffects.init();
-		YavpmPotions.init();
 		YavpmBlocks.init();
 		YavpmFluids.init();
-		YavpmRecipeSerializers.init();
-		YavpmTrades.init();
-		YavpmEnchantmentEffects.init();
+
+		YavpmArmorMaterials.init();
+
+		YavpmSounds.init();
+
+		YavpmStatusEffects.init();
+		YavpmPotions.init();
 
 		YavpmWorldGeneration.generateModWorldGen();
+		YavpmEnchantmentEffects.init();
 
-		ItemGroupHelper.modifyEntries();
+		YavpmEntities.init();
+		YavpmBoats.init();
+
+		YavpmRecipeSerializers.init();
+		YavpmTrades.init();
+
 		modifyLoot();
 
+		/*
 		try {
 			if (ResourceManagerHelper.registerBuiltinResourcePack(
 					makeId("programmer_art"),
@@ -103,6 +106,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		} catch (NoSuchElementException e) {
 			LOGGER.error("The mod isn't loaded, for some reason.", e);
 		}
+		 */
 	}
 
 	public static void modifyLoot() {

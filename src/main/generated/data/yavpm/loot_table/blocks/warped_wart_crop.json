@@ -11,7 +11,7 @@
               "add": false,
               "conditions": [
                 {
-                  "block": "yavpm:warped_wart",
+                  "block": "yavpm:warped_wart_crop",
                   "condition": "minecraft:block_state_property",
                   "properties": {
                     "age": "3"
@@ -28,7 +28,7 @@
             {
               "conditions": [
                 {
-                  "block": "yavpm:warped_wart",
+                  "block": "yavpm:warped_wart_crop",
                   "condition": "minecraft:block_state_property",
                   "properties": {
                     "age": "3"

@@ -397,6 +397,14 @@ public class YavpmLangProvider extends FabricLanguageProvider {
     private static void yaclTranslations(TranslationBuilder builder) {
         builder.add("option.yavpm.title", "Yet Another Vanilla Plus Mod Options");
 
+        builder.add("option.yavpm.easter_eggs", "Easter Eggs");
+
+        builder.add("option.yavpm.snapshot_day.title", "Snapshot Day Splash");
+        builder.add("option.yavpm.snapshot_day.desc", "A special splash will sometimes appear on Wednesday; the likelihood of this happening is determined by this value. Default is 0.2f.");
+
+        builder.add("option.yavpm.farests_birthday.title", "FarestR06's Birthday Splash");
+        builder.add("option.yavpm.farests_birthday.desc", "A special splash will appear on the mod author's birthday; this only happens if this option is enabled. Default is true.");
+
         builder.add("option.yavpm.blocks_and_fluids", "Blocks/Fluids");
         builder.add("option.yavpm.blocks_and_fluids.glowing_obsidian", "Glowing Obsidian");
         builder.add("option.yavpm.blocks_and_fluids.void", "Void Block and Void Water");

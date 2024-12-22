@@ -50,5 +50,13 @@ public class YavpmConfig {
     public float runeDurabilityUpgradeFactor = 1.2f;
     @SerialEntry(comment = "When a Speed Up Rune is applied to equipment, its mining speed is multiplied by this factor. Default is 1.2f,")
     public float runeSpeedUpgradeFactor = 1.2f;
+    @SerialEntry(comment = "When enabled, a Key Golem will make noise while selected in the hotbar. If the noises annoy you, this option can disable them. Default is true.")
+    public boolean keyGolemCries = true;
+    // endregion
+    // region Easter Eggs
+    @SerialEntry(comment = "A special splash will sometimes appear on Wednesday; the likelihood of this happening is determined by this value. Default is 0.2f.")
+    public float snapshotDaySplashChance = 0.2f;
+    @SerialEntry(comment = "A special splash will appear on the mod author's birthday; this only happens if this option is enabled. Default is true.")
+    public boolean farestsBirthday = true;
     // endregion
 }

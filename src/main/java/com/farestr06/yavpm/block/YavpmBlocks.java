@@ -21,14 +21,17 @@ import net.minecraft.data.family.BlockFamily;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.item.BlockItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-import static com.farestr06.api.block.BlockHelper.*;
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 import static com.farestr06.yavpm.config.YavpmConfig.HANDLER;
 
@@ -42,15 +45,7 @@ public class YavpmBlocks {
                     AbstractBlock.Settings.copy(Blocks.BEACON)
             )
     );
-
      */
-
-    public static final Block WARPED_WART = makeAdvancedBlockAndItem(
-            makeId("warped_wart"),
-            new WarpedWartCropBlock(
-                    AbstractBlock.Settings.copy(Blocks.NETHER_WART).mapColor(MapColor.TEAL)
-            )
-    );
 
     // region Glowing Obsidian
     public static final Block GLOWING_OBSIDIAN = makeBlockAndItem(makeId("glowing_obsidian"),
@@ -63,6 +58,13 @@ public class YavpmBlocks {
     // endregion
 
     // region Crops
+    public static final Block WARPED_WART = makeAdvancedBlock(
+            makeId("warped_wart_crop"),
+            new WarpedWartCropBlock(
+                    AbstractBlock.Settings.copy(Blocks.NETHER_WART).mapColor(MapColor.TEAL)
+            )
+    );
+
     public static final Block BANANA_CROP = makeAdvancedBlock(makeId("banana_crop"),
             new BananaCropBlock(AbstractBlock.Settings.copy(Blocks.POTATOES)));
 
@@ -688,6 +690,22 @@ public class YavpmBlocks {
     public static void init() {
         YetAnotherVanillaPlusMod.LOGGER.info("Registering blocks for YAVPM!");
         setUpRegistries();
+    }
+
+    private static Block makeBlockAndItem(Identifier id, AbstractBlock.Settings blockSettings) {
+        Block block = makeBlock(id, blockSettings);
+        Registry.register(Registries.ITEM, id, new BlockItem(block, new Item.Settings()));
+        return block;
+    }
+    private static Block makeBlock(Identifier id, AbstractBlock.Settings settings) {
+        return Registry.register(Registries.BLOCK, id, new Block(settings));
+    }
+    private static Block makeAdvancedBlock(Identifier id, Block block) {
+        return Registry.register(Registries.BLOCK, id, block);
+    }
+    private static Block makeAdvancedBlockAndItem(Identifier id, Block block) {
+        Registry.register(Registries.ITEM, id, new BlockItem(block, new Item.Settings()));
+        return makeAdvancedBlock(id, block);
     }
 
     private static void setUpRegistries() {

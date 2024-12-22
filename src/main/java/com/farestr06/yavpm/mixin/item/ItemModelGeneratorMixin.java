@@ -11,8 +11,6 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(ItemModelGenerator.class)
 public class ItemModelGeneratorMixin {
-
-
     /**
      * The data generator can only register a dye overlay for leather armor.
      * @param instance The armor being checked.

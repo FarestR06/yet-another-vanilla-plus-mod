@@ -70,8 +70,5 @@ public class YavpmEntities {
 
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Tanuki attributes...");
         FabricDefaultAttributeRegistry.register(TANUKI, TanukiEntity.createTanukiAttributes().build());
-
-        YetAnotherVanillaPlusMod.LOGGER.debug("Creating Void Phantom attributes...");
-        FabricDefaultAttributeRegistry.register(VOID_PHANTOM, HostileEntity.createHostileAttributes().build());
     }
 }

@@ -1,4 +1,4 @@
-// 1.21.1	2024-12-20T14:51:28.270599	Yet Another Vanilla Plus Mod/Block Loot Tables
+// 1.21.1	2024-12-21T14:58:20.197234	Yet Another Vanilla Plus Mod/Block Loot Tables
 e759c8d3b3c76a3f019653888b32156e755aa536 data/yavpm/loot_table/blocks/graphite_block.json
 57e746f79ef273aef043f4034edf2334b32f2e25 data/yavpm/loot_table/blocks/stripped_prickle_log.json
 3b9e9d53bd2954b08270c3d3f23de8d9f1346a7d data/yavpm/loot_table/blocks/prickle_log.json
@@ -39,8 +39,8 @@ abb0c635f875e97f82b98bca3ad4de5ad5b96640 data/yavpm/loot_table/blocks/polished_a
 59fa95863b09841746e88984bd376f07a9f4ae23 data/yavpm/loot_table/blocks/apple_sign.json
 8c068992d7326b2e9b2b212245d5516774c2eb4d data/yavpm/loot_table/blocks/polished_kimberlite_brick_wall.json
 a62a3429c1216eefa240f97342ff2c0e449839f6 data/yavpm/loot_table/blocks/glowing_obsidian.json
-349eb5528c5b63158ecd343aeb12c74cbf484d1e data/yavpm/loot_table/blocks/apple_fence_gate.json
 4fe465be5d90ead4d0cf421ff6764dfaf88c203d data/yavpm/loot_table/blocks/stripped_prickle_wood.json
+349eb5528c5b63158ecd343aeb12c74cbf484d1e data/yavpm/loot_table/blocks/apple_fence_gate.json
 45020a48ddd30577e0e41c22bdcce7189a91b96f data/yavpm/loot_table/blocks/apple_planks.json
 6306d07ec8334b4cbcac04a8633285c8e3b71d56 data/yavpm/loot_table/blocks/polished_granite_bricks.json
 86380a3388bd8d7a2a7b738043313bdaf318b6b3 data/yavpm/loot_table/blocks/apple_wood.json
@@ -49,6 +49,7 @@ c1e6bfb42034600038296c81ed23d647a0300d13 data/yavpm/loot_table/blocks/polished_d
 89b2b63f135de33e4a58183f85da2fbc30b62f2a data/yavpm/loot_table/blocks/cobbled_granite_stairs.json
 f5f8552b7ec1040b58faa9fb8628f84c279dc8da data/yavpm/loot_table/blocks/apple_pressure_plate.json
 96873a338e6c8db913912e242deb86061896d9c1 data/yavpm/loot_table/blocks/polished_andesite_bricks.json
+96bf8a824a1c6a0228ba7984adb5e593063d0f0a data/yavpm/loot_table/blocks/warped_wart_crop.json
 ed950eb8dac16c45b232379eb3869ccae18c90c9 data/yavpm/loot_table/blocks/prickle_sign.json
 72e44f0ec64d0bc7638d6f2b7baf74f2f73bda10 data/yavpm/loot_table/blocks/stripped_persimmon_wood.json
 174acede61ff803e39951d1c7a4e0ad8f504127d data/yavpm/loot_table/blocks/prickle_pressure_plate.json
@@ -74,7 +75,6 @@ c73859fd3006e1d90eeef8203ee7f6e4380b667e data/yavpm/loot_table/blocks/prickle_bu
 bd175e6b3dfd21989b2103c75445b3d391ac4a8f data/yavpm/loot_table/blocks/polished_kimberlite_wall.json
 8f94d332226b94916db40d23205c8a94c3fddadf data/yavpm/loot_table/blocks/prickle_fence.json
 37b3266f045d675affb0154eb534f15bfea12bd5 data/yavpm/loot_table/blocks/kimberlite.json
-052ab8c822819c42a52351ee55671d448e852788 data/yavpm/loot_table/blocks/warped_wart.json
 a9b4f03cb82ee2f7b02f5fbd468e9a66b7f37090 data/yavpm/loot_table/blocks/polished_diorite_brick_wall.json
 ec33164f8ea9fb2db34f50861fe3a244aaf10c98 data/yavpm/loot_table/blocks/soul_glowing_obsidian.json
 d3dd7bbc31a305b87a36800eb603a83a3f138e1e data/yavpm/loot_table/blocks/prickle_wood.json

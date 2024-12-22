@@ -56,7 +56,7 @@ public class YavpmWorldGeneration {
                 BiomeSelectors.tag(ConventionalBiomeTags.IS_END),
                 SpawnGroup.MONSTER,
                 YavpmEntities.VOID_PHANTOM,
-                4,
+                1,
                 1,
                 1
         );

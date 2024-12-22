@@ -16,15 +16,17 @@ import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.item.*;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.Potions;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.farestr06.api.item.ItemHelper.*;
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 import static com.farestr06.yavpm.entity.YavpmBoats.*;
 import static com.farestr06.yavpm.item.YavpmArmorMaterials.STUDDED;
@@ -335,6 +337,18 @@ public class YavpmItems {
         setUpComponents();
         setUpRegistries();
         setUpMoongusFood();
+    }
+
+    private static Item makeSimpleItem(Identifier id) {
+        return makeItem(id, new Item.Settings());
+    }
+
+    private static Item makeItem(Identifier id, Item.Settings settings) {
+        return makeAdvancedItem(id, new Item(settings));
+    }
+
+    private static Item makeAdvancedItem(Identifier id, Item advancedItem) {
+        return Registry.register(Registries.ITEM, id, advancedItem);
     }
 
     private static void setUpMoongusFood() {

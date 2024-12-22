@@ -1,7 +1,7 @@
- {
+{
 	"schemaVersion": 1,
 	"id": "yavpm",
-	"version": "${version}",
+	"version": "1.0.0",
 	"name": "Yet Another Vanilla Plus Mod",
 	"description": "Pretty self-explanatory",
 	"authors": [
@@ -16,7 +16,7 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-          "com.farestr06.yavpm.YetAnotherVanillaPlusMod"
+		  "com.farestr06.yavpm.YetAnotherVanillaPlusMod"
 		],
 		"client": [
 			"com.farestr06.yavpm.YetAnotherVanillaPlusModClient"
@@ -34,14 +34,15 @@
 	"mixins": [
 		"yavpm.mixins.json"
 	],
+	"accessWidener": "yavpm.accesswidener",
 	"depends": {
 		"fabricloader": ">=0.16.9",
 		"minecraft": "~1.21.1",
 		"java": ">=21",
 		"fabric-api": ">=0.110.0+1.21.1",
 		"fr06-api": ">=2.7.1+1.21.1",
-		"yet_another_config_lib_v3": "3.6.1+1.21-fabric",
-		"modmenu": "11.0.3",
+		"yet_another_config_lib_v3": ">=3.6.1+1.21-fabric",
+		"modmenu": ">=11.0.3",
 		"terrablender": ">=4.1.0.5"
 	},
 	"suggests": {

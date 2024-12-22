@@ -76,7 +76,6 @@ public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
                 Identifier.ofVanilla("block/water_flow"),
                 0x110011
         ));
-
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), YavpmFluids.STILL_VOID_WATER, YavpmFluids.FLOWING_VOID_WATER);
     }
 
@@ -84,8 +83,8 @@ public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
         EntityRendererRegistry.register(YavpmEntities.MOONGUS, MoongusEntityRenderer::new);
         EntityRendererRegistry.register(YavpmEntities.CARBONFOWL, CarbonfowlEntityRenderer::new);
         EntityRendererRegistry.register(YavpmEntities.VOID_PHANTOM, VoidPhantomEntityRenderer::new);
-
         EntityRendererRegistry.register(YavpmEntities.TANUKI, TanukiEntityRenderer::new);
+
         EntityModelLayerRegistry.registerModelLayer(YavpmModelLayers.TANUKI, TanukiEntityModel::getTexturedModelData);
     }
 }
