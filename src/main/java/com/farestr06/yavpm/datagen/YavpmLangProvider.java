@@ -242,7 +242,6 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmEntities.VOID_PHANTOM, "Void Phantom");
 
         builder.add(YavpmStatusEffects.VOID_TOUCHED.value(), "Void Touched");
-        builder.add(YavpmStatusEffects.NETHER_POWER.value(), "Nether Power");
         builder.add(YavpmStatusEffects.CHOKING.value(), "Choking");
 
         builder.add("subtitles.entity.moongus.eat", "Moongus eats");
@@ -331,45 +330,6 @@ public class YavpmLangProvider extends FabricLanguageProvider {
     private static void stoneTranslations(TranslationBuilder builder) {
         builder.add(YavpmBlocks.GRAPHITE_BLOCK, "Block of Graphite");
         builder.add(YavpmBlocks.GRAPHENE_BLOCK, "Block of Graphene");
-
-        builder.add(YavpmBlocks.COBBLED_GRANITE, "Cobbled Granite");
-        builder.add(YavpmBlocks.COBBLED_DIORITE, "Cobbled Diorite");
-        builder.add(YavpmBlocks.COBBLED_ANDESITE, "Cobbled Andesite");
-        builder.add(YavpmBlocks.COBBLED_GRANITE_STAIRS, "Cobbled Granite Stairs");
-        builder.add(YavpmBlocks.COBBLED_DIORITE_STAIRS, "Cobbled Diorite Stairs");
-        builder.add(YavpmBlocks.COBBLED_ANDESITE_STAIRS, "Cobbled Andesite Stairs");
-        builder.add(YavpmBlocks.COBBLED_GRANITE_SLAB, "Cobbled Granite Slab");
-        builder.add(YavpmBlocks.COBBLED_DIORITE_SLAB, "Cobbled Diorite Slab");
-        builder.add(YavpmBlocks.COBBLED_ANDESITE_SLAB, "Cobbled Andesite Slab");
-        builder.add(YavpmBlocks.COBBLED_GRANITE_WALL, "Cobbled Granite Wall");
-        builder.add(YavpmBlocks.COBBLED_DIORITE_WALL, "Cobbled Diorite Wall");
-        builder.add(YavpmBlocks.COBBLED_ANDESITE_WALL, "Cobbled Andesite Wall");
-
-        builder.add(YavpmBlocks.POLISHED_GRANITE_BRICKS, "Polished Granite Bricks");
-        builder.add(YavpmBlocks.POLISHED_DIORITE_BRICKS, "Polished Diorite Bricks");
-        builder.add(YavpmBlocks.POLISHED_ANDESITE_BRICKS, "Polished Andesite Bricks");
-        builder.add(YavpmBlocks.POLISHED_GRANITE_BRICK_STAIRS, "Polished Granite Brick Stairs");
-        builder.add(YavpmBlocks.POLISHED_DIORITE_BRICK_STAIRS, "Polished Diorite Brick Stairs");
-        builder.add(YavpmBlocks.POLISHED_ANDESITE_BRICK_STAIRS, "Polished Andesite Brick Stairs");
-        builder.add(YavpmBlocks.POLISHED_GRANITE_BRICK_SLAB, "Polished Granite Brick Slab");
-        builder.add(YavpmBlocks.POLISHED_DIORITE_BRICK_SLAB, "Polished Diorite Brick Slab");
-        builder.add(YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB, "Polished Andesite Brick Slab");
-        builder.add(YavpmBlocks.POLISHED_GRANITE_BRICK_WALL, "Polished Granite Brick Wall");
-        builder.add(YavpmBlocks.POLISHED_DIORITE_BRICK_WALL, "Polished Diorite Brick Wall");
-        builder.add(YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL, "Polished Andesite Brick Wall");
-
-        builder.add(YavpmBlocks.POLISHED_GRANITE_TILES, "Polished Granite Tiles");
-        builder.add(YavpmBlocks.POLISHED_DIORITE_TILES, "Polished Diorite Tiles");
-        builder.add(YavpmBlocks.POLISHED_ANDESITE_TILES, "Polished Andesite Tiles");
-        builder.add(YavpmBlocks.POLISHED_GRANITE_TILE_STAIRS, "Polished Granite Tile Stairs");
-        builder.add(YavpmBlocks.POLISHED_DIORITE_TILE_STAIRS, "Polished Diorite Tile Stairs");
-        builder.add(YavpmBlocks.POLISHED_ANDESITE_TILE_STAIRS, "Polished Andesite Tile Stairs");
-        builder.add(YavpmBlocks.POLISHED_GRANITE_TILE_SLAB, "Polished Granite Tile Slab");
-        builder.add(YavpmBlocks.POLISHED_DIORITE_TILE_SLAB, "Polished Diorite Tile Slab");
-        builder.add(YavpmBlocks.POLISHED_ANDESITE_TILE_SLAB, "Polished Andesite Tile Slab");
-        builder.add(YavpmBlocks.POLISHED_GRANITE_TILE_WALL, "Polished Granite Tile Wall");
-        builder.add(YavpmBlocks.POLISHED_DIORITE_TILE_WALL, "Polished Diorite Tile Wall");
-        builder.add(YavpmBlocks.POLISHED_ANDESITE_TILE_WALL, "Polished Andesite Tile Wall");
 
         builder.add(YavpmBlocks.KIMBERLITE, "Kimberlite");
         builder.add(YavpmBlocks.POLISHED_KIMBERLITE, "Polished Kimberlite");

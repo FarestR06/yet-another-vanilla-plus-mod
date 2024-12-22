@@ -361,15 +361,6 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 			if (source.isBuiltin() && key == Blocks.OAK_LEAVES.getLootTableKey()) {
 				return newOakLeavesDrops(registries, generator).build();
 			}
-			if (source.isBuiltin() && key == Blocks.GRANITE.getLootTableKey()) {
-				return generator.drops(Blocks.GRANITE, YavpmBlocks.COBBLED_GRANITE).build();
-			}
-			if (source.isBuiltin() && key == Blocks.DIORITE.getLootTableKey()) {
-				return generator.drops(Blocks.DIORITE, YavpmBlocks.COBBLED_DIORITE).build();
-			}
-			if (source.isBuiltin() && key == Blocks.ANDESITE.getLootTableKey()) {
-				return generator.drops(Blocks.ANDESITE, YavpmBlocks.COBBLED_ANDESITE).build();
-			}
 			return original;
 		});
 	}

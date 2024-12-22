@@ -74,7 +74,7 @@ public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
         FluidRenderHandlerRegistry.INSTANCE.register(YavpmFluids.STILL_VOID_WATER, YavpmFluids.FLOWING_VOID_WATER, new SimpleFluidRenderHandler(
                 Identifier.ofVanilla("block/water_still"),
                 Identifier.ofVanilla("block/water_flow"),
-                0x110011
+                0x1f001f
         ));
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), YavpmFluids.STILL_VOID_WATER, YavpmFluids.FLOWING_VOID_WATER);
     }

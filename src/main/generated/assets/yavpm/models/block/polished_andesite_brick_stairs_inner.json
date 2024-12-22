@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/inner_stairs",
-  "textures": {
-    "bottom": "yavpm:block/polished_andesite_bricks",
-    "side": "yavpm:block/polished_andesite_bricks",
-    "top": "yavpm:block/polished_andesite_bricks"
-  }
-}

@@ -81,46 +81,6 @@ public class ItemGroupHelper {
         entries.add(YavpmBlocks.PRICKLE_PRESSURE_PLATE);
         entries.add(YavpmBlocks.PRICKLE_BUTTON);
 
-
-        entries.add(YavpmBlocks.COBBLED_GRANITE);
-        entries.add(YavpmBlocks.COBBLED_GRANITE_STAIRS);
-        entries.add(YavpmBlocks.COBBLED_GRANITE_SLAB);
-        entries.add(YavpmBlocks.COBBLED_GRANITE_WALL);
-        entries.add(YavpmBlocks.POLISHED_GRANITE_BRICKS);
-        entries.add(YavpmBlocks.POLISHED_GRANITE_BRICK_STAIRS);
-        entries.add(YavpmBlocks.POLISHED_GRANITE_BRICK_SLAB);
-        entries.add(YavpmBlocks.POLISHED_GRANITE_BRICK_WALL);
-        entries.add(YavpmBlocks.POLISHED_GRANITE_TILES);
-        entries.add(YavpmBlocks.POLISHED_GRANITE_TILE_STAIRS);
-        entries.add(YavpmBlocks.POLISHED_GRANITE_TILE_SLAB);
-        entries.add(YavpmBlocks.POLISHED_GRANITE_TILE_WALL);
-
-        entries.add(YavpmBlocks.COBBLED_DIORITE);
-        entries.add(YavpmBlocks.COBBLED_DIORITE_STAIRS);
-        entries.add(YavpmBlocks.COBBLED_DIORITE_SLAB);
-        entries.add(YavpmBlocks.COBBLED_DIORITE_WALL);
-        entries.add(YavpmBlocks.POLISHED_DIORITE_BRICKS);
-        entries.add(YavpmBlocks.POLISHED_DIORITE_BRICK_STAIRS);
-        entries.add(YavpmBlocks.POLISHED_DIORITE_BRICK_SLAB);
-        entries.add(YavpmBlocks.POLISHED_DIORITE_BRICK_WALL);
-        entries.add(YavpmBlocks.POLISHED_DIORITE_TILES);
-        entries.add(YavpmBlocks.POLISHED_DIORITE_TILE_STAIRS);
-        entries.add(YavpmBlocks.POLISHED_DIORITE_TILE_SLAB);
-        entries.add(YavpmBlocks.POLISHED_DIORITE_TILE_WALL);
-
-        entries.add(YavpmBlocks.COBBLED_ANDESITE);
-        entries.add(YavpmBlocks.COBBLED_ANDESITE_STAIRS);
-        entries.add(YavpmBlocks.COBBLED_ANDESITE_SLAB);
-        entries.add(YavpmBlocks.COBBLED_ANDESITE_WALL);
-        entries.add(YavpmBlocks.POLISHED_ANDESITE_BRICKS);
-        entries.add(YavpmBlocks.POLISHED_ANDESITE_BRICK_STAIRS);
-        entries.add(YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB);
-        entries.add(YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL);
-        entries.add(YavpmBlocks.POLISHED_ANDESITE_TILES);
-        entries.add(YavpmBlocks.POLISHED_ANDESITE_TILE_STAIRS);
-        entries.add(YavpmBlocks.POLISHED_ANDESITE_TILE_SLAB);
-        entries.add(YavpmBlocks.POLISHED_ANDESITE_TILE_WALL);
-
         entries.add(YavpmBlocks.KIMBERLITE);
         entries.add(YavpmBlocks.KIMBERLITE_STAIRS);
         entries.add(YavpmBlocks.KIMBERLITE_SLAB);

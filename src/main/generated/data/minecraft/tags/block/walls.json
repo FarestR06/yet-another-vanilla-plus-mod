@@ -1,13 +1,10 @@
 {
   "values": [
-    "yavpm:cobbled_granite_wall",
-    "yavpm:cobbled_diorite_wall",
-    "yavpm:cobbled_andesite_wall",
-    "yavpm:polished_granite_brick_wall",
-    "yavpm:polished_diorite_brick_wall",
-    "yavpm:polished_andesite_brick_wall",
-    "yavpm:polished_granite_tile_wall",
-    "yavpm:polished_diorite_tile_wall",
-    "yavpm:polished_andesite_tile_wall"
+    "yavpm:kimberlite_wall",
+    "yavpm:polished_kimberlite_wall",
+    "yavpm:polished_kimberlite_brick_wall",
+    "yavpm:kimberlite_wall",
+    "yavpm:polished_kimberlite_wall",
+    "yavpm:polished_kimberlite_brick_wall"
   ]
 }

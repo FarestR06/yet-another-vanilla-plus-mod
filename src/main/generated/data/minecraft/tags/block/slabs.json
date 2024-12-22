@@ -1,16 +1,7 @@
 {
   "values": [
-    "yavpm:cobbled_granite_slab",
-    "yavpm:cobbled_diorite_slab",
-    "yavpm:cobbled_andesite_slab",
-    "yavpm:polished_granite_brick_slab",
-    "yavpm:polished_diorite_brick_slab",
-    "yavpm:polished_andesite_brick_slab",
-    "yavpm:polished_granite_tile_slab",
-    "yavpm:polished_diorite_tile_slab",
-    "yavpm:polished_andesite_tile_slab",
-    "yavpm:apple_slab",
-    "yavpm:persimmon_slab",
-    "yavpm:prickle_slab"
+    "yavpm:kimberlite_slab",
+    "yavpm:polished_kimberlite_slab",
+    "yavpm:polished_kimberlite_brick_slab"
   ]
 }

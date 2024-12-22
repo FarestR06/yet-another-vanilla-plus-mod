@@ -6,7 +6,6 @@ import com.farestr06.yavpm.block.custom.fake.FakeOreBlock;
 import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.util.YavpmSounds;
 import com.farestr06.yavpm.util.YavpmTags;
-import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;

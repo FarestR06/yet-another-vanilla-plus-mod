@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/outer_stairs",
-  "textures": {
-    "bottom": "yavpm:block/polished_granite_tiles",
-    "side": "yavpm:block/polished_granite_tiles",
-    "top": "yavpm:block/polished_granite_tiles"
-  }
-}

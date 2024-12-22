@@ -8,8 +8,7 @@
 		"FarestR06"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/FarestR06/yet-another-vanilla-plus-mod.git"
 	},
 	"license": "MIT",
 	"icon": "assets/yavpm/icon.png",

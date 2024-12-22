@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "yavpm:block/cobbled_diorite",
-    "side": "yavpm:block/cobbled_diorite",
-    "top": "yavpm:block/cobbled_diorite"
-  }
-}

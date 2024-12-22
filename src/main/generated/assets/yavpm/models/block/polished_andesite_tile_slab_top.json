@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/slab_top",
-  "textures": {
-    "bottom": "yavpm:block/polished_andesite_tiles",
-    "side": "yavpm:block/polished_andesite_tiles",
-    "top": "yavpm:block/polished_andesite_tiles"
-  }
-}

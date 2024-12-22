@@ -41,17 +41,6 @@ public class YavpmTagProviders {
                     YavpmItems.RUNE_DURABILITY,
                     YavpmItems.RUNE_SPEED
             );
-            getOrCreateTagBuilder(ItemTags.STONE_TOOL_MATERIALS).add(
-                    YavpmBlocks.COBBLED_GRANITE.asItem(),
-                    YavpmBlocks.COBBLED_DIORITE.asItem(),
-                    YavpmBlocks.COBBLED_ANDESITE.asItem()
-            );
-
-            getOrCreateTagBuilder(ItemTags.STONE_CRAFTING_MATERIALS).add(
-                    YavpmBlocks.COBBLED_GRANITE.asItem(),
-                    YavpmBlocks.COBBLED_DIORITE.asItem(),
-                    YavpmBlocks.COBBLED_ANDESITE.asItem()
-            );
             getOrCreateTagBuilder(ItemTags.DYEABLE).add(
                     YavpmItems.STUDDED_HELMET,
                     YavpmItems.STUDDED_CHESTPLATE,
@@ -273,37 +262,19 @@ public class YavpmTagProviders {
                     YavpmBlocks.SOUL_GLOWING_OBSIDIAN.asItem()
             );
             getOrCreateTagBuilder(ItemTags.STAIRS).add(
-                    YavpmBlocks.COBBLED_GRANITE_STAIRS.asItem(),
-                    YavpmBlocks.COBBLED_DIORITE_STAIRS.asItem(),
-                    YavpmBlocks.COBBLED_ANDESITE_STAIRS.asItem(),
-                    YavpmBlocks.POLISHED_GRANITE_BRICK_STAIRS.asItem(),
-                    YavpmBlocks.POLISHED_DIORITE_BRICK_STAIRS.asItem(),
-                    YavpmBlocks.POLISHED_ANDESITE_BRICK_STAIRS.asItem(),
-                    YavpmBlocks.POLISHED_GRANITE_TILE_STAIRS.asItem(),
-                    YavpmBlocks.POLISHED_DIORITE_TILE_STAIRS.asItem(),
-                    YavpmBlocks.POLISHED_ANDESITE_TILE_STAIRS.asItem()
+                    YavpmBlocks.KIMBERLITE_STAIRS.asItem(),
+                    YavpmBlocks.POLISHED_KIMBERLITE_STAIRS.asItem(),
+                    YavpmBlocks.POLISHED_KIMBERLITE_BRICK_STAIRS.asItem()
             );
             getOrCreateTagBuilder(ItemTags.SLABS).add(
-                    YavpmBlocks.COBBLED_GRANITE_SLAB.asItem(),
-                    YavpmBlocks.COBBLED_DIORITE_SLAB.asItem(),
-                    YavpmBlocks.COBBLED_ANDESITE_SLAB.asItem(),
-                    YavpmBlocks.POLISHED_GRANITE_BRICK_SLAB.asItem(),
-                    YavpmBlocks.POLISHED_DIORITE_BRICK_SLAB.asItem(),
-                    YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB.asItem(),
-                    YavpmBlocks.POLISHED_GRANITE_TILE_SLAB.asItem(),
-                    YavpmBlocks.POLISHED_DIORITE_TILE_SLAB.asItem(),
-                    YavpmBlocks.POLISHED_ANDESITE_TILE_SLAB.asItem()
+                    YavpmBlocks.KIMBERLITE_SLAB.asItem(),
+                    YavpmBlocks.POLISHED_KIMBERLITE_SLAB.asItem(),
+                    YavpmBlocks.POLISHED_KIMBERLITE_BRICK_SLAB.asItem()
             );
             getOrCreateTagBuilder(ItemTags.WALLS).add(
-                    YavpmBlocks.COBBLED_GRANITE_WALL.asItem(),
-                    YavpmBlocks.COBBLED_DIORITE_WALL.asItem(),
-                    YavpmBlocks.COBBLED_ANDESITE_WALL.asItem(),
-                    YavpmBlocks.POLISHED_GRANITE_BRICK_WALL.asItem(),
-                    YavpmBlocks.POLISHED_DIORITE_BRICK_WALL.asItem(),
-                    YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL.asItem(),
-                    YavpmBlocks.POLISHED_GRANITE_TILE_WALL.asItem(),
-                    YavpmBlocks.POLISHED_DIORITE_TILE_WALL.asItem(),
-                    YavpmBlocks.POLISHED_ANDESITE_TILE_WALL.asItem()
+                    YavpmBlocks.KIMBERLITE_WALL.asItem(),
+                    YavpmBlocks.POLISHED_KIMBERLITE_WALL.asItem(),
+                    YavpmBlocks.POLISHED_KIMBERLITE_BRICK_WALL.asItem()
             );
 
             getOrCreateTagBuilder(ConventionalItemTags.STRIPPED_LOGS).add(
@@ -421,42 +392,6 @@ public class YavpmTagProviders {
                     YavpmBlocks.SOUL_GLOWING_OBSIDIAN,
                     YavpmBlocks.GRAPHITE_BLOCK,
                     YavpmBlocks.GRAPHENE_BLOCK,
-                    YavpmBlocks.COBBLED_GRANITE,
-                    YavpmBlocks.COBBLED_DIORITE,
-                    YavpmBlocks.COBBLED_ANDESITE,
-                    YavpmBlocks.COBBLED_GRANITE_STAIRS,
-                    YavpmBlocks.COBBLED_DIORITE_STAIRS,
-                    YavpmBlocks.COBBLED_ANDESITE_STAIRS,
-                    YavpmBlocks.COBBLED_GRANITE_SLAB,
-                    YavpmBlocks.COBBLED_DIORITE_SLAB,
-                    YavpmBlocks.COBBLED_ANDESITE_SLAB,
-                    YavpmBlocks.COBBLED_GRANITE_WALL,
-                    YavpmBlocks.COBBLED_DIORITE_WALL,
-                    YavpmBlocks.COBBLED_ANDESITE_WALL,
-                    YavpmBlocks.POLISHED_GRANITE_BRICKS,
-                    YavpmBlocks.POLISHED_GRANITE_BRICK_STAIRS,
-                    YavpmBlocks.POLISHED_GRANITE_BRICK_SLAB,
-                    YavpmBlocks.POLISHED_GRANITE_BRICK_WALL,
-                    YavpmBlocks.POLISHED_DIORITE_BRICKS,
-                    YavpmBlocks.POLISHED_DIORITE_BRICK_STAIRS,
-                    YavpmBlocks.POLISHED_DIORITE_BRICK_SLAB,
-                    YavpmBlocks.POLISHED_DIORITE_BRICK_WALL,
-                    YavpmBlocks.POLISHED_ANDESITE_BRICKS,
-                    YavpmBlocks.POLISHED_ANDESITE_BRICK_STAIRS,
-                    YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB,
-                    YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL,
-                    YavpmBlocks.POLISHED_GRANITE_TILES,
-                    YavpmBlocks.POLISHED_GRANITE_TILE_STAIRS,
-                    YavpmBlocks.POLISHED_GRANITE_TILE_SLAB,
-                    YavpmBlocks.POLISHED_GRANITE_TILE_WALL,
-                    YavpmBlocks.POLISHED_DIORITE_TILES,
-                    YavpmBlocks.POLISHED_DIORITE_TILE_STAIRS,
-                    YavpmBlocks.POLISHED_DIORITE_TILE_SLAB,
-                    YavpmBlocks.POLISHED_DIORITE_TILE_WALL,
-                    YavpmBlocks.POLISHED_ANDESITE_TILES,
-                    YavpmBlocks.POLISHED_ANDESITE_TILE_STAIRS,
-                    YavpmBlocks.POLISHED_ANDESITE_TILE_SLAB,
-                    YavpmBlocks.POLISHED_ANDESITE_TILE_WALL,
                     YavpmBlocks.KIMBERLITE,
                     YavpmBlocks.POLISHED_KIMBERLITE,
                     YavpmBlocks.POLISHED_KIMBERLITE_BRICKS,
@@ -502,56 +437,37 @@ public class YavpmTagProviders {
         }
 
         private void generalBlockTags() {
-            getOrCreateTagBuilder(BlockTags.STONE_BRICKS).add(
-                    YavpmBlocks.POLISHED_GRANITE_BRICKS,
-                    YavpmBlocks.POLISHED_DIORITE_BRICKS,
-                    YavpmBlocks.POLISHED_ANDESITE_BRICKS
-            );
-
             getOrCreateTagBuilder(BlockTags.STAIRS).add(
-                    YavpmBlocks.COBBLED_GRANITE_STAIRS,
-                    YavpmBlocks.COBBLED_DIORITE_STAIRS,
-                    YavpmBlocks.COBBLED_ANDESITE_STAIRS,
-                    YavpmBlocks.POLISHED_GRANITE_BRICK_STAIRS,
-                    YavpmBlocks.POLISHED_DIORITE_BRICK_STAIRS,
-                    YavpmBlocks.POLISHED_ANDESITE_BRICK_STAIRS,
-                    YavpmBlocks.POLISHED_GRANITE_TILE_STAIRS,
-                    YavpmBlocks.POLISHED_DIORITE_TILE_STAIRS,
-                    YavpmBlocks.POLISHED_ANDESITE_TILE_STAIRS,
+                    YavpmBlocks.KIMBERLITE_STAIRS,
+                    YavpmBlocks.POLISHED_KIMBERLITE_STAIRS,
+                    YavpmBlocks.POLISHED_KIMBERLITE_BRICK_STAIRS
+            );
+            getOrCreateTagBuilder(BlockTags.SLABS).add(
+                    YavpmBlocks.KIMBERLITE_SLAB,
+                    YavpmBlocks.POLISHED_KIMBERLITE_SLAB,
+                    YavpmBlocks.POLISHED_KIMBERLITE_BRICK_SLAB
+            );
+            getOrCreateTagBuilder(BlockTags.WALLS).add(
+                    YavpmBlocks.KIMBERLITE_WALL,
+                    YavpmBlocks.POLISHED_KIMBERLITE_WALL,
+                    YavpmBlocks.POLISHED_KIMBERLITE_BRICK_WALL
+            );
+            getOrCreateTagBuilder(BlockTags.WOODEN_STAIRS).add(
                     YavpmBlocks.APPLE_STAIRS,
                     YavpmBlocks.PERSIMMON_STAIRS,
                     YavpmBlocks.PRICKLE_STAIRS
             );
-            getOrCreateTagBuilder(BlockTags.SLABS).add(
-                    YavpmBlocks.COBBLED_GRANITE_SLAB,
-                    YavpmBlocks.COBBLED_DIORITE_SLAB,
-                    YavpmBlocks.COBBLED_ANDESITE_SLAB,
-                    YavpmBlocks.POLISHED_GRANITE_BRICK_SLAB,
-                    YavpmBlocks.POLISHED_DIORITE_BRICK_SLAB,
-                    YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB,
-                    YavpmBlocks.POLISHED_GRANITE_TILE_SLAB,
-                    YavpmBlocks.POLISHED_DIORITE_TILE_SLAB,
-                    YavpmBlocks.POLISHED_ANDESITE_TILE_SLAB,
+            getOrCreateTagBuilder(BlockTags.WOODEN_SLABS).add(
                     YavpmBlocks.APPLE_SLAB,
                     YavpmBlocks.PERSIMMON_SLAB,
                     YavpmBlocks.PRICKLE_SLAB
             );
 
             getOrCreateTagBuilder(BlockTags.WALLS).add(
-                    YavpmBlocks.COBBLED_GRANITE_WALL,
-                    YavpmBlocks.COBBLED_DIORITE_WALL,
-                    YavpmBlocks.COBBLED_ANDESITE_WALL,
-                    YavpmBlocks.POLISHED_GRANITE_BRICK_WALL,
-                    YavpmBlocks.POLISHED_DIORITE_BRICK_WALL,
-                    YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL,
-                    YavpmBlocks.POLISHED_GRANITE_TILE_WALL,
-                    YavpmBlocks.POLISHED_DIORITE_TILE_WALL,
-                    YavpmBlocks.POLISHED_ANDESITE_TILE_WALL
+                    YavpmBlocks.KIMBERLITE_WALL,
+                    YavpmBlocks.POLISHED_KIMBERLITE_WALL,
+                    YavpmBlocks.POLISHED_KIMBERLITE_BRICK_WALL
             );
-
-            getOrCreateTagBuilder(BlockTags.WOODEN_STAIRS).add(YavpmBlocks.APPLE_STAIRS, YavpmBlocks.PERSIMMON_STAIRS, YavpmBlocks.PRICKLE_STAIRS);
-
-            getOrCreateTagBuilder(BlockTags.WOODEN_SLABS).add(YavpmBlocks.APPLE_SLAB, YavpmBlocks.PERSIMMON_SLAB, YavpmBlocks.PRICKLE_SLAB);
 
             getOrCreateTagBuilder(BlockTags.WOODEN_FENCES)
                     .add(YavpmBlocks.APPLE_FENCE, YavpmBlocks.PERSIMMON_FENCE, YavpmBlocks.PRICKLE_FENCE);
