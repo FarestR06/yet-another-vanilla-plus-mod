@@ -36,7 +36,7 @@ public class YetAnotherVanillaPlusModDataGenerator implements DataGeneratorEntry
 		registryBuilder.addRegistry(RegistryKeys.DAMAGE_TYPE, YavpmDamageTypes::bootstrap);
 		registryBuilder.addRegistry(RegistryKeys.ENCHANTMENT, YavpmEnchantments::bootstrap);
 		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, YavpmConfiguredFeatureBootstrapper::bootstrap);
-		registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, YavpmPlacedFeatureBootstrapper::boostrap);
+		registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, YavpmPlacedFeatureBootstrapper::bootstrap);
 		registryBuilder.addRegistry(RegistryKeys.BIOME, YavpmBiomes.Overworld::bootstrap);
 	}
 }

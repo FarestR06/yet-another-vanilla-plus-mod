@@ -24,6 +24,7 @@ public class YavpmBoats {
     public static final RegistryKey<TerraformBoatType> PERSIMMON_BOAT_KEY = TerraformBoatTypeRegistry.createKey(PERSIMMON_BOAT_TYPE_ID);
 
     public static void init() {
+        /*
         YetAnotherVanillaPlusMod.LOGGER.info("Registering boat types for YAVPM!!");
         TerraformBoatType appleBoat = new TerraformBoatType.Builder()
                 .item(YavpmItems.APPLE_BOAT)
@@ -37,6 +38,6 @@ public class YavpmBoats {
                 .planks(YavpmBlocks.PERSIMMON_PLANKS.asItem())
                 .build();
         Registry.register(TerraformBoatTypeRegistry.INSTANCE, PERSIMMON_BOAT_KEY, persimmonBoat);
-
+         */
     }
 }

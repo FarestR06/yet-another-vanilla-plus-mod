@@ -117,6 +117,7 @@ public class YavpmTagProviders {
                     YavpmItems.STUDDED_BOOTS
             );
 
+            /*
             getOrCreateTagBuilder(ItemTags.BOATS).add(
                     YavpmItems.APPLE_BOAT,
                     YavpmItems.PERSIMMON_BOAT
@@ -125,6 +126,7 @@ public class YavpmTagProviders {
                     YavpmItems.APPLE_CHEST_BOAT,
                     YavpmItems.PERSIMMON_CHEST_BOAT
             );
+             */
         }
 
         private void foodTags() {

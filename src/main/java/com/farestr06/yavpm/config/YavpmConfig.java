@@ -36,10 +36,6 @@ public class YavpmConfig {
     // endregion
 
     // region Blocks/Fluids
-    @SerialEntry(comment = "Glowing Obsidian blocks emit the specified light level. Default is 15.")
-    public int glowingObsidianLuminance = 15;
-    @SerialEntry(comment = "Soul Glowing Obsidian blocks will emit the specified light level. Default is 11.")
-    public int soulGlowingObsidianLuminance = 11;
     @SerialEntry(comment = "When set to true, Void Water can create more infinite sources, like how vanilla Water can. Default is true.")
     public boolean voidWaterSourceConversion = true;
     // endregion

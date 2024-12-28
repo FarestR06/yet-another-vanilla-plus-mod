@@ -18,19 +18,19 @@ public class YavpmPotions {
     public static final RegistryEntry<Potion> DECAY = register("decay", new Potion(
             new StatusEffectInstance(
                     StatusEffects.WITHER,
-                    800
+                    600
             )
     ));
     public static final RegistryEntry<Potion> LONG_DECAY = register("long_decay", new Potion(
             new StatusEffectInstance(
                     StatusEffects.WITHER,
-                    1600
+                    1200
             )
     ));
     public static final RegistryEntry<Potion> STRONG_DECAY = register("strong_decay", new Potion(
             new StatusEffectInstance(
                     StatusEffects.WITHER,
-                    400,
+                    300,
                     1
             )
     ));
@@ -39,7 +39,7 @@ public class YavpmPotions {
     public static final RegistryEntry<Potion> VOID_TOUCHED = register("void_touched", new Potion(
             new StatusEffectInstance(
                     YavpmStatusEffects.VOID_TOUCHED,
-                    1000
+                    800
             )
     ));
 
@@ -54,7 +54,7 @@ public class YavpmPotions {
             new StatusEffectInstance(
                     YavpmStatusEffects.VOID_TOUCHED,
                     400,
-                    2
+                    1
             )
     ));
 

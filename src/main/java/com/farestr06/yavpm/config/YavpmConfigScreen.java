@@ -23,11 +23,6 @@ public class YavpmConfigScreen implements ModMenuApi {
                 .category(ConfigCategory.createBuilder()
                         .name(Text.translatable("option.yavpm.blocks_and_fluids"))
                         .group(OptionGroup.createBuilder()
-                                .name(Text.translatable("option.yavpm.blocks_and_fluids.glowing_obsidian"))
-                                .option(GLOWING_OBSIDIAN_LUMINANCE)
-                                .option(SOUL_GLOWING_OBSIDIAN_LUMINANCE)
-                                .build())
-                        .group(OptionGroup.createBuilder()
                                 .name(Text.translatable("option.yavpm.blocks_and_fluids.void"))
                                 .option(VOID_WATER_SOURCE_CONVERSION)
                                 .build())
@@ -144,34 +139,6 @@ public class YavpmConfigScreen implements ModMenuApi {
             ).controller(BooleanControllerBuilder::create)
             .build();
     // endregion
-
-    // region Blocks and Fluids
-    protected static final Option<Integer> GLOWING_OBSIDIAN_LUMINANCE = Option.<Integer>createBuilder()
-            .name(Text.translatable("option.yavpm.glowing_obsidian_luminance.title"))
-            .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.glowing_obsidian_luminance.desc"))
-                    .build()
-            )
-            .binding(
-                    15,
-                    () -> HANDLER.instance().glowingObsidianLuminance,
-                    newVal -> HANDLER.instance().glowingObsidianLuminance = newVal
-            )
-            .controller(IntegerFieldControllerBuilder::create)
-            .build();
-    protected static final Option<Integer> SOUL_GLOWING_OBSIDIAN_LUMINANCE = Option.<Integer>createBuilder()
-            .name(Text.translatable("option.yavpm.soul_glowing_obsidian_luminance.title"))
-            .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.soul_glowing_obsidian_luminance.desc"))
-                    .build()
-            )
-            .binding(
-                    11,
-                    () -> HANDLER.instance().soulGlowingObsidianLuminance,
-                    newVal -> HANDLER.instance().soulGlowingObsidianLuminance = newVal
-            )
-            .controller(IntegerFieldControllerBuilder::create)
-            .build();
 
     protected static final Option<Boolean> VOID_WATER_SOURCE_CONVERSION = Option.<Boolean>createBuilder()
             .name(Text.translatable("option.yavpm.void_water_source_conversion.title"))

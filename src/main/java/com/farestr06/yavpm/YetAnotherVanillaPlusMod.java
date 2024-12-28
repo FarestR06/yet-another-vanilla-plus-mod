@@ -84,12 +84,12 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		YavpmEnchantmentEffects.init();
 
 		YavpmEntities.init();
-		YavpmBoats.init();
+		// YavpmBoats.init();
 
 		YavpmRecipeSerializers.init();
-		YavpmTrades.init();
 
 		modifyLoot();
+		YavpmTrades.init();
 
 		/*
 		try {
@@ -109,7 +109,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		 */
 	}
 
-	public static void modifyLoot() {
+	private static void modifyLoot() {
 		LOGGER.info("Modifying loot for YAVPM!");
 		LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
 			RegistryWrapper.Impl<Enchantment> enchantmentImpl = registries.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);

@@ -1,4 +1,4 @@
-// 1.21.1	2024-12-22T10:57:45.37508	Yet Another Vanilla Plus Mod/Model Definitions
+// 1.21.1	2024-12-27T20:02:50.1549	Yet Another Vanilla Plus Mod/Model Definitions
 bde0e551e4c9bd91c832da7d563b33f4a94daffd assets/yavpm/blockstates/magic_bean_crop.json
 60055bd5a3e2ce429d69aadaaac17455390fa5fb assets/yavpm/models/item/cooked_peanut.json
 a627087f2c4378b6e98476a1e09ed799e190e180 assets/yavpm/blockstates/kimberlite_slab.json
@@ -89,7 +89,6 @@ cd16758472e37b23b4a1b376bed2f8a1e04cda8e assets/yavpm/models/item/persimmon_log.
 5a42daa4dedf9df4c06d82594a7ef828f0d0c251 assets/yavpm/models/item/prickle_sign.json
 27dffc8955a29888943d5022fa37e6e587598f5d assets/yavpm/models/item/void_water_bucket.json
 7c26658320fe9ac6c85d2f071c3a96f123725a29 assets/yavpm/models/item/studded_chestplate_quartz_trim.json
-8e0ee44dbd78139f418fa99923dc6fc3fbb34e5c assets/yavpm/models/item/persimmon_chest_boat.json
 c8f7f9a3120eeecb60315aa7558f1736e20b196c assets/yavpm/models/block/persimmon_button_inventory.json
 6d59425b0db2758e4d61fc7cfda55b02a0a58dde assets/yavpm/models/item/studded_helmet_emerald_trim.json
 eff0f848386205d0503ca0b56d630e61881b92a9 assets/yavpm/models/block/persimmon_trapdoor_open.json
@@ -169,8 +168,8 @@ c1606ef6aa2f454ee794a71cd2b437b63c5e1b7e assets/yavpm/models/block/peanut_crop_s
 58e289a9caaaa11eb1d22e7bce276c5b51caff00 assets/yavpm/blockstates/persimmon_button.json
 f5ed31723b0a0f438436b91b652a2e336a627515 assets/yavpm/models/block/apple_trapdoor_bottom.json
 da223b466b912be245e8e89412eea93445e9d0a6 assets/yavpm/models/block/persimmon_sign.json
-581f0575ff5c7b50207778640a39f6bc7689be8f assets/yavpm/models/item/apple_slab.json
 d9aee52c594823b6d52c1d9b9cf1d86a1642261e assets/yavpm/models/item/studded_chestplate.json
+581f0575ff5c7b50207778640a39f6bc7689be8f assets/yavpm/models/item/apple_slab.json
 165b35f3ea3940975621c5ee1ff1900b9d7d2563 assets/yavpm/models/block/prickle_trapdoor_top.json
 3b1a6c846576933cfe7e86052082698f1b946703 assets/yavpm/models/block/kimberlite_wall_inventory.json
 7030ab7b58b32827f6c80018dff02832c298609f assets/yavpm/models/item/polished_kimberlite_stairs.json
@@ -214,8 +213,8 @@ e32f88cbe8988d02504ba6e07e5e74c9b7830932 assets/yavpm/blockstates/polished_kimbe
 9c99714d74937efecb4a681f535c66f3d704d10c assets/yavpm/models/item/persimmon_wood.json
 654e93ae2cb32b735b6e910d1149c3868c8574e0 assets/yavpm/models/block/prickle_slab.json
 771e57d07dc191322ef8bb80785f804c5c96824c assets/yavpm/blockstates/apple_sign.json
-a0eb87892cfba40cbd3b40aa2f20daac9ccdf005 assets/yavpm/blockstates/persimmon_hanging_sign.json
 9d74d6faf28a9bf6f1a35d0c7bb1f182bd434117 assets/yavpm/blockstates/prickle_door.json
+a0eb87892cfba40cbd3b40aa2f20daac9ccdf005 assets/yavpm/blockstates/persimmon_hanging_sign.json
 690407da1c908f82384a5b7151ea5e8fac6f9995 assets/yavpm/models/block/prickle_fence_gate_open.json
 2e751aff327e69eb843284d721107f068d5e9956 assets/yavpm/models/item/soul_glowing_obsidian.json
 9528b7124d12474d57fdef9e6a08563b5af2d4a7 assets/yavpm/models/block/apple_stairs_inner.json
@@ -223,7 +222,6 @@ a3d3de30a420ebd1bcd211cf2abeb05aa6286d4d assets/yavpm/models/item/apple_fence.js
 0898be14bcc8e64a27ca7a477672f93ca99177aa assets/yavpm/models/item/prickle_fence.json
 f180fbdaa97b36fc8658550a55848af50921f53d assets/yavpm/models/block/persimmon_fence_gate_wall.json
 827d047102f1655841ab8d0721e36fd26ead3121 assets/yavpm/models/block/apple_pressure_plate_down.json
-2c1af522bde07383c2603fe7a11ab75026416bac assets/yavpm/models/item/persimmon_boat.json
 35219630ad8b8ab2b96421de206148dd6e6b98f7 assets/yavpm/models/block/prickle_shoot.json
 312983e5e32476446ce086effccc4bb858da5763 assets/yavpm/models/item/studded_helmet_netherite_trim.json
 54ca50815519b8f892c5a90dd04ad8f14de0c6e9 assets/yavpm/models/block/apple_leaves.json
@@ -233,7 +231,6 @@ a79d6863fddf71c5cc0e69dd6257d0c89dd23c6e assets/yavpm/models/item/prickle_slab.j
 ef0fe73330777a8eb31944711e521b18d139e0c6 assets/yavpm/models/block/persimmon_door_top_left_open.json
 2e7444bc6b38e15967072967ea3c7804dc7fc1dd assets/yavpm/models/item/chicken_soup.json
 3d0b9998db5a91efbdc946c576502c8ea81de472 assets/yavpm/models/block/apple_pressure_plate.json
-b5b1b6a569ca884bbfabf42e1dadfa1cc8fe6cf4 assets/yavpm/models/item/apple_boat.json
 df70d389b1f658be06d5d136b2b660c25e7055a2 assets/yavpm/models/block/persimmon_hanging_sign.json
 bbc94f0f1de8e5c4f5962296b25eed2e67f53507 assets/yavpm/models/item/studded_leggings_quartz_trim.json
 db0e1268dcb6d736095e2bd642d1a9676ff3b28e assets/yavpm/models/block/warped_wart_crop_stage1.json
@@ -270,11 +267,10 @@ af7944098cbfe83bf8ee5dd6b1db695c9305acc9 assets/yavpm/models/block/prickle_stair
 c847afe8a85e5a77392c82bd2b88aeb0137f7ec4 assets/yavpm/models/block/polished_kimberlite_brick_slab.json
 9d3fc57f59310c709c16c7e3640b73ba55b2d059 assets/yavpm/blockstates/prickle_log.json
 ed17b9a09ed41e0b02af7342c6579980fa8b2db0 assets/yavpm/blockstates/persimmon_wall_sign.json
-b07e3d9f0610b910074bedc29f1366ac711e7ea0 assets/yavpm/blockstates/graphite_block.json
 35ddbbb53b5be9f310be8338039db2f318be085f assets/yavpm/blockstates/apple_trapdoor.json
+b07e3d9f0610b910074bedc29f1366ac711e7ea0 assets/yavpm/blockstates/graphite_block.json
 e231cd7cea09175b1eb905bdeb76ca3c8ba28eb1 assets/yavpm/models/item/warped_wart.json
 815b4da2c41f140f4520596ad3664d54afab9b1b assets/yavpm/models/item/prickle_pressure_plate.json
-5432061676b02303ba6b15279d3a7396e7897ace assets/yavpm/models/item/apple_chest_boat.json
 a76dfd15eb8d382e219d7a3fa36a459fbfcfea46 assets/yavpm/models/block/apple_door_top_right.json
 1dc88f5f467b8c2baebd960f6b6de5ab73da6186 assets/yavpm/models/item/peanut.json
 79745fe5cfffb788018bfea87b735605c9ebbfd3 assets/yavpm/models/item/persimmon_planks.json
@@ -352,8 +348,8 @@ e8754096b11891fff985469f88e6c39461d1c82e assets/yavpm/blockstates/stripped_prick
 6b46e8f14d51f769a2c4f693a109d81ba6702b9a assets/yavpm/models/item/studded_leggings_gold_trim.json
 3458eb63a75831c1fdfaa1c0d8b03bdc2f5f9523 assets/yavpm/models/item/apple_wood.json
 52e584ca62f4a3331c3acf9ed62877b5ab534afb assets/yavpm/models/block/apple_sapling.json
-8783acb8b7598a48bd4860fde1ecf65df39fe27e assets/yavpm/models/block/prickle_button_pressed.json
 64c231c70e71b0c8728cb828cfb3997c89e1f6c4 assets/yavpm/models/block/prickle_door_top_right_open.json
+8783acb8b7598a48bd4860fde1ecf65df39fe27e assets/yavpm/models/block/prickle_button_pressed.json
 4d8b68b2bbb81c6e2586bf4c0788e600725cf965 assets/yavpm/models/block/apple_fence_post.json
 aa407c1e59e2fcb33bf1973803a07fa0f5dae91e assets/yavpm/blockstates/polished_kimberlite_brick_stairs.json
 f443b15825a944cbb0b0953d13b2d7edca6ccc45 assets/yavpm/models/block/polished_kimberlite_brick_wall_side.json

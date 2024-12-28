@@ -1,4 +1,4 @@
-// 1.21.1	2024-12-22T10:57:45.378717	Yet Another Vanilla Plus Mod/Tags for minecraft:item
+// 1.21.1	2024-12-27T20:02:50.178137	Yet Another Vanilla Plus Mod/Tags for minecraft:item
 e4de44b64a769cb6126e0a64e8a3aacff9833795 data/c/tags/item/stripped_woods.json
 63a5efa04106a4f747df0f0eb0203691d15b76ce data/minecraft/tags/item/logs_that_burn.json
 d841cf7e075636b408025f0af7dabd2429aaf42f data/minecraft/tags/item/wooden_pressure_plates.json
@@ -14,15 +14,14 @@ fc80534f293c67f2f3dc09ef87cf0d1c333ffcb9 data/minecraft/tags/item/slabs.json
 4975193c0c3c1e343194b8e2cfec9bae843a14a3 data/minecraft/tags/item/signs.json
 38ebd85d0677fbe41ab0f9f26555150c3c30d3d6 data/minecraft/tags/item/parrot_food.json
 a1bc068526ba89cab9e73ca5963d7445401d4fdd data/minecraft/tags/item/wooden_buttons.json
-6476c9cb3d2fcc8cf491541191b9786ba8439bfd data/minecraft/tags/item/chest_boats.json
 88d697b8b7cc84ab64ba28a926caecbdc8ee47a1 data/c/tags/item/foods/candy.json
-92a30bf2528f35f32631b7b0195672baba6a4563 data/minecraft/tags/item/wooden_fences.json
 e087cef442c0a171e7dd8fa0b9d840683c8d1851 data/minecraft/tags/item/walls.json
+92a30bf2528f35f32631b7b0195672baba6a4563 data/minecraft/tags/item/wooden_fences.json
 846003a1a25ed66d4744cbf09837961fb98c16cc data/minecraft/tags/item/leaves.json
 0b6266d46418e875a0fea1befc1596ddb742021c data/minecraft/tags/item/stairs.json
-5f4029e547295f14219f93ffe7264a476e326a4b data/minecraft/tags/item/planks.json
-13b8af1be6d4d3d4ba852cdccf0a768d98e82415 data/c/tags/item/animal_foods.json
 67a67ae5c17b7b5c04a05e006152c60477ade461 data/yavpm/tags/item/rune_speed_applicable.json
+13b8af1be6d4d3d4ba852cdccf0a768d98e82415 data/c/tags/item/animal_foods.json
+5f4029e547295f14219f93ffe7264a476e326a4b data/minecraft/tags/item/planks.json
 ddddcd9ef8cd706876a4c5b9fb1bb011516a430c data/yavpm/tags/item/rune_attack_applicable.json
 1add0b2c0a894f83a6643c4aea7ed6ada515bbb9 data/yavpm/tags/item/warped_moongus_food.json
 88d697b8b7cc84ab64ba28a926caecbdc8ee47a1 data/minecraft/tags/item/parrot_poisonous_food.json
@@ -57,7 +56,6 @@ abff2e0f298a0cc3836b4a30aa1791185a7abe78 data/c/tags/item/foods/raw_meat.json
 e6a557e0f0c7023bf91eaaf1ba66fadae53fd806 data/yavpm/tags/item/enchantable/glider.json
 64bf0f3822462afc0b6f0760206546000ed7339a data/minecraft/tags/item/wooden_doors.json
 420a8599875af48bc37ee970178bcd0296332dd8 data/c/tags/item/foods.json
-64b0b8a9cbec7de86ab0d1e7e23875465a577df2 data/minecraft/tags/item/boats.json
 b8ac06988fc8f010f42aaba6872c364d1ddeda30 data/minecraft/tags/item/chest_armor.json
 81d416ec163e1338ac91ba38343682eb9cc86f1f data/minecraft/tags/item/pig_food.json
 ce5fead3e31667c42f7eac7af2df39f0fe8254f2 data/c/tags/item/foods/vegetable.json

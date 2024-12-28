@@ -5,8 +5,8 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 
 public class YavpmConfiguredFeatureBootstrapper {
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
-        YavpmMiscConfiguredFeatures.boostrap(context);
-        YavpmTreeConfiguredFeatures.boostrap(context);
+        YavpmMiscConfiguredFeatures.bootstrap(context);
+        YavpmTreeConfiguredFeatures.bootstrap(context);
         YavpmVegetationConfiguredFeatures.bootstrap(context);
     }
 }

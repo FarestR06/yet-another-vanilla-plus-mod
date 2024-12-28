@@ -272,8 +272,8 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
         offerPlanksRecipe(exporter, YavpmBlocks.APPLE_PLANKS, YavpmTags.Items.APPLE_LOGS, 4);
         generateFamily(exporter, YavpmBlocks.APPLE_FAMILY, FeatureSet.of(FeatureFlags.VANILLA));
 
-        offerBoatRecipe(exporter, YavpmItems.APPLE_BOAT, YavpmBlocks.APPLE_PLANKS);
-        offerChestBoatRecipe(exporter, YavpmItems.APPLE_CHEST_BOAT, YavpmBlocks.APPLE_PLANKS);
+        // offerBoatRecipe(exporter, YavpmItems.APPLE_BOAT, YavpmBlocks.APPLE_PLANKS);
+        // offerChestBoatRecipe(exporter, YavpmItems.APPLE_CHEST_BOAT, YavpmBlocks.APPLE_PLANKS);
 
         offerHangingSignRecipe(exporter, YavpmItems.APPLE_HANGING_SIGN, YavpmBlocks.STRIPPED_APPLE_LOG);
     }
@@ -282,8 +282,8 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
         offerPlanksRecipe(exporter, YavpmBlocks.PERSIMMON_PLANKS, YavpmTags.Items.PERSIMMON_LOGS, 4);
         generateFamily(exporter, YavpmBlocks.PERSIMMON_FAMILY, FeatureSet.of(FeatureFlags.VANILLA));
 
-        offerBoatRecipe(exporter, YavpmItems.PERSIMMON_BOAT, YavpmBlocks.PERSIMMON_PLANKS);
-        offerChestBoatRecipe(exporter, YavpmItems.PERSIMMON_CHEST_BOAT, YavpmBlocks.PERSIMMON_PLANKS);
+        // offerBoatRecipe(exporter, YavpmItems.PERSIMMON_BOAT, YavpmBlocks.PERSIMMON_PLANKS);
+        // offerChestBoatRecipe(exporter, YavpmItems.PERSIMMON_CHEST_BOAT, YavpmBlocks.PERSIMMON_PLANKS);
 
         offerHangingSignRecipe(exporter, YavpmItems.PERSIMMON_HANGING_SIGN, YavpmBlocks.STRIPPED_PERSIMMON_LOG);
     }

@@ -3,12 +3,11 @@ package com.farestr06.yavpm.util;
 import com.farestr06.api.util.registry.NoteblockInstrumentRegistry;
 import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.block.YavpmBlocks;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.Identifier;
 
+import static com.farestr06.api.sound.SoundHelper.makeEvent;
+import static com.farestr06.api.sound.SoundHelper.makeReferenceEvent;
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmSounds {
@@ -33,13 +32,6 @@ public class YavpmSounds {
     public static final SoundEvent ENTITY_TANUKI_EAT = makeEvent(makeId("entity.tanuki.eat"));
 
     public static final RegistryEntry<SoundEvent> ITEM_ARMOR_EQUIP_STUDDED = makeReferenceEvent(makeId("item.armor.equip_studded"));
-
-    private static SoundEvent makeEvent(Identifier id) {
-        return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id));
-    }
-    private static RegistryEntry.Reference<SoundEvent> makeReferenceEvent(Identifier id) {
-        return Registry.registerReference(Registries.SOUND_EVENT, id, SoundEvent.of(id));
-    }
 
     public static void init() {
         YetAnotherVanillaPlusMod.LOGGER.info("Registering sounds for YAVPM!");

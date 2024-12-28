@@ -1,13 +1,11 @@
 package com.farestr06.yavpm;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
-import com.farestr06.yavpm.entity.YavpmBoats;
 import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.entity.mob.client.*;
 import com.farestr06.yavpm.entity.mob.client.model.TanukiEntityModel;
 import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.YavpmItems;
-import com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
@@ -28,12 +26,15 @@ public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
         setUpEntities();
         setUpColors();
 
+        /*
         TerraformBoatClientHelper.registerModelLayers(
                 YavpmBoats.APPLE_BOAT_TYPE_ID, false
         );
         TerraformBoatClientHelper.registerModelLayers(
                 YavpmBoats.PERSIMMON_BOAT_TYPE_ID, false
         );
+
+         */
     }
 
     private static void setUpColors() {

@@ -134,10 +134,12 @@ public class ItemGroupHelper {
     private static void tools(FabricItemGroupEntries entries) {
         entries.add(YavpmItems.VOID_WATER_BUCKET);
         entries.add(YavpmItems.FAKE_MILK_BUCKET);
+        /*
         entries.add(YavpmItems.APPLE_BOAT);
         entries.add(YavpmItems.APPLE_CHEST_BOAT);
         entries.add(YavpmItems.PERSIMMON_BOAT);
         entries.add(YavpmItems.PERSIMMON_CHEST_BOAT);
+         */
         entries.add(YavpmItems.FORTUNE_COOKIE);
         entries.add(YavpmItems.REACTOR);
         entries.add(YavpmItems.BABY_KEY);

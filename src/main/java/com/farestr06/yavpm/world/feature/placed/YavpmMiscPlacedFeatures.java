@@ -20,7 +20,7 @@ public class YavpmMiscPlacedFeatures {
     public static final RegistryKey<PlacedFeature> ORE_KIMBERLITE_UPPER = registerKey("ore_kimberlite_upper");
     public static final RegistryKey<PlacedFeature> ORE_KIMBERLITE_LOWER = registerKey("ore_kimberlite_lower");
 
-    public static void boostrap(Registerable<PlacedFeature> context) {
+    public static void bootstrap(Registerable<PlacedFeature> context) {
         var configuredFeatureRegistryEntryLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
 
         RegistryEntry<ConfiguredFeature<?, ?>> kimberlite = configuredFeatureRegistryEntryLookup.getOrThrow(YavpmMiscConfiguredFeatures.ORE_KIMBERLITE);

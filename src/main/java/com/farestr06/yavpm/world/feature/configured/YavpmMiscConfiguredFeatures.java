@@ -18,7 +18,7 @@ public class YavpmMiscConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_KIMBERLITE = registerKey("ore_kimberlite");
     public static final RegistryKey<ConfiguredFeature<?, ?>> PATCH_WITHER_ROSE = registerKey("patch_wither_rose");
 
-    public static void boostrap(Registerable<ConfiguredFeature<?, ?>> context) {
+    public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
 
         RuleTest ruleTest = new TagMatchRuleTest(BlockTags.BASE_STONE_OVERWORLD);
         register(context, ORE_KIMBERLITE, Feature.ORE, new OreFeatureConfig(ruleTest, YavpmBlocks.KIMBERLITE.getDefaultState(), 20));

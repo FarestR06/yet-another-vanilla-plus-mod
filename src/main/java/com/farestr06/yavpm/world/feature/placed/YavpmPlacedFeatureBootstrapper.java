@@ -4,8 +4,8 @@ import net.minecraft.registry.Registerable;
 import net.minecraft.world.gen.feature.PlacedFeature;
 
 public class YavpmPlacedFeatureBootstrapper {
-    public static void boostrap(Registerable<PlacedFeature> context) {
-        YavpmMiscPlacedFeatures.boostrap(context);
+    public static void bootstrap(Registerable<PlacedFeature> context) {
+        YavpmMiscPlacedFeatures.bootstrap(context);
         YavpmTreePlacedFeatures.bootstrap(context);
         YavpmVegetationPlacedFeatures.bootstrap(context);
     }

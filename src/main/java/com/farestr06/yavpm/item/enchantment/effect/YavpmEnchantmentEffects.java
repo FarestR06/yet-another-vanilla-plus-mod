@@ -9,10 +9,6 @@ import net.minecraft.registry.Registry;
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmEnchantmentEffects {
-    public static final MapCodec<? extends EnchantmentEntityEffect> LAP_DOG_EFFECT = registerEntityEffect(
-            "lap_dog", LapDogEnchantmentEffect.CODEC
-    );
-
     private static MapCodec<? extends EnchantmentEntityEffect> registerEntityEffect(String name,
                                                                                     MapCodec<? extends EnchantmentEntityEffect> codec) {
         return Registry.register(Registries.ENCHANTMENT_ENTITY_EFFECT_TYPE, makeId(name), codec);
@@ -20,5 +16,6 @@ public class YavpmEnchantmentEffects {
 
     public static void init() {
         YetAnotherVanillaPlusMod.LOGGER.info("Registering enchantment effects for YAVPM!");
+        registerEntityEffect("lap_dog", LapDogEnchantmentEffect.CODEC );
     }
 }
