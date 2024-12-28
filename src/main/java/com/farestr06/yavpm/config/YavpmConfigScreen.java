@@ -10,7 +10,6 @@ import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 import static com.farestr06.yavpm.config.YavpmConfig.HANDLER;
 
 public class YavpmConfigScreen implements ModMenuApi {
@@ -115,7 +114,6 @@ public class YavpmConfigScreen implements ModMenuApi {
             .name(Text.translatable("option.yavpm.void_touched_damage_multiplier.title"))
             .description(OptionDescription.createBuilder()
                     .text(Text.translatable("option.yavpm.void_touched_damage_multiplier.desc"))
-                    .image(makeId("textures/config/void_touched_damage_multiplier.png"), 64, 64)
                     .build()
             )
             .binding(
@@ -129,7 +127,6 @@ public class YavpmConfigScreen implements ModMenuApi {
             .name(Text.translatable("option.yavpm.void_touched_dragon_fireball.title"))
             .description(OptionDescription.createBuilder()
                     .text(Text.translatable("option.yavpm.void_touched_dragon_fireball.desc"))
-                    .image(makeId("textures/config/void_touched_dragon_fireball.png"), 64, 64)
                     .build()
             )
             .binding(
