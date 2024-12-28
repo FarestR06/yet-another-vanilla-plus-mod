@@ -145,7 +145,7 @@ public class YavpmBlocks {
     public static final Block POLARIZED_GLASS = makeAdvancedBlockAndItem(
             makeId("polarized_glass"),
             new PolarizedGlassBlock(
-                    AbstractBlock.Settings.copy(Blocks.TINTED_GLASS)
+                    AbstractBlock.Settings.copy(Blocks.TINTED_GLASS).mapColor(MapColor.BRIGHT_TEAL)
             )
     );
 

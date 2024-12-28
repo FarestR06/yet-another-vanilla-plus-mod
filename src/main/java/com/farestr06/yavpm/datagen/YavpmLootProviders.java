@@ -57,11 +57,9 @@ public class YavpmLootProviders {
             addDrop(YavpmBlocks.GLOWING_OBSIDIAN);
             addDrop(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
 
-            LootHelper.BlockHelper.createGravelLikeDrop(this, lookup, YavpmBlocks.KIMBERLITE, YavpmItems.RAW_DIAMOND);
+            kimberliteDrops();
             addDrop(YavpmBlocks.GRAPHITE_BLOCK);
             addDrop(YavpmBlocks.GRAPHENE_BLOCK);
-
-            stoneVariantDrops();
 
             addDropWithSilkTouch(YavpmBlocks.POLARIZED_GLASS);
 
@@ -74,11 +72,11 @@ public class YavpmLootProviders {
             fakeDrops();
 
             // region Warped Wart
-            this.addDrop(
+            addDrop(
                     YavpmBlocks.WARPED_WART,
                     block -> LootTable.builder()
                             .pool(
-                                    this.applyExplosionDecay(
+                                    applyExplosionDecay(
                                             block,
                                             LootPool.builder()
                                                     .rolls(ConstantLootNumberProvider.create(1f))
@@ -163,7 +161,7 @@ public class YavpmLootProviders {
         private void modCropDrops() {
             BlockStatePropertyLootCondition.Builder peanutConditionBuilder = BlockStatePropertyLootCondition.builder(YavpmBlocks.PEANUT_CROP).properties(StatePredicate.Builder.create()
                     .exactMatch(PeanutCropBlock.AGE, 3));
-            this.addDrop(YavpmBlocks.PEANUT_CROP, this.applyExplosionDecay(YavpmBlocks.PEANUT_CROP, LootTable.builder().pool(
+            addDrop(YavpmBlocks.PEANUT_CROP, applyExplosionDecay(YavpmBlocks.PEANUT_CROP, LootTable.builder().pool(
                     LootPool.builder().with(
                             ItemEntry.builder(YavpmItems.PEANUT)
                     )).pool(LootPool.builder().conditionally(peanutConditionBuilder)
@@ -174,7 +172,7 @@ public class YavpmLootProviders {
 
             BlockStatePropertyLootCondition.Builder magicBeanConditionBuilder = BlockStatePropertyLootCondition.builder(YavpmBlocks.MAGIC_BEAN_CROP).properties(StatePredicate.Builder.create()
                     .exactMatch(MagicBeanCropBlock.AGE, 6));
-            this.addDrop(YavpmBlocks.MAGIC_BEAN_CROP, this.applyExplosionDecay(YavpmBlocks.MAGIC_BEAN_CROP, LootTable.builder().pool(
+            addDrop(YavpmBlocks.MAGIC_BEAN_CROP, applyExplosionDecay(YavpmBlocks.MAGIC_BEAN_CROP, LootTable.builder().pool(
                     LootPool.builder().with(
                             ItemEntry.builder(YavpmItems.MAGIC_BEAN)
                     )).pool(LootPool.builder().conditionally(magicBeanConditionBuilder)
@@ -193,8 +191,22 @@ public class YavpmLootProviders {
             addDrop(YavpmBlocks.OAK_SAPLING_CROP, cropDrops(YavpmBlocks.OAK_SAPLING_CROP, Items.OAK_SAPLING, YavpmItems.ACORN, oakSaplingConditionBuilder));
         }
 
-        private void stoneVariantDrops() {
-            kimberliteDrops();
+        private void kimberliteDrops() {
+            addDrop(
+                    YavpmBlocks.KIMBERLITE,
+                    block -> dropsWithSilkTouch(
+                            block,
+                            addSurvivesExplosionCondition(
+                                    block,
+                                    ItemEntry.builder(YavpmItems.RAW_DIAMOND)
+                                            .conditionally(TableBonusLootCondition.builder(
+                                                    lookup.getOrThrow(Enchantments.FORTUNE),
+                                                    0.01f, 0.02f, 0.04f, 0.08f))
+                                            .alternatively(ItemEntry.builder(block))
+                            )
+                    )
+            );
+
             addDrop(YavpmBlocks.POLISHED_KIMBERLITE);
             addDrop(YavpmBlocks.POLISHED_KIMBERLITE_BRICKS);
 
@@ -211,30 +223,14 @@ public class YavpmLootProviders {
             addDrop(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_WALL);
         }
 
-        private void kimberliteDrops() {
-            this.addDrop(
-                    YavpmBlocks.KIMBERLITE,
-                    block -> this.dropsWithSilkTouch(
-                            block,
-                            this.addSurvivesExplosionCondition(
-                                    block,
-                                    ItemEntry.builder(YavpmItems.RAW_DIAMOND)
-                                            .conditionally(TableBonusLootCondition.builder(
-                                                    lookup.getOrThrow(Enchantments.FORTUNE),
-                                                    0.01f, 0.02f, 0.04f, 0.08f))
-                                            .alternatively(ItemEntry.builder(block))
-                            )
-                    )
-            );
-        }
-
         private void appleDrops() {
             addDrop(YavpmBlocks.APPLE_LOG);
             addDrop(YavpmBlocks.STRIPPED_APPLE_LOG);
             addDrop(YavpmBlocks.APPLE_WOOD);
             addDrop(YavpmBlocks.STRIPPED_APPLE_WOOD);
 
-            oakLeavesDrops(YavpmBlocks.APPLE_LEAVES, YavpmBlocks.APPLE_SAPLING, SAPLING_DROP_CHANCE);
+            LootTable.Builder leavesBuilder = oakLeavesDrops(YavpmBlocks.APPLE_LEAVES, YavpmBlocks.APPLE_SAPLING, SAPLING_DROP_CHANCE);
+            addDrop(YavpmBlocks.APPLE_LEAVES, leavesBuilder);
 
             addDrop(YavpmBlocks.APPLE_PLANKS);
             addDrop(YavpmBlocks.APPLE_STAIRS);
@@ -255,16 +251,18 @@ public class YavpmLootProviders {
             addDrop(YavpmBlocks.PERSIMMON_WOOD);
             addDrop(YavpmBlocks.STRIPPED_PERSIMMON_WOOD);
 
-            leavesDrops(YavpmBlocks.PERSIMMON_LEAVES, YavpmBlocks.PERSIMMON_SAPLING, SAPLING_DROP_CHANCE)
+            LootTable.Builder leavesBuilder = leavesDrops(YavpmBlocks.PERSIMMON_LEAVES, YavpmBlocks.PERSIMMON_SAPLING, SAPLING_DROP_CHANCE)
                     .pool(
                             LootPool.builder()
                                     .rolls(ConstantLootNumberProvider.create(1f))
-                                    .conditionally(this.createWithoutShearsOrSilkTouchCondition())
+                                    .conditionally(createWithoutShearsOrSilkTouchCondition())
                                     .with(
-                                            ((LeafEntry.Builder<?>)this.addSurvivesExplosionCondition(YavpmBlocks.PERSIMMON_LEAVES, ItemEntry.builder(YavpmItems.PERSIMMON)))
+                                            ((LeafEntry.Builder<?>)addSurvivesExplosionCondition(YavpmBlocks.PERSIMMON_LEAVES, ItemEntry.builder(YavpmItems.PERSIMMON)))
                                                     .conditionally(TableBonusLootCondition.builder(lookup.getOrThrow(Enchantments.FORTUNE), 0.004f, 0.006f, 0.008f, 0.01f, 0.025f))
                                     )
                     );
+
+            addDrop(YavpmBlocks.PERSIMMON_LEAVES, leavesBuilder);
 
             addDrop(YavpmBlocks.PERSIMMON_PLANKS);
             addDrop(YavpmBlocks.PERSIMMON_STAIRS);
@@ -323,7 +321,7 @@ public class YavpmLootProviders {
                                     .rolls(ConstantLootNumberProvider.create(1f))
                                     .with(
                                             ItemEntry.builder(Items.CHICKEN)
-                                                    .apply(FurnaceSmeltLootFunction.builder().conditionally(this.createSmeltLootCondition()))
+                                                    .apply(FurnaceSmeltLootFunction.builder().conditionally(createSmeltLootCondition()))
                                                     .apply(EnchantedCountIncreaseLootFunction.builder(lookup, UniformLootNumberProvider.create(0f, 1f)))
                                     )
                     ).pool(
@@ -349,7 +347,7 @@ public class YavpmLootProviders {
                                     .with(
                                             ItemEntry.builder(Items.LEATHER)
                                                     .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0f, 2f)))
-                                                    .apply(EnchantedCountIncreaseLootFunction.builder(this.lookup, UniformLootNumberProvider.create(0f, 1f)))
+                                                    .apply(EnchantedCountIncreaseLootFunction.builder(lookup, UniformLootNumberProvider.create(0f, 1f)))
                                     )
                     )
                     .pool(
@@ -358,8 +356,8 @@ public class YavpmLootProviders {
                                     .with(
                                             ItemEntry.builder(Items.BEEF)
                                                     .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
-                                                    .apply(FurnaceSmeltLootFunction.builder().conditionally(this.createSmeltLootCondition()))
-                                                    .apply(EnchantedCountIncreaseLootFunction.builder(this.lookup, UniformLootNumberProvider.create(0f, 1f)))
+                                                    .apply(FurnaceSmeltLootFunction.builder().conditionally(createSmeltLootCondition()))
+                                                    .apply(EnchantedCountIncreaseLootFunction.builder(lookup, UniformLootNumberProvider.create(0f, 1f)))
                                     )
                     ));
             // endregion
@@ -370,7 +368,7 @@ public class YavpmLootProviders {
                             .with(
                                     ItemEntry.builder(Items.CHERRY_LEAVES)
                                             .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0f, 1f)))
-                                            .apply(EnchantedCountIncreaseLootFunction.builder(this.lookup, UniformLootNumberProvider.create(1f, 3f))))
+                                            .apply(EnchantedCountIncreaseLootFunction.builder(lookup, UniformLootNumberProvider.create(1f, 3f))))
             ));
             // endregion
             // region Void Phantom
@@ -399,7 +397,7 @@ public class YavpmLootProviders {
         }
 
         protected final AnyOfLootCondition.Builder createSmeltLootCondition() {
-            RegistryWrapper.Impl<Enchantment> impl = this.lookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+            RegistryWrapper.Impl<Enchantment> impl = lookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
             return AnyOfLootCondition.builder(
                     EntityPropertiesLootCondition.builder(
                             LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().flags(EntityFlagsPredicate.Builder.create().onFire(true))
