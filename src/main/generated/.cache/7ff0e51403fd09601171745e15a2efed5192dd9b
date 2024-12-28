@@ -1,4 +1,4 @@
-// 1.21.1	2024-12-27T20:02:50.178137	Yet Another Vanilla Plus Mod/Tags for minecraft:item
+// 1.21.1	2024-12-28T11:00:27.818423	Yet Another Vanilla Plus Mod/Tags for minecraft:item
 e4de44b64a769cb6126e0a64e8a3aacff9833795 data/c/tags/item/stripped_woods.json
 63a5efa04106a4f747df0f0eb0203691d15b76ce data/minecraft/tags/item/logs_that_burn.json
 d841cf7e075636b408025f0af7dabd2429aaf42f data/minecraft/tags/item/wooden_pressure_plates.json
@@ -10,8 +10,6 @@ f0d1207ddf92613d4dab4b62c2f5288394abdfca data/minecraft/tags/item/leg_armor.json
 95eca0c62d45553638cc93a0473b3a32b137e4fe data/minecraft/tags/item/freeze_immune_wearables.json
 fab75620c8658c029c9bd22812a5e6cc3b3757a5 data/yavpm/tags/item/persimmon_logs.json
 fc80534f293c67f2f3dc09ef87cf0d1c333ffcb9 data/minecraft/tags/item/slabs.json
-7c109a4df81ed5c29982d94c826e70bceffb0137 data/minecraft/tags/item/hanging_signs.json
-4975193c0c3c1e343194b8e2cfec9bae843a14a3 data/minecraft/tags/item/signs.json
 38ebd85d0677fbe41ab0f9f26555150c3c30d3d6 data/minecraft/tags/item/parrot_food.json
 a1bc068526ba89cab9e73ca5963d7445401d4fdd data/minecraft/tags/item/wooden_buttons.json
 88d697b8b7cc84ab64ba28a926caecbdc8ee47a1 data/c/tags/item/foods/candy.json

@@ -264,7 +264,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("death.attack.cut.item", "%1$s was cut to pieces by %2$s using %3$s");
 
         builder.add("death.attack.choke", "%1$s choked to death");
-        builder.add("death.attack.choke.player", "%1$s was smoked out while fighting %2$s");
+        builder.add("death.attack.choke.player", "%1$s got smoked out while fighting %2$s");
     }
 
     private static void woodTranslations(TranslationBuilder builder) {
@@ -282,6 +282,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.APPLE_TRAPDOOR, "Apple Trapdoor");
         builder.add(YavpmBlocks.APPLE_PRESSURE_PLATE, "Apple Pressure Plate");
         builder.add(YavpmBlocks.APPLE_BUTTON, "Apple Button");
+        builder.add(YavpmBlocks.APPLE_SAPLING, "Apple Sapling");
 
         builder.add(YavpmBlocks.PERSIMMON_LOG, "Persimmon Log");
         builder.add(YavpmBlocks.PERSIMMON_WOOD, "Persimmon Wood");
@@ -313,7 +314,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.PRICKLE_PRESSURE_PLATE, "Prickle Pressure Plate");
         builder.add(YavpmBlocks.PRICKLE_BUTTON, "Prickle Button");
         builder.add(YavpmBlocks.PRICKLE_SHOOT, "Prickle Shoot");
-        builder.add("subtitles.block.prickle_log.pluck", "Prickle Log plucks");
+        builder.add("subtitles.block.prickle_log.pluck", "Prickle Log gets plucked");
     }
 
     private static void stoneTranslations(TranslationBuilder builder) {
@@ -403,7 +404,6 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("option.yavpm.rune_speed_upgrade_factor.title", "Speed Up Rune Upgrade Factor");
         builder.add("option.yavpm.rune_speed_upgrade_factor.desc", "When an Speed Up Rune is applied to equipment, its mining speed is multiplied by this factor. Default is 1.2f,");
     }
-
 
     private static void unusedTranslations(TranslationBuilder builder) {
         builder.add("enchantment.yavpm.void_strike.desc", "Attacking a target applies a short damage multiplier.");

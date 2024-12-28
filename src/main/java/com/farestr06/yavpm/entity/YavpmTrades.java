@@ -186,6 +186,13 @@ public class YavpmTrades {
                     0f
             ));
             factories.add((entity, random) -> new TradeOffer(
+                    new TradedItem(Items.EMERALD, 5),
+                    new ItemStack(YavpmBlocks.PERSIMMON_SAPLING),
+                    8,
+                    0,
+                    0f
+            ));
+            factories.add((entity, random) -> new TradeOffer(
                     new TradedItem(Items.EMERALD, 8),
                     new ItemStack(YavpmItems.MOLY),
                     3,

@@ -1,6 +1,5 @@
 package com.farestr06.yavpm.datagen;
 
-import com.farestr06.api.util.LootHelper;
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.block.custom.*;
 import com.farestr06.yavpm.entity.YavpmEntities;

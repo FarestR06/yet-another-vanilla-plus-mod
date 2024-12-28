@@ -200,7 +200,7 @@ public class YavpmConfigScreen implements ModMenuApi {
                     .build()
             )
             .binding(
-                    1.2f,
+                    0.3f,
                     () -> HANDLER.instance().snapshotDaySplashChance,
                     newVal -> HANDLER.instance().snapshotDaySplashChance = newVal
             ).controller(opt -> FloatFieldControllerBuilder.create(opt).range(0f, 1f))

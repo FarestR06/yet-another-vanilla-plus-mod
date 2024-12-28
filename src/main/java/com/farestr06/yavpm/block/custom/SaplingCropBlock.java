@@ -3,7 +3,6 @@ package com.farestr06.yavpm.block.custom;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.CropBlock;
-import net.minecraft.item.ItemConvertible;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
@@ -30,7 +29,4 @@ public abstract class SaplingCropBlock extends CropBlock {
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(AGE);
     }
-
-    @Override
-    protected abstract ItemConvertible getSeedsItem();
 }

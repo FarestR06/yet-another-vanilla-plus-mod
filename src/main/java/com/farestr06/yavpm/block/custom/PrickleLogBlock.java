@@ -53,7 +53,8 @@ public class PrickleLogBlock extends PillarBlock {
     protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if (state.get(PRICKLY) && stack.isOf(Items.SHEARS) && hand == Hand.MAIN_HAND) {
             Random rand = world.getRandom();
-            stack.damage(rand.nextBetween(2, 10), player, EquipmentSlot.MAINHAND);
+            int count = rand.nextBetween(2, 10);
+            stack.damage(count, player, EquipmentSlot.MAINHAND);
             player.giveItemStack(new ItemStack(YavpmBlocks.PRICKLE_SHOOT, rand.nextBetween(1,5)));
             player.playSound(YavpmSounds.BLOCK_PRICKLE_LOG_PLUCK);
             world.setBlockState(pos, state.with(PRICKLY, false), Block.NOTIFY_NEIGHBORS);

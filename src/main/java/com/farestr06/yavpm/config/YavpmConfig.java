@@ -48,8 +48,8 @@ public class YavpmConfig {
     public float runeSpeedUpgradeFactor = 1.2f;
     // endregion
     // region Easter Eggs
-    @SerialEntry(comment = "A special splash will sometimes appear on Wednesday; the likelihood of this happening is determined by this value. Default is 0.2f.")
-    public float snapshotDaySplashChance = 0.2f;
+    @SerialEntry(comment = "A special splash will sometimes appear on Wednesday; the likelihood of this happening is determined by this value. Default is 0.3f.")
+    public float snapshotDaySplashChance = 0.3f;
     @SerialEntry(comment = "A special splash will appear on the mod author's birthday; this only happens if this option is enabled. Default is true.")
     public boolean farestsBirthday = true;
     // endregion
