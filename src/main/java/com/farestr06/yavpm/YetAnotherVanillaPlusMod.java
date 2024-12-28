@@ -3,7 +3,6 @@ package com.farestr06.yavpm;
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.config.YavpmConfig;
 import com.farestr06.yavpm.crafting.YavpmRecipeSerializers;
-import com.farestr06.yavpm.entity.YavpmBoats;
 import com.farestr06.yavpm.entity.YavpmTrades;
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import com.farestr06.yavpm.entity.YavpmEntities;
@@ -63,7 +62,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		LOGGER.info("Go go gadget YAVPM!");
+		LOGGER.info("Go go gadget YAVPM!!");
 
 		YavpmConfig.HANDLER.load();
 
@@ -84,30 +83,13 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		YavpmEnchantmentEffects.init();
 
 		YavpmEntities.init();
-		// YavpmBoats.init();
 
 		YavpmRecipeSerializers.init();
 
 		modifyLoot();
 		YavpmTrades.init();
 
-		/*
-		try {
-			if (ResourceManagerHelper.registerBuiltinResourcePack(
-					makeId("programmer_art"),
-					FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(),
-					Text.translatable("resourcePack.yavpm.programmer_art.name"),
-					ResourcePackActivationType.NORMAL
-			)) {
-				LOGGER.info("Programmer Art successfully loaded!");
-			} else {
-				LOGGER.warn("Couldn't load programmer art!");
-			}
-		} catch (NoSuchElementException e) {
-			LOGGER.error("The mod isn't loaded, for some reason.", e);
-		}
-		 */
-	}
+    }
 
 	private static void modifyLoot() {
 		LOGGER.info("Modifying loot for YAVPM!");

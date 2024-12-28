@@ -168,7 +168,6 @@ public class YavpmModelProvider extends FabricModelProvider {
         // Apple Planks and Texture Pool
         BlockStateModelGenerator.BlockTexturePool applePool = generator.registerCubeAllModelTexturePool(YavpmBlocks.APPLE_PLANKS);
         applePool.family(YavpmBlocks.APPLE_FAMILY);
-        generator.registerHangingSign(YavpmBlocks.STRIPPED_APPLE_LOG, YavpmBlocks.APPLE_HANGING_SIGN, YavpmBlocks.APPLE_WALL_HANGING_SIGN);
     }
 
     private static void createPersimmonSet(BlockStateModelGenerator generator) {
@@ -181,7 +180,6 @@ public class YavpmModelProvider extends FabricModelProvider {
         // Persimmon Planks and Texture Pool
         BlockStateModelGenerator.BlockTexturePool persimmonPool = generator.registerCubeAllModelTexturePool(YavpmBlocks.PERSIMMON_PLANKS);
         persimmonPool.family(YavpmBlocks.PERSIMMON_FAMILY);
-        generator.registerHangingSign(YavpmBlocks.STRIPPED_PERSIMMON_LOG, YavpmBlocks.PERSIMMON_HANGING_SIGN, YavpmBlocks.PERSIMMON_WALL_HANGING_SIGN);
     }
 
     private static void createPrickleSet(BlockStateModelGenerator generator) {
@@ -191,7 +189,6 @@ public class YavpmModelProvider extends FabricModelProvider {
         BlockStateModelGenerator.BlockTexturePool pricklePool = generator.registerCubeAllModelTexturePool(YavpmBlocks.PRICKLE_PLANKS);
 
         pricklePool.family(YavpmBlocks.PRICKLE_FAMILY);
-        generator.registerHangingSign(YavpmBlocks.STRIPPED_PRICKLE_LOG, YavpmBlocks.PRICKLE_HANGING_SIGN, YavpmBlocks.PRICKLE_WALL_HANGING_SIGN);
     }
 
     private static void createStuddedArmor(ItemModelGenerator generator) {

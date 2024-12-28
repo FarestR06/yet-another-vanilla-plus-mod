@@ -8,10 +8,6 @@ import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.world.feature.configured.YavpmTreeConfiguredFeatures;
-import com.terraformersmc.terraform.sign.api.block.TerraformHangingSignBlock;
-import com.terraformersmc.terraform.sign.api.block.TerraformSignBlock;
-import com.terraformersmc.terraform.sign.api.block.TerraformWallHangingSignBlock;
-import com.terraformersmc.terraform.sign.api.block.TerraformWallSignBlock;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.*;
@@ -23,7 +19,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
@@ -228,52 +223,15 @@ public class YavpmBlocks {
                     AbstractBlock.Settings.copy(Blocks.CHERRY_PRESSURE_PLATE)
             )
     );
-
-    protected static final Identifier APPLE_SIGN_TEXTURE = makeId("entity/signs/apple");
-    protected static final Identifier APPLE_HANGING_SIGN_TEXTURE = makeId("entity/signs/hanging/apple");
-    protected static final Identifier APPLE_HANGING_SIGN_GUI_TEXTURE = makeId("textures/gui/hanging_signs/apple");
-
-    public static final Block APPLE_SIGN = makeAdvancedBlock(
-            makeId("apple_sign"),
-            new TerraformSignBlock(
-                    APPLE_SIGN_TEXTURE,
-                    AbstractBlock.Settings.copy(Blocks.CHERRY_SIGN)
-            )
-    );
-    public static final Block APPLE_WALL_SIGN = makeAdvancedBlock(
-            makeId("apple_wall_sign"),
-            new TerraformWallSignBlock(
-                    APPLE_SIGN_TEXTURE,
-                    AbstractBlock.Settings.copy(Blocks.CHERRY_WALL_SIGN)
-            )
-    );
-    public static final Block APPLE_HANGING_SIGN = makeAdvancedBlock(
-            makeId("apple_hanging_sign"),
-            new TerraformHangingSignBlock(
-                    APPLE_HANGING_SIGN_TEXTURE,
-                    APPLE_HANGING_SIGN_GUI_TEXTURE,
-                    AbstractBlock.Settings.copy(Blocks.CHERRY_HANGING_SIGN)
-            )
-    );
-    public static final Block APPLE_WALL_HANGING_SIGN = makeAdvancedBlock(
-            makeId("apple_hanging_sign"),
-            new TerraformWallHangingSignBlock(
-                    APPLE_HANGING_SIGN_TEXTURE,
-                    APPLE_HANGING_SIGN_GUI_TEXTURE,
-                    AbstractBlock.Settings.copy(Blocks.CHERRY_WALL_HANGING_SIGN)
-            )
-    );
-
-    public static final BlockFamily APPLE_FAMILY = BlockFamilies.register(APPLE_PLANKS)
-            .slab(APPLE_SLAB).stairs(APPLE_STAIRS).fence(APPLE_FENCE).fenceGate(APPLE_FENCE_GATE)
-            .door(APPLE_DOOR).trapdoor(APPLE_TRAPDOOR).sign(APPLE_SIGN, APPLE_WALL_SIGN)
-            .pressurePlate(APPLE_PRESSURE_PLATE).button(APPLE_BUTTON)
-            .group("wooden").unlockCriterionName("has_planks").build();
-
     public static final Block APPLE_SAPLING = makeAdvancedBlockAndItem(
             makeId("apple_sapling"),
             new SaplingBlock(YavpmTreeConfiguredFeatures.APPLEWOOD_GENERATOR, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING))
     );
+    public static final BlockFamily APPLE_FAMILY = BlockFamilies.register(APPLE_PLANKS)
+            .slab(APPLE_SLAB).stairs(APPLE_STAIRS).fence(APPLE_FENCE).fenceGate(APPLE_FENCE_GATE)
+            .door(APPLE_DOOR).trapdoor(APPLE_TRAPDOOR)
+            .pressurePlate(APPLE_PRESSURE_PLATE).button(APPLE_BUTTON)
+            .group("wooden").unlockCriterionName("has_planks").build();
     // endregion
 
     // region Prickle Wood
@@ -343,44 +301,10 @@ public class YavpmBlocks {
             )
     );
 
-    protected static final Identifier PRICKLE_SIGN_TEXTURE = makeId("entity/signs/prickle");
-    protected static final Identifier PRICKLE_HANGING_SIGN_TEXTURE = makeId("entity/signs/hanging/prickle");
-    protected static final Identifier PRICKLE_HANGING_SIGN_GUI_TEXTURE = makeId("textures/gui/hanging_signs/prickle");
-
-    public static final Block PRICKLE_SIGN = makeAdvancedBlock(
-            makeId("prickle_sign"),
-            new TerraformSignBlock(
-                    PRICKLE_SIGN_TEXTURE,
-                    AbstractBlock.Settings.copy(Blocks.WARPED_SIGN)
-            )
-    );
-    public static final Block PRICKLE_WALL_SIGN = makeAdvancedBlock(
-            makeId("prickle_wall_sign"),
-            new TerraformWallSignBlock(
-                    PRICKLE_SIGN_TEXTURE,
-                    AbstractBlock.Settings.copy(Blocks.WARPED_WALL_SIGN)
-            )
-    );
-    public static final Block PRICKLE_HANGING_SIGN = makeAdvancedBlock(
-            makeId("prickle_hanging_sign"),
-            new TerraformHangingSignBlock(
-                    PRICKLE_HANGING_SIGN_TEXTURE,
-                    PRICKLE_HANGING_SIGN_GUI_TEXTURE,
-                    AbstractBlock.Settings.copy(Blocks.WARPED_HANGING_SIGN)
-            )
-    );
-    public static final Block PRICKLE_WALL_HANGING_SIGN = makeAdvancedBlock(
-            makeId("prickle_hanging_sign"),
-            new TerraformWallHangingSignBlock(
-                    PRICKLE_HANGING_SIGN_TEXTURE,
-                    PRICKLE_HANGING_SIGN_GUI_TEXTURE,
-                    AbstractBlock.Settings.copy(Blocks.WARPED_WALL_HANGING_SIGN)
-            )
-    );
 
     public static final BlockFamily PRICKLE_FAMILY = BlockFamilies.register(PRICKLE_PLANKS)
             .slab(PRICKLE_SLAB).stairs(PRICKLE_STAIRS).fence(PRICKLE_FENCE).fenceGate(PRICKLE_FENCE_GATE)
-            .door(PRICKLE_DOOR).trapdoor(PRICKLE_TRAPDOOR).sign(PRICKLE_SIGN, PRICKLE_WALL_SIGN)
+            .door(PRICKLE_DOOR).trapdoor(PRICKLE_TRAPDOOR)
             .pressurePlate(PRICKLE_PRESSURE_PLATE).button(PRICKLE_BUTTON)
             .group("wooden").unlockCriterionName("has_planks").build();
 
@@ -470,44 +394,9 @@ public class YavpmBlocks {
             )
     );
 
-    protected static final Identifier PERSIMMON_SIGN_TEXTURE = makeId("entity/signs/persimmon");
-    protected static final Identifier PERSIMMON_HANGING_SIGN_TEXTURE = makeId("entity/signs/hanging/persimmon");
-    protected static final Identifier PERSIMMON_HANGING_SIGN_GUI_TEXTURE = makeId("textures/gui/hanging_signs/persimmon");
-
-    public static final Block PERSIMMON_SIGN = makeAdvancedBlock(
-            makeId("persimmon_sign"),
-            new TerraformSignBlock(
-                    PERSIMMON_SIGN_TEXTURE,
-                    AbstractBlock.Settings.copy(Blocks.OAK_SIGN)
-            )
-    );
-    public static final Block PERSIMMON_WALL_SIGN = makeAdvancedBlock(
-            makeId("persimmon_wall_sign"),
-            new TerraformWallSignBlock(
-                    PERSIMMON_SIGN_TEXTURE,
-                    AbstractBlock.Settings.copy(Blocks.OAK_WALL_SIGN)
-            )
-    );
-    public static final Block PERSIMMON_HANGING_SIGN = makeAdvancedBlock(
-            makeId("persimmon_hanging_sign"),
-            new TerraformHangingSignBlock(
-                    PERSIMMON_HANGING_SIGN_TEXTURE,
-                    PERSIMMON_HANGING_SIGN_GUI_TEXTURE,
-                    AbstractBlock.Settings.copy(Blocks.OAK_HANGING_SIGN)
-            )
-    );
-    public static final Block PERSIMMON_WALL_HANGING_SIGN = makeAdvancedBlock(
-            makeId("persimmon_hanging_sign"),
-            new TerraformWallHangingSignBlock(
-                    PERSIMMON_HANGING_SIGN_TEXTURE,
-                    PERSIMMON_HANGING_SIGN_GUI_TEXTURE,
-                    AbstractBlock.Settings.copy(Blocks.OAK_WALL_HANGING_SIGN)
-            )
-    );
-
     public static final BlockFamily PERSIMMON_FAMILY = BlockFamilies.register(PERSIMMON_PLANKS)
             .slab(PERSIMMON_SLAB).stairs(PERSIMMON_STAIRS).fence(PERSIMMON_FENCE).fenceGate(PERSIMMON_FENCE_GATE)
-            .door(PERSIMMON_DOOR).trapdoor(PERSIMMON_TRAPDOOR).sign(PERSIMMON_SIGN, PERSIMMON_WALL_SIGN)
+            .door(PERSIMMON_DOOR).trapdoor(PERSIMMON_TRAPDOOR)
             .pressurePlate(PERSIMMON_PRESSURE_PLATE).button(PERSIMMON_BUTTON)
             .group("wooden").unlockCriterionName("has_planks").build();
 

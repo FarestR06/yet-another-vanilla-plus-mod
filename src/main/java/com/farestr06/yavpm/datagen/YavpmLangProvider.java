@@ -282,11 +282,6 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.APPLE_TRAPDOOR, "Apple Trapdoor");
         builder.add(YavpmBlocks.APPLE_PRESSURE_PLATE, "Apple Pressure Plate");
         builder.add(YavpmBlocks.APPLE_BUTTON, "Apple Button");
-        builder.add(YavpmBlocks.APPLE_SIGN, "Apple Sign");
-        builder.add(YavpmBlocks.APPLE_HANGING_SIGN, "Apple Hanging Sign");
-        // builder.add(YavpmItems.APPLE_BOAT, "Apple Boat");
-        // builder.add(YavpmItems.APPLE_CHEST_BOAT, "Apple Boat with Chest");
-        builder.add(YavpmBlocks.APPLE_SAPLING, "Apple Sapling");
 
         builder.add(YavpmBlocks.PERSIMMON_LOG, "Persimmon Log");
         builder.add(YavpmBlocks.PERSIMMON_WOOD, "Persimmon Wood");
@@ -302,10 +297,6 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.PERSIMMON_TRAPDOOR, "Persimmon Trapdoor");
         builder.add(YavpmBlocks.PERSIMMON_PRESSURE_PLATE, "Persimmon Pressure Plate");
         builder.add(YavpmBlocks.PERSIMMON_BUTTON, "Persimmon Button");
-        builder.add(YavpmBlocks.PERSIMMON_SIGN, "Persimmon Sign");
-        builder.add(YavpmBlocks.PERSIMMON_HANGING_SIGN, "Persimmon Hanging Sign");
-        // builder.add(YavpmItems.PERSIMMON_BOAT, "Persimmon Boat");
-        // builder.add(YavpmItems.PERSIMMON_CHEST_BOAT, "Persimmon Boat with Chest");
         builder.add(YavpmBlocks.PERSIMMON_SAPLING, "Persimmon Sapling");
 
         builder.add(YavpmBlocks.PRICKLE_LOG, "Prickle Log");
@@ -321,8 +312,6 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.PRICKLE_TRAPDOOR, "Prickle Trapdoor");
         builder.add(YavpmBlocks.PRICKLE_PRESSURE_PLATE, "Prickle Pressure Plate");
         builder.add(YavpmBlocks.PRICKLE_BUTTON, "Prickle Button");
-        builder.add(YavpmItems.PRICKLE_SIGN, "Prickle Sign");
-        builder.add(YavpmItems.PRICKLE_HANGING_SIGN, "Prickle Hanging Sign");
         builder.add(YavpmBlocks.PRICKLE_SHOOT, "Prickle Shoot");
         builder.add("subtitles.block.prickle_log.pluck", "Prickle Log plucks");
     }

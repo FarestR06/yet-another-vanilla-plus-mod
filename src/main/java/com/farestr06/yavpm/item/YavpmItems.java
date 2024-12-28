@@ -5,7 +5,6 @@ import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.custom.*;
-import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
@@ -26,7 +25,6 @@ import java.util.Map;
 
 import static com.farestr06.api.item.ItemHelper.*;
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
-import static com.farestr06.yavpm.entity.YavpmBoats.*;
 import static com.farestr06.yavpm.item.YavpmArmorMaterials.STUDDED;
 
 public class YavpmItems {
@@ -239,67 +237,6 @@ public class YavpmItems {
                     new Item.Settings().maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(20))
             )
     );
-    // endregion
-
-    // region Terraform Block Items
-    public static final Item APPLE_SIGN = makeAdvancedItem(
-            makeId("apple_sign"),
-            new SignItem(
-                    new Item.Settings().maxCount(16),
-                    YavpmBlocks.APPLE_SIGN,
-                    YavpmBlocks.APPLE_WALL_SIGN
-            )
-    );
-    public static final Item APPLE_HANGING_SIGN = makeAdvancedItem(
-            makeId("apple_hanging_sign"),
-            new HangingSignItem(
-                    YavpmBlocks.APPLE_HANGING_SIGN,
-                    YavpmBlocks.APPLE_WALL_HANGING_SIGN,
-                    new Item.Settings().maxCount(16)
-            )
-    );
-    public static final Item PRICKLE_SIGN = makeAdvancedItem(
-            makeId("prickle_sign"),
-            new SignItem(
-                    new Item.Settings().maxCount(16),
-                    YavpmBlocks.PRICKLE_SIGN,
-                    YavpmBlocks.PRICKLE_WALL_SIGN
-            )
-    );
-    public static final Item PRICKLE_HANGING_SIGN = makeAdvancedItem(
-            makeId("prickle_hanging_sign"),
-            new HangingSignItem(
-                    YavpmBlocks.PRICKLE_HANGING_SIGN,
-                    YavpmBlocks.PRICKLE_WALL_HANGING_SIGN,
-                    new Item.Settings().maxCount(16)
-            )
-    );
-
-    public static final Item PERSIMMON_SIGN = makeAdvancedItem(
-            makeId("persimmon_sign"),
-            new SignItem(
-                    new Item.Settings().maxCount(16),
-                    YavpmBlocks.PERSIMMON_SIGN,
-                    YavpmBlocks.PERSIMMON_WALL_SIGN
-            )
-    );
-    public static final Item PERSIMMON_HANGING_SIGN = makeAdvancedItem(
-            makeId("persimmon_hanging_sign"),
-            new HangingSignItem(
-                    YavpmBlocks.PERSIMMON_HANGING_SIGN,
-                    YavpmBlocks.PERSIMMON_WALL_HANGING_SIGN,
-                    new Item.Settings().maxCount(16)
-            )
-    );
-
-
-    /*
-    public static final Item APPLE_BOAT = TerraformBoatItemHelper.registerBoatItem(APPLE_BOAT_ID, APPLE_BOAT_KEY, false);
-    public static final Item APPLE_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(APPLE_CHEST_BOAT_ID, APPLE_BOAT_KEY, true);
-
-    public static final Item PERSIMMON_BOAT = TerraformBoatItemHelper.registerBoatItem(PERSIMMON_BOAT_ID, PERSIMMON_BOAT_KEY, false);
-    public static final Item PERSIMMON_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(PERSIMMON_CHEST_BOAT_ID, PERSIMMON_BOAT_KEY, true);
-     */
     // endregion
 
     // region Spawn Eggs

@@ -78,10 +78,6 @@ dependencies {
 	// Mod Menu
 	modImplementation("com.terraformersmc:modmenu:${project.modmenu_version}")
 
-	// Terraform Wood API
-	modImplementation "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_version}"
-	include "com.terraformersmc.terraform-api:terraform-wood-api-v1:${project.terraform_version}"
-
 	// Terrablender
 	modImplementation "com.github.glitchfiend:TerraBlender-fabric:${project.terrablender_version}"
 

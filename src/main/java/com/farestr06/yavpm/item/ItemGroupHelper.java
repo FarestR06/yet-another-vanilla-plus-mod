@@ -119,12 +119,6 @@ public class ItemGroupHelper {
     private static void functionalBlocks(FabricItemGroupEntries entries) {
         entries.add(YavpmBlocks.GLOWING_OBSIDIAN);
         entries.add(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
-        entries.add(YavpmItems.APPLE_SIGN);
-        entries.add(YavpmItems.APPLE_HANGING_SIGN);
-        entries.add(YavpmItems.PERSIMMON_SIGN);
-        entries.add(YavpmItems.PERSIMMON_HANGING_SIGN);
-        entries.add(YavpmItems.PRICKLE_SIGN);
-        entries.add(YavpmItems.PRICKLE_HANGING_SIGN);
     }
 
     private static void redstone(FabricItemGroupEntries entries) {
@@ -134,12 +128,6 @@ public class ItemGroupHelper {
     private static void tools(FabricItemGroupEntries entries) {
         entries.add(YavpmItems.VOID_WATER_BUCKET);
         entries.add(YavpmItems.FAKE_MILK_BUCKET);
-        /*
-        entries.add(YavpmItems.APPLE_BOAT);
-        entries.add(YavpmItems.APPLE_CHEST_BOAT);
-        entries.add(YavpmItems.PERSIMMON_BOAT);
-        entries.add(YavpmItems.PERSIMMON_CHEST_BOAT);
-         */
         entries.add(YavpmItems.FORTUNE_COOKIE);
         entries.add(YavpmItems.REACTOR);
         entries.add(YavpmItems.BABY_KEY);

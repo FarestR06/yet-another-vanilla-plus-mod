@@ -335,8 +335,6 @@ public class YavpmTagProviders {
                     YavpmBlocks.PERSIMMON_BUTTON.asItem(),
                     YavpmBlocks.PRICKLE_BUTTON.asItem()
             );
-            getOrCreateTagBuilder(ItemTags.SIGNS).add(YavpmItems.APPLE_SIGN, YavpmItems.PERSIMMON_SIGN, YavpmItems.PRICKLE_SIGN.asItem());
-            getOrCreateTagBuilder(ItemTags.HANGING_SIGNS).add(YavpmItems.APPLE_HANGING_SIGN, YavpmItems.PRICKLE_HANGING_SIGN, YavpmItems.PRICKLE_HANGING_SIGN.asItem());
         }
     }
 
@@ -488,18 +486,6 @@ public class YavpmTagProviders {
 
             getOrCreateTagBuilder(BlockTags.WOODEN_BUTTONS)
                     .add(YavpmBlocks.APPLE_BUTTON, YavpmBlocks.PERSIMMON_BUTTON, YavpmBlocks.PRICKLE_BUTTON);
-
-            getOrCreateTagBuilder(BlockTags.STANDING_SIGNS)
-                    .add(YavpmBlocks.APPLE_SIGN, YavpmBlocks.PERSIMMON_SIGN, YavpmBlocks.PRICKLE_SIGN);
-
-            getOrCreateTagBuilder(BlockTags.WALL_SIGNS)
-                    .add(YavpmBlocks.APPLE_WALL_SIGN, YavpmBlocks.PERSIMMON_WALL_SIGN, YavpmBlocks.PRICKLE_WALL_SIGN);
-
-            getOrCreateTagBuilder(BlockTags.CEILING_HANGING_SIGNS)
-                    .add(YavpmBlocks.APPLE_HANGING_SIGN, YavpmBlocks.PERSIMMON_HANGING_SIGN, YavpmBlocks.PRICKLE_HANGING_SIGN);
-
-            getOrCreateTagBuilder(BlockTags.WALL_HANGING_SIGNS)
-                    .add(YavpmBlocks.APPLE_WALL_HANGING_SIGN, YavpmBlocks.PERSIMMON_WALL_HANGING_SIGN, YavpmBlocks.PRICKLE_WALL_HANGING_SIGN);
         }
 
         private void woodenBlockTags() {

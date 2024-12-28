@@ -247,11 +247,6 @@ public class YavpmLootProviders {
             doorDrops(YavpmBlocks.APPLE_DOOR);
             addDrop(YavpmBlocks.APPLE_TRAPDOOR);
 
-            addDrop(YavpmBlocks.APPLE_SIGN, YavpmItems.APPLE_SIGN);
-            addDrop(YavpmBlocks.APPLE_WALL_SIGN, YavpmItems.APPLE_SIGN);
-            addDrop(YavpmBlocks.APPLE_HANGING_SIGN, YavpmItems.APPLE_HANGING_SIGN);
-            addDrop(YavpmBlocks.APPLE_WALL_HANGING_SIGN, YavpmItems.APPLE_HANGING_SIGN);
-
             addDrop(YavpmBlocks.APPLE_SAPLING);
         }
         private void persimmonDrops() {
@@ -281,11 +276,6 @@ public class YavpmLootProviders {
 
             doorDrops(YavpmBlocks.PERSIMMON_DOOR);
             addDrop(YavpmBlocks.PERSIMMON_TRAPDOOR);
-
-            addDrop(YavpmBlocks.PERSIMMON_SIGN, YavpmItems.PERSIMMON_SIGN);
-            addDrop(YavpmBlocks.PERSIMMON_WALL_SIGN, YavpmItems.PERSIMMON_SIGN);
-            addDrop(YavpmBlocks.PERSIMMON_HANGING_SIGN, YavpmItems.PERSIMMON_HANGING_SIGN);
-            addDrop(YavpmBlocks.PERSIMMON_WALL_HANGING_SIGN, YavpmItems.PERSIMMON_HANGING_SIGN);
         }
         private void prickleDrops() {
             addDrop(YavpmBlocks.PRICKLE_LOG);
@@ -303,11 +293,6 @@ public class YavpmLootProviders {
 
             doorDrops(YavpmBlocks.PRICKLE_DOOR);
             addDrop(YavpmBlocks.PRICKLE_TRAPDOOR);
-
-            addDrop(YavpmBlocks.PRICKLE_SIGN, YavpmItems.PRICKLE_SIGN);
-            addDrop(YavpmBlocks.PRICKLE_WALL_SIGN, YavpmItems.PRICKLE_SIGN);
-            addDrop(YavpmBlocks.PRICKLE_HANGING_SIGN, YavpmItems.PRICKLE_HANGING_SIGN);
-            addDrop(YavpmBlocks.PRICKLE_WALL_HANGING_SIGN, YavpmItems.PRICKLE_HANGING_SIGN);
 
             addDrop(YavpmBlocks.PRICKLE_SHOOT);
         }
