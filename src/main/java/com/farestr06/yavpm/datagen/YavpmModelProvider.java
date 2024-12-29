@@ -68,13 +68,11 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.register(YavpmItems.GRAPHITE, Models.GENERATED);
         generator.register(YavpmItems.RAW_DIAMOND, Models.GENERATED);
 
-        // generator.register(YavpmItems.APPLE_BOAT, Models.GENERATED);
-        // generator.register(YavpmItems.APPLE_CHEST_BOAT, Models.GENERATED);
-
-        // generator.register(YavpmItems.PERSIMMON_BOAT, Models.GENERATED);
-        // generator.register(YavpmItems.PERSIMMON_CHEST_BOAT, Models.GENERATED);
-
         createStuddedArmor(generator);
+
+        generator.register(YavpmItems.MUSIC_DISC_MAGNETIC_CIRCUIT, Models.TEMPLATE_MUSIC_DISC);
+        generator.register(YavpmItems.DISC_FRAGMENT_MAGNETIC_CIRCUIT, Models.GENERATED);
+        generator.register(YavpmItems.MUSIC_DISC_HALLAND_DALARNA, Models.TEMPLATE_MUSIC_DISC);
 
         generator.register(YavpmItems.MOONGUS_SPAWN_EGG, TEMPLATE_SPAWN_EGG);
         generator.register(YavpmItems.CARBONFOWL_SPAWN_EGG, TEMPLATE_SPAWN_EGG);

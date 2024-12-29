@@ -57,6 +57,8 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
         prickleWoodRecipes(exporter);
 
         specialRecipes(exporter);
+
+        offerCompactingRecipe(exporter, RecipeCategory.MISC, YavpmItems.MUSIC_DISC_MAGNETIC_CIRCUIT, YavpmItems.DISC_FRAGMENT_MAGNETIC_CIRCUIT);
     }
 
     private static void specialRecipes(RecipeExporter exporter) {
@@ -270,16 +272,22 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
 
     private void applewoodRecipes(RecipeExporter exporter) {
         offerPlanksRecipe(exporter, YavpmBlocks.APPLE_PLANKS, YavpmTags.Items.APPLE_LOGS, 4);
+        offerBarkBlockRecipe(exporter, YavpmBlocks.APPLE_WOOD, YavpmBlocks.APPLE_LOG);
+        offerBarkBlockRecipe(exporter, YavpmBlocks.STRIPPED_APPLE_WOOD, YavpmBlocks.STRIPPED_APPLE_LOG);
         generateFamily(exporter, YavpmBlocks.APPLE_FAMILY, FeatureSet.of(FeatureFlags.VANILLA));
     }
 
     private void persimmonRecipes(RecipeExporter exporter) {
         offerPlanksRecipe(exporter, YavpmBlocks.PERSIMMON_PLANKS, YavpmTags.Items.PERSIMMON_LOGS, 4);
+        offerBarkBlockRecipe(exporter, YavpmBlocks.PERSIMMON_WOOD, YavpmBlocks.PERSIMMON_LOG);
+        offerBarkBlockRecipe(exporter, YavpmBlocks.STRIPPED_PERSIMMON_WOOD, YavpmBlocks.STRIPPED_PERSIMMON_LOG);
         generateFamily(exporter, YavpmBlocks.PERSIMMON_FAMILY, FeatureSet.of(FeatureFlags.VANILLA));
     }
 
     private void prickleWoodRecipes(RecipeExporter exporter) {
         offerPlanksRecipe(exporter, YavpmBlocks.PRICKLE_PLANKS, YavpmTags.Items.PRICKLE_LOGS, 4);
+        offerBarkBlockRecipe(exporter, YavpmBlocks.PRICKLE_WOOD, YavpmBlocks.PRICKLE_LOG);
+        offerBarkBlockRecipe(exporter, YavpmBlocks.STRIPPED_PRICKLE_WOOD, YavpmBlocks.STRIPPED_PRICKLE_LOG);
         generateFamily(exporter, YavpmBlocks.PRICKLE_FAMILY, FeatureSet.of(FeatureFlags.VANILLA));
     }
 

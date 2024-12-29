@@ -1,0 +1,16 @@
+{
+	"result": {
+		"id": "yavpm:polished_kimberlite_bricks",
+		"count": 1
+	},
+	"type": "crafting_shaped",
+	"pattern": [
+		"##"
+	],
+	"key": {
+		"#": {
+			"item": "yavpm:polished_kimberlite_brick_slab"
+		}
+	},
+	"group": "slabs_to_blocks"
+}

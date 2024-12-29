@@ -1,0 +1,22 @@
+{
+	"result": {
+		"id": "yavpm:apple_planks",
+		"count": 3
+	},
+	"type": "crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "yavpm:apple_stairs"
+		},
+		{
+			"item": "yavpm:apple_stairs"
+		},
+		{
+			"item": "yavpm:apple_stairs"
+		},
+		{
+			"item": "yavpm:apple_stairs"
+		}
+	],
+	"group": "stairs_to_block"
+}

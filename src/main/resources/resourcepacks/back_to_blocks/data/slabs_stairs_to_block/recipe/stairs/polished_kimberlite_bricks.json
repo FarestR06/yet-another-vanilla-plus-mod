@@ -1,0 +1,22 @@
+{
+	"result": {
+		"id": "yavpm:polished_kimberlite_bricks",
+		"count": 3
+	},
+	"type": "crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "yavpm:polished_kimberlite_brick_stairs"
+		},
+		{
+			"item": "yavpm:polished_kimberlite_brick_stairs"
+		},
+		{
+			"item": "yavpm:polished_kimberlite_brick_stairs"
+		},
+		{
+			"item": "yavpm:polished_kimberlite_brick_stairs"
+		}
+	],
+	"group": "stairs_to_block"
+}

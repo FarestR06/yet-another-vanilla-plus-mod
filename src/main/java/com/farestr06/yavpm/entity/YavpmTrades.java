@@ -4,17 +4,26 @@ import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.item.YavpmItems;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradedItem;
 import net.minecraft.village.VillagerProfession;
 
+import java.util.List;
 import java.util.Optional;
 
 public class YavpmTrades {
     private static final float LOW_MULTIPLIER = 0.05f;
     private static final float HIGH_MULTIPLIER = 0.2f;
+
+    private static final List<Item> WANDERING_TRADER_DEFAULT_DISCS = List.of(
+            Items.MUSIC_DISC_13,
+            Items.MUSIC_DISC_CAT,
+            Items.MUSIC_DISC_WAIT,
+            Items.MUSIC_DISC_MELLOHI
+    );
 
     public static void init() {
         YetAnotherVanillaPlusMod.LOGGER.info("Registering trade offers for YAVPM!");
@@ -64,6 +73,20 @@ public class YavpmTrades {
                 HIGH_MULTIPLIER
         )));
         // endregion
+        YetAnotherVanillaPlusMod.LOGGER.debug("Creating Mason Master trades...");
+        TradeOfferHelper.registerVillagerOffers(VillagerProfession.MASON, 5, factories ->
+                factories.add((entity, random) -> {
+                    int amount = random.nextBetween(8, 16);
+                    return new TradeOffer(
+                        new TradedItem(Items.EMERALD, 20),
+                        Optional.of(new TradedItem(YavpmBlocks.KIMBERLITE, amount)),
+                        new ItemStack(YavpmItems.RAW_DIAMOND, amount),
+                        12,
+                        30,
+                        HIGH_MULTIPLIER
+                    );
+                }));
+
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Butcher Novice trades...");
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.BUTCHER, 1, factories ->
                 factories.add((entity, random) -> new TradeOffer(
@@ -143,6 +166,26 @@ public class YavpmTrades {
         // region Wandering Trader
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Wandering Trader trades...");
         TradeOfferHelper.registerWanderingTraderOffers(1, factories -> {
+            factories.add((entity, random) -> {
+                if (random.nextFloat() <= 0.19f) {
+                    return new TradeOffer(
+                            new TradedItem(Items.EMERALD, 8),
+                            new ItemStack(YavpmItems.MUSIC_DISC_HALLAND_DALARNA),
+                            1,
+                            0,
+                            0f
+                    );
+                } else {
+                    int index = random.nextInt(4);
+                    return new TradeOffer(
+                            new TradedItem(Items.EMERALD, 8),
+                            new ItemStack(WANDERING_TRADER_DEFAULT_DISCS.get(index)),
+                            1,
+                            0,
+                            0f
+                    );
+                }
+            });
             factories.add((entity, random) -> new TradeOffer(
                     new TradedItem(Items.EMERALD),
                     new ItemStack(YavpmItems.BANANA_SEEDS),

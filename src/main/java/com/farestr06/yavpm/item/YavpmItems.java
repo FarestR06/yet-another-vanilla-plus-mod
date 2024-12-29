@@ -5,6 +5,7 @@ import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.custom.*;
+import com.farestr06.yavpm.util.YavpmSounds;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
@@ -238,6 +239,20 @@ public class YavpmItems {
             )
     );
     // endregion
+
+    public static final Item MUSIC_DISC_MAGNETIC_CIRCUIT = makeItem(
+            makeId("music_disc_magnetic_circuit"),
+            new Item.Settings().rarity(Rarity.RARE).jukeboxPlayable(YavpmSounds.MAGNETIC_CIRCUIT_KEY).maxCount(1)
+    );
+    public static final Item DISC_FRAGMENT_MAGNETIC_CIRCUIT = makeAdvancedItem(
+            makeId("disc_fragment_magnetic_circuit"),
+            new DiscFragmentItem(new Item.Settings())
+    );
+
+    public static final Item MUSIC_DISC_HALLAND_DALARNA = makeItem(
+            makeId("music_disc_halland_dalarna"),
+            new Item.Settings().rarity(Rarity.RARE).jukeboxPlayable(YavpmSounds.HALLAND_DALARNA_KEY).maxCount(1)
+    );
 
     // region Spawn Eggs
     public static final Item CARBONFOWL_SPAWN_EGG = makeAdvancedItem(

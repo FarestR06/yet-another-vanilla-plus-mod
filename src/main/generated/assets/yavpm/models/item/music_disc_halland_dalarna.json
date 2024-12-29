@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/template_music_disc",
+  "textures": {
+    "layer0": "yavpm:item/music_disc_halland_dalarna"
+  }
+}

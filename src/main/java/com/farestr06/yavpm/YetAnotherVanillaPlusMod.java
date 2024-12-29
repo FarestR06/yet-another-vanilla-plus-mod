@@ -18,6 +18,9 @@ import com.farestr06.yavpm.world.gen.YavpmWorldGeneration;
 import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.server.loottable.BlockLootTableGenerator;
 import net.minecraft.data.server.loottable.vanilla.VanillaBlockLootTableGenerator;
@@ -40,6 +43,7 @@ import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -89,8 +93,53 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		modifyLoot();
 		YavpmTrades.init();
 
+		setUpVanillaTweaksCompat();
     }
+	private static void setUpVanillaTweaksCompat() {
+		if (ResourceManagerHelper.registerBuiltinResourcePack(
+				makeId("back_to_blocks"),
+				FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(),
+				Text.literal("Vanilla Tweaks Back to Blocks Compatibility"),
+				ResourcePackActivationType.NORMAL
+		)) {
+			LOGGER.info("Back to Blocks compat registered successfully!");
+		} else {
+			LOGGER.error("Failed to register Back to Blocks compat!");
+		}
 
+		if (ResourceManagerHelper.registerBuiltinResourcePack(
+				makeId("more_bark"),
+				FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(),
+				Text.literal("Vanilla Tweaks Back to Blocks Compatibility"),
+				ResourcePackActivationType.NORMAL
+		)) {
+			LOGGER.info("More Bark compat registered successfully!");
+		} else {
+			LOGGER.error("Failed to register More Bark compat!");
+		}
+
+		if (ResourceManagerHelper.registerBuiltinResourcePack(
+				makeId("more_stairs"),
+				FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(),
+				Text.literal("Vanilla Tweaks Back to Blocks Compatibility"),
+				ResourcePackActivationType.NORMAL
+		)) {
+			LOGGER.info("More Stairs compat registered successfully!");
+		} else {
+			LOGGER.error("Failed to register More Stairs compat!");
+		}
+
+		if (ResourceManagerHelper.registerBuiltinResourcePack(
+				makeId("more_trapdoors"),
+				FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(),
+				Text.literal("Vanilla Tweaks Back to Blocks Compatibility"),
+				ResourcePackActivationType.NORMAL
+		)) {
+			LOGGER.info("More Trapdoors compat registered successfully!");
+		} else {
+			LOGGER.error("Failed to register More Trapdoors compat!");
+		}
+	}
 	private static void modifyLoot() {
 		LOGGER.info("Modifying loot for YAVPM!");
 		LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
@@ -164,7 +213,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 				tableBuilder.pool(poolBuilder);
 			}
 			if (source.isBuiltin() && key.equals(LootTables.CAT_MORNING_GIFT_GAMEPLAY)) {
-				LootPool.Builder poolBuilder = LootPool.builder()
+				LootPool.Builder poolBuilder1 = LootPool.builder()
 						.rolls(ConstantLootNumberProvider.create(1f))
 						.with(ItemEntry.builder(YavpmItems.MAGIC_BEAN)
 								.apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
@@ -175,8 +224,12 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 						)
 						.with(ItemEntry.builder(YavpmItems.MOLY).weight(1))
 						.conditionally(RandomChanceLootCondition.builder(0.18f));
+				LootPool.Builder poolBuilder2 = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(YavpmItems.DISC_FRAGMENT_MAGNETIC_CIRCUIT))
+						.conditionally(RandomChanceLootCondition.builder(0.2f));
 
-				tableBuilder.pool(poolBuilder);
+				tableBuilder.pool(poolBuilder1).pool(poolBuilder2);
 			}
 			if (source.isBuiltin() && key.equals(LootTables.UNDERWATER_RUIN_BIG_CHEST)) {
 				LootPool.Builder poolBuilder = LootPool.builder()
@@ -311,7 +364,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 						.rolls(ConstantLootNumberProvider.create(1f))
 						.with(ItemEntry.builder(Items.BOOK).apply(EnchantRandomlyLootFunction.builder(registries).options(
 								enchantmentImpl.getOrThrow(YavpmTags.Enchantments.END_ENCHANTMENTS))))
-						.conditionally(RandomChanceLootCondition.builder(0.2f));
+						.conditionally(RandomChanceLootCondition.builder(0.24f));
 				LootPool.Builder poolBuilder2 = LootPool.builder()
 						.rolls(ConstantLootNumberProvider.create(1f))
 						.with(ItemEntry.builder(YavpmItems.PHANTOM_CHORD))

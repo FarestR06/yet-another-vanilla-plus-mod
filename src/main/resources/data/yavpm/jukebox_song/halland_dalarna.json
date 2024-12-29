@@ -1,0 +1,10 @@
+{
+    "sound_event": "yavpm:music_disc.halland_dalarna",
+    "description": {
+      "translate": "item.yavpm.music_disc_halland_dalarna.desc",
+      "fallback": "Halland/Dalarna (2020 Arr.) - Peter Hont, Johan Johnson, ACE (TOMOri Kudo / CHiCO)"
+    },
+    "length_in_seconds": 333,
+    "comparator_output": 2
+  }
+  

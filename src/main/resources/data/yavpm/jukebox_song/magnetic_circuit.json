@@ -1,0 +1,9 @@
+{
+    "description": {
+      "translate": "item.yavpm.music_disc_magnetic_circuit.desc",
+      "fallback": "Notch - Magnetic Circuit"
+    },
+    "comparator_output": 9,
+    "sound_event": "yavpm:music_disc.magnetic_circuit",
+    "length_in_seconds": 183
+}

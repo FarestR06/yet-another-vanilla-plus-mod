@@ -215,6 +215,13 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.STUDDED_LEGGINGS, "Studded Pants");
         builder.add(YavpmItems.STUDDED_BOOTS, "Studded Boots");
         builder.add("subtitles.item.armor.equip_studded", "Studded armor jostles");
+
+        builder.add(YavpmItems.MUSIC_DISC_MAGNETIC_CIRCUIT, "Music Disc");
+        builder.add("item.yavpm.music_disc_magnetic_circuit.desc", "Notch - Magnetic Circuit");
+        builder.add(YavpmItems.DISC_FRAGMENT_MAGNETIC_CIRCUIT, "Disc Fragment");
+        builder.add("item.yavpm.disc_fragment_magnetic_circuit.desc", "Music Disc - Magnetic Circuit");
+        builder.add(YavpmItems.MUSIC_DISC_HALLAND_DALARNA, "Music Disc");
+        builder.add("item.yavpm.music_disc_halland_dalarna.desc", "Halland/Dalarna (2020 Arr.) - Peter Hont, Johan Johnson, ACE (TOMOri Kudo / CHiCO)");
     }
 
     private static void ingredientTranslations(TranslationBuilder builder) {

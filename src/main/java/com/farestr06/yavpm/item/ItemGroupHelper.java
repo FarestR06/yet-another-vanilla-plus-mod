@@ -131,6 +131,8 @@ public class ItemGroupHelper {
         entries.add(YavpmItems.FORTUNE_COOKIE);
         entries.add(YavpmItems.REACTOR);
         entries.add(YavpmItems.BABY_KEY);
+        entries.add(YavpmItems.MUSIC_DISC_MAGNETIC_CIRCUIT);
+        entries.add(YavpmItems.MUSIC_DISC_HALLAND_DALARNA);
     }
 
     private static void combat(FabricItemGroupEntries entries) {
@@ -170,6 +172,7 @@ public class ItemGroupHelper {
         entries.add(YavpmBlocks.GRAPHENE_BLOCK);
         entries.add(YavpmItems.MAGIC_BEAN);
         entries.add(YavpmItems.RICE);
+        entries.add(YavpmItems.DISC_FRAGMENT_MAGNETIC_CIRCUIT);
         entries.add(YavpmItems.WARPED_WART);
         entries.add(YavpmItems.PHANTOM_CHORD);
         entries.add(YavpmItems.RUNE_ATTACK);

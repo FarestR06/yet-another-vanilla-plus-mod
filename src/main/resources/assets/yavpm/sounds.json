@@ -61,6 +61,22 @@
     ],
     "subtitle": "subtitles.item.baby_key.unlock"
   },
+  "music_disc.magnetic_circuit": {
+    "sounds": [
+      {
+        "name": "yavpm:records/magnetic_circuit",
+        "stream": true
+      }
+    ]
+  },
+  "music_disc.halland_dalarna": {
+    "sounds": [
+      {
+        "name": "yavpm:records/halland_dalarna",
+        "stream": true
+      }
+    ]
+  },
   "item.armor.equip_studded": {
     "sounds": [
       "item/armor/equip_chain1",

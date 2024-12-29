@@ -1,0 +1,22 @@
+{
+	"result": {
+		"id": "yavpm:persimmon_planks",
+		"count": 3
+	},
+	"type": "crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "yavpm:persimmon_stairs"
+		},
+		{
+			"item": "yavpm:persimmon_stairs"
+		},
+		{
+			"item": "yavpm:persimmon_stairs"
+		},
+		{
+			"item": "yavpm:persimmon_stairs"
+		}
+	],
+	"group": "stairs_to_block"
+}
