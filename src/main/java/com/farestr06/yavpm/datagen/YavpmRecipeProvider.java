@@ -292,6 +292,37 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
     }
 
     private void equipmentRecipes(RecipeExporter exporter) {
+        offerCompactingRecipe(exporter, RecipeCategory.MISC, YavpmItems.CHAINMAIL, Items.CHAIN);
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.CHAINMAIL_HELMET)
+                .input('#', YavpmItems.CHAINMAIL)
+                .pattern("###")
+                .pattern("# #")
+                .criterion(hasItem(YavpmItems.CHAINMAIL), conditionsFromItem(YavpmItems.CHAINMAIL))
+                .offerTo(exporter, makeId(getRecipeName(Items.CHAINMAIL_HELMET)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.CHAINMAIL_CHESTPLATE)
+                .input('#', YavpmItems.CHAINMAIL)
+                .pattern("# #")
+                .pattern("###")
+                .pattern("###")
+                .criterion(hasItem(YavpmItems.CHAINMAIL), conditionsFromItem(YavpmItems.CHAINMAIL))
+                .offerTo(exporter, makeId(getRecipeName(Items.CHAINMAIL_CHESTPLATE)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.CHAINMAIL_LEGGINGS)
+                .input('#', YavpmItems.CHAINMAIL)
+                .pattern("###")
+                .pattern("# #")
+                .pattern("# #")
+                .criterion(hasItem(YavpmItems.CHAINMAIL), conditionsFromItem(YavpmItems.CHAINMAIL))
+                .offerTo(exporter, makeId(getRecipeName(Items.CHAINMAIL_LEGGINGS)));
+
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, Items.CHAINMAIL_BOOTS)
+                .input('#', YavpmItems.CHAINMAIL)
+                .pattern("# #")
+                .pattern("# #")
+                .criterion(hasItem(YavpmItems.CHAINMAIL), conditionsFromItem(YavpmItems.CHAINMAIL))
+                .offerTo(exporter, makeId(getRecipeName(Items.CHAINMAIL_BOOTS)));
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, YavpmItems.REACTOR)
                 .input('B', Items.BLAZE_ROD)
                 .input('N', Items.NETHERITE_INGOT)
@@ -303,9 +334,10 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
 
         ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, YavpmItems.BABY_KEY)
                 .input('G', Items.GOLD_INGOT)
+                .input('N', Items.GOLD_NUGGET)
                 .input('P', Items.CARVED_PUMPKIN)
-                .pattern("G ")
-                .pattern("GG")
+                .pattern("GN")
+                .pattern("GN")
                 .pattern("P ")
                 .criterion(hasItem(Items.CARVED_PUMPKIN), conditionsFromItem(Items.CARVED_PUMPKIN))
                 .offerTo(exporter, makeId(getRecipeName(YavpmItems.BABY_KEY)));

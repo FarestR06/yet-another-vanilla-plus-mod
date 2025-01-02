@@ -1,12 +1,13 @@
 package com.farestr06.yavpm.datagen;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
-import com.farestr06.yavpm.block.custom.*;
+import com.farestr06.yavpm.block.custom.crop.*;
 import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.item.YavpmItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableProvider;
+import net.minecraft.block.SweetBerryBushBlock;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.Items;
@@ -158,6 +159,25 @@ public class YavpmLootProviders {
         }
 
         private void modCropDrops() {
+            addDrop(
+                    YavpmBlocks.BITTER_BERRY_BUSH,
+                    (net.minecraft.block.Block block) -> this.applyExplosionDecay(
+                            block, LootTable.builder().pool(LootPool.builder().conditionally(
+                                    BlockStatePropertyLootCondition.builder(YavpmBlocks.BITTER_BERRY_BUSH)
+                                            .properties(StatePredicate.Builder.create().exactMatch(SweetBerryBushBlock.AGE, 3)))
+                                    .with(ItemEntry.builder(YavpmItems.BITTER_BERRIES))
+                                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0f, 3.0f)))
+                                    .apply(ApplyBonusLootFunction.uniformBonusCount(lookup.getOrThrow(Enchantments.FORTUNE))))
+                                    .pool(LootPool.builder().conditionally(
+                                            BlockStatePropertyLootCondition.builder(YavpmBlocks.BITTER_BERRY_BUSH)
+                                                    .properties(StatePredicate.Builder.create().exactMatch(SweetBerryBushBlock.AGE, 2)))
+                                            .with(ItemEntry.builder(YavpmItems.BITTER_BERRIES))
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 2.0f)))
+                                            .apply(ApplyBonusLootFunction.uniformBonusCount(lookup.getOrThrow(Enchantments.FORTUNE)))
+                                    )
+                    )
+            );
+
             BlockStatePropertyLootCondition.Builder peanutConditionBuilder = BlockStatePropertyLootCondition.builder(YavpmBlocks.PEANUT_CROP).properties(StatePredicate.Builder.create()
                     .exactMatch(PeanutCropBlock.AGE, 3));
             addDrop(YavpmBlocks.PEANUT_CROP, applyExplosionDecay(YavpmBlocks.PEANUT_CROP, LootTable.builder().pool(

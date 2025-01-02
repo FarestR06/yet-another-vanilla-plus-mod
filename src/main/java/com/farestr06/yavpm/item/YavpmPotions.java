@@ -71,6 +71,26 @@ public class YavpmPotions {
             )
     ));
 
+    public static final RegistryEntry<Potion> HASTE = register("haste", new Potion(
+            new StatusEffectInstance(
+                    StatusEffects.HASTE,
+                    2400
+            )
+    ));
+    public static final RegistryEntry<Potion> LONG_HASTE = register("long_haste", new Potion(
+            new StatusEffectInstance(
+                    StatusEffects.HASTE,
+                    4800
+            )
+    ));
+    public static final RegistryEntry<Potion> STRONG_HASTE = register("strong_haste", new Potion(
+            new StatusEffectInstance(
+                    StatusEffects.HASTE,
+                    1200,
+                    2
+            )
+    ));
+
     private static RegistryEntry<Potion> register(String id, Potion potion) {
         return Registry.registerReference(Registries.POTION, YetAnotherVanillaPlusMod.makeId(id), potion);
     }
@@ -104,6 +124,23 @@ public class YavpmPotions {
                     CHOKING,
                     Ingredient.ofItems(Items.REDSTONE),
                     LONG_CHOKING
+            );
+
+            YetAnotherVanillaPlusMod.LOGGER.debug("Creating Potions of Haste...");
+            builder.registerPotionRecipe(
+                    Potions.WATER,
+                    Ingredient.ofItems(YavpmItems.BITTER_BERRIES),
+                    HASTE
+            );
+            builder.registerPotionRecipe(
+                    HASTE,
+                    Ingredient.ofItems(Items.REDSTONE),
+                    LONG_HASTE
+            );
+            builder.registerPotionRecipe(
+                    HASTE,
+                    Ingredient.ofItems(Items.GLOWSTONE_DUST),
+                    STRONG_HASTE
             );
         });
     }

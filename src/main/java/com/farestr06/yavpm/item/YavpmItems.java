@@ -57,6 +57,10 @@ public class YavpmItems {
             new RuneItem(Text.translatable("item.yavpm.rune_speed.tooltip").formatted(Formatting.YELLOW))
     );
     // endregion
+    public static final Item BITTER_BERRIES = makeAdvancedItem(
+            makeId("bitter_berries"),
+            new AliasedBlockItem(YavpmBlocks.BITTER_BERRY_BUSH,new Item.Settings().food(FoodComponents.SWEET_BERRIES))
+    );
     // region Banana
     public static final Item BANANA = makeItem(
             makeId("banana"),
@@ -182,6 +186,7 @@ public class YavpmItems {
 
     public static final Item RAW_DIAMOND = makeSimpleItem(makeId("raw_diamond"));
     public static final Item GRAPHITE = makeSimpleItem(makeId("graphite"));
+    public static final Item CHAINMAIL = makeSimpleItem(makeId("chainmail"));
 
     // Magic Herb
     public static final Item MOLY = makeAdvancedItem(

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yavpm:block/bitter_berry_bush_stage1"
+  }
+}

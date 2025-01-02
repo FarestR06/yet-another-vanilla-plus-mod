@@ -1,4 +1,4 @@
-package com.farestr06.yavpm.block.custom;
+package com.farestr06.yavpm.block.custom.crop;
 
 import com.farestr06.yavpm.item.YavpmItems;
 import net.minecraft.block.BlockState;

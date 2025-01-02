@@ -25,16 +25,6 @@ public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
         setUpBlocks();
         setUpEntities();
         setUpColors();
-
-        /*
-        TerraformBoatClientHelper.registerModelLayers(
-                YavpmBoats.APPLE_BOAT_TYPE_ID, false
-        );
-        TerraformBoatClientHelper.registerModelLayers(
-                YavpmBoats.PERSIMMON_BOAT_TYPE_ID, false
-        );
-
-         */
     }
 
     private static void setUpColors() {
@@ -59,6 +49,7 @@ public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.BANANA_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PEANUT_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.MAGIC_BEAN_CROP, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.BITTER_BERRY_BUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.OAK_SAPLING_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.APPLE_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PERSIMMON_SAPLING, RenderLayer.getCutout());

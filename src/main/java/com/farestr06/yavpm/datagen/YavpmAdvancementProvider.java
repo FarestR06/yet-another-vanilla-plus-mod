@@ -119,7 +119,6 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                     )
                     .rewards(AdvancementRewards.Builder.experience(50))
                     .build(makeId("husbandry/eat_all_food_bowls"));
-
     protected static final AdvancementEntry CRAFT_DIAMONDS_FROM_GRAPHENE = Advancement.Builder.create()
             .parent(VanillaAdvancements.Husbandry.BREED_AN_ANIMAL)
             .display(

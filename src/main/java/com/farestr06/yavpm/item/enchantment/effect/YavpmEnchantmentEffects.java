@@ -9,9 +9,9 @@ import net.minecraft.registry.Registry;
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmEnchantmentEffects {
-    private static MapCodec<? extends EnchantmentEntityEffect> registerEntityEffect(String name,
-                                                                                    MapCodec<? extends EnchantmentEntityEffect> codec) {
-        return Registry.register(Registries.ENCHANTMENT_ENTITY_EFFECT_TYPE, makeId(name), codec);
+    private static void registerEntityEffect(String name,
+                                             MapCodec<? extends EnchantmentEntityEffect> codec) {
+        Registry.register(Registries.ENCHANTMENT_ENTITY_EFFECT_TYPE, makeId(name), codec);
     }
 
     public static void init() {

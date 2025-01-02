@@ -116,17 +116,6 @@ public class YavpmTagProviders {
                     YavpmItems.STUDDED_LEGGINGS,
                     YavpmItems.STUDDED_BOOTS
             );
-
-            /*
-            getOrCreateTagBuilder(ItemTags.BOATS).add(
-                    YavpmItems.APPLE_BOAT,
-                    YavpmItems.PERSIMMON_BOAT
-            );
-            getOrCreateTagBuilder(ItemTags.CHEST_BOATS).add(
-                    YavpmItems.APPLE_CHEST_BOAT,
-                    YavpmItems.PERSIMMON_CHEST_BOAT
-            );
-             */
         }
 
         private void foodTags() {
@@ -211,8 +200,9 @@ public class YavpmTagProviders {
                     YavpmItems.COOKED_FAKE_BEEF,
                     YavpmItems.TOFU
             );
-            getOrCreateTagBuilder(YavpmTags.Items.TANUKI_FOODS)
-                    .forceAddTag(ConventionalItemTags.BERRY_FOODS);
+            getOrCreateTagBuilder(YavpmTags.Items.TANUKI_FOOD)
+                    .add(Items.GLOW_BERRIES)
+                    .add(Items.SWEET_BERRIES);
 
             getOrCreateTagBuilder(YavpmTags.Items.CRIMSON_MOONGUS_FOOD).add(
                     Items.SUGAR,

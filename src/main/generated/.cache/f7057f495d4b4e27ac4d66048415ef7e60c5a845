@@ -1,14 +1,14 @@
-// 1.21.1	2024-12-29T13:28:58.146161	Yet Another Vanilla Plus Mod/Tags for minecraft:block
+// 1.21.1	2025-01-01T12:47:34.172537	Yet Another Vanilla Plus Mod/Tags for minecraft:block
 cb07bad33330d3bea18e529754609135cb99ec19 data/minecraft/tags/block/soul_speed_blocks.json
 846003a1a25ed66d4744cbf09837961fb98c16cc data/minecraft/tags/block/mineable/hoe.json
-b7d5d72ad77abe735d53919c25216e6d36d2b670 data/minecraft/tags/block/mineable/axe.json
 1ae3de3623aa152824d5840dfcbdad698ae44888 data/c/tags/block/stripped_logs.json
+b7d5d72ad77abe735d53919c25216e6d36d2b670 data/minecraft/tags/block/mineable/axe.json
 d4147ac2b3e23384588a20f7de895065a5ca3b55 data/minecraft/tags/block/saplings.json
 fab75620c8658c029c9bd22812a5e6cc3b3757a5 data/yavpm/tags/block/persimmon_logs.json
 629cdbb8075c3d564170b826c37088c264df2bab data/minecraft/tags/block/needs_iron_tool.json
 fc80534f293c67f2f3dc09ef87cf0d1c333ffcb9 data/minecraft/tags/block/slabs.json
-0428e14b34082adc68b1ac07a9e4542228af55ed data/minecraft/tags/block/fence_gates.json
 3c4770b8d0fefafae9ed8acca95b94e2c1472b41 data/minecraft/tags/block/wooden_trapdoors.json
+0428e14b34082adc68b1ac07a9e4542228af55ed data/minecraft/tags/block/fence_gates.json
 1acfd7d2d675c5caaa7cfc72edd8bf050e97fa77 data/c/tags/block/obsidians.json
 92a30bf2528f35f32631b7b0195672baba6a4563 data/minecraft/tags/block/wooden_fences.json
 846003a1a25ed66d4744cbf09837961fb98c16cc data/minecraft/tags/block/leaves.json
@@ -17,9 +17,9 @@ a1bc068526ba89cab9e73ca5963d7445401d4fdd data/minecraft/tags/block/wooden_button
 1acfd7d2d675c5caaa7cfc72edd8bf050e97fa77 data/minecraft/tags/block/needs_diamond_tool.json
 343470cf7c980c8c0e47201eac0143c490471ab6 data/minecraft/tags/block/impermeable.json
 53a13473b30a0ca862cb74b2b2575e0e92cb13ca data/yavpm/tags/block/prickle_logs.json
+5cbb74a5c8aa8fe9f4c9e93d31afc6a66e3c6851 data/minecraft/tags/block/wooden_stairs.json
 64bf0f3822462afc0b6f0760206546000ed7339a data/minecraft/tags/block/wooden_doors.json
 3a16c607c2e3acf66088571c9e9b8b8df0141b18 data/minecraft/tags/block/wooden_slabs.json
-5cbb74a5c8aa8fe9f4c9e93d31afc6a66e3c6851 data/minecraft/tags/block/wooden_stairs.json
 8df7b18769edabfd1534e1605dee0e9f7465dcff data/minecraft/tags/block/crops.json
 2be945844b876031583825931e47fd7214711d93 data/minecraft/tags/block/mineable/pickaxe.json
 cb07bad33330d3bea18e529754609135cb99ec19 data/minecraft/tags/block/soul_fire_base_blocks.json

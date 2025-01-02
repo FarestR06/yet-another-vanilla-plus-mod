@@ -169,7 +169,7 @@ public class YavpmTrades {
             factories.add((entity, random) -> {
                 if (random.nextFloat() <= 0.19f) {
                     return new TradeOffer(
-                            new TradedItem(Items.EMERALD, 8),
+                            new TradedItem(Items.EMERALD, 12),
                             new ItemStack(YavpmItems.MUSIC_DISC_HALLAND_DALARNA),
                             1,
                             0,
@@ -186,6 +186,13 @@ public class YavpmTrades {
                     );
                 }
             });
+            factories.add((entity, random) -> new TradeOffer(
+                    new TradedItem(Items.EMERALD),
+                    new ItemStack(YavpmItems.BITTER_BERRIES),
+                    12,
+                    0,
+                    0f
+            ));
             factories.add((entity, random) -> new TradeOffer(
                     new TradedItem(Items.EMERALD),
                     new ItemStack(YavpmItems.BANANA_SEEDS),

@@ -46,7 +46,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add(YavpmTags.Items.REACTOR_RECHARGERS, "Recharges Reactor");
 
-        builder.add(YavpmTags.Items.TANUKI_FOODS, "Tanuki Food");
+        builder.add(YavpmTags.Items.TANUKI_FOOD, "Tanuki Food");
         builder.add(YavpmTags.Items.CARBONFOWL_FOODS, "Carbonfowl Food");
 
         builder.add(YavpmTags.Items.CRIMSON_MOONGUS_FOOD, "Crimson Moongus Food");
@@ -124,6 +124,9 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.PEANUT_CROP, "Peanut Crops");
         builder.add(YavpmItems.PEANUT, "Peanut");
         builder.add(YavpmItems.COOKED_PEANUT, "Roasted Peanut");
+
+        builder.add(YavpmBlocks.BITTER_BERRY_BUSH, "Bitter Berry Bush");
+        builder.add(YavpmItems.BITTER_BERRIES, "Bitter Berries");
 
         builder.add(YavpmBlocks.BANANA_CROP, "Banana Crops");
         builder.add(YavpmItems.BANANA, "Banana Bunch");
@@ -204,6 +207,19 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("item.minecraft.lingering_potion.effect.long_choking", "Lingering Potion of Choking");
         builder.add("item.minecraft.tipped_arrow.effect.choking", "Arrow of Choking");
         builder.add("item.minecraft.tipped_arrow.effect.long_choking", "Arrow of Choking");
+
+        builder.add("item.minecraft.potion.effect.haste", "Potion of Haste");
+        builder.add("item.minecraft.potion.effect.long_haste", "Potion of Haste");
+        builder.add("item.minecraft.potion.effect.strong_haste", "Potion of Haste");
+        builder.add("item.minecraft.splash_potion.effect.haste", "Splash Potion of Haste");
+        builder.add("item.minecraft.splash_potion.effect.long_haste", "Splash Potion of Haste");
+        builder.add("item.minecraft.splash_potion.effect.strong_haste", "Splash Potion of Haste");
+        builder.add("item.minecraft.lingering_potion.effect.haste", "Lingering Potion of Haste");
+        builder.add("item.minecraft.lingering_potion.effect.long_haste", "Lingering Potion of Haste");
+        builder.add("item.minecraft.lingering_potion.effect.strong_haste", "Lingering Potion of Haste");
+        builder.add("item.minecraft.tipped_arrow.effect.haste", "Arrow of Haste");
+        builder.add("item.minecraft.tipped_arrow.effect.long_haste", "Arrow of Haste");
+        builder.add("item.minecraft.tipped_arrow.effect.strong_haste", "Arrow of Haste");
     }
 
     private static void equipmentTranslations(TranslationBuilder builder) {
@@ -226,6 +242,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
     private static void ingredientTranslations(TranslationBuilder builder) {
         builder.add(YavpmItems.PHANTOM_CHORD, "Phantom Chord");
+
+        builder.add(YavpmItems.CHAINMAIL, "Chainmail");
 
         builder.add(YavpmItems.RAW_DIAMOND, "Raw Diamond");
         builder.add(YavpmItems.GRAPHITE, "Graphite");

@@ -1,10 +1,7 @@
 package com.farestr06.yavpm.datagen;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
-import com.farestr06.yavpm.block.custom.BananaCropBlock;
-import com.farestr06.yavpm.block.custom.MagicBeanCropBlock;
-import com.farestr06.yavpm.block.custom.PeanutCropBlock;
-import com.farestr06.yavpm.block.custom.SaplingCropBlock;
+import com.farestr06.yavpm.block.custom.crop.*;
 import com.farestr06.yavpm.item.YavpmItems;
 import it.unimi.dsi.fastutil.ints.Int2ObjectFunction;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -68,6 +65,7 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.register(YavpmItems.GRAPHITE, Models.GENERATED);
         generator.register(YavpmItems.RAW_DIAMOND, Models.GENERATED);
 
+        generator.register(YavpmItems.CHAINMAIL, Models.GENERATED);
         createStuddedArmor(generator);
 
         generator.register(YavpmItems.MUSIC_DISC_MAGNETIC_CIRCUIT, Models.TEMPLATE_MUSIC_DISC);
@@ -122,6 +120,11 @@ public class YavpmModelProvider extends FabricModelProvider {
     }
 
     private void crops(BlockStateModelGenerator generator) {
+        generator.registerTintableCrossBlockStateWithStages(
+                YavpmBlocks.BITTER_BERRY_BUSH,
+                BlockStateModelGenerator.TintType.NOT_TINTED,
+                BitterBerryBushBlock.AGE, 0, 1, 2, 3
+        );
         generator.registerCrop(YavpmBlocks.WARPED_WART, Properties.AGE_3, 0, 1, 1, 2);
         generator.registerCrop(YavpmBlocks.PEANUT_CROP, PeanutCropBlock.AGE, 0, 1, 2, 3);
         registerBananaCrop(generator);

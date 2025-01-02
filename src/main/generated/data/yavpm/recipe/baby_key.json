@@ -5,13 +5,16 @@
     "G": {
       "item": "minecraft:gold_ingot"
     },
+    "N": {
+      "item": "minecraft:gold_nugget"
+    },
     "P": {
       "item": "minecraft:carved_pumpkin"
     }
   },
   "pattern": [
-    "G ",
-    "GG",
+    "GN",
+    "GN",
     "P "
   ],
   "result": {

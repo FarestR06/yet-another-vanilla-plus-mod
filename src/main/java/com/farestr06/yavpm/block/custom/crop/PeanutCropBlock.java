@@ -1,4 +1,4 @@
-package com.farestr06.yavpm.block.custom;
+package com.farestr06.yavpm.block.custom.crop;
 
 import com.farestr06.yavpm.item.YavpmItems;
 import net.minecraft.block.Block;
@@ -8,16 +8,21 @@ import net.minecraft.item.ItemConvertible;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 
-public class MagicBeanCropBlock extends CropBlock {
-    public MagicBeanCropBlock(Settings settings) {
+public class PeanutCropBlock extends CropBlock {
+    public static final int MAX_AGE = 3;
+    public static final IntProperty AGE = IntProperty.of("age", 0, 3);
+
+    public PeanutCropBlock(Settings settings) {
         super(settings);
     }
 
-    public static final int MAX_AGE = 6;
-    public static final IntProperty AGE = IntProperty.of("age", 0, 6);
+    @Override
+    protected ItemConvertible getSeedsItem() {
+        return YavpmItems.PEANUT;
+    }
 
     @Override
-    protected IntProperty getAgeProperty() {
+    public IntProperty getAgeProperty() {
         return AGE;
     }
 
@@ -29,10 +34,5 @@ public class MagicBeanCropBlock extends CropBlock {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(AGE);
-    }
-
-    @Override
-    protected ItemConvertible getSeedsItem() {
-        return YavpmItems.MAGIC_BEAN;
     }
 }

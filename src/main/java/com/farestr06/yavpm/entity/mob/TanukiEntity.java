@@ -34,7 +34,7 @@ import org.jetbrains.annotations.Nullable;
 import static com.farestr06.yavpm.config.YavpmConfig.HANDLER;
 
 public class TanukiEntity extends AnimalEntity {
-    private static final Ingredient BREEDING_INGREDIENT = Ingredient.fromTag(YavpmTags.Items.TANUKI_FOODS);
+    private static final Ingredient BREEDING_INGREDIENT = Ingredient.fromTag(YavpmTags.Items.TANUKI_FOOD);
     public int tryTransformTime = this.random.nextInt(HANDLER.instance().tanukiRandomTransformDelay) + HANDLER.instance().tanukiBaseTransformDelay;
 
     public TanukiEntity(EntityType<? extends AnimalEntity> entityType, World world) {
@@ -47,7 +47,7 @@ public class TanukiEntity extends AnimalEntity {
         this.goalSelector.add(0, new PowderSnowJumpGoal(this, this.getWorld()));
         this.goalSelector.add(1, new EscapeDangerGoal(this, 1.8));
         this.goalSelector.add(2, new AnimalMateGoal(this, 1));
-        this.goalSelector.add(3, new TemptGoal(this, 1.15, stack -> stack.isIn(YavpmTags.Items.TANUKI_FOODS), false));
+        this.goalSelector.add(3, new TemptGoal(this, 1.15, stack -> stack.isIn(YavpmTags.Items.TANUKI_FOOD), false));
         this.goalSelector.add(4, new FollowParentGoal(this, 1.25));
         this.goalSelector.add(5, new WanderAroundGoal(this, 1));
         this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 3f));

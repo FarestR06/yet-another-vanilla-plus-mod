@@ -166,6 +166,7 @@ public class ItemGroupHelper {
     }
 
     private static void ingredients(FabricItemGroupEntries entries) {
+        entries.add(YavpmItems.CHAINMAIL);
         entries.add(YavpmItems.RAW_DIAMOND);
         entries.add(YavpmItems.GRAPHITE);
         entries.add(YavpmBlocks.GRAPHITE_BLOCK);
@@ -174,6 +175,7 @@ public class ItemGroupHelper {
         entries.add(YavpmItems.RICE);
         entries.add(YavpmItems.DISC_FRAGMENT_MAGNETIC_CIRCUIT);
         entries.add(YavpmItems.WARPED_WART);
+        entries.add(YavpmItems.BITTER_BERRIES);
         entries.add(YavpmItems.PHANTOM_CHORD);
         entries.add(YavpmItems.RUNE_ATTACK);
         entries.add(YavpmItems.RUNE_DURABILITY);

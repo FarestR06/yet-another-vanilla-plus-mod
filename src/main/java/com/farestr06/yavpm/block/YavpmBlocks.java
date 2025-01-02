@@ -2,6 +2,7 @@ package com.farestr06.yavpm.block;
 
 import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.block.custom.*;
+import com.farestr06.yavpm.block.custom.crop.*;
 import com.farestr06.yavpm.block.custom.fake.FakeLogBlock;
 import com.farestr06.yavpm.block.custom.fake.FakeOreBlock;
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
@@ -65,6 +66,11 @@ public class YavpmBlocks {
     public static final Block MAGIC_BEAN_CROP = makeAdvancedBlock(
             makeId("magic_bean_crop"),
             new MagicBeanCropBlock(AbstractBlock.Settings.copy(Blocks.POTATOES))
+    );
+
+    public static final Block BITTER_BERRY_BUSH = makeAdvancedBlock(
+            makeId("bitter_berry_bush"),
+            new BitterBerryBushBlock(AbstractBlock.Settings.copy(Blocks.SWEET_BERRY_BUSH))
     );
     // endregion
 

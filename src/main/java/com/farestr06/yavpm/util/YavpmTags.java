@@ -14,7 +14,7 @@ import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 public class YavpmTags {
     public static class Items {
         public static final TagKey<Item> CARBONFOWL_FOODS = of("carbonfowl_foods");
-        public static final TagKey<Item> TANUKI_FOODS = of("tanuki_foods");
+        public static final TagKey<Item> TANUKI_FOOD = of("tanuki_foods");
 
         public static final TagKey<Item> CRIMSON_MOONGUS_FOOD = of("crimson_moongus_food");
         public static final TagKey<Item> WARPED_MOONGUS_FOOD = of("warped_moongus_food");
