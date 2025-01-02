@@ -3,9 +3,9 @@ package com.farestr06.yavpm;
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.config.YavpmConfig;
 import com.farestr06.yavpm.crafting.YavpmRecipeSerializers;
+import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.entity.YavpmTrades;
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
-import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.ItemGroupHelper;
 import com.farestr06.yavpm.item.YavpmArmorMaterials;
@@ -16,7 +16,6 @@ import com.farestr06.yavpm.util.YavpmSounds;
 import com.farestr06.yavpm.util.YavpmTags;
 import com.farestr06.yavpm.world.gen.YavpmWorldGeneration;
 import net.fabricmc.api.ModInitializer;
-
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
@@ -158,6 +157,14 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 						.with(ItemEntry.builder(YavpmItems.PEANUT).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f))))
 						.conditionally(KilledByPlayerLootCondition.builder())
 						.conditionally(RandomChanceWithEnchantedBonusLootCondition.builder(registries, 0.025F, 0.01F));
+
+				tableBuilder.pool(poolBuilder);
+			}
+			if (source.isBuiltin() && key.equals(LootTables.BASTION_TREASURE_CHEST)) {
+				LootPool.Builder poolBuilder = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(YavpmItems.GAUNTLET_FRAGMENT))
+						.conditionally(RandomChanceLootCondition.builder(0.67f));
 
 				tableBuilder.pool(poolBuilder);
 			}

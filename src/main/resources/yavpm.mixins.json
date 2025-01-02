@@ -18,6 +18,9 @@
   "client": [
     "client.CreeperEntityRendererMixin",
     "client.MooshroomMushroomFeatureRendererMixin",
-    "client.SplashTextResourceSupplierMixin"
+    "client.SplashTextResourceSupplierMixin",
+    "item.ItemRendererAccessor",
+    "item.ItemRendererMixin",
+    "item.ModelLoaderMixin"
   ]
 }

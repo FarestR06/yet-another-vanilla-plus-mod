@@ -1,7 +1,7 @@
-// 1.21.1	2025-01-01T12:47:34.172986	Yet Another Vanilla Plus Mod/Tags for minecraft:item
+// 1.21.1	2025-01-02T14:32:42.295604	Yet Another Vanilla Plus Mod/Tags for minecraft:item
 e4de44b64a769cb6126e0a64e8a3aacff9833795 data/c/tags/item/stripped_woods.json
-d841cf7e075636b408025f0af7dabd2429aaf42f data/minecraft/tags/item/wooden_pressure_plates.json
 63a5efa04106a4f747df0f0eb0203691d15b76ce data/minecraft/tags/item/logs_that_burn.json
+d841cf7e075636b408025f0af7dabd2429aaf42f data/minecraft/tags/item/wooden_pressure_plates.json
 0428e14b34082adc68b1ac07a9e4542228af55ed data/minecraft/tags/item/fence_gates.json
 38ebd85d0677fbe41ab0f9f26555150c3c30d3d6 data/minecraft/tags/item/chicken_food.json
 64e120a9a466c6f434ae459d7bb42a52b8f404c7 data/c/tags/item/buckets/milk.json
@@ -13,8 +13,8 @@ fc80534f293c67f2f3dc09ef87cf0d1c333ffcb9 data/minecraft/tags/item/slabs.json
 38ebd85d0677fbe41ab0f9f26555150c3c30d3d6 data/minecraft/tags/item/parrot_food.json
 a1bc068526ba89cab9e73ca5963d7445401d4fdd data/minecraft/tags/item/wooden_buttons.json
 88d697b8b7cc84ab64ba28a926caecbdc8ee47a1 data/c/tags/item/foods/candy.json
-92a30bf2528f35f32631b7b0195672baba6a4563 data/minecraft/tags/item/wooden_fences.json
 e087cef442c0a171e7dd8fa0b9d840683c8d1851 data/minecraft/tags/item/walls.json
+92a30bf2528f35f32631b7b0195672baba6a4563 data/minecraft/tags/item/wooden_fences.json
 846003a1a25ed66d4744cbf09837961fb98c16cc data/minecraft/tags/item/leaves.json
 0b6266d46418e875a0fea1befc1596ddb742021c data/minecraft/tags/item/stairs.json
 67a67ae5c17b7b5c04a05e006152c60477ade461 data/yavpm/tags/item/rune_speed_applicable.json
@@ -29,9 +29,9 @@ ddddcd9ef8cd706876a4c5b9fb1bb011516a430c data/yavpm/tags/item/rune_attack_applic
 53a13473b30a0ca862cb74b2b2575e0e92cb13ca data/yavpm/tags/item/spiral_stalks.json
 464fd087c4f769dde3c0c4f57904892df2f1115f data/c/tags/item/foods/cooked_meat.json
 5cbb74a5c8aa8fe9f4c9e93d31afc6a66e3c6851 data/minecraft/tags/item/wooden_stairs.json
-95eca0c62d45553638cc93a0473b3a32b137e4fe data/minecraft/tags/item/dyeable.json
-f275a7f37363d1bf0a2338331d2e0d2595cfb1ff data/yavpm/tags/item/reactor_rechargers.json
 b406923cfbfd4cbf548e1b749ff7d957b9d44489 data/minecraft/tags/item/head_armor.json
+f275a7f37363d1bf0a2338331d2e0d2595cfb1ff data/yavpm/tags/item/reactor_rechargers.json
+95eca0c62d45553638cc93a0473b3a32b137e4fe data/minecraft/tags/item/dyeable.json
 1acfd7d2d675c5caaa7cfc72edd8bf050e97fa77 data/c/tags/item/obsidians.json
 023be715877cb6033c3e30eb45440eb56daa8d72 data/yavpm/tags/item/enchantable/wolf_armor.json
 65fc3195d692fffc0cb7e91c07b545be344af882 data/c/tags/item/foods/fruit.json

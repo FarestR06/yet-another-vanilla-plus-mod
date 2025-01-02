@@ -1,4 +1,4 @@
-// 1.21.1	2025-01-01T12:47:34.164645	Yet Another Vanilla Plus Mod/Block Loot Tables
+// 1.21.1	2025-01-02T14:32:42.290605	Yet Another Vanilla Plus Mod/Block Loot Tables
 e759c8d3b3c76a3f019653888b32156e755aa536 data/yavpm/loot_table/blocks/graphite_block.json
 57e746f79ef273aef043f4034edf2334b32f2e25 data/yavpm/loot_table/blocks/stripped_prickle_log.json
 3b9e9d53bd2954b08270c3d3f23de8d9f1346a7d data/yavpm/loot_table/blocks/prickle_log.json
@@ -6,12 +6,12 @@ e759c8d3b3c76a3f019653888b32156e755aa536 data/yavpm/loot_table/blocks/graphite_b
 ee57413bf33ae49011e43051707d064fbd4ffe8a data/yavpm/loot_table/blocks/peanut_crop.json
 272923d65074caea1fa7f1d13ca676a378f1c1f0 data/yavpm/loot_table/blocks/stripped_apple_log.json
 14876f8ade99c51eac88a34298e1d6d45e1b2ee8 data/yavpm/loot_table/blocks/fake_log.json
-30311b79f4fc99c34cc9da2a43f5384459b6069b data/yavpm/loot_table/blocks/prickle_trapdoor.json
 318e138026c9c84e0bf2959aeba67f90dc306d67 data/yavpm/loot_table/blocks/banana_crop.json
+30311b79f4fc99c34cc9da2a43f5384459b6069b data/yavpm/loot_table/blocks/prickle_trapdoor.json
 aa3aedc46ddcc0b75d3e547b10e9efec4fdd8f28 data/yavpm/loot_table/blocks/stripped_persimmon_log.json
 18ca4741f07a13463fd9ae88d454a5d879498998 data/yavpm/loot_table/blocks/graphene_block.json
-0a6ebab0f748384d0ff30b9367ea4d6a02ac0f67 data/yavpm/loot_table/blocks/magic_bean_crop.json
 5b9ab6ab21473528678a5fdf5cc49a4b968d1912 data/yavpm/loot_table/blocks/persimmon_wood.json
+0a6ebab0f748384d0ff30b9367ea4d6a02ac0f67 data/yavpm/loot_table/blocks/magic_bean_crop.json
 51d0925a7211d22290dec8619c4f6a830d56d19b data/yavpm/loot_table/blocks/kimberlite_stairs.json
 f5e286d048abc7349f543c385259cfa69a52e25c data/yavpm/loot_table/blocks/prickle_stairs.json
 9021689d4d35624feb8ecb4553243e21392d29c0 data/yavpm/loot_table/blocks/persimmon_planks.json

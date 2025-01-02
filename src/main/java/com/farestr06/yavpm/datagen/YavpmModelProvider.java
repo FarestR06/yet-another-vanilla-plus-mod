@@ -65,6 +65,8 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.register(YavpmItems.GRAPHITE, Models.GENERATED);
         generator.register(YavpmItems.RAW_DIAMOND, Models.GENERATED);
 
+        generator.register(YavpmItems.GAUNTLET_FRAGMENT, Models.GENERATED);
+
         generator.register(YavpmItems.CHAINMAIL, Models.GENERATED);
         createStuddedArmor(generator);
 

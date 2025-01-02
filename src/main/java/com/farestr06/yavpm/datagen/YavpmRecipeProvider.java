@@ -342,6 +342,15 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(Items.CARVED_PUMPKIN), conditionsFromItem(Items.CARVED_PUMPKIN))
                 .offerTo(exporter, makeId(getRecipeName(YavpmItems.BABY_KEY)));
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.TOOLS, YavpmItems.GAUNTLET)
+                .input('G', YavpmItems.GAUNTLET_FRAGMENT)
+                .input('N', Items.NETHERITE_SCRAP)
+                .pattern("GGG")
+                .pattern("GNG")
+                .pattern("N N")
+                .criterion(hasItem(YavpmItems.GAUNTLET_FRAGMENT), conditionsFromItem(YavpmItems.GAUNTLET_FRAGMENT))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.GAUNTLET)));
+
         ShapedRecipeJsonBuilder.create(RecipeCategory.MISC, YavpmItems.VOID_WATER_BUCKET)
                 .input('D', Items.DRAGON_BREATH)
                 .input('W', Items.WATER_BUCKET)

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_gauntlet_fragment": {
+      "conditions": {
+        "items": [
+          {
+            "items": "yavpm:gauntlet_fragment"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "yavpm:gauntlet"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_gauntlet_fragment"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "yavpm:gauntlet"
+    ]
+  }
+}

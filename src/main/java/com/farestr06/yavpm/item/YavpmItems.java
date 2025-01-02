@@ -184,8 +184,25 @@ public class YavpmItems {
 
     public static final Item TOFU = makeItem(makeId("tofu"), new Item.Settings().food(YavpmFoods.CHEESE));
 
+    public static final Item GAUNTLET_FRAGMENT = makeItem(
+            makeId("gauntlet_fragment"),
+            new Item.Settings().fireproof().rarity(Rarity.UNCOMMON)
+    );
+
+    public static final Item GAUNTLET = makeAdvancedItem(
+            makeId("gauntlet"),
+            new GauntletItem(
+                    new Item.Settings()
+                            .rarity(Rarity.EPIC)
+                            .maxDamage(475)
+                            .attributeModifiers(GauntletItem.createAttributeModifiers())
+                            .component(DataComponentTypes.TOOL, GauntletItem.createToolComponent())
+            )
+    );
+
     public static final Item RAW_DIAMOND = makeSimpleItem(makeId("raw_diamond"));
     public static final Item GRAPHITE = makeSimpleItem(makeId("graphite"));
+
     public static final Item CHAINMAIL = makeSimpleItem(makeId("chainmail"));
 
     // Magic Herb

@@ -1,8 +1,8 @@
 package com.farestr06.yavpm.datagen;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
-import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import com.farestr06.yavpm.entity.YavpmEntities;
+import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.item.enchantment.YavpmEnchantments;
 import com.farestr06.yavpm.util.YavpmTags;
@@ -225,6 +225,9 @@ public class YavpmLangProvider extends FabricLanguageProvider {
     private static void equipmentTranslations(TranslationBuilder builder) {
         builder.add(YavpmItems.REACTOR, "Reactor");
         builder.add(YavpmItems.HEATED_REACTOR, "Heated Reactor");
+
+        builder.add(YavpmItems.GAUNTLET_FRAGMENT, "Gauntlet Fragment");
+        builder.add(YavpmItems.GAUNTLET, "Gauntlet");
 
         builder.add(YavpmItems.STUDDED_HELMET, "Studded Cap");
         builder.add(YavpmItems.STUDDED_CHESTPLATE, "Studded Tunic");
