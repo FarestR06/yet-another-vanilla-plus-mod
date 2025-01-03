@@ -19,16 +19,13 @@ public class YavpmSounds {
     public static final RegistryEntry.Reference<SoundEvent> BLOCK_NOTE_BLOCK_GRIND = makeReferenceEvent(makeId("block.note_block.grind"));
 
     public static final SoundEvent ITEM_BABY_KEY_SCARED = makeEvent(makeId("item.baby_key.scared"));
-    public static final SoundEvent ITEM_BABY_KEY_LOCK = makeEvent(makeId("item.baby_key.lock"));
-    public static final SoundEvent ITEM_BABY_KEY_UNLOCK = makeEvent(makeId("item.baby_key.unlock"));
+    public static final SoundEvent ITEM_BABY_KEY_TURN = makeEvent(makeId("item.baby_key.turn"));
 
-    public static final SoundEvent MUSIC_DISC_MAGNETIC_CIRCUIT = makeEvent(makeId("music_disc.magnetic_circuit"));
     public static final RegistryKey<JukeboxSong> MAGNETIC_CIRCUIT_KEY = RegistryKey.of(
             RegistryKeys.JUKEBOX_SONG,
             makeId("magnetic_circuit")
     );
 
-    public static final SoundEvent MUSIC_DISC_HALLAND_DALARNA = makeEvent(makeId("music_disc.halland_dalarna"));
     public static final RegistryKey<JukeboxSong> HALLAND_DALARNA_KEY = RegistryKey.of(
             RegistryKeys.JUKEBOX_SONG,
             makeId("halland_dalarna")
@@ -51,6 +48,8 @@ public class YavpmSounds {
     public static void init() {
         YetAnotherVanillaPlusMod.LOGGER.info("Registering sounds for YAVPM!");
 
+        makeEvent(makeId("music_disc.magnetic_circuit"));
+        makeEvent(makeId("music_disc.halland_dalarna"));
         NoteblockInstrumentRegistry.INSTANCE.add(YavpmBlocks.GRAPHITE_BLOCK, BLOCK_NOTE_BLOCK_GRIND);
         NoteblockInstrumentRegistry.INSTANCE.add(YavpmBlocks.GRAPHENE_BLOCK, BLOCK_NOTE_BLOCK_GRIND);
     }

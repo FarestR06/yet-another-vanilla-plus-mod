@@ -81,6 +81,33 @@ public class ItemGroupHelper {
         entries.add(YavpmBlocks.PRICKLE_PRESSURE_PLATE);
         entries.add(YavpmBlocks.PRICKLE_BUTTON);
 
+        entries.add(YavpmBlocks.COBBLED_GRANITE);
+        entries.add(YavpmBlocks.COBBLED_GRANITE_STAIRS);
+        entries.add(YavpmBlocks.COBBLED_GRANITE_SLAB);
+        entries.add(YavpmBlocks.COBBLED_GRANITE_WALL);
+        entries.add(YavpmBlocks.POLISHED_GRANITE_BRICKS);
+        entries.add(YavpmBlocks.POLISHED_GRANITE_BRICK_STAIRS);
+        entries.add(YavpmBlocks.POLISHED_GRANITE_BRICK_SLAB);
+        entries.add(YavpmBlocks.POLISHED_GRANITE_BRICK_WALL);
+
+        entries.add(YavpmBlocks.COBBLED_DIORITE);
+        entries.add(YavpmBlocks.COBBLED_DIORITE_STAIRS);
+        entries.add(YavpmBlocks.COBBLED_DIORITE_SLAB);
+        entries.add(YavpmBlocks.COBBLED_DIORITE_WALL);
+        entries.add(YavpmBlocks.POLISHED_DIORITE_BRICKS);
+        entries.add(YavpmBlocks.POLISHED_DIORITE_BRICK_STAIRS);
+        entries.add(YavpmBlocks.POLISHED_DIORITE_BRICK_SLAB);
+        entries.add(YavpmBlocks.POLISHED_DIORITE_BRICK_WALL);
+
+        entries.add(YavpmBlocks.COBBLED_ANDESITE);
+        entries.add(YavpmBlocks.COBBLED_ANDESITE_STAIRS);
+        entries.add(YavpmBlocks.COBBLED_ANDESITE_SLAB);
+        entries.add(YavpmBlocks.COBBLED_ANDESITE_WALL);
+        entries.add(YavpmBlocks.POLISHED_ANDESITE_BRICKS);
+        entries.add(YavpmBlocks.POLISHED_ANDESITE_BRICK_STAIRS);
+        entries.add(YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB);
+        entries.add(YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL);
+
         entries.add(YavpmBlocks.KIMBERLITE);
         entries.add(YavpmBlocks.KIMBERLITE_STAIRS);
         entries.add(YavpmBlocks.KIMBERLITE_SLAB);
@@ -136,6 +163,7 @@ public class ItemGroupHelper {
     }
 
     private static void combat(FabricItemGroupEntries entries) {
+        entries.add(YavpmItems.GAUNTLET);
         entries.add(YavpmItems.STUDDED_HELMET);
         entries.add(YavpmItems.STUDDED_CHESTPLATE);
         entries.add(YavpmItems.STUDDED_LEGGINGS);
@@ -176,6 +204,7 @@ public class ItemGroupHelper {
         entries.add(YavpmItems.DISC_FRAGMENT_MAGNETIC_CIRCUIT);
         entries.add(YavpmItems.WARPED_WART);
         entries.add(YavpmItems.BITTER_BERRIES);
+        entries.add(YavpmItems.GAUNTLET_FRAGMENT);
         entries.add(YavpmItems.PHANTOM_CHORD);
         entries.add(YavpmItems.RUNE_ATTACK);
         entries.add(YavpmItems.RUNE_DURABILITY);

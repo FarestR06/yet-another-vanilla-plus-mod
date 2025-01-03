@@ -36,10 +36,10 @@ public class YavpmArmorMaterials {
                     Util.make(
                             new EnumMap<>(ArmorItem.Type.class),
                             map -> {
-                                map.put(ArmorItem.Type.BOOTS, 2);
-                                map.put(ArmorItem.Type.LEGGINGS, 6);
-                                map.put(ArmorItem.Type.CHESTPLATE, 8);
-                                map.put(ArmorItem.Type.HELMET, 7);
+                                map.put(ArmorItem.Type.BOOTS, 1);
+                                map.put(ArmorItem.Type.LEGGINGS, 5);
+                                map.put(ArmorItem.Type.CHESTPLATE, 7);
+                                map.put(ArmorItem.Type.HELMET, 6);
                             }
                             ),
                     21,

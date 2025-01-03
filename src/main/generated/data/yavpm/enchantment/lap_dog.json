@@ -22,6 +22,7 @@
     "base": 1,
     "per_level_above_first": 11
   },
+  "primary_items": "#yavpm:enchantable/wolf_armor",
   "slots": [
     "body"
   ],

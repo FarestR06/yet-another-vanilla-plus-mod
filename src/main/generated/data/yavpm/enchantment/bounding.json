@@ -12,7 +12,7 @@
           "per_level_above_first": 0.75
         },
         "attribute": "minecraft:generic.jump_strength",
-        "id": "minecraft:enchantment.bounding",
+        "id": "yavpm:enchantment.bounding",
         "operation": "add_value"
       }
     ]
@@ -26,6 +26,7 @@
     "base": 10,
     "per_level_above_first": 10
   },
+  "primary_items": "#yavpm:enchantable/horse_armor",
   "slots": [
     "body"
   ],

@@ -22,11 +22,9 @@ public class BabyKeyItem extends Item {
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        if (world.isClient) {
-            if (entity instanceof PlayerEntity player) {
-                if (player.age % 45 == 0 && player.getRandom().nextFloat() <= 0.40f && selected) {
-                    player.playSound(YavpmSounds.ITEM_BABY_KEY_SCARED, 1f, 1f);
-                }
+        if (entity instanceof PlayerEntity player) {
+            if (player.age % 45 == 0 && player.getRandom().nextFloat() <= 0.40f && selected) {
+                player.playSound(YavpmSounds.ITEM_BABY_KEY_SCARED, 1f, 1f);
             }
         }
         super.inventoryTick(stack, world, entity, slot, selected);
@@ -41,22 +39,18 @@ public class BabyKeyItem extends Item {
             if (player.isSneaking() && entity instanceof LockableContainerBlockEntity lockable) {
                 String key = context.getStack().getName().getString();
                 if (((LockableContainerBlockEntityAccessor) lockable).getLock() == ContainerLock.EMPTY) {
-                    if (world.isClient) {
-                        player.playSound(YavpmSounds.ITEM_BABY_KEY_LOCK, 1f, 1f);
-                    }
                     if (!world.isClient()) {
                         ((LockableContainerBlockEntityAccessor) lockable).setLock(new ContainerLock(key));
                     }
+                    player.playSound(YavpmSounds.ITEM_BABY_KEY_TURN, 1f, 1f);
                     return ActionResult.success(world.isClient);
                 } else if (Objects.equals(((LockableContainerBlockEntityAccessor) lockable).getLock().key(), key)) {
-                    if (world.isClient) {
-                        player.playSound(YavpmSounds.ITEM_BABY_KEY_UNLOCK, 1f, 1f);
-                    }
                     if (!world.isClient()) {
                         ((LockableContainerBlockEntityAccessor) lockable).setLock(
                                 ContainerLock.EMPTY
                         );
                     }
+                    player.playSound(YavpmSounds.ITEM_BABY_KEY_TURN, 1f, 1f);
                     return ActionResult.success(world.isClient);
                 } else {
                     return ActionResult.FAIL;

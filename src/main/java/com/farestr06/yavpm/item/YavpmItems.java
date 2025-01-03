@@ -31,6 +31,7 @@ import static com.farestr06.yavpm.item.YavpmArmorMaterials.STUDDED;
 public class YavpmItems {
 
     public static final Map<Item, RegistryEntry<Potion>> CRIMSON_MOONGUS_FOOD = new HashMap<>();
+    public static final Map<Item, RegistryEntry<Potion>> CRIMSON_MOONGUS_FOOD_CORRUPTED = new HashMap<>();
     public static final Map<Item, RegistryEntry<Potion>> WARPED_MOONGUS_FOOD = new HashMap<>();
 
     public static final Item WARPED_WART = makeAdvancedItem(
@@ -186,7 +187,7 @@ public class YavpmItems {
 
     public static final Item GAUNTLET_FRAGMENT = makeItem(
             makeId("gauntlet_fragment"),
-            new Item.Settings().fireproof().rarity(Rarity.UNCOMMON)
+            new Item.Settings().fireproof().rarity(Rarity.RARE)
     );
 
     public static final Item GAUNTLET = makeAdvancedItem(
@@ -314,7 +315,8 @@ public class YavpmItems {
     }
 
     private static void setUpMoongusFood() {
-        YetAnotherVanillaPlusMod.LOGGER.debug("Registering Moongus foods...");
+        // Crimson Moongi create potions brewed from awkward potions.
+        YetAnotherVanillaPlusMod.LOGGER.debug("Registering Crimson Moongus foods...");
         CRIMSON_MOONGUS_FOOD.put(Items.SUGAR, Potions.SWIFTNESS);
         CRIMSON_MOONGUS_FOOD.put(Items.RABBIT_FOOT, Potions.LEAPING);
         CRIMSON_MOONGUS_FOOD.put(Items.BLAZE_POWDER, Potions.STRENGTH);
@@ -330,22 +332,31 @@ public class YavpmItems {
         CRIMSON_MOONGUS_FOOD.put(Items.COBWEB, Potions.WEAVING);
         CRIMSON_MOONGUS_FOOD.put(Items.SLIME_BLOCK, Potions.OOZING);
         CRIMSON_MOONGUS_FOOD.put(Items.STONE, Potions.INFESTED);
-        CRIMSON_MOONGUS_FOOD.put(Items.WITHER_SKELETON_SKULL, YavpmPotions.DECAY);
-        CRIMSON_MOONGUS_FOOD.put(Items.ENDER_EYE, YavpmPotions.VOID_TOUCHED);
 
+        // Crimson Moongi create different potions when fed a Fermented Spider Eye.
+        YetAnotherVanillaPlusMod.LOGGER.debug("Registering corrupted Crimson Moongus foods...");
+        CRIMSON_MOONGUS_FOOD_CORRUPTED.put(Items.SUGAR, Potions.SLOWNESS);
+        CRIMSON_MOONGUS_FOOD_CORRUPTED.put(Items.RABBIT_FOOT, Potions.SLOWNESS);
+        CRIMSON_MOONGUS_FOOD_CORRUPTED.put(Items.GLISTERING_MELON_SLICE, Potions.HARMING);
+        CRIMSON_MOONGUS_FOOD_CORRUPTED.put(Items.SPIDER_EYE, Potions.HARMING);
+        CRIMSON_MOONGUS_FOOD_CORRUPTED.put(Items.GOLDEN_CARROT, Potions.INVISIBILITY);
+        CRIMSON_MOONGUS_FOOD_CORRUPTED.put(Items.PUFFERFISH, YavpmPotions.CHOKING);
+
+        // Warped Moongi create potions brewed from water bottles.
+        YetAnotherVanillaPlusMod.LOGGER.debug("Registering Warped Moongus foods...");
         WARPED_MOONGUS_FOOD.put(Items.FERMENTED_SPIDER_EYE, Potions.WEAKNESS);
-        WARPED_MOONGUS_FOOD.put(Items.WITHER_SKELETON_SKULL, YavpmPotions.DECAY);
-        WARPED_MOONGUS_FOOD.put(Items.ENDER_EYE, YavpmPotions.VOID_TOUCHED);
+        WARPED_MOONGUS_FOOD.put(Items.WITHER_ROSE, YavpmPotions.DECAY);
+        WARPED_MOONGUS_FOOD.put(VOID_WATER_BUCKET, YavpmPotions.VOID_TOUCHED);
+        WARPED_MOONGUS_FOOD.put(BITTER_BERRIES, YavpmPotions.HASTE);
     }
 
     private static void setUpRegistries() {
-        YetAnotherVanillaPlusMod.LOGGER.debug("Making Reactor usable as fuel...");
         // Make Heated Reactor usable as fuel
+        YetAnotherVanillaPlusMod.LOGGER.debug("Making Reactor usable as fuel...");
         FuelRegistry.INSTANCE.add(YavpmItems.HEATED_REACTOR, 1600);
 
-
-        YetAnotherVanillaPlusMod.LOGGER.debug("Making items compostable...");
         // Make new crops compostable
+        YetAnotherVanillaPlusMod.LOGGER.debug("Making items compostable...");
         CompostingChanceRegistry compostables = CompostingChanceRegistry.INSTANCE;
         compostables.add(YavpmBlocks.APPLE_LEAVES.asItem(), 0.3f);
         compostables.add(YavpmBlocks.PERSIMMON_LEAVES.asItem(), 0.3f);

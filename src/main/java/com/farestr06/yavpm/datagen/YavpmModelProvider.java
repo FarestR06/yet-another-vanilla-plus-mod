@@ -37,6 +37,10 @@ public class YavpmModelProvider extends FabricModelProvider {
         crops(generator);
 
         createKimberliteSet(generator);
+        createGraniteSet(generator);
+        createAndesiteSet(generator);
+        createDioriteSet(generator);
+
         generator.registerSimpleCubeAll(YavpmBlocks.GRAPHITE_BLOCK);
         generator.registerSimpleCubeAll(YavpmBlocks.GRAPHENE_BLOCK);
 
@@ -161,6 +165,49 @@ public class YavpmModelProvider extends FabricModelProvider {
         polishedKimberliteBrickPool.slab(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_SLAB);
         polishedKimberliteBrickPool.wall(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_WALL);
     }
+    private static void createAndesiteSet(BlockStateModelGenerator generator) {
+        BlockStateModelGenerator.BlockTexturePool polishedPool = generator.registerCubeAllModelTexturePool(Blocks.POLISHED_ANDESITE);
+        polishedPool.wall(YavpmBlocks.POLISHED_ANDESITE_WALL);
+
+        BlockStateModelGenerator.BlockTexturePool cobbledAndesitePool = generator.registerCubeAllModelTexturePool(YavpmBlocks.COBBLED_ANDESITE);
+        cobbledAndesitePool.stairs(YavpmBlocks.COBBLED_ANDESITE_STAIRS);
+        cobbledAndesitePool.slab(YavpmBlocks.COBBLED_ANDESITE_SLAB);
+        cobbledAndesitePool.wall(YavpmBlocks.COBBLED_ANDESITE_WALL);
+
+        BlockStateModelGenerator.BlockTexturePool andesiteBrickPool = generator.registerCubeAllModelTexturePool(YavpmBlocks.POLISHED_ANDESITE_BRICKS);
+        andesiteBrickPool.stairs(YavpmBlocks.POLISHED_ANDESITE_BRICK_STAIRS);
+        andesiteBrickPool.slab(YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB);
+        andesiteBrickPool.wall(YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL);
+    }
+    private static void createGraniteSet(BlockStateModelGenerator generator) {
+        BlockStateModelGenerator.BlockTexturePool polishedPool = generator.registerCubeAllModelTexturePool(Blocks.POLISHED_GRANITE);
+        polishedPool.wall(YavpmBlocks.POLISHED_GRANITE_WALL);
+
+        BlockStateModelGenerator.BlockTexturePool cobbledGranitePool = generator.registerCubeAllModelTexturePool(YavpmBlocks.COBBLED_GRANITE);
+        cobbledGranitePool.stairs(YavpmBlocks.COBBLED_GRANITE_STAIRS);
+        cobbledGranitePool.slab(YavpmBlocks.COBBLED_GRANITE_SLAB);
+        cobbledGranitePool.wall(YavpmBlocks.COBBLED_GRANITE_WALL);
+
+        BlockStateModelGenerator.BlockTexturePool graniteBrickPool = generator.registerCubeAllModelTexturePool(YavpmBlocks.POLISHED_GRANITE_BRICKS);
+        graniteBrickPool.stairs(YavpmBlocks.POLISHED_GRANITE_BRICK_STAIRS);
+        graniteBrickPool.slab(YavpmBlocks.POLISHED_GRANITE_BRICK_SLAB);
+        graniteBrickPool.wall(YavpmBlocks.POLISHED_GRANITE_BRICK_WALL);
+    }
+    private static void createDioriteSet(BlockStateModelGenerator generator) {
+        BlockStateModelGenerator.BlockTexturePool polishedPool = generator.registerCubeAllModelTexturePool(Blocks.POLISHED_DIORITE);
+        polishedPool.wall(YavpmBlocks.POLISHED_DIORITE_WALL);
+
+        BlockStateModelGenerator.BlockTexturePool cobbledDioritePool = generator.registerCubeAllModelTexturePool(YavpmBlocks.COBBLED_DIORITE);
+        cobbledDioritePool.stairs(YavpmBlocks.COBBLED_DIORITE_STAIRS);
+        cobbledDioritePool.slab(YavpmBlocks.COBBLED_DIORITE_SLAB);
+        cobbledDioritePool.wall(YavpmBlocks.COBBLED_DIORITE_WALL);
+
+        BlockStateModelGenerator.BlockTexturePool dioriteBrickPool = generator.registerCubeAllModelTexturePool(YavpmBlocks.POLISHED_DIORITE_BRICKS);
+        dioriteBrickPool.stairs(YavpmBlocks.POLISHED_DIORITE_BRICK_STAIRS);
+        dioriteBrickPool.slab(YavpmBlocks.POLISHED_DIORITE_BRICK_SLAB);
+        dioriteBrickPool.wall(YavpmBlocks.POLISHED_DIORITE_BRICK_WALL);
+    }
+
     private static void createAppleSet(BlockStateModelGenerator generator) {
         // Apple Logs and Woods
         generator.registerLog(YavpmBlocks.APPLE_LOG).log(YavpmBlocks.APPLE_LOG).wood(YavpmBlocks.APPLE_WOOD);

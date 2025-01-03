@@ -35,13 +35,14 @@ import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
 import static com.farestr06.yavpm.item.YavpmItems.CRIMSON_MOONGUS_FOOD;
+import static com.farestr06.yavpm.item.YavpmItems.CRIMSON_MOONGUS_FOOD_CORRUPTED;
 import static com.farestr06.yavpm.item.YavpmItems.WARPED_MOONGUS_FOOD;
 
 public class MoongusEntity extends MooshroomEntity implements Shearable, VariantHolder<MooshroomEntity.Type> {
-
-
     @Nullable
     private RegistryEntry<Potion> potionContents;
+
+    private boolean corrupted = false;
 
     private static final TrackedData<String> TYPE = DataTracker.registerData(MoongusEntity.class, TrackedDataHandlerRegistry.STRING);
     private boolean isSheared = false;
@@ -99,6 +100,7 @@ public class MoongusEntity extends MooshroomEntity implements Shearable, Variant
         if (this.potionContents != null) {
             Potion.CODEC.encodeStart(NbtOps.INSTANCE, this.potionContents).ifSuccess(nbtElement -> nbt.put("potion_contents", nbtElement));
         }
+        nbt.putBoolean("Corrupted", corrupted);
         super.writeCustomDataToNbt(nbt);
     }
 
@@ -109,6 +111,7 @@ public class MoongusEntity extends MooshroomEntity implements Shearable, Variant
                     .parse(NbtOps.INSTANCE, nbt.get("potion_contents"))
                     .ifSuccess(component -> this.potionContents = component);
         }
+        corrupted = nbt.getBoolean("Corrupted");
         super.readCustomDataFromNbt(nbt);
     }
 
@@ -125,6 +128,7 @@ public class MoongusEntity extends MooshroomEntity implements Shearable, Variant
                 } else {
                     potion = PotionContentsComponent.createStack(Items.POTION, Potions.AWKWARD);
                 }
+                corrupted = false;
                 this.playSound(YavpmSounds.ENTITY_MOONGUS_MILK_CRIMSON, 1, 1);
             } else if (getVariant() == Type.BROWN) {
                 if (potionContents != null) {
@@ -138,7 +142,18 @@ public class MoongusEntity extends MooshroomEntity implements Shearable, Variant
             ItemStack exchangedStack = ItemUsage.exchangeStack(stack, player, potion, false);
             player.setStackInHand(hand, exchangedStack);
             return ActionResult.success(this.getWorld().isClient());
-        } else if ((stack.isIn(YavpmTags.Items.CRIMSON_MOONGUS_FOOD) && this.getVariant() == Type.RED)) {
+        } else if (stack.isOf(Items.FERMENTED_SPIDER_EYE) && this.getVariant() == Type.RED && !this.corrupted && this.potionContents == null) {
+            corrupted = true;
+            this.eat(player, hand, stack);
+            this.playSound(YavpmSounds.ENTITY_MOONGUS_EAT, 2.0F, 1.0F);
+            return ActionResult.success(this.getWorld().isClient());
+        } else if (stack.isIn(YavpmTags.Items.CRIMSON_MOONGUS_FOOD_CORRUPTED) && this.getVariant() == Type.RED && corrupted) {
+            Item item = stack.getItem();
+            this.potionContents = CRIMSON_MOONGUS_FOOD_CORRUPTED.get(item);
+            this.eat(player, hand, stack);
+            this.playSound(YavpmSounds.ENTITY_MOONGUS_EAT, 2.0F, 1.0F);
+            return ActionResult.success(this.getWorld().isClient);
+        } else if (stack.isIn(YavpmTags.Items.CRIMSON_MOONGUS_FOOD) && this.getVariant() == Type.RED && !corrupted) {
             Item item = stack.getItem();
             this.potionContents = CRIMSON_MOONGUS_FOOD.get(item);
             this.eat(player, hand, stack);

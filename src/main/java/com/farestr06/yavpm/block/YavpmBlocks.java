@@ -74,6 +74,85 @@ public class YavpmBlocks {
     );
     // endregion
 
+    // region Igneous Stone
+    public static final Block COBBLED_GRANITE = makeBlockAndItem(makeId("cobbled_granite"), AbstractBlock.Settings.copy(Blocks.COBBLESTONE));
+    public static final Block COBBLED_DIORITE = makeBlockAndItem(makeId("cobbled_diorite"), AbstractBlock.Settings.copy(Blocks.COBBLESTONE));
+    public static final Block COBBLED_ANDESITE = makeBlockAndItem(makeId("cobbled_andesite"), AbstractBlock.Settings.copy(Blocks.COBBLESTONE));
+
+    public static final Block COBBLED_GRANITE_STAIRS = makeAdvancedBlockAndItem(makeId("cobbled_granite_stairs"), new StairsBlock(COBBLED_GRANITE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.COBBLESTONE_STAIRS)));
+    public static final Block COBBLED_DIORITE_STAIRS = makeAdvancedBlockAndItem(makeId("cobbled_diorite_stairs"), new StairsBlock(COBBLED_DIORITE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.COBBLESTONE_STAIRS)));
+    public static final Block COBBLED_ANDESITE_STAIRS = makeAdvancedBlockAndItem(makeId("cobbled_andesite_stairs"), new StairsBlock(COBBLED_ANDESITE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.COBBLESTONE_STAIRS)));
+
+    public static final Block COBBLED_GRANITE_SLAB = makeAdvancedBlockAndItem(makeId("cobbled_granite_slab"), new SlabBlock(AbstractBlock.Settings.copy(Blocks.COBBLESTONE_SLAB)));
+    public static final Block COBBLED_DIORITE_SLAB = makeAdvancedBlockAndItem(makeId("cobbled_diorite_slab"), new SlabBlock(AbstractBlock.Settings.copy(Blocks.COBBLESTONE_SLAB)));
+    public static final Block COBBLED_ANDESITE_SLAB = makeAdvancedBlockAndItem(makeId("cobbled_andesite_slab"), new SlabBlock(AbstractBlock.Settings.copy(Blocks.COBBLESTONE_SLAB)));
+
+    public static final Block COBBLED_GRANITE_WALL = makeAdvancedBlockAndItem(makeId("cobbled_granite_wall"), new WallBlock(AbstractBlock.Settings.copy(Blocks.COBBLESTONE_WALL)));
+    public static final Block COBBLED_DIORITE_WALL = makeAdvancedBlockAndItem(makeId("cobbled_diorite_wall"), new WallBlock(AbstractBlock.Settings.copy(Blocks.COBBLESTONE_WALL)));
+    public static final Block COBBLED_ANDESITE_WALL = makeAdvancedBlockAndItem(makeId("cobbled_andesite_wall"), new WallBlock(AbstractBlock.Settings.copy(Blocks.COBBLESTONE_WALL)));
+
+    public static final Block POLISHED_GRANITE_BRICKS = makeBlockAndItem(makeId("polished_granite_bricks"), AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
+    public static final Block POLISHED_DIORITE_BRICKS = makeBlockAndItem(makeId("polished_diorite_bricks"), AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
+    public static final Block POLISHED_ANDESITE_BRICKS = makeBlockAndItem(makeId("polished_andesite_bricks"), AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
+
+    public static final Block POLISHED_GRANITE_BRICK_STAIRS = makeAdvancedBlockAndItem(makeId("polished_granite_brick_stairs"), new StairsBlock(
+            POLISHED_GRANITE_BRICKS.getDefaultState(),
+            AbstractBlock.Settings.copy(Blocks.STONE_BRICK_STAIRS)
+    ));
+    public static final Block POLISHED_DIORITE_BRICK_STAIRS = makeAdvancedBlockAndItem(makeId("polished_diorite_brick_stairs"), new StairsBlock(
+            POLISHED_DIORITE_BRICKS.getDefaultState(),
+            AbstractBlock.Settings.copy(Blocks.STONE_BRICK_STAIRS)
+    ));
+    public static final Block POLISHED_ANDESITE_BRICK_STAIRS = makeAdvancedBlockAndItem(makeId("polished_andesite_brick_stairs"), new StairsBlock(
+            POLISHED_ANDESITE_BRICKS.getDefaultState(),
+            AbstractBlock.Settings.copy(Blocks.STONE_BRICK_STAIRS)
+    ));
+
+    public static final Block POLISHED_GRANITE_BRICK_SLAB = makeAdvancedBlockAndItem(makeId("polished_granite_brick_slab"), new SlabBlock(
+            AbstractBlock.Settings.copy(Blocks.STONE_BRICK_SLAB)
+    ));
+    public static final Block POLISHED_DIORITE_BRICK_SLAB = makeAdvancedBlockAndItem(makeId("polished_diorite_brick_slab"), new SlabBlock(
+            AbstractBlock.Settings.copy(Blocks.STONE_BRICK_SLAB)
+    ));
+    public static final Block POLISHED_ANDESITE_BRICK_SLAB = makeAdvancedBlockAndItem(makeId("polished_andesite_brick_slab"), new SlabBlock(
+            AbstractBlock.Settings.copy(Blocks.STONE_BRICK_SLAB)
+    ));
+
+    public static final Block POLISHED_GRANITE_WALL = makeAdvancedBlockAndItem(makeId("polished_granite_wall"), new WallBlock(
+            AbstractBlock.Settings.copy(Blocks.GRANITE_WALL)
+    ));
+    public static final Block POLISHED_DIORITE_WALL = makeAdvancedBlockAndItem(makeId("polished_diorite_wall"), new WallBlock(
+            AbstractBlock.Settings.copy(Blocks.DIORITE_WALL)
+    ));
+    public static final Block POLISHED_ANDESITE_WALL = makeAdvancedBlockAndItem(makeId("polished_andesite_wall"), new WallBlock(
+            AbstractBlock.Settings.copy(Blocks.ANDESITE_WALL)
+    ));
+
+    public static final Block POLISHED_GRANITE_BRICK_WALL = makeAdvancedBlockAndItem(makeId("polished_granite_brick_wall"), new WallBlock(
+            AbstractBlock.Settings.copy(Blocks.STONE_BRICK_WALL)
+    ));
+    public static final Block POLISHED_DIORITE_BRICK_WALL = makeAdvancedBlockAndItem(makeId("polished_diorite_brick_wall"), new WallBlock(
+            AbstractBlock.Settings.copy(Blocks.STONE_BRICK_WALL)
+    ));
+    public static final Block POLISHED_ANDESITE_BRICK_WALL = makeAdvancedBlockAndItem(makeId("polished_andesite_brick_wall"), new WallBlock(
+            AbstractBlock.Settings.copy(Blocks.STONE_BRICK_WALL)
+    ));
+
+    public static final BlockFamily COBBLED_GRANITE_FAMILY = new BlockFamily.Builder(COBBLED_GRANITE)
+            .slab(COBBLED_GRANITE_SLAB).stairs(COBBLED_GRANITE_STAIRS).wall(COBBLED_GRANITE_WALL).build();
+    public static final BlockFamily COBBLED_DIORITE_FAMILY = new BlockFamily.Builder(COBBLED_DIORITE)
+            .slab(COBBLED_DIORITE_SLAB).stairs(COBBLED_DIORITE_STAIRS).wall(COBBLED_DIORITE_WALL).build();
+    public static final BlockFamily COBBLED_ANDESITE_FAMILY = new BlockFamily.Builder(COBBLED_ANDESITE)
+            .slab(COBBLED_ANDESITE_SLAB).stairs(COBBLED_ANDESITE_STAIRS).wall(COBBLED_ANDESITE_WALL).build();
+
+    public static final BlockFamily POLISHED_GRANITE_BRICK_FAMILY = new BlockFamily.Builder(POLISHED_GRANITE_BRICKS)
+            .slab(POLISHED_GRANITE_BRICK_SLAB).stairs(POLISHED_GRANITE_BRICK_STAIRS).wall(POLISHED_GRANITE_BRICK_WALL).build();
+    public static final BlockFamily POLISHED_DIORITE_BRICK_FAMILY = new BlockFamily.Builder(POLISHED_DIORITE_BRICKS)
+            .slab(POLISHED_DIORITE_BRICK_SLAB).stairs(POLISHED_DIORITE_BRICK_STAIRS).wall(POLISHED_DIORITE_BRICK_WALL).build();
+    public static final BlockFamily POLISHED_ANDESITE_BRICK_FAMILY = new BlockFamily.Builder(POLISHED_ANDESITE_BRICKS)
+            .slab(POLISHED_ANDESITE_BRICK_SLAB).stairs(POLISHED_ANDESITE_BRICK_STAIRS).wall(POLISHED_ANDESITE_BRICK_WALL).build();
+    // endregion
+
     // region Kimberlite
     public static final Block KIMBERLITE = makeBlockAndItem(
             makeId("kimberlite"),

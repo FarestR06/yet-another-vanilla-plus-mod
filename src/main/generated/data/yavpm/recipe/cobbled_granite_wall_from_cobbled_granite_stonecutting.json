@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "yavpm:cobbled_granite"
+  },
+  "result": {
+    "count": 1,
+    "id": "yavpm:cobbled_granite_wall"
+  }
+}

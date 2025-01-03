@@ -163,8 +163,34 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 			if (source.isBuiltin() && key.equals(LootTables.BASTION_TREASURE_CHEST)) {
 				LootPool.Builder poolBuilder = LootPool.builder()
 						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(YavpmItems.GAUNTLET_FRAGMENT).apply(
+								SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 2f))
+						))
+						.conditionally(RandomChanceLootCondition.builder(0.79f));
+
+				tableBuilder.pool(poolBuilder);
+			}
+			if (source.isBuiltin() && key.equals(LootTables.BASTION_BRIDGE_CHEST)) {
+				LootPool.Builder poolBuilder = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
 						.with(ItemEntry.builder(YavpmItems.GAUNTLET_FRAGMENT))
-						.conditionally(RandomChanceLootCondition.builder(0.67f));
+						.conditionally(RandomChanceLootCondition.builder(0.11f));
+
+				tableBuilder.pool(poolBuilder);
+			}
+			if (source.isBuiltin() && key.equals(LootTables.BASTION_HOGLIN_STABLE_CHEST)) {
+				LootPool.Builder poolBuilder = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(YavpmItems.GAUNTLET_FRAGMENT))
+						.conditionally(RandomChanceLootCondition.builder(0.11f));
+
+				tableBuilder.pool(poolBuilder);
+			}
+			if (source.isBuiltin() && key.equals(LootTables.BASTION_OTHER_CHEST)) {
+				LootPool.Builder poolBuilder = LootPool.builder()
+						.rolls(ConstantLootNumberProvider.create(1f))
+						.with(ItemEntry.builder(YavpmItems.GAUNTLET_FRAGMENT))
+						.conditionally(RandomChanceLootCondition.builder(0.079f));
 
 				tableBuilder.pool(poolBuilder);
 			}
@@ -402,6 +428,15 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 			BlockLootTableGenerator generator = new VanillaBlockLootTableGenerator(registries);
 			if (source.isBuiltin() && key == Blocks.OAK_LEAVES.getLootTableKey()) {
 				return newOakLeavesDrops(registries, generator).build();
+			}
+			if (source.isBuiltin() && key == Blocks.GRANITE.getLootTableKey()) {
+				return generator.drops(Blocks.GRANITE, YavpmBlocks.COBBLED_GRANITE).build();
+			}
+			if (source.isBuiltin() && key == Blocks.DIORITE.getLootTableKey()) {
+				return generator.drops(Blocks.DIORITE, YavpmBlocks.COBBLED_DIORITE).build();
+			}
+			if (source.isBuiltin() && key == Blocks.ANDESITE.getLootTableKey()) {
+				return generator.drops(Blocks.ANDESITE, YavpmBlocks.COBBLED_ANDESITE).build();
 			}
 			return original;
 		});

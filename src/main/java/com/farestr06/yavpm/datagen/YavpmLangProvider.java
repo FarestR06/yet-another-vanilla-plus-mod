@@ -284,8 +284,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.BABY_KEY, "Key Golem");
 
         builder.add("subtitles.item.baby_key.scared", "Key Golem cries");
-        builder.add("subtitles.item.baby_key.lock", "Key Golem locks");
-        builder.add("subtitles.item.baby_key.unlock", "Key Golem unlocks");
+        builder.add("subtitles.item.baby_key.turn", "Key Golem locks");
 
         builder.add("death.attack.cut", "%1$s was cut to pieces");
         builder.add("death.attack.cut.player", "%1$s was cut to pieces by %2$s");
@@ -348,6 +347,32 @@ public class YavpmLangProvider extends FabricLanguageProvider {
     private static void stoneTranslations(TranslationBuilder builder) {
         builder.add(YavpmBlocks.GRAPHITE_BLOCK, "Block of Graphite");
         builder.add(YavpmBlocks.GRAPHENE_BLOCK, "Block of Graphene");
+
+        builder.add(YavpmBlocks.COBBLED_GRANITE, "Cobbled Granite");
+        builder.add(YavpmBlocks.COBBLED_DIORITE, "Cobbled Diorite");
+        builder.add(YavpmBlocks.COBBLED_ANDESITE, "Cobbled Andesite");
+        builder.add(YavpmBlocks.COBBLED_GRANITE_STAIRS, "Cobbled Granite Stairs");
+        builder.add(YavpmBlocks.COBBLED_DIORITE_STAIRS, "Cobbled Diorite Stairs");
+        builder.add(YavpmBlocks.COBBLED_ANDESITE_STAIRS, "Cobbled Andesite Stairs");
+        builder.add(YavpmBlocks.COBBLED_GRANITE_SLAB, "Cobbled Granite Slab");
+        builder.add(YavpmBlocks.COBBLED_DIORITE_SLAB, "Cobbled Diorite Slab");
+        builder.add(YavpmBlocks.COBBLED_ANDESITE_SLAB, "Cobbled Andesite Slab");
+        builder.add(YavpmBlocks.COBBLED_GRANITE_WALL, "Cobbled Granite Wall");
+        builder.add(YavpmBlocks.COBBLED_DIORITE_WALL, "Cobbled Diorite Wall");
+        builder.add(YavpmBlocks.COBBLED_ANDESITE_WALL, "Cobbled Andesite Wall");
+
+        builder.add(YavpmBlocks.POLISHED_GRANITE_BRICKS, "Polished Granite Bricks");
+        builder.add(YavpmBlocks.POLISHED_DIORITE_BRICKS, "Polished Diorite Bricks");
+        builder.add(YavpmBlocks.POLISHED_ANDESITE_BRICKS, "Polished Andesite Bricks");
+        builder.add(YavpmBlocks.POLISHED_GRANITE_BRICK_STAIRS, "Polished Granite Brick Stairs");
+        builder.add(YavpmBlocks.POLISHED_DIORITE_BRICK_STAIRS, "Polished Diorite Brick Stairs");
+        builder.add(YavpmBlocks.POLISHED_ANDESITE_BRICK_STAIRS, "Polished Andesite Brick Stairs");
+        builder.add(YavpmBlocks.POLISHED_GRANITE_BRICK_SLAB, "Polished Granite Brick Slab");
+        builder.add(YavpmBlocks.POLISHED_DIORITE_BRICK_SLAB, "Polished Diorite Brick Slab");
+        builder.add(YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB, "Polished Andesite Brick Slab");
+        builder.add(YavpmBlocks.POLISHED_GRANITE_BRICK_WALL, "Polished Granite Brick Wall");
+        builder.add(YavpmBlocks.POLISHED_DIORITE_BRICK_WALL, "Polished Diorite Brick Wall");
+        builder.add(YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL, "Polished Andesite Brick Wall");
 
         builder.add(YavpmBlocks.KIMBERLITE, "Kimberlite");
         builder.add(YavpmBlocks.POLISHED_KIMBERLITE, "Polished Kimberlite");

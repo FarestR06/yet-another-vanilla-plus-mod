@@ -12,7 +12,7 @@
           "per_level_above_first": 0.0105
         },
         "attribute": "minecraft:generic.movement_speed",
-        "id": "minecraft:enchantment.gallop",
+        "id": "yavpm:enchantment.gallop",
         "operation": "add_value"
       }
     ]
@@ -26,6 +26,7 @@
     "base": 10,
     "per_level_above_first": 10
   },
+  "primary_items": "#yavpm:enchantable/horse_armor",
   "slots": [
     "body"
   ],

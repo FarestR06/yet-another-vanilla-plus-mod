@@ -21,6 +21,6 @@ public class YavpmWorldGenerator extends FabricDynamicRegistryProvider {
 
     @Override
     public String getName() {
-        return "World Gen";
+        return "Worldgen";
     }
 }

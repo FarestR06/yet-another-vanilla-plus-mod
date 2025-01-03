@@ -43,23 +43,14 @@
     ],
     "subtitle": "subtitles.item.baby_key.scared"
   },
-  "item.baby_key.lock": {
+  "item.baby_key.turn": {
     "sounds": [
       "yavpm:mob/baby_key/happy1",
       "yavpm:mob/baby_key/happy2",
       "yavpm:mob/baby_key/happy3",
       "yavpm:mob/baby_key/happy4"
     ],
-    "subtitle": "subtitles.item.baby_key.lock"
-  },
-  "item.baby_key.unlock": {
-    "sounds": [
-      "yavpm:mob/baby_key/happy1",
-      "yavpm:mob/baby_key/happy2",
-      "yavpm:mob/baby_key/happy3",
-      "yavpm:mob/baby_key/happy4"
-    ],
-    "subtitle": "subtitles.item.baby_key.unlock"
+    "subtitle": "subtitles.item.baby_key.turn"
   },
   "music_disc.magnetic_circuit": {
     "sounds": [

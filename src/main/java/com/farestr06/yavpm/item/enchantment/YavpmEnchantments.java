@@ -34,7 +34,6 @@ import net.minecraft.registry.entry.RegistryEntryList;
 import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.registry.tag.EnchantmentTags;
 import net.minecraft.registry.tag.ItemTags;
-import net.minecraft.util.Identifier;
 
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
@@ -318,6 +317,7 @@ public class YavpmEnchantments {
                 Enchantment.builder(
                         Enchantment.definition(
                                 items.getOrThrow(YavpmTags.Items.ENCHANTABLE_WOLF_ARMOR),
+                                items.getOrThrow(YavpmTags.Items.ENCHANTABLE_WOLF_ARMOR),
                                 2,
                                 5,
                                 Enchantment.leveledCost(15, 9),
@@ -343,6 +343,7 @@ public class YavpmEnchantments {
                 LAP_DOG,
                 Enchantment.builder(
                         Enchantment.definition(
+                                items.getOrThrow(YavpmTags.Items.ENCHANTABLE_WOLF_ARMOR),
                                 items.getOrThrow(YavpmTags.Items.ENCHANTABLE_WOLF_ARMOR),
                                 10,
                                 3,
@@ -428,6 +429,7 @@ public class YavpmEnchantments {
                 Enchantment.builder(
                         Enchantment.definition(
                                 items.getOrThrow(YavpmTags.Items.ENCHANTABLE_HORSE_ARMOR),
+                                items.getOrThrow(YavpmTags.Items.ENCHANTABLE_HORSE_ARMOR),
                                 6,
                                 3,
                                 Enchantment.leveledCost(10, 10),
@@ -439,7 +441,7 @@ public class YavpmEnchantments {
                         .addEffect(
                                 EnchantmentEffectComponentTypes.ATTRIBUTES,
                                 new AttributeEnchantmentEffect(
-                                        Identifier.ofVanilla("enchantment.gallop"),
+                                        makeId("enchantment.gallop"),
                                         EntityAttributes.GENERIC_MOVEMENT_SPEED,
                                         EnchantmentLevelBasedValue.linear(0.0405f, 0.0105f),
                                         EntityAttributeModifier.Operation.ADD_VALUE
@@ -453,6 +455,7 @@ public class YavpmEnchantments {
                 Enchantment.builder(
                                 Enchantment.definition(
                                         items.getOrThrow(YavpmTags.Items.ENCHANTABLE_HORSE_ARMOR),
+                                        items.getOrThrow(YavpmTags.Items.ENCHANTABLE_HORSE_ARMOR),
                                         14,
                                         2,
                                         Enchantment.leveledCost(10, 10),
@@ -464,7 +467,7 @@ public class YavpmEnchantments {
                         .addEffect(
                                 EnchantmentEffectComponentTypes.ATTRIBUTES,
                                 new AttributeEnchantmentEffect(
-                                        Identifier.ofVanilla("enchantment.bounding"),
+                                        makeId("enchantment.bounding"),
                                         EntityAttributes.GENERIC_JUMP_STRENGTH,
                                         EnchantmentLevelBasedValue.linear(0.25f, 0.75f),
                                         EntityAttributeModifier.Operation.ADD_VALUE

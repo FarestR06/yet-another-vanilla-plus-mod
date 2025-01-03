@@ -8,7 +8,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -25,7 +24,7 @@ public class GauntletItem extends Item {
                         EntityAttributes.GENERIC_ATTACK_DAMAGE,
                         new EntityAttributeModifier(
                                 BASE_ATTACK_DAMAGE_MODIFIER_ID,
-                                3.5f, EntityAttributeModifier.Operation.ADD_VALUE
+                                3.5, EntityAttributeModifier.Operation.ADD_VALUE
                         ),
                         AttributeModifierSlot.MAINHAND
                 ).build();
@@ -42,24 +41,22 @@ public class GauntletItem extends Item {
 
     @Override
     public void postDamageEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        if (attacker instanceof PlayerEntity player) {
-            if (isAttackCriticalOrKnockback(player)) {
-                int damage = player.getRandom().nextBetween(2, 16);
-                stack.damage(damage, player, EquipmentSlot.MAINHAND);
-                return;
-            }
+        int damage = 1;
+        if (attacker.isSprinting()) {
+            damage = attacker.getRandom().nextBetween(1, 4);
+        } else if (isAttackCritical(attacker)) {
+            damage = attacker.getRandom().nextBetween(4, 16);
         }
-        stack.damage(1, attacker, EquipmentSlot.MAINHAND);
+        stack.damage(damage, attacker, EquipmentSlot.MAINHAND);
     }
 
-    private boolean isAttackCriticalOrKnockback(PlayerEntity attacker) {
-        boolean critical = attacker.fallDistance > 0.0f
+    private boolean isAttackCritical(LivingEntity attacker) {
+        return attacker.fallDistance > 0.0f
                 && !attacker.isOnGround()
                 && !attacker.isClimbing()
                 && !attacker.isTouchingWater()
                 && !attacker.hasStatusEffect(StatusEffects.BLINDNESS)
                 && !attacker.hasVehicle() && !attacker.isSprinting();
-        return critical || attacker.isSprinting();
     }
 
     @Override

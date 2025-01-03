@@ -17,6 +17,7 @@ public class YavpmTags {
         public static final TagKey<Item> TANUKI_FOOD = of("tanuki_foods");
 
         public static final TagKey<Item> CRIMSON_MOONGUS_FOOD = of("crimson_moongus_food");
+        public static final TagKey<Item> CRIMSON_MOONGUS_FOOD_CORRUPTED = of("crimson_moongus_food_corrupted");
         public static final TagKey<Item> WARPED_MOONGUS_FOOD = of("warped_moongus_food");
 
         public static final TagKey<Item> RUNES = of("runes");

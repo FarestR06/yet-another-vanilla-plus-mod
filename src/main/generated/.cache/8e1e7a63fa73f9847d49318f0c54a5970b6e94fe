@@ -1,8 +1,8 @@
-// 1.21.1	2025-01-02T14:32:42.293685	Yet Another Vanilla Plus Mod/Tags for minecraft:enchantment
-497bde2f6b9aa502e84fb121da8557fa06f64a64 data/yavpm/tags/enchantment/exclusive_set/wolf_armor/offense.json
-a4a528837ba988f766acade9b94c73e9fe81c730 data/minecraft/tags/enchantment/treasure.json
+// 1.21.1	2025-01-03T11:57:28.401201239	Yet Another Vanilla Plus Mod/Tags for minecraft:enchantment
 242e94cfcf1d5fa226638bd6c5319a52504e1419 data/minecraft/tags/enchantment/non_treasure.json
-a4b0f5b5a9d12c55abf562b648548e44f61915d3 data/yavpm/tags/enchantment/exclusive_set/wolf_armor/defense.json
-f968ea9b4698b19ea15c6a8ec1a32a9a079699e4 data/minecraft/tags/enchantment/double_trade_price.json
-922c1d4e08f3fa186918ed1c6aa6b38bcaee27c1 data/yavpm/tags/enchantment/end_enchantments.json
 31c8ca6ebb3ed529b979bd6db1bd591a01161cd1 data/minecraft/tags/enchantment/tradeable.json
+a4a528837ba988f766acade9b94c73e9fe81c730 data/minecraft/tags/enchantment/treasure.json
+f968ea9b4698b19ea15c6a8ec1a32a9a079699e4 data/minecraft/tags/enchantment/double_trade_price.json
+497bde2f6b9aa502e84fb121da8557fa06f64a64 data/yavpm/tags/enchantment/exclusive_set/wolf_armor/offense.json
+922c1d4e08f3fa186918ed1c6aa6b38bcaee27c1 data/yavpm/tags/enchantment/end_enchantments.json
+a4b0f5b5a9d12c55abf562b648548e44f61915d3 data/yavpm/tags/enchantment/exclusive_set/wolf_armor/defense.json

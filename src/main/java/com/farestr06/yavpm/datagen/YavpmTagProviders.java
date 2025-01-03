@@ -36,6 +36,17 @@ public class YavpmTagProviders {
             buildingBlockTags();
         }
         private void craftingTags() {
+            getOrCreateTagBuilder(ItemTags.STONE_TOOL_MATERIALS).add(
+                    YavpmBlocks.COBBLED_GRANITE.asItem(),
+                    YavpmBlocks.COBBLED_DIORITE.asItem(),
+                    YavpmBlocks.COBBLED_ANDESITE.asItem()
+            );
+
+            getOrCreateTagBuilder(ItemTags.STONE_CRAFTING_MATERIALS).add(
+                    YavpmBlocks.COBBLED_GRANITE.asItem(),
+                    YavpmBlocks.COBBLED_DIORITE.asItem(),
+                    YavpmBlocks.COBBLED_ANDESITE.asItem()
+            );
             getOrCreateTagBuilder(YavpmTags.Items.RUNES).add(
                     YavpmItems.RUNE_ATTACK,
                     YavpmItems.RUNE_DURABILITY,
@@ -222,6 +233,14 @@ public class YavpmTagProviders {
                     Items.WITHER_SKELETON_SKULL,
                     Items.ENDER_EYE
             );
+            getOrCreateTagBuilder(YavpmTags.Items.CRIMSON_MOONGUS_FOOD_CORRUPTED).add(
+                    Items.SUGAR,
+                    Items.RABBIT_FOOT,
+                    Items.GLISTERING_MELON_SLICE,
+                    Items.SPIDER_EYE,
+                    Items.GOLDEN_CARROT,
+                    Items.PUFFERFISH
+            );
             getOrCreateTagBuilder(YavpmTags.Items.WARPED_MOONGUS_FOOD).add(
                     Items.FERMENTED_SPIDER_EYE,
                     Items.WITHER_SKELETON_SKULL,
@@ -253,20 +272,39 @@ public class YavpmTagProviders {
                     YavpmBlocks.GLOWING_OBSIDIAN.asItem(),
                     YavpmBlocks.SOUL_GLOWING_OBSIDIAN.asItem()
             );
+
             getOrCreateTagBuilder(ItemTags.STAIRS).add(
                     YavpmBlocks.KIMBERLITE_STAIRS.asItem(),
                     YavpmBlocks.POLISHED_KIMBERLITE_STAIRS.asItem(),
-                    YavpmBlocks.POLISHED_KIMBERLITE_BRICK_STAIRS.asItem()
+                    YavpmBlocks.POLISHED_KIMBERLITE_BRICK_STAIRS.asItem(),
+                    YavpmBlocks.COBBLED_GRANITE_STAIRS.asItem(),
+                    YavpmBlocks.COBBLED_DIORITE_STAIRS.asItem(),
+                    YavpmBlocks.COBBLED_ANDESITE_STAIRS.asItem(),
+                    YavpmBlocks.POLISHED_GRANITE_BRICK_STAIRS.asItem(),
+                    YavpmBlocks.POLISHED_DIORITE_BRICK_STAIRS.asItem(),
+                    YavpmBlocks.POLISHED_ANDESITE_BRICK_STAIRS.asItem()
             );
             getOrCreateTagBuilder(ItemTags.SLABS).add(
                     YavpmBlocks.KIMBERLITE_SLAB.asItem(),
                     YavpmBlocks.POLISHED_KIMBERLITE_SLAB.asItem(),
-                    YavpmBlocks.POLISHED_KIMBERLITE_BRICK_SLAB.asItem()
+                    YavpmBlocks.POLISHED_KIMBERLITE_BRICK_SLAB.asItem(),
+                    YavpmBlocks.COBBLED_GRANITE_SLAB.asItem(),
+                    YavpmBlocks.COBBLED_DIORITE_SLAB.asItem(),
+                    YavpmBlocks.COBBLED_ANDESITE_SLAB.asItem(),
+                    YavpmBlocks.POLISHED_GRANITE_BRICK_SLAB.asItem(),
+                    YavpmBlocks.POLISHED_DIORITE_BRICK_SLAB.asItem(),
+                    YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB.asItem()
             );
             getOrCreateTagBuilder(ItemTags.WALLS).add(
                     YavpmBlocks.KIMBERLITE_WALL.asItem(),
                     YavpmBlocks.POLISHED_KIMBERLITE_WALL.asItem(),
-                    YavpmBlocks.POLISHED_KIMBERLITE_BRICK_WALL.asItem()
+                    YavpmBlocks.POLISHED_KIMBERLITE_BRICK_WALL.asItem(),
+                    YavpmBlocks.COBBLED_GRANITE_WALL.asItem(),
+                    YavpmBlocks.COBBLED_DIORITE_WALL.asItem(),
+                    YavpmBlocks.COBBLED_ANDESITE_WALL.asItem(),
+                    YavpmBlocks.POLISHED_GRANITE_BRICK_WALL.asItem(),
+                    YavpmBlocks.POLISHED_DIORITE_BRICK_WALL.asItem(),
+                    YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL.asItem()
             );
 
             getOrCreateTagBuilder(ConventionalItemTags.STRIPPED_LOGS).add(
@@ -382,6 +420,32 @@ public class YavpmTagProviders {
                     YavpmBlocks.SOUL_GLOWING_OBSIDIAN,
                     YavpmBlocks.GRAPHITE_BLOCK,
                     YavpmBlocks.GRAPHENE_BLOCK,
+
+                    YavpmBlocks.COBBLED_GRANITE,
+                    YavpmBlocks.COBBLED_DIORITE,
+                    YavpmBlocks.COBBLED_ANDESITE,
+                    YavpmBlocks.COBBLED_GRANITE_STAIRS,
+                    YavpmBlocks.COBBLED_DIORITE_STAIRS,
+                    YavpmBlocks.COBBLED_ANDESITE_STAIRS,
+                    YavpmBlocks.COBBLED_GRANITE_SLAB,
+                    YavpmBlocks.COBBLED_DIORITE_SLAB,
+                    YavpmBlocks.COBBLED_ANDESITE_SLAB,
+                    YavpmBlocks.COBBLED_GRANITE_WALL,
+                    YavpmBlocks.COBBLED_DIORITE_WALL,
+                    YavpmBlocks.COBBLED_ANDESITE_WALL,
+                    YavpmBlocks.POLISHED_GRANITE_BRICKS,
+                    YavpmBlocks.POLISHED_GRANITE_BRICK_STAIRS,
+                    YavpmBlocks.POLISHED_GRANITE_BRICK_SLAB,
+                    YavpmBlocks.POLISHED_GRANITE_BRICK_WALL,
+                    YavpmBlocks.POLISHED_DIORITE_BRICKS,
+                    YavpmBlocks.POLISHED_DIORITE_BRICK_STAIRS,
+                    YavpmBlocks.POLISHED_DIORITE_BRICK_SLAB,
+                    YavpmBlocks.POLISHED_DIORITE_BRICK_WALL,
+                    YavpmBlocks.POLISHED_ANDESITE_BRICKS,
+                    YavpmBlocks.POLISHED_ANDESITE_BRICK_STAIRS,
+                    YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB,
+                    YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL,
+
                     YavpmBlocks.KIMBERLITE,
                     YavpmBlocks.POLISHED_KIMBERLITE,
                     YavpmBlocks.POLISHED_KIMBERLITE_BRICKS,

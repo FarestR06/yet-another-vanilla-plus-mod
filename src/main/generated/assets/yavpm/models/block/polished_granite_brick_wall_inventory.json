@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/wall_inventory",
+  "textures": {
+    "wall": "yavpm:block/polished_granite_bricks"
+  }
+}
