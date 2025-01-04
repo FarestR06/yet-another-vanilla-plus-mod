@@ -1,0 +1,22 @@
+{
+	"result": {
+		"id": "yavpm:cobbled_andesite",
+		"count": 3
+	},
+	"type": "crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "yavpm:cobbled_andesite_stairs"
+		},
+		{
+			"item": "yavpm:cobbled_andesite_stairs"
+		},
+		{
+			"item": "yavpm:cobbled_andesite_stairs"
+		},
+		{
+			"item": "yavpm:cobbled_andesite_stairs"
+		}
+	],
+	"group": "stairs_to_block"
+}

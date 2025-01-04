@@ -1,9 +1,9 @@
-// 1.21.1	2025-01-03T11:57:28.405051765	Yet Another Vanilla Plus Mod/Tags for minecraft:item
+// 1.21.1	2025-01-04T11:34:48.713697559	Yet Another Vanilla Plus Mod/Tags for minecraft:item
 0419d74a24bb766486f67b0cc39eed52858b7614 data/c/tags/item/foods/cookie.json
 420a8599875af48bc37ee970178bcd0296332dd8 data/c/tags/item/foods.json
 b91dfcf823036f7cb2cb9876a4de10dd7aba95f1 data/yavpm/tags/item/crimson_moongus_food_corrupted.json
-5cbb74a5c8aa8fe9f4c9e93d31afc6a66e3c6851 data/minecraft/tags/item/wooden_stairs.json
 5f4029e547295f14219f93ffe7264a476e326a4b data/minecraft/tags/item/planks.json
+5cbb74a5c8aa8fe9f4c9e93d31afc6a66e3c6851 data/minecraft/tags/item/wooden_stairs.json
 90dd83e13350dcf3a8469733c65d0a3caa38dd96 data/yavpm/tags/item/enchantable/horse_armor.json
 95eca0c62d45553638cc93a0473b3a32b137e4fe data/minecraft/tags/item/trimmable_armor.json
 a75102daab0756999449fcf2e6d7559558ca849b data/yavpm/tags/item/tanuki_foods.json

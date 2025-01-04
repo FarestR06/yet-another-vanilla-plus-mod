@@ -374,6 +374,10 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.POLISHED_DIORITE_BRICK_WALL, "Polished Diorite Brick Wall");
         builder.add(YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL, "Polished Andesite Brick Wall");
 
+        builder.add(YavpmBlocks.POLISHED_GRANITE_WALL, "Polished Granite Wall");
+        builder.add(YavpmBlocks.POLISHED_DIORITE_WALL, "Polished Diorite Wall");
+        builder.add(YavpmBlocks.POLISHED_ANDESITE_WALL, "Polished Andesite Wall");
+
         builder.add(YavpmBlocks.KIMBERLITE, "Kimberlite");
         builder.add(YavpmBlocks.POLISHED_KIMBERLITE, "Polished Kimberlite");
         builder.add(YavpmBlocks.POLISHED_KIMBERLITE_BRICKS, "Polished Kimberlite Bricks");
