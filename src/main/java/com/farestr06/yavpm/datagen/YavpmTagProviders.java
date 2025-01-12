@@ -730,13 +730,19 @@ public class YavpmTagProviders {
                     YavpmEnchantments.CRITICAL_HIT,
                     YavpmEnchantments.ILLAGERS_BANE,
                     YavpmEnchantments.ENDERBANE,
+                    YavpmEnchantments.PARRY,
                     YavpmEnchantments.MAULING,
                     YavpmEnchantments.LAP_DOG,
-                    YavpmEnchantments.GALLOP
+                    YavpmEnchantments.COUNTER,
+                    YavpmEnchantments.PLAGUE,
+                    YavpmEnchantments.GALLOP,
+                    YavpmEnchantments.BOUNDING
             );
             getOrCreateTagBuilder(EnchantmentTags.TREASURE).add(
                     YavpmEnchantments.VOID_STRIKE,
-                    YavpmEnchantments.STIFFNESS
+                    YavpmEnchantments.STIFFNESS,
+                    YavpmEnchantments.BLEED_OUT,
+                    YavpmEnchantments.CRUSHING
             );
             getOrCreateTagBuilder(EnchantmentTags.TRADEABLE).add(
                     YavpmEnchantments.VOID_STRIKE,
@@ -757,7 +763,7 @@ public class YavpmTagProviders {
             );
             getOrCreateTagBuilder(YavpmTags.Enchantments.EXCLUSIVE_SET_WOLF_ARMOR_DEFENSE).add(
                     YavpmEnchantments.LAP_DOG,
-                    YavpmEnchantments.PARRY,
+                    YavpmEnchantments.COUNTER,
                     YavpmEnchantments.PLAGUE
             );
         }

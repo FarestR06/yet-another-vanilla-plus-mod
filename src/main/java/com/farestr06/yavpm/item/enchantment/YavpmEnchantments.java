@@ -2,15 +2,19 @@ package com.farestr06.yavpm.item.enchantment;
 
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import com.farestr06.yavpm.item.enchantment.effect.LapDogEnchantmentEffect;
+import com.farestr06.yavpm.item.enchantment.effect.ParryEnchantmentEffect;
 import com.farestr06.yavpm.util.YavpmTags;
+import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.component.EnchantmentEffectComponentTypes;
 import net.minecraft.component.type.AttributeModifierSlot;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentLevelBasedValue;
+import net.minecraft.enchantment.effect.AllOfEnchantmentEffects;
 import net.minecraft.enchantment.effect.AttributeEnchantmentEffect;
 import net.minecraft.enchantment.effect.EnchantmentEffectTarget;
 import net.minecraft.enchantment.effect.entity.ApplyMobEffectEnchantmentEffect;
 import net.minecraft.enchantment.effect.entity.DamageEntityEnchantmentEffect;
+import net.minecraft.enchantment.effect.entity.DamageItemEnchantmentEffect;
 import net.minecraft.enchantment.effect.value.AddEnchantmentEffect;
 import net.minecraft.enchantment.effect.value.MultiplyEnchantmentEffect;
 import net.minecraft.entity.EntityType;
@@ -38,10 +42,15 @@ import net.minecraft.registry.tag.ItemTags;
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmEnchantments {
+    // Damage
     public static final RegistryKey<Enchantment> CRITICAL_HIT = registerKey("critical_hit");
     public static final RegistryKey<Enchantment> VOID_STRIKE = registerKey("void_strike");
     public static final RegistryKey<Enchantment> ILLAGERS_BANE = registerKey("illagers_bane");
     public static final RegistryKey<Enchantment> ENDERBANE = registerKey("enderbane");
+
+    // Shield
+    public static final RegistryKey<Enchantment> PARRY = registerKey("parry");
+
     // Elytra
     public static final RegistryKey<Enchantment> STIFFNESS = registerKey("stiffness");
     // Wolf Armor
@@ -52,7 +61,7 @@ public class YavpmEnchantments {
     public static final RegistryKey<Enchantment> RETRIEVE = registerKey("retrieve");
 
     public static final RegistryKey<Enchantment> LAP_DOG = registerKey("lap_dog");
-    public static final RegistryKey<Enchantment> PARRY = registerKey("parry");
+    public static final RegistryKey<Enchantment> COUNTER = registerKey("counter");
     public static final RegistryKey<Enchantment> PLAGUE = registerKey("plague");
     // Horse Armor
     public static final RegistryKey<Enchantment> GALLOP = registerKey("gallop");
@@ -214,6 +223,35 @@ public class YavpmEnchantments {
                         )
         );
         // endregion
+        // region Parry
+        register(
+                registerable,
+                PARRY,
+                Enchantment.builder(
+                        Enchantment.definition(
+                                items.getOrThrow(ConventionalItemTags.SHIELD_TOOLS),
+                                items.getOrThrow(ConventionalItemTags.SHIELD_TOOLS),
+                                8,
+                                2,
+                                Enchantment.leveledCost(10, 20),
+                                Enchantment.leveledCost(60, 20),
+                                8,
+                                AttributeModifierSlot.OFFHAND
+                        )
+                ).addEffect(
+                        EnchantmentEffectComponentTypes.POST_ATTACK,
+                        EnchantmentEffectTarget.VICTIM,
+                        EnchantmentEffectTarget.ATTACKER,
+                        AllOfEnchantmentEffects.allOf(
+                                new ParryEnchantmentEffect(
+                                        EnchantmentLevelBasedValue.constant(1.0F), EnchantmentLevelBasedValue.constant(5.0F), damageTypes.getOrThrow(DamageTypes.THORNS)
+                                ),
+                                new DamageItemEnchantmentEffect(EnchantmentLevelBasedValue.constant(2.0F))
+                        ),
+                        RandomChanceLootCondition.builder(EnchantmentLevelLootNumberProvider.create(EnchantmentLevelBasedValue.linear(0.15F)))
+                )
+        );
+        // endregion
         // region Stiffness
         register(
                 registerable,
@@ -281,7 +319,7 @@ public class YavpmEnchantments {
                                 EnchantmentEffectTarget.ATTACKER,
                                 EnchantmentEffectTarget.VICTIM,
                                 new ApplyMobEffectEnchantmentEffect(
-                                        RegistryEntryList.of(StatusEffects.WITHER),
+                                        RegistryEntryList.of(YavpmStatusEffects.WOUNDED),
                                         EnchantmentLevelBasedValue.constant(2f),
                                         EnchantmentLevelBasedValue.linear(2f, 1f),
                                         EnchantmentLevelBasedValue.constant(0f),
@@ -363,7 +401,7 @@ public class YavpmEnchantments {
         // region Parry
         register(
                 registerable,
-                PARRY,
+                COUNTER,
                 Enchantment.builder(
                                 Enchantment.definition(
                                         items.getOrThrow(YavpmTags.Items.ENCHANTABLE_WOLF_ARMOR),
@@ -412,7 +450,7 @@ public class YavpmEnchantments {
                                 EnchantmentEffectTarget.VICTIM,
                                 EnchantmentEffectTarget.ATTACKER,
                                 new ApplyMobEffectEnchantmentEffect(
-                                        RegistryEntryList.of(StatusEffects.POISON),
+                                        RegistryEntryList.of(StatusEffects.INFESTED),
                                         EnchantmentLevelBasedValue.constant(2f),
                                         EnchantmentLevelBasedValue.linear(2f),
                                         EnchantmentLevelBasedValue.constant(0f),
@@ -443,7 +481,7 @@ public class YavpmEnchantments {
                                 new AttributeEnchantmentEffect(
                                         makeId("enchantment.gallop"),
                                         EntityAttributes.GENERIC_MOVEMENT_SPEED,
-                                        EnchantmentLevelBasedValue.linear(0.0405f, 0.0105f),
+                                        EnchantmentLevelBasedValue.linear(0.04f, 0.03f),
                                         EntityAttributeModifier.Operation.ADD_VALUE
                                 ))
         );
@@ -467,11 +505,20 @@ public class YavpmEnchantments {
                         .addEffect(
                                 EnchantmentEffectComponentTypes.ATTRIBUTES,
                                 new AttributeEnchantmentEffect(
-                                        makeId("enchantment.bounding"),
+                                        makeId("enchantment.bounding.jump_strength"),
                                         EntityAttributes.GENERIC_JUMP_STRENGTH,
                                         EnchantmentLevelBasedValue.linear(0.25f, 0.75f),
                                         EntityAttributeModifier.Operation.ADD_VALUE
                                 ))
+                        .addEffect(
+                                EnchantmentEffectComponentTypes.ATTRIBUTES,
+                                new AttributeEnchantmentEffect(
+                                        makeId("enchantment.bounding.safe_fall_distance"),
+                                        EntityAttributes.GENERIC_SAFE_FALL_DISTANCE,
+                                        EnchantmentLevelBasedValue.linear(3f, 5f),
+                                        EntityAttributeModifier.Operation.ADD_VALUE
+                                )
+                        )
         );
         // endregion
     }

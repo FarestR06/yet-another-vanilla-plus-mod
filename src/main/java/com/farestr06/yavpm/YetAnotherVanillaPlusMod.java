@@ -98,7 +98,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		if (ResourceManagerHelper.registerBuiltinResourcePack(
 				makeId("back_to_blocks"),
 				FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(),
-				Text.literal("Vanilla Tweaks Back to Blocks Compatibility"),
+				Text.literal("Vanilla Tweaks \"Back to Blocks\" Compatibility"),
 				ResourcePackActivationType.NORMAL
 		)) {
 			LOGGER.info("Back to Blocks compat registered successfully!");
@@ -109,7 +109,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		if (ResourceManagerHelper.registerBuiltinResourcePack(
 				makeId("more_bark"),
 				FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(),
-				Text.literal("Vanilla Tweaks Back to Blocks Compatibility"),
+				Text.literal("Vanilla Tweaks \"More Bark\" Compatibility"),
 				ResourcePackActivationType.NORMAL
 		)) {
 			LOGGER.info("More Bark compat registered successfully!");
@@ -120,7 +120,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		if (ResourceManagerHelper.registerBuiltinResourcePack(
 				makeId("more_stairs"),
 				FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(),
-				Text.literal("Vanilla Tweaks Back to Blocks Compatibility"),
+				Text.literal("Vanilla Tweaks \"More Stairs\" Compatibility"),
 				ResourcePackActivationType.NORMAL
 		)) {
 			LOGGER.info("More Stairs compat registered successfully!");
@@ -131,7 +131,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		if (ResourceManagerHelper.registerBuiltinResourcePack(
 				makeId("more_trapdoors"),
 				FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(),
-				Text.literal("Vanilla Tweaks Back to Blocks Compatibility"),
+				Text.literal("Vanilla Tweaks \"More Trapdoors\" Compatibility"),
 				ResourcePackActivationType.NORMAL
 		)) {
 			LOGGER.info("More Trapdoors compat registered successfully!");
@@ -143,6 +143,13 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		LOGGER.info("Modifying loot for YAVPM!");
 		LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
 			RegistryWrapper.Impl<Enchantment> enchantmentImpl = registries.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+			if (source.isBuiltin() && key.equals(LootTables.PIGLIN_BARTERING_GAMEPLAY)) {
+				LootPool.Builder poolBuilder = LootPool.builder()
+						.with(ItemEntry.builder(YavpmItems.GAUNTLET_FRAGMENT))
+						.conditionally(RandomChanceLootCondition.builder(0.079f));
+
+				tableBuilder.pool(poolBuilder);
+			}
 			if (source.isBuiltin() && key.equals(LootTables.SNIFFER_DIGGING_GAMEPLAY)) {
 				LootPool.Builder poolBuilder = LootPool.builder()
 						.with(ItemEntry.builder(YavpmItems.TRUFFLE))

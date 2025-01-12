@@ -24,7 +24,7 @@ public record LapDogEnchantmentEffect() implements EnchantmentEntityEffect {
     }
 
     private int getHealRate(int level) {
-        return Math.round(75f / level);
+        return 90 / level;
     }
 
     @Override

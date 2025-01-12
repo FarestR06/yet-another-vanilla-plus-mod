@@ -72,6 +72,7 @@ public class YavpmTags {
         public static final TagKey<Block> APPLE_LOGS = of("apple_logs");
         public static final TagKey<Block> PERSIMMON_LOGS = of("persimmon_logs");
         public static final TagKey<Block> PRICKLE_LOGS = of("prickle_logs");
+        public static final TagKey<Block> RICE_GROWABLE_ON = of("rice_growable_on");
 
         private static TagKey<Block> of(String path) {
             return TagKey.of(RegistryKeys.BLOCK, makeId(path));

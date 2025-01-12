@@ -10,6 +10,7 @@ import net.minecraft.registry.entry.RegistryEntry;
 
 public class YavpmStatusEffects {
     public static final RegistryEntry<StatusEffect> VOID_TOUCHED = register("void_touched", new SimpleStatusEffect(StatusEffectCategory.HARMFUL, 0xe079fa));
+    public static final RegistryEntry<StatusEffect> WOUNDED = register("wounded", new WoundedStatusEffect());
     public static final RegistryEntry<StatusEffect> CHOKING = register("choking", new ChokingStatusEffect());
 
     private static RegistryEntry<StatusEffect> register(String id, StatusEffect statusEffect) {

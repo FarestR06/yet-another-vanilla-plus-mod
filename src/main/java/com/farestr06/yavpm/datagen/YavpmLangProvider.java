@@ -92,22 +92,39 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
     private static void enchantmentTranslations(TranslationBuilder builder) {
         builder.addEnchantment(YavpmEnchantments.CRITICAL_HIT, "Critical Hit");
+        builder.add("enchantment.yavpm.critical_hit.desc", "Gives you a chance to inflict critical hits dealing triple damage.");
         builder.addEnchantment(YavpmEnchantments.VOID_STRIKE, "Void Strike");
+        builder.add("enchantment.yavpm.void_strike.desc", "Applies a short damage multiplier to attacked enemies.");
         builder.addEnchantment(YavpmEnchantments.ILLAGERS_BANE, "Illager's Bane");
+        builder.add("enchantment.yavpm.illagers_bane.desc", "Increases damage against Illagers and their allies.");
         builder.addEnchantment(YavpmEnchantments.ENDERBANE, "Enderbane");
+        builder.add("enchantment.yavpm.enderbane.desc", "Extra damage is dealt to mobs under the influence of the §kEnder Dragon§r.");
+
+        builder.addEnchantment(YavpmEnchantments.PARRY, "Parry");
+        builder.add("enchantment.yavpm.parry.desc", "Causes damage to enemies when their attacks are blocked.");
 
         builder.addEnchantment(YavpmEnchantments.STIFFNESS, "Stiffness");
+        builder.add("enchantment.yavpm.stiffness.desc", "Slightly reduces damage from most sources when applied to Elytra.");
 
         builder.addEnchantment(YavpmEnchantments.MAULING, "Mauling");
+        builder.add("enchantment.yavpm.mauling.desc", "Increases the damage dealt by your tamed wolf.");
         builder.addEnchantment(YavpmEnchantments.BLEED_OUT, "Bleed Out");
+        builder.add("enchantment.yavpm.bleed_out.desc", "Your tamed wolf's attacks will cause enemies to bleed.");
         builder.addEnchantment(YavpmEnchantments.CRUSHING, "Crushing");
+        builder.add("enchantment.yavpm.crushing.desc", "Increases the effectiveness of your tamed wolf's attacks against armored targets.");
         builder.addEnchantment(YavpmEnchantments.RETRIEVE, "Retrieve");
+        builder.add("enchantment.yavpm.retrieve.desc", "Mobs will drop more loot when killed by your tamed wolf.");
         builder.addEnchantment(YavpmEnchantments.LAP_DOG, "Lap Dog");
-        builder.addEnchantment(YavpmEnchantments.PARRY, "Parry");
+        builder.add("enchantment.yavpm.lap_dog.desc", "You and your wolf are healed when it is not currently in battle.");
+        builder.addEnchantment(YavpmEnchantments.COUNTER, "Counter");
+        builder.add("enchantment.yavpm.counter.desc", "Causes damage to enemies when they attack your tamed wolf.");
         builder.addEnchantment(YavpmEnchantments.PLAGUE, "Plague");
+        builder.add("enchantment.yavpm.plague.desc", "Mobs that attack your tamed wolf are inflicted with the 'Infested' effect.");
 
         builder.addEnchantment(YavpmEnchantments.GALLOP, "Gallop");
+        builder.add("enchantment.yavpm.gallop.desc", "Increases your horse's movement speed.");
         builder.addEnchantment(YavpmEnchantments.BOUNDING, "Bounding");
+        builder.add("enchantment.yavpm.bounding.desc", "Increases your horse's jump height while also reducing fall damage.");
     }
 
     private static void worldGenTranslations(TranslationBuilder builder) {
@@ -270,6 +287,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmEntities.VOID_PHANTOM, "Void Phantom");
 
         builder.add(YavpmStatusEffects.VOID_TOUCHED.value(), "Void Touched");
+        builder.add(YavpmStatusEffects.WOUNDED.value(), "Wounded");
         builder.add(YavpmStatusEffects.CHOKING.value(), "Choking");
 
         builder.add("subtitles.entity.moongus.eat", "Moongus eats");
@@ -289,6 +307,10 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("death.attack.cut", "%1$s was cut to pieces");
         builder.add("death.attack.cut.player", "%1$s was cut to pieces by %2$s");
         builder.add("death.attack.cut.item", "%1$s was cut to pieces by %2$s using %3$s");
+
+        builder.add("death.attack.bleed", "%1$s bled out");
+        builder.add("death.attack.bleed.player", "%1$s was fatally wounded by %2$s");
+        builder.add("death.attack.bleed.item", "%1$s was fatally wounded by %2$s using %3$s");
 
         builder.add("death.attack.choke", "%1$s choked to death");
         builder.add("death.attack.choke.player", "%1$s got smoked out while fighting %2$s");
@@ -463,10 +485,6 @@ public class YavpmLangProvider extends FabricLanguageProvider {
     }
 
     private static void unusedTranslations(TranslationBuilder builder) {
-        builder.add("enchantment.yavpm.void_strike.desc", "Attacking a target applies a short damage multiplier.");
-        builder.add("enchantment.yavpm.illagers_bane.desc", "Attacks deal extra damage to Illagers and their allies.");
-        builder.add("enchantment.yavpm.enderbane.desc", "Extra damage is dealt to mobs under the influence of the §kEnder Dragon§r.");
-        builder.add("enchantment.yavpm.stiffness.desc", "Applies a weak protection effect to Elytra, reducing damage from most sources.");
         builder.add("enchantment.yavpm.critical_hit.desc", "Gives you a chance to inflict critical hits dealing triple damage.");
 
         builder.add("enchantment.yavpm.tempo_theft", "Tempo Theft");

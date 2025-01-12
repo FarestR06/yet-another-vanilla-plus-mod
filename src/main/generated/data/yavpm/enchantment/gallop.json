@@ -8,8 +8,8 @@
       {
         "amount": {
           "type": "minecraft:linear",
-          "base": 0.0405,
-          "per_level_above_first": 0.0105
+          "base": 0.04,
+          "per_level_above_first": 0.03
         },
         "attribute": "minecraft:generic.movement_speed",
         "id": "yavpm:enchantment.gallop",

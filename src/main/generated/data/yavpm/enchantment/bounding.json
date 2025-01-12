@@ -12,7 +12,17 @@
           "per_level_above_first": 0.75
         },
         "attribute": "minecraft:generic.jump_strength",
-        "id": "yavpm:enchantment.bounding",
+        "id": "yavpm:enchantment.bounding.jump_strength",
+        "operation": "add_value"
+      },
+      {
+        "amount": {
+          "type": "minecraft:linear",
+          "base": 3.0,
+          "per_level_above_first": 5.0
+        },
+        "attribute": "minecraft:generic.safe_fall_distance",
+        "id": "yavpm:enchantment.bounding.safe_fall_distance",
         "operation": "add_value"
       }
     ]

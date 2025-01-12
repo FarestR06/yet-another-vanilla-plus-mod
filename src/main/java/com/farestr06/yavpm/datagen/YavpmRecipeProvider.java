@@ -32,7 +32,6 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
 
     @Override
     public void generate(RecipeExporter exporter) {
-
         foodRecipes(exporter);
         wartRecipes(exporter);
 
@@ -44,13 +43,13 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
         obsidianRecipes(exporter);
         diamondRecipes(exporter);
 
-        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, YavpmBlocks.POLARIZED_GLASS)
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, YavpmBlocks.POLARIZED_GLASS, 8)
                 .input('T', Items.TINTED_GLASS)
                 .input('G', Items.GLOW_INK_SAC)
                 .pattern("TTT")
                 .pattern("TGT")
                 .pattern("TTT")
-                .criterion(hasItem(Items.TINTED_GLASS), conditionsFromItem(Items.TINTED_GLASS))
+                .criterion(hasItem(Items.GLOW_INK_SAC), conditionsFromItem(Items.GLOW_INK_SAC))
                 .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.POLARIZED_GLASS)));
 
         equipmentRecipes(exporter);
