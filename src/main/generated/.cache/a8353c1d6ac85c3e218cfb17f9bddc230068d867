@@ -1,7 +1,7 @@
-// 1.21.1	2025-01-07T13:56:40.373155549	Yet Another Vanilla Plus Mod/Tags for minecraft:damage_type
-787bd813e59d878809350b133970348ef6a05a56 data/minecraft/tags/damage_type/no_knockback.json
-a23e12f22b9c8b5d6a212a529ef2d29caa562128 data/minecraft/tags/damage_type/bypasses_invulnerability.json
-787bd813e59d878809350b133970348ef6a05a56 data/minecraft/tags/damage_type/no_impact.json
-787bd813e59d878809350b133970348ef6a05a56 data/minecraft/tags/damage_type/bypasses_armor.json
-353c7a592686c2899bbab5346be45b51dc730932 data/minecraft/tags/damage_type/wither_immune_to.json
+// 1.21.1	2025-01-12T13:52:14.886591	Yet Another Vanilla Plus Mod/Tags for minecraft:damage_type
 353c7a592686c2899bbab5346be45b51dc730932 data/minecraft/tags/damage_type/bypasses_effects.json
+a23e12f22b9c8b5d6a212a529ef2d29caa562128 data/minecraft/tags/damage_type/bypasses_invulnerability.json
+353c7a592686c2899bbab5346be45b51dc730932 data/minecraft/tags/damage_type/wither_immune_to.json
+787bd813e59d878809350b133970348ef6a05a56 data/minecraft/tags/damage_type/bypasses_armor.json
+787bd813e59d878809350b133970348ef6a05a56 data/minecraft/tags/damage_type/no_impact.json
+787bd813e59d878809350b133970348ef6a05a56 data/minecraft/tags/damage_type/no_knockback.json

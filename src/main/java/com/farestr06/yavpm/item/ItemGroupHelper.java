@@ -138,6 +138,7 @@ public class ItemGroupHelper {
         entries.add(YavpmBlocks.PRICKLE_SHOOT);
         entries.add(YavpmItems.ACORN);
         entries.add(YavpmItems.BANANA_SEEDS);
+        entries.add(YavpmItems.RICE_SEEDS);
         entries.add(YavpmItems.PEANUT);
         entries.add(YavpmItems.MAGIC_BEAN);
         entries.add(YavpmItems.WARPED_WART);
@@ -184,12 +185,16 @@ public class ItemGroupHelper {
         entries.add(YavpmItems.FAKE_BEEF);
         entries.add(YavpmItems.COOKED_FAKE_BEEF);
         entries.add(YavpmItems.BEAN_TOAST);
+        entries.add(YavpmItems.RICE_BAR);
+        entries.add(YavpmItems.RICE_PASTRY);
         entries.add(YavpmItems.SUSHI);
         entries.add(YavpmItems.SEA_SOUP);
         entries.add(YavpmItems.CHICKEN_SOUP);
         entries.add(YavpmItems.FANCY_MUSHROOM_STEW);
         entries.add(YavpmItems.FAKE_MILK_BUCKET);
         entries.add(YavpmItems.MOLY);
+        entries.add(YavpmItems.JELLY);
+        entries.add(YavpmItems.SWEET_BERRY_JELLY);
         entries.add(YavpmItems.FORTUNE_COOKIE);
     }
 

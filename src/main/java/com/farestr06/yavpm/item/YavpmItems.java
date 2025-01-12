@@ -115,13 +115,33 @@ public class YavpmItems {
             makeId("rice"),
             new Item.Settings()
     );
+    public static final Item RICE_SEEDS = makeAdvancedItem(
+            makeId("rice_seeds"),
+            new AliasedBlockItem(YavpmBlocks.RICE_CROP, new Item.Settings())
+    );
+
 
     public static final Item MAGIC_BEAN = makeAdvancedItem(
             makeId("magic_bean"),
             new AliasedBlockItem(YavpmBlocks.MAGIC_BEAN_CROP, new Item.Settings().food(YavpmFoods.MAGIC_BEAN))
     );
     // endregion
-
+    public static final Item JELLY = makeItem(
+            makeId("jelly"),
+            new Item.Settings().food(YavpmFoods.JELLY)
+    );
+    public static final Item SWEET_BERRY_JELLY = makeItem(
+            makeId("sweet_berry_jelly"),
+            new Item.Settings().food(YavpmFoods.SWEET_BERRY_JELLY)
+    );
+    public static final Item RICE_BAR = makeItem(
+            makeId("rice_bar"),
+            new Item.Settings().food(YavpmFoods.RICE_BAR)
+    );
+    public static final Item RICE_PASTRY = makeItem(
+            makeId("rice_pastry"),
+            new Item.Settings().food(YavpmFoods.RICE_PASTRY)
+    );
     public static final Item SUSHI = makeItem(
             makeId("sushi"),
             new Item.Settings().food(YavpmFoods.SUSHI)

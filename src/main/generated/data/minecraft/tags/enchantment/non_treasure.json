@@ -3,8 +3,12 @@
     "yavpm:critical_hit",
     "yavpm:illagers_bane",
     "yavpm:enderbane",
+    "yavpm:parry",
     "yavpm:mauling",
     "yavpm:lap_dog",
-    "yavpm:gallop"
+    "yavpm:counter",
+    "yavpm:plague",
+    "yavpm:gallop",
+    "yavpm:bounding"
   ]
 }

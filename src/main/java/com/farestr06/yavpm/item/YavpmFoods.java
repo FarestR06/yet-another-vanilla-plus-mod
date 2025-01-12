@@ -15,7 +15,10 @@ public class YavpmFoods {
             .nutrition(3)
             .saturationModifier(1f)
             .build();
-
+    public static final FoodComponent JELLY = new FoodComponent.Builder().nutrition(1).saturationModifier(0.4f).build();
+    public static final FoodComponent SWEET_BERRY_JELLY = new FoodComponent.Builder().nutrition(3).saturationModifier(0.5f).build();
+    public static final FoodComponent RICE_BAR = new FoodComponent.Builder().nutrition(4).saturationModifier(0.2f).build();
+    public static final FoodComponent RICE_PASTRY = new FoodComponent.Builder().nutrition(7).saturationModifier(0.3f).build();
     public static final FoodComponent CHEESE = new FoodComponent.Builder()
             .nutrition(5)
             .saturationModifier(0.3f)

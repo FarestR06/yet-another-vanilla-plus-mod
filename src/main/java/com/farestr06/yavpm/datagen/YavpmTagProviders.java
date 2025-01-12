@@ -12,6 +12,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
@@ -145,6 +146,10 @@ public class YavpmTagProviders {
                     YavpmItems.FAKE_BEEF,
                     YavpmItems.COOKED_FAKE_BEEF,
                     YavpmItems.TOFU,
+                    YavpmItems.JELLY,
+                    YavpmItems.SWEET_BERRY_JELLY,
+                    YavpmItems.RICE_BAR,
+                    YavpmItems.RICE_PASTRY,
                     YavpmItems.SUSHI,
                     YavpmItems.SEA_SOUP,
                     YavpmItems.CHICKEN_SOUP,
@@ -174,11 +179,12 @@ public class YavpmTagProviders {
             getOrCreateTagBuilder(ConventionalItemTags.COOKIE_FOODS)
                     .add(YavpmItems.FORTUNE_COOKIE);
             getOrCreateTagBuilder(ConventionalItemTags.CANDY_FOODS)
-                    .add(YavpmItems.CHOCOLATE);
+                    .add(YavpmItems.CHOCOLATE)
+                    .add(YavpmItems.JELLY)
+                    .add(YavpmItems.SWEET_BERRY_JELLY);
             getOrCreateTagBuilder(ConventionalItemTags.FOOD_POISONING_FOODS).add(
                     YavpmItems.PEANUT
             );
-
 
             getOrCreateTagBuilder(ConventionalItemTags.ANIMAL_FOODS).add(
                     YavpmItems.ACORN,
@@ -379,6 +385,13 @@ public class YavpmTagProviders {
             getOrCreateTagBuilder(ConventionalBlockTags.OBSIDIANS).add(
                     YavpmBlocks.GLOWING_OBSIDIAN,
                     YavpmBlocks.SOUL_GLOWING_OBSIDIAN
+            );
+
+            getOrCreateTagBuilder(YavpmTags.Blocks.RICE_GROWABLE_ON).add(
+                    Blocks.SAND,
+                    Blocks.GRAVEL,
+                    Blocks.CLAY,
+                    Blocks.DIRT
             );
 
             getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(YavpmBlocks.FAKE_LOG);

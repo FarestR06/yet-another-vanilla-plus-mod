@@ -1,6 +1,8 @@
 {
   "values": [
     "yavpm:void_strike",
-    "yavpm:stiffness"
+    "yavpm:stiffness",
+    "yavpm:bleed_out",
+    "yavpm:crushing"
   ]
 }

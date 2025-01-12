@@ -7,6 +7,7 @@ import com.farestr06.yavpm.item.YavpmItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableProvider;
+import net.minecraft.block.CropBlock;
 import net.minecraft.block.SweetBerryBushBlock;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
@@ -63,7 +64,7 @@ public class YavpmLootProviders {
 
             addDropWithSilkTouch(YavpmBlocks.POLARIZED_GLASS);
 
-            modCropDrops();
+            cropDrops();
 
             appleDrops();
             persimmonDrops();
@@ -158,7 +159,7 @@ public class YavpmLootProviders {
             );
         }
 
-        private void modCropDrops() {
+        private void cropDrops() {
             addDrop(
                     YavpmBlocks.BITTER_BERRY_BUSH,
                     (net.minecraft.block.Block block) -> this.applyExplosionDecay(
@@ -177,6 +178,11 @@ public class YavpmLootProviders {
                                     )
                     )
             );
+
+            BlockStatePropertyLootCondition.Builder builder2 = BlockStatePropertyLootCondition.builder(YavpmBlocks.RICE_CROP)
+                    .properties(StatePredicate.Builder.create()
+                            .exactMatch(CropBlock.AGE, 7));
+            this.addDrop(YavpmBlocks.RICE_CROP, this.cropDrops(YavpmBlocks.RICE_CROP, YavpmItems.RICE, YavpmItems.RICE_SEEDS, builder2));
 
             BlockStatePropertyLootCondition.Builder peanutConditionBuilder = BlockStatePropertyLootCondition.builder(YavpmBlocks.PEANUT_CROP).properties(StatePredicate.Builder.create()
                     .exactMatch(PeanutCropBlock.AGE, 3));

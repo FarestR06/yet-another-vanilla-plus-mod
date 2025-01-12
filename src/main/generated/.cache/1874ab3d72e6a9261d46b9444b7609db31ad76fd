@@ -1,9 +1,9 @@
-// 1.21.1	2025-01-07T13:56:40.368323172	Yet Another Vanilla Plus Mod/Tags for minecraft:entity_type
-0f085062ced42ff4e452297022f7c5400d42d01c data/yavpm/tags/entity_type/humanoid_skeletons.json
-437e9fb8f764a695ff40e300662ff5b609f38e62 data/yavpm/tags/entity_type/humanoid_zombies.json
-5bd4a93460d1b11374db58ba8722ea5c95017c90 data/yavpm/tags/entity_type/sensitive_to_enderbane_25.json
-e00f2931577049b9a4400a87ed9c249373be376c data/yavpm/tags/entity_type/sensitive_to_enderbane_100.json
-4266c893b9d2a02bc0df316f75d05b3a9412122d data/yavpm/tags/entity_type/sensitive_to_enderbane_75.json
-ac7b3a8404ad4db1c36ab972205141fa995435f4 data/yavpm/tags/entity_type/sensitive_to_enderbane_50.json
+// 1.21.1	2025-01-12T13:52:14.881359	Yet Another Vanilla Plus Mod/Tags for minecraft:entity_type
 2400512e7e5706a8ce65fb6c2df83377236ddc54 data/minecraft/tags/entity_type/fall_damage_immune.json
+5bd4a93460d1b11374db58ba8722ea5c95017c90 data/yavpm/tags/entity_type/sensitive_to_enderbane_25.json
 558d0b528fb404dce033375a886694da0a08326b data/yavpm/tags/entity_type/sensitive_to_illagers_bane.json
+e00f2931577049b9a4400a87ed9c249373be376c data/yavpm/tags/entity_type/sensitive_to_enderbane_100.json
+437e9fb8f764a695ff40e300662ff5b609f38e62 data/yavpm/tags/entity_type/humanoid_zombies.json
+4266c893b9d2a02bc0df316f75d05b3a9412122d data/yavpm/tags/entity_type/sensitive_to_enderbane_75.json
+0f085062ced42ff4e452297022f7c5400d42d01c data/yavpm/tags/entity_type/humanoid_skeletons.json
+ac7b3a8404ad4db1c36ab972205141fa995435f4 data/yavpm/tags/entity_type/sensitive_to_enderbane_50.json

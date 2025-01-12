@@ -1,7 +1,8 @@
 package com.farestr06.yavpm.block;
 
 import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
-import com.farestr06.yavpm.block.custom.*;
+import com.farestr06.yavpm.block.custom.PolarizedGlassBlock;
+import com.farestr06.yavpm.block.custom.PrickleLogBlock;
 import com.farestr06.yavpm.block.custom.crop.*;
 import com.farestr06.yavpm.block.custom.fake.FakeLogBlock;
 import com.farestr06.yavpm.block.custom.fake.FakeOreBlock;
@@ -49,6 +50,9 @@ public class YavpmBlocks {
 
     public static final Block BANANA_CROP = makeAdvancedBlock(makeId("banana_crop"),
             new BananaCropBlock(AbstractBlock.Settings.copy(Blocks.POTATOES)));
+
+    public static final Block RICE_CROP = makeAdvancedBlock(makeId("rice_crop"),
+            new RiceCropBlock(AbstractBlock.Settings.copy(Blocks.WHEAT)));
 
     public static final Block PEANUT_CROP = makeAdvancedBlock(makeId("peanut_crop"),
             new PeanutCropBlock(AbstractBlock.Settings.copy(Blocks.POTATOES)));

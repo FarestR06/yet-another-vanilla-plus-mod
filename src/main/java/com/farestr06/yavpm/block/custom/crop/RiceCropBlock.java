@@ -1,5 +1,6 @@
 package com.farestr06.yavpm.block.custom.crop;
 
+import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.util.YavpmTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -11,7 +12,6 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.Items;
 import net.minecraft.registry.tag.FluidTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
@@ -28,10 +28,9 @@ public class RiceCropBlock extends CropBlock implements FluidFillable {
 
     @Override
     protected void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if (world.getBaseLightLevel(pos, 0) >= 9) {
+        if (world.getBaseLightLevel(pos, 0) >= 7) {
             int i = this.getAge(state);
             if (i < this.getMaxAge()) {
-                float f = getAvailableMoisture(this, world, pos);
                 if (random.nextInt(20) == 0) {
                     world.setBlockState(pos, this.withAge(i + 1), Block.NOTIFY_LISTENERS);
                 }
@@ -41,8 +40,7 @@ public class RiceCropBlock extends CropBlock implements FluidFillable {
 
     @Override
     protected ItemConvertible getSeedsItem() {
-        // TODO: Add seeds
-        return Items.WHEAT_SEEDS;
+        return YavpmItems.RICE_SEEDS;
     }
 
     @Nullable
@@ -66,7 +64,7 @@ public class RiceCropBlock extends CropBlock implements FluidFillable {
 
     @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        return floor.isIn(YavpmTags.Blocks.RICE_GROWABLE_ON);
+        return floor.isSideSolidFullSquare(world, pos, Direction.UP) && floor.isIn(YavpmTags.Blocks.RICE_GROWABLE_ON);
     }
 
     @Override

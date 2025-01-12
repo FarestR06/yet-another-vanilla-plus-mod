@@ -8,10 +8,19 @@
       {
         "affected": "attacker",
         "effect": {
-          "type": "minecraft:damage_entity",
-          "damage_type": "minecraft:thorns",
-          "max_damage": 4.0,
-          "min_damage": 1.0
+          "type": "minecraft:all_of",
+          "effects": [
+            {
+              "type": "yavpm:parry",
+              "damage_type": "minecraft:thorns",
+              "max_damage": 5.0,
+              "min_damage": 1.0
+            },
+            {
+              "type": "minecraft:damage_item",
+              "amount": 2.0
+            }
+          ]
         },
         "enchanted": "victim",
         "requirements": {
@@ -28,7 +37,6 @@
       }
     ]
   },
-  "exclusive_set": "#yavpm:exclusive_set/wolf_armor/defense",
   "max_cost": {
     "base": 60,
     "per_level_above_first": 20
@@ -38,10 +46,10 @@
     "base": 10,
     "per_level_above_first": 20
   },
-  "primary_items": "#yavpm:enchantable/wolf_armor",
+  "primary_items": "#c:tools/shield",
   "slots": [
-    "body"
+    "offhand"
   ],
-  "supported_items": "#yavpm:enchantable/wolf_armor",
-  "weight": 3
+  "supported_items": "#c:tools/shield",
+  "weight": 8
 }

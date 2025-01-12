@@ -142,6 +142,9 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.PEANUT, "Peanut");
         builder.add(YavpmItems.COOKED_PEANUT, "Roasted Peanut");
 
+        builder.add(YavpmItems.JELLY, "Jelly");
+        builder.add(YavpmItems.SWEET_BERRY_JELLY, "Sweet Berry Jelly");
+
         builder.add(YavpmBlocks.BITTER_BERRY_BUSH, "Bitter Berry Bush");
         builder.add(YavpmItems.BITTER_BERRIES, "Bitter Berries");
 
@@ -159,6 +162,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.TRUFFLE, "Truffle");
 
         builder.add(YavpmItems.RICE, "Rice");
+        builder.add(YavpmItems.RICE_BAR, "Rice Bar");
+        builder.add(YavpmItems.RICE_PASTRY, "Rice Pastry");
 
         builder.add(YavpmItems.CHEESE, "Cheese");
 

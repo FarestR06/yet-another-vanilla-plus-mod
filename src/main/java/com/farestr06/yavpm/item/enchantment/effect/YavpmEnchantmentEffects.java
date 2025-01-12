@@ -17,5 +17,6 @@ public class YavpmEnchantmentEffects {
     public static void init() {
         YetAnotherVanillaPlusMod.LOGGER.info("Registering enchantment effects for YAVPM!");
         registerEntityEffect("lap_dog", LapDogEnchantmentEffect.CODEC );
+        registerEntityEffect("parry", ParryEnchantmentEffect.CODEC );
     }
 }

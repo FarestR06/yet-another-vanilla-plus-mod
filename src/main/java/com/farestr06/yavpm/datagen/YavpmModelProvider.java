@@ -118,7 +118,12 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.register(YavpmItems.FAKE_MILK_BUCKET, Models.GENERATED);
         generator.register(YavpmItems.TOFU, Models.GENERATED);
 
+        generator.register(YavpmItems.JELLY, Models.GENERATED);
+        generator.register(YavpmItems.SWEET_BERRY_JELLY, Models.GENERATED);
+
         generator.register(YavpmItems.RICE, Models.GENERATED);
+        generator.register(YavpmItems.RICE_BAR, Models.GENERATED);
+        generator.register(YavpmItems.RICE_PASTRY, Models.GENERATED);
         generator.register(YavpmItems.SUSHI, Models.GENERATED);
         generator.register(YavpmItems.SEA_SOUP, Models.GENERATED);
 
@@ -131,6 +136,7 @@ public class YavpmModelProvider extends FabricModelProvider {
                 BlockStateModelGenerator.TintType.NOT_TINTED,
                 BitterBerryBushBlock.AGE, 0, 1, 2, 3
         );
+        generator.registerCrop(YavpmBlocks.RICE_CROP, RiceCropBlock.AGE, 0, 1, 2, 3, 4, 5, 6, 7);
         generator.registerCrop(YavpmBlocks.WARPED_WART, Properties.AGE_3, 0, 1, 1, 2);
         generator.registerCrop(YavpmBlocks.PEANUT_CROP, PeanutCropBlock.AGE, 0, 1, 2, 3);
         registerBananaCrop(generator);

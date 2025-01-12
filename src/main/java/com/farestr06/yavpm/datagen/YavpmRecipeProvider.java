@@ -187,6 +187,37 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(Items.COCOA_BEANS), conditionsFromItem(Items.COCOA_BEANS))
                 .offerTo(exporter, makeId(getRecipeName(YavpmItems.CHOCOLATE)))
         ;
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.JELLY, 8)
+                .input(Items.BONE_MEAL)
+                .input(Items.BONE_MEAL)
+                .input(Items.BONE_MEAL)
+                .input(Items.SUGAR)
+                .input(Items.WATER_BUCKET)
+                .criterion(hasItem(Items.BONE_MEAL), conditionsFromItem(Items.BONE_MEAL))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.JELLY)));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.SWEET_BERRY_JELLY)
+                .input(YavpmItems.JELLY)
+                .input(Items.SWEET_BERRIES)
+                .criterion(hasItem(YavpmItems.JELLY), conditionsFromItem(YavpmItems.JELLY))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.SWEET_BERRY_JELLY)));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.RICE_BAR, 3)
+                .input(YavpmItems.RICE)
+                .input(YavpmItems.RICE)
+                .input(YavpmItems.RICE)
+                .input(YavpmItems.JELLY)
+                .criterion(hasItem(YavpmItems.JELLY), conditionsFromItem(YavpmItems.JELLY))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.RICE_BAR)));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.RICE_PASTRY, 2)
+                .input(YavpmItems.RICE)
+                .input(YavpmItems.RICE)
+                .input(YavpmItems.RICE)
+                .input(Items.SUGAR)
+                .criterion(hasItem(YavpmItems.RICE), conditionsFromItem(YavpmItems.RICE))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.RICE_PASTRY)));
     }
 
     private static void magicBeanFoods(RecipeExporter exporter) {

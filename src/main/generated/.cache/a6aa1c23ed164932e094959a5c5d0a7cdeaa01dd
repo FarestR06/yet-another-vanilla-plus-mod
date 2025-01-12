@@ -1,10 +1,10 @@
-// 1.21.1	2025-01-07T13:56:40.373833863	Yet Another Vanilla Plus Mod/Tags for minecraft:worldgen/biome
-f7a8ace2010b556b20d168b46bb647b3a3bf6c7a data/yavpm/tags/worldgen/biome/fake_log_is_spruce.json
-8345d82f13438c63f08b7a38c632c2ef6ce038a6 data/yavpm/tags/worldgen/biome/fake_log_is_acacia.json
-f4ffb51afcafaca883f3c6248c7dc605a89d7f8a data/yavpm/tags/worldgen/biome/fake_log_is_birch.json
-b95f2e5677841946d287305b14c97c69f59b6db1 data/yavpm/tags/worldgen/biome/spawns_crimson_moongus.json
+// 1.21.1	2025-01-12T13:52:14.887569	Yet Another Vanilla Plus Mod/Tags for minecraft:worldgen/biome
 0f123eb19a6362607084585bf0f49a97da419fbe data/yavpm/tags/worldgen/biome/fake_log_is_jungle.json
-37b54ee0e046a9c50d0e65ec9a6585e40755ca04 data/yavpm/tags/worldgen/biome/spawns_warped_moongus.json
 9e2b7b8df3fb20d96903d0086722adf15e71fb38 data/yavpm/tags/worldgen/biome/fake_log_is_mangrove.json
+f4ffb51afcafaca883f3c6248c7dc605a89d7f8a data/yavpm/tags/worldgen/biome/fake_log_is_birch.json
+8345d82f13438c63f08b7a38c632c2ef6ce038a6 data/yavpm/tags/worldgen/biome/fake_log_is_acacia.json
+b95f2e5677841946d287305b14c97c69f59b6db1 data/yavpm/tags/worldgen/biome/spawns_crimson_moongus.json
+37b54ee0e046a9c50d0e65ec9a6585e40755ca04 data/yavpm/tags/worldgen/biome/spawns_warped_moongus.json
 8fa151e2ee1d0f8b976788aaa140371a069949f7 data/yavpm/tags/worldgen/biome/fake_log_is_cherry.json
+f7a8ace2010b556b20d168b46bb647b3a3bf6c7a data/yavpm/tags/worldgen/biome/fake_log_is_spruce.json
 5f176659fa27569cc678ddae4a306c2055a89a16 data/yavpm/tags/worldgen/biome/fake_log_is_dark_oak.json
