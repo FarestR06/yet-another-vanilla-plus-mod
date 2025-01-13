@@ -180,6 +180,8 @@ public class ItemGroupHelper {
         entries.add(YavpmItems.BANANA);
         entries.add(YavpmItems.MAGIC_BEAN);
         entries.add(YavpmItems.TRUFFLE);
+        entries.add(YavpmItems.CHEESE);
+        entries.add(YavpmItems.TOFU);
         entries.add(YavpmItems.PEANUT);
         entries.add(YavpmItems.COOKED_PEANUT);
         entries.add(YavpmItems.COOKED_EGG);
