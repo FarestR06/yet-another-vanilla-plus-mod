@@ -58,9 +58,19 @@ public class YavpmItems {
             new RuneItem(Text.translatable("item.yavpm.rune_speed.tooltip").formatted(Formatting.YELLOW))
     );
     // endregion
+    public static final Item BREADING = makeSimpleItem(makeId("breading"));
+    public static final Item FRIED_BANANA = makeItem(
+            makeId("fried_banana"),
+            new Item.Settings().food(YavpmFoods.FRIED_BANANA)
+    );
+    public static final Item FRIED_COD = makeItem(
+            makeId("fried_cod"),
+            new Item.Settings().food(YavpmFoods.FRIED_COD)
+    );
+
     public static final Item BITTER_BERRIES = makeAdvancedItem(
             makeId("bitter_berries"),
-            new AliasedBlockItem(YavpmBlocks.BITTER_BERRY_BUSH,new Item.Settings().food(FoodComponents.SWEET_BERRIES))
+            new AliasedBlockItem(YavpmBlocks.BITTER_BERRY_BUSH, new Item.Settings().food(FoodComponents.SWEET_BERRIES))
     );
     // region Banana
     public static final Item BANANA = makeItem(
@@ -384,6 +394,7 @@ public class YavpmItems {
         compostables.add(YavpmBlocks.PERSIMMON_SAPLING.asItem(), 0.3f);
         compostables.add(YavpmBlocks.PRICKLE_SHOOT.asItem(), 0.3f);
         compostables.add(BANANA_SEEDS, 0.3f);
+        compostables.add(RICE_SEEDS, 0.3f);
         compostables.add(ACORN, 0.3f);
 
         compostables.add(PEANUT, 0.5f);
@@ -391,7 +402,11 @@ public class YavpmItems {
         compostables.add(MAGIC_BEAN, 0.5f);
 
         compostables.add(BANANA, 0.65f);
+        compostables.add(RICE, 0.65f);
         compostables.add(PERSIMMON, 0.65f);
+
+        compostables.add(RICE_BAR, 0.85f);
+        compostables.add(RICE_PASTRY, 0.85f);
 
         compostables.add(MOLY, 1f);
         compostables.add(TRUFFLE, 1f);

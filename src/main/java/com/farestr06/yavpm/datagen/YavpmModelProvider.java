@@ -95,6 +95,10 @@ public class YavpmModelProvider extends FabricModelProvider {
     private static void food(ItemModelGenerator generator) {
         generator.register(YavpmItems.MOLY, Models.GENERATED);
 
+        generator.register(YavpmItems.BREADING, Models.GENERATED);
+        generator.register(YavpmItems.FRIED_BANANA, Models.GENERATED);
+        generator.register(YavpmItems.FRIED_COD, Models.GENERATED);
+
         generator.register(YavpmItems.BANANA, Models.GENERATED);
         generator.register(YavpmItems.COOKED_PEANUT, Models.GENERATED);
         generator.register(YavpmItems.CHOCOLATE, Models.GENERATED);

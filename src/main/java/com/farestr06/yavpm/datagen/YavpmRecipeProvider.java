@@ -145,6 +145,25 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .input(Items.BOWL)
                 .criterion(hasItem(Items.COOKED_CHICKEN), conditionsFromItem(Items.COOKED_CHICKEN))
                 .offerTo(exporter, makeId(getRecipeName(YavpmItems.CHICKEN_SOUP)));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, YavpmItems.BREADING, 4)
+                .input(Items.WHEAT)
+                .input(Items.BLAZE_POWDER)
+                .criterion(hasItem(Items.BLAZE_POWDER), conditionsFromItem(Items.BLAZE_POWDER))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.BREADING)));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.FRIED_BANANA)
+                .input(YavpmItems.BANANA)
+                .input(Items.SUGAR)
+                .input(YavpmItems.BREADING)
+                .criterion(hasItem(YavpmItems.BREADING), conditionsFromItem(YavpmItems.BREADING))
+                .offerTo(exporter, makeId(getRecipeName(YavpmItems.FRIED_BANANA)));
+
+        ShapelessRecipeJsonBuilder.create(RecipeCategory.FOOD, YavpmItems.FRIED_COD)
+                .input(Items.COOKED_COD)
+                .input(YavpmItems.BREADING)
+                .criterion(hasItem(YavpmItems.BREADING), conditionsFromItem(YavpmItems.BREADING))
+                .offerTo(exporter, makeId(getRecipeName(Items.COOKED_COD)));
     }
 
     private static void seafoods(RecipeExporter exporter) {

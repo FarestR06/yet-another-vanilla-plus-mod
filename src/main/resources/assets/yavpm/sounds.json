@@ -52,6 +52,23 @@
     ],
     "subtitle": "subtitles.item.baby_key.turn"
   },
+  "enchantment.figure_eight": {
+    "sounds": [
+      "ui/stonecutter/cut1",
+      {
+        "name": "ui/stonecutter/cut1",
+        "volume": 0.2,
+        "pitch": 4
+      },
+      "ui/stonecutter/cut2",
+      {
+        "name": "ui/stonecutter/cut2",
+        "volume": 0.2,
+        "pitch": 4
+      }
+    ],
+    "subtitle": "subtitles.enchantment.figure_eight"
+  },
   "music_disc.magnetic_circuit": {
     "sounds": [
       {

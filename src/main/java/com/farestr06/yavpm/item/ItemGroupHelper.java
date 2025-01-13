@@ -183,6 +183,8 @@ public class ItemGroupHelper {
         entries.add(YavpmItems.PEANUT);
         entries.add(YavpmItems.COOKED_PEANUT);
         entries.add(YavpmItems.COOKED_EGG);
+        entries.add(YavpmItems.FRIED_BANANA);
+        entries.add(YavpmItems.FRIED_COD);
         entries.add(YavpmItems.FAKE_BEEF);
         entries.add(YavpmItems.COOKED_FAKE_BEEF);
         entries.add(YavpmItems.BEAN_TOAST);
@@ -205,6 +207,7 @@ public class ItemGroupHelper {
         entries.add(YavpmItems.GRAPHITE);
         entries.add(YavpmBlocks.GRAPHITE_BLOCK);
         entries.add(YavpmBlocks.GRAPHENE_BLOCK);
+        entries.add(YavpmItems.BREADING);
         entries.add(YavpmItems.MAGIC_BEAN);
         entries.add(YavpmItems.RICE);
         entries.add(YavpmItems.DISC_FRAGMENT_MAGNETIC_CIRCUIT);

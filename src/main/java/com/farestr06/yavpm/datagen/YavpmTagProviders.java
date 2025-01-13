@@ -133,6 +133,8 @@ public class YavpmTagProviders {
         private void foodTags() {
             getOrCreateTagBuilder(ConventionalItemTags.FOODS).add(
                     YavpmItems.BANANA,
+                    YavpmItems.FRIED_BANANA,
+                    YavpmItems.FRIED_COD,
                     YavpmItems.PEANUT,
                     YavpmItems.COOKED_PEANUT,
                     YavpmItems.COOKED_EGG,
@@ -162,8 +164,11 @@ public class YavpmTagProviders {
                     YavpmItems.FAKE_BEEF
             );
             getOrCreateTagBuilder(ConventionalItemTags.COOKED_MEAT_FOODS).add(
-                    YavpmItems.COOKED_FAKE_BEEF
+                    YavpmItems.COOKED_FAKE_BEEF,
+                    YavpmItems.FRIED_COD
             );
+            getOrCreateTagBuilder(ConventionalItemTags.COOKED_FISH_FOODS)
+                    .add(YavpmItems.FRIED_COD);
             getOrCreateTagBuilder(ConventionalItemTags.FRUIT_FOODS).add(
                     YavpmItems.BANANA
             );
@@ -746,6 +751,7 @@ public class YavpmTagProviders {
                     YavpmEnchantments.CRITICAL_HIT,
                     YavpmEnchantments.ILLAGERS_BANE,
                     YavpmEnchantments.ENDERBANE,
+                    YavpmEnchantments.FIGURE_EIGHT,
                     YavpmEnchantments.PARRY,
                     YavpmEnchantments.MAULING,
                     YavpmEnchantments.LAP_DOG,

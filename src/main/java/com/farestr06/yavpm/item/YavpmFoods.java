@@ -53,6 +53,14 @@ public class YavpmFoods {
             .nutrition(3)
             .saturationModifier(0.5f)
             .build();
+    public static final FoodComponent FRIED_BANANA = new FoodComponent.Builder()
+            .nutrition(6)
+            .saturationModifier(1f)
+            .build();
+    public static final FoodComponent FRIED_COD = new FoodComponent.Builder()
+            .nutrition(10)
+            .saturationModifier(1.2f)
+            .build();
 
     public static final FoodComponent RAW_PEANUT = new FoodComponent.Builder()
             .nutrition(1)

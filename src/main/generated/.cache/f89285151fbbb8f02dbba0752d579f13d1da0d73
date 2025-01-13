@@ -1,19 +1,20 @@
-// 1.21.1	2025-01-13T12:45:41.894616	Yet Another Vanilla Plus Mod/Misc Data
-59cf53dcb9e52ab9bd486699b67b9b7377fcf611 data/yavpm/enchantment/counter.json
-40904e59e397924b3ab171c3ddb5e26bcfec1133 data/yavpm/enchantment/stiffness.json
-1d36cb299e902c8e34a11418070588e006da75b7 data/yavpm/damage_type/cut.json
-e651016ddd6a40d40c726024ae08b529325199bb data/yavpm/enchantment/gallop.json
-aeb659e2b3490dace6995c268c635a3e8253b791 data/yavpm/enchantment/mauling.json
-c2dabf02449ef90c93072be5d6a5ae1fbc706d93 data/yavpm/enchantment/enderbane.json
-60cf6731f10b5b3f3918036e9e487d8be574b00c data/yavpm/enchantment/bounding.json
-17eecd3c5a3c080f24bbf0128ece3f11a8fedc0b data/yavpm/enchantment/plague.json
-af368523d445cd5e90a17367d9922c2b3d304b06 data/yavpm/enchantment/retrieve.json
-12b23f0b372d3783bcc2dd959ed2cb6290804a08 data/yavpm/enchantment/bleed_out.json
-f2307d7b847db8e2973b81472cb9522c900e3059 data/yavpm/damage_type/choke.json
-6ba0db7f7110b566ab715b7969604b1a694fd78c data/yavpm/enchantment/parry.json
-1606a23b7c8f1d31fc0d9ebae79321e6b984d388 data/yavpm/enchantment/critical_hit.json
-c36b0940d737b4c7f0960f214a241d20233ee9cb data/yavpm/enchantment/lap_dog.json
-61a226ea1ff52d75c68a6b60730325b350001d3d data/yavpm/enchantment/illagers_bane.json
+// 1.21.1	2025-01-13T16:55:14.57654881	Yet Another Vanilla Plus Mod/Misc Data
 2b581616c48fe0c833f919ad5ab58fb8db354e51 data/yavpm/damage_type/bleed.json
-ebe2be31c9a20807bbd01e6da76617ec9291385b data/yavpm/enchantment/void_strike.json
+af368523d445cd5e90a17367d9922c2b3d304b06 data/yavpm/enchantment/retrieve.json
 20f4f8601d8bba066fdd1231ef08bb45d2dd1f09 data/yavpm/enchantment/crushing.json
+59cf53dcb9e52ab9bd486699b67b9b7377fcf611 data/yavpm/enchantment/counter.json
+e651016ddd6a40d40c726024ae08b529325199bb data/yavpm/enchantment/gallop.json
+60cf6731f10b5b3f3918036e9e487d8be574b00c data/yavpm/enchantment/bounding.json
+12b23f0b372d3783bcc2dd959ed2cb6290804a08 data/yavpm/enchantment/bleed_out.json
+6ba0db7f7110b566ab715b7969604b1a694fd78c data/yavpm/enchantment/parry.json
+6c85f444155852c5ddc46df42ecb2afd8e5eff77 data/yavpm/enchantment/figure_eight.json
+40904e59e397924b3ab171c3ddb5e26bcfec1133 data/yavpm/enchantment/stiffness.json
+ebe2be31c9a20807bbd01e6da76617ec9291385b data/yavpm/enchantment/void_strike.json
+c36b0940d737b4c7f0960f214a241d20233ee9cb data/yavpm/enchantment/lap_dog.json
+aeb659e2b3490dace6995c268c635a3e8253b791 data/yavpm/enchantment/mauling.json
+17eecd3c5a3c080f24bbf0128ece3f11a8fedc0b data/yavpm/enchantment/plague.json
+61a226ea1ff52d75c68a6b60730325b350001d3d data/yavpm/enchantment/illagers_bane.json
+1d36cb299e902c8e34a11418070588e006da75b7 data/yavpm/damage_type/cut.json
+f2307d7b847db8e2973b81472cb9522c900e3059 data/yavpm/damage_type/choke.json
+c2dabf02449ef90c93072be5d6a5ae1fbc706d93 data/yavpm/enchantment/enderbane.json
+1606a23b7c8f1d31fc0d9ebae79321e6b984d388 data/yavpm/enchantment/critical_hit.json

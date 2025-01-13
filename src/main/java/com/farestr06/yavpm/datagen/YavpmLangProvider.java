@@ -101,6 +101,10 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.addEnchantment(YavpmEnchantments.ENDERBANE, "Enderbane");
         builder.add("enchantment.yavpm.enderbane.desc", "Extra damage is dealt to mobs under the influence of the §kEnder Dragon§r.");
 
+        builder.addEnchantment(YavpmEnchantments.FIGURE_EIGHT, "Figure Eight");
+        builder.add("enchantment.yavpm.figure_eight.desc", "Increases movement speed on ice.");
+        builder.add("subtitles.enchantment.figure_eight", "Boots skate");
+
         builder.addEnchantment(YavpmEnchantments.PARRY, "Parry");
         builder.add("enchantment.yavpm.parry.desc", "Causes damage to enemies when their attacks are blocked.");
 
@@ -149,6 +153,10 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.BITTER_BERRY_BUSH, "Bitter Berry Bush");
         builder.add(YavpmItems.BITTER_BERRIES, "Bitter Berries");
 
+        builder.add(YavpmItems.BREADING, "Blaze Breading");
+        builder.add(YavpmItems.FRIED_BANANA, "Fried Bananas");
+        builder.add(YavpmItems.FRIED_COD, "Fried Cod");
+
         builder.add(YavpmBlocks.BANANA_CROP, "Banana Crops");
         builder.add(YavpmItems.BANANA, "Banana Bunch");
         builder.add(YavpmItems.BANANA_SEEDS, "Banana Seeds");
@@ -163,6 +171,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.TRUFFLE, "Truffle");
 
         builder.add(YavpmItems.RICE, "Rice");
+        builder.add(YavpmItems.RICE_SEEDS, "Rice Seeds");
         builder.add(YavpmItems.RICE_BAR, "Rice Bar");
         builder.add(YavpmItems.RICE_PASTRY, "Rice Pastry");
 

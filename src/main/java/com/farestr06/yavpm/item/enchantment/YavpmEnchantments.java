@@ -3,6 +3,7 @@ package com.farestr06.yavpm.item.enchantment;
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import com.farestr06.yavpm.item.enchantment.effect.LapDogEnchantmentEffect;
 import com.farestr06.yavpm.item.enchantment.effect.ParryEnchantmentEffect;
+import com.farestr06.yavpm.util.YavpmSounds;
 import com.farestr06.yavpm.util.YavpmTags;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.component.EnchantmentEffectComponentTypes;
@@ -12,9 +13,7 @@ import net.minecraft.enchantment.EnchantmentLevelBasedValue;
 import net.minecraft.enchantment.effect.AllOfEnchantmentEffects;
 import net.minecraft.enchantment.effect.AttributeEnchantmentEffect;
 import net.minecraft.enchantment.effect.EnchantmentEffectTarget;
-import net.minecraft.enchantment.effect.entity.ApplyMobEffectEnchantmentEffect;
-import net.minecraft.enchantment.effect.entity.DamageEntityEnchantmentEffect;
-import net.minecraft.enchantment.effect.entity.DamageItemEnchantmentEffect;
+import net.minecraft.enchantment.effect.entity.*;
 import net.minecraft.enchantment.effect.value.AddEnchantmentEffect;
 import net.minecraft.enchantment.effect.value.MultiplyEnchantmentEffect;
 import net.minecraft.entity.EntityType;
@@ -22,22 +21,23 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.loot.condition.DamageSourcePropertiesLootCondition;
-import net.minecraft.loot.condition.EntityPropertiesLootCondition;
-import net.minecraft.loot.condition.RandomChanceLootCondition;
+import net.minecraft.loot.condition.*;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.provider.number.EnchantmentLevelLootNumberProvider;
+import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.TagPredicate;
-import net.minecraft.predicate.entity.DamageSourcePredicate;
-import net.minecraft.predicate.entity.EntityPredicate;
-import net.minecraft.predicate.entity.EntityTypePredicate;
+import net.minecraft.predicate.entity.*;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntryList;
+import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.registry.tag.DamageTypeTags;
 import net.minecraft.registry.tag.EnchantmentTags;
 import net.minecraft.registry.tag.ItemTags;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.math.floatprovider.ConstantFloatProvider;
+import net.minecraft.util.math.floatprovider.UniformFloatProvider;
 
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
@@ -48,11 +48,15 @@ public class YavpmEnchantments {
     public static final RegistryKey<Enchantment> ILLAGERS_BANE = registerKey("illagers_bane");
     public static final RegistryKey<Enchantment> ENDERBANE = registerKey("enderbane");
 
+    // Boots
+    public static final RegistryKey<Enchantment> FIGURE_EIGHT = registerKey("figure_eight");
+
     // Shield
     public static final RegistryKey<Enchantment> PARRY = registerKey("parry");
 
     // Elytra
     public static final RegistryKey<Enchantment> STIFFNESS = registerKey("stiffness");
+
     // Wolf Armor
     public static final RegistryKey<Enchantment> MAULING = registerKey("mauling");
     public static final RegistryKey<Enchantment> BLEED_OUT = registerKey("bleed_out");
@@ -220,6 +224,105 @@ public class YavpmEnchantments {
                                                 EntityTypePredicate.create(YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_100)
                                         )
                                 )
+                        )
+        );
+        // endregion
+        // region Figure Eight
+        EntityPredicate.Builder builder = EntityPredicate.Builder.create()
+                .periodicTick(5)
+                .flags(EntityFlagsPredicate.Builder.create().flying(false).onGround(true))
+                .movement(MovementPredicate.horizontalSpeed(NumberRange.DoubleRange.atLeast(1.0E-5F)))
+                .movementAffectedBy(LocationPredicate.Builder.create().block(net.minecraft.predicate.BlockPredicate.Builder.create().tag(BlockTags.ICE)));
+        register(
+                registerable,
+                FIGURE_EIGHT,
+                Enchantment.builder(
+                                Enchantment.definition(
+                                        items.getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE),
+                                        1,
+                                        1,
+                                        Enchantment.leveledCost(10, 10),
+                                        Enchantment.leveledCost(25, 10),
+                                        8,
+                                        AttributeModifierSlot.FEET
+                                )
+                        )
+                        .addEffect(
+                                EnchantmentEffectComponentTypes.LOCATION_CHANGED,
+                                new AttributeEnchantmentEffect(
+                                        Identifier.ofVanilla("enchantment.figure_eight"),
+                                        EntityAttributes.GENERIC_MOVEMENT_SPEED,
+                                        EnchantmentLevelBasedValue.constant(0.06f),
+                                        EntityAttributeModifier.Operation.ADD_VALUE
+                                ),
+                                AllOfLootCondition.builder(
+                                        InvertedLootCondition.builder(
+                                                EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().vehicle(EntityPredicate.Builder.create()))
+                                        ),
+                                        AnyOfLootCondition.builder(
+                                                AllOfLootCondition.builder(
+                                                        EnchantmentActiveCheckLootCondition.requireActive(),
+                                                        EntityPropertiesLootCondition.builder(
+                                                                LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().flags(EntityFlagsPredicate.Builder.create().flying(false))
+                                                        ),
+                                                        AnyOfLootCondition.builder(
+                                                                EntityPropertiesLootCondition.builder(
+                                                                        LootContext.EntityTarget.THIS,
+                                                                        EntityPredicate.Builder.create()
+                                                                                .movementAffectedBy(
+                                                                                        LocationPredicate.Builder.create().block(net.minecraft.predicate.BlockPredicate.Builder.create().tag(BlockTags.ICE))
+                                                                                )
+                                                                ),
+                                                                EntityPropertiesLootCondition.builder(
+                                                                        LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().flags(EntityFlagsPredicate.Builder.create().onGround(false)).build()
+                                                                )
+                                                        )
+                                                ),
+                                                AllOfLootCondition.builder(
+                                                        EnchantmentActiveCheckLootCondition.requireInactive(),
+                                                        EntityPropertiesLootCondition.builder(
+                                                                LootContext.EntityTarget.THIS,
+                                                                EntityPredicate.Builder.create()
+                                                                        .movementAffectedBy(
+                                                                                LocationPredicate.Builder.create().block(net.minecraft.predicate.BlockPredicate.Builder.create().tag(BlockTags.ICE))
+                                                                        )
+                                                                        .flags(EntityFlagsPredicate.Builder.create().flying(false))
+                                                        )
+                                                )
+                                        )
+                                )
+                        )
+                        .addEffect(
+                                EnchantmentEffectComponentTypes.LOCATION_CHANGED,
+                                new AttributeEnchantmentEffect(
+                                        Identifier.ofVanilla("enchantment.figure_eight"),
+                                        EntityAttributes.GENERIC_MOVEMENT_EFFICIENCY,
+                                        EnchantmentLevelBasedValue.constant(1.0f),
+                                        EntityAttributeModifier.Operation.ADD_VALUE
+                                ),
+                                EntityPropertiesLootCondition.builder(
+                                        LootContext.EntityTarget.THIS,
+                                        EntityPredicate.Builder.create()
+                                                .movementAffectedBy(LocationPredicate.Builder.create().block(net.minecraft.predicate.BlockPredicate.Builder.create().tag(BlockTags.ICE)))
+                                )
+                        )
+                        .addEffect(
+                                EnchantmentEffectComponentTypes.LOCATION_CHANGED,
+                                new DamageItemEnchantmentEffect(EnchantmentLevelBasedValue.constant(1f)),
+                                AllOfLootCondition.builder(
+                                        RandomChanceLootCondition.builder(EnchantmentLevelLootNumberProvider.create(EnchantmentLevelBasedValue.constant(0.04F))),
+                                        EntityPropertiesLootCondition.builder(
+                                                LootContext.EntityTarget.THIS,
+                                                EntityPredicate.Builder.create()
+                                                        .flags(EntityFlagsPredicate.Builder.create().onGround(true))
+                                                        .movementAffectedBy(LocationPredicate.Builder.create().block(net.minecraft.predicate.BlockPredicate.Builder.create().tag(BlockTags.ICE)))
+                                        )
+                                )
+                        )
+                        .addEffect(
+                                EnchantmentEffectComponentTypes.TICK,
+                                new PlaySoundEnchantmentEffect(YavpmSounds.ENCHANTMENT_FIGURE_EIGHT, ConstantFloatProvider.create(0.6f), UniformFloatProvider.create(1f, 1.5f)),
+                                AllOfLootCondition.builder(RandomChanceLootCondition.builder(0.9f), EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, builder))
                         )
         );
         // endregion
@@ -398,7 +501,7 @@ public class YavpmEnchantments {
                         )
         );
         // endregion
-        // region Parry
+        // region Counter
         register(
                 registerable,
                 COUNTER,
