@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_baby_key": {
+      "conditions": {
+        "items": [
+          {
+            "items": "yavpm:baby_key"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "yavpm:keylock"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_baby_key"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "yavpm:keylock"
+    ]
+  }
+}

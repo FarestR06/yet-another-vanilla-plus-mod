@@ -1,6 +1,7 @@
 package com.farestr06.yavpm.block;
 
 import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
+import com.farestr06.yavpm.block.custom.KeylockBlock;
 import com.farestr06.yavpm.block.custom.PolarizedGlassBlock;
 import com.farestr06.yavpm.block.custom.PrickleLogBlock;
 import com.farestr06.yavpm.block.custom.crop.*;
@@ -236,6 +237,11 @@ public class YavpmBlocks {
             new PolarizedGlassBlock(
                     AbstractBlock.Settings.copy(Blocks.TINTED_GLASS).mapColor(MapColor.BRIGHT_TEAL)
             )
+    );
+
+    public static final Block KEYLOCK = makeAdvancedBlockAndItem(
+            makeId("keylock"),
+            new KeylockBlock(AbstractBlock.Settings.copy(Blocks.OBSERVER))
     );
 
     // region Applewood

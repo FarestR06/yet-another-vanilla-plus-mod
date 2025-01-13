@@ -50,6 +50,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmTags.Items.CARBONFOWL_FOODS, "Carbonfowl Food");
 
         builder.add(YavpmTags.Items.CRIMSON_MOONGUS_FOOD, "Crimson Moongus Food");
+        builder.add(YavpmTags.Items.CRIMSON_MOONGUS_FOOD_CORRUPTED, "Crimson Moongus Food (Corrupted)");
         builder.add(YavpmTags.Items.WARPED_MOONGUS_FOOD, "Warped Moongus Food");
 
         builder.add(YavpmTags.Items.APPLE_LOGS, "Apple Logs");
@@ -426,6 +427,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.VOID_WATER, "Void Water");
         builder.add(YavpmItems.VOID_WATER_BUCKET, "Void Water Bucket");
         builder.add(YavpmBlocks.POLARIZED_GLASS, "Polarized Glass");
+        builder.add(YavpmBlocks.KEYLOCK, "Keylock");
     }
 
     private static void yaclTranslations(TranslationBuilder builder) {

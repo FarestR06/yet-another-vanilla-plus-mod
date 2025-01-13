@@ -1,0 +1,6 @@
+{
+  "parent": "yavpm:block/keylock",
+  "textures": {
+    "bottom": "block/observer_back_on"
+  }
+}

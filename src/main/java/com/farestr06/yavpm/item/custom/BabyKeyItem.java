@@ -1,5 +1,6 @@
 package com.farestr06.yavpm.item.custom;
 
+import com.farestr06.yavpm.block.custom.entity.KeylockBlockEntity;
 import com.farestr06.yavpm.mixin.block.LockableContainerBlockEntityAccessor;
 import com.farestr06.yavpm.util.YavpmSounds;
 import net.minecraft.block.entity.BlockEntity;
@@ -36,24 +37,40 @@ public class BabyKeyItem extends Item {
         if (context.getPlayer() != null) {
             PlayerEntity player = context.getPlayer();
             BlockEntity entity = world.getBlockEntity(context.getBlockPos());
-            if (player.isSneaking() && entity instanceof LockableContainerBlockEntity lockable) {
+            if (player.isSneaking()) {
                 String key = context.getStack().getName().getString();
-                if (((LockableContainerBlockEntityAccessor) lockable).getLock() == ContainerLock.EMPTY) {
-                    if (!world.isClient()) {
-                        ((LockableContainerBlockEntityAccessor) lockable).setLock(new ContainerLock(key));
+                if (entity instanceof LockableContainerBlockEntity lockable) {
+                    if (((LockableContainerBlockEntityAccessor) lockable).getLock() == ContainerLock.EMPTY) {
+                        if (!world.isClient()) {
+                            ((LockableContainerBlockEntityAccessor) lockable).setLock(new ContainerLock(key));
+                        }
+                        player.playSound(YavpmSounds.ITEM_BABY_KEY_TURN, 1f, 1f);
+                        return ActionResult.success(world.isClient);
+                    } else if (Objects.equals(((LockableContainerBlockEntityAccessor) lockable).getLock().key(), key)) {
+                        if (!world.isClient()) {
+                            ((LockableContainerBlockEntityAccessor) lockable).setLock(ContainerLock.EMPTY);
+                        }
+                        player.playSound(YavpmSounds.ITEM_BABY_KEY_TURN, 1f, 1f);
+                        return ActionResult.success(world.isClient);
+                    } else {
+                        return ActionResult.FAIL;
                     }
-                    player.playSound(YavpmSounds.ITEM_BABY_KEY_TURN, 1f, 1f);
-                    return ActionResult.success(world.isClient);
-                } else if (Objects.equals(((LockableContainerBlockEntityAccessor) lockable).getLock().key(), key)) {
-                    if (!world.isClient()) {
-                        ((LockableContainerBlockEntityAccessor) lockable).setLock(
-                                ContainerLock.EMPTY
-                        );
+                } else if (entity instanceof KeylockBlockEntity keylock) {
+                    if (keylock.getLock() == ContainerLock.EMPTY) {
+                        if (!world.isClient()) {
+                            keylock.setLock(new ContainerLock(key));
+                        }
+                        player.playSound(YavpmSounds.ITEM_BABY_KEY_TURN, 1f, 1f);
+                        return ActionResult.success(world.isClient);
+                    } else if (Objects.equals(keylock.getLock().key(), key)) {
+                        if (!world.isClient()) {
+                            keylock.setLock(ContainerLock.EMPTY);
+                        }
+                        player.playSound(YavpmSounds.ITEM_BABY_KEY_TURN, 1f, 1f);
+                        return ActionResult.success(world.isClient);
+                    } else {
+                        return ActionResult.FAIL;
                     }
-                    player.playSound(YavpmSounds.ITEM_BABY_KEY_TURN, 1f, 1f);
-                    return ActionResult.success(world.isClient);
-                } else {
-                    return ActionResult.FAIL;
                 }
             }
         }

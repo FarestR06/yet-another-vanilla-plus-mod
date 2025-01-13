@@ -1,12 +1,12 @@
-// 1.21.1	2025-01-12T13:52:14.884367	Yet Another Vanilla Plus Mod/Misc Data
+// 1.21.1	2025-01-13T12:45:41.894616	Yet Another Vanilla Plus Mod/Misc Data
 59cf53dcb9e52ab9bd486699b67b9b7377fcf611 data/yavpm/enchantment/counter.json
 40904e59e397924b3ab171c3ddb5e26bcfec1133 data/yavpm/enchantment/stiffness.json
 1d36cb299e902c8e34a11418070588e006da75b7 data/yavpm/damage_type/cut.json
 e651016ddd6a40d40c726024ae08b529325199bb data/yavpm/enchantment/gallop.json
-c2dabf02449ef90c93072be5d6a5ae1fbc706d93 data/yavpm/enchantment/enderbane.json
 aeb659e2b3490dace6995c268c635a3e8253b791 data/yavpm/enchantment/mauling.json
-17eecd3c5a3c080f24bbf0128ece3f11a8fedc0b data/yavpm/enchantment/plague.json
+c2dabf02449ef90c93072be5d6a5ae1fbc706d93 data/yavpm/enchantment/enderbane.json
 60cf6731f10b5b3f3918036e9e487d8be574b00c data/yavpm/enchantment/bounding.json
+17eecd3c5a3c080f24bbf0128ece3f11a8fedc0b data/yavpm/enchantment/plague.json
 af368523d445cd5e90a17367d9922c2b3d304b06 data/yavpm/enchantment/retrieve.json
 12b23f0b372d3783bcc2dd959ed2cb6290804a08 data/yavpm/enchantment/bleed_out.json
 f2307d7b847db8e2973b81472cb9522c900e3059 data/yavpm/damage_type/choke.json

@@ -408,6 +408,7 @@ public class YavpmTagProviders {
             getOrCreateTagBuilder(BlockTags.CROPS).add(
                     YavpmBlocks.BANANA_CROP,
                     YavpmBlocks.PEANUT_CROP,
+                    YavpmBlocks.RICE_CROP,
                     YavpmBlocks.MAGIC_BEAN_CROP,
                     YavpmBlocks.WARPED_WART,
                     YavpmBlocks.OAK_SAPLING_CROP
@@ -433,6 +434,8 @@ public class YavpmTagProviders {
                     YavpmBlocks.SOUL_GLOWING_OBSIDIAN,
                     YavpmBlocks.GRAPHITE_BLOCK,
                     YavpmBlocks.GRAPHENE_BLOCK,
+
+                    YavpmBlocks.KEYLOCK,
 
                     YavpmBlocks.COBBLED_GRANITE,
                     YavpmBlocks.COBBLED_DIORITE,

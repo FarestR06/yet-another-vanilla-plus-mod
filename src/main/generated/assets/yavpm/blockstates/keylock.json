@@ -1,0 +1,50 @@
+{
+  "variants": {
+    "facing=down,powered=false": {
+      "model": "yavpm:block/keylock",
+      "x": 90
+    },
+    "facing=down,powered=true": {
+      "model": "yavpm:block/keylock_on",
+      "x": 90
+    },
+    "facing=east,powered=false": {
+      "model": "yavpm:block/keylock",
+      "y": 90
+    },
+    "facing=east,powered=true": {
+      "model": "yavpm:block/keylock_on",
+      "y": 90
+    },
+    "facing=north,powered=false": {
+      "model": "yavpm:block/keylock"
+    },
+    "facing=north,powered=true": {
+      "model": "yavpm:block/keylock_on"
+    },
+    "facing=south,powered=false": {
+      "model": "yavpm:block/keylock",
+      "y": 180
+    },
+    "facing=south,powered=true": {
+      "model": "yavpm:block/keylock_on",
+      "y": 180
+    },
+    "facing=up,powered=false": {
+      "model": "yavpm:block/keylock",
+      "x": 270
+    },
+    "facing=up,powered=true": {
+      "model": "yavpm:block/keylock_on",
+      "x": 270
+    },
+    "facing=west,powered=false": {
+      "model": "yavpm:block/keylock",
+      "y": 270
+    },
+    "facing=west,powered=true": {
+      "model": "yavpm:block/keylock_on",
+      "y": 270
+    }
+  }
+}

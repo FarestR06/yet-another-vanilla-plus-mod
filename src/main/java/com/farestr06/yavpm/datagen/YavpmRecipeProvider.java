@@ -52,6 +52,17 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .criterion(hasItem(Items.GLOW_INK_SAC), conditionsFromItem(Items.GLOW_INK_SAC))
                 .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.POLARIZED_GLASS)));
 
+        ShapedRecipeJsonBuilder.create(RecipeCategory.REDSTONE, YavpmBlocks.KEYLOCK)
+                .input('C', Items.COBBLESTONE)
+                .input('T', Items.TRIPWIRE_HOOK)
+                .input('R', Items.REDSTONE)
+                .input('Q', Items.QUARTZ)
+                .pattern("CCC")
+                .pattern("TQR")
+                .pattern("CCC")
+                .criterion(hasItem(YavpmItems.BABY_KEY), conditionsFromItem(YavpmItems.BABY_KEY))
+                .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.KEYLOCK)));
+
         equipmentRecipes(exporter);
 
 

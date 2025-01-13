@@ -151,6 +151,7 @@ public class ItemGroupHelper {
 
     private static void redstone(FabricItemGroupEntries entries) {
         entries.add(YavpmBlocks.POLARIZED_GLASS);
+        entries.add(YavpmBlocks.KEYLOCK);
     }
 
     private static void tools(FabricItemGroupEntries entries) {

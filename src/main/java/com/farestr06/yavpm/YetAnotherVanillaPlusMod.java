@@ -1,6 +1,7 @@
 package com.farestr06.yavpm;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
+import com.farestr06.yavpm.block.custom.entity.YavpmBlockEntities;
 import com.farestr06.yavpm.config.YavpmConfig;
 import com.farestr06.yavpm.crafting.YavpmRecipeSerializers;
 import com.farestr06.yavpm.entity.YavpmEntities;
@@ -74,6 +75,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		YavpmItems.init();
 		YavpmBlocks.init();
 		YavpmFluids.init();
+		YavpmBlockEntities.init();
 
 		YavpmArmorMaterials.init();
 

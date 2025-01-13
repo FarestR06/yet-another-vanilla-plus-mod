@@ -48,6 +48,8 @@ public class YavpmModelProvider extends FabricModelProvider {
         createPersimmonSet(generator);
         createPrickleSet(generator);
 
+        registerKeylock(generator);
+
         generator.registerTintableCross(YavpmBlocks.APPLE_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
         generator.registerTintableCross(YavpmBlocks.PERSIMMON_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
         generator.registerTintableCross(YavpmBlocks.PRICKLE_SHOOT, BlockStateModelGenerator.TintType.NOT_TINTED);
@@ -153,6 +155,12 @@ public class YavpmModelProvider extends FabricModelProvider {
             case LOWER -> BlockStateVariant.create().put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(block, "_bottom_stage_" + age));
         });
         generator.blockStateCollector.accept(VariantsBlockStateSupplier.create(block).coordinate(blockStateVariantMap));
+    }
+
+    private void registerKeylock(BlockStateModelGenerator generator) {
+        Identifier identifier = ModelIds.getBlockModelId(YavpmBlocks.KEYLOCK);
+        Identifier identifier2 = ModelIds.getBlockSubModelId(YavpmBlocks.KEYLOCK, "_on");
+        generator.blockStateCollector.accept(VariantsBlockStateSupplier.create(YavpmBlocks.KEYLOCK).coordinate(BlockStateModelGenerator.createBooleanModelMap(Properties.POWERED, identifier2, identifier)).coordinate(BlockStateModelGenerator.createNorthDefaultRotationStates()));
     }
 
     private static void createKimberliteSet(BlockStateModelGenerator generator) {

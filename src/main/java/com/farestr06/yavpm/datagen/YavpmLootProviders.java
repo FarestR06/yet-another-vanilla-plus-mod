@@ -239,9 +239,9 @@ public class YavpmLootProviders {
             addDrop(YavpmBlocks.POLISHED_KIMBERLITE_STAIRS);
             addDrop(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_STAIRS);
 
-            slabDrops(YavpmBlocks.KIMBERLITE_SLAB);
-            slabDrops(YavpmBlocks.POLISHED_KIMBERLITE_SLAB);
-            slabDrops(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_SLAB);
+            addDrop(YavpmBlocks.KIMBERLITE_SLAB, slabDrops(YavpmBlocks.KIMBERLITE_SLAB));
+            addDrop(YavpmBlocks.POLISHED_KIMBERLITE_SLAB, slabDrops(YavpmBlocks.POLISHED_KIMBERLITE_SLAB));
+            addDrop(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_SLAB, slabDrops(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_SLAB));
 
             addDrop(YavpmBlocks.KIMBERLITE_WALL);
             addDrop(YavpmBlocks.POLISHED_KIMBERLITE_WALL);
@@ -255,9 +255,9 @@ public class YavpmLootProviders {
             addDrop(YavpmBlocks.COBBLED_DIORITE_STAIRS);
             addDrop(YavpmBlocks.COBBLED_ANDESITE_STAIRS);
 
-            slabDrops(YavpmBlocks.COBBLED_GRANITE_SLAB);
-            slabDrops(YavpmBlocks.COBBLED_DIORITE_SLAB);
-            slabDrops(YavpmBlocks.COBBLED_ANDESITE_SLAB);
+            addDrop(YavpmBlocks.COBBLED_GRANITE_SLAB, slabDrops(YavpmBlocks.COBBLED_GRANITE_SLAB));
+            addDrop(YavpmBlocks.COBBLED_DIORITE_SLAB, slabDrops(YavpmBlocks.COBBLED_DIORITE_SLAB));
+            addDrop(YavpmBlocks.COBBLED_ANDESITE_SLAB, slabDrops(YavpmBlocks.COBBLED_ANDESITE_SLAB));
 
             addDrop(YavpmBlocks.COBBLED_GRANITE_WALL);
             addDrop(YavpmBlocks.COBBLED_DIORITE_WALL);
@@ -271,9 +271,9 @@ public class YavpmLootProviders {
             addDrop(YavpmBlocks.POLISHED_DIORITE_BRICK_STAIRS);
             addDrop(YavpmBlocks.POLISHED_ANDESITE_BRICK_STAIRS);
 
-            slabDrops(YavpmBlocks.POLISHED_GRANITE_BRICK_SLAB);
-            slabDrops(YavpmBlocks.POLISHED_DIORITE_BRICK_SLAB);
-            slabDrops(YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB);
+            addDrop(YavpmBlocks.POLISHED_GRANITE_BRICK_SLAB, slabDrops(YavpmBlocks.POLISHED_GRANITE_BRICK_SLAB));
+            addDrop(YavpmBlocks.POLISHED_DIORITE_BRICK_SLAB, slabDrops(YavpmBlocks.POLISHED_DIORITE_BRICK_SLAB));
+            addDrop(YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB, slabDrops(YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB));
 
             addDrop(YavpmBlocks.POLISHED_GRANITE_BRICK_WALL);
             addDrop(YavpmBlocks.POLISHED_DIORITE_BRICK_WALL);
@@ -291,7 +291,7 @@ public class YavpmLootProviders {
 
             addDrop(YavpmBlocks.APPLE_PLANKS);
             addDrop(YavpmBlocks.APPLE_STAIRS);
-            slabDrops(YavpmBlocks.APPLE_SLAB);
+            addDrop(YavpmBlocks.APPLE_SLAB, slabDrops(YavpmBlocks.APPLE_SLAB));
             addDrop(YavpmBlocks.APPLE_FENCE);
             addDrop(YavpmBlocks.APPLE_FENCE_GATE);
             addDrop(YavpmBlocks.APPLE_BUTTON);
@@ -323,7 +323,7 @@ public class YavpmLootProviders {
 
             addDrop(YavpmBlocks.PERSIMMON_PLANKS);
             addDrop(YavpmBlocks.PERSIMMON_STAIRS);
-            slabDrops(YavpmBlocks.PERSIMMON_SLAB);
+            addDrop(YavpmBlocks.PERSIMMON_SLAB, slabDrops(YavpmBlocks.PERSIMMON_SLAB));
             addDrop(YavpmBlocks.PERSIMMON_FENCE);
             addDrop(YavpmBlocks.PERSIMMON_FENCE_GATE);
             addDrop(YavpmBlocks.PERSIMMON_BUTTON);
@@ -340,7 +340,7 @@ public class YavpmLootProviders {
 
             addDrop(YavpmBlocks.PRICKLE_PLANKS);
             addDrop(YavpmBlocks.PRICKLE_STAIRS);
-            slabDrops(YavpmBlocks.PRICKLE_SLAB);
+            addDrop(YavpmBlocks.PRICKLE_SLAB, slabDrops(YavpmBlocks.PRICKLE_SLAB));
             addDrop(YavpmBlocks.PRICKLE_FENCE);
             addDrop(YavpmBlocks.PRICKLE_FENCE_GATE);
             addDrop(YavpmBlocks.PRICKLE_BUTTON);
