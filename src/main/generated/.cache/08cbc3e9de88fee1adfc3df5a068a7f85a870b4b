@@ -1,4 +1,4 @@
-// 1.21.1	2025-01-13T16:55:14.576667932	Yet Another Vanilla Plus Mod/Recipes
+// 1.21.1	2025-01-15T13:08:20.220995802	Yet Another Vanilla Plus Mod/Recipes
 322cad7ef362cdb5b56fa29ab4dbfcbe50d44e45 data/yavpm/recipe/polished_kimberlite_stairs_from_polished_kimberlite_stonecutting.json
 fb999790a3728a45450cc3e95dc7d20f634f688d data/yavpm/advancement/recipes/building_blocks/polished_andesite_bricks.json
 b7d2742cabda10080013771be0348f2de17ed576 data/yavpm/advancement/recipes/misc/breading.json
@@ -263,7 +263,7 @@ ff2f39b7a9fb646ac0e6b0924ad743cc85dde0d5 data/yavpm/advancement/recipes/building
 ec6a0a292d3ee98ad20a6f09e860e3b32f7447e8 data/yavpm/recipe/polished_kimberlite_brick_slab.json
 c64db5c4177c4a70dc025e94b81bf0997b474705 data/yavpm/advancement/recipes/misc/studded_boots.json
 a4768cc120296bd28627b5727e55ad1cad016805 data/yavpm/recipe/music_disc_magnetic_circuit.json
-0cf42143a435947fec0f851bb2eafc01f1c3aa26 data/yavpm/recipe/keylock.json
+8c94ded08ddb6020643a95b5d7b891f23f2321b2 data/yavpm/recipe/keylock.json
 664dc8c9466ed3a8adc783762f46f4ccb63bfb65 data/yavpm/advancement/recipes/misc/chainmail.json
 759d31d94c3a24bf25cc247298690d0185bb43cc data/yavpm/recipe/polished_granite_brick_stairs_from_polished_granite_bricks_stonecutting.json
 311cb0bd69948faf8910d393fa42fea97e629c8c data/yavpm/recipe/polished_andesite_bricks.json

@@ -12,6 +12,7 @@ import com.farestr06.yavpm.item.ItemGroupHelper;
 import com.farestr06.yavpm.item.YavpmArmorMaterials;
 import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.item.YavpmPotions;
+import com.farestr06.yavpm.item.enchantment.condition.YavpmLootConditions;
 import com.farestr06.yavpm.item.enchantment.effect.YavpmEnchantmentEffects;
 import com.farestr06.yavpm.util.YavpmSounds;
 import com.farestr06.yavpm.util.YavpmTags;
@@ -22,6 +23,8 @@ import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.TallSeagrassBlock;
+import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.data.server.loottable.BlockLootTableGenerator;
 import net.minecraft.data.server.loottable.vanilla.VanillaBlockLootTableGenerator;
 import net.minecraft.enchantment.Enchantment;
@@ -31,20 +34,23 @@ import net.minecraft.item.Items;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
 import net.minecraft.loot.LootTables;
-import net.minecraft.loot.condition.KilledByPlayerLootCondition;
-import net.minecraft.loot.condition.RandomChanceLootCondition;
-import net.minecraft.loot.condition.RandomChanceWithEnchantedBonusLootCondition;
-import net.minecraft.loot.condition.TableBonusLootCondition;
+import net.minecraft.loot.condition.*;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.entry.LeafEntry;
+import net.minecraft.loot.entry.LootPoolEntry;
+import net.minecraft.loot.function.ApplyBonusLootFunction;
 import net.minecraft.loot.function.EnchantRandomlyLootFunction;
 import net.minecraft.loot.function.SetCountLootFunction;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
+import net.minecraft.predicate.BlockPredicate;
+import net.minecraft.predicate.StatePredicate;
+import net.minecraft.predicate.entity.LocationPredicate;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -86,6 +92,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 
 		YavpmWorldGeneration.generateModWorldGen();
 		YavpmEnchantmentEffects.init();
+		YavpmLootConditions.init();
 
 		YavpmEntities.init();
 
@@ -365,7 +372,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 
 				LootPool.Builder poolBuilder2 = LootPool.builder()
 						.rolls(UniformLootNumberProvider.create(1f, 2f))
-						.with(ItemEntry.builder(Items.WHEAT_SEEDS).apply(
+						.with(ItemEntry.builder(YavpmItems.RICE_SEEDS).apply(
 								SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f))
 						))
 						.with(ItemEntry.builder(Items.CARROT).apply(
@@ -432,11 +439,16 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 				tableBuilder.pool(poolBuilder);
 			}
 		});
-
 		LootTableEvents.REPLACE.register((key, original, source, registries) -> {
 			BlockLootTableGenerator generator = new VanillaBlockLootTableGenerator(registries);
 			if (source.isBuiltin() && key == Blocks.OAK_LEAVES.getLootTableKey()) {
 				return newOakLeavesDrops(registries, generator).build();
+			}
+			if (source.isBuiltin() && key == Blocks.SEAGRASS.getLootTableKey()) {
+				return shortSeagrassDrops(registries, generator).build();
+			}
+			if (source.isBuiltin() && key == Blocks.TALL_SEAGRASS.getLootTableKey()) {
+				return tallSeagrassDrops(generator).build();
 			}
 			if (source.isBuiltin() && key == Blocks.GRANITE.getLootTableKey()) {
 				return generator.drops(Blocks.GRANITE, YavpmBlocks.COBBLED_GRANITE).build();
@@ -449,6 +461,57 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 			}
 			return original;
 		});
+	}
+	
+	private static LootTable.Builder shortSeagrassDrops(RegistryWrapper.WrapperLookup lookup, BlockLootTableGenerator generator) {
+		RegistryWrapper.Impl<Enchantment> impl = lookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+		return generator.dropsWithShears(
+				Blocks.SEAGRASS,
+                generator.applyExplosionDecay(
+						Blocks.SEAGRASS,
+                        ItemEntry.builder(YavpmItems.RICE_SEEDS)
+                                .conditionally(RandomChanceLootCondition.builder(0.125F))
+                                .apply(ApplyBonusLootFunction.uniformBonusCount(impl.getOrThrow(Enchantments.FORTUNE), 2))
+                )
+		);
+	}
+	private static LootTable.Builder tallSeagrassDrops(BlockLootTableGenerator generator) {
+		LootPoolEntry.Builder<?> builder = ItemEntry.builder(Blocks.SEAGRASS)
+				.apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F)))
+				.conditionally(BlockLootTableGenerator.WITH_SHEARS)
+				.alternatively(
+						((LeafEntry.Builder<?>)generator.addSurvivesExplosionCondition(Blocks.TALL_SEAGRASS, ItemEntry.builder(YavpmItems.RICE_SEEDS)))
+								.conditionally(RandomChanceLootCondition.builder(0.125F))
+				);
+		return LootTable.builder()
+				.pool(
+						LootPool.builder()
+								.with(builder)
+								.conditionally(
+										BlockStatePropertyLootCondition.builder(Blocks.TALL_SEAGRASS).properties(StatePredicate.Builder.create().exactMatch(TallSeagrassBlock.HALF, DoubleBlockHalf.LOWER))
+								)
+								.conditionally(
+										LocationCheckLootCondition.builder(
+												LocationPredicate.Builder.create()
+														.block(BlockPredicate.Builder.create().blocks(Blocks.TALL_SEAGRASS).state(StatePredicate.Builder.create().exactMatch(TallSeagrassBlock.HALF, DoubleBlockHalf.UPPER))),
+												new BlockPos(0, 1, 0)
+										)
+								)
+				)
+				.pool(
+						LootPool.builder()
+								.with(builder)
+								.conditionally(
+										BlockStatePropertyLootCondition.builder(Blocks.TALL_SEAGRASS).properties(StatePredicate.Builder.create().exactMatch(TallSeagrassBlock.HALF, DoubleBlockHalf.UPPER))
+								)
+								.conditionally(
+										LocationCheckLootCondition.builder(
+												LocationPredicate.Builder.create()
+														.block(BlockPredicate.Builder.create().blocks(Blocks.TALL_SEAGRASS).state(StatePredicate.Builder.create().exactMatch(TallSeagrassBlock.HALF, DoubleBlockHalf.LOWER))),
+												new BlockPos(0, -1, 0)
+										)
+								)
+				);
 	}
 	private static LootTable.Builder newOakLeavesDrops(RegistryWrapper.WrapperLookup lookup, BlockLootTableGenerator generator) {
 		RegistryWrapper.Impl<Enchantment> impl = lookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);

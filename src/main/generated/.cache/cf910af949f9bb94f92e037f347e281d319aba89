@@ -1,4 +1,4 @@
-// 1.21.1	2025-01-13T16:55:14.572558107	Yet Another Vanilla Plus Mod/Block Loot Tables
+// 1.21.1	2025-01-15T13:08:20.216974068	Yet Another Vanilla Plus Mod/Block Loot Tables
 6d6f044f30119a4dc8c944ad20ba086355b84233 data/yavpm/loot_table/blocks/stripped_apple_wood.json
 4a7e8ff8838f8b61432ff5d7946b742986ce2558 data/yavpm/loot_table/blocks/apple_fence.json
 911968704b95d7f58ea4f1645c51603b8bd4650f data/yavpm/loot_table/blocks/rice_crop.json
@@ -44,8 +44,8 @@ df8758d8c513f9f966affd2dd5da5d5b53aa30eb data/yavpm/loot_table/blocks/apple_sapl
 6306d07ec8334b4cbcac04a8633285c8e3b71d56 data/yavpm/loot_table/blocks/polished_granite_bricks.json
 57e746f79ef273aef043f4034edf2334b32f2e25 data/yavpm/loot_table/blocks/stripped_prickle_log.json
 65de17c377fd2c6f5beb322d934cc7bb19fddc31 data/yavpm/loot_table/blocks/prickle_slab.json
-8c068992d7326b2e9b2b212245d5516774c2eb4d data/yavpm/loot_table/blocks/polished_kimberlite_brick_wall.json
 122bdba2da6ce223449aac9cde2419df9cc7518c data/yavpm/loot_table/blocks/polished_granite_brick_stairs.json
+8c068992d7326b2e9b2b212245d5516774c2eb4d data/yavpm/loot_table/blocks/polished_kimberlite_brick_wall.json
 cd5ece9a6c00c2d5e3624bb66d773bbc53e895d5 data/yavpm/loot_table/blocks/cobbled_diorite_stairs.json
 17852c1f5d5964adbeba89844a368e544f97ee7f data/yavpm/loot_table/blocks/bitter_berry_bush.json
 8f94d332226b94916db40d23205c8a94c3fddadf data/yavpm/loot_table/blocks/prickle_fence.json

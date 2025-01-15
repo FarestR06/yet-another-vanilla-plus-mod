@@ -16,6 +16,8 @@ import net.minecraft.world.World;
 
 import java.util.Objects;
 
+import static com.farestr06.yavpm.config.YavpmConfig.HANDLER;
+
 public class BabyKeyItem extends Item {
     public BabyKeyItem(Settings settings) {
         super(settings);
@@ -23,7 +25,7 @@ public class BabyKeyItem extends Item {
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        if (entity instanceof PlayerEntity player) {
+        if (HANDLER.instance().babyKeyCries && entity instanceof PlayerEntity player) {
             if (player.age % 45 == 0 && player.getRandom().nextFloat() <= 0.40f && selected) {
                 player.playSound(YavpmSounds.ITEM_BABY_KEY_SCARED, 1f, 1f);
             }

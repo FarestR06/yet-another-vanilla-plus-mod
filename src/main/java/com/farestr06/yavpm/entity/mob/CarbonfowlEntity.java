@@ -9,8 +9,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.mob.Angerable;
-import net.minecraft.entity.mob.MobEntity;
+import net.minecraft.entity.mob.*;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -52,7 +51,9 @@ public class CarbonfowlEntity extends ChickenEntity implements Angerable {
         this.goalSelector.add(9, new LookAroundGoal(this));
 
         this.targetSelector.add(1, new RevengeGoal(this).setGroupRevenge());
-        this.targetSelector.add(2, new UniversalAngerGoal<>(this, false));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, SpiderEntity.class, true));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, CaveSpiderEntity.class, true));
+        this.targetSelector.add(2, new ActiveTargetGoal<>(this, SilverfishEntity.class, true));
     }
 
     @Override
@@ -63,8 +64,8 @@ public class CarbonfowlEntity extends ChickenEntity implements Angerable {
 
     public static DefaultAttributeContainer.Builder createCarbonfowlAttributes() {
         return MobEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 4.0)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 1.5)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 8.0)
+                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.5)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25)
                 .add(EntityAttributes.GENERIC_ARMOR, 7.5);
     }

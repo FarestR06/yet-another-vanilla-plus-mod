@@ -40,12 +40,14 @@ public class YavpmConfig {
     public boolean voidWaterSourceConversion = true;
     // endregion
     // region Items
-    @SerialEntry(comment = "When an Attack Up Rune is applied to equipment, its attack power is multiplied by this factor. Default is 1.2f,")
-    public float runeAttackUpgradeFactor = 1.2f;
-    @SerialEntry(comment = "When a Durability Up Rune is applied to equipment, its maximum durability is multiplied by this factor. Default is 1.2f,")
-    public float runeDurabilityUpgradeFactor = 1.2f;
-    @SerialEntry(comment = "When a Speed Up Rune is applied to equipment, its mining speed is multiplied by this factor. Default is 1.2f,")
-    public float runeSpeedUpgradeFactor = 1.2f;
+    @SerialEntry(comment = "If true, Key Golems will cry out when held. Default is true.")
+    public boolean babyKeyCries = true;
+    @SerialEntry(comment = "When an Attack Up Rune is applied to equipment, its attack power is multiplied by this factor. Default is 1.5f,")
+    public float runeAttackUpgradeFactor = 1.5f;
+    @SerialEntry(comment = "When a Durability Up Rune is applied to equipment, its maximum durability is multiplied by this factor. Default is 1.5f,")
+    public float runeDurabilityUpgradeFactor = 1.5f;
+    @SerialEntry(comment = "When a Speed Up Rune is applied to equipment, its mining speed is multiplied by this factor. Default is 1.5f,")
+    public float runeSpeedUpgradeFactor = 1.5f;
     // endregion
     // region Easter Eggs
     @SerialEntry(comment = "A special splash will sometimes appear on Wednesday; the likelihood of this happening is determined by this value. Default is 0.3f.")

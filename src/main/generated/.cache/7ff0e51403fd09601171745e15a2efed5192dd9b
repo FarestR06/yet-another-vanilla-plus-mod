@@ -1,4 +1,4 @@
-// 1.21.1	2025-01-13T16:55:14.578495766	Yet Another Vanilla Plus Mod/Tags for minecraft:item
+// 1.21.1	2025-01-15T13:08:20.222874231	Yet Another Vanilla Plus Mod/Tags for minecraft:item
 0419d74a24bb766486f67b0cc39eed52858b7614 data/c/tags/item/foods/cookie.json
 702fab0552c7f47041e1986b2e0a69b1bf9398cb data/c/tags/item/foods.json
 b91dfcf823036f7cb2cb9876a4de10dd7aba95f1 data/yavpm/tags/item/crimson_moongus_food_corrupted.json
@@ -41,6 +41,7 @@ e3fbb034bca902df928707662018fe8fc5243be8 data/c/tags/item/foods/food_poisoning.j
 3b1e5504f1dbd360de9901e35931e128bdc97a9f data/minecraft/tags/item/slabs.json
 c73b5fb5fea58817b22ff8a334b91136ea6b9b77 data/minecraft/tags/item/foot_armor.json
 c0cbb8f2c8d2ac0028efc77cadaf6b0f06906f8f data/yavpm/tags/item/rune_durability_applicable.json
+1a2fa924add465b3d12919326bcdc001ffeb7401 data/yavpm/tags/item/carbonfowl_foods.json
 6c88ee08dc93f38adb7b057677a93806cfb376fa data/c/tags/item/foods/cooked_fish.json
 92a30bf2528f35f32631b7b0195672baba6a4563 data/minecraft/tags/item/wooden_fences.json
 ce5fead3e31667c42f7eac7af2df39f0fe8254f2 data/c/tags/item/foods/vegetable.json

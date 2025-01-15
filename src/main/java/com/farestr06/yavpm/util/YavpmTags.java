@@ -40,8 +40,6 @@ public class YavpmTags {
         }
     }
     public static class EntityTypes {
-        public static final TagKey<EntityType<?>> HUMANOID_ZOMBIES = of("humanoid_zombies");
-        public static final TagKey<EntityType<?>> HUMANOID_SKELETONS = of("humanoid_skeletons");
         public static final TagKey<EntityType<?>> SENSITIVE_TO_ILLAGERS_BANE = of("sensitive_to_illagers_bane");
         public static final TagKey<EntityType<?>> SENSITIVE_TO_ENDERBANE_25 = of("sensitive_to_enderbane_25");
         public static final TagKey<EntityType<?>> SENSITIVE_TO_ENDERBANE_50 = of("sensitive_to_enderbane_50");

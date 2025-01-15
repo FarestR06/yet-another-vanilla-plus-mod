@@ -28,6 +28,7 @@ public class YavpmConfigScreen implements ModMenuApi {
                         .build())
                 .category(ConfigCategory.createBuilder()
                         .name(Text.translatable("option.yavpm.items"))
+                        .option(BABY_KEY_CRIES)
                         .group(OptionGroup.createBuilder()
                                 .name(Text.translatable("option.yavpm.items.runes"))
                                 .description(OptionDescription.of(
@@ -136,7 +137,7 @@ public class YavpmConfigScreen implements ModMenuApi {
             ).controller(BooleanControllerBuilder::create)
             .build();
     // endregion
-
+    // region Blocks
     protected static final Option<Boolean> VOID_WATER_SOURCE_CONVERSION = Option.<Boolean>createBuilder()
             .name(Text.translatable("option.yavpm.void_water_source_conversion.title"))
             .description(OptionDescription.createBuilder()
@@ -150,8 +151,19 @@ public class YavpmConfigScreen implements ModMenuApi {
             ).controller(BooleanControllerBuilder::create)
             .build();
     // endregion
-
     // region Items
+    protected static final Option<Boolean> BABY_KEY_CRIES = Option.<Boolean>createBuilder()
+            .name(Text.translatable("option.yavpm.baby_key_cries.title"))
+            .description(OptionDescription.createBuilder()
+                    .text(Text.translatable("option.yavpm.baby_key_cries.desc"))
+                    .build()
+            )
+            .binding(
+                    true,
+                    () -> HANDLER.instance().babyKeyCries,
+                    newVal -> HANDLER.instance().babyKeyCries = newVal
+            ).controller(BooleanControllerBuilder::create)
+            .build();
     protected static final Option<Float> RUNE_ATTACK_UPGRADE_FACTOR = Option.<Float>createBuilder()
             .name(Text.translatable("option.yavpm.rune_attack_upgrade_factor.title"))
             .description(OptionDescription.createBuilder()
@@ -159,7 +171,7 @@ public class YavpmConfigScreen implements ModMenuApi {
                     .build()
             )
             .binding(
-                    1.2f,
+                    1.5f,
                     () -> HANDLER.instance().runeAttackUpgradeFactor,
                     newVal -> HANDLER.instance().runeAttackUpgradeFactor = newVal
             ).controller(opt -> FloatFieldControllerBuilder.create(opt).range(1f, 2.5f))
@@ -172,7 +184,7 @@ public class YavpmConfigScreen implements ModMenuApi {
                     .build()
             )
             .binding(
-                    1.2f,
+                    1.5f,
                     () -> HANDLER.instance().runeDurabilityUpgradeFactor,
                     newVal -> HANDLER.instance().runeDurabilityUpgradeFactor = newVal
             ).controller(opt -> FloatFieldControllerBuilder.create(opt).range(1f, 2.5f))
@@ -185,13 +197,12 @@ public class YavpmConfigScreen implements ModMenuApi {
                     .build()
             )
             .binding(
-                    1.2f,
+                    1.5f,
                     () -> HANDLER.instance().runeSpeedUpgradeFactor,
                     newVal -> HANDLER.instance().runeSpeedUpgradeFactor = newVal
             ).controller(opt -> FloatFieldControllerBuilder.create(opt).range(1f, 2.5f))
             .build();
     // endregion
-    
     // region Easter Eggs
     protected static final Option<Float> SNAPSHOT_DAY = Option.<Float>createBuilder()
             .name(Text.translatable("option.yavpm.snapshot_day.title").setStyle(SGA))

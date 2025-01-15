@@ -1,6 +1,4 @@
-// 1.21.1	2025-01-13T16:55:14.573729188	Yet Another Vanilla Plus Mod/Tags for minecraft:entity_type
-0f085062ced42ff4e452297022f7c5400d42d01c data/yavpm/tags/entity_type/humanoid_skeletons.json
-437e9fb8f764a695ff40e300662ff5b609f38e62 data/yavpm/tags/entity_type/humanoid_zombies.json
+// 1.21.1	2025-01-15T13:08:20.218194833	Yet Another Vanilla Plus Mod/Tags for minecraft:entity_type
 5bd4a93460d1b11374db58ba8722ea5c95017c90 data/yavpm/tags/entity_type/sensitive_to_enderbane_25.json
 e00f2931577049b9a4400a87ed9c249373be376c data/yavpm/tags/entity_type/sensitive_to_enderbane_100.json
 4266c893b9d2a02bc0df316f75d05b3a9412122d data/yavpm/tags/entity_type/sensitive_to_enderbane_75.json

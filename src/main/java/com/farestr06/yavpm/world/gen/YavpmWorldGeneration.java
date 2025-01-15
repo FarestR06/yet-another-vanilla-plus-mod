@@ -35,7 +35,7 @@ public class YavpmWorldGeneration {
         );
 
         BiomeModifications.addSpawn(
-                BiomeSelectors.includeByKey(BiomeKeys.LUSH_CAVES, BiomeKeys.DRIPSTONE_CAVES),
+                BiomeSelectors.includeByKey(BiomeKeys.LUSH_CAVES, BiomeKeys.DRIPSTONE_CAVES, BiomeKeys.DEEP_DARK),
                 SpawnGroup.MONSTER,
                 YavpmEntities.CARBONFOWL,
                 18,

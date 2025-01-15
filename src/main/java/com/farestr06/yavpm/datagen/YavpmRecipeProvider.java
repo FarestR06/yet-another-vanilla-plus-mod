@@ -58,7 +58,7 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 .input('R', Items.REDSTONE)
                 .input('Q', Items.QUARTZ)
                 .pattern("CCC")
-                .pattern("TQR")
+                .pattern("RQT")
                 .pattern("CCC")
                 .criterion(hasItem(YavpmItems.BABY_KEY), conditionsFromItem(YavpmItems.BABY_KEY))
                 .offerTo(exporter, makeId(getRecipeName(YavpmBlocks.KEYLOCK)));

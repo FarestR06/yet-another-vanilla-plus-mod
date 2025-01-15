@@ -222,6 +222,14 @@ public class YavpmTagProviders {
                     YavpmItems.COOKED_FAKE_BEEF,
                     YavpmItems.TOFU
             );
+            getOrCreateTagBuilder(YavpmTags.Items.CARBONFOWL_FOODS).add(
+                    Items.GLOW_BERRIES,
+                    Items.MOSS_BLOCK,
+                    Items.MOSS_CARPET,
+                    Items.SCULK,
+                    Items.SCULK_VEIN,
+                    Items.SPIDER_EYE
+            );
             getOrCreateTagBuilder(YavpmTags.Items.TANUKI_FOOD)
                     .add(Items.GLOW_BERRIES)
                     .add(Items.SWEET_BERRIES);
@@ -632,19 +640,6 @@ public class YavpmTagProviders {
 
             getOrCreateTagBuilder(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(
                     YavpmEntities.CARBONFOWL
-            );
-
-            getOrCreateTagBuilder(YavpmTags.EntityTypes.HUMANOID_ZOMBIES).add(
-                    net.minecraft.entity.EntityType.ZOMBIE,
-                    net.minecraft.entity.EntityType.ZOMBIE_VILLAGER,
-                    net.minecraft.entity.EntityType.HUSK,
-                    net.minecraft.entity.EntityType.DROWNED
-            );
-            getOrCreateTagBuilder(YavpmTags.EntityTypes.HUMANOID_SKELETONS).add(
-                    net.minecraft.entity.EntityType.SKELETON,
-                    net.minecraft.entity.EntityType.STRAY,
-                    net.minecraft.entity.EntityType.BOGGED,
-                    net.minecraft.entity.EntityType.WITHER_SKELETON
             );
 
             getOrCreateTagBuilder(YavpmTags.EntityTypes.SENSITIVE_TO_ILLAGERS_BANE)

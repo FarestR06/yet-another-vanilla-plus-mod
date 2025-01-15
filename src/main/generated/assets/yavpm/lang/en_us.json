@@ -280,6 +280,8 @@
   "item.yavpm.void_phantom_spawn_egg": "Void Phantom Spawn Egg",
   "item.yavpm.void_water_bucket": "Void Water Bucket",
   "item.yavpm.warped_wart": "Warped Wart",
+  "option.yavpm.baby_key_cries.desc": "If true, Key Golems will cry out when held. Default is true.",
+  "option.yavpm.baby_key_cries.title": "Key Golems Cry Out",
   "option.yavpm.blocks_and_fluids": "Blocks/Fluids",
   "option.yavpm.blocks_and_fluids.glowing_obsidian": "Glowing Obsidian",
   "option.yavpm.blocks_and_fluids.void": "Void Block and Void Water",

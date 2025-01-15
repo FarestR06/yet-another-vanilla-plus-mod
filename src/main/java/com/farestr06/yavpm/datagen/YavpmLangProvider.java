@@ -492,6 +492,9 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("option.yavpm.void_water_source_conversion.title", "Void Water Converts To Source");
         builder.add("option.yavpm.void_water_source_conversion.desc", "When flowing void water is surrounded on two sides by water sources it converts into a source. Default is true.");
 
+        builder.add("option.yavpm.baby_key_cries.title", "Key Golems Cry Out");
+        builder.add("option.yavpm.baby_key_cries.desc", "If true, Key Golems will cry out when held. Default is true.");
+
         builder.add("option.yavpm.rune_attack_upgrade_factor.title", "Attack Up Rune Upgrade Factor");
         builder.add("option.yavpm.rune_attack_upgrade_factor.desc", "When an Attack Up Rune is applied to equipment, its attack power is multiplied by this factor. Default is 1.2f,");
         builder.add("option.yavpm.rune_durability_upgrade_factor.title", "Durability Up Rune Upgrade Factor");
