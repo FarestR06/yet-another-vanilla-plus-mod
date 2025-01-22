@@ -15,8 +15,8 @@ public class FakeOreBlock extends AbstractFakeBlock {
     public static final EnumProperty<OreType> TYPE = EnumProperty.of("ore_type", OreType.class);
     public static final BooleanProperty DEEPSLATE = BooleanProperty.of("deepslate");
 
-    public FakeOreBlock() {
-        super(Blocks.DIAMOND_ORE, Settings.copy(Blocks.DIAMOND_ORE));
+    public FakeOreBlock(Settings settings) {
+        super(Blocks.DIAMOND_ORE, settings);
     }
 
     @Override

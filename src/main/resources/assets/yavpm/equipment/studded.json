@@ -1,0 +1,27 @@
+{
+  "layers": {
+    "horse_body": [],
+    "humanoid": [
+      {
+        "dyeable": {
+          "color_when_undyed": -6265536
+        },
+        "texture": "yavpm:studded"
+      },
+      {
+        "texture": "yavpm:studded_overlay"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "dyeable": {
+          "color_when_undyed": -6265536
+        },
+        "texture": "yavpm:studded"
+      },
+      {
+        "texture": "yavpm:studded_overlay"
+      }
+    ]
+  }
+}

@@ -28,6 +28,7 @@ import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.TagPredicate;
 import net.minecraft.predicate.entity.*;
 import net.minecraft.registry.Registerable;
+import net.minecraft.registry.RegistryEntryLookup;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntryList;
@@ -251,7 +252,7 @@ public class YavpmEnchantments {
                                 EnchantmentEffectComponentTypes.LOCATION_CHANGED,
                                 new AttributeEnchantmentEffect(
                                         Identifier.ofVanilla("enchantment.figure_eight"),
-                                        EntityAttributes.GENERIC_MOVEMENT_SPEED,
+                                        EntityAttributes.MOVEMENT_SPEED,
                                         EnchantmentLevelBasedValue.constant(0.06f),
                                         EntityAttributeModifier.Operation.ADD_VALUE
                                 ),
@@ -296,7 +297,7 @@ public class YavpmEnchantments {
                                 EnchantmentEffectComponentTypes.LOCATION_CHANGED,
                                 new AttributeEnchantmentEffect(
                                         Identifier.ofVanilla("enchantment.figure_eight"),
-                                        EntityAttributes.GENERIC_MOVEMENT_EFFICIENCY,
+                                        EntityAttributes.MOVEMENT_EFFICIENCY,
                                         EnchantmentLevelBasedValue.constant(1.0f),
                                         EntityAttributeModifier.Operation.ADD_VALUE
                                 ),
@@ -308,7 +309,7 @@ public class YavpmEnchantments {
                         )
                         .addEffect(
                                 EnchantmentEffectComponentTypes.LOCATION_CHANGED,
-                                new DamageItemEnchantmentEffect(EnchantmentLevelBasedValue.constant(1f)),
+                                new ChangeItemDamageEnchantmentEffect(EnchantmentLevelBasedValue.constant(1f)),
                                 AllOfLootCondition.builder(
                                         RandomChanceLootCondition.builder(EnchantmentLevelLootNumberProvider.create(EnchantmentLevelBasedValue.constant(0.04F))),
                                         EntityPropertiesLootCondition.builder(
@@ -349,7 +350,7 @@ public class YavpmEnchantments {
                                 new ParryEnchantmentEffect(
                                         EnchantmentLevelBasedValue.constant(1.0F), EnchantmentLevelBasedValue.constant(5.0F), damageTypes.getOrThrow(DamageTypes.THORNS)
                                 ),
-                                new DamageItemEnchantmentEffect(EnchantmentLevelBasedValue.constant(2.0F))
+                                new ChangeItemDamageEnchantmentEffect(EnchantmentLevelBasedValue.constant(2.0F))
                         ),
                         RandomChanceLootCondition.builder(EnchantmentLevelLootNumberProvider.create(EnchantmentLevelBasedValue.linear(0.15F)))
                 )
@@ -583,7 +584,7 @@ public class YavpmEnchantments {
                                 EnchantmentEffectComponentTypes.ATTRIBUTES,
                                 new AttributeEnchantmentEffect(
                                         makeId("enchantment.gallop"),
-                                        EntityAttributes.GENERIC_MOVEMENT_SPEED,
+                                        EntityAttributes.MOVEMENT_SPEED,
                                         EnchantmentLevelBasedValue.linear(0.04f, 0.03f),
                                         EntityAttributeModifier.Operation.ADD_VALUE
                                 ))
@@ -609,7 +610,7 @@ public class YavpmEnchantments {
                                 EnchantmentEffectComponentTypes.ATTRIBUTES,
                                 new AttributeEnchantmentEffect(
                                         makeId("enchantment.bounding.jump_strength"),
-                                        EntityAttributes.GENERIC_JUMP_STRENGTH,
+                                        EntityAttributes.JUMP_STRENGTH,
                                         EnchantmentLevelBasedValue.linear(0.25f, 0.75f),
                                         EntityAttributeModifier.Operation.ADD_VALUE
                                 ))
@@ -617,7 +618,7 @@ public class YavpmEnchantments {
                                 EnchantmentEffectComponentTypes.ATTRIBUTES,
                                 new AttributeEnchantmentEffect(
                                         makeId("enchantment.bounding.safe_fall_distance"),
-                                        EntityAttributes.GENERIC_SAFE_FALL_DISTANCE,
+                                        EntityAttributes.SAFE_FALL_DISTANCE,
                                         EnchantmentLevelBasedValue.linear(3f, 5f),
                                         EntityAttributeModifier.Operation.ADD_VALUE
                                 )

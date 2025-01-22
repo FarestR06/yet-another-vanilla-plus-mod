@@ -64,10 +64,10 @@ public class CarbonfowlEntity extends ChickenEntity implements Angerable {
 
     public static DefaultAttributeContainer.Builder createCarbonfowlAttributes() {
         return MobEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 8.0)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.5)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25)
-                .add(EntityAttributes.GENERIC_ARMOR, 7.5);
+                .add(EntityAttributes.MAX_HEALTH, 8.0)
+                .add(EntityAttributes.ATTACK_DAMAGE, 2.5)
+                .add(EntityAttributes.MOVEMENT_SPEED, 0.25)
+                .add(EntityAttributes.ARMOR, 7.5);
     }
 
     @Override

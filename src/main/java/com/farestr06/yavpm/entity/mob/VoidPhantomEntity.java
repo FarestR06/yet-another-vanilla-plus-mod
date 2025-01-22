@@ -16,7 +16,7 @@ public class VoidPhantomEntity extends PhantomEntity {
     @Override
     protected void onSizeChanged() {
         this.calculateDimensions();
-        Objects.requireNonNull(this.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE)).setBaseValue((6 + this.getPhantomSize()) * 1.2);
+        Objects.requireNonNull(this.getAttributeInstance(EntityAttributes.ATTACK_DAMAGE)).setBaseValue((6 + this.getPhantomSize()) * 1.2);
     }
 
     @Override

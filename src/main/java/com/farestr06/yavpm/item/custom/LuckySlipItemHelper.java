@@ -3,7 +3,6 @@ package com.farestr06.yavpm.item.custom;
 import com.farestr06.yavpm.item.YavpmItems;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
-import net.minecraft.item.EnchantedBookItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.RegistryKeys;
@@ -16,17 +15,14 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
-public class LuckySlipItem extends EnchantedBookItem {
-    public LuckySlipItem(Item.Settings settings) {
-        super(settings);
-    }
+public class LuckySlipItemHelper {
 
     @Nullable
     public static EnchantmentLevelEntry choose(World world) {
         Random rand = world.getRandom();
         Optional<RegistryEntry<Enchantment>> optional = world
                 .getRegistryManager()
-                .get(RegistryKeys.ENCHANTMENT)
+                .getOrThrow(RegistryKeys.ENCHANTMENT)
                 .getRandomEntry(EnchantmentTags.TRADEABLE, rand);
         if (optional.isPresent()) {
 

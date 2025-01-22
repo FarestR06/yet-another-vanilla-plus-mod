@@ -9,17 +9,20 @@ import com.farestr06.yavpm.block.custom.fake.FakeLogBlock;
 import com.farestr06.yavpm.block.custom.fake.FakeOreBlock;
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import com.farestr06.yavpm.fluid.YavpmFluids;
+import com.farestr06.yavpm.item.YavpmFoods;
 import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.world.feature.configured.YavpmTreeConfiguredFeatures;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
+import net.minecraft.component.type.FoodComponents;
 import net.minecraft.data.family.BlockFamilies;
 import net.minecraft.data.family.BlockFamily;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
@@ -32,116 +35,128 @@ import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 public class YavpmBlocks {
 
     // region Glowing Obsidian
-    public static final Block GLOWING_OBSIDIAN = makeBlockAndItem(makeId("glowing_obsidian"),
+    public static final Block GLOWING_OBSIDIAN = makeSimpleBlockAndSimpleItem(makeId("glowing_obsidian"),
             AbstractBlock.Settings.copy(Blocks.OBSIDIAN).luminance(state -> 15)
     );
-    public static final Block SOUL_GLOWING_OBSIDIAN = makeBlockAndItem(
+    public static final Block SOUL_GLOWING_OBSIDIAN = makeSimpleBlockAndSimpleItem(
             makeId("soul_glowing_obsidian"),
             AbstractBlock.Settings.copy(Blocks.OBSIDIAN).luminance(state -> 11)
     );
     // endregion
 
     // region Crops
-    public static final Block WARPED_WART = makeAdvancedBlock(
+    public static final Block WARPED_WART = makeBlockAndItem(
             makeId("warped_wart_crop"),
-            new WarpedWartCropBlock(
-                    AbstractBlock.Settings.copy(Blocks.NETHER_WART).mapColor(MapColor.TEAL)
-            )
+            WarpedWartCropBlock::new,
+            AbstractBlock.Settings.copy(Blocks.NETHER_WART).mapColor(MapColor.TEAL),
+            new Item.Settings().useItemPrefixedTranslationKey()
     );
 
-    public static final Block BANANA_CROP = makeAdvancedBlock(makeId("banana_crop"),
-            new BananaCropBlock(AbstractBlock.Settings.copy(Blocks.POTATOES)));
+    public static final Block BANANA_CROP = makeBlockAndItem(makeId("banana_crop"),
+            BananaCropBlock::new, AbstractBlock.Settings.copy(Blocks.POTATOES),
+            new Item.Settings().useItemPrefixedTranslationKey()
+    );
 
-    public static final Block RICE_CROP = makeAdvancedBlock(makeId("rice_crop"),
-            new RiceCropBlock(AbstractBlock.Settings.copy(Blocks.WHEAT)));
+    public static final Block RICE_CROP = makeBlockAndItem(makeId("rice_crop"),
+            RiceCropBlock::new, AbstractBlock.Settings.copy(Blocks.WHEAT),
+            new Item.Settings().useItemPrefixedTranslationKey()
+    );
 
-    public static final Block PEANUT_CROP = makeAdvancedBlock(makeId("peanut_crop"),
-            new PeanutCropBlock(AbstractBlock.Settings.copy(Blocks.POTATOES)));
+    public static final Block PEANUT_CROP = makeBlockAndItem(makeId("peanut_crop"),
+            PeanutCropBlock::new, AbstractBlock.Settings.copy(Blocks.POTATOES),
+            new Item.Settings().food(YavpmFoods.RAW_PEANUT).useItemPrefixedTranslationKey()
+    );
 
-    public static final Block OAK_SAPLING_CROP = makeAdvancedBlock(
+    public static final Block OAK_SAPLING_CROP = makeBlockAndItem(
             makeId("oak_sapling_crop"),
-            new SaplingCropBlock(AbstractBlock.Settings.copy(Blocks.OAK_SAPLING)) {
+            settings -> new SaplingCropBlock(settings) {
                 @Override
                 protected ItemConvertible getSeedsItem() {
                     return YavpmItems.ACORN;
                 }
-            }
+            },
+            AbstractBlock.Settings.copy(Blocks.OAK_SAPLING),
+            new Item.Settings().food(YavpmFoods.ACORN).useItemPrefixedTranslationKey()
     );
 
-    public static final Block MAGIC_BEAN_CROP = makeAdvancedBlock(
+    public static final Block MAGIC_BEAN_CROP = makeBlockAndItem(
             makeId("magic_bean_crop"),
-            new MagicBeanCropBlock(AbstractBlock.Settings.copy(Blocks.POTATOES))
+            MagicBeanCropBlock::new,
+            AbstractBlock.Settings.copy(Blocks.POTATOES),
+            new Item.Settings().food(YavpmFoods.MAGIC_BEAN)
     );
 
-    public static final Block BITTER_BERRY_BUSH = makeAdvancedBlock(
+    public static final Block BITTER_BERRY_BUSH = makeBlockAndItem(
             makeId("bitter_berry_bush"),
-            new BitterBerryBushBlock(AbstractBlock.Settings.copy(Blocks.SWEET_BERRY_BUSH))
+            BitterBerryBushBlock::new,
+            AbstractBlock.Settings.copy(Blocks.SWEET_BERRY_BUSH),
+            new Item.Settings().food(FoodComponents.SWEET_BERRIES).useItemPrefixedTranslationKey()
     );
     // endregion
 
     // region Igneous Stone
-    public static final Block COBBLED_GRANITE = makeBlockAndItem(makeId("cobbled_granite"), AbstractBlock.Settings.copy(Blocks.COBBLESTONE));
-    public static final Block COBBLED_DIORITE = makeBlockAndItem(makeId("cobbled_diorite"), AbstractBlock.Settings.copy(Blocks.COBBLESTONE));
-    public static final Block COBBLED_ANDESITE = makeBlockAndItem(makeId("cobbled_andesite"), AbstractBlock.Settings.copy(Blocks.COBBLESTONE));
+    public static final Block COBBLED_GRANITE = makeSimpleBlockAndSimpleItem(makeId("cobbled_granite"), AbstractBlock.Settings.copy(Blocks.COBBLESTONE));
+    public static final Block COBBLED_DIORITE = makeSimpleBlockAndSimpleItem(makeId("cobbled_diorite"), AbstractBlock.Settings.copy(Blocks.COBBLESTONE));
+    public static final Block COBBLED_ANDESITE = makeSimpleBlockAndSimpleItem(makeId("cobbled_andesite"), AbstractBlock.Settings.copy(Blocks.COBBLESTONE));
 
-    public static final Block COBBLED_GRANITE_STAIRS = makeAdvancedBlockAndItem(makeId("cobbled_granite_stairs"), new StairsBlock(COBBLED_GRANITE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.COBBLESTONE_STAIRS)));
-    public static final Block COBBLED_DIORITE_STAIRS = makeAdvancedBlockAndItem(makeId("cobbled_diorite_stairs"), new StairsBlock(COBBLED_DIORITE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.COBBLESTONE_STAIRS)));
-    public static final Block COBBLED_ANDESITE_STAIRS = makeAdvancedBlockAndItem(makeId("cobbled_andesite_stairs"), new StairsBlock(COBBLED_ANDESITE.getDefaultState(), AbstractBlock.Settings.copy(Blocks.COBBLESTONE_STAIRS)));
+    public static final Block COBBLED_GRANITE_STAIRS = makeBlockAndSimpleItem(makeId("cobbled_granite_stairs"),
+            settings -> new StairsBlock(COBBLED_GRANITE.getDefaultState(), settings),
+            AbstractBlock.Settings.copy(Blocks.COBBLESTONE_STAIRS)
+    );
+    public static final Block COBBLED_DIORITE_STAIRS = makeBlockAndSimpleItem(makeId("cobbled_diorite_stairs"),
+            settings -> new StairsBlock(COBBLED_DIORITE.getDefaultState(), settings),
+            AbstractBlock.Settings.copy(Blocks.COBBLESTONE_STAIRS)
+    );
+    public static final Block COBBLED_ANDESITE_STAIRS = makeBlockAndSimpleItem(makeId("cobbled_andesite_stairs"),
+            settings -> new StairsBlock(COBBLED_ANDESITE.getDefaultState(), settings),
+            AbstractBlock.Settings.copy(Blocks.COBBLESTONE_STAIRS)
+    );
 
-    public static final Block COBBLED_GRANITE_SLAB = makeAdvancedBlockAndItem(makeId("cobbled_granite_slab"), new SlabBlock(AbstractBlock.Settings.copy(Blocks.COBBLESTONE_SLAB)));
-    public static final Block COBBLED_DIORITE_SLAB = makeAdvancedBlockAndItem(makeId("cobbled_diorite_slab"), new SlabBlock(AbstractBlock.Settings.copy(Blocks.COBBLESTONE_SLAB)));
-    public static final Block COBBLED_ANDESITE_SLAB = makeAdvancedBlockAndItem(makeId("cobbled_andesite_slab"), new SlabBlock(AbstractBlock.Settings.copy(Blocks.COBBLESTONE_SLAB)));
+    public static final Block COBBLED_GRANITE_SLAB = makeBlockAndSimpleItem(makeId("cobbled_granite_slab"), SlabBlock::new, AbstractBlock.Settings.copy(Blocks.COBBLESTONE_SLAB));
+    public static final Block COBBLED_DIORITE_SLAB = makeBlockAndSimpleItem(makeId("cobbled_diorite_slab"), SlabBlock::new, AbstractBlock.Settings.copy(Blocks.COBBLESTONE_SLAB));
+    public static final Block COBBLED_ANDESITE_SLAB = makeBlockAndSimpleItem(makeId("cobbled_andesite_slab"), SlabBlock::new, AbstractBlock.Settings.copy(Blocks.COBBLESTONE_SLAB));
 
-    public static final Block COBBLED_GRANITE_WALL = makeAdvancedBlockAndItem(makeId("cobbled_granite_wall"), new WallBlock(AbstractBlock.Settings.copy(Blocks.COBBLESTONE_WALL)));
-    public static final Block COBBLED_DIORITE_WALL = makeAdvancedBlockAndItem(makeId("cobbled_diorite_wall"), new WallBlock(AbstractBlock.Settings.copy(Blocks.COBBLESTONE_WALL)));
-    public static final Block COBBLED_ANDESITE_WALL = makeAdvancedBlockAndItem(makeId("cobbled_andesite_wall"), new WallBlock(AbstractBlock.Settings.copy(Blocks.COBBLESTONE_WALL)));
+    public static final Block COBBLED_GRANITE_WALL = makeBlockAndSimpleItem(makeId("cobbled_granite_wall"), WallBlock::new, AbstractBlock.Settings.copy(Blocks.COBBLESTONE_WALL));
+    public static final Block COBBLED_DIORITE_WALL = makeBlockAndSimpleItem(makeId("cobbled_diorite_wall"), WallBlock::new, AbstractBlock.Settings.copy(Blocks.COBBLESTONE_WALL));
+    public static final Block COBBLED_ANDESITE_WALL = makeBlockAndSimpleItem(makeId("cobbled_andesite_wall"), WallBlock::new, AbstractBlock.Settings.copy(Blocks.COBBLESTONE_WALL));
 
-    public static final Block POLISHED_GRANITE_BRICKS = makeBlockAndItem(makeId("polished_granite_bricks"), AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
-    public static final Block POLISHED_DIORITE_BRICKS = makeBlockAndItem(makeId("polished_diorite_bricks"), AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
-    public static final Block POLISHED_ANDESITE_BRICKS = makeBlockAndItem(makeId("polished_andesite_bricks"), AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
+    public static final Block POLISHED_GRANITE_BRICKS = makeSimpleBlockAndSimpleItem(makeId("polished_granite_bricks"), AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
+    public static final Block POLISHED_DIORITE_BRICKS = makeSimpleBlockAndSimpleItem(makeId("polished_diorite_bricks"), AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
+    public static final Block POLISHED_ANDESITE_BRICKS = makeSimpleBlockAndSimpleItem(makeId("polished_andesite_bricks"), AbstractBlock.Settings.copy(Blocks.STONE_BRICKS));
 
-    public static final Block POLISHED_GRANITE_BRICK_STAIRS = makeAdvancedBlockAndItem(makeId("polished_granite_brick_stairs"), new StairsBlock(
-            POLISHED_GRANITE_BRICKS.getDefaultState(),
+    public static final Block POLISHED_GRANITE_BRICK_STAIRS = makeBlockAndSimpleItem(makeId("polished_granite_brick_stairs"),
+            settings -> new StairsBlock(POLISHED_GRANITE_BRICKS.getDefaultState(), settings),
             AbstractBlock.Settings.copy(Blocks.STONE_BRICK_STAIRS)
-    ));
-    public static final Block POLISHED_DIORITE_BRICK_STAIRS = makeAdvancedBlockAndItem(makeId("polished_diorite_brick_stairs"), new StairsBlock(
-            POLISHED_DIORITE_BRICKS.getDefaultState(),
+    );
+    public static final Block POLISHED_DIORITE_BRICK_STAIRS = makeBlockAndSimpleItem(makeId("polished_diorite_brick_stairs"),
+            settings -> new StairsBlock(POLISHED_DIORITE_BRICKS.getDefaultState(), settings),
             AbstractBlock.Settings.copy(Blocks.STONE_BRICK_STAIRS)
-    ));
-    public static final Block POLISHED_ANDESITE_BRICK_STAIRS = makeAdvancedBlockAndItem(makeId("polished_andesite_brick_stairs"), new StairsBlock(
-            POLISHED_ANDESITE_BRICKS.getDefaultState(),
+    );
+    public static final Block POLISHED_ANDESITE_BRICK_STAIRS = makeBlockAndSimpleItem(makeId("polished_andesite_brick_stairs"),
+            settings -> new StairsBlock(POLISHED_ANDESITE_BRICKS.getDefaultState(), settings),
             AbstractBlock.Settings.copy(Blocks.STONE_BRICK_STAIRS)
-    ));
+    );
 
-    public static final Block POLISHED_GRANITE_BRICK_SLAB = makeAdvancedBlockAndItem(makeId("polished_granite_brick_slab"), new SlabBlock(
-            AbstractBlock.Settings.copy(Blocks.STONE_BRICK_SLAB)
-    ));
-    public static final Block POLISHED_DIORITE_BRICK_SLAB = makeAdvancedBlockAndItem(makeId("polished_diorite_brick_slab"), new SlabBlock(
-            AbstractBlock.Settings.copy(Blocks.STONE_BRICK_SLAB)
-    ));
-    public static final Block POLISHED_ANDESITE_BRICK_SLAB = makeAdvancedBlockAndItem(makeId("polished_andesite_brick_slab"), new SlabBlock(
-            AbstractBlock.Settings.copy(Blocks.STONE_BRICK_SLAB)
-    ));
+    public static final Block POLISHED_GRANITE_BRICK_SLAB = makeBlockAndSimpleItem(makeId("polished_granite_brick_slab"),
+            SlabBlock::new, AbstractBlock.Settings.copy(Blocks.STONE_BRICK_SLAB));
+    public static final Block POLISHED_DIORITE_BRICK_SLAB = makeBlockAndSimpleItem(makeId("polished_diorite_brick_slab"),
+            SlabBlock::new, AbstractBlock.Settings.copy(Blocks.STONE_BRICK_SLAB));
+    public static final Block POLISHED_ANDESITE_BRICK_SLAB = makeBlockAndSimpleItem(makeId("polished_andesite_brick_slab"),
+            SlabBlock::new, AbstractBlock.Settings.copy(Blocks.STONE_BRICK_SLAB));
 
-    public static final Block POLISHED_GRANITE_WALL = makeAdvancedBlockAndItem(makeId("polished_granite_wall"), new WallBlock(
-            AbstractBlock.Settings.copy(Blocks.GRANITE_WALL)
-    ));
-    public static final Block POLISHED_DIORITE_WALL = makeAdvancedBlockAndItem(makeId("polished_diorite_wall"), new WallBlock(
-            AbstractBlock.Settings.copy(Blocks.DIORITE_WALL)
-    ));
-    public static final Block POLISHED_ANDESITE_WALL = makeAdvancedBlockAndItem(makeId("polished_andesite_wall"), new WallBlock(
-            AbstractBlock.Settings.copy(Blocks.ANDESITE_WALL)
-    ));
+    public static final Block POLISHED_GRANITE_WALL = makeBlockAndSimpleItem(makeId("polished_granite_wall"),
+            WallBlock::new, AbstractBlock.Settings.copy(Blocks.GRANITE_WALL));
+    public static final Block POLISHED_DIORITE_WALL = makeBlockAndSimpleItem(makeId("polished_diorite_wall"),
+            WallBlock::new, AbstractBlock.Settings.copy(Blocks.DIORITE_WALL));
+    public static final Block POLISHED_ANDESITE_WALL = makeBlockAndSimpleItem(makeId("polished_andesite_wall"),
+            WallBlock::new, AbstractBlock.Settings.copy(Blocks.ANDESITE_WALL));
 
-    public static final Block POLISHED_GRANITE_BRICK_WALL = makeAdvancedBlockAndItem(makeId("polished_granite_brick_wall"), new WallBlock(
-            AbstractBlock.Settings.copy(Blocks.STONE_BRICK_WALL)
-    ));
-    public static final Block POLISHED_DIORITE_BRICK_WALL = makeAdvancedBlockAndItem(makeId("polished_diorite_brick_wall"), new WallBlock(
-            AbstractBlock.Settings.copy(Blocks.STONE_BRICK_WALL)
-    ));
-    public static final Block POLISHED_ANDESITE_BRICK_WALL = makeAdvancedBlockAndItem(makeId("polished_andesite_brick_wall"), new WallBlock(
-            AbstractBlock.Settings.copy(Blocks.STONE_BRICK_WALL)
-    ));
+    public static final Block POLISHED_GRANITE_BRICK_WALL = makeBlockAndSimpleItem(makeId("polished_granite_brick_wall"),
+            WallBlock::new, AbstractBlock.Settings.copy(Blocks.STONE_BRICK_WALL));
+    public static final Block POLISHED_DIORITE_BRICK_WALL = makeBlockAndSimpleItem(makeId("polished_diorite_brick_wall"),
+            WallBlock::new, AbstractBlock.Settings.copy(Blocks.STONE_BRICK_WALL));
+    public static final Block POLISHED_ANDESITE_BRICK_WALL = makeBlockAndSimpleItem(makeId("polished_andesite_brick_wall"),
+            WallBlock::new, AbstractBlock.Settings.copy(Blocks.STONE_BRICK_WALL));
 
     public static final BlockFamily COBBLED_GRANITE_FAMILY = new BlockFamily.Builder(COBBLED_GRANITE)
             .slab(COBBLED_GRANITE_SLAB).stairs(COBBLED_GRANITE_STAIRS).wall(COBBLED_GRANITE_WALL).build();
@@ -159,69 +174,68 @@ public class YavpmBlocks {
     // endregion
 
     // region Kimberlite
-    public static final Block KIMBERLITE = makeBlockAndItem(
+    public static final Block KIMBERLITE = makeSimpleBlockAndSimpleItem(
             makeId("kimberlite"),
             AbstractBlock.Settings.copy(Blocks.COBBLED_DEEPSLATE).requiresTool().instrument(NoteBlockInstrument.PLING)
     );
-    public static final Block POLISHED_KIMBERLITE = makeBlockAndItem(
+    public static final Block POLISHED_KIMBERLITE = makeSimpleBlockAndSimpleItem(
             makeId("polished_kimberlite"),
             AbstractBlock.Settings.copy(Blocks.POLISHED_DEEPSLATE).requiresTool().instrument(NoteBlockInstrument.PLING)
     );
-    public static final Block POLISHED_KIMBERLITE_BRICKS = makeBlockAndItem(
+    public static final Block POLISHED_KIMBERLITE_BRICKS = makeSimpleBlockAndSimpleItem(
             makeId("polished_kimberlite_bricks"),
             AbstractBlock.Settings.copy(Blocks.DEEPSLATE_BRICKS).requiresTool()
                     .instrument(NoteBlockInstrument.PLING)
     );
 
-    public static final Block KIMBERLITE_STAIRS = makeAdvancedBlockAndItem(
+    public static final Block KIMBERLITE_STAIRS = makeBlockAndSimpleItem(
             makeId("kimberlite_stairs"),
-            new StairsBlock(KIMBERLITE.getDefaultState(),
-                    AbstractBlock.Settings.copy(Blocks.COBBLED_DEEPSLATE_STAIRS).requiresTool()
-                            .instrument(NoteBlockInstrument.PLING))
+            settings -> new StairsBlock(KIMBERLITE.getDefaultState(), settings),
+            AbstractBlock.Settings.copy(Blocks.COBBLED_DEEPSLATE_STAIRS).requiresTool().instrument(NoteBlockInstrument.PLING)
     );
-    public static final Block KIMBERLITE_SLAB = makeAdvancedBlockAndItem(
+    public static final Block KIMBERLITE_SLAB = makeBlockAndSimpleItem(
             makeId("kimberlite_slab"),
-            new SlabBlock(AbstractBlock.Settings.copy(Blocks.COBBLED_DEEPSLATE_SLAB).requiresTool()
-                    .instrument(NoteBlockInstrument.PLING))
+            SlabBlock::new, AbstractBlock.Settings.copy(Blocks.COBBLED_DEEPSLATE_SLAB)
+                    .requiresTool().instrument(NoteBlockInstrument.PLING)
     );
-    public static final Block KIMBERLITE_WALL = makeAdvancedBlockAndItem(
+    public static final Block KIMBERLITE_WALL = makeBlockAndSimpleItem(
             makeId("kimberlite_wall"),
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.COBBLED_DEEPSLATE_WALL).requiresTool()
-                    .instrument(NoteBlockInstrument.PLING))
+            WallBlock::new,AbstractBlock.Settings.copy(Blocks.COBBLED_DEEPSLATE_WALL).requiresTool()
+                    .instrument(NoteBlockInstrument.PLING)
     );
 
-    public static final Block POLISHED_KIMBERLITE_STAIRS = makeAdvancedBlockAndItem(
+    public static final Block POLISHED_KIMBERLITE_STAIRS = makeBlockAndSimpleItem(
             makeId("polished_kimberlite_stairs"),
-            new StairsBlock(POLISHED_KIMBERLITE.getDefaultState(),
-                    AbstractBlock.Settings.copy(Blocks.POLISHED_DEEPSLATE_STAIRS).requiresTool()
-                            .instrument(NoteBlockInstrument.PLING))
+            settings -> new StairsBlock(POLISHED_KIMBERLITE.getDefaultState(), settings),
+            AbstractBlock.Settings.copy(Blocks.POLISHED_DEEPSLATE_STAIRS).requiresTool()
+                    .instrument(NoteBlockInstrument.PLING)
     );
-    public static final Block POLISHED_KIMBERLITE_SLAB = makeAdvancedBlockAndItem(
+    public static final Block POLISHED_KIMBERLITE_SLAB = makeBlockAndSimpleItem(
             makeId("polished_kimberlite_slab"),
-            new SlabBlock(AbstractBlock.Settings.copy(Blocks.POLISHED_DEEPSLATE_SLAB).requiresTool()
-                    .instrument(NoteBlockInstrument.PLING))
+            SlabBlock::new, AbstractBlock.Settings.copy(Blocks.POLISHED_DEEPSLATE_SLAB).requiresTool()
+                    .instrument(NoteBlockInstrument.PLING)
     );
-    public static final Block POLISHED_KIMBERLITE_WALL = makeAdvancedBlockAndItem(
+    public static final Block POLISHED_KIMBERLITE_WALL = makeBlockAndSimpleItem(
             makeId("polished_kimberlite_wall"),
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.POLISHED_DEEPSLATE_WALL).requiresTool()
-                    .instrument(NoteBlockInstrument.PLING))
+            WallBlock::new, AbstractBlock.Settings.copy(Blocks.POLISHED_DEEPSLATE_WALL).requiresTool()
+                    .instrument(NoteBlockInstrument.PLING)
     );
 
-    public static final Block POLISHED_KIMBERLITE_BRICK_STAIRS = makeAdvancedBlockAndItem(
+    public static final Block POLISHED_KIMBERLITE_BRICK_STAIRS = makeBlockAndSimpleItem(
             makeId("polished_kimberlite_brick_stairs"),
-            new StairsBlock(POLISHED_KIMBERLITE_BRICKS.getDefaultState(),
-                    AbstractBlock.Settings.copy(Blocks.DEEPSLATE_BRICK_STAIRS).requiresTool()
-                            .instrument(NoteBlockInstrument.PLING))
+            settings -> new StairsBlock(POLISHED_KIMBERLITE_BRICKS.getDefaultState(), settings),
+            AbstractBlock.Settings.copy(Blocks.DEEPSLATE_BRICK_STAIRS).requiresTool()
+                    .instrument(NoteBlockInstrument.PLING)
     );
-    public static final Block POLISHED_KIMBERLITE_BRICK_SLAB = makeAdvancedBlockAndItem(
+    public static final Block POLISHED_KIMBERLITE_BRICK_SLAB = makeBlockAndSimpleItem(
             makeId("polished_kimberlite_brick_slab"),
-            new SlabBlock(AbstractBlock.Settings.copy(Blocks.DEEPSLATE_BRICK_SLAB).requiresTool()
-                    .instrument(NoteBlockInstrument.PLING))
+            SlabBlock::new, AbstractBlock.Settings.copy(Blocks.DEEPSLATE_BRICK_SLAB).requiresTool()
+                    .instrument(NoteBlockInstrument.PLING)
     );
-    public static final Block POLISHED_KIMBERLITE_BRICK_WALL = makeAdvancedBlockAndItem(
+    public static final Block POLISHED_KIMBERLITE_BRICK_WALL = makeBlockAndSimpleItem(
             makeId("polished_kimberlite_brick_wall"),
-            new WallBlock(AbstractBlock.Settings.copy(Blocks.DEEPSLATE_BRICK_WALL).requiresTool()
-                    .instrument(NoteBlockInstrument.PLING))
+            WallBlock::new, AbstractBlock.Settings.copy(Blocks.DEEPSLATE_BRICK_WALL).requiresTool()
+                    .instrument(NoteBlockInstrument.PLING)
     );
 
     public static final BlockFamily KIMBERLITE_FAMILY = new BlockFamily.Builder(KIMBERLITE)
@@ -232,95 +246,94 @@ public class YavpmBlocks {
             .slab(POLISHED_KIMBERLITE_BRICK_SLAB).stairs(POLISHED_KIMBERLITE_BRICK_STAIRS).wall(POLISHED_KIMBERLITE_BRICK_WALL).build();
     // endregion
 
-    public static final Block POLARIZED_GLASS = makeAdvancedBlockAndItem(
+    public static final Block POLARIZED_GLASS = makeBlockAndSimpleItem(
             makeId("polarized_glass"),
-            new PolarizedGlassBlock(
-                    AbstractBlock.Settings.copy(Blocks.TINTED_GLASS).mapColor(MapColor.BRIGHT_TEAL)
-            )
+            PolarizedGlassBlock::new,
+            AbstractBlock.Settings.copy(Blocks.TINTED_GLASS).mapColor(MapColor.BRIGHT_TEAL)
     );
 
-    public static final Block KEYLOCK = makeAdvancedBlockAndItem(
+    public static final Block KEYLOCK = makeBlockAndSimpleItem(
             makeId("keylock"),
-            new KeylockBlock(AbstractBlock.Settings.copy(Blocks.OBSERVER))
+            KeylockBlock::new,
+            AbstractBlock.Settings.copy(Blocks.OBSERVER)
     );
 
     // region Applewood
-    public static final Block APPLE_LOG = makeAdvancedBlockAndItem(
+    public static final Block APPLE_LOG = makeBlockAndSimpleItem(
             makeId("apple_log"),
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHERRY_LOG))
+            PillarBlock::new,
+            AbstractBlock.Settings.copy(Blocks.CHERRY_LOG)
     );
-    public static final Block APPLE_WOOD = makeAdvancedBlockAndItem(
+    public static final Block APPLE_WOOD = makeBlockAndSimpleItem(
             makeId("apple_wood"),
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.CHERRY_WOOD))
+            PillarBlock::new,
+            AbstractBlock.Settings.copy(Blocks.CHERRY_WOOD)
     );
-    public static final Block STRIPPED_APPLE_LOG = makeAdvancedBlockAndItem(
+    public static final Block STRIPPED_APPLE_LOG = makeBlockAndSimpleItem(
             makeId("stripped_apple_log"),
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_CHERRY_LOG))
+            PillarBlock::new,
+            AbstractBlock.Settings.copy(Blocks.STRIPPED_CHERRY_LOG)
     );
-    public static final Block STRIPPED_APPLE_WOOD = makeAdvancedBlockAndItem(
+    public static final Block STRIPPED_APPLE_WOOD = makeBlockAndSimpleItem(
             makeId("stripped_apple_wood"),
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_CHERRY_WOOD))
+            PillarBlock::new,
+            AbstractBlock.Settings.copy(Blocks.STRIPPED_CHERRY_WOOD)
     );
-    public static final Block APPLE_LEAVES = makeAdvancedBlockAndItem(
+    public static final Block APPLE_LEAVES = makeBlockAndSimpleItem(
             makeId("apple_leaves"),
-            new LeavesBlock(AbstractBlock.Settings.copy(Blocks.FLOWERING_AZALEA_LEAVES))
+            LeavesBlock::new,
+            AbstractBlock.Settings.copy(Blocks.FLOWERING_AZALEA_LEAVES)
     );
 
-    public static final Block APPLE_PLANKS = makeBlockAndItem(
+    public static final Block APPLE_PLANKS = makeSimpleBlockAndSimpleItem(
             makeId("apple_planks"),
             AbstractBlock.Settings.copy(Blocks.CHERRY_PLANKS)
     );
-    public static final Block APPLE_STAIRS = makeAdvancedBlockAndItem(
+    public static final Block APPLE_STAIRS = makeBlockAndSimpleItem(
             makeId("apple_stairs"),
-            new StairsBlock(
-                    APPLE_PLANKS.getDefaultState(),
-                    AbstractBlock.Settings.copy(Blocks.CHERRY_STAIRS)
-            )
+            settings -> new StairsBlock(APPLE_PLANKS.getDefaultState(), settings),
+            AbstractBlock.Settings.copy(Blocks.CHERRY_STAIRS)
     );
-    public static final Block APPLE_SLAB = makeAdvancedBlockAndItem(
+    public static final Block APPLE_SLAB = makeBlockAndSimpleItem(
             makeId("apple_slab"),
-            new SlabBlock(AbstractBlock.Settings.copy(Blocks.CHERRY_SLAB))
+            SlabBlock::new,
+            AbstractBlock.Settings.copy(Blocks.CHERRY_SLAB)
     );
-    public static final Block APPLE_FENCE = makeAdvancedBlockAndItem(
+    public static final Block APPLE_FENCE = makeBlockAndSimpleItem(
             makeId("apple_fence"),
-            new FenceBlock(AbstractBlock.Settings.copy(Blocks.CHERRY_FENCE))
+            FenceBlock::new,
+            AbstractBlock.Settings.copy(Blocks.CHERRY_FENCE)
     );
-    public static final Block APPLE_FENCE_GATE = makeAdvancedBlockAndItem(
+    public static final Block APPLE_FENCE_GATE = makeBlockAndSimpleItem(
             makeId("apple_fence_gate"),
-            new FenceGateBlock(WoodType.CHERRY, AbstractBlock.Settings.copy(Blocks.CHERRY_FENCE))
+            settings -> new FenceGateBlock(WoodType.CHERRY, settings),
+            AbstractBlock.Settings.copy(Blocks.CHERRY_FENCE)
     );
-    public static final Block APPLE_DOOR = makeAdvancedBlockAndItem(
+    public static final Block APPLE_DOOR = makeBlockAndSimpleItem(
             makeId("apple_door"),
-            new DoorBlock(
-                    BlockSetType.CHERRY,
-                    AbstractBlock.Settings.copy(Blocks.CHERRY_DOOR)
-            )
+            settings -> new DoorBlock(BlockSetType.CHERRY, settings),
+            AbstractBlock.Settings.copy(Blocks.CHERRY_DOOR)
     );
-    public static final Block APPLE_TRAPDOOR = makeAdvancedBlockAndItem(
+    public static final Block APPLE_TRAPDOOR = makeBlockAndSimpleItem(
             makeId("apple_trapdoor"),
-            new TrapdoorBlock(
-                    BlockSetType.CHERRY,
-                    AbstractBlock.Settings.copy(Blocks.CHERRY_TRAPDOOR)
-            )
+            settings -> new TrapdoorBlock(BlockSetType.CHERRY, settings),
+
+            AbstractBlock.Settings.copy(Blocks.CHERRY_TRAPDOOR)
     );
-    public static final Block APPLE_BUTTON = makeAdvancedBlockAndItem(
+    public static final Block APPLE_BUTTON = makeBlockAndSimpleItem(
             makeId("apple_button"),
-            new ButtonBlock(
-                    BlockSetType.CHERRY,
-                    30,
-                    AbstractBlock.Settings.copy(Blocks.CHERRY_BUTTON)
-            )
+            settings -> new ButtonBlock(BlockSetType.CHERRY, 30, settings),
+            AbstractBlock.Settings.copy(Blocks.CHERRY_BUTTON)
     );
-    public static final Block APPLE_PRESSURE_PLATE = makeAdvancedBlockAndItem(
+    public static final Block APPLE_PRESSURE_PLATE = makeBlockAndSimpleItem(
             makeId("apple_pressure_plate"),
-            new PressurePlateBlock(
-                    BlockSetType.CHERRY,
-                    AbstractBlock.Settings.copy(Blocks.CHERRY_PRESSURE_PLATE)
-            )
+            settings -> new PressurePlateBlock(BlockSetType.CHERRY, settings),
+            AbstractBlock.Settings.copy(Blocks.CHERRY_PRESSURE_PLATE)
     );
-    public static final Block APPLE_SAPLING = makeAdvancedBlockAndItem(
+    public static final Block APPLE_SAPLING = makeBlockAndSimpleItem(
             makeId("apple_sapling"),
-            new SaplingBlock(YavpmTreeConfiguredFeatures.APPLEWOOD_GENERATOR, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING))
+            settings -> new SaplingBlock(YavpmTreeConfiguredFeatures.APPLEWOOD_GENERATOR, settings),
+            AbstractBlock.Settings.copy(Blocks.OAK_SAPLING)
     );
     public static final BlockFamily APPLE_FAMILY = BlockFamilies.register(APPLE_PLANKS)
             .slab(APPLE_SLAB).stairs(APPLE_STAIRS).fence(APPLE_FENCE).fenceGate(APPLE_FENCE_GATE)
@@ -330,70 +343,63 @@ public class YavpmBlocks {
     // endregion
 
     // region Prickle Wood
-    public static final Block PRICKLE_LOG = makeAdvancedBlockAndItem(
+    public static final Block PRICKLE_LOG = makeBlockAndSimpleItem(
             makeId("prickle_log"),
-            new PrickleLogBlock(AbstractBlock.Settings.copy(Blocks.WARPED_STEM).burnable())
+            PrickleLogBlock::new, AbstractBlock.Settings.copy(Blocks.WARPED_STEM).burnable()
     );
-    public static final Block PRICKLE_WOOD = makeAdvancedBlockAndItem(
+    public static final Block PRICKLE_WOOD = makeBlockAndSimpleItem(
             makeId("prickle_wood"),
-            new PrickleLogBlock(AbstractBlock.Settings.copy(Blocks.WARPED_HYPHAE).burnable())
+            PrickleLogBlock::new, AbstractBlock.Settings.copy(Blocks.WARPED_HYPHAE).burnable()
     );
-    public static final Block STRIPPED_PRICKLE_LOG = makeAdvancedBlockAndItem(
+    public static final Block STRIPPED_PRICKLE_LOG = makeBlockAndSimpleItem(
             makeId("stripped_prickle_log"),
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_WARPED_STEM).burnable())
+            PillarBlock::new, AbstractBlock.Settings.copy(Blocks.STRIPPED_WARPED_STEM).burnable()
     );
-    public static final Block STRIPPED_PRICKLE_WOOD = makeAdvancedBlockAndItem(
+    public static final Block STRIPPED_PRICKLE_WOOD = makeBlockAndSimpleItem(
             makeId("stripped_prickle_wood"),
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_WARPED_HYPHAE).burnable())
+            PillarBlock::new, AbstractBlock.Settings.copy(Blocks.STRIPPED_WARPED_HYPHAE).burnable()
     );
-    public static final Block PRICKLE_PLANKS = makeBlockAndItem(
+    public static final Block PRICKLE_PLANKS = makeSimpleBlockAndSimpleItem(
             makeId("prickle_planks"),
             AbstractBlock.Settings.copy(Blocks.WARPED_PLANKS).burnable()
     );
-    public static final Block PRICKLE_STAIRS = makeAdvancedBlockAndItem(
+    public static final Block PRICKLE_STAIRS = makeBlockAndSimpleItem(
             makeId("prickle_stairs"),
-            new StairsBlock(PRICKLE_PLANKS.getDefaultState(), AbstractBlock.Settings.copy(Blocks.WARPED_STAIRS).burnable())
+            settings -> new StairsBlock(PRICKLE_PLANKS.getDefaultState(), settings),
+            AbstractBlock.Settings.copy(Blocks.WARPED_STAIRS).burnable()
     );
-    public static final Block PRICKLE_SLAB = makeAdvancedBlockAndItem(
+    public static final Block PRICKLE_SLAB = makeBlockAndSimpleItem(
             makeId("prickle_slab"),
-            new SlabBlock(AbstractBlock.Settings.copy(Blocks.WARPED_SLAB).burnable())
+            SlabBlock::new, AbstractBlock.Settings.copy(Blocks.WARPED_SLAB).burnable()
     );
-    public static final Block PRICKLE_FENCE = makeAdvancedBlockAndItem(
+    public static final Block PRICKLE_FENCE = makeBlockAndSimpleItem(
             makeId("prickle_fence"),
-            new FenceBlock(AbstractBlock.Settings.copy(Blocks.WARPED_FENCE).burnable())
+            FenceBlock::new, AbstractBlock.Settings.copy(Blocks.WARPED_FENCE).burnable()
     );
-    public static final Block PRICKLE_FENCE_GATE = makeAdvancedBlockAndItem(makeId("prickle_fence_gate"), new FenceGateBlock(
-            WoodType.WARPED,
-            AbstractBlock.Settings.copy(Blocks.WARPED_FENCE_GATE))
+    public static final Block PRICKLE_FENCE_GATE = makeBlockAndSimpleItem(
+            makeId("prickle_fence_gate"),
+            settings -> new FenceGateBlock(WoodType.WARPED, settings),
+            AbstractBlock.Settings.copy(Blocks.WARPED_FENCE_GATE)
     );
-    public static final Block PRICKLE_DOOR = makeAdvancedBlockAndItem(
+    public static final Block PRICKLE_DOOR = makeBlockAndSimpleItem(
             makeId("prickle_door"),
-            new DoorBlock(
-                    BlockSetType.WARPED,
-                    AbstractBlock.Settings.copy(Blocks.WARPED_DOOR)
-            )
+            settings -> new DoorBlock(BlockSetType.WARPED, settings),
+            AbstractBlock.Settings.copy(Blocks.WARPED_DOOR)
     );
-    public static final Block PRICKLE_TRAPDOOR = makeAdvancedBlockAndItem(
+    public static final Block PRICKLE_TRAPDOOR = makeBlockAndSimpleItem(
             makeId("prickle_trapdoor"),
-            new TrapdoorBlock(
-                    BlockSetType.WARPED,
-                    AbstractBlock.Settings.copy(Blocks.WARPED_TRAPDOOR)
-            )
+            settings -> new TrapdoorBlock(BlockSetType.WARPED, settings),
+            AbstractBlock.Settings.copy(Blocks.WARPED_TRAPDOOR)
     );
-    public static final Block PRICKLE_BUTTON = makeAdvancedBlockAndItem(
+    public static final Block PRICKLE_BUTTON = makeBlockAndSimpleItem(
             makeId("prickle_button"),
-            new ButtonBlock(
-                    BlockSetType.WARPED,
-                    30,
-                    AbstractBlock.Settings.copy(Blocks.WARPED_BUTTON)
-            )
+            settings -> new ButtonBlock(BlockSetType.WARPED, 30, settings),
+            AbstractBlock.Settings.copy(Blocks.WARPED_BUTTON)
     );
-    public static final Block PRICKLE_PRESSURE_PLATE = makeAdvancedBlockAndItem(
+    public static final Block PRICKLE_PRESSURE_PLATE = makeBlockAndSimpleItem(
             makeId("prickle_pressure_plate"),
-            new PressurePlateBlock(
-                    BlockSetType.WARPED,
-                    AbstractBlock.Settings.copy(Blocks.WARPED_PRESSURE_PLATE)
-            )
+            settings -> new PressurePlateBlock(BlockSetType.WARPED, settings),
+            AbstractBlock.Settings.copy(Blocks.WARPED_PRESSURE_PLATE)
     );
 
 
@@ -403,90 +409,79 @@ public class YavpmBlocks {
             .pressurePlate(PRICKLE_PRESSURE_PLATE).button(PRICKLE_BUTTON)
             .group("wooden").unlockCriterionName("has_planks").build();
 
-    public static final Block PRICKLE_SHOOT = makeAdvancedBlockAndItem(
+    public static final Block PRICKLE_SHOOT = makeBlockAndSimpleItem(
             makeId("prickle_shoot"),
-            new SaplingBlock(YavpmTreeConfiguredFeatures.PRICKLE_GENERATOR, AbstractBlock.Settings.copy(Blocks.WARPED_FUNGUS)) {
+            settings -> new SaplingBlock(YavpmTreeConfiguredFeatures.PRICKLE_GENERATOR, settings) {
                 @Override
                 protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
                     return floor.isOf(Blocks.END_STONE);
                 }
-            }
+            },
+            AbstractBlock.Settings.copy(Blocks.WARPED_FUNGUS)
     );
     // endregion
 
     // region Persimmon Wood
-    public static final Block PERSIMMON_LOG = makeAdvancedBlockAndItem(
+    public static final Block PERSIMMON_LOG = makeBlockAndSimpleItem(
             makeId("persimmon_log"),
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_LOG))
+            PillarBlock::new, AbstractBlock.Settings.copy(Blocks.OAK_LOG)
     );
-    public static final Block PERSIMMON_WOOD = makeAdvancedBlockAndItem(
+    public static final Block PERSIMMON_WOOD = makeBlockAndSimpleItem(
             makeId("persimmon_wood"),
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.OAK_WOOD))
+            PillarBlock::new, AbstractBlock.Settings.copy(Blocks.OAK_WOOD)
     );
-    public static final Block STRIPPED_PERSIMMON_LOG = makeAdvancedBlockAndItem(
+    public static final Block STRIPPED_PERSIMMON_LOG = makeBlockAndSimpleItem(
             makeId("stripped_persimmon_log"),
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_OAK_LOG))
+            PillarBlock::new, AbstractBlock.Settings.copy(Blocks.STRIPPED_OAK_LOG)
     );
-    public static final Block STRIPPED_PERSIMMON_WOOD = makeAdvancedBlockAndItem(
+    public static final Block STRIPPED_PERSIMMON_WOOD = makeBlockAndSimpleItem(
             makeId("stripped_persimmon_wood"),
-            new PillarBlock(AbstractBlock.Settings.copy(Blocks.STRIPPED_OAK_WOOD))
+            PillarBlock::new, AbstractBlock.Settings.copy(Blocks.STRIPPED_OAK_WOOD)
     );
-    public static final Block PERSIMMON_LEAVES = makeAdvancedBlockAndItem(
+    public static final Block PERSIMMON_LEAVES = makeBlockAndSimpleItem(
             makeId("persimmon_leaves"),
-            new LeavesBlock(AbstractBlock.Settings.copy(Blocks.OAK_LEAVES))
+            LeavesBlock::new, AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)
     );
 
-    public static final Block PERSIMMON_PLANKS = makeBlockAndItem(
+    public static final Block PERSIMMON_PLANKS = makeSimpleBlockAndSimpleItem(
             makeId("persimmon_planks"),
             AbstractBlock.Settings.copy(Blocks.OAK_PLANKS)
     );
-    public static final Block PERSIMMON_STAIRS = makeAdvancedBlockAndItem(
+    public static final Block PERSIMMON_STAIRS = makeBlockAndSimpleItem(
             makeId("persimmon_stairs"),
-            new StairsBlock(
-                    PERSIMMON_PLANKS.getDefaultState(),
-                    AbstractBlock.Settings.copy(Blocks.OAK_STAIRS)
-            )
+            settings -> new StairsBlock(PERSIMMON_PLANKS.getDefaultState(), settings),
+            AbstractBlock.Settings.copy(Blocks.OAK_STAIRS)
     );
-    public static final Block PERSIMMON_SLAB = makeAdvancedBlockAndItem(
+    public static final Block PERSIMMON_SLAB = makeBlockAndSimpleItem(
             makeId("persimmon_slab"),
-            new SlabBlock(AbstractBlock.Settings.copy(Blocks.OAK_SLAB))
+            SlabBlock::new, AbstractBlock.Settings.copy(Blocks.OAK_SLAB)
     );
-    public static final Block PERSIMMON_FENCE = makeAdvancedBlockAndItem(
+    public static final Block PERSIMMON_FENCE = makeBlockAndSimpleItem(
             makeId("persimmon_fence"),
-            new FenceBlock(AbstractBlock.Settings.copy(Blocks.OAK_FENCE))
+            FenceBlock::new, AbstractBlock.Settings.copy(Blocks.OAK_FENCE)
     );
-    public static final Block PERSIMMON_FENCE_GATE = makeAdvancedBlockAndItem(
-            makeId("persimmon_fence_gate"),
-            new FenceGateBlock(WoodType.OAK, AbstractBlock.Settings.copy(Blocks.OAK_FENCE))
+    public static final Block PERSIMMON_FENCE_GATE = makeBlockAndSimpleItem(
+            makeId("persimmon_fence_gate"), settings -> new FenceGateBlock(WoodType.OAK, settings),
+            AbstractBlock.Settings.copy(Blocks.OAK_FENCE)
     );
-    public static final Block PERSIMMON_DOOR = makeAdvancedBlockAndItem(
+    public static final Block PERSIMMON_DOOR = makeBlockAndSimpleItem(
             makeId("persimmon_door"),
-            new DoorBlock(
-                    BlockSetType.OAK,
-                    AbstractBlock.Settings.copy(Blocks.OAK_DOOR)
-            )
+            settings -> new DoorBlock(BlockSetType.OAK, settings), AbstractBlock.Settings.copy(Blocks.OAK_DOOR)
     );
-    public static final Block PERSIMMON_TRAPDOOR = makeAdvancedBlockAndItem(
+    public static final Block PERSIMMON_TRAPDOOR = makeBlockAndSimpleItem(
             makeId("persimmon_trapdoor"),
-            new TrapdoorBlock(
-                    BlockSetType.OAK,
-                    AbstractBlock.Settings.copy(Blocks.OAK_TRAPDOOR)
-            )
+            settings -> new TrapdoorBlock(BlockSetType.OAK, settings),
+            AbstractBlock.Settings.copy(Blocks.OAK_TRAPDOOR)
     );
-    public static final Block PERSIMMON_BUTTON = makeAdvancedBlockAndItem(
+    public static final Block PERSIMMON_BUTTON = makeBlockAndSimpleItem(
             makeId("persimmon_button"),
-            new ButtonBlock(
-                    BlockSetType.OAK,
-                    30,
-                    AbstractBlock.Settings.copy(Blocks.OAK_BUTTON)
-            )
+            settings -> new ButtonBlock(BlockSetType.OAK, 30, settings),
+            AbstractBlock.Settings.copy(Blocks.OAK_BUTTON)
     );
-    public static final Block PERSIMMON_PRESSURE_PLATE = makeAdvancedBlockAndItem(
+    public static final Block PERSIMMON_PRESSURE_PLATE = makeBlockAndSimpleItem(
             makeId("persimmon_pressure_plate"),
-            new PressurePlateBlock(
-                    BlockSetType.OAK,
-                    AbstractBlock.Settings.copy(Blocks.OAK_PRESSURE_PLATE)
-            )
+            settings -> new PressurePlateBlock(BlockSetType.OAK, settings),
+            AbstractBlock.Settings.copy(Blocks.OAK_PRESSURE_PLATE)
     );
 
     public static final BlockFamily PERSIMMON_FAMILY = BlockFamilies.register(PERSIMMON_PLANKS)
@@ -495,33 +490,36 @@ public class YavpmBlocks {
             .pressurePlate(PERSIMMON_PRESSURE_PLATE).button(PERSIMMON_BUTTON)
             .group("wooden").unlockCriterionName("has_planks").build();
 
-    public static final Block PERSIMMON_SAPLING = makeAdvancedBlockAndItem(
+    public static final Block PERSIMMON_SAPLING = makeBlockAndSimpleItem(
             makeId("persimmon_sapling"),
-            new SaplingBlock(YavpmTreeConfiguredFeatures.PERSIMMON_GENERATOR, AbstractBlock.Settings.copy(Blocks.OAK_SAPLING))
+            settings -> new SaplingBlock(YavpmTreeConfiguredFeatures.PERSIMMON_GENERATOR, settings),
+            AbstractBlock.Settings.copy(Blocks.OAK_SAPLING)
     );
     // endregion
 
     // region Graphite and Graphene
-    public static final Block GRAPHITE_BLOCK = makeBlockAndItem(makeId("graphite_block"),
+    public static final Block GRAPHITE_BLOCK = makeSimpleBlockAndSimpleItem(makeId("graphite_block"),
             AbstractBlock.Settings.copy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.BLACK).strength(2f, 2.5f).sounds(BlockSoundGroup.TUFF));
-    public static final Block GRAPHENE_BLOCK = makeBlockAndItem(makeId("graphene_block"),
+    public static final Block GRAPHENE_BLOCK = makeSimpleBlockAndSimpleItem(makeId("graphene_block"),
             AbstractBlock.Settings.copy(Blocks.DIAMOND_BLOCK).mapColor(MapColor.BLACK).strength(6f, 7.5f).sounds(BlockSoundGroup.POLISHED_TUFF));
     // endregion
 
     // region Fake
-    public static final Block FAKE_LOG = makeAdvancedBlock(
+    public static final Block FAKE_LOG = makeBlock(
             makeId("fake_log"),
-            new FakeLogBlock()
+            FakeLogBlock::new,
+            AbstractBlock.Settings.copy(Blocks.CRIMSON_STEM).sounds(BlockSoundGroup.WOOD)
     );
-    public static final Block FAKE_ORE = makeAdvancedBlock(
+    public static final Block FAKE_ORE = makeBlock(
             makeId("fake_ore"),
-            new FakeOreBlock()
+            FakeOreBlock::new,
+            AbstractBlock.Settings.copy(Blocks.DIAMOND_ORE)
     );
     // endregion
 
-    public static final Block VOID_WATER = makeAdvancedBlock(
+    public static final Block VOID_WATER = makeBlock(
             makeId("void_water"),
-            new FluidBlock(YavpmFluids.STILL_VOID_WATER, AbstractBlock.Settings.copy(Blocks.WATER)) {
+            settings -> new FluidBlock(YavpmFluids.STILL_VOID_WATER, settings) {
                 @Override
                 protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
                     if (!world.isClient) {
@@ -530,7 +528,8 @@ public class YavpmBlocks {
                         }
                     }
                 }
-            }
+            },
+            AbstractBlock.Settings.copy(Blocks.WATER)
     );
 
     public static void init() {

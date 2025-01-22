@@ -82,11 +82,11 @@ public class TanukiEntity extends AnimalEntity {
 
     public static DefaultAttributeContainer.Builder createTanukiAttributes() {
         return MobEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.2)
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 14.0)
-                .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 32.0)
-                .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 2.0)
-                .add(EntityAttributes.GENERIC_SAFE_FALL_DISTANCE, 3.5);
+                .add(EntityAttributes.MOVEMENT_SPEED, 0.2)
+                .add(EntityAttributes.MAX_HEALTH, 14.0)
+                .add(EntityAttributes.FOLLOW_RANGE, 32.0)
+                .add(EntityAttributes.ATTACK_DAMAGE, 2.0)
+                .add(EntityAttributes.SAFE_FALL_DISTANCE, 3.5);
     }
 
     @Override

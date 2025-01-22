@@ -14,14 +14,14 @@ import net.minecraft.item.ItemStack;
 import java.util.List;
 
 public class GauntletItem extends Item {
-    public GauntletItem(Settings settings) {
+    public GauntletItem(net.minecraft.item.Item.Settings settings) {
         super(settings);
     }
 
     public static AttributeModifiersComponent createAttributeModifiers() {
         return AttributeModifiersComponent.builder()
                 .add(
-                        EntityAttributes.GENERIC_ATTACK_DAMAGE,
+                        EntityAttributes.ATTACK_DAMAGE,
                         new EntityAttributeModifier(
                                 BASE_ATTACK_DAMAGE_MODIFIER_ID,
                                 3.5, EntityAttributeModifier.Operation.ADD_VALUE

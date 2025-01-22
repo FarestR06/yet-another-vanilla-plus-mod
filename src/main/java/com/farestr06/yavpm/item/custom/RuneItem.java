@@ -12,8 +12,8 @@ import java.util.List;
 public class RuneItem extends Item {
     protected final Text tooltip;
 
-    public RuneItem(Text tooltip) {
-        super(new Settings().rarity(Rarity.EPIC).component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true));
+    public RuneItem(Settings settings, Text tooltip) {
+        super(settings);
         this.tooltip = tooltip;
     }
 

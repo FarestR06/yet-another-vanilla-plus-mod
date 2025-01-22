@@ -46,7 +46,7 @@ import java.util.function.BiConsumer;
 public class YavpmLootProviders {
     public static class Block extends FabricBlockLootTableProvider {
 
-        final RegistryWrapper.Impl<Enchantment> lookup = registryLookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+        final RegistryWrapper.Impl<Enchantment> lookup = registries.getOrThrow(RegistryKeys.ENCHANTMENT);
 
         protected Block(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
             super(dataOutput, registryLookup);
@@ -366,7 +366,7 @@ public class YavpmLootProviders {
         @Override
         public void accept(BiConsumer<RegistryKey<LootTable>, LootTable.Builder> biConsumer) {
             // region Carbonfowl
-            biConsumer.accept(YavpmEntities.CARBONFOWL.getLootTableId(), LootTable.builder().pool(
+            biConsumer.accept(YavpmEntities.CARBONFOWL.getLootTableKey(), LootTable.builder().pool(
                     LootPool.builder()
                             .rolls(ConstantLootNumberProvider.create(1f))
                             .with(
@@ -399,7 +399,7 @@ public class YavpmLootProviders {
             );
             // endregion
             // region Moongus
-            biConsumer.accept(YavpmEntities.MOONGUS.getLootTableId(), LootTable.builder().pool(
+            biConsumer.accept(YavpmEntities.MOONGUS.getLootTableKey(), LootTable.builder().pool(
                             LootPool.builder()
                                     .rolls(ConstantLootNumberProvider.create(1f))
                                     .with(
@@ -420,7 +420,7 @@ public class YavpmLootProviders {
                     ));
             // endregion
             // region Tanuki
-            biConsumer.accept(YavpmEntities.TANUKI.getLootTableId(), LootTable.builder().pool(
+            biConsumer.accept(YavpmEntities.TANUKI.getLootTableKey(), LootTable.builder().pool(
                     LootPool.builder()
                             .rolls(ConstantLootNumberProvider.create(1f))
                             .with(
@@ -430,7 +430,7 @@ public class YavpmLootProviders {
             ));
             // endregion
             // region Void Phantom
-            biConsumer.accept(YavpmEntities.VOID_PHANTOM.getLootTableId(),
+            biConsumer.accept(YavpmEntities.VOID_PHANTOM.getLootTableKey(),
                     LootTable.builder()
                             .pool(
                                     LootPool.builder()
@@ -455,7 +455,7 @@ public class YavpmLootProviders {
         }
 
         protected final AnyOfLootCondition.Builder createSmeltLootCondition() {
-            RegistryWrapper.Impl<Enchantment> impl = lookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+            RegistryWrapper.Impl<Enchantment> impl = lookup.getOrThrow(RegistryKeys.ENCHANTMENT);
             return AnyOfLootCondition.builder(
                     EntityPropertiesLootCondition.builder(
                             LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().flags(EntityFlagsPredicate.Builder.create().onFire(true))

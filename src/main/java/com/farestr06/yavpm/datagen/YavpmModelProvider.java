@@ -6,11 +6,22 @@ import com.farestr06.yavpm.item.YavpmItems;
 import it.unimi.dsi.fastutil.ints.Int2ObjectFunction;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.data.client.*;
+import net.minecraft.block.MapColor;
+import net.minecraft.client.data.BlockStateModelGenerator;
+import net.minecraft.client.data.BlockStateVariant;
+import net.minecraft.client.data.BlockStateVariantMap;
+import net.minecraft.client.data.ItemModelGenerator;
+import net.minecraft.client.data.Model;
+import net.minecraft.client.data.ModelIds;
+import net.minecraft.client.data.Models;
+import net.minecraft.client.data.TextureMap;
+import net.minecraft.client.data.TexturedModel;
+import net.minecraft.client.data.VariantSettings;
+import net.minecraft.client.data.VariantsBlockStateSupplier;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Items;
 import net.minecraft.state.property.Properties;
@@ -50,9 +61,9 @@ public class YavpmModelProvider extends FabricModelProvider {
 
         registerKeylock(generator);
 
-        generator.registerTintableCross(YavpmBlocks.APPLE_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
-        generator.registerTintableCross(YavpmBlocks.PERSIMMON_SAPLING, BlockStateModelGenerator.TintType.NOT_TINTED);
-        generator.registerTintableCross(YavpmBlocks.PRICKLE_SHOOT, BlockStateModelGenerator.TintType.NOT_TINTED);
+        generator.registerTintableCross(YavpmBlocks.APPLE_SAPLING, BlockStateModelGenerator.CrossType.NOT_TINTED);
+        generator.registerTintableCross(YavpmBlocks.PERSIMMON_SAPLING, BlockStateModelGenerator.CrossType.NOT_TINTED);
+        generator.registerTintableCross(YavpmBlocks.PRICKLE_SHOOT, BlockStateModelGenerator.CrossType.NOT_TINTED);
 
         generator.registerStateWithModelReference(YavpmBlocks.VOID_WATER, Blocks.WATER);
     }
@@ -80,10 +91,10 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.register(YavpmItems.DISC_FRAGMENT_MAGNETIC_CIRCUIT, Models.GENERATED);
         generator.register(YavpmItems.MUSIC_DISC_HALLAND_DALARNA, Models.TEMPLATE_MUSIC_DISC);
 
-        generator.register(YavpmItems.MOONGUS_SPAWN_EGG, TEMPLATE_SPAWN_EGG);
-        generator.register(YavpmItems.CARBONFOWL_SPAWN_EGG, TEMPLATE_SPAWN_EGG);
-        generator.register(YavpmItems.TANUKI_SPAWN_EGG, TEMPLATE_SPAWN_EGG);
-        generator.register(YavpmItems.VOID_PHANTOM_SPAWN_EGG, TEMPLATE_SPAWN_EGG);
+        generator.registerSpawnEgg(YavpmItems.MOONGUS_SPAWN_EGG, MapColor.BRIGHT_TEAL.color, MapColor.RED.color);
+        generator.registerSpawnEgg(YavpmItems.CARBONFOWL_SPAWN_EGG, 0x191919, 0x4aedd9);
+        generator.registerSpawnEgg(YavpmItems.TANUKI_SPAWN_EGG, 0x5d4f59, 0xb69578);
+        generator.registerSpawnEgg(YavpmItems.VOID_PHANTOM_SPAWN_EGG, 0x060080, 0xf54bfa);
 
         generator.register(YavpmItems.VOID_WATER_BUCKET, Models.GENERATED);
 
@@ -112,7 +123,7 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.register(YavpmItems.GOLDEN_PERSIMMON, Models.GENERATED);
 
         generator.register(YavpmItems.TRUFFLE, Models.GENERATED);
-        generator.register(YavpmItems.FANCY_MUSHROOM_STEW, Items.MUSHROOM_STEW, Models.GENERATED);
+        generator.registerWithTextureSource(YavpmItems.FANCY_MUSHROOM_STEW, Items.MUSHROOM_STEW, Models.GENERATED);
 
         generator.register(YavpmItems.CHEESE, Models.GENERATED);
 
@@ -139,7 +150,7 @@ public class YavpmModelProvider extends FabricModelProvider {
     private void crops(BlockStateModelGenerator generator) {
         generator.registerTintableCrossBlockStateWithStages(
                 YavpmBlocks.BITTER_BERRY_BUSH,
-                BlockStateModelGenerator.TintType.NOT_TINTED,
+                BlockStateModelGenerator.CrossType.NOT_TINTED,
                 BitterBerryBushBlock.AGE, 0, 1, 2, 3
         );
         generator.registerCrop(YavpmBlocks.RICE_CROP, RiceCropBlock.AGE, 0, 1, 2, 3, 4, 5, 6, 7);

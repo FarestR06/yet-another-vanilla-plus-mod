@@ -9,7 +9,6 @@ import com.farestr06.yavpm.entity.YavpmTrades;
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.ItemGroupHelper;
-import com.farestr06.yavpm.item.YavpmArmorMaterials;
 import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.item.YavpmPotions;
 import com.farestr06.yavpm.item.enchantment.condition.YavpmLootConditions;
@@ -22,11 +21,12 @@ import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.TallSeagrassBlock;
 import net.minecraft.block.enums.DoubleBlockHalf;
-import net.minecraft.data.server.loottable.BlockLootTableGenerator;
-import net.minecraft.data.server.loottable.vanilla.VanillaBlockLootTableGenerator;
+import net.minecraft.data.loottable.BlockLootTableGenerator;
+import net.minecraft.data.loottable.vanilla.VanillaBlockLootTableGenerator;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.EntityType;
@@ -82,8 +82,6 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		YavpmBlocks.init();
 		YavpmFluids.init();
 		YavpmBlockEntities.init();
-
-		YavpmArmorMaterials.init();
 
 		YavpmSounds.init();
 
@@ -151,7 +149,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 	private static void modifyLoot() {
 		LOGGER.info("Modifying loot for YAVPM!");
 		LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
-			RegistryWrapper.Impl<Enchantment> enchantmentImpl = registries.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+			RegistryWrapper.Impl<Enchantment> enchantmentImpl = registries.getOrThrow(RegistryKeys.ENCHANTMENT);
 			if (source.isBuiltin() && key.equals(LootTables.PIGLIN_BARTERING_GAMEPLAY)) {
 				LootPool.Builder poolBuilder = LootPool.builder()
 						.with(ItemEntry.builder(YavpmItems.GAUNTLET_FRAGMENT))
@@ -166,7 +164,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 
 				tableBuilder.pool(poolBuilder);
 			}
-			if (source.isBuiltin() && key.equals(EntityType.ZOMBIE.getLootTableId())) {
+			if (source.isBuiltin() && key.equals(EntityType.ZOMBIE.getLootTableKey().orElseThrow())) {
 				LootPool.Builder poolBuilder = LootPool.builder()
 						.rolls(ConstantLootNumberProvider.create(1f))
 						.with(ItemEntry.builder(YavpmItems.MAGIC_BEAN).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f))))
@@ -441,22 +439,22 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		});
 		LootTableEvents.REPLACE.register((key, original, source, registries) -> {
 			BlockLootTableGenerator generator = new VanillaBlockLootTableGenerator(registries);
-			if (source.isBuiltin() && key == Blocks.OAK_LEAVES.getLootTableKey()) {
+			if (source.isBuiltin() && key == Blocks.OAK_LEAVES.getLootTableKey().orElseThrow()) {
 				return newOakLeavesDrops(registries, generator).build();
 			}
-			if (source.isBuiltin() && key == Blocks.SEAGRASS.getLootTableKey()) {
+			if (source.isBuiltin() && key == Blocks.SEAGRASS.getLootTableKey().orElseThrow()) {
 				return shortSeagrassDrops(registries, generator).build();
 			}
-			if (source.isBuiltin() && key == Blocks.TALL_SEAGRASS.getLootTableKey()) {
-				return tallSeagrassDrops(generator).build();
+			if (source.isBuiltin() && key == Blocks.TALL_SEAGRASS.getLootTableKey().orElseThrow()) {
+				return tallSeagrassDrops(registries, generator).build();
 			}
-			if (source.isBuiltin() && key == Blocks.GRANITE.getLootTableKey()) {
+			if (source.isBuiltin() && key == Blocks.GRANITE.getLootTableKey().orElseThrow()) {
 				return generator.drops(Blocks.GRANITE, YavpmBlocks.COBBLED_GRANITE).build();
 			}
-			if (source.isBuiltin() && key == Blocks.DIORITE.getLootTableKey()) {
+			if (source.isBuiltin() && key == Blocks.DIORITE.getLootTableKey().orElseThrow()) {
 				return generator.drops(Blocks.DIORITE, YavpmBlocks.COBBLED_DIORITE).build();
 			}
-			if (source.isBuiltin() && key == Blocks.ANDESITE.getLootTableKey()) {
+			if (source.isBuiltin() && key == Blocks.ANDESITE.getLootTableKey().orElseThrow()) {
 				return generator.drops(Blocks.ANDESITE, YavpmBlocks.COBBLED_ANDESITE).build();
 			}
 			return original;
@@ -464,7 +462,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 	}
 	
 	private static LootTable.Builder shortSeagrassDrops(RegistryWrapper.WrapperLookup lookup, BlockLootTableGenerator generator) {
-		RegistryWrapper.Impl<Enchantment> impl = lookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+		RegistryWrapper.Impl<Enchantment> impl = lookup.getOrThrow(RegistryKeys.ENCHANTMENT);
 		return generator.dropsWithShears(
 				Blocks.SEAGRASS,
                 generator.applyExplosionDecay(
@@ -475,10 +473,11 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
                 )
 		);
 	}
-	private static LootTable.Builder tallSeagrassDrops(BlockLootTableGenerator generator) {
+	private static LootTable.Builder tallSeagrassDrops(RegistryWrapper.WrapperLookup lookup, BlockLootTableGenerator generator) {
+		RegistryWrapper.Impl<Block> impl = lookup.getOrThrow(RegistryKeys.BLOCK);
 		LootPoolEntry.Builder<?> builder = ItemEntry.builder(Blocks.SEAGRASS)
 				.apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F)))
-				.conditionally(BlockLootTableGenerator.WITH_SHEARS)
+				.conditionally(generator.createWithShearsCondition())
 				.alternatively(
 						((LeafEntry.Builder<?>)generator.addSurvivesExplosionCondition(Blocks.TALL_SEAGRASS, ItemEntry.builder(YavpmItems.RICE_SEEDS)))
 								.conditionally(RandomChanceLootCondition.builder(0.125F))
@@ -493,7 +492,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 								.conditionally(
 										LocationCheckLootCondition.builder(
 												LocationPredicate.Builder.create()
-														.block(BlockPredicate.Builder.create().blocks(Blocks.TALL_SEAGRASS).state(StatePredicate.Builder.create().exactMatch(TallSeagrassBlock.HALF, DoubleBlockHalf.UPPER))),
+														.block(BlockPredicate.Builder.create().blocks(impl, Blocks.TALL_SEAGRASS).state(StatePredicate.Builder.create().exactMatch(TallSeagrassBlock.HALF, DoubleBlockHalf.UPPER))),
 												new BlockPos(0, 1, 0)
 										)
 								)
@@ -507,14 +506,14 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 								.conditionally(
 										LocationCheckLootCondition.builder(
 												LocationPredicate.Builder.create()
-														.block(BlockPredicate.Builder.create().blocks(Blocks.TALL_SEAGRASS).state(StatePredicate.Builder.create().exactMatch(TallSeagrassBlock.HALF, DoubleBlockHalf.LOWER))),
+														.block(BlockPredicate.Builder.create().blocks(impl, Blocks.TALL_SEAGRASS).state(StatePredicate.Builder.create().exactMatch(TallSeagrassBlock.HALF, DoubleBlockHalf.LOWER))),
 												new BlockPos(0, -1, 0)
 										)
 								)
 				);
 	}
 	private static LootTable.Builder newOakLeavesDrops(RegistryWrapper.WrapperLookup lookup, BlockLootTableGenerator generator) {
-		RegistryWrapper.Impl<Enchantment> impl = lookup.getWrapperOrThrow(RegistryKeys.ENCHANTMENT);
+		RegistryWrapper.Impl<Enchantment> impl = lookup.getOrThrow(RegistryKeys.ENCHANTMENT);
 		return generator.leavesDrops(Blocks.OAK_LEAVES, Blocks.OAK_SAPLING, 0.05F, 0.0625F, 0.083333336F, 0.1F)
 				.pool(
 						LootPool.builder()

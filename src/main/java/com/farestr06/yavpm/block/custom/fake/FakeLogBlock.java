@@ -16,8 +16,8 @@ import net.minecraft.world.biome.Biome;
 public class FakeLogBlock extends AbstractFakeBlock{
     public static final EnumProperty<WoodType> TYPE = EnumProperty.of("wood_type", WoodType.class);
 
-    public FakeLogBlock() {
-        super(Blocks.OAK_LOG, Settings.copy(Blocks.CRIMSON_STEM).sounds(BlockSoundGroup.WOOD));
+    public FakeLogBlock(Settings settings) {
+        super(Blocks.OAK_LOG, settings);
     }
 
     @Override

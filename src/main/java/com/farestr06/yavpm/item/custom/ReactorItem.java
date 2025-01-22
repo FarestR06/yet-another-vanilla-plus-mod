@@ -8,7 +8,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.math.random.Random;
 
 public class ReactorItem extends Item {
-    public ReactorItem(Settings settings) {
+    public ReactorItem(net.minecraft.item.Item.Settings settings) {
         super(settings);
     }
 

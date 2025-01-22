@@ -33,7 +33,7 @@ public record ParryEnchantmentEffect(EnchantmentLevelBasedValue minDamage, Encha
             LivingEntity owner = context.owner();
             if (owner.isBlocking()) {
                 float f = MathHelper.nextBetween(user.getRandom(), this.minDamage.getValue(level), this.maxDamage.getValue(level));
-                user.damage(new DamageSource(this.damageType, context.owner()), f);
+                user.clientDamage(new DamageSource(this.damageType, context.owner()), f);
             }
         }
     }

@@ -2,6 +2,7 @@ package com.farestr06.yavpm.world.feature.configured;
 
 import com.farestr06.yavpm.world.feature.placed.YavpmTreePlacedFeatures;
 import net.minecraft.registry.Registerable;
+import net.minecraft.registry.RegistryEntryLookup;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.world.gen.feature.*;

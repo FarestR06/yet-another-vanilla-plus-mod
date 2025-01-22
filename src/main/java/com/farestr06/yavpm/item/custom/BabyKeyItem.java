@@ -19,7 +19,7 @@ import java.util.Objects;
 import static com.farestr06.yavpm.config.YavpmConfig.HANDLER;
 
 public class BabyKeyItem extends Item {
-    public BabyKeyItem(Settings settings) {
+    public BabyKeyItem(net.minecraft.item.Item.Settings settings) {
         super(settings);
     }
 

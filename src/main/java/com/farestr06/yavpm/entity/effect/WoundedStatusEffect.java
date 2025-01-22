@@ -12,7 +12,7 @@ public class WoundedStatusEffect extends StatusEffect {
 
     @Override
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-        entity.damage(YavpmDamageTypes.bleed(entity.getWorld()), 1.5f);
+        entity.clientDamage(YavpmDamageTypes.bleed(entity.getWorld()), 1.5f);
         return true;
     }
 

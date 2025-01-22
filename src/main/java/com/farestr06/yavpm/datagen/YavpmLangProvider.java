@@ -144,14 +144,14 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.MOLY, "Magic Herb");
 
         builder.add(YavpmBlocks.PEANUT_CROP, "Peanut Crops");
-        builder.add(YavpmItems.PEANUT, "Peanut");
+        builder.add(YavpmBlocks.PEANUT_CROP.asItem(), "Peanut");
         builder.add(YavpmItems.COOKED_PEANUT, "Roasted Peanut");
 
         builder.add(YavpmItems.JELLY, "Jelly");
         builder.add(YavpmItems.SWEET_BERRY_JELLY, "Sweet Berry Jelly");
 
         builder.add(YavpmBlocks.BITTER_BERRY_BUSH, "Bitter Berry Bush");
-        builder.add(YavpmItems.BITTER_BERRIES, "Bitter Berries");
+        builder.add(YavpmBlocks.BITTER_BERRY_BUSH.asItem(), "Bitter Berries");
 
         builder.add(YavpmItems.BREADING, "Blaze Breading");
         builder.add(YavpmItems.FRIED_BANANA, "Fried Bananas");
@@ -159,10 +159,10 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add(YavpmBlocks.BANANA_CROP, "Banana Crops");
         builder.add(YavpmItems.BANANA, "Banana Bunch");
-        builder.add(YavpmItems.BANANA_SEEDS, "Banana Seeds");
+        builder.add(YavpmBlocks.BANANA_CROP.asItem(), "Banana Seeds");
 
         builder.add(YavpmBlocks.OAK_SAPLING_CROP, "Oak Sapling Crops");
-        builder.add(YavpmItems.ACORN, "Acorn");
+        builder.add(YavpmBlocks.OAK_SAPLING_CROP.asItem(), "Acorn");
         builder.add(YavpmItems.DIAMOND_ACORN, "Diamond Acorn");
 
         builder.add(YavpmItems.PERSIMMON, "Persimmon");
@@ -171,7 +171,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.TRUFFLE, "Truffle");
 
         builder.add(YavpmItems.RICE, "Rice");
-        builder.add(YavpmItems.RICE_SEEDS, "Rice Seeds");
+        builder.add(YavpmBlocks.RICE_CROP.asItem(), "Rice Seeds");
         builder.add(YavpmItems.RICE_BAR, "Rice Bar");
         builder.add(YavpmItems.RICE_PASTRY, "Rice Pastry");
 
@@ -181,7 +181,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.COOKED_EGG, "Fried Egg");
 
         builder.add(YavpmBlocks.MAGIC_BEAN_CROP, "Magic Bean Crops");
-        builder.add(YavpmItems.MAGIC_BEAN, "Magic Bean");
+        builder.add(YavpmBlocks.MAGIC_BEAN_CROP.asItem(), "Magic Bean");
         builder.add(YavpmItems.FAKE_BEEF, "Fake Raw Beef");
         builder.add(YavpmItems.COOKED_FAKE_BEEF, "Fake Steak");
         builder.add(YavpmItems.FAKE_MILK_BUCKET, "Fake Milk Bucket");
@@ -199,7 +199,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(Blocks.NETHER_WART, "Crimson Wart");
         builder.add(Items.NETHER_WART, "Crimson Wart");
         builder.add(YavpmBlocks.WARPED_WART, "Warped Wart");
-        builder.add(YavpmItems.WARPED_WART, "Warped Wart");
+        builder.add(YavpmBlocks.WARPED_WART.asItem(), "Warped Wart");
 
         builder.add(Blocks.NETHER_WART_BLOCK, "Crimson Wart Block");
     }

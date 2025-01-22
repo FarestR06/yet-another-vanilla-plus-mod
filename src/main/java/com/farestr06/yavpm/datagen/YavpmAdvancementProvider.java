@@ -7,17 +7,23 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
 import net.minecraft.advancement.*;
 import net.minecraft.advancement.criterion.*;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.predicate.BlockPredicate;
 import net.minecraft.predicate.entity.EntityPredicate;
+import net.minecraft.predicate.entity.EntityTypePredicate;
 import net.minecraft.predicate.entity.LocationPredicate;
 import net.minecraft.predicate.item.ItemPredicate;
+import net.minecraft.recipe.Recipe;
 import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,6 +33,10 @@ import java.util.function.Consumer;
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmAdvancementProvider extends FabricAdvancementProvider {
+    private static RegistryWrapper.Impl<Block> BLOCK_LOOKUP;
+    private static RegistryWrapper.Impl<Item> ITEM_LOOKUP;
+    private static RegistryWrapper.Impl<EntityType<?>> ENTITY_LOOKUP;
+
     // region Story
     protected static final AdvancementEntry SMELT_KIMBERLITE = Advancement.Builder.create()
             .parent(VanillaAdvancements.Story.MINE_STONE)
@@ -42,10 +52,10 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
             )
             .criteriaMerger(AdvancementRequirements.CriterionMerger.OR)
             .criterion("craft_diamonds_via_smelting", RecipeCraftedCriterion.Conditions.create(
-                    makeId("diamond_from_smelting_raw_diamond")
+                    makeRecipeKey(makeId("diamond_from_smelting_raw_diamond"))
             ))
             .criterion("craft_diamonds_via_blasting", RecipeCraftedCriterion.Conditions.create(
-                    makeId("diamond_from_blasting_raw_diamond")
+                   makeRecipeKey( makeId("diamond_from_blasting_raw_diamond"))
             ))
             .build(makeId("story/smelt_kimberlite"));
     // endregion
@@ -63,6 +73,7 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                     false
             ).criterion("ate_fake_animal_product", ConsumeItemCriterion.Conditions.predicate(
                     ItemPredicate.Builder.create().items(
+                            ITEM_LOOKUP,
                             YavpmItems.FAKE_BEEF,
                             YavpmItems.COOKED_FAKE_BEEF,
                             YavpmItems.FAKE_MILK_BUCKET,
@@ -82,9 +93,9 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                     true,
                     true
             ).criterion("fed_wolf_peanut", PlayerInteractedWithEntityCriterion.Conditions.create(
-                    ItemPredicate.Builder.create().items(YavpmItems.COOKED_PEANUT),
+                    ItemPredicate.Builder.create().items(ITEM_LOOKUP, YavpmItems.COOKED_PEANUT),
                     Optional.of(EntityPredicate.contextPredicateFromEntityPredicate(
-                            EntityPredicate.Builder.create().type(EntityType.WOLF)))
+                            EntityPredicate.Builder.create().type(EntityTypePredicate.create(ENTITY_LOOKUP, EntityType.WOLF))))
             )).build(makeId("husbandry/fed_wolf_peanut"));
 
     protected static final AdvancementEntry LUCKY_TICKET = Advancement.Builder.create()
@@ -100,6 +111,7 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                     false
             ).criterion("ate_fortune_cookie", ConsumeItemCriterion.Conditions.predicate(
                     ItemPredicate.Builder.create().items(
+                            ITEM_LOOKUP,
                             YavpmItems.FORTUNE_COOKIE
                     )
             )).build(makeId("husbandry/lucky_ticket"));
@@ -133,10 +145,10 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
             )
             .criteriaMerger(AdvancementRequirements.CriterionMerger.OR)
             .criterion("craft_diamonds_via_smelting", RecipeCraftedCriterion.Conditions.create(
-                    makeId("diamond_from_smelting_graphene_block")
+                    makeRecipeKey(makeId("diamond_from_smelting_graphene_block"))
             ))
             .criterion("craft_diamonds_via_blasting", RecipeCraftedCriterion.Conditions.create(
-                    makeId("diamond_from_blasting_graphene_block")
+                    makeRecipeKey(makeId("diamond_from_blasting_graphene_block"))
             ))
             .rewards(AdvancementRewards.Builder.experience(100))
             .build(makeId("husbandry/craft_diamonds_from_graphene"));
@@ -157,6 +169,7 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                     "lock",
                     ItemCriterion.Conditions.createItemUsedOnBlock(
                             LocationPredicate.Builder.create().block(BlockPredicate.Builder.create().blocks(
+                                    BLOCK_LOOKUP,
                                     Blocks.BARREL,
                                     Blocks.BLAST_FURNACE,
                                     Blocks.BREWING_STAND,
@@ -170,7 +183,7 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                                     Blocks.SMOKER,
                                     Blocks.TRAPPED_CHEST
                             )),
-                            ItemPredicate.Builder.create().items(YavpmItems.BABY_KEY)
+                            ItemPredicate.Builder.create().items(ITEM_LOOKUP, YavpmItems.BABY_KEY)
                     ))
             .build(makeId("adventure/lock_container"));
     protected static final AdvancementEntry UPGRADE_TOOL_WITH_RUNE = Advancement.Builder.create()
@@ -185,7 +198,7 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                     true,
                     true
             ).criterion("upgrade_tool", RecipeCraftedCriterion.Conditions.create(
-                    makeId("rune_upgrade")
+                    makeRecipeKey(makeId("rune_upgrade"))
             ))
             .build(makeId("adventure/upgrade_tool_with_rune"));
     // endregion
@@ -202,9 +215,9 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                     true,
                     false
             ).criterion("fed_cow_wart", PlayerInteractedWithEntityCriterion.Conditions.create(
-                    ItemPredicate.Builder.create().items(Items.NETHER_WART_BLOCK, Items.WARPED_WART_BLOCK),
+                    ItemPredicate.Builder.create().items(ITEM_LOOKUP, Items.NETHER_WART_BLOCK, Items.WARPED_WART_BLOCK),
                     Optional.of(EntityPredicate.contextPredicateFromEntityPredicate(
-                            EntityPredicate.Builder.create().type(EntityType.COW)))
+                            EntityPredicate.Builder.create().type(EntityTypePredicate.create(ENTITY_LOOKUP, EntityType.COW))))
             )).build(makeId("nether/convert_cow_to_moongus"));
     // endregion
     // region End
@@ -234,7 +247,7 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                     true,
                     true
             ).criterion("craft_elytra", RecipeCraftedCriterion.Conditions.create(
-                    makeId("elytra")
+                    makeRecipeKey(makeId("elytra"))
             ))
             .rewards(AdvancementRewards.Builder.experience(75))
             .build(makeId("end/craft_an_elytra"));
@@ -242,6 +255,9 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
 
     protected YavpmAdvancementProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
         super(output, registryLookup);
+        BLOCK_LOOKUP = registryLookup.join().getOrThrow(RegistryKeys.BLOCK);
+        ITEM_LOOKUP = registryLookup.join().getOrThrow(RegistryKeys.ITEM);
+        ENTITY_LOOKUP = registryLookup.join().getOrThrow(RegistryKeys.ENTITY_TYPE);
     }
 
     @Override
@@ -275,10 +291,13 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                 YavpmItems.FANCY_MUSHROOM_STEW
         );
         for (Item item : bowls) {
-            builder.criterion(Registries.ITEM.getId(item).getPath(), ConsumeItemCriterion.Conditions.item(item));
+            builder.criterion(Registries.ITEM.getId(item).getPath(), ConsumeItemCriterion.Conditions.item(ITEM_LOOKUP, item));
         }
 
         return builder;
     }
 
+    private static RegistryKey<Recipe<?>> makeRecipeKey(Identifier id) {
+        return RegistryKey.of(RegistryKeys.RECIPE, id);
+    }
 }

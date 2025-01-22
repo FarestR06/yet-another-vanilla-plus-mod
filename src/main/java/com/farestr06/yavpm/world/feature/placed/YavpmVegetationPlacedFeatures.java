@@ -2,6 +2,7 @@ package com.farestr06.yavpm.world.feature.placed;
 
 import com.farestr06.yavpm.world.feature.configured.YavpmVegetationConfiguredFeatures;
 import net.minecraft.registry.Registerable;
+import net.minecraft.registry.RegistryEntryLookup;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;

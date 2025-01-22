@@ -85,7 +85,7 @@ public class MoongusEntity extends MooshroomEntity implements Shearable, Variant
     public void tick() {
         super.tick();
         if (isSheared && age % 30 == 0) {
-            this.damage(YavpmDamageTypes.cut(this.getWorld()), 1.5f);
+            this.clientDamage(YavpmDamageTypes.cut(this.getWorld()), 1.5f);
         }
     }
 

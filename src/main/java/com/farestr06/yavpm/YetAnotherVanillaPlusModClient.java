@@ -28,20 +28,8 @@ public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
     }
 
     private static void setUpColors() {
-        ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex > 0 ? -1 : DyedColorComponent.getColor(stack, -6265536),
-                YavpmItems.STUDDED_HELMET,
-                YavpmItems.STUDDED_CHESTPLATE,
-                YavpmItems.STUDDED_LEGGINGS,
-                YavpmItems.STUDDED_BOOTS
-        );
-
-        ColorProviderRegistry.ITEM.register(
-                (stack, tintIndex) -> FoliageColors.getDefaultColor(),
-                YavpmBlocks.PERSIMMON_LEAVES.asItem()
-        );
-
         ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) ->
-                world != null && pos != null ? BiomeColors.getFoliageColor(world, pos) : FoliageColors.getDefaultColor(), YavpmBlocks.PERSIMMON_LEAVES);
+                world != null && pos != null ? BiomeColors.getFoliageColor(world, pos) : FoliageColors.DEFAULT, YavpmBlocks.PERSIMMON_LEAVES);
     }
 
     private static void setUpBlocks() {

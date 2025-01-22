@@ -43,7 +43,7 @@ public class PrickleLogBlock extends PillarBlock {
                     || state.isOf(YavpmBlocks.PRICKLE_WOOD)) && state.get(PRICKLY)
             ) {
                 if (entity instanceof LivingEntity livingEntity) {
-                    livingEntity.damage(livingEntity.getDamageSources().cactus(), 1.5f);
+                    livingEntity.clientDamage(livingEntity.getDamageSources().cactus(), 1.5f);
                 }
             }
         }

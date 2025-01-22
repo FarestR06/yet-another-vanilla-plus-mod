@@ -8,12 +8,15 @@ import com.farestr06.yavpm.item.custom.*;
 import com.farestr06.yavpm.util.YavpmSounds;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
-import net.fabricmc.fabric.api.registry.FuelRegistry;
-import net.minecraft.block.MapColor;
+import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.ConsumableComponent;
+import net.minecraft.component.type.ConsumableComponents;
 import net.minecraft.component.type.FoodComponents;
 import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.item.*;
+import net.minecraft.item.consume.ClearAllEffectsConsumeEffect;
+import net.minecraft.item.equipment.EquipmentType;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.Potions;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -34,30 +37,32 @@ public class YavpmItems {
     public static final Map<Item, RegistryEntry<Potion>> CRIMSON_MOONGUS_FOOD_CORRUPTED = new HashMap<>();
     public static final Map<Item, RegistryEntry<Potion>> WARPED_MOONGUS_FOOD = new HashMap<>();
 
-    public static final Item WARPED_WART = makeAdvancedItem(
-            makeId("warped_wart"),
-            new AliasedBlockItem(YavpmBlocks.WARPED_WART, new Item.Settings())
-    );
-
     public static final Item PHANTOM_CHORD = makeItem(
             makeId("phantom_chord"),
             new Item.Settings().rarity(Rarity.UNCOMMON)
     );
 
     // region Runes
+    private static final Item.Settings RUNE_SETTINGS = new Item.Settings().rarity(Rarity.EPIC)
+            .component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true);
+
     public static final Item RUNE_ATTACK = makeAdvancedItem(
             makeId("rune_attack"),
-            new RuneItem(Text.translatable("item.yavpm.rune_attack.tooltip").formatted(Formatting.RED))
+            settings -> new RuneItem(settings, Text.translatable("item.yavpm.rune_attack.tooltip").formatted(Formatting.RED)),
+            RUNE_SETTINGS
     );
     public static final Item RUNE_DURABILITY = makeAdvancedItem(
             makeId("rune_durability"),
-            new RuneItem(Text.translatable("item.yavpm.rune_durability.tooltip").formatted(Formatting.BLUE))
+            settings -> new RuneItem(settings, Text.translatable("item.yavpm.rune_durability.tooltip").formatted(Formatting.BLUE)),
+            RUNE_SETTINGS
     );
     public static final Item RUNE_SPEED = makeAdvancedItem(
             makeId("rune_speed"),
-            new RuneItem(Text.translatable("item.yavpm.rune_speed.tooltip").formatted(Formatting.YELLOW))
+            settings -> new RuneItem(settings, Text.translatable("item.yavpm.rune_speed.tooltip").formatted(Formatting.YELLOW)),
+            RUNE_SETTINGS
     );
     // endregion
+    public static final Item COOKED_PEANUT = makeItem(makeId("cooked_peanut"), new Item.Settings().food(YavpmFoods.COOKED_PEANUT));
     public static final Item BREADING = makeSimpleItem(makeId("breading"));
     public static final Item FRIED_BANANA = makeItem(
             makeId("fried_banana"),
@@ -66,36 +71,6 @@ public class YavpmItems {
     public static final Item FRIED_COD = makeItem(
             makeId("fried_cod"),
             new Item.Settings().food(YavpmFoods.FRIED_COD)
-    );
-
-    public static final Item BITTER_BERRIES = makeAdvancedItem(
-            makeId("bitter_berries"),
-            new AliasedBlockItem(YavpmBlocks.BITTER_BERRY_BUSH, new Item.Settings().food(FoodComponents.SWEET_BERRIES))
-    );
-    // region Banana
-    public static final Item BANANA = makeItem(
-            makeId("banana"),
-            new Item.Settings().food(YavpmFoods.BANANA)
-    );
-    public static final Item BANANA_SEEDS = makeAdvancedItem(
-            makeId("banana_seeds"),
-            new AliasedBlockItem(YavpmBlocks.BANANA_CROP, new Item.Settings())
-    );
-    // endregion
-    // region Peanut
-    public static final Item PEANUT = makeAdvancedItem(
-            makeId("peanut"),
-            new AliasedBlockItem(YavpmBlocks.PEANUT_CROP, new Item.Settings().food(YavpmFoods.RAW_PEANUT))
-    );
-    public static final Item COOKED_PEANUT = makeItem(
-            makeId("cooked_peanut"),
-            new Item.Settings().food(YavpmFoods.COOKED_PEANUT)
-    );
-    // endregion
-    // region Oak
-    public static final Item ACORN = makeAdvancedItem(
-            makeId("acorn"),
-            new AliasedBlockItem(YavpmBlocks.OAK_SAPLING_CROP, new Item.Settings().food(YavpmFoods.ACORN))
     );
     public static final Item DIAMOND_ACORN = makeItem(
             makeId("diamond_acorn"),
@@ -120,20 +95,13 @@ public class YavpmItems {
             makeId("truffle"),
             new Item.Settings().food(YavpmFoods.TRUFFLE)
     );
-
+    public static final Item BANANA = makeItem(
+            makeId("banana"),
+            new Item.Settings().food(YavpmFoods.BANANA)
+    );
     public static final Item RICE = makeItem(
             makeId("rice"),
             new Item.Settings()
-    );
-    public static final Item RICE_SEEDS = makeAdvancedItem(
-            makeId("rice_seeds"),
-            new AliasedBlockItem(YavpmBlocks.RICE_CROP, new Item.Settings())
-    );
-
-
-    public static final Item MAGIC_BEAN = makeAdvancedItem(
-            makeId("magic_bean"),
-            new AliasedBlockItem(YavpmBlocks.MAGIC_BEAN_CROP, new Item.Settings().food(YavpmFoods.MAGIC_BEAN))
     );
     // endregion
     public static final Item JELLY = makeItem(
@@ -179,18 +147,17 @@ public class YavpmItems {
 
     public static final Item FORTUNE_COOKIE = makeAdvancedItem(
             makeId("fortune_cookie"),
-            new FortuneCookieItem(new Item.Settings().food(FoodComponents.COOKIE))
+            FortuneCookieItem::new,
+            new Item.Settings().food(FoodComponents.COOKIE)
     );
 
-    public static final Item LUCKY_SLIP = makeAdvancedItem(
+    public static final Item LUCKY_SLIP = makeItem(
             makeId("lucky_slip"),
-            new LuckySlipItem(
-                    new Item.Settings()
-                            .rarity(Rarity.UNCOMMON)
-                            .maxCount(1)
-                            .component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true)
-                            .component(DataComponentTypes.STORED_ENCHANTMENTS, ItemEnchantmentsComponent.DEFAULT)
-            )
+            new Item.Settings()
+                    .rarity(Rarity.UNCOMMON)
+                    .maxCount(1)
+                    .component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true)
+                    .component(DataComponentTypes.STORED_ENCHANTMENTS, ItemEnchantmentsComponent.DEFAULT)
     );
 
     public static final Item CHEESE = makeItem(makeId("cheese"), new Item.Settings().food(YavpmFoods.CHEESE));
@@ -207,9 +174,11 @@ public class YavpmItems {
             makeId("cooked_fake_beef"),
             new Item.Settings().food(FoodComponents.COOKED_BEEF)
     );
-    public static final Item FAKE_MILK_BUCKET = makeAdvancedItem(
+    public static final Item FAKE_MILK_BUCKET = makeItem(
             makeId("fake_milk_bucket"),
-            new MilkBucketItem(new Item.Settings().recipeRemainder(Items.BUCKET).maxCount(1))
+            new Item.Settings().recipeRemainder(Items.BUCKET)
+                    .component(DataComponentTypes.CONSUMABLE, ConsumableComponents.MILK_BUCKET)
+                    .useRemainder(Items.BUCKET).maxCount(1)
     );
     // endregion
 
@@ -222,13 +191,12 @@ public class YavpmItems {
 
     public static final Item GAUNTLET = makeAdvancedItem(
             makeId("gauntlet"),
-            new GauntletItem(
-                    new Item.Settings()
-                            .rarity(Rarity.EPIC)
-                            .maxDamage(475)
-                            .attributeModifiers(GauntletItem.createAttributeModifiers())
-                            .component(DataComponentTypes.TOOL, GauntletItem.createToolComponent())
-            )
+            GauntletItem::new,
+            new Item.Settings()
+                    .rarity(Rarity.EPIC)
+                    .maxDamage(475)
+                    .attributeModifiers(GauntletItem.createAttributeModifiers())
+                    .component(DataComponentTypes.TOOL, GauntletItem.createToolComponent())
     );
 
     public static final Item RAW_DIAMOND = makeSimpleItem(makeId("raw_diamond"));
@@ -237,59 +205,67 @@ public class YavpmItems {
     public static final Item CHAINMAIL = makeSimpleItem(makeId("chainmail"));
 
     // Magic Herb
-    public static final Item MOLY = makeAdvancedItem(
+    private static final ConsumableComponent MOLY_COMPONENT = ConsumableComponent.builder()
+            .consumeEffect(ClearAllEffectsConsumeEffect.INSTANCE).consumeSeconds(2.4f).build();
+    public static final Item MOLY = makeItem(
             makeId("moly"),
-            new MolyItem(new Item.Settings().rarity(Rarity.UNCOMMON).food(YavpmFoods.MOLY).maxCount(16))
+            new Item.Settings().rarity(Rarity.UNCOMMON).food(YavpmFoods.MOLY)
+                    .component(DataComponentTypes.CONSUMABLE, MOLY_COMPONENT).maxCount(16)
     );
 
     // region Reactor
     public static final Item REACTOR = makeAdvancedItem(
             makeId("reactor"),
-            new ReactorItem(new Item.Settings().maxDamage(1024))
+            ReactorItem::new, new Item.Settings().maxDamage(1024)
     );
     public static final Item HEATED_REACTOR = makeAdvancedItem(
             makeId("heated_reactor"),
-            new ReactorItem(new Item.Settings().maxDamage(1024))
+            ReactorItem::new, new Item.Settings().maxDamage(1024)
     );
     // endregion
 
     public static final Item BABY_KEY = makeAdvancedItem(
             makeId("baby_key"),
-            new BabyKeyItem(new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON))
+            BabyKeyItem::new,
+            new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON)
     );
 
     // region Studded Armor
     public static final Item STUDDED_HELMET = makeAdvancedItem(
             makeId("studded_helmet"),
-            new ArmorItem(
+            settings -> new ArmorItem(
                     STUDDED,
-                    ArmorItem.Type.HELMET,
-                    new Item.Settings().maxDamage(ArmorItem.Type.HELMET.getMaxDamage(20))
-            )
+                    EquipmentType.HELMET,
+                    settings
+            ),
+            new Item.Settings().maxDamage(EquipmentType.HELMET.getMaxDamage(20))
     );
     public static final Item STUDDED_CHESTPLATE = makeAdvancedItem(
             makeId("studded_chestplate"),
-            new ArmorItem(
+            settings -> new ArmorItem(
                     STUDDED,
-                    ArmorItem.Type.CHESTPLATE,
-                    new Item.Settings().maxDamage(ArmorItem.Type.CHESTPLATE.getMaxDamage(20))
-            )
+                    EquipmentType.CHESTPLATE,
+                    settings
+            ),
+            new Item.Settings().maxDamage(EquipmentType.CHESTPLATE.getMaxDamage(20))
     );
     public static final Item STUDDED_LEGGINGS = makeAdvancedItem(
             makeId("studded_leggings"),
-            new ArmorItem(
+            settings -> new ArmorItem(
                     STUDDED,
-                    ArmorItem.Type.LEGGINGS,
-                    new Item.Settings().maxDamage(ArmorItem.Type.LEGGINGS.getMaxDamage(20))
-            )
+                    EquipmentType.LEGGINGS,
+                    settings
+            ),
+            new Item.Settings().maxDamage(EquipmentType.LEGGINGS.getMaxDamage(20))
     );
     public static final Item STUDDED_BOOTS = makeAdvancedItem(
             makeId("studded_boots"),
-            new ArmorItem(
+            settings -> new ArmorItem(
                     STUDDED,
-                    ArmorItem.Type.BOOTS,
-                    new Item.Settings().maxDamage(ArmorItem.Type.BOOTS.getMaxDamage(20))
-            )
+                    EquipmentType.BOOTS,
+                    settings
+            ),
+            new Item.Settings().maxDamage(EquipmentType.BOOTS.getMaxDamage(20))
     );
     // endregion
 
@@ -297,9 +273,9 @@ public class YavpmItems {
             makeId("music_disc_magnetic_circuit"),
             new Item.Settings().rarity(Rarity.RARE).jukeboxPlayable(YavpmSounds.MAGNETIC_CIRCUIT_KEY).maxCount(1)
     );
-    public static final Item DISC_FRAGMENT_MAGNETIC_CIRCUIT = makeAdvancedItem(
+    public static final Item DISC_FRAGMENT_MAGNETIC_CIRCUIT = makeAdvancedItemWithDefaultSettings(
             makeId("disc_fragment_magnetic_circuit"),
-            new DiscFragmentItem(new Item.Settings())
+            DiscFragmentItem::new
     );
 
     public static final Item MUSIC_DISC_HALLAND_DALARNA = makeItem(
@@ -308,32 +284,37 @@ public class YavpmItems {
     );
 
     // region Spawn Eggs
-    public static final Item CARBONFOWL_SPAWN_EGG = makeAdvancedItem(
+    // 0x191919, 0x4aedd9
+    public static final Item CARBONFOWL_SPAWN_EGG = makeAdvancedItemWithDefaultSettings(
             makeId("carbonfowl_spawn_egg"),
-            new SpawnEggItem(YavpmEntities.CARBONFOWL, 0x191919, 0x4aedd9, new Item.Settings())
+            settings -> new SpawnEggItem(YavpmEntities.CARBONFOWL, settings)
     );
 
-    public static final Item MOONGUS_SPAWN_EGG = makeAdvancedItem(
+    // MapColor.BRIGHT_TEAL.color, MapColor.RED.color
+    public static final Item MOONGUS_SPAWN_EGG = makeAdvancedItemWithDefaultSettings(
             makeId("moongus_spawn_egg"),
-            new SpawnEggItem(YavpmEntities.MOONGUS, MapColor.BRIGHT_TEAL.color, MapColor.RED.color, new Item.Settings())
+            settings -> new SpawnEggItem(YavpmEntities.MOONGUS, settings)
     );
 
-    public static final Item TANUKI_SPAWN_EGG = makeAdvancedItem(
+    // 0x5d4f59, 0xb69578
+    public static final Item TANUKI_SPAWN_EGG = makeAdvancedItemWithDefaultSettings(
             makeId("tanuki_spawn_egg"),
-            new SpawnEggItem(YavpmEntities.TANUKI, 0x5d4f59, 0xb69578, new Item.Settings())
+            settings -> new SpawnEggItem(YavpmEntities.TANUKI, settings)
     );
 
-    public static final Item VOID_PHANTOM_SPAWN_EGG = makeAdvancedItem(
+    // 0x060080, 0xf54bfa
+    public static final Item VOID_PHANTOM_SPAWN_EGG = makeAdvancedItemWithDefaultSettings(
             makeId("void_phantom_spawn_egg"),
-            new SpawnEggItem(YavpmEntities.VOID_PHANTOM, 0x060080, 0xf54bfa, new Item.Settings())
+            settings -> new SpawnEggItem(YavpmEntities.VOID_PHANTOM, settings)
     );
     // endregion
     public static final Item VOID_WATER_BUCKET = makeAdvancedItem(
             makeId("void_water_bucket"),
-            new BucketItem(
+            settings -> new BucketItem(
                     YavpmFluids.STILL_VOID_WATER,
-                    new Item.Settings().recipeRemainder(Items.BUCKET)
-            )
+                    settings
+            ),
+            new Item.Settings().recipeRemainder(Items.BUCKET)
     );
 
     public static void init() {
@@ -377,13 +358,15 @@ public class YavpmItems {
         WARPED_MOONGUS_FOOD.put(Items.FERMENTED_SPIDER_EYE, Potions.WEAKNESS);
         WARPED_MOONGUS_FOOD.put(Items.WITHER_ROSE, YavpmPotions.DECAY);
         WARPED_MOONGUS_FOOD.put(VOID_WATER_BUCKET, YavpmPotions.VOID_TOUCHED);
-        WARPED_MOONGUS_FOOD.put(BITTER_BERRIES, YavpmPotions.HASTE);
+        WARPED_MOONGUS_FOOD.put(YavpmBlocks.BITTER_BERRY_BUSH.asItem(), YavpmPotions.HASTE);
     }
 
     private static void setUpRegistries() {
         // Make Heated Reactor usable as fuel
         YetAnotherVanillaPlusMod.LOGGER.debug("Making Reactor usable as fuel...");
-        FuelRegistry.INSTANCE.add(YavpmItems.HEATED_REACTOR, 1600);
+        FuelRegistryEvents.BUILD.register((builder, context) -> {
+            builder.add(HEATED_REACTOR, context.baseSmeltTime() * 16);
+        });
 
         // Make new crops compostable
         YetAnotherVanillaPlusMod.LOGGER.debug("Making items compostable...");
@@ -393,13 +376,13 @@ public class YavpmItems {
         compostables.add(YavpmBlocks.APPLE_SAPLING.asItem(), 0.3f);
         compostables.add(YavpmBlocks.PERSIMMON_SAPLING.asItem(), 0.3f);
         compostables.add(YavpmBlocks.PRICKLE_SHOOT.asItem(), 0.3f);
-        compostables.add(BANANA_SEEDS, 0.3f);
-        compostables.add(RICE_SEEDS, 0.3f);
-        compostables.add(ACORN, 0.3f);
+        compostables.add(YavpmBlocks.BANANA_CROP.asItem(), 0.3f);
+        compostables.add(YavpmBlocks.RICE_CROP.asItem(), 0.3f);
+        compostables.add(YavpmBlocks.OAK_SAPLING_CROP.asItem(), 0.3f);
 
-        compostables.add(PEANUT, 0.5f);
+        compostables.add(YavpmBlocks.PEANUT_CROP.asItem(), 0.5f);
         compostables.add(COOKED_PEANUT, 0.5f);
-        compostables.add(MAGIC_BEAN, 0.5f);
+        compostables.add(YavpmBlocks.MAGIC_BEAN_CROP.asItem(), 0.5f);
 
         compostables.add(BANANA, 0.65f);
         compostables.add(RICE, 0.65f);

@@ -2,7 +2,7 @@ package com.farestr06.yavpm.mixin.item;
 
 import net.minecraft.client.color.block.BlockColors;
 import net.minecraft.client.render.model.BlockStatesLoader;
-import net.minecraft.client.render.model.ModelLoader;
+import net.minecraft.client.render.model.ModelBaker;
 import net.minecraft.client.render.model.json.JsonUnbakedModel;
 import net.minecraft.client.util.ModelIdentifier;
 import net.minecraft.util.Identifier;
@@ -18,7 +18,7 @@ import java.util.Map;
 
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
-@Mixin(ModelLoader.class)
+@Mixin(ModelBaker.class)
 public abstract class ModelLoaderMixin {
 
     @Shadow protected abstract void loadItemModel(ModelIdentifier id);
