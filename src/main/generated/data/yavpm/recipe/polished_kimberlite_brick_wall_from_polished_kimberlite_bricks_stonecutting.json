@@ -1,8 +1,6 @@
 {
   "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "yavpm:polished_kimberlite_bricks"
-  },
+  "ingredient": "yavpm:polished_kimberlite_bricks",
   "result": {
     "count": 1,
     "id": "yavpm:polished_kimberlite_brick_wall"

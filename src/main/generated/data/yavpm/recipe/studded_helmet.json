@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "minecraft:leather_helmet"
-    },
-    {
-      "item": "minecraft:chainmail_helmet"
-    }
+    "minecraft:leather_helmet",
+    "minecraft:chainmail_helmet"
   ],
   "result": {
     "count": 1,

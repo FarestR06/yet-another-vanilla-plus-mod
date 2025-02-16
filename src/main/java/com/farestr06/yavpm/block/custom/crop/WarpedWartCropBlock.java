@@ -13,7 +13,7 @@ public class WarpedWartCropBlock extends NetherWartBlock {
     }
 
     @Override
-    public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state) {
+    protected ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state, boolean includeData) {
         return new ItemStack(YavpmItems.WARPED_WART);
     }
 }

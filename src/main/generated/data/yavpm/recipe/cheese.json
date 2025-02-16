@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "minecraft:milk_bucket"
-    },
-    {
-      "item": "yavpm:warped_wart"
-    }
+    "minecraft:milk_bucket",
+    "yavpm:warped_wart"
   ],
   "result": {
     "count": 4,

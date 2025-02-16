@@ -1,11 +1,12 @@
 package com.farestr06.yavpm.mixin.entity;
 
 import com.farestr06.yavpm.entity.YavpmEntities;
+import com.farestr06.yavpm.entity.mob.MoongusEntity;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.conversion.EntityConversionContext;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.CowEntity;
-import net.minecraft.entity.passive.MooshroomEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -31,11 +32,19 @@ public abstract class CowEntityMixin extends AnimalEntity {
     private void injected(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir, @Local ItemStack stack) {
         if (thiz.getType() == EntityType.COW) {
             if (stack.isOf(Items.NETHER_WART_BLOCK)) {
-                thiz.convertTo(YavpmEntities.MOONGUS, false).setVariant(MooshroomEntity.Type.RED);
-                cir.setReturnValue(ActionResult.success(thiz.getWorld().isClient));
+                thiz.convertTo(
+                        YavpmEntities.MOONGUS,
+                        EntityConversionContext.create(thiz, false, false),
+                        convertedEntity -> convertedEntity.setVariant(MoongusEntity.Type.CRIMSON)
+                );
+                cir.setReturnValue(ActionResult.SUCCESS);
             } else if (stack.isOf(Items.WARPED_WART_BLOCK)) {
-                thiz.convertTo(YavpmEntities.MOONGUS, false).setVariant(MooshroomEntity.Type.BROWN);
-                cir.setReturnValue(ActionResult.success(thiz.getWorld().isClient));
+                thiz.convertTo(
+                        YavpmEntities.MOONGUS,
+                        EntityConversionContext.create(thiz, false, false),
+                        convertedEntity -> convertedEntity.setVariant(MoongusEntity.Type.WARPED)
+                );
+                cir.setReturnValue(ActionResult.SUCCESS);
             }
         }
     }

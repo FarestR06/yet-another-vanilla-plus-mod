@@ -186,21 +186,6 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                             ItemPredicate.Builder.create().items(ITEM_LOOKUP, YavpmItems.BABY_KEY)
                     ))
             .build(makeId("adventure/lock_container"));
-    protected static final AdvancementEntry UPGRADE_TOOL_WITH_RUNE = Advancement.Builder.create()
-            .parent(VanillaAdvancements.Adventure.TRADE)
-            .display(
-                    YavpmItems.RUNE_DURABILITY,
-                    Text.translatable("advancements.adventure.upgrade_tool_with_rune.title"),
-                    Text.translatable("advancements.adventure.upgrade_tool_with_rune.description"),
-                    null,
-                    AdvancementFrame.GOAL,
-                    true,
-                    true,
-                    true
-            ).criterion("upgrade_tool", RecipeCraftedCriterion.Conditions.create(
-                    makeRecipeKey(makeId("rune_upgrade"))
-            ))
-            .build(makeId("adventure/upgrade_tool_with_rune"));
     // endregion
     // region Nether
     protected static final AdvancementEntry CONVERT_COW_TO_MOONGUS = Advancement.Builder.create()
@@ -272,7 +257,6 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
         consumer.accept(CRAFT_DIAMONDS_FROM_GRAPHENE);
         // Adventure
         consumer.accept(LOCK_CONTAINER);
-        consumer.accept(UPGRADE_TOOL_WITH_RUNE);
         // Nether
         consumer.accept(CONVERT_COW_TO_MOONGUS);
         // End

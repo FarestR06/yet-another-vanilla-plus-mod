@@ -13,6 +13,9 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Vec3d;
 
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.LOGGER;
@@ -56,7 +59,9 @@ public class YavpmEntities {
     );
 
     private static <T extends Entity> EntityType<T> register(String id, EntityType.Builder<T> type) {
-        return Registry.register(Registries.ENTITY_TYPE, makeId(id), type.build(id));
+        Identifier namespacedId = makeId(id);
+        RegistryKey<EntityType<?>> key = RegistryKey.of(RegistryKeys.ENTITY_TYPE, namespacedId);
+        return Registry.register(Registries.ENTITY_TYPE, namespacedId, type.build(key));
     }
 
     public static void init() {

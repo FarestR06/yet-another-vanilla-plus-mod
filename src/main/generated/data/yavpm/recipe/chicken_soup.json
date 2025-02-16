@@ -2,21 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "minecraft:cooked_chicken"
-    },
-    {
-      "item": "minecraft:carrot"
-    },
-    {
-      "item": "minecraft:brown_mushroom"
-    },
-    {
-      "item": "yavpm:rice"
-    },
-    {
-      "item": "minecraft:bowl"
-    }
+    "minecraft:cooked_chicken",
+    "minecraft:carrot",
+    "minecraft:brown_mushroom",
+    "yavpm:rice",
+    "minecraft:bowl"
   ],
   "result": {
     "count": 1,

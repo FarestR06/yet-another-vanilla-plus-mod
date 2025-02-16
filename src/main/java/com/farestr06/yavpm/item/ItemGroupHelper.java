@@ -217,9 +217,6 @@ public class ItemGroupHelper {
         entries.add(YavpmItems.BITTER_BERRIES);
         entries.add(YavpmItems.GAUNTLET_FRAGMENT);
         entries.add(YavpmItems.PHANTOM_CHORD);
-        entries.add(YavpmItems.RUNE_ATTACK);
-        entries.add(YavpmItems.RUNE_DURABILITY);
-        entries.add(YavpmItems.RUNE_SPEED);
     }
 
     private static void spawnEggs(FabricItemGroupEntries entries) {

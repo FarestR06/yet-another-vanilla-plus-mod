@@ -10,17 +10,13 @@
     "entity.DragonFireballEntityMixin",
     "entity.LivingEntityMixin",
     "entity.PhantomEntityMixin",
-    "item.ItemModelGeneratorMixin"
+    "item.ShearsItemMixin",
+    "recipe.BrewingRecipeMixin"
   ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
-    "client.CreeperEntityRendererMixin",
-    "client.MooshroomMushroomFeatureRendererMixin",
-    "client.SplashTextResourceSupplierMixin",
-    "item.ItemRendererAccessor",
-    "item.ItemRendererMixin",
-    "item.ModelLoaderMixin"
+    "client.SplashTextResourceSupplierMixin"
   ]
 }

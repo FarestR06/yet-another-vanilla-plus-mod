@@ -11,7 +11,7 @@
           "base": 0.04,
           "per_level_above_first": 0.03
         },
-        "attribute": "minecraft:generic.movement_speed",
+        "attribute": "minecraft:movement_speed",
         "id": "yavpm:enchantment.gallop",
         "operation": "add_value"
       }

@@ -2,33 +2,15 @@
   "type": "minecraft:crafting_shapeless",
   "category": "building",
   "ingredients": [
-    {
-      "item": "yavpm:graphite_block"
-    },
-    {
-      "item": "yavpm:graphite_block"
-    },
-    {
-      "item": "yavpm:graphite_block"
-    },
-    {
-      "item": "yavpm:graphite_block"
-    },
-    {
-      "item": "yavpm:graphite_block"
-    },
-    {
-      "item": "yavpm:graphite_block"
-    },
-    {
-      "item": "yavpm:graphite_block"
-    },
-    {
-      "item": "yavpm:graphite_block"
-    },
-    {
-      "item": "yavpm:graphite_block"
-    }
+    "yavpm:graphite_block",
+    "yavpm:graphite_block",
+    "yavpm:graphite_block",
+    "yavpm:graphite_block",
+    "yavpm:graphite_block",
+    "yavpm:graphite_block",
+    "yavpm:graphite_block",
+    "yavpm:graphite_block",
+    "yavpm:graphite_block"
   ],
   "result": {
     "count": 1,

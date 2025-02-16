@@ -2,33 +2,15 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "minecraft:chain"
-    },
-    {
-      "item": "minecraft:chain"
-    },
-    {
-      "item": "minecraft:chain"
-    },
-    {
-      "item": "minecraft:chain"
-    },
-    {
-      "item": "minecraft:chain"
-    },
-    {
-      "item": "minecraft:chain"
-    },
-    {
-      "item": "minecraft:chain"
-    },
-    {
-      "item": "minecraft:chain"
-    },
-    {
-      "item": "minecraft:chain"
-    }
+    "minecraft:chain",
+    "minecraft:chain",
+    "minecraft:chain",
+    "minecraft:chain",
+    "minecraft:chain",
+    "minecraft:chain",
+    "minecraft:chain",
+    "minecraft:chain",
+    "minecraft:chain"
   ],
   "result": {
     "count": 1,

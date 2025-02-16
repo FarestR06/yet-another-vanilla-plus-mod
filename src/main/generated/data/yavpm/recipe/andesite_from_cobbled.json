@@ -3,9 +3,7 @@
   "category": "blocks",
   "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": {
-    "item": "yavpm:cobbled_andesite"
-  },
+  "ingredient": "yavpm:cobbled_andesite",
   "result": {
     "id": "minecraft:andesite"
   }

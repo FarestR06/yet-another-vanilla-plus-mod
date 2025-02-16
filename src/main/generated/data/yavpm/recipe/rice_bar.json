@@ -2,18 +2,10 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "yavpm:rice"
-    },
-    {
-      "item": "yavpm:rice"
-    },
-    {
-      "item": "yavpm:rice"
-    },
-    {
-      "item": "yavpm:jelly"
-    }
+    "yavpm:rice",
+    "yavpm:rice",
+    "yavpm:rice",
+    "yavpm:jelly"
   ],
   "result": {
     "count": 3,

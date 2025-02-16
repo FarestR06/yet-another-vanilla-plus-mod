@@ -4,14 +4,12 @@
 
 package com.farestr06.yavpm.entity.mob.client.model;
 
-import com.farestr06.yavpm.entity.mob.TanukiEntity;
 import net.minecraft.client.model.*;
-import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.entity.model.EntityModel;
-import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.client.render.entity.state.LivingEntityRenderState;
 import net.minecraft.util.math.MathHelper;
 
-public class TanukiEntityModel extends EntityModel<TanukiEntity> {
+public class TanukiEntityModel extends EntityModel<LivingEntityRenderState> {
 	private final ModelPart head;
 	private final ModelPart body;
 	private final ModelPart leftFrontLeg;
@@ -19,7 +17,8 @@ public class TanukiEntityModel extends EntityModel<TanukiEntity> {
 	private final ModelPart rightFrontLeg;
 	private final ModelPart rightHindLeg;
 	public TanukiEntityModel(ModelPart root) {
-		this.head = root.getChild("head");
+        super(root);
+        this.head = root.getChild("head");
 		this.body = root.getChild("body");
 		this.leftFrontLeg = root.getChild("left_front_leg");
 		this.leftHindLeg = root.getChild("left_hind_leg");
@@ -49,28 +48,19 @@ public class TanukiEntityModel extends EntityModel<TanukiEntity> {
 	}
 
 	@Override
-	public void animateModel(TanukiEntity entity, float limbAngle, float limbDistance, float tickDelta) {
-		super.animateModel(entity, limbAngle, limbDistance, tickDelta);
+	public void setAngles(LivingEntityRenderState state) {
+		super.setAngles(state);
+		this.head.pitch = state.pitch * (float) (Math.PI / 180.0);
+		this.head.yaw = state.yawDegrees * (float) (Math.PI / 180.0);
+		float f = state.limbFrequency;
+		float g = state.limbAmplitudeMultiplier;
+		this.rightHindLeg.pitch = MathHelper.cos(f * 0.6662F) * 1.4F * g;
+		this.leftHindLeg.pitch = MathHelper.cos(f * 0.6662F + (float) Math.PI) * 1.4F * g;
+		this.rightFrontLeg.pitch = MathHelper.cos(f * 0.6662F + (float) Math.PI) * 1.4F * g;
+		this.leftFrontLeg.pitch = MathHelper.cos(f * 0.6662F) * 1.4F * g;
 	}
 
-	@Override
-	public void setAngles(TanukiEntity entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
-
-		this.head.pitch = headPitch * (float) (Math.PI / 180.0);
-		this.head.yaw = headYaw * (float) (Math.PI / 180.0);
-		this.rightHindLeg.pitch = MathHelper.cos(limbAngle * 0.6662F) * 1.4F * limbDistance;
-		this.leftHindLeg.pitch = MathHelper.cos(limbAngle * 0.6662F + (float) Math.PI) * 1.4F * limbDistance;
-		this.rightFrontLeg.pitch = MathHelper.cos(limbAngle * 0.6662F + (float) Math.PI) * 1.4F * limbDistance;
-		this.leftFrontLeg.pitch = MathHelper.cos(limbAngle * 0.6662F) * 1.4F * limbDistance;
-	}
-
-	@Override
-	public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, int color) {
-		head.render(matrices, vertices, light, overlay);
-		body.render(matrices, vertices, light, overlay);
-		leftFrontLeg.render(matrices, vertices, light, overlay);
-		leftHindLeg.render(matrices, vertices, light, overlay);
-		rightFrontLeg.render(matrices, vertices, light, overlay);
-		rightHindLeg.render(matrices, vertices, light, overlay);
+	public ModelPart getHead() {
+		return this.head;
 	}
 }

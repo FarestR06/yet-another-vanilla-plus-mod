@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "minecraft:leather_boots"
-    },
-    {
-      "item": "minecraft:chainmail_boots"
-    }
+    "minecraft:leather_boots",
+    "minecraft:chainmail_boots"
   ],
   "result": {
     "count": 1,

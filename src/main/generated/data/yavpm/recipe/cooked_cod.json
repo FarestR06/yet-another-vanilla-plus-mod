@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "minecraft:cooked_cod"
-    },
-    {
-      "item": "yavpm:breading"
-    }
+    "minecraft:cooked_cod",
+    "yavpm:breading"
   ],
   "result": {
     "count": 1,

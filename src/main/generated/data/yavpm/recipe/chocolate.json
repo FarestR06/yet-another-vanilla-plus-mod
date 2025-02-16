@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "tag": "c:crops/cocoa_bean"
-    },
-    {
-      "tag": "c:buckets/milk"
-    },
-    {
-      "item": "minecraft:sugar"
-    }
+    "#c:crops/cocoa_bean",
+    "#c:buckets/milk",
+    "minecraft:sugar"
   ],
   "result": {
     "count": 4,

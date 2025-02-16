@@ -20,21 +20,21 @@ public class YavpmDamageTypes {
         return new DamageSource(
                 world.getRegistryManager()
                         .getOrThrow(RegistryKeys.DAMAGE_TYPE)
-                        .entryOf(CUT));
+                        .getOrThrow(CUT));
     }
 
     public static DamageSource bleed(World world) {
         return new DamageSource(
                 world.getRegistryManager()
                         .getOrThrow(RegistryKeys.DAMAGE_TYPE)
-                        .entryOf(BLEED));
+                        .getOrThrow(BLEED));
     }
 
     public static DamageSource choke(World world) {
         return new DamageSource(
                 world.getRegistryManager()
                         .getOrThrow(RegistryKeys.DAMAGE_TYPE)
-                        .entryOf(CHOKE));
+                        .getOrThrow(CHOKE));
     }
 
     public static void bootstrap(Registerable<DamageType> context) {

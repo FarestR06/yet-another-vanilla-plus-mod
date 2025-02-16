@@ -13,7 +13,10 @@ import net.minecraft.enchantment.EnchantmentLevelBasedValue;
 import net.minecraft.enchantment.effect.AllOfEnchantmentEffects;
 import net.minecraft.enchantment.effect.AttributeEnchantmentEffect;
 import net.minecraft.enchantment.effect.EnchantmentEffectTarget;
-import net.minecraft.enchantment.effect.entity.*;
+import net.minecraft.enchantment.effect.entity.ApplyMobEffectEnchantmentEffect;
+import net.minecraft.enchantment.effect.entity.ChangeItemDamageEnchantmentEffect;
+import net.minecraft.enchantment.effect.entity.DamageEntityEnchantmentEffect;
+import net.minecraft.enchantment.effect.entity.PlaySoundEnchantmentEffect;
 import net.minecraft.enchantment.effect.value.AddEnchantmentEffect;
 import net.minecraft.enchantment.effect.value.MultiplyEnchantmentEffect;
 import net.minecraft.entity.EntityType;
@@ -28,7 +31,6 @@ import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.TagPredicate;
 import net.minecraft.predicate.entity.*;
 import net.minecraft.registry.Registerable;
-import net.minecraft.registry.RegistryEntryLookup;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntryList;
@@ -74,7 +76,9 @@ public class YavpmEnchantments {
 
     public static void bootstrap(Registerable<Enchantment> registerable) {
         var enchantments = registerable.getRegistryLookup(RegistryKeys.ENCHANTMENT);
+        var blocks = registerable.getRegistryLookup(RegistryKeys.BLOCK);
         var items = registerable.getRegistryLookup(RegistryKeys.ITEM);
+        var entities = registerable.getRegistryLookup(RegistryKeys.ENTITY_TYPE);
         var damageTypes = registerable.getRegistryLookup(RegistryKeys.DAMAGE_TYPE);
 
         // region Critical Hit
@@ -154,7 +158,7 @@ public class YavpmEnchantments {
                                 EnchantmentEffectComponentTypes.DAMAGE,
                                 new AddEnchantmentEffect(EnchantmentLevelBasedValue.linear(2.5F)),
                                 EntityPropertiesLootCondition.builder(
-                                        LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().type(EntityTypePredicate.create(YavpmTags.EntityTypes.SENSITIVE_TO_ILLAGERS_BANE))
+                                        LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().type(EntityTypePredicate.create(entities, YavpmTags.EntityTypes.SENSITIVE_TO_ILLAGERS_BANE))
                                 )
                         )
                         .addEffect(
@@ -169,7 +173,7 @@ public class YavpmEnchantments {
                                         EnchantmentLevelBasedValue.constant(3.0F)
                                 ),
                                 EntityPropertiesLootCondition.builder(
-                                                LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().type(EntityTypePredicate.create(YavpmTags.EntityTypes.SENSITIVE_TO_ILLAGERS_BANE))
+                                                LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().type(EntityTypePredicate.create(entities, YavpmTags.EntityTypes.SENSITIVE_TO_ILLAGERS_BANE))
                                         )
                                         .and(DamageSourcePropertiesLootCondition.builder(DamageSourcePredicate.Builder.create().isDirect(true)))
                         )
@@ -195,7 +199,7 @@ public class YavpmEnchantments {
                                 new MultiplyEnchantmentEffect(EnchantmentLevelBasedValue.constant(1.25f)),
                                 EntityPropertiesLootCondition.builder(
                                         LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().type(
-                                                EntityTypePredicate.create(YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_25)
+                                                EntityTypePredicate.create(entities, YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_25)
                                         )
                                 )
                         )
@@ -204,7 +208,7 @@ public class YavpmEnchantments {
                                 new MultiplyEnchantmentEffect(EnchantmentLevelBasedValue.constant(1.5f)),
                                 EntityPropertiesLootCondition.builder(
                                         LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().type(
-                                                EntityTypePredicate.create(YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_50)
+                                                EntityTypePredicate.create(entities, YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_50)
                                         )
                                 )
                         )
@@ -213,7 +217,7 @@ public class YavpmEnchantments {
                                 new MultiplyEnchantmentEffect(EnchantmentLevelBasedValue.constant(1.75f)),
                                 EntityPropertiesLootCondition.builder(
                                         LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().type(
-                                                EntityTypePredicate.create(YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_75)
+                                                EntityTypePredicate.create(entities, YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_75)
                                         )
                                 )
                         )
@@ -222,7 +226,7 @@ public class YavpmEnchantments {
                                 new MultiplyEnchantmentEffect(EnchantmentLevelBasedValue.constant(2)),
                                 EntityPropertiesLootCondition.builder(
                                         LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().type(
-                                                EntityTypePredicate.create(YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_100)
+                                                EntityTypePredicate.create(entities, YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_100)
                                         )
                                 )
                         )
@@ -233,7 +237,7 @@ public class YavpmEnchantments {
                 .periodicTick(5)
                 .flags(EntityFlagsPredicate.Builder.create().flying(false).onGround(true))
                 .movement(MovementPredicate.horizontalSpeed(NumberRange.DoubleRange.atLeast(1.0E-5F)))
-                .movementAffectedBy(LocationPredicate.Builder.create().block(net.minecraft.predicate.BlockPredicate.Builder.create().tag(BlockTags.ICE)));
+                .movementAffectedBy(LocationPredicate.Builder.create().block(net.minecraft.predicate.BlockPredicate.Builder.create().tag(blocks, BlockTags.ICE)));
         register(
                 registerable,
                 FIGURE_EIGHT,
@@ -271,7 +275,7 @@ public class YavpmEnchantments {
                                                                         LootContext.EntityTarget.THIS,
                                                                         EntityPredicate.Builder.create()
                                                                                 .movementAffectedBy(
-                                                                                        LocationPredicate.Builder.create().block(net.minecraft.predicate.BlockPredicate.Builder.create().tag(BlockTags.ICE))
+                                                                                        LocationPredicate.Builder.create().block(net.minecraft.predicate.BlockPredicate.Builder.create().tag(blocks, BlockTags.ICE))
                                                                                 )
                                                                 ),
                                                                 EntityPropertiesLootCondition.builder(
@@ -285,7 +289,7 @@ public class YavpmEnchantments {
                                                                 LootContext.EntityTarget.THIS,
                                                                 EntityPredicate.Builder.create()
                                                                         .movementAffectedBy(
-                                                                                LocationPredicate.Builder.create().block(net.minecraft.predicate.BlockPredicate.Builder.create().tag(BlockTags.ICE))
+                                                                                LocationPredicate.Builder.create().block(net.minecraft.predicate.BlockPredicate.Builder.create().tag(blocks, BlockTags.ICE))
                                                                         )
                                                                         .flags(EntityFlagsPredicate.Builder.create().flying(false))
                                                         )
@@ -304,7 +308,7 @@ public class YavpmEnchantments {
                                 EntityPropertiesLootCondition.builder(
                                         LootContext.EntityTarget.THIS,
                                         EntityPredicate.Builder.create()
-                                                .movementAffectedBy(LocationPredicate.Builder.create().block(net.minecraft.predicate.BlockPredicate.Builder.create().tag(BlockTags.ICE)))
+                                                .movementAffectedBy(LocationPredicate.Builder.create().block(net.minecraft.predicate.BlockPredicate.Builder.create().tag(blocks, BlockTags.ICE)))
                                 )
                         )
                         .addEffect(
@@ -316,7 +320,7 @@ public class YavpmEnchantments {
                                                 LootContext.EntityTarget.THIS,
                                                 EntityPredicate.Builder.create()
                                                         .flags(EntityFlagsPredicate.Builder.create().onGround(true))
-                                                        .movementAffectedBy(LocationPredicate.Builder.create().block(net.minecraft.predicate.BlockPredicate.Builder.create().tag(BlockTags.ICE)))
+                                                        .movementAffectedBy(LocationPredicate.Builder.create().block(net.minecraft.predicate.BlockPredicate.Builder.create().tag(blocks, BlockTags.ICE)))
                                         )
                                 )
                         )
@@ -474,7 +478,7 @@ public class YavpmEnchantments {
                                 EnchantmentEffectTarget.VICTIM,
                                 new AddEnchantmentEffect(EnchantmentLevelBasedValue.linear(0.0075F)),
                                 EntityPropertiesLootCondition.builder(
-                                        LootContext.EntityTarget.ATTACKER, EntityPredicate.Builder.create().type(EntityTypePredicate.create(EntityType.WOLF))
+                                        LootContext.EntityTarget.ATTACKER, EntityPredicate.Builder.create().type(EntityTypePredicate.create(entities, EntityType.WOLF))
                                 )
                         )
         );

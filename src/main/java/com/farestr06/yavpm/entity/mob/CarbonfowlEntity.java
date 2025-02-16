@@ -3,13 +3,18 @@ package com.farestr06.yavpm.entity.mob;
 import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.util.YavpmTags;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.mob.*;
+import net.minecraft.entity.mob.Angerable;
+import net.minecraft.entity.mob.CaveSpiderEntity;
+import net.minecraft.entity.mob.SilverfishEntity;
+import net.minecraft.entity.mob.SpiderEntity;
+import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -25,8 +30,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.UUID;
 
 public class CarbonfowlEntity extends ChickenEntity implements Angerable {
-
-    private static final Ingredient BREEDING_INGREDIENT = Ingredient.fromTag(YavpmTags.Items.CARBONFOWL_FOODS);
     private static final TrackedData<Integer> ANGER_TIME = DataTracker.registerData(CarbonfowlEntity.class, TrackedDataHandlerRegistry.INTEGER);
     private static final UniformIntProvider ANGER_TIME_RANGE = TimeHelper.betweenSeconds(12, 36);
     private float flapEffects;
@@ -63,7 +66,7 @@ public class CarbonfowlEntity extends ChickenEntity implements Angerable {
     }
 
     public static DefaultAttributeContainer.Builder createCarbonfowlAttributes() {
-        return MobEntity.createMobAttributes()
+        return AnimalEntity.createAnimalAttributes()
                 .add(EntityAttributes.MAX_HEALTH, 8.0)
                 .add(EntityAttributes.ATTACK_DAMAGE, 2.5)
                 .add(EntityAttributes.MOVEMENT_SPEED, 0.25)
@@ -72,12 +75,12 @@ public class CarbonfowlEntity extends ChickenEntity implements Angerable {
 
     @Override
     public boolean isBreedingItem(ItemStack stack) {
-        return BREEDING_INGREDIENT.test(stack);
+        return stack.isIn(YavpmTags.Items.CARBONFOWL_FOODS);
     }
 
     @Override
     public @Nullable ChickenEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-        return YavpmEntities.CARBONFOWL.create(serverWorld);
+        return YavpmEntities.CARBONFOWL.create(serverWorld, SpawnReason.BREEDING);
     }
 
     protected boolean isFlappingWings() {

@@ -3,9 +3,7 @@
   "category": "building",
   "group": "bark",
   "key": {
-    "#": {
-      "item": "yavpm:stripped_apple_log"
-    }
+    "#": "yavpm:stripped_apple_log"
   },
   "pattern": [
     "##",

@@ -29,16 +29,7 @@ public class YavpmConfigScreen implements ModMenuApi {
                 .category(ConfigCategory.createBuilder()
                         .name(Text.translatable("option.yavpm.items"))
                         .option(BABY_KEY_CRIES)
-                        .group(OptionGroup.createBuilder()
-                                .name(Text.translatable("option.yavpm.items.runes"))
-                                .description(OptionDescription.of(
-                                        Text.translatable("option.yavpm.items.runes.desc1"),
-                                        Text.translatable("option.yavpm.items.runes.desc2")
-                                ))
-                                .option(RUNE_ATTACK_UPGRADE_FACTOR)
-                                .option(RUNE_DURABILITY_UPGRADE_FACTOR)
-                                .option(RUNE_SPEED_UPGRADE_FACTOR)
-                                .build())
+                        .option(WEIRD_TRIAL_CHAMBER_POTIONS)
                         .build())
                 .category(ConfigCategory.createBuilder()
                         .name(Text.translatable("option.yavpm.entities_and_effects"))
@@ -164,43 +155,17 @@ public class YavpmConfigScreen implements ModMenuApi {
                     newVal -> HANDLER.instance().babyKeyCries = newVal
             ).controller(BooleanControllerBuilder::create)
             .build();
-    protected static final Option<Float> RUNE_ATTACK_UPGRADE_FACTOR = Option.<Float>createBuilder()
-            .name(Text.translatable("option.yavpm.rune_attack_upgrade_factor.title"))
+    protected static final Option<Boolean> WEIRD_TRIAL_CHAMBER_POTIONS = Option.<Boolean>createBuilder()
+            .name(Text.translatable("option.yavpm.weird_trial_chamber_potions.title"))
             .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.rune_attack_upgrade_factor.desc"))
+                    .text(Text.translatable("option.yavpm.weird_trial_chamber_potions.desc"))
                     .build()
             )
             .binding(
-                    1.5f,
-                    () -> HANDLER.instance().runeAttackUpgradeFactor,
-                    newVal -> HANDLER.instance().runeAttackUpgradeFactor = newVal
-            ).controller(opt -> FloatFieldControllerBuilder.create(opt).range(1f, 2.5f))
-            .build();
-
-    protected static final Option<Float> RUNE_DURABILITY_UPGRADE_FACTOR = Option.<Float>createBuilder()
-            .name(Text.translatable("option.yavpm.rune_durability_upgrade_factor.title"))
-            .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.rune_durability_upgrade_factor.desc"))
-                    .build()
-            )
-            .binding(
-                    1.5f,
-                    () -> HANDLER.instance().runeDurabilityUpgradeFactor,
-                    newVal -> HANDLER.instance().runeDurabilityUpgradeFactor = newVal
-            ).controller(opt -> FloatFieldControllerBuilder.create(opt).range(1f, 2.5f))
-            .build();
-
-    protected static final Option<Float> RUNE_SPEED_UPGRADE_FACTOR = Option.<Float>createBuilder()
-            .name(Text.translatable("option.yavpm.rune_speed_upgrade_factor.title"))
-            .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.rune_speed_upgrade_factor.desc"))
-                    .build()
-            )
-            .binding(
-                    1.5f,
-                    () -> HANDLER.instance().runeSpeedUpgradeFactor,
-                    newVal -> HANDLER.instance().runeSpeedUpgradeFactor = newVal
-            ).controller(opt -> FloatFieldControllerBuilder.create(opt).range(1f, 2.5f))
+                    true,
+                    () -> HANDLER.instance().weirdTrialChamberPotions,
+                    newVal -> HANDLER.instance().weirdTrialChamberPotions = newVal
+            ).controller(BooleanControllerBuilder::create).flag(OptionFlag.GAME_RESTART)
             .build();
     // endregion
     // region Easter Eggs

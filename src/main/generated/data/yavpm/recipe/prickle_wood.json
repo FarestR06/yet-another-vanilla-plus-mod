@@ -3,9 +3,7 @@
   "category": "building",
   "group": "bark",
   "key": {
-    "#": {
-      "item": "yavpm:prickle_log"
-    }
+    "#": "yavpm:prickle_log"
   },
   "pattern": [
     "##",

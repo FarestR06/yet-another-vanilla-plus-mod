@@ -4,6 +4,7 @@ import com.farestr06.yavpm.entity.YavpmDamageTypes;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.server.world.ServerWorld;
 
 public class ChokingStatusEffect extends StatusEffect {
     protected ChokingStatusEffect() {
@@ -11,11 +12,11 @@ public class ChokingStatusEffect extends StatusEffect {
     }
 
     @Override
-    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+    public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
         if (!entity.isInCreativeMode()) {
-            entity.clientDamage(YavpmDamageTypes.choke(entity.getWorld()), (amplifier + 1) * 2);
+            entity.damage(world, YavpmDamageTypes.choke(entity.getWorld()), (amplifier + 1) * 2);
         }
-        return super.applyUpdateEffect(entity, amplifier);
+        return super.applyUpdateEffect(world, entity, amplifier);
     }
 
     @Override

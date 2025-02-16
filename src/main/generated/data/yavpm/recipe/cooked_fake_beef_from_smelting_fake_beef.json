@@ -4,9 +4,7 @@
   "cookingtime": 200,
   "experience": 0.35,
   "group": "fake_beef",
-  "ingredient": {
-    "item": "yavpm:fake_beef"
-  },
+  "ingredient": "yavpm:fake_beef",
   "result": {
     "id": "yavpm:cooked_fake_beef"
   }

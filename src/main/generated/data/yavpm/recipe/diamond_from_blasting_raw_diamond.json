@@ -4,9 +4,7 @@
   "cookingtime": 200,
   "experience": 1.0,
   "group": "diamond_from_raw",
-  "ingredient": {
-    "item": "yavpm:raw_diamond"
-  },
+  "ingredient": "yavpm:raw_diamond",
   "result": {
     "id": "minecraft:diamond"
   }

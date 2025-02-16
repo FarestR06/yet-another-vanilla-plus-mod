@@ -58,9 +58,4 @@ public class GauntletItem extends Item {
                 && !attacker.hasStatusEffect(StatusEffects.BLINDNESS)
                 && !attacker.hasVehicle() && !attacker.isSprinting();
     }
-
-    @Override
-    public int getEnchantability() {
-        return 1;
-    }
 }

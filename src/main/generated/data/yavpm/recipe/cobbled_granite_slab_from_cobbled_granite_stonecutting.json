@@ -1,8 +1,6 @@
 {
   "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "yavpm:cobbled_granite"
-  },
+  "ingredient": "yavpm:cobbled_granite",
   "result": {
     "count": 2,
     "id": "yavpm:cobbled_granite_slab"

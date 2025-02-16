@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "K": {
-      "item": "minecraft:dried_kelp"
-    },
-    "R": {
-      "item": "yavpm:rice"
-    },
-    "T": {
-      "item": "minecraft:tropical_fish"
-    }
+    "K": "minecraft:dried_kelp",
+    "R": "yavpm:rice",
+    "T": "minecraft:tropical_fish"
   },
   "pattern": [
     "KRK",

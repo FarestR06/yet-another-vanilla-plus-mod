@@ -5,13 +5,10 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.enchantment.EnchantmentEffectContext;
 import net.minecraft.enchantment.EnchantmentLevelBasedValue;
 import net.minecraft.enchantment.effect.EnchantmentEntityEffect;
-import net.minecraft.enchantment.effect.entity.DamageEntityEnchantmentEffect;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.damage.DamageType;
-import net.minecraft.entity.passive.WolfEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.MathHelper;
@@ -33,7 +30,7 @@ public record ParryEnchantmentEffect(EnchantmentLevelBasedValue minDamage, Encha
             LivingEntity owner = context.owner();
             if (owner.isBlocking()) {
                 float f = MathHelper.nextBetween(user.getRandom(), this.minDamage.getValue(level), this.maxDamage.getValue(level));
-                user.clientDamage(new DamageSource(this.damageType, context.owner()), f);
+                user.damage(world, new DamageSource(this.damageType, context.owner()), f);
             }
         }
     }

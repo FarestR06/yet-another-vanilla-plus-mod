@@ -34,7 +34,7 @@ public class BitterBerryBushBlock extends SweetBerryBushBlock {
     }
 
     @Override
-    public ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state) {
+    protected ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state, boolean includeData) {
         return new ItemStack(YavpmItems.BITTER_BERRIES);
     }
 
@@ -48,7 +48,7 @@ public class BitterBerryBushBlock extends SweetBerryBushBlock {
             BlockState blockState = state.with(AGE, 1);
             world.setBlockState(pos, blockState, Block.NOTIFY_LISTENERS);
             world.emitGameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Emitter.of(player, blockState));
-            return ActionResult.success(world.isClient);
+            return ActionResult.SUCCESS;
         } else return ActionResult.PASS;
     }
 }

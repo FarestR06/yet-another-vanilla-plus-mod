@@ -11,15 +11,19 @@ import net.minecraft.inventory.ContainerLock;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
+import net.minecraft.predicate.ComponentPredicate;
+import net.minecraft.predicate.item.ItemPredicate;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
-import java.util.Objects;
 
 import static com.farestr06.yavpm.config.YavpmConfig.HANDLER;
 
 public class BabyKeyItem extends Item {
-    public BabyKeyItem(net.minecraft.item.Item.Settings settings) {
+    public BabyKeyItem(Item.Settings settings) {
         super(settings);
     }
 
@@ -35,41 +39,38 @@ public class BabyKeyItem extends Item {
 
     @Override
     public ActionResult useOnBlock(ItemUsageContext context) {
-        World world = context.getWorld();
-        if (context.getPlayer() != null) {
+        final World world = context.getWorld();
+        final BlockPos pos = context.getBlockPos();
+        if (context.getPlayer() != null && world.getBlockEntity(pos) != null) {
             PlayerEntity player = context.getPlayer();
-            BlockEntity entity = world.getBlockEntity(context.getBlockPos());
-            if (player.isSneaking()) {
-                String key = context.getStack().getName().getString();
-                if (entity instanceof LockableContainerBlockEntity lockable) {
+            BlockEntity entity = world.getBlockEntity(pos);
+            if (player.isSneaking() && world instanceof ServerWorld serverWorld) { // If the player is sneaking AND the logical side is the server...
+                RegistryWrapper.Impl<Item> itemLookup = serverWorld.getRegistryManager().getOrThrow(RegistryKeys.ITEM); // Create an item lookup
+                ItemStack stack = context.getStack(); // Grab the stack
+                ItemPredicate predicate = ItemPredicate.Builder.create() // Make a predicate from our stack
+                        .items(itemLookup, stack.getItem())
+                        .component(ComponentPredicate.of(stack.getComponents())).build();
+                if (entity instanceof LockableContainerBlockEntity lockable) { // If there's a chest
                     if (((LockableContainerBlockEntityAccessor) lockable).getLock() == ContainerLock.EMPTY) {
-                        if (!world.isClient()) {
-                            ((LockableContainerBlockEntityAccessor) lockable).setLock(new ContainerLock(key));
-                        }
+                        ((LockableContainerBlockEntityAccessor) lockable).setLock(new ContainerLock(predicate));
                         player.playSound(YavpmSounds.ITEM_BABY_KEY_TURN, 1f, 1f);
-                        return ActionResult.success(world.isClient);
-                    } else if (Objects.equals(((LockableContainerBlockEntityAccessor) lockable).getLock().key(), key)) {
-                        if (!world.isClient()) {
-                            ((LockableContainerBlockEntityAccessor) lockable).setLock(ContainerLock.EMPTY);
-                        }
+                        return ActionResult.SUCCESS;
+                    } else if (((LockableContainerBlockEntityAccessor) lockable).getLock().canOpen(stack)) {
+                        ((LockableContainerBlockEntityAccessor) lockable).setLock(ContainerLock.EMPTY);
                         player.playSound(YavpmSounds.ITEM_BABY_KEY_TURN, 1f, 1f);
-                        return ActionResult.success(world.isClient);
+                        return ActionResult.SUCCESS;
                     } else {
                         return ActionResult.FAIL;
                     }
                 } else if (entity instanceof KeylockBlockEntity keylock) {
                     if (keylock.getLock() == ContainerLock.EMPTY) {
-                        if (!world.isClient()) {
-                            keylock.setLock(new ContainerLock(key));
-                        }
+                        keylock.setLock(new ContainerLock(predicate));
                         player.playSound(YavpmSounds.ITEM_BABY_KEY_TURN, 1f, 1f);
-                        return ActionResult.success(world.isClient);
-                    } else if (Objects.equals(keylock.getLock().key(), key)) {
-                        if (!world.isClient()) {
-                            keylock.setLock(ContainerLock.EMPTY);
-                        }
+                        return ActionResult.SUCCESS;
+                    } else if (keylock.getLock().canOpen(stack)) {
+                        keylock.setLock(ContainerLock.EMPTY);
                         player.playSound(YavpmSounds.ITEM_BABY_KEY_TURN, 1f, 1f);
-                        return ActionResult.success(world.isClient);
+                        return ActionResult.SUCCESS;
                     } else {
                         return ActionResult.FAIL;
                     }

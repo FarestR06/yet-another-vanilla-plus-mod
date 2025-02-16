@@ -75,7 +75,7 @@ public class YavpmLootProviders {
 
             // region Warped Wart
             addDrop(
-                    YavpmBlocks.WARPED_WART,
+                    YavpmBlocks.WARPED_WART_CROP,
                     block -> LootTable.builder()
                             .pool(
                                     applyExplosionDecay(
@@ -366,7 +366,7 @@ public class YavpmLootProviders {
         @Override
         public void accept(BiConsumer<RegistryKey<LootTable>, LootTable.Builder> biConsumer) {
             // region Carbonfowl
-            biConsumer.accept(YavpmEntities.CARBONFOWL.getLootTableKey(), LootTable.builder().pool(
+            biConsumer.accept(YavpmEntities.CARBONFOWL.getLootTableKey().orElseThrow(), LootTable.builder().pool(
                     LootPool.builder()
                             .rolls(ConstantLootNumberProvider.create(1f))
                             .with(
@@ -399,7 +399,7 @@ public class YavpmLootProviders {
             );
             // endregion
             // region Moongus
-            biConsumer.accept(YavpmEntities.MOONGUS.getLootTableKey(), LootTable.builder().pool(
+            biConsumer.accept(YavpmEntities.MOONGUS.getLootTableKey().orElseThrow(), LootTable.builder().pool(
                             LootPool.builder()
                                     .rolls(ConstantLootNumberProvider.create(1f))
                                     .with(
@@ -420,7 +420,7 @@ public class YavpmLootProviders {
                     ));
             // endregion
             // region Tanuki
-            biConsumer.accept(YavpmEntities.TANUKI.getLootTableKey(), LootTable.builder().pool(
+            biConsumer.accept(YavpmEntities.TANUKI.getLootTableKey().orElseThrow(), LootTable.builder().pool(
                     LootPool.builder()
                             .rolls(ConstantLootNumberProvider.create(1f))
                             .with(
@@ -430,7 +430,7 @@ public class YavpmLootProviders {
             ));
             // endregion
             // region Void Phantom
-            biConsumer.accept(YavpmEntities.VOID_PHANTOM.getLootTableKey(),
+            biConsumer.accept(YavpmEntities.VOID_PHANTOM.getLootTableKey().orElseThrow(),
                     LootTable.builder()
                             .pool(
                                     LootPool.builder()

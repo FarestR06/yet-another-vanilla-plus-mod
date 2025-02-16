@@ -23,13 +23,13 @@ public class KeylockBlockEntity extends BlockEntity {
     @Override
     protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.readNbt(nbt, registryLookup);
-        this.lock = ContainerLock.fromNbt(nbt);
+        this.lock = ContainerLock.fromNbt(nbt, registryLookup);
     }
 
     @Override
     protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.writeNbt(nbt, registryLookup);
-        this.lock.writeNbt(nbt);
+        this.lock.writeNbt(nbt, registryLookup);
     }
 
     public ContainerLock getLock() {

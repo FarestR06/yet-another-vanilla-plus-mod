@@ -2,33 +2,15 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "yavpm:disc_fragment_magnetic_circuit"
-    },
-    {
-      "item": "yavpm:disc_fragment_magnetic_circuit"
-    },
-    {
-      "item": "yavpm:disc_fragment_magnetic_circuit"
-    },
-    {
-      "item": "yavpm:disc_fragment_magnetic_circuit"
-    },
-    {
-      "item": "yavpm:disc_fragment_magnetic_circuit"
-    },
-    {
-      "item": "yavpm:disc_fragment_magnetic_circuit"
-    },
-    {
-      "item": "yavpm:disc_fragment_magnetic_circuit"
-    },
-    {
-      "item": "yavpm:disc_fragment_magnetic_circuit"
-    },
-    {
-      "item": "yavpm:disc_fragment_magnetic_circuit"
-    }
+    "yavpm:disc_fragment_magnetic_circuit",
+    "yavpm:disc_fragment_magnetic_circuit",
+    "yavpm:disc_fragment_magnetic_circuit",
+    "yavpm:disc_fragment_magnetic_circuit",
+    "yavpm:disc_fragment_magnetic_circuit",
+    "yavpm:disc_fragment_magnetic_circuit",
+    "yavpm:disc_fragment_magnetic_circuit",
+    "yavpm:disc_fragment_magnetic_circuit",
+    "yavpm:disc_fragment_magnetic_circuit"
   ],
   "result": {
     "count": 1,

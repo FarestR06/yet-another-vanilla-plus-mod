@@ -2,18 +2,10 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "yavpm:rice"
-    },
-    {
-      "item": "yavpm:rice"
-    },
-    {
-      "item": "yavpm:rice"
-    },
-    {
-      "item": "minecraft:sugar"
-    }
+    "yavpm:rice",
+    "yavpm:rice",
+    "yavpm:rice",
+    "minecraft:sugar"
   ],
   "result": {
     "count": 2,

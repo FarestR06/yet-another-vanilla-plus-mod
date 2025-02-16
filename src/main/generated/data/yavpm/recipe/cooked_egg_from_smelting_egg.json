@@ -4,9 +4,7 @@
   "cookingtime": 200,
   "experience": 0.35,
   "group": "cooked_egg",
-  "ingredient": {
-    "item": "minecraft:egg"
-  },
+  "ingredient": "minecraft:egg",
   "result": {
     "id": "yavpm:cooked_egg"
   }

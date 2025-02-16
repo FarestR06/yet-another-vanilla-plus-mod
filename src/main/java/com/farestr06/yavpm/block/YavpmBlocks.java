@@ -16,6 +16,7 @@ import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
+import net.minecraft.component.type.ConsumableComponents;
 import net.minecraft.component.type.FoodComponents;
 import net.minecraft.data.family.BlockFamilies;
 import net.minecraft.data.family.BlockFamily;
@@ -45,30 +46,34 @@ public class YavpmBlocks {
     // endregion
 
     // region Crops
-    public static final Block WARPED_WART = makeBlockAndItem(
-            makeId("warped_wart_crop"),
+    public static final Block WARPED_WART_CROP = makeBlockAndAliasedItem(
+            makeId("warped_wart_crop"), makeId("warped_wart"),
             WarpedWartCropBlock::new,
             AbstractBlock.Settings.copy(Blocks.NETHER_WART).mapColor(MapColor.TEAL),
             new Item.Settings().useItemPrefixedTranslationKey()
     );
 
-    public static final Block BANANA_CROP = makeBlockAndItem(makeId("banana_crop"),
+    public static final Block BANANA_CROP = makeBlockAndAliasedItem(
+            makeId("banana_crop"), makeId("banana_seeds"),
             BananaCropBlock::new, AbstractBlock.Settings.copy(Blocks.POTATOES),
             new Item.Settings().useItemPrefixedTranslationKey()
     );
 
-    public static final Block RICE_CROP = makeBlockAndItem(makeId("rice_crop"),
+    public static final Block RICE_CROP = makeBlockAndAliasedItem(
+            makeId("rice_crop"), makeId("rice_seeds"),
             RiceCropBlock::new, AbstractBlock.Settings.copy(Blocks.WHEAT),
             new Item.Settings().useItemPrefixedTranslationKey()
     );
 
-    public static final Block PEANUT_CROP = makeBlockAndItem(makeId("peanut_crop"),
+    public static final Block PEANUT_CROP = makeBlockAndAliasedItem(
+            makeId("peanut_crop"), makeId("peanut"),
             PeanutCropBlock::new, AbstractBlock.Settings.copy(Blocks.POTATOES),
-            new Item.Settings().food(YavpmFoods.RAW_PEANUT).useItemPrefixedTranslationKey()
+            new Item.Settings().food(YavpmFoods.RAW_PEANUT, YavpmFoods.ConsumableComponents.RAW_PEANUT).useItemPrefixedTranslationKey()
     );
 
-    public static final Block OAK_SAPLING_CROP = makeBlockAndItem(
+    public static final Block OAK_SAPLING_CROP = makeBlockAndAliasedItem(
             makeId("oak_sapling_crop"),
+            makeId("acorn"),
             settings -> new SaplingCropBlock(settings) {
                 @Override
                 protected ItemConvertible getSeedsItem() {
@@ -76,22 +81,23 @@ public class YavpmBlocks {
                 }
             },
             AbstractBlock.Settings.copy(Blocks.OAK_SAPLING),
-            new Item.Settings().food(YavpmFoods.ACORN).useItemPrefixedTranslationKey()
+            new Item.Settings().food(YavpmFoods.ACORN, ConsumableComponents.DRIED_KELP).useItemPrefixedTranslationKey()
     );
 
-    public static final Block MAGIC_BEAN_CROP = makeBlockAndItem(
-            makeId("magic_bean_crop"),
+    public static final Block MAGIC_BEAN_CROP = makeBlockAndAliasedItem(
+            makeId("magic_bean_crop"), makeId("magic_bean"),
             MagicBeanCropBlock::new,
             AbstractBlock.Settings.copy(Blocks.POTATOES),
             new Item.Settings().food(YavpmFoods.MAGIC_BEAN)
     );
 
-    public static final Block BITTER_BERRY_BUSH = makeBlockAndItem(
-            makeId("bitter_berry_bush"),
+    public static final Block BITTER_BERRY_BUSH = makeBlockAndAliasedItem(
+            makeId("bitter_berry_bush"), makeId("bitter_berries"),
             BitterBerryBushBlock::new,
             AbstractBlock.Settings.copy(Blocks.SWEET_BERRY_BUSH),
             new Item.Settings().food(FoodComponents.SWEET_BERRIES).useItemPrefixedTranslationKey()
     );
+
     // endregion
 
     // region Igneous Stone

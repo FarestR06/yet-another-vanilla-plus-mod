@@ -2,21 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "yavpm:magic_bean"
-    },
-    {
-      "item": "yavpm:magic_bean"
-    },
-    {
-      "item": "yavpm:magic_bean"
-    },
-    {
-      "item": "yavpm:magic_bean"
-    },
-    {
-      "item": "minecraft:bucket"
-    }
+    "yavpm:magic_bean",
+    "yavpm:magic_bean",
+    "yavpm:magic_bean",
+    "yavpm:magic_bean",
+    "minecraft:bucket"
   ],
   "result": {
     "count": 1,

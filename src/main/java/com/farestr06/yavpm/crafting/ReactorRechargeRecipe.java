@@ -16,6 +16,11 @@ public class ReactorRechargeRecipe extends SpecialCraftingRecipe {
     }
 
     @Override
+    public RecipeSerializer<? extends SpecialCraftingRecipe> getSerializer() {
+        return YavpmRecipeSerializers.REACTOR_RECHARGE;
+    }
+
+    @Override
     public boolean matches(CraftingRecipeInput input, World world) {
         boolean isReactor = false;
         boolean isRecharger = false;
@@ -48,15 +53,5 @@ public class ReactorRechargeRecipe extends SpecialCraftingRecipe {
             return reactor;
         }
         return ItemStack.EMPTY;
-    }
-
-    @Override
-    public boolean fits(int width, int height) {
-        return width >= 2 && height >= 2;
-    }
-
-    @Override
-    public RecipeSerializer<?> getSerializer() {
-        return YavpmRecipeSerializers.REACTOR_RECHARGE;
     }
 }

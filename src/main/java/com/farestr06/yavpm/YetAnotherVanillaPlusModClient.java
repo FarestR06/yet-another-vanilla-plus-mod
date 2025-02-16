@@ -2,10 +2,13 @@ package com.farestr06.yavpm;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.entity.YavpmEntities;
-import com.farestr06.yavpm.entity.mob.client.*;
+import com.farestr06.yavpm.entity.mob.client.CarbonfowlEntityRenderer;
+import com.farestr06.yavpm.entity.mob.client.TanukiEntityRenderer;
+import com.farestr06.yavpm.entity.mob.client.VoidPhantomEntityRenderer;
+import com.farestr06.yavpm.entity.mob.client.YavpmModelLayers;
 import com.farestr06.yavpm.entity.mob.client.model.TanukiEntityModel;
+import com.farestr06.yavpm.entity.mob.client.moongus.MoongusEntityRenderer;
 import com.farestr06.yavpm.fluid.YavpmFluids;
-import com.farestr06.yavpm.item.YavpmItems;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
@@ -15,7 +18,6 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.color.world.BiomeColors;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.component.type.DyedColorComponent;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.FoliageColors;
 

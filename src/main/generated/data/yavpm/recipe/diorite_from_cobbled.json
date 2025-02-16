@@ -3,9 +3,7 @@
   "category": "blocks",
   "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": {
-    "item": "yavpm:cobbled_diorite"
-  },
+  "ingredient": "yavpm:cobbled_diorite",
   "result": {
     "id": "minecraft:diorite"
   }

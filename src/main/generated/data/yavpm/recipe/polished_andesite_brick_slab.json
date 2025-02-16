@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": {
-      "item": "yavpm:polished_andesite_bricks"
-    }
+    "#": "yavpm:polished_andesite_bricks"
   },
   "pattern": [
     "###"

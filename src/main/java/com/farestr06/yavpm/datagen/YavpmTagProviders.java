@@ -48,11 +48,6 @@ public class YavpmTagProviders {
                     YavpmBlocks.COBBLED_DIORITE.asItem(),
                     YavpmBlocks.COBBLED_ANDESITE.asItem()
             );
-            getOrCreateTagBuilder(YavpmTags.Items.RUNES).add(
-                    YavpmItems.RUNE_ATTACK,
-                    YavpmItems.RUNE_DURABILITY,
-                    YavpmItems.RUNE_SPEED
-            );
             getOrCreateTagBuilder(ItemTags.DYEABLE).add(
                     YavpmItems.STUDDED_HELMET,
                     YavpmItems.STUDDED_CHESTPLATE,
@@ -246,9 +241,6 @@ public class YavpmTagProviders {
                     Items.GOLDEN_CARROT,
                     Items.TURTLE_HELMET,
                     Items.PHANTOM_MEMBRANE,
-                    Items.BREEZE_ROD,
-                    Items.SLIME_BLOCK,
-                    Items.STONE,
                     Items.WITHER_SKELETON_SKULL,
                     Items.ENDER_EYE
             );
@@ -261,6 +253,10 @@ public class YavpmTagProviders {
                     Items.PUFFERFISH
             );
             getOrCreateTagBuilder(YavpmTags.Items.WARPED_MOONGUS_FOOD).add(
+                    Items.BREEZE_ROD,
+                    Items.SLIME_BLOCK,
+                    Items.STONE,
+                    Items.COBWEB,
                     Items.FERMENTED_SPIDER_EYE,
                     Items.WITHER_SKELETON_SKULL,
                     Items.ENDER_EYE
@@ -423,7 +419,7 @@ public class YavpmTagProviders {
                     YavpmBlocks.PEANUT_CROP,
                     YavpmBlocks.RICE_CROP,
                     YavpmBlocks.MAGIC_BEAN_CROP,
-                    YavpmBlocks.WARPED_WART,
+                    YavpmBlocks.WARPED_WART_CROP,
                     YavpmBlocks.OAK_SAPLING_CROP
             );
             getOrCreateTagBuilder(BlockTags.SAPLINGS).add(

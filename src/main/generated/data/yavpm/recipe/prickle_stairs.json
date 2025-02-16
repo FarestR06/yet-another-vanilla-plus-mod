@@ -3,9 +3,7 @@
   "category": "building",
   "group": "wooden_stairs",
   "key": {
-    "#": {
-      "item": "yavpm:prickle_planks"
-    }
+    "#": "yavpm:prickle_planks"
   },
   "pattern": [
     "#  ",

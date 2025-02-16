@@ -2,21 +2,11 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "minecraft:tropical_fish"
-    },
-    {
-      "item": "yavpm:rice"
-    },
-    {
-      "item": "minecraft:dried_kelp"
-    },
-    {
-      "item": "yavpm:magic_bean"
-    },
-    {
-      "item": "minecraft:bowl"
-    }
+    "minecraft:tropical_fish",
+    "yavpm:rice",
+    "minecraft:dried_kelp",
+    "yavpm:magic_bean",
+    "minecraft:bowl"
   ],
   "result": {
     "count": 1,

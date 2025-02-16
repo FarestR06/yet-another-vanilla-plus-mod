@@ -20,7 +20,6 @@ public class YavpmTags {
         public static final TagKey<Item> CRIMSON_MOONGUS_FOOD_CORRUPTED = of("crimson_moongus_food_corrupted");
         public static final TagKey<Item> WARPED_MOONGUS_FOOD = of("warped_moongus_food");
 
-        public static final TagKey<Item> RUNES = of("runes");
         public static final TagKey<Item> RUNE_ATTACK_APPLICABLE = of("rune_attack_applicable");
         public static final TagKey<Item> RUNE_DURABILITY_APPLICABLE = of("rune_durability_applicable");
         public static final TagKey<Item> RUNE_SPEED_APPLICABLE = of("rune_speed_applicable");

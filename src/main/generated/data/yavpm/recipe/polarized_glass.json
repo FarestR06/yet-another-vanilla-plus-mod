@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
   "key": {
-    "G": {
-      "item": "minecraft:glow_ink_sac"
-    },
-    "T": {
-      "item": "minecraft:tinted_glass"
-    }
+    "G": "minecraft:glow_ink_sac",
+    "T": "minecraft:tinted_glass"
   },
   "pattern": [
     "TTT",

@@ -9,8 +9,8 @@ import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.block.WireOrientation;
 import org.jetbrains.annotations.Nullable;
 
 public class PolarizedGlassBlock extends Block {
@@ -28,7 +28,7 @@ public class PolarizedGlassBlock extends Block {
     }
 
     @Override
-    protected void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, BlockPos sourcePos, boolean notify) {
+    protected void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, @Nullable WireOrientation wireOrientation, boolean notify) {
         if (!world.isClient) {
             boolean bl = state.get(POWERED);
             if (bl != world.isReceivingRedstonePower(pos)) {
@@ -49,13 +49,13 @@ public class PolarizedGlassBlock extends Block {
     }
 
     @Override
-    protected int getOpacity(BlockState state, BlockView world, BlockPos pos) {
-        if (state.get(POWERED)) return world.getMaxLightLevel();
+    protected int getOpacity(BlockState state) {
+        if (state.get(POWERED)) return 15;
         return 0;
     }
 
     @Override
-    protected boolean isTransparent(BlockState state, BlockView world, BlockPos pos) {
+    protected boolean isTransparent(BlockState state) {
         return !state.get(POWERED);
     }
 

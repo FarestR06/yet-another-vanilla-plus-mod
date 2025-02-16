@@ -3,9 +3,7 @@
   "category": "building",
   "group": "planks",
   "ingredients": [
-    {
-      "tag": "yavpm:spiral_stalks"
-    }
+    "#yavpm:spiral_stalks"
   ],
   "result": {
     "count": 4,

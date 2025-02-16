@@ -4,24 +4,23 @@ import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.fluid.YavpmFluids;
-import com.farestr06.yavpm.item.custom.*;
+import com.farestr06.yavpm.item.custom.BabyKeyItem;
+import com.farestr06.yavpm.item.custom.FortuneCookieItem;
+import com.farestr06.yavpm.item.custom.GauntletItem;
+import com.farestr06.yavpm.item.custom.ReactorItem;
 import com.farestr06.yavpm.util.YavpmSounds;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
 import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.ConsumableComponent;
 import net.minecraft.component.type.ConsumableComponents;
 import net.minecraft.component.type.FoodComponents;
 import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.item.*;
-import net.minecraft.item.consume.ClearAllEffectsConsumeEffect;
 import net.minecraft.item.equipment.EquipmentType;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.Potions;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Rarity;
 
 import java.util.HashMap;
@@ -42,27 +41,15 @@ public class YavpmItems {
             new Item.Settings().rarity(Rarity.UNCOMMON)
     );
 
-    // region Runes
-    private static final Item.Settings RUNE_SETTINGS = new Item.Settings().rarity(Rarity.EPIC)
-            .component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true);
+    public static final Item WARPED_WART = YavpmBlocks.WARPED_WART_CROP.asItem();
+    public static final Item BANANA_SEEDS = YavpmBlocks.BANANA_CROP.asItem();
+    public static final Item RICE_SEEDS = YavpmBlocks.RICE_CROP.asItem();
+    public static final Item PEANUT = YavpmBlocks.PEANUT_CROP.asItem();
+    public static final Item ACORN = YavpmBlocks.OAK_SAPLING_CROP.asItem();
+    public static final Item MAGIC_BEAN = YavpmBlocks.MAGIC_BEAN_CROP.asItem();
+    public static final Item BITTER_BERRIES = YavpmBlocks.BITTER_BERRY_BUSH.asItem();
 
-    public static final Item RUNE_ATTACK = makeAdvancedItem(
-            makeId("rune_attack"),
-            settings -> new RuneItem(settings, Text.translatable("item.yavpm.rune_attack.tooltip").formatted(Formatting.RED)),
-            RUNE_SETTINGS
-    );
-    public static final Item RUNE_DURABILITY = makeAdvancedItem(
-            makeId("rune_durability"),
-            settings -> new RuneItem(settings, Text.translatable("item.yavpm.rune_durability.tooltip").formatted(Formatting.BLUE)),
-            RUNE_SETTINGS
-    );
-    public static final Item RUNE_SPEED = makeAdvancedItem(
-            makeId("rune_speed"),
-            settings -> new RuneItem(settings, Text.translatable("item.yavpm.rune_speed.tooltip").formatted(Formatting.YELLOW)),
-            RUNE_SETTINGS
-    );
-    // endregion
-    public static final Item COOKED_PEANUT = makeItem(makeId("cooked_peanut"), new Item.Settings().food(YavpmFoods.COOKED_PEANUT));
+    public static final Item COOKED_PEANUT = makeItem(makeId("cooked_peanut"), new Item.Settings().food(YavpmFoods.COOKED_PEANUT, ConsumableComponents.DRIED_KELP));
     public static final Item BREADING = makeSimpleItem(makeId("breading"));
     public static final Item FRIED_BANANA = makeItem(
             makeId("fried_banana"),
@@ -75,7 +62,7 @@ public class YavpmItems {
     public static final Item DIAMOND_ACORN = makeItem(
             makeId("diamond_acorn"),
             new Item.Settings()
-                    .food(YavpmFoods.DIAMOND_ACORN)
+                    .food(YavpmFoods.DIAMOND_ACORN, ConsumableComponents.ENCHANTED_GOLDEN_APPLE)
                     .rarity(Rarity.RARE)
                     .component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true)
     );
@@ -134,7 +121,7 @@ public class YavpmItems {
     );
     public static final Item FANCY_MUSHROOM_STEW = makeItem(
             makeId("fancy_mushroom_stew"),
-            new Item.Settings().food(YavpmFoods.FANCY_MUSHROOM_STEW)
+            new Item.Settings().food(YavpmFoods.FANCY_MUSHROOM_STEW, YavpmFoods.ConsumableComponents.FANCY_MUSHROOM_STEW)
                     .component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true)
                     .rarity(Rarity.EPIC)
                     .maxCount(1)
@@ -194,7 +181,7 @@ public class YavpmItems {
             GauntletItem::new,
             new Item.Settings()
                     .rarity(Rarity.EPIC)
-                    .maxDamage(475)
+                    .maxDamage(575)
                     .attributeModifiers(GauntletItem.createAttributeModifiers())
                     .component(DataComponentTypes.TOOL, GauntletItem.createToolComponent())
     );
@@ -204,13 +191,10 @@ public class YavpmItems {
 
     public static final Item CHAINMAIL = makeSimpleItem(makeId("chainmail"));
 
-    // Magic Herb
-    private static final ConsumableComponent MOLY_COMPONENT = ConsumableComponent.builder()
-            .consumeEffect(ClearAllEffectsConsumeEffect.INSTANCE).consumeSeconds(2.4f).build();
     public static final Item MOLY = makeItem(
             makeId("moly"),
-            new Item.Settings().rarity(Rarity.UNCOMMON).food(YavpmFoods.MOLY)
-                    .component(DataComponentTypes.CONSUMABLE, MOLY_COMPONENT).maxCount(16)
+            new Item.Settings().rarity(Rarity.UNCOMMON)
+                    .food(YavpmFoods.MOLY, YavpmFoods.ConsumableComponents.MOLY_COMPONENT).maxCount(16)
     );
 
     // region Reactor
@@ -284,25 +268,21 @@ public class YavpmItems {
     );
 
     // region Spawn Eggs
-    // 0x191919, 0x4aedd9
     public static final Item CARBONFOWL_SPAWN_EGG = makeAdvancedItemWithDefaultSettings(
             makeId("carbonfowl_spawn_egg"),
             settings -> new SpawnEggItem(YavpmEntities.CARBONFOWL, settings)
     );
 
-    // MapColor.BRIGHT_TEAL.color, MapColor.RED.color
     public static final Item MOONGUS_SPAWN_EGG = makeAdvancedItemWithDefaultSettings(
             makeId("moongus_spawn_egg"),
             settings -> new SpawnEggItem(YavpmEntities.MOONGUS, settings)
     );
 
-    // 0x5d4f59, 0xb69578
     public static final Item TANUKI_SPAWN_EGG = makeAdvancedItemWithDefaultSettings(
             makeId("tanuki_spawn_egg"),
             settings -> new SpawnEggItem(YavpmEntities.TANUKI, settings)
     );
 
-    // 0x060080, 0xf54bfa
     public static final Item VOID_PHANTOM_SPAWN_EGG = makeAdvancedItemWithDefaultSettings(
             makeId("void_phantom_spawn_egg"),
             settings -> new SpawnEggItem(YavpmEntities.VOID_PHANTOM, settings)
@@ -339,10 +319,6 @@ public class YavpmItems {
         CRIMSON_MOONGUS_FOOD.put(Items.GOLDEN_CARROT, Potions.NIGHT_VISION);
         CRIMSON_MOONGUS_FOOD.put(Items.TURTLE_HELMET, Potions.TURTLE_MASTER);
         CRIMSON_MOONGUS_FOOD.put(Items.PHANTOM_MEMBRANE, Potions.SLOW_FALLING);
-        CRIMSON_MOONGUS_FOOD.put(Items.BREEZE_ROD, Potions.WIND_CHARGED);
-        CRIMSON_MOONGUS_FOOD.put(Items.COBWEB, Potions.WEAVING);
-        CRIMSON_MOONGUS_FOOD.put(Items.SLIME_BLOCK, Potions.OOZING);
-        CRIMSON_MOONGUS_FOOD.put(Items.STONE, Potions.INFESTED);
 
         // Crimson Moongi create different potions when fed a Fermented Spider Eye.
         YetAnotherVanillaPlusMod.LOGGER.debug("Registering corrupted Crimson Moongus foods...");
@@ -353,20 +329,23 @@ public class YavpmItems {
         CRIMSON_MOONGUS_FOOD_CORRUPTED.put(Items.GOLDEN_CARROT, Potions.INVISIBILITY);
         CRIMSON_MOONGUS_FOOD_CORRUPTED.put(Items.PUFFERFISH, YavpmPotions.CHOKING);
 
-        // Warped Moongi create potions brewed from water bottles.
+        // Warped Moongi create potions brewed from weird potions.
         YetAnotherVanillaPlusMod.LOGGER.debug("Registering Warped Moongus foods...");
-        WARPED_MOONGUS_FOOD.put(Items.FERMENTED_SPIDER_EYE, Potions.WEAKNESS);
+        WARPED_MOONGUS_FOOD.put(Items.BREEZE_ROD, Potions.WIND_CHARGED);
+        WARPED_MOONGUS_FOOD.put(Items.COBWEB, Potions.WEAVING);
+        WARPED_MOONGUS_FOOD.put(Items.SLIME_BLOCK, Potions.OOZING);
+        WARPED_MOONGUS_FOOD.put(Items.STONE, Potions.INFESTED);
         WARPED_MOONGUS_FOOD.put(Items.WITHER_ROSE, YavpmPotions.DECAY);
         WARPED_MOONGUS_FOOD.put(VOID_WATER_BUCKET, YavpmPotions.VOID_TOUCHED);
-        WARPED_MOONGUS_FOOD.put(YavpmBlocks.BITTER_BERRY_BUSH.asItem(), YavpmPotions.HASTE);
+        WARPED_MOONGUS_FOOD.put(BITTER_BERRIES.asItem(), YavpmPotions.HASTE);
+        WARPED_MOONGUS_FOOD.put(Items.SWEET_BERRIES, YavpmPotions.INTOXICATION);
     }
 
     private static void setUpRegistries() {
         // Make Heated Reactor usable as fuel
         YetAnotherVanillaPlusMod.LOGGER.debug("Making Reactor usable as fuel...");
-        FuelRegistryEvents.BUILD.register((builder, context) -> {
-            builder.add(HEATED_REACTOR, context.baseSmeltTime() * 16);
-        });
+        FuelRegistryEvents.BUILD.register((builder, context) ->
+                builder.add(HEATED_REACTOR, context.baseSmeltTime() * 16));
 
         // Make new crops compostable
         YetAnotherVanillaPlusMod.LOGGER.debug("Making items compostable...");

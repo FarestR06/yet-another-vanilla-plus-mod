@@ -214,25 +214,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 						.with(ItemEntry.builder(YavpmItems.PEANUT).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 5.0F))))
 						.conditionally(RandomChanceLootCondition.builder(0.35f));
 
-				LootPool.Builder poolBuilder2 = LootPool.builder()
-						.rolls(ConstantLootNumberProvider.create(1f))
-						.with(ItemEntry.builder(YavpmItems.RUNE_ATTACK))
-						.with(ItemEntry.builder(YavpmItems.RUNE_DURABILITY))
-						.with(ItemEntry.builder(YavpmItems.RUNE_SPEED))
-						.conditionally(RandomChanceLootCondition.builder(0.005f));
-
-
-				tableBuilder.pool(poolBuilder1).pool(poolBuilder2);
-			}
-			if (source.isBuiltin() && key.equals(LootTables.ANCIENT_CITY_CHEST)) {
-				LootPool.Builder poolBuilder = LootPool.builder()
-						.rolls(ConstantLootNumberProvider.create(1f))
-						.with(ItemEntry.builder(YavpmItems.RUNE_ATTACK))
-						.with(ItemEntry.builder(YavpmItems.RUNE_DURABILITY))
-						.with(ItemEntry.builder(YavpmItems.RUNE_SPEED))
-						.conditionally(RandomChanceLootCondition.builder(0.05f));
-
-				tableBuilder.pool(poolBuilder);
+				tableBuilder.pool(poolBuilder1);
 			}
 			if (source.isBuiltin() && key.equals(LootTables.TRIAL_CHAMBER_CONSUMABLES_SPAWNER)) {
 				LootPool.Builder poolBuilder = LootPool.builder()
@@ -292,14 +274,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 						.with(ItemEntry.builder(Items.MUSIC_DISC_STAL))
 						.conditionally(RandomChanceLootCondition.builder(0.19f));
 
-				LootPool.Builder poolBuilder2 = LootPool.builder()
-						.rolls(ConstantLootNumberProvider.create(1f))
-						.with(ItemEntry.builder(YavpmItems.RUNE_ATTACK))
-						.with(ItemEntry.builder(YavpmItems.RUNE_DURABILITY))
-						.with(ItemEntry.builder(YavpmItems.RUNE_SPEED))
-						.conditionally(RandomChanceLootCondition.builder(0.008f));
-
-				tableBuilder.pool(poolBuilder1).pool(poolBuilder2);
+				tableBuilder.pool(poolBuilder1);
 			}
 			if (source.isBuiltin() && key.equals(LootTables.DESERT_PYRAMID_CHEST)) {
 				LootPool.Builder poolbuilder1 = LootPool.builder()
@@ -311,15 +286,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 						.rolls(ConstantLootNumberProvider.create(1f))
 						.with(ItemEntry.builder(Items.MUSIC_DISC_FAR))
 						.conditionally(RandomChanceLootCondition.builder(0.19f));
-
-				LootPool.Builder poolBuilder3 = LootPool.builder()
-						.rolls(ConstantLootNumberProvider.create(1f))
-						.with(ItemEntry.builder(YavpmItems.RUNE_ATTACK))
-						.with(ItemEntry.builder(YavpmItems.RUNE_DURABILITY))
-						.with(ItemEntry.builder(YavpmItems.RUNE_SPEED))
-						.conditionally(RandomChanceLootCondition.builder(0.005f));
-
-				tableBuilder.pool(poolbuilder1).pool(poolBuilder2).pool(poolBuilder3);
+				tableBuilder.pool(poolbuilder1).pool(poolBuilder2);
 			}
 			if (source.isBuiltin() && key.equals(LootTables.JUNGLE_TEMPLE_CHEST)) {
 				LootPool.Builder poolBuilder1 = LootPool.builder()
@@ -349,16 +316,6 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 						.rolls(ConstantLootNumberProvider.create(1f))
 						.with(ItemEntry.builder(Items.MUSIC_DISC_BLOCKS))
 						.conditionally(RandomChanceLootCondition.builder(0.19f));
-
-				tableBuilder.pool(poolBuilder);
-			}
-			if (source.isBuiltin() && key.equals(LootTables.STRONGHOLD_CORRIDOR_CHEST)) {
-				LootPool.Builder poolBuilder = LootPool.builder()
-						.rolls(ConstantLootNumberProvider.create(1f))
-						.with(ItemEntry.builder(YavpmItems.RUNE_ATTACK))
-						.with(ItemEntry.builder(YavpmItems.RUNE_DURABILITY))
-						.with(ItemEntry.builder(YavpmItems.RUNE_SPEED))
-						.conditionally(RandomChanceLootCondition.builder(0.012f));
 
 				tableBuilder.pool(poolBuilder);
 			}

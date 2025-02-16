@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "G": {
-      "item": "yavpm:gauntlet_fragment"
-    },
-    "N": {
-      "item": "minecraft:netherite_scrap"
-    }
+    "G": "yavpm:gauntlet_fragment",
+    "N": "minecraft:netherite_scrap"
   },
   "pattern": [
     "GGG",

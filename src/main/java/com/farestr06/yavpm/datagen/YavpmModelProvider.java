@@ -2,6 +2,7 @@ package com.farestr06.yavpm.datagen;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.block.custom.crop.*;
+import com.farestr06.yavpm.item.YavpmArmorMaterials;
 import com.farestr06.yavpm.item.YavpmItems;
 import it.unimi.dsi.fastutil.ints.Int2ObjectFunction;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -11,34 +12,16 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
-import net.minecraft.client.data.BlockStateModelGenerator;
-import net.minecraft.client.data.BlockStateVariant;
-import net.minecraft.client.data.BlockStateVariantMap;
-import net.minecraft.client.data.ItemModelGenerator;
-import net.minecraft.client.data.Model;
-import net.minecraft.client.data.ModelIds;
-import net.minecraft.client.data.Models;
-import net.minecraft.client.data.TextureMap;
-import net.minecraft.client.data.TexturedModel;
-import net.minecraft.client.data.VariantSettings;
-import net.minecraft.client.data.VariantsBlockStateSupplier;
-import net.minecraft.item.ArmorItem;
+import net.minecraft.client.data.*;
 import net.minecraft.item.Items;
 import net.minecraft.state.property.Properties;
 import net.minecraft.state.property.Property;
 import net.minecraft.util.Identifier;
 
-import java.util.Optional;
-
 public class YavpmModelProvider extends FabricModelProvider {
     public YavpmModelProvider(FabricDataOutput output) {
         super(output);
     }
-
-    private static final Model TEMPLATE_SPAWN_EGG = new Model(
-            Optional.of(Identifier.ofVanilla("item/template_spawn_egg")),
-            Optional.empty()
-    );
 
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator generator) {
@@ -59,6 +42,7 @@ public class YavpmModelProvider extends FabricModelProvider {
         createPersimmonSet(generator);
         createPrickleSet(generator);
 
+        registerPolarizedGlass(generator);
         registerKeylock(generator);
 
         generator.registerTintableCross(YavpmBlocks.APPLE_SAPLING, BlockStateModelGenerator.CrossType.NOT_TINTED);
@@ -97,10 +81,15 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.registerSpawnEgg(YavpmItems.VOID_PHANTOM_SPAWN_EGG, 0x060080, 0xf54bfa);
 
         generator.register(YavpmItems.VOID_WATER_BUCKET, Models.GENERATED);
+    }
 
-        generator.register(YavpmItems.RUNE_ATTACK, Models.GENERATED);
-        generator.register(YavpmItems.RUNE_DURABILITY, Models.GENERATED);
-        generator.register(YavpmItems.RUNE_SPEED, Models.GENERATED);
+    private void registerPolarizedGlass(BlockStateModelGenerator generator) {
+        Identifier identifier = TexturedModel.CUBE_ALL.upload(YavpmBlocks.POLARIZED_GLASS, generator.modelCollector);
+        Identifier identifier2 = generator.createSubModel(YavpmBlocks.POLARIZED_GLASS, "_on", Models.CUBE_ALL, TextureMap::all);
+        generator.blockStateCollector
+                .accept(VariantsBlockStateSupplier.create(YavpmBlocks.POLARIZED_GLASS).coordinate(
+                        BlockStateModelGenerator.createBooleanModelMap(Properties.POWERED, identifier2, identifier)
+                ));
     }
 
     private static void food(ItemModelGenerator generator) {
@@ -154,7 +143,7 @@ public class YavpmModelProvider extends FabricModelProvider {
                 BitterBerryBushBlock.AGE, 0, 1, 2, 3
         );
         generator.registerCrop(YavpmBlocks.RICE_CROP, RiceCropBlock.AGE, 0, 1, 2, 3, 4, 5, 6, 7);
-        generator.registerCrop(YavpmBlocks.WARPED_WART, Properties.AGE_3, 0, 1, 1, 2);
+        generator.registerCrop(YavpmBlocks.WARPED_WART_CROP, Properties.AGE_3, 0, 1, 1, 2);
         generator.registerCrop(YavpmBlocks.PEANUT_CROP, PeanutCropBlock.AGE, 0, 1, 2, 3);
         registerBananaCrop(generator);
 
@@ -271,10 +260,10 @@ public class YavpmModelProvider extends FabricModelProvider {
     }
 
     private static void createStuddedArmor(ItemModelGenerator generator) {
-        generator.registerArmor((ArmorItem) YavpmItems.STUDDED_HELMET);
-        generator.registerArmor((ArmorItem) YavpmItems.STUDDED_CHESTPLATE);
-        generator.registerArmor((ArmorItem) YavpmItems.STUDDED_LEGGINGS);
-        generator.registerArmor((ArmorItem) YavpmItems.STUDDED_BOOTS);
+        generator.registerArmor(YavpmItems.STUDDED_HELMET, YavpmArmorMaterials.STUDDED_KEY, "helmet", true);
+        generator.registerArmor(YavpmItems.STUDDED_CHESTPLATE, YavpmArmorMaterials.STUDDED_KEY, "chestplate", true);
+        generator.registerArmor(YavpmItems.STUDDED_LEGGINGS, YavpmArmorMaterials.STUDDED_KEY, "leggings", true);
+        generator.registerArmor(YavpmItems.STUDDED_BOOTS, YavpmArmorMaterials.STUDDED_KEY, "boots", true);
 
     }
 

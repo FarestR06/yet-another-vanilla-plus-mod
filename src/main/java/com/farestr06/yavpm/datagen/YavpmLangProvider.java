@@ -39,7 +39,6 @@ public class YavpmLangProvider extends FabricLanguageProvider {
     }
 
     private static void tagTranslations(TranslationBuilder builder) {
-        builder.add(YavpmTags.Items.RUNES, "Runes");
         builder.add(YavpmTags.Items.RUNE_ATTACK_APPLICABLE, "Upgradable with Attack Up Rune");
         builder.add(YavpmTags.Items.RUNE_DURABILITY_APPLICABLE, "Upgradable with Durability Up Rune");
         builder.add(YavpmTags.Items.RUNE_SPEED_APPLICABLE, "Upgradable with Speed Up Rune");
@@ -144,14 +143,14 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.MOLY, "Magic Herb");
 
         builder.add(YavpmBlocks.PEANUT_CROP, "Peanut Crops");
-        builder.add(YavpmBlocks.PEANUT_CROP.asItem(), "Peanut");
+        builder.add(YavpmItems.PEANUT, "Peanut");
         builder.add(YavpmItems.COOKED_PEANUT, "Roasted Peanut");
 
         builder.add(YavpmItems.JELLY, "Jelly");
         builder.add(YavpmItems.SWEET_BERRY_JELLY, "Sweet Berry Jelly");
 
         builder.add(YavpmBlocks.BITTER_BERRY_BUSH, "Bitter Berry Bush");
-        builder.add(YavpmBlocks.BITTER_BERRY_BUSH.asItem(), "Bitter Berries");
+        builder.add(YavpmItems.BITTER_BERRIES, "Bitter Berries");
 
         builder.add(YavpmItems.BREADING, "Blaze Breading");
         builder.add(YavpmItems.FRIED_BANANA, "Fried Bananas");
@@ -159,10 +158,10 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add(YavpmBlocks.BANANA_CROP, "Banana Crops");
         builder.add(YavpmItems.BANANA, "Banana Bunch");
-        builder.add(YavpmBlocks.BANANA_CROP.asItem(), "Banana Seeds");
+        builder.add(YavpmItems.BANANA_SEEDS, "Banana Seeds");
 
         builder.add(YavpmBlocks.OAK_SAPLING_CROP, "Oak Sapling Crops");
-        builder.add(YavpmBlocks.OAK_SAPLING_CROP.asItem(), "Acorn");
+        builder.add(YavpmItems.ACORN, "Acorn");
         builder.add(YavpmItems.DIAMOND_ACORN, "Diamond Acorn");
 
         builder.add(YavpmItems.PERSIMMON, "Persimmon");
@@ -171,7 +170,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.TRUFFLE, "Truffle");
 
         builder.add(YavpmItems.RICE, "Rice");
-        builder.add(YavpmBlocks.RICE_CROP.asItem(), "Rice Seeds");
+        builder.add(YavpmItems.RICE_SEEDS, "Rice Seeds");
         builder.add(YavpmItems.RICE_BAR, "Rice Bar");
         builder.add(YavpmItems.RICE_PASTRY, "Rice Pastry");
 
@@ -181,7 +180,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.COOKED_EGG, "Fried Egg");
 
         builder.add(YavpmBlocks.MAGIC_BEAN_CROP, "Magic Bean Crops");
-        builder.add(YavpmBlocks.MAGIC_BEAN_CROP.asItem(), "Magic Bean");
+        builder.add(YavpmItems.MAGIC_BEAN, "Magic Bean");
         builder.add(YavpmItems.FAKE_BEEF, "Fake Raw Beef");
         builder.add(YavpmItems.COOKED_FAKE_BEEF, "Fake Steak");
         builder.add(YavpmItems.FAKE_MILK_BUCKET, "Fake Milk Bucket");
@@ -198,13 +197,18 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add(Blocks.NETHER_WART, "Crimson Wart");
         builder.add(Items.NETHER_WART, "Crimson Wart");
-        builder.add(YavpmBlocks.WARPED_WART, "Warped Wart");
-        builder.add(YavpmBlocks.WARPED_WART.asItem(), "Warped Wart");
+        builder.add(YavpmBlocks.WARPED_WART_CROP, "Warped Wart");
+        builder.add(YavpmItems.WARPED_WART, "Warped Wart");
 
         builder.add(Blocks.NETHER_WART_BLOCK, "Crimson Wart Block");
     }
 
     private static void potionTranslations(TranslationBuilder builder) {
+        builder.add("item.minecraft.potion.effect.weird", "Weird Potion");
+        builder.add("item.minecraft.splash_potion.effect.weird", "Weird Splash Potion");
+        builder.add("item.minecraft.lingering_potion.effect.weird", "Weird Lingering Potion");
+        builder.add("item.minecraft.tipped_arrow.effect.weird", "Tipped Arrow");
+
         builder.add("item.minecraft.potion.effect.void_touched", "Potion of the Void");
         builder.add("item.minecraft.potion.effect.long_void_touched", "Potion of the Void");
         builder.add("item.minecraft.potion.effect.strong_void_touched", "Potion of the Void");
@@ -252,6 +256,15 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("item.minecraft.tipped_arrow.effect.haste", "Arrow of Haste");
         builder.add("item.minecraft.tipped_arrow.effect.long_haste", "Arrow of Haste");
         builder.add("item.minecraft.tipped_arrow.effect.strong_haste", "Arrow of Haste");
+
+        builder.add("item.minecraft.potion.effect.intoxication", "Potion of Intoxication");
+        builder.add("item.minecraft.potion.effect.long_intoxication", "Potion of Intoxication");
+        builder.add("item.minecraft.splash_potion.effect.intoxication", "Splash Potion of Intoxication");
+        builder.add("item.minecraft.splash_potion.effect.long_intoxication", "Splash Potion of Intoxication");
+        builder.add("item.minecraft.lingering_potion.effect.intoxication", "Lingering Potion of Intoxication");
+        builder.add("item.minecraft.lingering_potion.effect.long_intoxication", "Lingering Potion of Intoxication");
+        builder.add("item.minecraft.tipped_arrow.effect.intoxication", "Arrow of Intoxication");
+        builder.add("item.minecraft.tipped_arrow.effect.long_intoxication", "Arrow of Intoxication");
     }
 
     private static void equipmentTranslations(TranslationBuilder builder) {
@@ -272,7 +285,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.DISC_FRAGMENT_MAGNETIC_CIRCUIT, "Disc Fragment");
         builder.add("item.yavpm.disc_fragment_magnetic_circuit.desc", "Music Disc - Magnetic Circuit");
         builder.add(YavpmItems.MUSIC_DISC_HALLAND_DALARNA, "Music Disc");
-        builder.add("item.yavpm.music_disc_halland_dalarna.desc", "Halland/Dalarna (2020 Arr.) - Peter Hont, Johan Johnson, ACE (TOMOri Kudo / CHiCO)");
+        builder.add("item.yavpm.music_disc_halland_dalarna.desc", "Peter Hont, Johan Johnson, ACE (TOMOri Kudo / CHiCO) - Halland/Dalarna (2020 Arr.)");
     }
 
     private static void ingredientTranslations(TranslationBuilder builder) {
@@ -282,13 +295,6 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add(YavpmItems.RAW_DIAMOND, "Raw Diamond");
         builder.add(YavpmItems.GRAPHITE, "Graphite");
-
-        builder.add(YavpmItems.RUNE_ATTACK, "Attack Up Rune");
-        builder.add("item.yavpm.rune_attack.tooltip", "Permanently increases a weapon's base damage when used in a Crafting Table.");
-        builder.add(YavpmItems.RUNE_DURABILITY, "Durability Up Rune");
-        builder.add("item.yavpm.rune_durability.tooltip", "Permanently increases a tool's maximum durability when used in a Crafting Table.");
-        builder.add(YavpmItems.RUNE_SPEED, "Speed Up Rune");
-        builder.add("item.yavpm.rune_speed.tooltip", "Permanently increases a tool's mining speed when used in a Crafting Table.");
     }
 
     private static void entityTranslations(TranslationBuilder builder) {
@@ -307,7 +313,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add("subtitles.entity.moongus.eat", "Moongus eats");
         builder.add("subtitles.entity.moongus.milk.crimson", "Moongus gets milked awkwardly");
-        builder.add("subtitles.entity.moongus.milk.warped", "Moongus gets milked mundanely");
+        builder.add("subtitles.entity.moongus.milk.warped", "Moongus gets milked weirdly");
 
         builder.add("subtitles.entity.tanuki.ambient", "Tanuki squeaks");
         builder.add("subtitles.entity.tanuki.death", "Tanuki dies");
@@ -455,9 +461,6 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("option.yavpm.blocks_and_fluids.void", "Void Block and Void Water");
 
         builder.add("option.yavpm.items", "Items");
-        builder.add("option.yavpm.items.runes", "Upgrade Runes");
-        builder.add("option.yavpm.items.runes.desc1", "These rare stone tablets contain a magical aura that permanently upgrades your equipment! Sounds too good to be true, doesn't it?");
-        builder.add("option.yavpm.items.runes.desc2", "Well, as you probably guessed, there's a catch. These Runes are exceedingly rare, so don't expect to make indestructable equipment any time soon.");
 
         builder.add("option.yavpm.entities_and_effects", "Entities/Mob Effects");
 
@@ -495,12 +498,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("option.yavpm.baby_key_cries.title", "Key Golems Cry Out");
         builder.add("option.yavpm.baby_key_cries.desc", "If true, Key Golems will cry out when held. Default is true.");
 
-        builder.add("option.yavpm.rune_attack_upgrade_factor.title", "Attack Up Rune Upgrade Factor");
-        builder.add("option.yavpm.rune_attack_upgrade_factor.desc", "When an Attack Up Rune is applied to equipment, its attack power is multiplied by this factor. Default is 1.2f,");
-        builder.add("option.yavpm.rune_durability_upgrade_factor.title", "Durability Up Rune Upgrade Factor");
-        builder.add("option.yavpm.rune_durability_upgrade_factor.desc", "When an Durability Up Rune is applied to equipment, its maximum durability is multiplied by this factor. Default is 1.2f,");
-        builder.add("option.yavpm.rune_speed_upgrade_factor.title", "Speed Up Rune Upgrade Factor");
-        builder.add("option.yavpm.rune_speed_upgrade_factor.desc", "When an Speed Up Rune is applied to equipment, its mining speed is multiplied by this factor. Default is 1.2f,");
+        builder.add("option.yavpm.weird_trial_chamber_potions.title", "Weird Trial Chamber Potions");
+        builder.add("option.yavpm.weird_trial_chamber_potions.desc", "If true, potions spawned by Ominous Spawners will need to be brewed with Warped Wart. Moongi are unaffected by this option. Default is true.");
     }
 
     private static void unusedTranslations(TranslationBuilder builder) {

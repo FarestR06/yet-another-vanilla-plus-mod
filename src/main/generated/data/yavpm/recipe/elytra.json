@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "C": {
-      "item": "yavpm:phantom_chord"
-    },
-    "M": {
-      "item": "minecraft:phantom_membrane"
-    }
+    "C": "yavpm:phantom_chord",
+    "M": "minecraft:phantom_membrane"
   },
   "pattern": [
     "CCC",

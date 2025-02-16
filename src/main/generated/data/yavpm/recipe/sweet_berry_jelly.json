@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    {
-      "item": "yavpm:jelly"
-    },
-    {
-      "item": "minecraft:sweet_berries"
-    }
+    "yavpm:jelly",
+    "minecraft:sweet_berries"
   ],
   "result": {
     "count": 1,

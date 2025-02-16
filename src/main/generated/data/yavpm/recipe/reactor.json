@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "B": {
-      "item": "minecraft:blaze_rod"
-    },
-    "N": {
-      "item": "minecraft:netherite_ingot"
-    }
+    "B": "minecraft:blaze_rod",
+    "N": "minecraft:netherite_ingot"
   },
   "pattern": [
     " B ",

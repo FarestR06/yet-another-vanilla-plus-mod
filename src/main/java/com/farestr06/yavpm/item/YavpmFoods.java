@@ -1,9 +1,13 @@
 package com.farestr06.yavpm.item;
 
+import net.minecraft.component.type.ConsumableComponent;
 import net.minecraft.component.type.FoodComponent;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.Items;
+import net.minecraft.item.consume.ApplyEffectsConsumeEffect;
+import net.minecraft.item.consume.ClearAllEffectsConsumeEffect;
+
+import static net.minecraft.component.type.ConsumableComponents.food;
 
 public class YavpmFoods {
     public static final FoodComponent MOLY = new FoodComponent.Builder()
@@ -33,16 +37,7 @@ public class YavpmFoods {
     public static final FoodComponent SEA_SOUP = createFoodBowl(7).build();
     public static final FoodComponent CHICKEN_SOUP = createFoodBowl(9).build();
 
-    public static final FoodComponent FANCY_MUSHROOM_STEW = new FoodComponent.Builder()
-            .nutrition(4)
-            .saturationModifier(1.2F)
-            .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 400, 1), 1f)
-            .statusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 6000, 0), 1f)
-            .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 6000, 0), 1f)
-            .statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 3), 1f)
-            .usingConvertsTo(Items.BOWL)
-            .alwaysEdible()
-            .build();
+    public static final FoodComponent FANCY_MUSHROOM_STEW = createFoodBowl(16).build();
 
     public static final FoodComponent GLISTERING_MELON_SLICE = new FoodComponent.Builder()
             .nutrition(6)
@@ -65,14 +60,11 @@ public class YavpmFoods {
     public static final FoodComponent RAW_PEANUT = new FoodComponent.Builder()
             .nutrition(1)
             .saturationModifier(0.2f)
-            .statusEffect(new StatusEffectInstance(StatusEffects.HUNGER, 250), 1f)
-            .snack()
             .build();
 
     public static final FoodComponent COOKED_PEANUT = new FoodComponent.Builder()
             .nutrition(3)
             .saturationModifier(0.6f)
-            .snack()
             .build();
 
     public static final FoodComponent CHOCOLATE = new FoodComponent.Builder()
@@ -93,19 +85,30 @@ public class YavpmFoods {
     public static final FoodComponent ACORN = new FoodComponent.Builder()
             .nutrition(4)
             .saturationModifier(0.3f)
-            .snack()
             .build();
     public static final FoodComponent DIAMOND_ACORN = new FoodComponent.Builder()
             .nutrition(4)
             .saturationModifier(1.2F)
-            .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1), 1f)
-            .statusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 3000, 0), 1f)
-            .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 3000, 0), 1f)
-            .statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 1200, 3), 1f)
             .alwaysEdible()
             .build();
 
     private static FoodComponent.Builder createFoodBowl(int hunger) {
-        return new FoodComponent.Builder().nutrition(hunger).saturationModifier(0.6F).usingConvertsTo(Items.BOWL);
+        return new FoodComponent.Builder().nutrition(hunger).saturationModifier(0.6F);
+    }
+
+    public static class ConsumableComponents {
+        public static final ConsumableComponent FANCY_MUSHROOM_STEW = food().consumeEffect(
+                new ApplyEffectsConsumeEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 3), 1f)
+        ).build();
+
+        public static final ConsumableComponent RAW_PEANUT = food()
+                .consumeSeconds(0.8F)
+                .consumeEffect(new ApplyEffectsConsumeEffect(
+                        new StatusEffectInstance(StatusEffects.HUNGER, 600, 0), 0.7f
+                ))
+                .build();
+        // Magic Herb
+        public static final ConsumableComponent MOLY_COMPONENT = ConsumableComponent.builder()
+                .consumeEffect(ClearAllEffectsConsumeEffect.INSTANCE).consumeSeconds(2.4f).build();
     }
 }

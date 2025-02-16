@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "#": {
-      "item": "yavpm:polished_kimberlite_bricks"
-    }
+    "#": "yavpm:polished_kimberlite_bricks"
   },
   "pattern": [
     "###",

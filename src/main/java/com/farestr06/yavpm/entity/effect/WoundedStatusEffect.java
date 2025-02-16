@@ -4,6 +4,7 @@ import com.farestr06.yavpm.entity.YavpmDamageTypes;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.server.world.ServerWorld;
 
 public class WoundedStatusEffect extends StatusEffect {
     protected WoundedStatusEffect() {
@@ -11,8 +12,8 @@ public class WoundedStatusEffect extends StatusEffect {
     }
 
     @Override
-    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-        entity.clientDamage(YavpmDamageTypes.bleed(entity.getWorld()), 1.5f);
+    public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
+        entity.damage(world, YavpmDamageTypes.bleed(entity.getWorld()), 1.5f * (amplifier + 1));
         return true;
     }
 

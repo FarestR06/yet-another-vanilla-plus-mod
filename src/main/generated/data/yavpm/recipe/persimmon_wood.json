@@ -3,9 +3,7 @@
   "category": "building",
   "group": "bark",
   "key": {
-    "#": {
-      "item": "yavpm:persimmon_log"
-    }
+    "#": "yavpm:persimmon_log"
   },
   "pattern": [
     "##",

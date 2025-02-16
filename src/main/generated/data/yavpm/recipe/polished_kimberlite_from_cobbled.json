@@ -3,9 +3,7 @@
   "category": "blocks",
   "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": {
-    "item": "yavpm:kimberlite"
-  },
+  "ingredient": "yavpm:kimberlite",
   "result": {
     "id": "yavpm:polished_kimberlite"
   }

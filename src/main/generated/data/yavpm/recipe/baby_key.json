@@ -2,15 +2,9 @@
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
   "key": {
-    "G": {
-      "item": "minecraft:gold_ingot"
-    },
-    "N": {
-      "item": "minecraft:gold_nugget"
-    },
-    "P": {
-      "item": "minecraft:carved_pumpkin"
-    }
+    "G": "minecraft:gold_ingot",
+    "N": "minecraft:gold_nugget",
+    "P": "minecraft:carved_pumpkin"
   },
   "pattern": [
     "GN",

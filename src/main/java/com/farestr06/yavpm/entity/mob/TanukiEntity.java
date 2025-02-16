@@ -9,17 +9,16 @@ import com.farestr06.yavpm.util.YavpmTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
@@ -34,7 +33,6 @@ import org.jetbrains.annotations.Nullable;
 import static com.farestr06.yavpm.config.YavpmConfig.HANDLER;
 
 public class TanukiEntity extends AnimalEntity {
-    private static final Ingredient BREEDING_INGREDIENT = Ingredient.fromTag(YavpmTags.Items.TANUKI_FOOD);
     public int tryTransformTime = this.random.nextInt(HANDLER.instance().tanukiRandomTransformDelay) + HANDLER.instance().tanukiBaseTransformDelay;
 
     public TanukiEntity(EntityType<? extends AnimalEntity> entityType, World world) {
@@ -57,14 +55,16 @@ public class TanukiEntity extends AnimalEntity {
     @Override
     public void tickMovement() {
         super.tickMovement();
-        if (this.getWorld().getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
-            if (
-                    !this.getWorld().isClient && this.isAlive() && !this.isBaby() && --this.tryTransformTime <= 0
-            ) {
-                if (this.getRandom().nextFloat() <= HANDLER.instance().tanukiTransformChance) {
-                    transform();
-                } else {
-                    this.tryTransformTime = this.random.nextInt(4000) + 2000;
+        if (this.getWorld() instanceof ServerWorld world) {
+            if (world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
+                if (
+                        !this.getWorld().isClient && this.isAlive() && !this.isBaby() && --this.tryTransformTime <= 0
+                ) {
+                    if (this.getRandom().nextFloat() <= HANDLER.instance().tanukiTransformChance) {
+                        transform();
+                    } else {
+                        this.tryTransformTime = this.random.nextInt(4000) + 2000;
+                    }
                 }
             }
         }
@@ -72,16 +72,16 @@ public class TanukiEntity extends AnimalEntity {
 
     @Override
     public boolean isBreedingItem(ItemStack stack) {
-        return BREEDING_INGREDIENT.test(stack);
+        return stack.isIn(YavpmTags.Items.TANUKI_FOOD);
     }
 
     @Override
     public @Nullable PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-        return YavpmEntities.TANUKI.create(world);
+        return YavpmEntities.TANUKI.create(world, SpawnReason.BREEDING);
     }
 
     public static DefaultAttributeContainer.Builder createTanukiAttributes() {
-        return MobEntity.createMobAttributes()
+        return AnimalEntity.createAnimalAttributes()
                 .add(EntityAttributes.MOVEMENT_SPEED, 0.2)
                 .add(EntityAttributes.MAX_HEALTH, 14.0)
                 .add(EntityAttributes.FOLLOW_RANGE, 32.0)
@@ -105,8 +105,8 @@ public class TanukiEntity extends AnimalEntity {
     }
 
     @Override
-    public SoundEvent getEatSound(ItemStack stack) {
-        return YavpmSounds.ENTITY_TANUKI_EAT;
+    protected void playEatSound() {
+        this.playSound(YavpmSounds.ENTITY_TANUKI_EAT, 1.0F, 1.0F);
     }
 
     @Override

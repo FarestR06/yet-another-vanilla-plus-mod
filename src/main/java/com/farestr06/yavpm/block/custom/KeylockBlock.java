@@ -23,6 +23,8 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.block.OrientationHelper;
+import net.minecraft.world.block.WireOrientation;
 import org.jetbrains.annotations.Nullable;
 
 public class KeylockBlock extends FacingBlock implements BlockEntityProvider {
@@ -68,13 +70,13 @@ public class KeylockBlock extends FacingBlock implements BlockEntityProvider {
     @Override
     protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
         if (!world.isClient() && !world.getBlockTickScheduler().isQueued(pos, this)) {
-            if (player.getMainHandStack().isOf(YavpmItems.BABY_KEY)) {
+            if (player.getMainHandStack().isOf(YavpmItems.BABY_KEY) && state.hasBlockEntity()) {
                 if (hit.getSide() == state.get(FACING)) {
                     if (state.hasBlockEntity()) {
                         if (world.getBlockEntity(pos) instanceof KeylockBlockEntity keylock) {
                             if (keylock.checkUnlocked(player)) {
                                 world.scheduleBlockTick(pos, this, 2);
-                                return ActionResult.SUCCESS;
+                                return ActionResult.SUCCESS_SERVER;
                             }
                         }
                     }
@@ -87,8 +89,9 @@ public class KeylockBlock extends FacingBlock implements BlockEntityProvider {
     protected void updateNeighbors(World world, BlockPos pos, BlockState state) {
         Direction direction = state.get(FACING);
         BlockPos blockPos = pos.offset(direction.getOpposite());
-        world.updateNeighbor(blockPos, this, pos);
-        world.updateNeighborsExcept(blockPos, this, direction);
+        WireOrientation wireOrientation = OrientationHelper.getEmissionOrientation(world, direction.getOpposite(), null);
+        world.updateNeighbor(state, pos, this, wireOrientation, true);
+        world.updateNeighborsExcept(blockPos, this, direction, wireOrientation);
     }
 
     @Override

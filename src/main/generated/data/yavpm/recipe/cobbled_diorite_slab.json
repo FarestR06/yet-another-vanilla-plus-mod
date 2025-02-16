@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": {
-      "item": "yavpm:cobbled_diorite"
-    }
+    "#": "yavpm:cobbled_diorite"
   },
   "pattern": [
     "###"

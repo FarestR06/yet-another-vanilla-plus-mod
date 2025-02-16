@@ -2,7 +2,7 @@ package com.farestr06.yavpm.entity.mob.client;
 
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.PhantomEntityRenderer;
-import net.minecraft.entity.mob.PhantomEntity;
+import net.minecraft.client.render.entity.state.PhantomEntityRenderState;
 import net.minecraft.util.Identifier;
 
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
@@ -15,7 +15,7 @@ public class VoidPhantomEntityRenderer extends PhantomEntityRenderer {
     }
 
     @Override
-    public Identifier getTexture(PhantomEntity phantomEntity) {
+    public Identifier getTexture(PhantomEntityRenderState phantomEntityRenderState) {
         return TEXTURE;
     }
 }

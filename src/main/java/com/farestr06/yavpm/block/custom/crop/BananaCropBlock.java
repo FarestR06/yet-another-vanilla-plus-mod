@@ -17,7 +17,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.*;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.GameRules;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldView;
+import net.minecraft.world.tick.ScheduledTickView;
 import org.jetbrains.annotations.Nullable;
 
 public class BananaCropBlock extends CropBlock {
@@ -87,18 +91,17 @@ public class BananaCropBlock extends CropBlock {
     }
 
     @Override
-    public BlockState getStateForNeighborUpdate(
-            BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos
-    ) {
+    protected BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, Random random) {
+
         if (isDoubleTallAtAge(state.get(AGE))) {
-            return tallGetStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+            return tallGetStateForNeighborUpdate(state, world, tickView, pos, direction, neighborPos, neighborState, random);
         } else {
             return state.canPlaceAt(world, pos) ? state : Blocks.AIR.getDefaultState();
         }
     }
 
     protected BlockState tallGetStateForNeighborUpdate(
-            BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos
+            BlockState state, WorldView world, ScheduledTickView tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, Random random
     ) {
         DoubleBlockHalf doubleBlockHalf = state.get(HALF);
         if (direction.getAxis() != Direction.Axis.Y
@@ -106,7 +109,7 @@ public class BananaCropBlock extends CropBlock {
                 || neighborState.isOf(this) && neighborState.get(HALF) != doubleBlockHalf) {
             return doubleBlockHalf == DoubleBlockHalf.LOWER && direction == Direction.DOWN && !state.canPlaceAt(world, pos)
                     ? Blocks.AIR.getDefaultState()
-                    : super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+                    : super.getStateForNeighborUpdate(state, world, tickView, pos, direction, neighborPos, neighborState, random);
         } else {
             return Blocks.AIR.getDefaultState();
         }
@@ -155,7 +158,7 @@ public class BananaCropBlock extends CropBlock {
 
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
-        if (entity instanceof RavagerEntity && world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
+        if (entity instanceof RavagerEntity && world instanceof ServerWorld server && server.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
             world.breakBlock(pos, true, entity);
         }
 

@@ -1,5 +1,9 @@
 {
   "values": [
+    "minecraft:breeze_rod",
+    "minecraft:slime_block",
+    "minecraft:stone",
+    "minecraft:cobweb",
     "minecraft:fermented_spider_eye",
     "minecraft:wither_skeleton_skull",
     "minecraft:ender_eye"
