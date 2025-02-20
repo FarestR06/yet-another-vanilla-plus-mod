@@ -30,7 +30,6 @@ f1a78b2a24eba2811b03a74eab16185e192f6a5d data/yavpm/loot_table/blocks/cobbled_gr
 a62a3429c1216eefa240f97342ff2c0e449839f6 data/yavpm/loot_table/blocks/glowing_obsidian.json
 18ca4741f07a13463fd9ae88d454a5d879498998 data/yavpm/loot_table/blocks/graphene_block.json
 e759c8d3b3c76a3f019653888b32156e755aa536 data/yavpm/loot_table/blocks/graphite_block.json
-0d002dc247a6db4a188edad4ff1b5068af4efaf8 data/yavpm/loot_table/blocks/keylock.json
 37b3266f045d675affb0154eb534f15bfea12bd5 data/yavpm/loot_table/blocks/kimberlite.json
 099439bafe48dcf53a933e759cefd3b193822d97 data/yavpm/loot_table/blocks/kimberlite_slab.json
 51d0925a7211d22290dec8619c4f6a830d56d19b data/yavpm/loot_table/blocks/kimberlite_stairs.json

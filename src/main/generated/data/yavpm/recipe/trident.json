@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "P": "minecraft:prismarine_shard",
+    "Z": "yavpm:thunder_shard"
+  },
+  "pattern": [
+    "ZZZ",
+    " P ",
+    " P "
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:trident"
+  }
+}

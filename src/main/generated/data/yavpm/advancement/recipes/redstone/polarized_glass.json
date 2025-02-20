@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:polarized_glass"
+        "recipe": "yavpm:polarized_glass"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:polarized_glass"
+      "yavpm:polarized_glass"
     ]
   }
 }

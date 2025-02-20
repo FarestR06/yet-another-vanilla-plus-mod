@@ -62,7 +62,6 @@ public class YavpmLootProviders {
             addDrop(YavpmBlocks.GRAPHITE_BLOCK);
             addDrop(YavpmBlocks.GRAPHENE_BLOCK);
 
-            addDrop(YavpmBlocks.KEYLOCK);
             addDropWithSilkTouch(YavpmBlocks.POLARIZED_GLASS);
 
             cropDrops();

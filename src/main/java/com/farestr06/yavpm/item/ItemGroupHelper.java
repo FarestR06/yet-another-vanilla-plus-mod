@@ -81,6 +81,8 @@ public class ItemGroupHelper {
         entries.add(YavpmBlocks.PRICKLE_PRESSURE_PLATE);
         entries.add(YavpmBlocks.PRICKLE_BUTTON);
 
+        entries.add(YavpmBlocks.SHOJI);
+
         entries.add(YavpmBlocks.COBBLED_GRANITE);
         entries.add(YavpmBlocks.COBBLED_GRANITE_STAIRS);
         entries.add(YavpmBlocks.COBBLED_GRANITE_SLAB);
@@ -151,7 +153,7 @@ public class ItemGroupHelper {
 
     private static void redstone(FabricItemGroupEntries entries) {
         entries.add(YavpmBlocks.POLARIZED_GLASS);
-        entries.add(YavpmBlocks.KEYLOCK);
+        entries.add(YavpmBlocks.RECYCLER);
     }
 
     private static void tools(FabricItemGroupEntries entries) {
@@ -217,6 +219,7 @@ public class ItemGroupHelper {
         entries.add(YavpmItems.BITTER_BERRIES);
         entries.add(YavpmItems.GAUNTLET_FRAGMENT);
         entries.add(YavpmItems.PHANTOM_CHORD);
+        entries.add(YavpmItems.THUNDER_SHARD);
     }
 
     private static void spawnEggs(FabricItemGroupEntries entries) {

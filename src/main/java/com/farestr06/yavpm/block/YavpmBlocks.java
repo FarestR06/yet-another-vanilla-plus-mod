@@ -1,12 +1,12 @@
 package com.farestr06.yavpm.block;
 
 import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
-import com.farestr06.yavpm.block.custom.KeylockBlock;
 import com.farestr06.yavpm.block.custom.PolarizedGlassBlock;
 import com.farestr06.yavpm.block.custom.PrickleLogBlock;
 import com.farestr06.yavpm.block.custom.crop.*;
 import com.farestr06.yavpm.block.custom.fake.FakeLogBlock;
 import com.farestr06.yavpm.block.custom.fake.FakeOreBlock;
+import com.farestr06.yavpm.block.custom.recycler.RecyclerBlock;
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.YavpmFoods;
@@ -16,6 +16,7 @@ import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.NoteBlockInstrument;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.component.type.ConsumableComponents;
 import net.minecraft.component.type.FoodComponents;
 import net.minecraft.data.family.BlockFamilies;
@@ -258,10 +259,14 @@ public class YavpmBlocks {
             AbstractBlock.Settings.copy(Blocks.TINTED_GLASS).mapColor(MapColor.BRIGHT_TEAL)
     );
 
-    public static final Block KEYLOCK = makeBlockAndSimpleItem(
-            makeId("keylock"),
-            KeylockBlock::new,
-            AbstractBlock.Settings.copy(Blocks.OBSERVER)
+    public static final Block RECYCLER = makeBlockAndSimpleItem(
+            makeId("recycler"),
+            RecyclerBlock::new,
+            AbstractBlock.Settings.copy(Blocks.DROPPER)
+    );
+
+    public static final Block SHOJI = makeBlockAndSimpleItem(
+            makeId("shoji"), PaneBlock::new, AbstractBlock.Settings.copy(Blocks.BAMBOO_DOOR).pistonBehavior(PistonBehavior.NORMAL)
     );
 
     // region Applewood

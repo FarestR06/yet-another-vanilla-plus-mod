@@ -1,6 +1,5 @@
 package com.farestr06.yavpm.item.custom;
 
-import com.farestr06.yavpm.block.custom.entity.KeylockBlockEntity;
 import com.farestr06.yavpm.mixin.block.LockableContainerBlockEntityAccessor;
 import com.farestr06.yavpm.util.YavpmSounds;
 import net.minecraft.block.entity.BlockEntity;
@@ -57,18 +56,6 @@ public class BabyKeyItem extends Item {
                         return ActionResult.SUCCESS;
                     } else if (((LockableContainerBlockEntityAccessor) lockable).getLock().canOpen(stack)) {
                         ((LockableContainerBlockEntityAccessor) lockable).setLock(ContainerLock.EMPTY);
-                        player.playSound(YavpmSounds.ITEM_BABY_KEY_TURN, 1f, 1f);
-                        return ActionResult.SUCCESS;
-                    } else {
-                        return ActionResult.FAIL;
-                    }
-                } else if (entity instanceof KeylockBlockEntity keylock) {
-                    if (keylock.getLock() == ContainerLock.EMPTY) {
-                        keylock.setLock(new ContainerLock(predicate));
-                        player.playSound(YavpmSounds.ITEM_BABY_KEY_TURN, 1f, 1f);
-                        return ActionResult.SUCCESS;
-                    } else if (keylock.getLock().canOpen(stack)) {
-                        keylock.setLock(ContainerLock.EMPTY);
                         player.playSound(YavpmSounds.ITEM_BABY_KEY_TURN, 1f, 1f);
                         return ActionResult.SUCCESS;
                     } else {

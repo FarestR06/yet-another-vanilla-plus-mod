@@ -39,11 +39,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
     }
 
     private static void tagTranslations(TranslationBuilder builder) {
-        builder.add(YavpmTags.Items.RUNE_ATTACK_APPLICABLE, "Upgradable with Attack Up Rune");
-        builder.add(YavpmTags.Items.RUNE_DURABILITY_APPLICABLE, "Upgradable with Durability Up Rune");
-        builder.add(YavpmTags.Items.RUNE_SPEED_APPLICABLE, "Upgradable with Speed Up Rune");
 
-        builder.add(YavpmTags.Items.REACTOR_RECHARGERS, "Recharges Reactor");
+        builder.add(YavpmTags.Items.REPAIRS_STUDDED_ARMOR, "Repairs Studded Armor");
 
         builder.add(YavpmTags.Items.TANUKI_FOOD, "Tanuki Food");
         builder.add(YavpmTags.Items.CARBONFOWL_FOODS, "Carbonfowl Food");
@@ -290,6 +287,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
     private static void ingredientTranslations(TranslationBuilder builder) {
         builder.add(YavpmItems.PHANTOM_CHORD, "Phantom Chord");
+        builder.add(YavpmItems.THUNDER_SHARD, "Thunder Shard");
 
         builder.add(YavpmItems.CHAINMAIL, "Chainmail");
 
@@ -338,6 +336,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
     }
 
     private static void woodTranslations(TranslationBuilder builder) {
+        builder.add(YavpmBlocks.SHOJI, "Shoji");
+
         builder.add(YavpmBlocks.APPLE_LOG, "Apple Log");
         builder.add(YavpmBlocks.APPLE_WOOD, "Apple Wood");
         builder.add(YavpmBlocks.STRIPPED_APPLE_LOG, "Stripped Apple Log");
@@ -442,7 +442,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.VOID_WATER, "Void Water");
         builder.add(YavpmItems.VOID_WATER_BUCKET, "Void Water Bucket");
         builder.add(YavpmBlocks.POLARIZED_GLASS, "Polarized Glass");
-        builder.add(YavpmBlocks.KEYLOCK, "Keylock");
+        builder.add(YavpmBlocks.RECYCLER, "Recycler");
+        builder.add("container.recycler", "Recycler");
     }
 
     private static void yaclTranslations(TranslationBuilder builder) {

@@ -13,6 +13,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
 import net.minecraft.client.data.*;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.state.property.Properties;
 import net.minecraft.state.property.Property;
@@ -21,6 +22,10 @@ import net.minecraft.util.Identifier;
 public class YavpmModelProvider extends FabricModelProvider {
     public YavpmModelProvider(FabricDataOutput output) {
         super(output);
+    }
+
+    private static TextureMap paneTextureMap(Block block) {
+        return new TextureMap().put(TextureKey.PANE, TextureMap.getId(block)).put(TextureKey.EDGE, TextureMap.getSubId(block, "_top"));
     }
 
     @Override
@@ -42,8 +47,10 @@ public class YavpmModelProvider extends FabricModelProvider {
         createPersimmonSet(generator);
         createPrickleSet(generator);
 
+        registerPane(generator, YavpmBlocks.SHOJI);
+
         registerPolarizedGlass(generator);
-        registerKeylock(generator);
+        generator.registerDispenserLikeOrientable(YavpmBlocks.RECYCLER);
 
         generator.registerTintableCross(YavpmBlocks.APPLE_SAPLING, BlockStateModelGenerator.CrossType.NOT_TINTED);
         generator.registerTintableCross(YavpmBlocks.PERSIMMON_SAPLING, BlockStateModelGenerator.CrossType.NOT_TINTED);
@@ -60,6 +67,7 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.register(YavpmItems.BABY_KEY, Models.GENERATED);
 
         generator.register(YavpmItems.PHANTOM_CHORD, Models.GENERATED);
+        generator.register(YavpmItems.THUNDER_SHARD, Models.GENERATED);
 
         food(generator);
 
@@ -81,6 +89,42 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.registerSpawnEgg(YavpmItems.VOID_PHANTOM_SPAWN_EGG, 0x060080, 0xf54bfa);
 
         generator.register(YavpmItems.VOID_WATER_BUCKET, Models.GENERATED);
+    }
+
+    public final void registerPane(BlockStateModelGenerator generator, Block pane) {
+        TextureMap textureMap = paneTextureMap(pane);
+        Identifier identifier = Models.TEMPLATE_GLASS_PANE_POST.upload(pane, textureMap, generator.modelCollector);
+        Identifier identifier2 = Models.TEMPLATE_GLASS_PANE_SIDE.upload(pane, textureMap, generator.modelCollector);
+        Identifier identifier3 = Models.TEMPLATE_GLASS_PANE_SIDE_ALT.upload(pane, textureMap, generator.modelCollector);
+        Identifier identifier4 = Models.TEMPLATE_GLASS_PANE_NOSIDE.upload(pane, textureMap, generator.modelCollector);
+        Identifier identifier5 = Models.TEMPLATE_GLASS_PANE_NOSIDE_ALT.upload(pane, textureMap, generator.modelCollector);
+        Item item = pane.asItem();
+        generator.registerItemModel(item, generator.uploadBlockItemModel(item, pane));
+        generator.blockStateCollector
+                .accept(
+                        MultipartBlockStateSupplier.create(pane)
+                                .with(BlockStateVariant.create().put(VariantSettings.MODEL, identifier))
+                                .with(When.create().set(Properties.NORTH, true), BlockStateVariant.create().put(VariantSettings.MODEL, identifier2))
+                                .with(
+                                        When.create().set(Properties.EAST, true),
+                                        BlockStateVariant.create().put(VariantSettings.MODEL, identifier2).put(VariantSettings.Y, VariantSettings.Rotation.R90)
+                                )
+                                .with(When.create().set(Properties.SOUTH, true), BlockStateVariant.create().put(VariantSettings.MODEL, identifier3))
+                                .with(
+                                        When.create().set(Properties.WEST, true),
+                                        BlockStateVariant.create().put(VariantSettings.MODEL, identifier3).put(VariantSettings.Y, VariantSettings.Rotation.R90)
+                                )
+                                .with(When.create().set(Properties.NORTH, false), BlockStateVariant.create().put(VariantSettings.MODEL, identifier4))
+                                .with(When.create().set(Properties.EAST, false), BlockStateVariant.create().put(VariantSettings.MODEL, identifier5))
+                                .with(
+                                        When.create().set(Properties.SOUTH, false),
+                                        BlockStateVariant.create().put(VariantSettings.MODEL, identifier5).put(VariantSettings.Y, VariantSettings.Rotation.R90)
+                                )
+                                .with(
+                                        When.create().set(Properties.WEST, false),
+                                        BlockStateVariant.create().put(VariantSettings.MODEL, identifier4).put(VariantSettings.Y, VariantSettings.Rotation.R270)
+                                )
+                );
     }
 
     private void registerPolarizedGlass(BlockStateModelGenerator generator) {
@@ -159,12 +203,6 @@ public class YavpmModelProvider extends FabricModelProvider {
             case LOWER -> BlockStateVariant.create().put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(block, "_bottom_stage_" + age));
         });
         generator.blockStateCollector.accept(VariantsBlockStateSupplier.create(block).coordinate(blockStateVariantMap));
-    }
-
-    private void registerKeylock(BlockStateModelGenerator generator) {
-        Identifier identifier = ModelIds.getBlockModelId(YavpmBlocks.KEYLOCK);
-        Identifier identifier2 = ModelIds.getBlockSubModelId(YavpmBlocks.KEYLOCK, "_on");
-        generator.blockStateCollector.accept(VariantsBlockStateSupplier.create(YavpmBlocks.KEYLOCK).coordinate(BlockStateModelGenerator.createBooleanModelMap(Properties.POWERED, identifier2, identifier)).coordinate(BlockStateModelGenerator.createNorthDefaultRotationStates()));
     }
 
     private static void createKimberliteSet(BlockStateModelGenerator generator) {

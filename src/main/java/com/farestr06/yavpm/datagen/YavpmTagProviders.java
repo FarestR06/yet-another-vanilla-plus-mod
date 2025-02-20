@@ -31,11 +31,15 @@ public class YavpmTagProviders {
         @Override
         protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
             craftingTags();
+            recyclingTags();
             equipmentTags();
             foodTags();
             plantTags();
             buildingBlockTags();
         }
+        private void recyclingTags() {
+        }
+
         private void craftingTags() {
             getOrCreateTagBuilder(ItemTags.STONE_TOOL_MATERIALS).add(
                     YavpmBlocks.COBBLED_GRANITE.asItem(),
@@ -73,19 +77,6 @@ public class YavpmTagProviders {
                     Items.MAGMA_BLOCK,
                     Items.LAVA_BUCKET
             );
-            getOrCreateTagBuilder(YavpmTags.Items.RUNE_ATTACK_APPLICABLE)
-                    .forceAddTag(ItemTags.SWORDS)
-                    .forceAddTag(ItemTags.AXES);
-
-            getOrCreateTagBuilder(YavpmTags.Items.RUNE_DURABILITY_APPLICABLE)
-                    .forceAddTag(ItemTags.DURABILITY_ENCHANTABLE);
-
-            getOrCreateTagBuilder(YavpmTags.Items.RUNE_SPEED_APPLICABLE)
-                    .forceAddTag(ItemTags.SWORDS)
-                    .forceAddTag(ItemTags.AXES)
-                    .forceAddTag(ItemTags.HOES)
-                    .forceAddTag(ItemTags.PICKAXES)
-                    .forceAddTag(ItemTags.SHOVELS);
         }
 
         private void equipmentTags() {
@@ -444,7 +435,7 @@ public class YavpmTagProviders {
                     YavpmBlocks.GRAPHITE_BLOCK,
                     YavpmBlocks.GRAPHENE_BLOCK,
 
-                    YavpmBlocks.KEYLOCK,
+                    YavpmBlocks.RECYCLER,
 
                     YavpmBlocks.COBBLED_GRANITE,
                     YavpmBlocks.COBBLED_DIORITE,

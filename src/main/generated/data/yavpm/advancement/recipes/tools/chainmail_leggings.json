@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "yavpm:chainmail_leggings"
+        "recipe": "minecraft:chainmail_leggings"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "yavpm:chainmail_leggings"
+      "minecraft:chainmail_leggings"
     ]
   }
 }

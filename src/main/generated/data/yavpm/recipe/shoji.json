@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "B": "minecraft:bamboo",
+    "P": "minecraft:paper"
+  },
+  "pattern": [
+    "PB",
+    "BP"
+  ],
+  "result": {
+    "count": 4,
+    "id": "yavpm:shoji"
+  }
+}

@@ -3,17 +3,16 @@
   "category": "redstone",
   "key": {
     "C": "minecraft:cobblestone",
-    "Q": "minecraft:quartz",
-    "R": "minecraft:redstone",
-    "T": "minecraft:tripwire_hook"
+    "I": "minecraft:iron_ingot",
+    "R": "minecraft:redstone"
   },
   "pattern": [
     "CCC",
-    "RQT",
-    "CCC"
+    "CIC",
+    "CRC"
   ],
   "result": {
     "count": 1,
-    "id": "yavpm:keylock"
+    "id": "yavpm:recycler"
   }
 }

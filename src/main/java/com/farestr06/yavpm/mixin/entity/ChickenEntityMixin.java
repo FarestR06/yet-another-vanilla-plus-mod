@@ -6,6 +6,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.loot.LootTable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.world.World;
@@ -22,7 +23,7 @@ public abstract class ChickenEntityMixin extends AnimalEntity {
     }
 
     @Redirect(method = "tickMovement", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/passive/ChickenEntity;forEachGiftedItem(Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/registry/RegistryKey;Ljava/util/function/BiConsumer;)Z"))
-    private boolean injected(ChickenEntity instance, ServerWorld serverWorld, RegistryKey registryKey, BiConsumer biConsumer) {
+    private boolean injected(ChickenEntity instance, ServerWorld serverWorld, RegistryKey<LootTable> registryKey, BiConsumer<ServerWorld, ItemStack> biConsumer) {
         if (instance.getType() == YavpmEntities.CARBONFOWL) {
             int count = instance.getRandom().nextBetween(1, 4);
             instance.dropStack(serverWorld, new ItemStack(YavpmItems.GRAPHITE, count));

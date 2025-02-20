@@ -41,6 +41,11 @@ public class YavpmItems {
             new Item.Settings().rarity(Rarity.UNCOMMON)
     );
 
+    public static final Item THUNDER_SHARD = makeItem(
+            makeId("thunder_shard"),
+            new Item.Settings().rarity(Rarity.UNCOMMON).component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true)
+    );
+
     public static final Item WARPED_WART = YavpmBlocks.WARPED_WART_CROP.asItem();
     public static final Item BANANA_SEEDS = YavpmBlocks.BANANA_CROP.asItem();
     public static final Item RICE_SEEDS = YavpmBlocks.RICE_CROP.asItem();

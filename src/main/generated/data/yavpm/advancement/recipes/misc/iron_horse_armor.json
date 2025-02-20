@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_baby_key": {
+    "has_iron_ingot": {
       "conditions": {
         "items": [
           {
-            "items": "yavpm:baby_key"
+            "items": "minecraft:iron_ingot"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:keylock"
+        "recipe": "minecraft:iron_horse_armor"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_baby_key"
+      "has_iron_ingot"
     ]
   ],
   "rewards": {
     "recipes": [
-      "minecraft:keylock"
+      "minecraft:iron_horse_armor"
     ]
   }
 }

@@ -1,0 +1,26 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "yavpm:block/recycler_vertical",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "yavpm:block/recycler",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "yavpm:block/recycler"
+    },
+    "facing=south": {
+      "model": "yavpm:block/recycler",
+      "y": 180
+    },
+    "facing=up": {
+      "model": "yavpm:block/recycler_vertical"
+    },
+    "facing=west": {
+      "model": "yavpm:block/recycler",
+      "y": 270
+    }
+  }
+}

@@ -55,9 +55,6 @@ e6a557e0f0c7023bf91eaaf1ba66fadae53fd806 data/yavpm/tags/item/enchantable/glider
 023be715877cb6033c3e30eb45440eb56daa8d72 data/yavpm/tags/item/enchantable/wolf_armor.json
 fab75620c8658c029c9bd22812a5e6cc3b3757a5 data/yavpm/tags/item/persimmon_logs.json
 f275a7f37363d1bf0a2338331d2e0d2595cfb1ff data/yavpm/tags/item/reactor_rechargers.json
-ddddcd9ef8cd706876a4c5b9fb1bb011516a430c data/yavpm/tags/item/rune_attack_applicable.json
-c0cbb8f2c8d2ac0028efc77cadaf6b0f06906f8f data/yavpm/tags/item/rune_durability_applicable.json
-67a67ae5c17b7b5c04a05e006152c60477ade461 data/yavpm/tags/item/rune_speed_applicable.json
 53a13473b30a0ca862cb74b2b2575e0e92cb13ca data/yavpm/tags/item/spiral_stalks.json
 a75102daab0756999449fcf2e6d7559558ca849b data/yavpm/tags/item/tanuki_foods.json
 eb8b7d8d53690befcf485678c4ff0a18a658b87c data/yavpm/tags/item/warped_moongus_food.json

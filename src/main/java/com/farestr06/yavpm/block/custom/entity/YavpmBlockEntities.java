@@ -2,6 +2,7 @@ package com.farestr06.yavpm.block.custom.entity;
 
 import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.block.YavpmBlocks;
+import com.farestr06.yavpm.block.custom.recycler.RecyclerBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
@@ -13,7 +14,8 @@ import net.minecraft.util.Identifier;
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmBlockEntities {
-    public static final BlockEntityType<KeylockBlockEntity> KEYLOCK = register("keylock", KeylockBlockEntity::new, YavpmBlocks.KEYLOCK);
+    public static final BlockEntityType<RecyclerBlockEntity> RECYCLER = register("recycler", RecyclerBlockEntity::new, YavpmBlocks.RECYCLER);
+
             /*
             Registry.register(
             Registries.BLOCK_ENTITY_TYPE,
