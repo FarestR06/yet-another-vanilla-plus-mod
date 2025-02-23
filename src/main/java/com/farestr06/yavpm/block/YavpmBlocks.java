@@ -253,6 +253,42 @@ public class YavpmBlocks {
             .slab(POLISHED_KIMBERLITE_BRICK_SLAB).stairs(POLISHED_KIMBERLITE_BRICK_STAIRS).wall(POLISHED_KIMBERLITE_BRICK_WALL).build();
     // endregion
 
+    // region Soulstone
+    public static final Block SOULSTONE = makeSimpleBlockAndSimpleItem(
+            makeId("soulstone"), AbstractBlock.Settings.copy(Blocks.SANDSTONE)
+    );
+    public static final Block CHISELED_SOULSTONE = makeSimpleBlockAndSimpleItem(
+            makeId("chiseled_soulstone"), AbstractBlock.Settings.copy(Blocks.CHISELED_SANDSTONE)
+    );
+    public static final Block SMOOTH_SOULSTONE = makeSimpleBlockAndSimpleItem(
+            makeId("smooth_soulstone"), AbstractBlock.Settings.copy(Blocks.SMOOTH_SANDSTONE)
+    );
+    public static final Block CUT_SOULSTONE = makeSimpleBlockAndSimpleItem(
+            makeId("cut_soulstone"), AbstractBlock.Settings.copy(Blocks.CUT_SANDSTONE)
+    );
+
+    public static final Block SOULSTONE_SLAB = makeBlockAndSimpleItem(
+            makeId("soulstone_slab"), SlabBlock::new, AbstractBlock.Settings.copy(Blocks.SANDSTONE_SLAB)
+    );
+    public static final Block SOULSTONE_STAIRS = makeBlockAndSimpleItem(
+            makeId("soulstone_stairs"), settings -> new StairsBlock(SOULSTONE.getDefaultState(), settings),
+            AbstractBlock.Settings.copy(Blocks.SANDSTONE_STAIRS)
+    );
+    public static final Block SOULSTONE_WALL = makeBlockAndSimpleItem(
+            makeId("soulstone_wall"), WallBlock::new, AbstractBlock.Settings.copy(Blocks.SANDSTONE_WALL)
+    );
+    public static final Block SMOOTH_SOULSTONE_SLAB = makeBlockAndSimpleItem(
+            makeId("smooth_soulstone_slab"), SlabBlock::new, AbstractBlock.Settings.copy(Blocks.SANDSTONE_SLAB)
+    );
+    public static final Block SMOOTH_SOULSTONE_STAIRS = makeBlockAndSimpleItem(
+            makeId("smooth_soulstone_stairs"), settings -> new StairsBlock(SMOOTH_SOULSTONE.getDefaultState(), settings),
+            AbstractBlock.Settings.copy(Blocks.SANDSTONE_STAIRS)
+    );
+    public static final Block CUT_SOULSTONE_SLAB = makeBlockAndSimpleItem(
+            makeId("cut_soulstone_slab"), SlabBlock::new, AbstractBlock.Settings.copy(Blocks.CUT_SANDSTONE_SLAB)
+    );
+    // endregion
+
     public static final Block POLARIZED_GLASS = makeBlockAndSimpleItem(
             makeId("polarized_glass"),
             PolarizedGlassBlock::new,

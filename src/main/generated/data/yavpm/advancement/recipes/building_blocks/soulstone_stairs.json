@@ -1,0 +1,54 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_chiseled_sandstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "yavpm:chiseled_soulstone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_cut_sandstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "yavpm:cut_soulstone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_sandstone": {
+      "conditions": {
+        "items": [
+          {
+            "items": "yavpm:soulstone"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "yavpm:soulstone_stairs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_sandstone",
+      "has_chiseled_sandstone",
+      "has_cut_sandstone"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "yavpm:soulstone_stairs"
+    ]
+  }
+}

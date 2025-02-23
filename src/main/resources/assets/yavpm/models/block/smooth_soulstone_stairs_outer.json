@@ -1,0 +1,8 @@
+{
+  "parent": "block/outer_stairs",
+  "textures": {
+    "bottom": "yavpm:block/soulstone_top",
+    "side": "yavpm:block/soulstone_top",
+    "top": "yavpm:block/soulstone_top"
+  }
+}

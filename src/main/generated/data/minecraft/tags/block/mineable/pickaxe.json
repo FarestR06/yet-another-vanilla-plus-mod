@@ -41,6 +41,16 @@
     "yavpm:kimberlite_wall",
     "yavpm:polished_kimberlite_wall",
     "yavpm:polished_kimberlite_brick_wall",
+    "yavpm:soulstone",
+    "yavpm:cut_soulstone",
+    "yavpm:chiseled_soulstone",
+    "yavpm:smooth_soulstone",
+    "yavpm:soulstone_slab",
+    "yavpm:cut_soulstone_slab",
+    "yavpm:smooth_soulstone_slab",
+    "yavpm:soulstone_stairs",
+    "yavpm:smooth_soulstone_stairs",
+    "yavpm:soulstone_wall",
     "yavpm:fake_ore"
   ]
 }

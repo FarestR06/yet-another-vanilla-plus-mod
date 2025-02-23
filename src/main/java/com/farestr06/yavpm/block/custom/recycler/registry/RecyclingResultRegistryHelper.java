@@ -2,22 +2,16 @@ package com.farestr06.yavpm.block.custom.recycler.registry;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.item.YavpmItems;
+import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.LOGGER;
 import static com.farestr06.yavpm.block.custom.recycler.registry.RecyclingResultRegistry.INSTANCE;
 
 public final class RecyclingResultRegistryHelper {
-    private static final RecyclingResult WOODEN_TOOL_RESULT = new RecyclingResult(Items.OAK_PLANKS, 1, null);
-    private static final RecyclingResult LEATHER_ARMOR_RESULT = new RecyclingResult(Items.LEATHER, 3, 5);
-    private static final RecyclingResult STONE_TOOL_RESULT = new RecyclingResult(Items.COBBLESTONE, 1, null);
-    private static final RecyclingResult IRON_TOOL_RESULT = new RecyclingResult(Items.IRON_NUGGET, 5, 9);
-    private static final RecyclingResult IRON_ARMOR_RESULT = new RecyclingResult(Items.IRON_NUGGET, 24, 36);
-    private static final RecyclingResult GOLDEN_TOOL_RESULT = new RecyclingResult(Items.GOLD_NUGGET, 5, 9);
-    private static final RecyclingResult GOLDEN_ARMOR_RESULT = new RecyclingResult(Items.GOLD_NUGGET, 24, 36);
-    private static final RecyclingResult DIAMOND_TOOL_RESULT = new RecyclingResult(Items.DIAMOND, 1, null);
-    private static final RecyclingResult DIAMOND_ARMOR_RESULT = new RecyclingResult(Items.DIAMOND, 3, 5);
-    private static final RecyclingResult NETHERITE_EQUIPMENT_RESULT = new RecyclingResult(Items.NETHERITE_SCRAP, 1, 3);
+    private static final RecyclingResult NETHERITE_EQUIPMENT_RESULT = new RecyclingResult(Items.NETHERITE_SCRAP, 2, 4);
+    private static final RecyclingResult BUNDLE_RESULT = new RecyclingResult(Items.RABBIT_HIDE, 1, 3);
+    private static final RecyclingResult CONCRETE_RESULT = new RecyclingResult(Items.RABBIT_HIDE, 1, 3);
 
     private static final RecyclingResult COPPER_BLOCK_RESULT = new RecyclingResult(Items.COPPER_INGOT, 7, 9);
     private static final RecyclingResult CUT_COPPER_BLOCK_RESULT = new RecyclingResult(Items.COPPER_INGOT, 1, 2);
@@ -33,6 +27,9 @@ public final class RecyclingResultRegistryHelper {
         INSTANCE.add(YavpmBlocks.COBBLED_ANDESITE, new RecyclingResult(Items.GRAVEL, 1, null));
         INSTANCE.add(YavpmBlocks.COBBLED_DIORITE, new RecyclingResult(Items.GRAVEL, 1, null));
 
+        INSTANCE.add(Items.BLACKSTONE, new RecyclingResult(Items.GRAVEL, 1, null));
+
+        INSTANCE.add(Items.SANDSTONE, new RecyclingResult(Items.SAND, 1, null));
         INSTANCE.add(Items.GLASS, new RecyclingResult(Items.SAND, 1, null));
 
         INSTANCE.add(Items.STONE, new RecyclingResult(Items.COBBLESTONE, 1, null));
@@ -128,40 +125,40 @@ public final class RecyclingResultRegistryHelper {
         INSTANCE.add(Items.WAXED_OXIDIZED_CHISELED_COPPER, COPPER_BLOCK_RESULT);
         INSTANCE.add(Items.WAXED_OXIDIZED_COPPER_GRATE, COPPER_BLOCK_RESULT);
 
-        INSTANCE.add(Items.RED_CONCRETE, new RecyclingResult(Items.GRAVEL, 1, null));
-        INSTANCE.add(Items.ORANGE_CONCRETE, new RecyclingResult(Items.GRAVEL, 1, null));
-        INSTANCE.add(Items.YELLOW_CONCRETE, new RecyclingResult(Items.GRAVEL, 1, null));
-        INSTANCE.add(Items.LIME_CONCRETE, new RecyclingResult(Items.GRAVEL, 1, null));
-        INSTANCE.add(Items.GREEN_CONCRETE, new RecyclingResult(Items.GRAVEL, 1, null));
-        INSTANCE.add(Items.CYAN_CONCRETE, new RecyclingResult(Items.GRAVEL, 1, null));
-        INSTANCE.add(Items.LIGHT_BLUE_CONCRETE, new RecyclingResult(Items.GRAVEL, 1, null));
-        INSTANCE.add(Items.BLUE_CONCRETE, new RecyclingResult(Items.GRAVEL, 1, null));
-        INSTANCE.add(Items.PURPLE_CONCRETE, new RecyclingResult(Items.GRAVEL, 1, null));
-        INSTANCE.add(Items.MAGENTA_CONCRETE, new RecyclingResult(Items.GRAVEL, 1, null));
-        INSTANCE.add(Items.PINK_CONCRETE, new RecyclingResult(Items.GRAVEL, 1, null));
-        INSTANCE.add(Items.BROWN_CONCRETE, new RecyclingResult(Items.GRAVEL, 1, null));
-        INSTANCE.add(Items.BLACK_CONCRETE, new RecyclingResult(Items.GRAVEL, 1, null));
-        INSTANCE.add(Items.GRAY_CONCRETE, new RecyclingResult(Items.GRAVEL, 1, null));
-        INSTANCE.add(Items.LIGHT_GRAY_CONCRETE, new RecyclingResult(Items.GRAVEL, 1, null));
-        INSTANCE.add(Items.WHITE_CONCRETE, new RecyclingResult(Items.GRAVEL, 1, null));
+        INSTANCE.add(Items.RED_CONCRETE, CONCRETE_RESULT);
+        INSTANCE.add(Items.ORANGE_CONCRETE, CONCRETE_RESULT);
+        INSTANCE.add(Items.YELLOW_CONCRETE, CONCRETE_RESULT);
+        INSTANCE.add(Items.LIME_CONCRETE, CONCRETE_RESULT);
+        INSTANCE.add(Items.GREEN_CONCRETE, CONCRETE_RESULT);
+        INSTANCE.add(Items.CYAN_CONCRETE, CONCRETE_RESULT);
+        INSTANCE.add(Items.LIGHT_BLUE_CONCRETE, CONCRETE_RESULT);
+        INSTANCE.add(Items.BLUE_CONCRETE, CONCRETE_RESULT);
+        INSTANCE.add(Items.PURPLE_CONCRETE, CONCRETE_RESULT);
+        INSTANCE.add(Items.MAGENTA_CONCRETE, CONCRETE_RESULT);
+        INSTANCE.add(Items.PINK_CONCRETE, CONCRETE_RESULT);
+        INSTANCE.add(Items.BROWN_CONCRETE, CONCRETE_RESULT);
+        INSTANCE.add(Items.BLACK_CONCRETE, CONCRETE_RESULT);
+        INSTANCE.add(Items.GRAY_CONCRETE, CONCRETE_RESULT);
+        INSTANCE.add(Items.LIGHT_GRAY_CONCRETE, CONCRETE_RESULT);
+        INSTANCE.add(Items.WHITE_CONCRETE, CONCRETE_RESULT);
 
-        INSTANCE.add(Items.BUNDLE, new RecyclingResult(Items.RABBIT_HIDE, 1, 3));
-        INSTANCE.add(Items.RED_BUNDLE, new RecyclingResult(Items.RABBIT_HIDE, 1, 3));
-        INSTANCE.add(Items.ORANGE_BUNDLE, new RecyclingResult(Items.RABBIT_HIDE, 1, 3));
-        INSTANCE.add(Items.YELLOW_BUNDLE, new RecyclingResult(Items.RABBIT_HIDE, 1, 3));
-        INSTANCE.add(Items.LIME_BUNDLE, new RecyclingResult(Items.RABBIT_HIDE, 1, 3));
-        INSTANCE.add(Items.GREEN_BUNDLE, new RecyclingResult(Items.RABBIT_HIDE, 1, 3));
-        INSTANCE.add(Items.CYAN_BUNDLE, new RecyclingResult(Items.RABBIT_HIDE, 1, 3));
-        INSTANCE.add(Items.LIGHT_BLUE_BUNDLE, new RecyclingResult(Items.RABBIT_HIDE, 1, 3));
-        INSTANCE.add(Items.BLUE_BUNDLE, new RecyclingResult(Items.RABBIT_HIDE, 1, 3));
-        INSTANCE.add(Items.PURPLE_BUNDLE, new RecyclingResult(Items.RABBIT_HIDE, 1, 3));
-        INSTANCE.add(Items.MAGENTA_BUNDLE, new RecyclingResult(Items.RABBIT_HIDE, 1, 3));
-        INSTANCE.add(Items.PINK_BUNDLE, new RecyclingResult(Items.RABBIT_HIDE, 1, 3));
-        INSTANCE.add(Items.BROWN_BUNDLE, new RecyclingResult(Items.RABBIT_HIDE, 1, 3));
-        INSTANCE.add(Items.BLACK_BUNDLE, new RecyclingResult(Items.RABBIT_HIDE, 1, 3));
-        INSTANCE.add(Items.GRAY_BUNDLE, new RecyclingResult(Items.RABBIT_HIDE, 1, 3));
-        INSTANCE.add(Items.LIGHT_GRAY_BUNDLE, new RecyclingResult(Items.RABBIT_HIDE, 1, 3));
-        INSTANCE.add(Items.WHITE_BUNDLE, new RecyclingResult(Items.RABBIT_HIDE, 1, 3));
+        INSTANCE.add(Items.BUNDLE, BUNDLE_RESULT);
+        INSTANCE.add(Items.RED_BUNDLE, BUNDLE_RESULT);
+        INSTANCE.add(Items.ORANGE_BUNDLE, BUNDLE_RESULT);
+        INSTANCE.add(Items.YELLOW_BUNDLE, BUNDLE_RESULT);
+        INSTANCE.add(Items.LIME_BUNDLE, BUNDLE_RESULT);
+        INSTANCE.add(Items.GREEN_BUNDLE, BUNDLE_RESULT);
+        INSTANCE.add(Items.CYAN_BUNDLE, BUNDLE_RESULT);
+        INSTANCE.add(Items.LIGHT_BLUE_BUNDLE, BUNDLE_RESULT);
+        INSTANCE.add(Items.BLUE_BUNDLE, BUNDLE_RESULT);
+        INSTANCE.add(Items.PURPLE_BUNDLE, BUNDLE_RESULT);
+        INSTANCE.add(Items.MAGENTA_BUNDLE, BUNDLE_RESULT);
+        INSTANCE.add(Items.PINK_BUNDLE, BUNDLE_RESULT);
+        INSTANCE.add(Items.BROWN_BUNDLE, BUNDLE_RESULT);
+        INSTANCE.add(Items.BLACK_BUNDLE, BUNDLE_RESULT);
+        INSTANCE.add(Items.GRAY_BUNDLE, BUNDLE_RESULT);
+        INSTANCE.add(Items.LIGHT_GRAY_BUNDLE, BUNDLE_RESULT);
+        INSTANCE.add(Items.WHITE_BUNDLE, BUNDLE_RESULT);
 
         INSTANCE.add(Items.LODESTONE, new RecyclingResult(Items.NETHERITE_SCRAP, 3, 4));
 
@@ -174,6 +171,8 @@ public final class RecyclingResultRegistryHelper {
         INSTANCE.add(Items.BOOK, new RecyclingResult(Items.PAPER, 1, null));
         INSTANCE.add(Items.BUCKET, new RecyclingResult(Items.IRON_NUGGET, 5, 20));
         INSTANCE.add(Items.GLASS_BOTTLE, new RecyclingResult(Items.GLASS, 1, null));
+
+        INSTANCE.add(YavpmBlocks.SHOJI, new RecyclingResult(Items.PAPER, 1, null));
 
         INSTANCE.add(Items.OAK_DOOR, new RecyclingResult(Items.OAK_PLANKS, 1, 2));
         INSTANCE.add(Items.SPRUCE_DOOR, new RecyclingResult(Items.SPRUCE_PLANKS, 1, 2));
@@ -206,50 +205,58 @@ public final class RecyclingResultRegistryHelper {
 
         INSTANCE.add(Items.PISTON, new RecyclingResult(Items.COBBLESTONE, 1, 2));
         INSTANCE.add(Items.STICKY_PISTON, new RecyclingResult(Items.PISTON, 1, null));
+
+        INSTANCE.add(YavpmItems.BABY_KEY, new RecyclingResult(Items.GOLD_NUGGET, 7, 16));
     }
 
     private static void equipment() {
-        INSTANCE.add(Items.WOODEN_SWORD, WOODEN_TOOL_RESULT);
-        INSTANCE.add(Items.WOODEN_SHOVEL, WOODEN_TOOL_RESULT);
-        INSTANCE.add(Items.WOODEN_PICKAXE, WOODEN_TOOL_RESULT);
-        INSTANCE.add(Items.WOODEN_AXE, WOODEN_TOOL_RESULT);
-        INSTANCE.add(Items.WOODEN_HOE, WOODEN_TOOL_RESULT);
-        INSTANCE.add(Items.LEATHER_HELMET, LEATHER_ARMOR_RESULT);
-        INSTANCE.add(Items.LEATHER_CHESTPLATE, LEATHER_ARMOR_RESULT);
-        INSTANCE.add(Items.LEATHER_LEGGINGS, LEATHER_ARMOR_RESULT);
-        INSTANCE.add(Items.LEATHER_BOOTS, LEATHER_ARMOR_RESULT);
-        INSTANCE.add(Items.STONE_SWORD, STONE_TOOL_RESULT);
-        INSTANCE.add(Items.STONE_SHOVEL, STONE_TOOL_RESULT);
-        INSTANCE.add(Items.STONE_PICKAXE, STONE_TOOL_RESULT);
-        INSTANCE.add(Items.STONE_AXE, STONE_TOOL_RESULT);
-        INSTANCE.add(Items.STONE_HOE, STONE_TOOL_RESULT);
-        INSTANCE.add(Items.IRON_SWORD, IRON_TOOL_RESULT);
-        INSTANCE.add(Items.IRON_SHOVEL, IRON_TOOL_RESULT);
-        INSTANCE.add(Items.IRON_PICKAXE, IRON_TOOL_RESULT);
-        INSTANCE.add(Items.IRON_AXE, IRON_TOOL_RESULT);
-        INSTANCE.add(Items.IRON_HOE, IRON_TOOL_RESULT);
-        INSTANCE.add(Items.IRON_HELMET, IRON_ARMOR_RESULT);
-        INSTANCE.add(Items.IRON_CHESTPLATE, IRON_ARMOR_RESULT);
-        INSTANCE.add(Items.IRON_LEGGINGS, IRON_ARMOR_RESULT);
-        INSTANCE.add(Items.IRON_BOOTS, IRON_ARMOR_RESULT);
-        INSTANCE.add(Items.GOLDEN_SWORD, GOLDEN_TOOL_RESULT);
-        INSTANCE.add(Items.GOLDEN_SHOVEL, GOLDEN_TOOL_RESULT);
-        INSTANCE.add(Items.GOLDEN_PICKAXE, GOLDEN_TOOL_RESULT);
-        INSTANCE.add(Items.GOLDEN_AXE, GOLDEN_TOOL_RESULT);
-        INSTANCE.add(Items.GOLDEN_HOE, GOLDEN_TOOL_RESULT);
-        INSTANCE.add(Items.GOLDEN_HELMET, GOLDEN_ARMOR_RESULT);
-        INSTANCE.add(Items.GOLDEN_CHESTPLATE, GOLDEN_ARMOR_RESULT);
-        INSTANCE.add(Items.GOLDEN_LEGGINGS, GOLDEN_ARMOR_RESULT);
-        INSTANCE.add(Items.GOLDEN_BOOTS, GOLDEN_ARMOR_RESULT);
-        INSTANCE.add(Items.DIAMOND_SWORD, DIAMOND_TOOL_RESULT);
-        INSTANCE.add(Items.DIAMOND_SHOVEL, DIAMOND_TOOL_RESULT);
-        INSTANCE.add(Items.DIAMOND_PICKAXE, DIAMOND_TOOL_RESULT);
-        INSTANCE.add(Items.DIAMOND_AXE, DIAMOND_TOOL_RESULT);
-        INSTANCE.add(Items.DIAMOND_HOE, DIAMOND_TOOL_RESULT);
-        INSTANCE.add(Items.DIAMOND_HELMET, DIAMOND_ARMOR_RESULT);
-        INSTANCE.add(Items.DIAMOND_CHESTPLATE, DIAMOND_ARMOR_RESULT);
-        INSTANCE.add(Items.DIAMOND_LEGGINGS, DIAMOND_ARMOR_RESULT);
-        INSTANCE.add(Items.DIAMOND_BOOTS, DIAMOND_ARMOR_RESULT);
+        INSTANCE.add(Items.WOODEN_SWORD, sword(Items.OAK_PLANKS));
+        INSTANCE.add(Items.WOODEN_SHOVEL, shovel(Items.OAK_PLANKS));
+        INSTANCE.add(Items.WOODEN_PICKAXE, pickaxe(Items.OAK_PLANKS));
+        INSTANCE.add(Items.WOODEN_AXE, axe(Items.OAK_PLANKS));
+        INSTANCE.add(Items.WOODEN_HOE, hoe(Items.OAK_PLANKS));
+
+        INSTANCE.add(Items.LEATHER_HELMET, helmet(Items.LEATHER));
+        INSTANCE.add(Items.LEATHER_CHESTPLATE, chestplate(Items.LEATHER));
+        INSTANCE.add(Items.LEATHER_LEGGINGS, leggings(Items.LEATHER));
+        INSTANCE.add(Items.LEATHER_BOOTS, boots(Items.LEATHER));
+
+        INSTANCE.add(Items.STONE_SWORD, sword(Items.COBBLESTONE));
+        INSTANCE.add(Items.STONE_SHOVEL, shovel(Items.COBBLESTONE));
+        INSTANCE.add(Items.STONE_PICKAXE, pickaxe(Items.COBBLESTONE));
+        INSTANCE.add(Items.STONE_AXE, axe(Items.COBBLESTONE));
+        INSTANCE.add(Items.STONE_HOE, hoe(Items.COBBLESTONE));
+
+        INSTANCE.add(Items.IRON_SWORD, sword(Items.IRON_INGOT));
+        INSTANCE.add(Items.IRON_SHOVEL, shovel(Items.IRON_INGOT));
+        INSTANCE.add(Items.IRON_PICKAXE, pickaxe(Items.IRON_INGOT));
+        INSTANCE.add(Items.IRON_AXE, axe(Items.IRON_INGOT));
+        INSTANCE.add(Items.IRON_HOE, hoe(Items.IRON_INGOT));
+        INSTANCE.add(Items.IRON_HELMET, helmet(Items.IRON_INGOT));
+        INSTANCE.add(Items.IRON_CHESTPLATE, chestplate(Items.IRON_INGOT));
+        INSTANCE.add(Items.IRON_LEGGINGS, leggings(Items.IRON_INGOT));
+        INSTANCE.add(Items.IRON_BOOTS, boots(Items.IRON_INGOT));
+
+        INSTANCE.add(Items.GOLDEN_SWORD, sword(Items.GOLD_INGOT));
+        INSTANCE.add(Items.GOLDEN_SHOVEL, shovel(Items.GOLD_INGOT));
+        INSTANCE.add(Items.GOLDEN_PICKAXE, pickaxe(Items.GOLD_INGOT));
+        INSTANCE.add(Items.GOLDEN_AXE, axe(Items.GOLD_INGOT));
+        INSTANCE.add(Items.GOLDEN_HOE, hoe(Items.GOLD_INGOT));
+        INSTANCE.add(Items.GOLDEN_HELMET, helmet(Items.GOLD_INGOT));
+        INSTANCE.add(Items.GOLDEN_CHESTPLATE, chestplate(Items.GOLD_INGOT));
+        INSTANCE.add(Items.GOLDEN_LEGGINGS, leggings(Items.GOLD_INGOT));
+        INSTANCE.add(Items.GOLDEN_BOOTS, boots(Items.GOLD_INGOT));
+
+        INSTANCE.add(Items.DIAMOND_SWORD, sword(Items.DIAMOND));
+        INSTANCE.add(Items.DIAMOND_SHOVEL, shovel(Items.DIAMOND));
+        INSTANCE.add(Items.DIAMOND_PICKAXE, pickaxe(Items.DIAMOND));
+        INSTANCE.add(Items.DIAMOND_AXE, axe(Items.DIAMOND));
+        INSTANCE.add(Items.DIAMOND_HOE, hoe(Items.DIAMOND));
+        INSTANCE.add(Items.DIAMOND_HELMET, helmet(Items.DIAMOND));
+        INSTANCE.add(Items.DIAMOND_CHESTPLATE, chestplate(Items.DIAMOND));
+        INSTANCE.add(Items.DIAMOND_LEGGINGS, leggings(Items.DIAMOND));
+        INSTANCE.add(Items.DIAMOND_BOOTS, boots(Items.DIAMOND));
+
         INSTANCE.add(Items.NETHERITE_SWORD, NETHERITE_EQUIPMENT_RESULT);
         INSTANCE.add(Items.NETHERITE_SHOVEL, NETHERITE_EQUIPMENT_RESULT);
         INSTANCE.add(Items.NETHERITE_PICKAXE, NETHERITE_EQUIPMENT_RESULT);
@@ -258,12 +265,11 @@ public final class RecyclingResultRegistryHelper {
         INSTANCE.add(Items.NETHERITE_HELMET, NETHERITE_EQUIPMENT_RESULT);
         INSTANCE.add(Items.NETHERITE_CHESTPLATE, NETHERITE_EQUIPMENT_RESULT);
         INSTANCE.add(Items.NETHERITE_LEGGINGS, NETHERITE_EQUIPMENT_RESULT);
-        INSTANCE.add(Items.NETHERITE_BLOCK, NETHERITE_EQUIPMENT_RESULT);
 
         INSTANCE.add(Items.MACE, new RecyclingResult(Items.HEAVY_CORE, 1, null));
-        INSTANCE.add(Items.TRIDENT, new RecyclingResult(YavpmItems.THUNDER_SHARD, 1, 2));
-        INSTANCE.add(Items.ELYTRA, new RecyclingResult(YavpmItems.PHANTOM_CHORD, 1, 2));
-        INSTANCE.add(YavpmItems.GAUNTLET, new RecyclingResult(YavpmItems.GAUNTLET_FRAGMENT, 2, 4));
+        INSTANCE.add(Items.TRIDENT, new RecyclingResult(YavpmItems.THUNDER_SHARD, 1, 3));
+        INSTANCE.add(Items.ELYTRA, new RecyclingResult(YavpmItems.PHANTOM_CHORD, 1, 3));
+        INSTANCE.add(YavpmItems.GAUNTLET, new RecyclingResult(YavpmItems.GAUNTLET_FRAGMENT, 2, 5));
 
         INSTANCE.add(Items.TURTLE_HELMET, new RecyclingResult(Items.TURTLE_SCUTE, 1, 4));
         INSTANCE.add(Items.WOLF_ARMOR, new RecyclingResult(Items.ARMADILLO_SCUTE, 2, 5));
@@ -271,5 +277,33 @@ public final class RecyclingResultRegistryHelper {
         INSTANCE.add(Items.IRON_HORSE_ARMOR, new RecyclingResult(Items.IRON_INGOT, 3, 7));
         INSTANCE.add(Items.GOLDEN_HORSE_ARMOR, new RecyclingResult(Items.GOLD_INGOT, 3, 7));
         INSTANCE.add(Items.DIAMOND_HORSE_ARMOR, new RecyclingResult(Items.DIAMOND, 3, 7));
+    }
+
+    private static RecyclingResult sword(Item item) {
+        return new RecyclingResult(item, 1, 2);
+    }
+    private static RecyclingResult shovel(Item item) {
+        return new RecyclingResult(item, 1, null);
+    }
+    private static RecyclingResult pickaxe(Item item) {
+        return new RecyclingResult(item, 2, 3);
+    }
+    private static RecyclingResult axe(Item item) {
+        return new RecyclingResult(item, 1, 3);
+    }
+    private static RecyclingResult hoe(Item item) {
+        return new RecyclingResult(item, 1, 2);
+    }
+    private static RecyclingResult helmet(Item item) {
+        return new RecyclingResult(item, 3, 5);
+    }
+    private static RecyclingResult chestplate(Item item) {
+        return new RecyclingResult(item, 5, 8);
+    }
+    private static RecyclingResult leggings(Item item) {
+        return new RecyclingResult(item, 5, 7);
+    }
+    private static RecyclingResult boots(Item item) {
+        return new RecyclingResult(item, 3, 4);
     }
 }

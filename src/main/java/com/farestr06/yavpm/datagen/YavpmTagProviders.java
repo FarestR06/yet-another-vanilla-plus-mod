@@ -425,7 +425,8 @@ public class YavpmTagProviders {
                     .add(YavpmBlocks.APPLE_LEAVES, YavpmBlocks.PERSIMMON_LEAVES);
 
             getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(
-                    YavpmBlocks.FAKE_LOG
+                    YavpmBlocks.FAKE_LOG,
+                    YavpmBlocks.SHOJI
             );
 
             // Polarized Glass isn't here because normal Glass does not have a required tool.
@@ -474,6 +475,18 @@ public class YavpmTagProviders {
                     YavpmBlocks.KIMBERLITE_WALL,
                     YavpmBlocks.POLISHED_KIMBERLITE_WALL,
                     YavpmBlocks.POLISHED_KIMBERLITE_BRICK_WALL,
+
+                    YavpmBlocks.SOULSTONE,
+                    YavpmBlocks.CUT_SOULSTONE,
+                    YavpmBlocks.CHISELED_SOULSTONE,
+                    YavpmBlocks.SMOOTH_SOULSTONE,
+                    YavpmBlocks.SOULSTONE_SLAB,
+                    YavpmBlocks.CUT_SOULSTONE_SLAB,
+                    YavpmBlocks.SMOOTH_SOULSTONE_SLAB,
+                    YavpmBlocks.SOULSTONE_STAIRS,
+                    YavpmBlocks.SMOOTH_SOULSTONE_STAIRS,
+                    YavpmBlocks.SOULSTONE_WALL,
+
                     YavpmBlocks.FAKE_ORE
             );
 
@@ -507,20 +520,58 @@ public class YavpmTagProviders {
         }
 
         private void generalBlockTags() {
+            getOrCreateTagBuilder(BlockTags.WITHER_SUMMON_BASE_BLOCKS).add(
+                    YavpmBlocks.SOULSTONE,
+                    YavpmBlocks.CUT_SOULSTONE,
+                    YavpmBlocks.CHISELED_SOULSTONE,
+                    YavpmBlocks.SMOOTH_SOULSTONE
+            );
+            getOrCreateTagBuilder(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(
+                    YavpmBlocks.SOULSTONE,
+                    YavpmBlocks.CUT_SOULSTONE,
+                    YavpmBlocks.CHISELED_SOULSTONE,
+                    YavpmBlocks.SMOOTH_SOULSTONE
+            );
+            getOrCreateTagBuilder(BlockTags.SCULK_REPLACEABLE).add(
+                    YavpmBlocks.SOULSTONE
+            );
+
+            getOrCreateTagBuilder(BlockTags.SOUL_SPEED_BLOCKS).add(
+                    YavpmBlocks.SOULSTONE,
+                    YavpmBlocks.CUT_SOULSTONE,
+                    YavpmBlocks.CHISELED_SOULSTONE,
+                    YavpmBlocks.SMOOTH_SOULSTONE,
+                    YavpmBlocks.SOULSTONE_SLAB,
+                    YavpmBlocks.CUT_SOULSTONE_SLAB,
+                    YavpmBlocks.SMOOTH_SOULSTONE_SLAB,
+                    YavpmBlocks.SOULSTONE_STAIRS,
+                    YavpmBlocks.SMOOTH_SOULSTONE_STAIRS,
+                    YavpmBlocks.SOULSTONE_WALL
+            );
+
             getOrCreateTagBuilder(BlockTags.STAIRS).add(
                     YavpmBlocks.KIMBERLITE_STAIRS,
                     YavpmBlocks.POLISHED_KIMBERLITE_STAIRS,
-                    YavpmBlocks.POLISHED_KIMBERLITE_BRICK_STAIRS
+                    YavpmBlocks.POLISHED_KIMBERLITE_BRICK_STAIRS,
+
+                    YavpmBlocks.SOULSTONE_STAIRS,
+                    YavpmBlocks.SMOOTH_SOULSTONE_STAIRS
             );
             getOrCreateTagBuilder(BlockTags.SLABS).add(
                     YavpmBlocks.KIMBERLITE_SLAB,
                     YavpmBlocks.POLISHED_KIMBERLITE_SLAB,
-                    YavpmBlocks.POLISHED_KIMBERLITE_BRICK_SLAB
+                    YavpmBlocks.POLISHED_KIMBERLITE_BRICK_SLAB,
+
+                    YavpmBlocks.SOULSTONE_SLAB,
+                    YavpmBlocks.CUT_SOULSTONE_SLAB,
+                    YavpmBlocks.SMOOTH_SOULSTONE_SLAB
             );
             getOrCreateTagBuilder(BlockTags.WALLS).add(
                     YavpmBlocks.KIMBERLITE_WALL,
                     YavpmBlocks.POLISHED_KIMBERLITE_WALL,
-                    YavpmBlocks.POLISHED_KIMBERLITE_BRICK_WALL
+                    YavpmBlocks.POLISHED_KIMBERLITE_BRICK_WALL,
+
+                    YavpmBlocks.SOULSTONE_WALL
             );
             getOrCreateTagBuilder(BlockTags.WOODEN_STAIRS).add(
                     YavpmBlocks.APPLE_STAIRS,

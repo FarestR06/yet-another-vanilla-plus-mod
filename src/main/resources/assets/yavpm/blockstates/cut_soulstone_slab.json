@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "yavpm:block/cut_soulstone_slab"
+    },
+    "type=double": {
+      "model": "yavpm:block/cut_soulstone"
+    },
+    "type=top": {
+      "model": "yavpm:block/cut_soulstone_slab_top"
+    }
+  }
+}

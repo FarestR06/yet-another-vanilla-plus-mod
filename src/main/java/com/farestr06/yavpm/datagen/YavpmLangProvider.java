@@ -434,6 +434,17 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.POLISHED_KIMBERLITE_WALL, "Polished Kimberlite Wall");
         builder.add(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_WALL, "Polished Kimberlite Brick Wall");
 
+        builder.add(YavpmBlocks.SOULSTONE, "Soulstone");
+        builder.add(YavpmBlocks.CUT_SOULSTONE, "Soulstone");
+        builder.add(YavpmBlocks.CHISELED_SOULSTONE, "Soulstone");
+        builder.add(YavpmBlocks.SMOOTH_SOULSTONE, "Soulstone");
+        builder.add(YavpmBlocks.SOULSTONE_SLAB, "Soulstone Slab");
+        builder.add(YavpmBlocks.CUT_SOULSTONE_SLAB, "Cut Soulstone Slab");
+        builder.add(YavpmBlocks.SMOOTH_SOULSTONE_SLAB, "Cut Soulstone Slab");
+        builder.add(YavpmBlocks.SOULSTONE_STAIRS, "Soulstone Stairs");
+        builder.add(YavpmBlocks.SMOOTH_SOULSTONE_STAIRS, "Cut Soulstone Stairs");
+        builder.add(YavpmBlocks.SOULSTONE_WALL, "Soulstone Wall");
+
         builder.add(YavpmBlocks.GLOWING_OBSIDIAN, "Glowing Obsidian");
         builder.add(YavpmBlocks.SOUL_GLOWING_OBSIDIAN, "Soul Glowing Obsidian");
     }
@@ -498,6 +509,9 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add("option.yavpm.baby_key_cries.title", "Key Golems Cry Out");
         builder.add("option.yavpm.baby_key_cries.desc", "If true, Key Golems will cry out when held. Default is true.");
+
+        builder.add("option.yavpm.craftable_rare_equipment.title", "Craftable Rare Equipment");
+        builder.add("option.yavpm.craftable_rare_equipment.desc", "Some rare items that are uncraftable in vanilla, like tridents or name tags, are craftable with certain elusive materials.");
 
         builder.add("option.yavpm.weird_trial_chamber_potions.title", "Weird Trial Chamber Potions");
         builder.add("option.yavpm.weird_trial_chamber_potions.desc", "If true, potions spawned by Ominous Spawners will need to be brewed with Warped Wart. Moongi are unaffected by this option. Default is true.");

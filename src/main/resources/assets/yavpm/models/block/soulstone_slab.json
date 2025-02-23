@@ -1,0 +1,8 @@
+{
+  "parent": "block/slab",
+  "textures": {
+    "bottom": "yavpm:block/soulstone_bottom",
+    "side": "yavpm:block/soulstone",
+    "top": "yavpm:block/soulstone_top"
+  }
+}

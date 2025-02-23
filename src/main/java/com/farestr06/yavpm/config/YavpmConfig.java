@@ -45,6 +45,8 @@ public class YavpmConfig {
     @SerialEntry(comment = "If true, potions spawned by Ominous Spawners will need to be brewed with Warped Wart. Moongi are unaffected by this option. Default is true.")
     public boolean weirdTrialChamberPotions = true;
     // endregion
+    // region Client
+    // endregion
     // region Easter Eggs
     @SerialEntry(comment = "A special splash will sometimes appear on Wednesday; the likelihood of this happening is determined by this value. Default is 0.3f.")
     public float snapshotDaySplashChance = 0.3f;

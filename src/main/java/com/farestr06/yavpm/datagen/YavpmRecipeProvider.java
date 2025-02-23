@@ -34,6 +34,7 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
 
     @Override
     protected RecipeGenerator getRecipeGenerator(RegistryWrapper.WrapperLookup registryLookup, RecipeExporter exporter) {
+
         return new RecipeGenerator(registryLookup, exporter) {
             final RegistryWrapper.Impl<Item> itemLookup = registryLookup.getOrThrow(RegistryKeys.ITEM);
             @Override
@@ -49,7 +50,7 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 obsidianRecipes(exporter);
                 diamondRecipes(exporter);
 
-                createShaped(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.SHOJI, 4)
+                createShaped(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.SHOJI, 2)
                         .input('P', Items.PAPER)
                         .input('B', Items.BAMBOO)
                         .pattern("PB")
@@ -85,6 +86,31 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 specialRecipes(exporter);
 
                 offerCompactingRecipe(RecipeCategory.MISC, YavpmItems.MUSIC_DISC_MAGNETIC_CIRCUIT, YavpmItems.DISC_FRAGMENT_MAGNETIC_CIRCUIT);
+
+                this.offer2x2CompactingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.SOULSTONE, Blocks.SAND);
+                this.createSlabRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.SOULSTONE_SLAB, Ingredient.ofItems(YavpmBlocks.SOULSTONE, YavpmBlocks.CHISELED_SOULSTONE))
+                        .criterion("has_sandstone", this.conditionsFromItem(YavpmBlocks.SOULSTONE))
+                        .criterion("has_chiseled_sandstone", this.conditionsFromItem(YavpmBlocks.CHISELED_SOULSTONE))
+                        .offerTo(this.exporter);
+                this.createStairsRecipe(YavpmBlocks.SOULSTONE_STAIRS, Ingredient.ofItems(YavpmBlocks.SOULSTONE, YavpmBlocks.CHISELED_SOULSTONE, YavpmBlocks.CUT_SOULSTONE))
+                        .criterion("has_sandstone", this.conditionsFromItem(YavpmBlocks.SOULSTONE))
+                        .criterion("has_chiseled_sandstone", this.conditionsFromItem(YavpmBlocks.CHISELED_SOULSTONE))
+                        .criterion("has_cut_sandstone", this.conditionsFromItem(YavpmBlocks.CUT_SOULSTONE))
+                        .offerTo(this.exporter);
+
+                this.offerWallRecipe(RecipeCategory.DECORATIONS, YavpmBlocks.SOULSTONE_WALL, YavpmBlocks.SOULSTONE);
+
+                CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItem(YavpmBlocks.SOULSTONE), RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.SMOOTH_SOULSTONE.asItem(), 0.1F, 200)
+                        .criterion("has_sandstone", this.conditionsFromItem(YavpmBlocks.SOULSTONE))
+                        .offerTo(this.exporter);
+
+                this.offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.CUT_SOULSTONE, YavpmBlocks.SOULSTONE);
+                this.offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.SOULSTONE_SLAB, YavpmBlocks.SOULSTONE, 2);
+                this.offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.CUT_SOULSTONE_SLAB, YavpmBlocks.SOULSTONE, 2);
+                this.offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.CUT_SOULSTONE_SLAB, YavpmBlocks.CUT_SOULSTONE, 2);
+                this.offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.SOULSTONE_STAIRS, YavpmBlocks.SOULSTONE);
+                this.offerStonecuttingRecipe(RecipeCategory.DECORATIONS, YavpmBlocks.SOULSTONE_WALL, YavpmBlocks.SOULSTONE);
+                this.offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.CHISELED_SOULSTONE, YavpmBlocks.SOULSTONE);
             }
 
 
@@ -528,6 +554,15 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                         .pattern("# #")
                         .pattern("# #")
                         .criterion(hasItem(YavpmItems.CHAINMAIL), conditionsFromItem(YavpmItems.CHAINMAIL))
+                        .offerTo(exporter);
+
+
+                createShaped(RecipeCategory.MISC, Items.NAME_TAG, 12)
+                        .input('N', Items.NETHERITE_SCRAP)
+                        .input('I', Items.IRON_INGOT)
+                        .pattern(" I")
+                        .pattern("N ")
+                        .criterion(hasItem(Items.NETHERITE_SCRAP), conditionsFromItem(Items.NETHERITE_SCRAP))
                         .offerTo(exporter);
 
                 createShaped(RecipeCategory.TOOLS, YavpmItems.REACTOR)

@@ -63,9 +63,11 @@ public class YavpmLootProviders {
             addDrop(YavpmBlocks.GRAPHENE_BLOCK);
 
             addDropWithSilkTouch(YavpmBlocks.POLARIZED_GLASS);
+            addDrop(YavpmBlocks.RECYCLER);
 
             cropDrops();
 
+            addDrop(YavpmBlocks.SHOJI);
             appleDrops();
             persimmonDrops();
             prickleDrops();
@@ -278,6 +280,17 @@ public class YavpmLootProviders {
             addDrop(YavpmBlocks.POLISHED_GRANITE_BRICK_WALL);
             addDrop(YavpmBlocks.POLISHED_DIORITE_BRICK_WALL);
             addDrop(YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL);
+
+            addDrop(YavpmBlocks.SOULSTONE);
+            addDrop(YavpmBlocks.CUT_SOULSTONE);
+            addDrop(YavpmBlocks.CHISELED_SOULSTONE);
+            addDrop(YavpmBlocks.SMOOTH_SOULSTONE);
+            addDrop(YavpmBlocks.SOULSTONE_SLAB, this::slabDrops);
+            addDrop(YavpmBlocks.CUT_SOULSTONE_SLAB, this::slabDrops);
+            addDrop(YavpmBlocks.SMOOTH_SOULSTONE_SLAB, this::slabDrops);
+            addDrop(YavpmBlocks.SOULSTONE_STAIRS);
+            addDrop(YavpmBlocks.SMOOTH_SOULSTONE_STAIRS);
+            addDrop(YavpmBlocks.SOULSTONE_WALL);
         }
 
         private void appleDrops() {

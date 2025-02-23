@@ -125,7 +125,7 @@ public class YavpmConfigScreen implements ModMenuApi {
                     true,
                     () -> HANDLER.instance().voidTouchedDragonFireball,
                     newVal -> HANDLER.instance().voidTouchedDragonFireball = newVal
-            ).controller(BooleanControllerBuilder::create)
+            ).controller(YavpmConfigScreen::builder)
             .build();
     // endregion
     // region Blocks
@@ -139,7 +139,7 @@ public class YavpmConfigScreen implements ModMenuApi {
                     true,
                     () -> HANDLER.instance().voidWaterSourceConversion,
                     newVal -> HANDLER.instance().voidWaterSourceConversion = newVal
-            ).controller(BooleanControllerBuilder::create)
+            ).controller(YavpmConfigScreen::builder)
             .build();
     // endregion
     // region Items
@@ -153,7 +153,7 @@ public class YavpmConfigScreen implements ModMenuApi {
                     true,
                     () -> HANDLER.instance().babyKeyCries,
                     newVal -> HANDLER.instance().babyKeyCries = newVal
-            ).controller(BooleanControllerBuilder::create)
+            ).controller(YavpmConfigScreen::builder)
             .build();
     protected static final Option<Boolean> WEIRD_TRIAL_CHAMBER_POTIONS = Option.<Boolean>createBuilder()
             .name(Text.translatable("option.yavpm.weird_trial_chamber_potions.title"))
@@ -165,7 +165,7 @@ public class YavpmConfigScreen implements ModMenuApi {
                     true,
                     () -> HANDLER.instance().weirdTrialChamberPotions,
                     newVal -> HANDLER.instance().weirdTrialChamberPotions = newVal
-            ).controller(BooleanControllerBuilder::create).flag(OptionFlag.GAME_RESTART)
+            ).controller(YavpmConfigScreen::builder).flag(OptionFlag.GAME_RESTART)
             .build();
     // endregion
     // region Easter Eggs
@@ -192,7 +192,11 @@ public class YavpmConfigScreen implements ModMenuApi {
                     true,
                     () -> HANDLER.instance().farestsBirthday,
                     newVal -> HANDLER.instance().farestsBirthday = newVal
-            ).controller(BooleanControllerBuilder::create)
+            ).controller(YavpmConfigScreen::builder)
             .build();
     // endregion
+
+    private static BooleanControllerBuilder builder(Option<Boolean> option) {
+        return BooleanControllerBuilder.create(option).trueFalseFormatter().coloured(true);
+    }
 }

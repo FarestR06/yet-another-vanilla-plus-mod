@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "yavpm:block/soulstone_top",
+    "side": "yavpm:block/cut_soulstone"
+  }
+}

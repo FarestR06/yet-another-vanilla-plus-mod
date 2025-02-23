@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": [
+      "yavpm:soulstone",
+      "yavpm:chiseled_soulstone",
+      "yavpm:cut_soulstone"
+    ]
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "yavpm:soulstone_stairs"
+  }
+}
