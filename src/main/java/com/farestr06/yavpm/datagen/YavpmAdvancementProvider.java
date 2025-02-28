@@ -2,6 +2,7 @@ package com.farestr06.yavpm.datagen;
 
 import com.farestr06.api.util.VanillaAdvancements;
 import com.farestr06.yavpm.block.YavpmBlocks;
+import com.farestr06.yavpm.datagen.condition.RareEquipmentRecipesEnabledResourceCondition;
 import com.farestr06.yavpm.item.YavpmItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
@@ -247,6 +248,8 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
 
     @Override
     public void generateAdvancement(RegistryWrapper.WrapperLookup registryLookup, Consumer<AdvancementEntry> consumer) {
+        final Consumer<AdvancementEntry> rareEquipmentConsumer
+                = withConditions(consumer, new RareEquipmentRecipesEnabledResourceCondition());
         // Story
         consumer.accept(SMELT_KIMBERLITE);
         // Husbandry
@@ -261,7 +264,7 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
         consumer.accept(CONVERT_COW_TO_MOONGUS);
         // End
         consumer.accept(PLUCK_NEEDLES_FROM_PRICKLE_LOG);
-        consumer.accept(CRAFT_AN_ELYTRA);
+        rareEquipmentConsumer.accept(CRAFT_AN_ELYTRA);
     }
 
     private static Advancement.Builder requireFoodBowlItemsEaten(Advancement.Builder builder) {

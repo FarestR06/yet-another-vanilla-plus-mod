@@ -1,14 +1,13 @@
 package com.farestr06.yavpm.datagen;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
-import com.farestr06.yavpm.crafting.ReactorRechargeRecipe;
+import com.farestr06.yavpm.datagen.condition.RareEquipmentRecipesEnabledResourceCondition;
 import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.util.YavpmTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.block.Blocks;
-import net.minecraft.data.recipe.ComplexRecipeJsonBuilder;
 import net.minecraft.data.recipe.CookingRecipeJsonBuilder;
 import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.data.recipe.RecipeGenerator;
@@ -34,6 +33,8 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
 
     @Override
     protected RecipeGenerator getRecipeGenerator(RegistryWrapper.WrapperLookup registryLookup, RecipeExporter exporter) {
+        final RecipeExporter rareEquipmentRecipeExporter =
+                withConditions(exporter, new RareEquipmentRecipesEnabledResourceCondition());
 
         return new RecipeGenerator(registryLookup, exporter) {
             final RegistryWrapper.Impl<Item> itemLookup = registryLookup.getOrThrow(RegistryKeys.ITEM);
@@ -49,6 +50,16 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
 
                 obsidianRecipes(exporter);
                 diamondRecipes(exporter);
+
+                createShaped(RecipeCategory.REDSTONE, YavpmBlocks.PINATA)
+                        .input('P', Items.PAPER)
+                        .input('S', Items.SLIME_BALL)
+                        .input('D', Items.DECORATED_POT)
+                        .pattern(" PS")
+                        .pattern("PDP")
+                        .pattern("SP ")
+                        .criterion(hasItem(Items.DECORATED_POT), conditionsFromItem(Items.DECORATED_POT))
+                        .offerTo(exporter);
 
                 createShaped(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.SHOJI, 2)
                         .input('P', Items.PAPER)
@@ -83,8 +94,6 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 persimmonRecipes();
                 prickleWoodRecipes();
 
-                specialRecipes(exporter);
-
                 offerCompactingRecipe(RecipeCategory.MISC, YavpmItems.MUSIC_DISC_MAGNETIC_CIRCUIT, YavpmItems.DISC_FRAGMENT_MAGNETIC_CIRCUIT);
 
                 this.offer2x2CompactingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.SOULSTONE, Blocks.SAND);
@@ -111,11 +120,6 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 this.offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.SOULSTONE_STAIRS, YavpmBlocks.SOULSTONE);
                 this.offerStonecuttingRecipe(RecipeCategory.DECORATIONS, YavpmBlocks.SOULSTONE_WALL, YavpmBlocks.SOULSTONE);
                 this.offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.CHISELED_SOULSTONE, YavpmBlocks.SOULSTONE);
-            }
-
-
-            private void specialRecipes(RecipeExporter exporter) {
-                ComplexRecipeJsonBuilder.create(ReactorRechargeRecipe::new).offerTo(exporter, "yavpm:" +"reactor_recharge");
             }
 
             private void diamondRecipes(RecipeExporter exporter) {
@@ -525,13 +529,15 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
             }
 
             private void equipmentRecipes(RecipeExporter exporter) {
-                offerCompactingRecipe(RecipeCategory.MISC, YavpmItems.CHAINMAIL, Items.CHAIN);
+                createCondensingRecipe(RecipeCategory.MISC, YavpmItems.CHAINMAIL, Ingredient.ofItem(Items.CHAIN))
+                        .criterion(hasItem(Items.CHAIN), conditionsFromItem(Items.CHAIN))
+                        .offerTo(rareEquipmentRecipeExporter);
                 createShaped(RecipeCategory.TOOLS, Items.CHAINMAIL_HELMET)
                         .input('#', YavpmItems.CHAINMAIL)
                         .pattern("###")
                         .pattern("# #")
                         .criterion(hasItem(YavpmItems.CHAINMAIL), conditionsFromItem(YavpmItems.CHAINMAIL))
-                        .offerTo(exporter);
+                        .offerTo(rareEquipmentRecipeExporter);
 
                 createShaped(RecipeCategory.TOOLS, Items.CHAINMAIL_CHESTPLATE)
                         .input('#', YavpmItems.CHAINMAIL)
@@ -539,7 +545,7 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                         .pattern("###")
                         .pattern("###")
                         .criterion(hasItem(YavpmItems.CHAINMAIL), conditionsFromItem(YavpmItems.CHAINMAIL))
-                        .offerTo(exporter);
+                        .offerTo(rareEquipmentRecipeExporter);
 
                 createShaped(RecipeCategory.TOOLS, Items.CHAINMAIL_LEGGINGS)
                         .input('#', YavpmItems.CHAINMAIL)
@@ -547,14 +553,14 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                         .pattern("# #")
                         .pattern("# #")
                         .criterion(hasItem(YavpmItems.CHAINMAIL), conditionsFromItem(YavpmItems.CHAINMAIL))
-                        .offerTo(exporter);
+                        .offerTo(rareEquipmentRecipeExporter);
 
                 createShaped(RecipeCategory.TOOLS, Items.CHAINMAIL_BOOTS)
                         .input('#', YavpmItems.CHAINMAIL)
                         .pattern("# #")
                         .pattern("# #")
                         .criterion(hasItem(YavpmItems.CHAINMAIL), conditionsFromItem(YavpmItems.CHAINMAIL))
-                        .offerTo(exporter);
+                        .offerTo(rareEquipmentRecipeExporter);
 
 
                 createShaped(RecipeCategory.MISC, Items.NAME_TAG, 12)
@@ -563,7 +569,7 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                         .pattern(" I")
                         .pattern("N ")
                         .criterion(hasItem(Items.NETHERITE_SCRAP), conditionsFromItem(Items.NETHERITE_SCRAP))
-                        .offerTo(exporter);
+                        .offerTo(rareEquipmentRecipeExporter);
 
                 createShaped(RecipeCategory.TOOLS, YavpmItems.REACTOR)
                         .input('B', Items.BLAZE_ROD)
@@ -600,7 +606,7 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                         .pattern(" P ")
                         .pattern(" P ")
                         .criterion(hasItem(YavpmItems.THUNDER_SHARD), conditionsFromItem(YavpmItems.THUNDER_SHARD))
-                        .offerTo(exporter);
+                        .offerTo(rareEquipmentRecipeExporter);
 
                 createShaped(RecipeCategory.MISC, YavpmItems.VOID_WATER_BUCKET)
                         .input('D', Items.DRAGON_BREATH)
@@ -637,7 +643,7 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                         .pattern("M M")
                         .pattern("M M")
                         .criterion(hasItem(YavpmItems.PHANTOM_CHORD), conditionsFromItem(YavpmItems.PHANTOM_CHORD))
-                        .offerTo(exporter);
+                        .offerTo(rareEquipmentRecipeExporter);
 
                 createShaped(RecipeCategory.MISC, Items.IRON_HORSE_ARMOR)
                         .input('X', Items.IRON_INGOT)
@@ -645,21 +651,21 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                         .pattern("XXX")
                         .pattern("X X")
                         .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
-                        .offerTo(exporter);
+                        .offerTo(rareEquipmentRecipeExporter);
                 createShaped(RecipeCategory.MISC, Items.GOLDEN_HORSE_ARMOR)
                         .input('X', Items.GOLD_INGOT)
                         .pattern("X X")
                         .pattern("XXX")
                         .pattern("X X")
                         .criterion(hasItem(Items.GOLD_INGOT), conditionsFromItem(Items.GOLD_INGOT))
-                        .offerTo(exporter);
+                        .offerTo(rareEquipmentRecipeExporter);
                 createShaped(RecipeCategory.MISC, Items.DIAMOND_HORSE_ARMOR)
                         .input('X', Items.DIAMOND)
                         .pattern("X X")
                         .pattern("XXX")
                         .pattern("X X")
                         .criterion(hasItem(Items.DIAMOND), conditionsFromItem(Items.DIAMOND))
-                        .offerTo(exporter);
+                        .offerTo(rareEquipmentRecipeExporter);
             }
         };
     }

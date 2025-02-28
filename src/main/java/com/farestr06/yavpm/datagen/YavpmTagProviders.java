@@ -41,6 +41,12 @@ public class YavpmTagProviders {
         }
 
         private void craftingTags() {
+            getOrCreateTagBuilder(ItemTags.REPAIRS_CHAIN_ARMOR).setReplace(true).add(YavpmItems.CHAINMAIL);
+            getOrCreateTagBuilder(YavpmTags.Items.REPAIRS_STUDDED_ARMOR).add(
+                    Items.LEATHER,
+                    YavpmItems.CHAINMAIL
+            );
+
             getOrCreateTagBuilder(ItemTags.STONE_TOOL_MATERIALS).add(
                     YavpmBlocks.COBBLED_GRANITE.asItem(),
                     YavpmBlocks.COBBLED_DIORITE.asItem(),

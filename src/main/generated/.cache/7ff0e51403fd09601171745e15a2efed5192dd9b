@@ -31,6 +31,7 @@ f0d1207ddf92613d4dab4b62c2f5288394abdfca data/minecraft/tags/item/leg_armor.json
 88d697b8b7cc84ab64ba28a926caecbdc8ee47a1 data/minecraft/tags/item/parrot_poisonous_food.json
 81d416ec163e1338ac91ba38343682eb9cc86f1f data/minecraft/tags/item/pig_food.json
 5f4029e547295f14219f93ffe7264a476e326a4b data/minecraft/tags/item/planks.json
+d312a19e99cbc0454ee4eccc765911362ac1982f data/minecraft/tags/item/repairs_chain_armor.json
 d4147ac2b3e23384588a20f7de895065a5ca3b55 data/minecraft/tags/item/saplings.json
 3b1e5504f1dbd360de9901e35931e128bdc97a9f data/minecraft/tags/item/slabs.json
 a826ef1bf88b1b92c821ea8c73cce506a50661e8 data/minecraft/tags/item/stairs.json
@@ -55,6 +56,7 @@ e6a557e0f0c7023bf91eaaf1ba66fadae53fd806 data/yavpm/tags/item/enchantable/glider
 023be715877cb6033c3e30eb45440eb56daa8d72 data/yavpm/tags/item/enchantable/wolf_armor.json
 fab75620c8658c029c9bd22812a5e6cc3b3757a5 data/yavpm/tags/item/persimmon_logs.json
 f275a7f37363d1bf0a2338331d2e0d2595cfb1ff data/yavpm/tags/item/reactor_rechargers.json
+ff79b7e120658226ff49a95055ef1e7cf93afacd data/yavpm/tags/item/repairs_studded_armor.json
 53a13473b30a0ca862cb74b2b2575e0e92cb13ca data/yavpm/tags/item/spiral_stalks.json
 a75102daab0756999449fcf2e6d7559558ca849b data/yavpm/tags/item/tanuki_foods.json
 eb8b7d8d53690befcf485678c4ff0a18a658b87c data/yavpm/tags/item/warped_moongus_food.json

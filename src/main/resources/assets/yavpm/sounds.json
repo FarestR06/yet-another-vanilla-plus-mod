@@ -14,6 +14,64 @@
     ],
     "subtitle": "subtitles.block.note_block.note"
   },
+  "block.pinata.insert": {
+    "sounds": [
+      {
+        "name": "block/decorated_pot/insert1",
+        "volume": 0.9
+      },
+      {
+        "name": "block/decorated_pot/insert2",
+        "volume": 0.9
+      },
+      {
+        "name": "block/decorated_pot/insert3",
+        "volume": 0.9
+      },
+      {
+        "name": "block/decorated_pot/insert4",
+        "volume": 0.9
+      }
+    ],
+    "subtitle": "subtitles.block.pinata.insert"
+  },
+  "block.pinata.insert_fail": {
+    "sounds": [
+      {
+        "name": "block/decorated_pot/insert_fail1",
+        "volume": 0.9
+      },
+      {
+        "name": "block/decorated_pot/insert_fail2",
+        "volume": 0.9
+      },
+      {
+        "name": "block/decorated_pot/insert_fail3",
+        "volume": 0.9
+      },
+      {
+        "name": "block/decorated_pot/insert_fail4",
+        "volume": 0.9
+      },
+      {
+        "name": "block/decorated_pot/insert_fail5",
+        "volume": 0.9
+      }
+    ],
+    "subtitle": "subtitles.block.pinata.insert_fail"
+  },
+  "block.pinata.break": {
+    "sounds": [
+      "random/break"
+    ],
+    "subtitle": "subtitles.block.pinata.break"
+  },
+  "block.pinata.open": {
+    "sounds": [
+      "fireworks/launch1"
+    ],
+    "subtitle": "subtitles.block.pinata.open"
+  },
   "music.overworld.withered_scar": {
     "sounds": [
       {

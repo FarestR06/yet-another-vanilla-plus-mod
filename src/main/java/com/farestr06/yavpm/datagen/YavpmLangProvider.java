@@ -435,14 +435,14 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_WALL, "Polished Kimberlite Brick Wall");
 
         builder.add(YavpmBlocks.SOULSTONE, "Soulstone");
-        builder.add(YavpmBlocks.CUT_SOULSTONE, "Soulstone");
-        builder.add(YavpmBlocks.CHISELED_SOULSTONE, "Soulstone");
-        builder.add(YavpmBlocks.SMOOTH_SOULSTONE, "Soulstone");
+        builder.add(YavpmBlocks.CUT_SOULSTONE, "Cut Soulstone");
+        builder.add(YavpmBlocks.CHISELED_SOULSTONE, "Chiseled Soulstone");
+        builder.add(YavpmBlocks.SMOOTH_SOULSTONE, "Smooth Soulstone");
         builder.add(YavpmBlocks.SOULSTONE_SLAB, "Soulstone Slab");
         builder.add(YavpmBlocks.CUT_SOULSTONE_SLAB, "Cut Soulstone Slab");
-        builder.add(YavpmBlocks.SMOOTH_SOULSTONE_SLAB, "Cut Soulstone Slab");
+        builder.add(YavpmBlocks.SMOOTH_SOULSTONE_SLAB, "Smooth Soulstone Slab");
         builder.add(YavpmBlocks.SOULSTONE_STAIRS, "Soulstone Stairs");
-        builder.add(YavpmBlocks.SMOOTH_SOULSTONE_STAIRS, "Cut Soulstone Stairs");
+        builder.add(YavpmBlocks.SMOOTH_SOULSTONE_STAIRS, "Smooth Soulstone Stairs");
         builder.add(YavpmBlocks.SOULSTONE_WALL, "Soulstone Wall");
 
         builder.add(YavpmBlocks.GLOWING_OBSIDIAN, "Glowing Obsidian");
@@ -455,10 +455,19 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.POLARIZED_GLASS, "Polarized Glass");
         builder.add(YavpmBlocks.RECYCLER, "Recycler");
         builder.add("container.recycler", "Recycler");
+
+        builder.add(YavpmBlocks.PINATA, "Piñata");
+        builder.add("subtitles.block.pinata.insert", "Piñata fills");
+        builder.add("subtitles.block.pinata.insert_fail", "Piñata bobbles");
+        builder.add("subtitles.block.pinata.break", "Piñata breaks");
+        builder.add("subtitles.block.pinata.open", "Piñata opens");
     }
 
     private static void yaclTranslations(TranslationBuilder builder) {
         builder.add("option.yavpm.title", "Yet Another Vanilla Plus Mod Options");
+
+        builder.add("option.yavpm.format.ticks", "%s ticks (%s seconds)");
+        builder.add("option.yavpm.format.multiplier", "%sx");
 
         builder.add("option.yavpm.easter_eggs", "Easter Eggs");
 
@@ -499,10 +508,10 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("option.yavpm.void_touched_dragon_fireball.desc", "When set to false, the dragon fireball will behave like it does in vanilla, dealing damage instead of applying Void Touched. Default is true.");
 
         builder.add("option.yavpm.glowing_obsidian_luminance.title", "Glowing Obsidian Luminance");
-        builder.add("option.yavpm.glowing_obsidian_luminance.desc", "Glowing Obsidian blocks will emit the specified light level. Default is 15.");
+        builder.add("option.yavpm.glowing_obsidian_luminance.desc", "Glowing Obsidian blocks will emit the specified light level. Default is 12.");
 
         builder.add("option.yavpm.soul_glowing_obsidian_luminance.title", "Soul Glowing Obsidian Luminance");
-        builder.add("option.yavpm.soul_glowing_obsidian_luminance.desc", "Soul Glowing Obsidian blocks will emit the specified light level. Default is 11.");
+        builder.add("option.yavpm.soul_glowing_obsidian_luminance.desc", "Soul Glowing Obsidian blocks will emit the specified light level. Default is 9.");
 
         builder.add("option.yavpm.void_water_source_conversion.title", "Void Water Converts To Source");
         builder.add("option.yavpm.void_water_source_conversion.desc", "When flowing void water is surrounded on two sides by water sources it converts into a source. Default is true.");
@@ -510,8 +519,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("option.yavpm.baby_key_cries.title", "Key Golems Cry Out");
         builder.add("option.yavpm.baby_key_cries.desc", "If true, Key Golems will cry out when held. Default is true.");
 
-        builder.add("option.yavpm.craftable_rare_equipment.title", "Craftable Rare Equipment");
-        builder.add("option.yavpm.craftable_rare_equipment.desc", "Some rare items that are uncraftable in vanilla, like tridents or name tags, are craftable with certain elusive materials.");
+        builder.add("option.yavpm.rare_equipment_recipes.title", "Craftable Rare Equipment");
+        builder.add("option.yavpm.rare_equipment_recipes.desc", "Some treasures that are uncraftable in vanilla, like tridents or name tags, are craftable when this option is enabled. Default is true.\nPlease note that your world must be reloaded when changing this option for it to take effect.");
 
         builder.add("option.yavpm.weird_trial_chamber_potions.title", "Weird Trial Chamber Potions");
         builder.add("option.yavpm.weird_trial_chamber_potions.desc", "If true, potions spawned by Ominous Spawners will need to be brewed with Warped Wart. Moongi are unaffected by this option. Default is true.");

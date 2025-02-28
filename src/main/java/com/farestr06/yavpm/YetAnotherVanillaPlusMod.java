@@ -4,7 +4,7 @@ import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.block.custom.entity.YavpmBlockEntities;
 import com.farestr06.yavpm.block.custom.recycler.registry.RecyclingResultRegistryHelper;
 import com.farestr06.yavpm.config.YavpmConfig;
-import com.farestr06.yavpm.crafting.YavpmRecipeSerializers;
+import com.farestr06.yavpm.datagen.condition.YavpmResourceConditionTypes;
 import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.entity.YavpmTrades;
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
@@ -66,6 +66,43 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 	// It is considered best practice to use your mod id as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+
+	@Override
+	public void onInitialize() {
+		// This code runs as soon as Minecraft is in a mod-load-ready state.
+		// However, some things (like resources) may still be uninitialized.
+		// Proceed with mild caution.
+
+		LOGGER.info("Go go gadget YAVPM!!");
+
+		YavpmConfig.HANDLER.load();
+
+		ItemGroupHelper.modifyEntries();
+
+		YavpmItems.init();
+		YavpmBlocks.init();
+		YavpmFluids.init();
+		YavpmBlockEntities.init();
+
+		YavpmSounds.init();
+
+		YavpmStatusEffects.init();
+		YavpmPotions.init();
+
+		YavpmWorldGeneration.generateModWorldGen();
+		YavpmEnchantmentEffects.init();
+		YavpmLootConditions.init();
+
+		YavpmEntities.init();
+
+		RecyclingResultRegistryHelper.init();
+		YavpmResourceConditionTypes.init();
+
+		modifyLoot();
+		YavpmTrades.init();
+
+		setUpVanillaTweaksCompat();
+	}
 
 	private static void modifyLoot() {
 		LOGGER.info("Modifying loot for YAVPM!");
@@ -383,43 +420,6 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 			LOGGER.error("Failed to register More Trapdoors compat!");
 		}
 	}
-
-	@Override
-	public void onInitialize() {
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
-
-		LOGGER.info("Go go gadget YAVPM!!");
-
-		YavpmConfig.HANDLER.load();
-
-		ItemGroupHelper.modifyEntries();
-
-		YavpmItems.init();
-		YavpmBlocks.init();
-		YavpmFluids.init();
-		YavpmBlockEntities.init();
-
-		YavpmSounds.init();
-
-		YavpmStatusEffects.init();
-		YavpmPotions.init();
-
-		YavpmWorldGeneration.generateModWorldGen();
-		YavpmEnchantmentEffects.init();
-		YavpmLootConditions.init();
-
-		YavpmEntities.init();
-
-		RecyclingResultRegistryHelper.init();
-		YavpmRecipeSerializers.init();
-
-		modifyLoot();
-		YavpmTrades.init();
-
-		setUpVanillaTweaksCompat();
-    }
 	
 	private static LootTable.Builder shortSeagrassDrops(RegistryWrapper.WrapperLookup lookup, BlockLootTableGenerator generator) {
 		RegistryWrapper.Impl<Enchantment> impl = lookup.getOrThrow(RegistryKeys.ENCHANTMENT);

@@ -38,14 +38,18 @@ public class YavpmConfig {
     // region Blocks/Fluids
     @SerialEntry(comment = "When set to true, Void Water can create more infinite sources, like how vanilla Water can. Default is true.")
     public boolean voidWaterSourceConversion = true;
+    @SerialEntry(comment = "Glowing Obsidian blocks will emit the specified light level. Default is 12.")
+    public int glowingObsidianLuminance = 12;
+    @SerialEntry(comment = "Soul Glowing Obsidian blocks will emit the specified light level. Default is 9.")
+    public int soulGlowingObsidianLuminance = 9;
     // endregion
     // region Items
     @SerialEntry(comment = "If true, Key Golems will cry out when held. Default is true.")
     public boolean babyKeyCries = true;
     @SerialEntry(comment = "If true, potions spawned by Ominous Spawners will need to be brewed with Warped Wart. Moongi are unaffected by this option. Default is true.")
     public boolean weirdTrialChamberPotions = true;
-    // endregion
-    // region Client
+    @SerialEntry(comment = "Some treasures that are uncraftable in vanilla, like tridents or name tags, are craftable when this option is enabled. Default is true.")
+    public boolean rareEquipmentCraftingRecipes = true;
     // endregion
     // region Easter Eggs
     @SerialEntry(comment = "A special splash will sometimes appear on Wednesday; the likelihood of this happening is determined by this value. Default is 0.3f.")

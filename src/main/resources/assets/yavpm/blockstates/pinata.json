@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "hits=0,opened=false": {
+      "model": "yavpm:block/pinata_closed"
+    },
+    "hits=1,opened=false": {
+      "model": "yavpm:block/pinata_closed"
+    },
+    "hits=2,opened=false": {
+      "model": "yavpm:block/pinata_closed"
+    },
+    "hits=3,opened=false": {
+      "model": "yavpm:block/pinata_closed"
+    },
+    "hits=4,opened=false": {
+      "model": "yavpm:block/pinata_closed"
+    },
+    "hits=0,opened=true": {
+      "model": "yavpm:block/pinata_opened"
+    },
+    "hits=1,opened=true": {
+      "model": "yavpm:block/pinata_opened"
+    },
+    "hits=2,opened=true": {
+      "model": "yavpm:block/pinata_opened"
+    },
+    "hits=3,opened=true": {
+      "model": "yavpm:block/pinata_opened"
+    },
+    "hits=4,opened=true": {
+      "model": "yavpm:block/pinata_opened"
+    }
+  }
+}

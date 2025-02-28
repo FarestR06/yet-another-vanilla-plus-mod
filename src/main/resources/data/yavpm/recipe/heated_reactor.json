@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:crafting_transmute",
+  "group": "reactor",
+  "category": "misc",
+  "input": "yavpm:reactor",
+  "material": "#yavpm:reactor_rechargers",
+  "result": "yavpm:heated_reactor"
+}

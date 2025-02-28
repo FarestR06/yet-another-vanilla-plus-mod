@@ -18,6 +18,11 @@ public class YavpmSounds {
     public static final SoundEvent BLOCK_PRICKLE_LOG_PLUCK = makeEvent(makeId("block.prickle_log.pluck"));
     public static final RegistryEntry.Reference<SoundEvent> BLOCK_NOTE_BLOCK_GRIND = makeReferenceEvent(makeId("block.note_block.grind"));
 
+    public static final SoundEvent BLOCK_PINATA_INSERT = makeEvent(makeId("block.pinata.insert"));
+    public static final SoundEvent BLOCK_PINATA_INSERT_FAIL = makeEvent(makeId("block.pinata.insert_fail"));
+    public static final SoundEvent BLOCK_PINATA_BREAK = makeEvent(makeId("block.pinata.break"));
+    public static final SoundEvent BLOCK_PINATA_OPEN = makeEvent(makeId("block.pinata.open"));
+
     public static final RegistryEntry<SoundEvent> ENCHANTMENT_FIGURE_EIGHT = makeReferenceEvent(makeId("enchantment.figure_eight"));
     
     public static final SoundEvent ITEM_BABY_KEY_SCARED = makeEvent(makeId("item.baby_key.scared"));

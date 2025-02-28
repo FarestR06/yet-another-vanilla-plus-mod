@@ -207,6 +207,9 @@ public final class RecyclingResultRegistryHelper {
         INSTANCE.add(Items.STICKY_PISTON, new RecyclingResult(Items.PISTON, 1, null));
 
         INSTANCE.add(YavpmItems.BABY_KEY, new RecyclingResult(Items.GOLD_NUGGET, 7, 16));
+
+        INSTANCE.add(Items.DECORATED_POT, new RecyclingResult(Items.BRICK, 3, 4));
+        INSTANCE.add(YavpmBlocks.PINATA, new RecyclingResult(Items.BRICK, 3, 4));
     }
 
     private static void equipment() {

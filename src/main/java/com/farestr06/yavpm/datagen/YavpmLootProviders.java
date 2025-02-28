@@ -74,6 +74,8 @@ public class YavpmLootProviders {
 
             fakeDrops();
 
+            addDropWithSilkTouch(YavpmBlocks.PINATA);
+
             // region Warped Wart
             addDrop(
                     YavpmBlocks.WARPED_WART_CROP,
@@ -134,7 +136,7 @@ public class YavpmLootProviders {
                                     )
                                     .with(ItemEntry.builder(YavpmBlocks.PERSIMMON_PLANKS.asItem())
                                             .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 5f)))
-                                    ).conditionally(RandomChanceLootCondition.builder(0.4f))
+                                    ).conditionally(RandomChanceLootCondition.builder(0.7f))
                     )
             );
             addDrop(YavpmBlocks.FAKE_ORE, LootTable.builder()
@@ -156,7 +158,7 @@ public class YavpmLootProviders {
                                             .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
                                     ).with(ItemEntry.builder(Items.REDSTONE)
                                             .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
-                                    ).conditionally(RandomChanceLootCondition.builder(0.4f))
+                                    ).conditionally(RandomChanceLootCondition.builder(0.7f))
                     )
             );
         }

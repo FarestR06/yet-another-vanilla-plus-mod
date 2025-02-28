@@ -15,6 +15,7 @@ import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmBlockEntities {
     public static final BlockEntityType<RecyclerBlockEntity> RECYCLER = register("recycler", RecyclerBlockEntity::new, YavpmBlocks.RECYCLER);
+    public static final BlockEntityType<PinataBlockEntity> PINATA = register("pinata", PinataBlockEntity::new, YavpmBlocks.PINATA);
 
             /*
             Registry.register(

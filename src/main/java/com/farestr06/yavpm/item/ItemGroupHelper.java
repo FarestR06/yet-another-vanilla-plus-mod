@@ -160,11 +160,13 @@ public class ItemGroupHelper {
     private static void functionalBlocks(FabricItemGroupEntries entries) {
         entries.add(YavpmBlocks.GLOWING_OBSIDIAN);
         entries.add(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
+        entries.add(YavpmBlocks.PINATA);
     }
 
     private static void redstone(FabricItemGroupEntries entries) {
         entries.add(YavpmBlocks.POLARIZED_GLASS);
         entries.add(YavpmBlocks.RECYCLER);
+        entries.add(YavpmBlocks.PINATA);
     }
 
     private static void tools(FabricItemGroupEntries entries) {

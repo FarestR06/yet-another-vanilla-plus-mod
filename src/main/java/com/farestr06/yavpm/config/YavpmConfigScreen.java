@@ -5,11 +5,13 @@ import com.terraformersmc.modmenu.api.ModMenuApi;
 import dev.isxander.yacl3.api.*;
 import dev.isxander.yacl3.api.controller.BooleanControllerBuilder;
 import dev.isxander.yacl3.api.controller.FloatFieldControllerBuilder;
-import dev.isxander.yacl3.api.controller.IntegerFieldControllerBuilder;
+import dev.isxander.yacl3.api.controller.FloatSliderControllerBuilder;
+import dev.isxander.yacl3.api.controller.IntegerSliderControllerBuilder;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
+import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 import static com.farestr06.yavpm.config.YavpmConfig.HANDLER;
 
 public class YavpmConfigScreen implements ModMenuApi {
@@ -25,11 +27,14 @@ public class YavpmConfigScreen implements ModMenuApi {
                                 .name(Text.translatable("option.yavpm.blocks_and_fluids.void"))
                                 .option(VOID_WATER_SOURCE_CONVERSION)
                                 .build())
+                        .option(GLOWING_OBSIDIAN_LUMINANCE)
+                        .option(SOUL_GLOWING_OBSIDIAN_LUMINANCE)
                         .build())
                 .category(ConfigCategory.createBuilder()
                         .name(Text.translatable("option.yavpm.items"))
                         .option(BABY_KEY_CRIES)
                         .option(WEIRD_TRIAL_CHAMBER_POTIONS)
+                        .option(RARE_EQUIPMENT_RECIPES)
                         .build())
                 .category(ConfigCategory.createBuilder()
                         .name(Text.translatable("option.yavpm.entities_and_effects"))
@@ -74,7 +79,11 @@ public class YavpmConfigScreen implements ModMenuApi {
                     2000,
                     () -> HANDLER.instance().tanukiBaseTransformDelay,
                     newVal -> HANDLER.instance().tanukiBaseTransformDelay = newVal
-            ).controller(opt -> IntegerFieldControllerBuilder.create(opt).range(500, 4000))
+            ).controller(opt -> IntegerSliderControllerBuilder.create(opt).range(500, 5000).step(50)
+                    .formatValue(val -> {
+                        float valInSeconds = val / 20f;
+                        return Text.translatable("option.yavpm.format.ticks", val, valInSeconds);
+                    }))
             .build();
     protected static final Option<Integer> TANUKI_RANDOM_TRANSFORM_DELAY = Option.<Integer>createBuilder()
 
@@ -87,7 +96,12 @@ public class YavpmConfigScreen implements ModMenuApi {
                     4000,
                     () -> HANDLER.instance().tanukiRandomTransformDelay,
                     newVal -> HANDLER.instance().tanukiRandomTransformDelay = newVal
-            ).controller(opt -> IntegerFieldControllerBuilder.create(opt).range(500, 4000))
+            ).controller(opt -> IntegerSliderControllerBuilder.create(opt).range(500, 5000).step(50)
+                    .formatValue(val -> {
+                        float valInSeconds = val / 20f;
+                        return Text.translatable("option.yavpm.format.ticks", val, valInSeconds);
+                    }))
+            // ).controller(opt -> IntegerFieldControllerBuilder.create(opt).range(500, 4000))
             .build();
 
     protected static final Option<Float> TANUKI_TRANSFORM_CHANCE = Option.<Float>createBuilder()
@@ -100,7 +114,8 @@ public class YavpmConfigScreen implements ModMenuApi {
                     0.3f,
                     () -> HANDLER.instance().tanukiTransformChance,
                     newVal -> HANDLER.instance().tanukiTransformChance = newVal
-            ).controller(opt -> FloatFieldControllerBuilder.create(opt).range(0f, 1f))
+            ).controller(opt -> FloatSliderControllerBuilder.create(opt).range(0f, 1f).step(0.01f))
+            // ).controller(opt -> FloatFieldControllerBuilder.create(opt).range(0f, 1f))
             .build();
     protected static final Option<Float> VOID_TOUCHED_DAMAGE_MULTIPLIER = Option.<Float>createBuilder()
             .name(Text.translatable("option.yavpm.void_touched_damage_multiplier.title"))
@@ -112,7 +127,9 @@ public class YavpmConfigScreen implements ModMenuApi {
                     1.5f,
                     () -> HANDLER.instance().voidTouchedDamageMultiplier,
                     newVal -> HANDLER.instance().voidTouchedDamageMultiplier = newVal
-            ).controller(opt -> FloatFieldControllerBuilder.create(opt).range(0.5f, 2.5f))
+            ).controller(opt -> FloatSliderControllerBuilder.create(opt).range(1f, 3f).step(0.1f)
+                    .formatValue(val -> Text.translatable("option.yavpm.format.multiplier", val)))
+            // ).controller(opt -> FloatFieldControllerBuilder.create(opt).range(0.5f, 2.5f))
             .build();
 
     protected static final Option<Boolean> VOID_TOUCHED_DRAGON_FIREBALL = Option.<Boolean>createBuilder()
@@ -125,7 +142,7 @@ public class YavpmConfigScreen implements ModMenuApi {
                     true,
                     () -> HANDLER.instance().voidTouchedDragonFireball,
                     newVal -> HANDLER.instance().voidTouchedDragonFireball = newVal
-            ).controller(YavpmConfigScreen::builder)
+            ).controller(YavpmConfigScreen::booleanBuilder)
             .build();
     // endregion
     // region Blocks
@@ -133,15 +150,42 @@ public class YavpmConfigScreen implements ModMenuApi {
             .name(Text.translatable("option.yavpm.void_water_source_conversion.title"))
             .description(OptionDescription.createBuilder()
                     .text(Text.translatable("option.yavpm.void_water_source_conversion.desc"))
+                    .image(makeId("textures/config/void_water_source_conversion.png"), 480, 360)
                     .build()
             )
             .binding(
                     true,
                     () -> HANDLER.instance().voidWaterSourceConversion,
                     newVal -> HANDLER.instance().voidWaterSourceConversion = newVal
-            ).controller(YavpmConfigScreen::builder)
+            ).controller(YavpmConfigScreen::booleanBuilder)
             .build();
     // endregion
+    protected static final Option<Integer> GLOWING_OBSIDIAN_LUMINANCE = Option.<Integer>createBuilder()
+            .name(Text.translatable("option.yavpm.glowing_obsidian_luminance.title"))
+            .description(OptionDescription.createBuilder()
+                    .text(Text.translatable("option.yavpm.glowing_obsidian_luminance.desc"))
+                    .image(makeId("textures/config/glowing_obsidian_luminance.png"), 480, 360)
+                    .build()
+            )
+            .binding(
+                    12,
+                    () -> HANDLER.instance().glowingObsidianLuminance,
+                    newVal -> HANDLER.instance().glowingObsidianLuminance = newVal
+            ).controller(opt -> IntegerSliderControllerBuilder.create(opt).range(1, 15).step(1))
+            .build();
+    protected static final Option<Integer> SOUL_GLOWING_OBSIDIAN_LUMINANCE = Option.<Integer>createBuilder()
+            .name(Text.translatable("option.yavpm.soul_glowing_obsidian_luminance.title"))
+            .description(OptionDescription.createBuilder()
+                    .text(Text.translatable("option.yavpm.soul_glowing_obsidian_luminance.desc"))
+                    .image(makeId("textures/config/soul_glowing_obsidian_luminance.png"), 480, 360)
+                    .build()
+            )
+            .binding(
+                    9,
+                    () -> HANDLER.instance().soulGlowingObsidianLuminance,
+                    newVal -> HANDLER.instance().soulGlowingObsidianLuminance = newVal
+            ).controller(opt -> IntegerSliderControllerBuilder.create(opt).range(0, 15).step(1))
+            .build();
     // region Items
     protected static final Option<Boolean> BABY_KEY_CRIES = Option.<Boolean>createBuilder()
             .name(Text.translatable("option.yavpm.baby_key_cries.title"))
@@ -153,7 +197,7 @@ public class YavpmConfigScreen implements ModMenuApi {
                     true,
                     () -> HANDLER.instance().babyKeyCries,
                     newVal -> HANDLER.instance().babyKeyCries = newVal
-            ).controller(YavpmConfigScreen::builder)
+            ).controller(YavpmConfigScreen::booleanBuilder)
             .build();
     protected static final Option<Boolean> WEIRD_TRIAL_CHAMBER_POTIONS = Option.<Boolean>createBuilder()
             .name(Text.translatable("option.yavpm.weird_trial_chamber_potions.title"))
@@ -165,7 +209,19 @@ public class YavpmConfigScreen implements ModMenuApi {
                     true,
                     () -> HANDLER.instance().weirdTrialChamberPotions,
                     newVal -> HANDLER.instance().weirdTrialChamberPotions = newVal
-            ).controller(YavpmConfigScreen::builder).flag(OptionFlag.GAME_RESTART)
+            ).controller(YavpmConfigScreen::booleanBuilder).flag(OptionFlag.GAME_RESTART)
+            .build();
+    protected static final Option<Boolean> RARE_EQUIPMENT_RECIPES = Option.<Boolean>createBuilder()
+            .name(Text.translatable("option.yavpm.rare_equipment_recipes.title"))
+            .description(OptionDescription.createBuilder()
+                    .text(Text.translatable("option.yavpm.rare_equipment_recipes.desc"))
+                    .build()
+            )
+            .binding(
+                    true,
+                    () -> HANDLER.instance().rareEquipmentCraftingRecipes,
+                    newVal -> HANDLER.instance().rareEquipmentCraftingRecipes = newVal
+            ).controller(YavpmConfigScreen::booleanBuilder)
             .build();
     // endregion
     // region Easter Eggs
@@ -192,11 +248,11 @@ public class YavpmConfigScreen implements ModMenuApi {
                     true,
                     () -> HANDLER.instance().farestsBirthday,
                     newVal -> HANDLER.instance().farestsBirthday = newVal
-            ).controller(YavpmConfigScreen::builder)
+            ).controller(YavpmConfigScreen::booleanBuilder)
             .build();
     // endregion
 
-    private static BooleanControllerBuilder builder(Option<Boolean> option) {
+    private static BooleanControllerBuilder booleanBuilder(Option<Boolean> option) {
         return BooleanControllerBuilder.create(option).trueFalseFormatter().coloured(true);
     }
 }

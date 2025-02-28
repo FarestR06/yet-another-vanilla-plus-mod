@@ -1,6 +1,7 @@
 package com.farestr06.yavpm.block;
 
 import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
+import com.farestr06.yavpm.block.custom.PinataBlock;
 import com.farestr06.yavpm.block.custom.PolarizedGlassBlock;
 import com.farestr06.yavpm.block.custom.PrickleLogBlock;
 import com.farestr06.yavpm.block.custom.crop.*;
@@ -33,16 +34,17 @@ import net.minecraft.world.World;
 
 import static com.farestr06.api.block.BlockHelper.*;
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
+import static com.farestr06.yavpm.config.YavpmConfig.HANDLER;
 
 public class YavpmBlocks {
 
     // region Glowing Obsidian
     public static final Block GLOWING_OBSIDIAN = makeSimpleBlockAndSimpleItem(makeId("glowing_obsidian"),
-            AbstractBlock.Settings.copy(Blocks.OBSIDIAN).luminance(state -> 15)
+            AbstractBlock.Settings.copy(Blocks.OBSIDIAN).luminance(state -> HANDLER.instance().glowingObsidianLuminance)
     );
     public static final Block SOUL_GLOWING_OBSIDIAN = makeSimpleBlockAndSimpleItem(
             makeId("soul_glowing_obsidian"),
-            AbstractBlock.Settings.copy(Blocks.OBSIDIAN).luminance(state -> 11)
+            AbstractBlock.Settings.copy(Blocks.OBSIDIAN).luminance(state -> HANDLER.instance().soulGlowingObsidianLuminance)
     );
     // endregion
 
@@ -299,6 +301,12 @@ public class YavpmBlocks {
             makeId("recycler"),
             RecyclerBlock::new,
             AbstractBlock.Settings.copy(Blocks.DROPPER)
+    );
+
+    public static final Block PINATA = makeBlockAndSimpleItem(
+            makeId("pinata"),
+            PinataBlock::new,
+            AbstractBlock.Settings.copy(Blocks.DECORATED_POT).mapColor(MapColor.DARK_AQUA).instrument(NoteBlockInstrument.BASS).strength(1.2f, 2.4f)
     );
 
     public static final Block SHOJI = makeBlockAndSimpleItem(
