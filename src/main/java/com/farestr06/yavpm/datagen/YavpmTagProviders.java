@@ -47,6 +47,9 @@ public class YavpmTagProviders {
                     YavpmItems.CHAINMAIL
             );
 
+            getOrCreateTagBuilder(YavpmTags.Items.DENSITITE_TOOL_MATERIALS).add(YavpmItems.DENSITITE_INGOT);
+            getOrCreateTagBuilder(YavpmTags.Items.REPAIRS_DENSITITE_ARMOR).add(YavpmItems.DENSITITE_INGOT);
+
             getOrCreateTagBuilder(ItemTags.STONE_TOOL_MATERIALS).add(
                     YavpmBlocks.COBBLED_GRANITE.asItem(),
                     YavpmBlocks.COBBLED_DIORITE.asItem(),
@@ -86,6 +89,12 @@ public class YavpmTagProviders {
         }
 
         private void equipmentTags() {
+            getOrCreateTagBuilder(ItemTags.SWORDS).add(YavpmItems.DENSITITE_SWORD);
+            getOrCreateTagBuilder(ItemTags.SHOVELS).add(YavpmItems.DENSITITE_SHOVEL);
+            getOrCreateTagBuilder(ItemTags.PICKAXES).add(YavpmItems.DENSITITE_PICKAXE);
+            getOrCreateTagBuilder(ItemTags.AXES).add(YavpmItems.DENSITITE_AXE);
+            getOrCreateTagBuilder(ItemTags.HOES).add(YavpmItems.DENSITITE_HOE);
+
             getOrCreateTagBuilder(ConventionalItemTags.ARMORS).add(
                     YavpmItems.STUDDED_HELMET,
                     YavpmItems.STUDDED_CHESTPLATE,
@@ -294,7 +303,10 @@ public class YavpmTagProviders {
                     YavpmBlocks.COBBLED_ANDESITE_STAIRS.asItem(),
                     YavpmBlocks.POLISHED_GRANITE_BRICK_STAIRS.asItem(),
                     YavpmBlocks.POLISHED_DIORITE_BRICK_STAIRS.asItem(),
-                    YavpmBlocks.POLISHED_ANDESITE_BRICK_STAIRS.asItem()
+                    YavpmBlocks.POLISHED_ANDESITE_BRICK_STAIRS.asItem(),
+                    YavpmBlocks.SCULKY_DEEPSLATE_BRICKS.asItem(),
+                    YavpmBlocks.SOULSTONE_STAIRS.asItem(),
+                    YavpmBlocks.SMOOTH_SOULSTONE_STAIRS.asItem()
             );
             getOrCreateTagBuilder(ItemTags.SLABS).add(
                     YavpmBlocks.KIMBERLITE_SLAB.asItem(),
@@ -305,7 +317,11 @@ public class YavpmTagProviders {
                     YavpmBlocks.COBBLED_ANDESITE_SLAB.asItem(),
                     YavpmBlocks.POLISHED_GRANITE_BRICK_SLAB.asItem(),
                     YavpmBlocks.POLISHED_DIORITE_BRICK_SLAB.asItem(),
-                    YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB.asItem()
+                    YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB.asItem(),
+                    YavpmBlocks.SCULKY_DEEPSLATE_BRICK_SLAB.asItem(),
+                    YavpmBlocks.SOULSTONE_SLAB.asItem(),
+                    YavpmBlocks.CUT_SOULSTONE_SLAB.asItem(),
+                    YavpmBlocks.SMOOTH_SOULSTONE_SLAB.asItem()
             );
             getOrCreateTagBuilder(ItemTags.WALLS).add(
                     YavpmBlocks.KIMBERLITE_WALL.asItem(),
@@ -316,7 +332,9 @@ public class YavpmTagProviders {
                     YavpmBlocks.COBBLED_ANDESITE_WALL.asItem(),
                     YavpmBlocks.POLISHED_GRANITE_BRICK_WALL.asItem(),
                     YavpmBlocks.POLISHED_DIORITE_BRICK_WALL.asItem(),
-                    YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL.asItem()
+                    YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL.asItem(),
+                    YavpmBlocks.SCULKY_DEEPSLATE_BRICK_WALL.asItem(),
+                    YavpmBlocks.SOULSTONE_WALL.asItem()
             );
 
             getOrCreateTagBuilder(ConventionalItemTags.STRIPPED_LOGS).add(
@@ -385,9 +403,6 @@ public class YavpmTagProviders {
 
         @Override
         protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
-            getOrCreateTagBuilder(BlockTags.SOUL_SPEED_BLOCKS).add(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
-            getOrCreateTagBuilder(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
-
             getOrCreateTagBuilder(ConventionalBlockTags.OBSIDIANS).add(
                     YavpmBlocks.GLOWING_OBSIDIAN,
                     YavpmBlocks.SOUL_GLOWING_OBSIDIAN
@@ -482,6 +497,14 @@ public class YavpmTagProviders {
                     YavpmBlocks.POLISHED_KIMBERLITE_WALL,
                     YavpmBlocks.POLISHED_KIMBERLITE_BRICK_WALL,
 
+                    YavpmBlocks.SCULKY_DEEPSLATE_BRICKS,
+
+                    YavpmBlocks.INFESTED_COBBLED_DEEPSLATE,
+                    YavpmBlocks.INFESTED_CHISELED_DEEPSLATE,
+                    YavpmBlocks.INFESTED_DEEPSLATE_BRICKS,
+                    YavpmBlocks.INFESTED_CRACKED_DEEPSLATE_BRICKS,
+                    YavpmBlocks.INFESTED_SCULKY_DEEPSLATE_BRICKS,
+
                     YavpmBlocks.SOULSTONE,
                     YavpmBlocks.CUT_SOULSTONE,
                     YavpmBlocks.CHISELED_SOULSTONE,
@@ -527,22 +550,21 @@ public class YavpmTagProviders {
 
         private void generalBlockTags() {
             getOrCreateTagBuilder(BlockTags.WITHER_SUMMON_BASE_BLOCKS).add(
+                    YavpmBlocks.SOUL_GLOWING_OBSIDIAN,
                     YavpmBlocks.SOULSTONE,
                     YavpmBlocks.CUT_SOULSTONE,
                     YavpmBlocks.CHISELED_SOULSTONE,
                     YavpmBlocks.SMOOTH_SOULSTONE
             );
             getOrCreateTagBuilder(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(
+                    YavpmBlocks.SOUL_GLOWING_OBSIDIAN,
                     YavpmBlocks.SOULSTONE,
                     YavpmBlocks.CUT_SOULSTONE,
                     YavpmBlocks.CHISELED_SOULSTONE,
                     YavpmBlocks.SMOOTH_SOULSTONE
             );
-            getOrCreateTagBuilder(BlockTags.SCULK_REPLACEABLE).add(
-                    YavpmBlocks.SOULSTONE
-            );
-
             getOrCreateTagBuilder(BlockTags.SOUL_SPEED_BLOCKS).add(
+                    YavpmBlocks.SOUL_GLOWING_OBSIDIAN,
                     YavpmBlocks.SOULSTONE,
                     YavpmBlocks.CUT_SOULSTONE,
                     YavpmBlocks.CHISELED_SOULSTONE,
@@ -555,10 +577,16 @@ public class YavpmTagProviders {
                     YavpmBlocks.SOULSTONE_WALL
             );
 
+            getOrCreateTagBuilder(BlockTags.SCULK_REPLACEABLE).add(
+                    YavpmBlocks.SOULSTONE
+            );
+
             getOrCreateTagBuilder(BlockTags.STAIRS).add(
                     YavpmBlocks.KIMBERLITE_STAIRS,
                     YavpmBlocks.POLISHED_KIMBERLITE_STAIRS,
                     YavpmBlocks.POLISHED_KIMBERLITE_BRICK_STAIRS,
+
+                    YavpmBlocks.SCULKY_DEEPSLATE_BRICK_STAIRS,
 
                     YavpmBlocks.SOULSTONE_STAIRS,
                     YavpmBlocks.SMOOTH_SOULSTONE_STAIRS
@@ -568,6 +596,9 @@ public class YavpmTagProviders {
                     YavpmBlocks.POLISHED_KIMBERLITE_SLAB,
                     YavpmBlocks.POLISHED_KIMBERLITE_BRICK_SLAB,
 
+
+                    YavpmBlocks.SCULKY_DEEPSLATE_BRICK_SLAB,
+
                     YavpmBlocks.SOULSTONE_SLAB,
                     YavpmBlocks.CUT_SOULSTONE_SLAB,
                     YavpmBlocks.SMOOTH_SOULSTONE_SLAB
@@ -576,6 +607,8 @@ public class YavpmTagProviders {
                     YavpmBlocks.KIMBERLITE_WALL,
                     YavpmBlocks.POLISHED_KIMBERLITE_WALL,
                     YavpmBlocks.POLISHED_KIMBERLITE_BRICK_WALL,
+
+                    YavpmBlocks.SCULKY_DEEPSLATE_BRICK_WALL,
 
                     YavpmBlocks.SOULSTONE_WALL
             );

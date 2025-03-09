@@ -25,6 +25,9 @@ public class YavpmTags {
         public static final TagKey<Item> ENCHANTABLE_HORSE_ARMOR = of("enchantable/horse_armor");
 
         public static final TagKey<Item> REPAIRS_STUDDED_ARMOR = of("repairs_studded_armor");
+        public static final TagKey<Item> REPAIRS_DENSITITE_ARMOR = of("repairs_densitite_armor");
+        public static final TagKey<Item> DENSITITE_TOOL_MATERIALS = of("densitite_tool_materials");
+
         public static final TagKey<Item> REACTOR_RECHARGERS = of("reactor_rechargers");
 
         public static final TagKey<Item> APPLE_LOGS = of("apple_logs");

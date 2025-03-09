@@ -30,16 +30,16 @@ public abstract class CowEntityMixin extends AnimalEntity {
 
     @Inject(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"), cancellable = true)
     private void injected(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir, @Local ItemStack stack) {
-        if (thiz.getType() == EntityType.COW) {
-            if (stack.isOf(Items.NETHER_WART_BLOCK)) {
-                thiz.convertTo(
+        if (thiz.getType() == EntityType.COW) { // The entity is clearly a cow, but we'll check just in case.
+            if (stack.isOf(Items.NETHER_WART_BLOCK)) { // If we feed the cow a Crimson Wart Block...
+                thiz.convertTo( // We'll turn it into a Crimson Moongus!
                         YavpmEntities.MOONGUS,
                         EntityConversionContext.create(thiz, false, false),
                         convertedEntity -> convertedEntity.setVariant(MoongusEntity.Type.CRIMSON)
                 );
                 cir.setReturnValue(ActionResult.SUCCESS);
-            } else if (stack.isOf(Items.WARPED_WART_BLOCK)) {
-                thiz.convertTo(
+            } else if (stack.isOf(Items.WARPED_WART_BLOCK)) { // Likewise, if we feed it a Warped Wart Block...
+                thiz.convertTo( // It'll become a Warped Moongus!
                         YavpmEntities.MOONGUS,
                         EntityConversionContext.create(thiz, false, false),
                         convertedEntity -> convertedEntity.setVariant(MoongusEntity.Type.WARPED)

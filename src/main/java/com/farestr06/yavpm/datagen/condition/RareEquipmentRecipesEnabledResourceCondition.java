@@ -10,6 +10,8 @@ import org.jetbrains.annotations.Nullable;
 public record RareEquipmentRecipesEnabledResourceCondition() implements ResourceCondition {
     public static final MapCodec<RareEquipmentRecipesEnabledResourceCondition> CODEC
             = MapCodec.unit(RareEquipmentRecipesEnabledResourceCondition::new);
+
+
     @Override
     public ResourceConditionType<?> getType() {
         return YavpmResourceConditionTypes.RARE_EQUIPMENT_RECIPES_ENABLED;

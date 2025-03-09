@@ -51,6 +51,7 @@ public class YavpmSounds {
     public static final SoundEvent ENTITY_TANUKI_EAT = makeEvent(makeId("entity.tanuki.eat"));
 
     public static final RegistryEntry<SoundEvent> ITEM_ARMOR_EQUIP_STUDDED = makeReferenceEvent(makeId("item.armor.equip_studded"));
+    public static final RegistryEntry<SoundEvent> ITEM_ARMOR_EQUIP_DENSITITE = makeReferenceEvent(makeId("item.armor.equip_densitite"));
 
     public static void init() {
         YetAnotherVanillaPlusMod.LOGGER.info("Registering sounds for YAVPM!");

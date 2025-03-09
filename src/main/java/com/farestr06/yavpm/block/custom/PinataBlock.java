@@ -38,13 +38,19 @@ import org.jetbrains.annotations.Nullable;
 
 public class PinataBlock extends BlockWithEntity {
     public static final MapCodec<PinataBlock> CODEC = createCodec(PinataBlock::new);
-    public static final IntProperty HITS = IntProperty.of("hits", 0, 4);
+    public static final IntProperty HITS = IntProperty.of("hits", 0, 8);
     public static final BooleanProperty OPENED = BooleanProperty.of("opened");
     private static final VoxelShape SHAPE = Block.createCuboidShape(4, 0, 4, 12, 8, 12);
 
     public PinataBlock(Settings settings) {
         super(settings);
         setDefaultState(getDefaultState().with(OPENED, true).with(HITS, 0));
+    }
+
+    @Override
+    public @Nullable BlockState getPlacementState(ItemPlacementContext ctx) {
+        Random rand = ctx.getWorld().getRandom();
+        return this.getDefaultState().with(HITS, rand.nextBetween(0, 4));
     }
 
     @Override

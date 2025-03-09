@@ -1,0 +1,18 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "yavpm:dropper_to_recycler_enabled"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "recycler",
+  "ingredients": [
+    "minecraft:dropper",
+    "minecraft:iron_ingot"
+  ],
+  "result": {
+    "count": 1,
+    "id": "yavpm:recycler"
+  }
+}

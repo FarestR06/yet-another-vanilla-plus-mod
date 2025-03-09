@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": "#yavpm:densitite_tool_materials",
+  "base": "minecraft:diamond_shovel",
+  "result": {
+    "count": 1,
+    "id": "yavpm:densitite_shovel"
+  },
+  "template": "yavpm:densitite_upgrade_smithing_template"
+}

@@ -19,44 +19,30 @@ public class PrickleLogBlock extends PillarBlock {
 
     public PrickleLogBlock(Settings settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(PRICKLY, true));
+        this.setDefaultState(this.getDefaultState().with(PRICKLY, true)); // Naturally spawning Prickle Logs are prickly! Ouch!
     }
 
     @Override
     public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return super.getPlacementState(ctx).with(PRICKLY, false);
+        return super.getPlacementState(ctx).with(PRICKLY, false); // Player-placed Prickle Logs shouldn't be prickly.
     }
 
     @Override
     public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
+        // Are we on the server side?
         if (world instanceof ServerWorld serverWorld) {
             if (
-                    (state.get(Properties.AXIS).isHorizontal()
-                    || state.isOf(YavpmBlocks.PRICKLE_WOOD)) && state.get(PRICKLY)
+                    // If it's a horizontal Prickle Log or a Prickle Wood...
+                    (state.get(Properties.AXIS).isHorizontal() || state.isOf(YavpmBlocks.PRICKLE_WOOD))
+                            && state.get(PRICKLY) // And it has the needles...
             ) {
-                if (entity instanceof LivingEntity livingEntity) {
+                if (entity instanceof LivingEntity livingEntity) { // Then we'll check if the entity is alive.
+                    // If they are, we'll poke them!
                     livingEntity.damage(serverWorld, livingEntity.getDamageSources().cactus(), 1.5f);
                 }
             }
         }
     }
-
-    /*
-    @Override
-    protected ItemActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (state.get(PRICKLY) && stack.isOf(Items.SHEARS) && hand == Hand.MAIN_HAND) {
-            Random rand = world.getRandom();
-            int count = rand.nextBetween(2, 10);
-            stack.damage(count, player, EquipmentSlot.MAINHAND);
-            player.giveItemStack(new ItemStack(YavpmBlocks.PRICKLE_SHOOT, rand.nextBetween(1,5)));
-            player.playSound(YavpmSounds.BLOCK_PRICKLE_LOG_PLUCK);
-            world.setBlockState(pos, state.with(PRICKLY, false), Block.NOTIFY_NEIGHBORS);
-            return ItemActionResult.success(true);
-        }
-        return super.onUseWithItem(stack, state, world, pos, player, hand, hit);
-    }
-
-     */
 
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {

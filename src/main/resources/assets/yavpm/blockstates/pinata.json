@@ -15,6 +15,18 @@
     "hits=4,opened=false": {
       "model": "yavpm:block/pinata_closed"
     },
+    "hits=5,opened=false": {
+      "model": "yavpm:block/pinata_closed"
+    },
+    "hits=6,opened=false": {
+      "model": "yavpm:block/pinata_closed"
+    },
+    "hits=7,opened=false": {
+      "model": "yavpm:block/pinata_closed"
+    },
+    "hits=8,opened=false": {
+      "model": "yavpm:block/pinata_closed"
+    },
     "hits=0,opened=true": {
       "model": "yavpm:block/pinata_opened"
     },
@@ -28,6 +40,18 @@
       "model": "yavpm:block/pinata_opened"
     },
     "hits=4,opened=true": {
+      "model": "yavpm:block/pinata_opened"
+    },
+    "hits=5,opened=true": {
+      "model": "yavpm:block/pinata_opened"
+    },
+    "hits=6,opened=true": {
+      "model": "yavpm:block/pinata_opened"
+    },
+    "hits=7,opened=true": {
+      "model": "yavpm:block/pinata_opened"
+    },
+    "hits=8,opened=true": {
       "model": "yavpm:block/pinata_opened"
     }
   }

@@ -1,0 +1,16 @@
+{
+  "fabric:load_conditions": [
+    {
+      "condition": "yavpm:double_slabs_enabled"
+    }
+  ],
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "yavpm:soulstone"
+  ],
+  "result": {
+    "count": 2,
+    "id": "yavpm:soulstone_slab"
+  }
+}

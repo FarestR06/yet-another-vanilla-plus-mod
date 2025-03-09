@@ -1,7 +1,14 @@
 {
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:not",
+      "value": {
+        "condition": "yavpm:more_trapdoors_enabled"
+      }
+    }
+  ],
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
-  "group": "wooden_trapdoor",
   "key": {
     "#": "yavpm:apple_planks"
   },

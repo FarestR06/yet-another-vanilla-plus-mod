@@ -43,6 +43,7 @@ public class YavpmConfig {
     @SerialEntry(comment = "Soul Glowing Obsidian blocks will emit the specified light level. Default is 9.")
     public int soulGlowingObsidianLuminance = 9;
     // endregion
+
     // region Items
     @SerialEntry(comment = "If true, Key Golems will cry out when held. Default is true.")
     public boolean babyKeyCries = true;
@@ -51,6 +52,24 @@ public class YavpmConfig {
     @SerialEntry(comment = "Some treasures that are uncraftable in vanilla, like tridents or name tags, are craftable when this option is enabled. Default is true.")
     public boolean rareEquipmentCraftingRecipes = true;
     // endregion
+
+    // region Compatibility
+    @SerialEntry
+    public boolean dropperToRecycler = false;
+    @SerialEntry
+    public boolean doubleSlabs = false;
+    @SerialEntry
+    public boolean moreTrapdoors = false;
+    @SerialEntry
+    public boolean moreBark = false;
+    @SerialEntry
+    public boolean moreStairs = false;
+    @SerialEntry
+    public boolean backToBlocks = false;
+    @SerialEntry
+    public boolean unpackWarpedWart = false;
+    // endregion
+
     // region Easter Eggs
     @SerialEntry(comment = "A special splash will sometimes appear on Wednesday; the likelihood of this happening is determined by this value. Default is 0.3f.")
     public float snapshotDaySplashChance = 0.3f;

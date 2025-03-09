@@ -9,6 +9,10 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.entry.RegistryEntry;
 
 public class YavpmStatusEffects {
+    /**
+     * Silence: This effect prevents inflicted mobs from setting off Sculk Sensors.
+     */
+    public static final RegistryEntry<StatusEffect> SILENCE = register("silence", new SimpleStatusEffect(StatusEffectCategory.BENEFICIAL, 0x00ffff));
     public static final RegistryEntry<StatusEffect> VOID_TOUCHED = register("void_touched", new SimpleStatusEffect(StatusEffectCategory.HARMFUL, 0xe079fa));
     public static final RegistryEntry<StatusEffect> WOUNDED = register("wounded", new WoundedStatusEffect());
     public static final RegistryEntry<StatusEffect> CHOKING = register("choking", new ChokingStatusEffect());

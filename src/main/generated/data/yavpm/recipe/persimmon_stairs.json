@@ -1,7 +1,14 @@
 {
+  "fabric:load_conditions": [
+    {
+      "condition": "fabric:not",
+      "value": {
+        "condition": "yavpm:more_stairs_enabled"
+      }
+    }
+  ],
   "type": "minecraft:crafting_shaped",
   "category": "building",
-  "group": "wooden_stairs",
   "key": {
     "#": "yavpm:persimmon_planks"
   },

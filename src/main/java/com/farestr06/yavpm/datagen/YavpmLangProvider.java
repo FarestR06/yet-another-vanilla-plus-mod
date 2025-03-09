@@ -8,13 +8,12 @@ import com.farestr06.yavpm.item.enchantment.YavpmEnchantments;
 import com.farestr06.yavpm.util.YavpmTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;
 
 public class YavpmLangProvider extends FabricLanguageProvider {
+
     protected YavpmLangProvider(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
         super(dataOutput, registryLookup);
     }
@@ -41,6 +40,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
     private static void tagTranslations(TranslationBuilder builder) {
 
         builder.add(YavpmTags.Items.REPAIRS_STUDDED_ARMOR, "Repairs Studded Armor");
+        builder.add(YavpmTags.Items.REPAIRS_DENSITITE_ARMOR, "Repairs Densitite Armor");
+        builder.add(YavpmTags.Items.DENSITITE_TOOL_MATERIALS, "Densitite Tool Materials");
 
         builder.add(YavpmTags.Items.TANUKI_FOOD, "Tanuki Food");
         builder.add(YavpmTags.Items.CARBONFOWL_FOODS, "Carbonfowl Food");
@@ -192,12 +193,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.FORTUNE_COOKIE, "Fortune Cookie");
         builder.add(YavpmItems.LUCKY_SLIP, "Lucky Slip");
 
-        builder.add(Blocks.NETHER_WART, "Crimson Wart");
-        builder.add(Items.NETHER_WART, "Crimson Wart");
         builder.add(YavpmBlocks.WARPED_WART_CROP, "Warped Wart");
         builder.add(YavpmItems.WARPED_WART, "Warped Wart");
-
-        builder.add(Blocks.NETHER_WART_BLOCK, "Crimson Wart Block");
     }
 
     private static void potionTranslations(TranslationBuilder builder) {
@@ -241,6 +238,15 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("item.minecraft.tipped_arrow.effect.choking", "Arrow of Choking");
         builder.add("item.minecraft.tipped_arrow.effect.long_choking", "Arrow of Choking");
 
+        builder.add("item.minecraft.potion.effect.silence", "Potion of Silence");
+        builder.add("item.minecraft.potion.effect.long_silence", "Potion of Silence");
+        builder.add("item.minecraft.splash_potion.effect.silence", "Splash Potion of Silence");
+        builder.add("item.minecraft.splash_potion.effect.long_silence", "Splash Potion of Silence");
+        builder.add("item.minecraft.lingering_potion.effect.silence", "Lingering Potion of Silence");
+        builder.add("item.minecraft.lingering_potion.effect.long_silence", "Lingering Potion of Silence");
+        builder.add("item.minecraft.tipped_arrow.effect.silence", "Arrow of Silence");
+        builder.add("item.minecraft.tipped_arrow.effect.long_silence", "Arrow of Silence");
+
         builder.add("item.minecraft.potion.effect.haste", "Potion of Haste");
         builder.add("item.minecraft.potion.effect.long_haste", "Potion of Haste");
         builder.add("item.minecraft.potion.effect.strong_haste", "Potion of Haste");
@@ -267,6 +273,25 @@ public class YavpmLangProvider extends FabricLanguageProvider {
     private static void equipmentTranslations(TranslationBuilder builder) {
         builder.add(YavpmItems.REACTOR, "Reactor");
         builder.add(YavpmItems.HEATED_REACTOR, "Heated Reactor");
+
+        builder.add(YavpmItems.DENSITITE_UPGRADE_SMITHING_TEMPLATE, "Densitite Upgrade Smithing Template");
+        builder.add(YavpmBlocks.DENSITITE_BLOCK, "Block of Densitite");
+        builder.add(YavpmItems.DENSITITE_INGOT, "Densitite Ingot");
+        builder.add("item.yavpm.smithing_template.densitite_upgrade.ingredients", "Densitite Ingot");
+        builder.add("item.yavpm.smithing_template.densitite_upgrade.additions_slot_description", "Add Densitite Ingot");
+
+        builder.add(YavpmItems.DENSITITE_SWORD, "Densitite Sword");
+        builder.add(YavpmItems.DENSITITE_SHOVEL, "Densitite Shovel");
+        builder.add(YavpmItems.DENSITITE_PICKAXE, "Densitite Pickaxe");
+        builder.add(YavpmItems.DENSITITE_AXE, "Densitite Axe");
+        builder.add(YavpmItems.DENSITITE_HOE, "Densitite Hoe");
+
+        builder.add(YavpmItems.DENSITITE_HELMET, "Densitite Helmet");
+        builder.add(YavpmItems.DENSITITE_CHESTPLATE, "Densitite Chestplate");
+        builder.add(YavpmItems.DENSITITE_LEGGINGS, "Densitite Leggings");
+        builder.add(YavpmItems.DENSITITE_BOOTS, "Densitite Boots");
+
+        builder.add("subtitles.item.armor.equip_densitite", "Densitite armor clangs");
 
         builder.add(YavpmItems.GAUNTLET_FRAGMENT, "Gauntlet Fragment");
         builder.add(YavpmItems.GAUNTLET, "Gauntlet");
@@ -305,6 +330,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.VOID_PHANTOM_SPAWN_EGG, "Void Phantom Spawn Egg");
         builder.add(YavpmEntities.VOID_PHANTOM, "Void Phantom");
 
+        builder.add(YavpmStatusEffects.SILENCE.value(), "Silence");
         builder.add(YavpmStatusEffects.VOID_TOUCHED.value(), "Void Touched");
         builder.add(YavpmStatusEffects.WOUNDED.value(), "Wounded");
         builder.add(YavpmStatusEffects.CHOKING.value(), "Choking");
@@ -434,6 +460,17 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.POLISHED_KIMBERLITE_WALL, "Polished Kimberlite Wall");
         builder.add(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_WALL, "Polished Kimberlite Brick Wall");
 
+        builder.add(YavpmBlocks.SCULKY_DEEPSLATE_BRICKS, "Sculky Deepslate Bricks");
+        builder.add(YavpmBlocks.SCULKY_DEEPSLATE_BRICK_STAIRS, "Sculky Deepslate Brick Stairs");
+        builder.add(YavpmBlocks.SCULKY_DEEPSLATE_BRICK_SLAB, "Sculky Deepslate Brick Slab");
+        builder.add(YavpmBlocks.SCULKY_DEEPSLATE_BRICK_WALL, "Sculky Deepslate Brick Wall");
+
+        builder.add(YavpmBlocks.INFESTED_COBBLED_DEEPSLATE, "Infested Cobbled Deepslate");
+        builder.add(YavpmBlocks.INFESTED_DEEPSLATE_BRICKS, "Infested Deepslate Bricks");
+        builder.add(YavpmBlocks.INFESTED_CRACKED_DEEPSLATE_BRICKS, "Infested Cracked Deepslate Bricks");
+        builder.add(YavpmBlocks.INFESTED_SCULKY_DEEPSLATE_BRICKS, "Infested Sculky Deepslate Bricks");
+        builder.add(YavpmBlocks.INFESTED_CHISELED_DEEPSLATE, "Infested Chiseled Deepslate Bricks");
+
         builder.add(YavpmBlocks.SOULSTONE, "Soulstone");
         builder.add(YavpmBlocks.CUT_SOULSTONE, "Cut Soulstone");
         builder.add(YavpmBlocks.CHISELED_SOULSTONE, "Chiseled Soulstone");
@@ -466,6 +503,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
     private static void yaclTranslations(TranslationBuilder builder) {
         builder.add("option.yavpm.title", "Yet Another Vanilla Plus Mod Options");
 
+        builder.add("option.yavpm.resourcecondition", "Please note that your world must be reloaded when changing this option for it to take effect.");
+
         builder.add("option.yavpm.format.ticks", "%s ticks (%s seconds)");
         builder.add("option.yavpm.format.multiplier", "%sx");
 
@@ -482,6 +521,12 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("option.yavpm.blocks_and_fluids.void", "Void Block and Void Water");
 
         builder.add("option.yavpm.items", "Items");
+
+        builder.add("option.yavpm.compat", "Compatibility");
+        builder.add("option.yavpm.compat.vanillatweaks", "Vanilla Tweaks");
+        builder.add("option.yavpm.compat.vanillatweaks.desc", "Compatibility with Vanilla Tweaks recipe packs.");
+        builder.add("option.yavpm.compat.vanillatweaks.info1", "A set of resource and data packs that add relatively small improvements to the game.\nMore Info: https://vanillatweaks.net");
+        builder.add("option.yavpm.compat.vanillatweaks.info2", "Originally made by Xisumavoid, and currently developed by André, Stridey, Grant and rx.");
 
         builder.add("option.yavpm.entities_and_effects", "Entities/Mob Effects");
 
@@ -519,13 +564,26 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("option.yavpm.baby_key_cries.title", "Key Golems Cry Out");
         builder.add("option.yavpm.baby_key_cries.desc", "If true, Key Golems will cry out when held. Default is true.");
 
+        builder.add("option.yavpm.dropper_to_recycler.title", "Dropper to Recycler");
+        builder.add("option.yavpm.dropper_to_recycler.desc", "If true, Droppers can be converted to Recyclers using Iron Ingots. Default is false.");
+
+        builder.add("option.yavpm.double_slabs.title", "Double Slabs");
+        builder.add("option.yavpm.double_slabs.desc", "A single block can be converted into two slabs. Default is false.");
+
+        builder.add("option.yavpm.more_trapdoors.title", "More Trapdoors");
+        builder.add("option.yavpm.more_trapdoors.desc", "Crafting Trapdoors yields 12 blocks instead of 3. Default is false.");
+
+        builder.add("option.yavpm.more_stairs.title", "More Stairs");
+        builder.add("option.yavpm.more_stairs.desc", "Crafting Stairs yields 8 blocks instead of 4. Default is false.");
+
         builder.add("option.yavpm.rare_equipment_recipes.title", "Craftable Rare Equipment");
-        builder.add("option.yavpm.rare_equipment_recipes.desc", "Some treasures that are uncraftable in vanilla, like tridents or name tags, are craftable when this option is enabled. Default is true.\nPlease note that your world must be reloaded when changing this option for it to take effect.");
+        builder.add("option.yavpm.rare_equipment_recipes.desc", "Some treasures that are uncraftable in vanilla, like tridents or name tags, are craftable when this option is enabled. Default is true.");
 
         builder.add("option.yavpm.weird_trial_chamber_potions.title", "Weird Trial Chamber Potions");
         builder.add("option.yavpm.weird_trial_chamber_potions.desc", "If true, potions spawned by Ominous Spawners will need to be brewed with Warped Wart. Moongi are unaffected by this option. Default is true.");
     }
 
+    @Deprecated
     private static void unusedTranslations(TranslationBuilder builder) {
         builder.add("enchantment.yavpm.critical_hit.desc", "Gives you a chance to inflict critical hits dealing triple damage.");
 

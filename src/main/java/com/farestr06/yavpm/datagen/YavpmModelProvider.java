@@ -2,7 +2,8 @@ package com.farestr06.yavpm.datagen;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.block.custom.crop.*;
-import com.farestr06.yavpm.item.YavpmArmorMaterials;
+import com.farestr06.yavpm.item.DensititeMaterial;
+import com.farestr06.yavpm.item.StuddedMaterial;
 import com.farestr06.yavpm.item.YavpmItems;
 import it.unimi.dsi.fastutil.ints.Int2ObjectFunction;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
@@ -40,6 +41,8 @@ public class YavpmModelProvider extends FabricModelProvider {
         createAndesiteSet(generator);
         createDioriteSet(generator);
 
+        generator.registerSimpleState(YavpmBlocks.DENSITITE_BLOCK);
+
         generator.registerSimpleCubeAll(YavpmBlocks.GRAPHITE_BLOCK);
         generator.registerSimpleCubeAll(YavpmBlocks.GRAPHENE_BLOCK);
 
@@ -57,6 +60,8 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.registerTintableCross(YavpmBlocks.PRICKLE_SHOOT, BlockStateModelGenerator.CrossType.NOT_TINTED);
 
         generator.registerStateWithModelReference(YavpmBlocks.VOID_WATER, Blocks.WATER);
+
+        createNewDeepslate(generator);
     }
 
     @Override
@@ -78,6 +83,7 @@ public class YavpmModelProvider extends FabricModelProvider {
 
         generator.register(YavpmItems.CHAINMAIL, Models.GENERATED);
         createStuddedArmor(generator);
+        createDensitite(generator);
 
         generator.register(YavpmItems.MUSIC_DISC_MAGNETIC_CIRCUIT, Models.TEMPLATE_MUSIC_DISC);
         generator.register(YavpmItems.DISC_FRAGMENT_MAGNETIC_CIRCUIT, Models.GENERATED);
@@ -89,6 +95,31 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.registerSpawnEgg(YavpmItems.VOID_PHANTOM_SPAWN_EGG, 0x060080, 0xf54bfa);
 
         generator.register(YavpmItems.VOID_WATER_BUCKET, Models.GENERATED);
+    }
+
+    private void createDensitite(ItemModelGenerator generator) {
+        generator.register(YavpmItems.DENSITITE_UPGRADE_SMITHING_TEMPLATE, Models.GENERATED);
+        generator.register(YavpmItems.DENSITITE_INGOT, Models.GENERATED);
+
+        generator.register(YavpmItems.DENSITITE_SWORD, Models.HANDHELD);
+        generator.register(YavpmItems.DENSITITE_SHOVEL, Models.HANDHELD);
+        generator.register(YavpmItems.DENSITITE_PICKAXE, Models.HANDHELD);
+        generator.register(YavpmItems.DENSITITE_AXE, Models.HANDHELD);
+        generator.register(YavpmItems.DENSITITE_HOE, Models.HANDHELD);
+
+        generator.registerArmor(YavpmItems.DENSITITE_HELMET, DensititeMaterial.ARMOR_KEY, "helmet", false);
+        generator.registerArmor(YavpmItems.DENSITITE_CHESTPLATE, DensititeMaterial.ARMOR_KEY, "chestplate", false);
+        generator.registerArmor(YavpmItems.DENSITITE_LEGGINGS, DensititeMaterial.ARMOR_KEY, "leggings", false);
+        generator.registerArmor(YavpmItems.DENSITITE_BOOTS, DensititeMaterial.ARMOR_KEY, "boots", false);
+    }
+
+    private void createNewDeepslate(BlockStateModelGenerator generator) {
+        BlockStateModelGenerator.BlockTexturePool sculkyDeepslatePool
+                = generator.registerCubeAllModelTexturePool(YavpmBlocks.SCULKY_DEEPSLATE_BRICKS);
+
+        sculkyDeepslatePool.stairs(YavpmBlocks.SCULKY_DEEPSLATE_BRICK_STAIRS);
+        sculkyDeepslatePool.slab(YavpmBlocks.SCULKY_DEEPSLATE_BRICK_SLAB);
+        sculkyDeepslatePool.wall(YavpmBlocks.SCULKY_DEEPSLATE_BRICK_WALL);
     }
 
     public final void registerPane(BlockStateModelGenerator generator, Block pane) {
@@ -273,7 +304,8 @@ public class YavpmModelProvider extends FabricModelProvider {
 
         // Apple Planks and Texture Pool
         BlockStateModelGenerator.BlockTexturePool applePool = generator.registerCubeAllModelTexturePool(YavpmBlocks.APPLE_PLANKS);
-        applePool.family(YavpmBlocks.APPLE_FAMILY);
+        applePool.family(YavpmBlocks.APPLE_FAMILY).stairs(YavpmBlocks.APPLE_STAIRS);
+        generator.registerTrapdoor(YavpmBlocks.APPLE_TRAPDOOR);
     }
 
     private static void createPersimmonSet(BlockStateModelGenerator generator) {
@@ -285,7 +317,8 @@ public class YavpmModelProvider extends FabricModelProvider {
 
         // Persimmon Planks and Texture Pool
         BlockStateModelGenerator.BlockTexturePool persimmonPool = generator.registerCubeAllModelTexturePool(YavpmBlocks.PERSIMMON_PLANKS);
-        persimmonPool.family(YavpmBlocks.PERSIMMON_FAMILY);
+        persimmonPool.family(YavpmBlocks.PERSIMMON_FAMILY).stairs(YavpmBlocks.PERSIMMON_STAIRS);
+        generator.registerTrapdoor(YavpmBlocks.PERSIMMON_TRAPDOOR);
     }
 
     private static void createPrickleSet(BlockStateModelGenerator generator) {
@@ -294,14 +327,15 @@ public class YavpmModelProvider extends FabricModelProvider {
 
         BlockStateModelGenerator.BlockTexturePool pricklePool = generator.registerCubeAllModelTexturePool(YavpmBlocks.PRICKLE_PLANKS);
 
-        pricklePool.family(YavpmBlocks.PRICKLE_FAMILY);
+        pricklePool.family(YavpmBlocks.PRICKLE_FAMILY).stairs(YavpmBlocks.PRICKLE_STAIRS);
+        generator.registerTrapdoor(YavpmBlocks.PRICKLE_TRAPDOOR);
     }
 
     private static void createStuddedArmor(ItemModelGenerator generator) {
-        generator.registerArmor(YavpmItems.STUDDED_HELMET, YavpmArmorMaterials.STUDDED_KEY, "helmet", true);
-        generator.registerArmor(YavpmItems.STUDDED_CHESTPLATE, YavpmArmorMaterials.STUDDED_KEY, "chestplate", true);
-        generator.registerArmor(YavpmItems.STUDDED_LEGGINGS, YavpmArmorMaterials.STUDDED_KEY, "leggings", true);
-        generator.registerArmor(YavpmItems.STUDDED_BOOTS, YavpmArmorMaterials.STUDDED_KEY, "boots", true);
+        generator.registerArmor(YavpmItems.STUDDED_HELMET, StuddedMaterial.ARMOR_KEY, "helmet", true);
+        generator.registerArmor(YavpmItems.STUDDED_CHESTPLATE, StuddedMaterial.ARMOR_KEY, "chestplate", true);
+        generator.registerArmor(YavpmItems.STUDDED_LEGGINGS, StuddedMaterial.ARMOR_KEY, "leggings", true);
+        generator.registerArmor(YavpmItems.STUDDED_BOOTS, StuddedMaterial.ARMOR_KEY, "boots", true);
 
     }
 

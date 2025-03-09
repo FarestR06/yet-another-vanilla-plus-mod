@@ -2,16 +2,21 @@ package com.farestr06.yavpm.datagen;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.datagen.condition.RareEquipmentRecipesEnabledResourceCondition;
+import com.farestr06.yavpm.datagen.condition.vanillatweaks.DoubleSlabsEnabledResourceCondition;
+import com.farestr06.yavpm.datagen.condition.vanillatweaks.DropperToRecyclerEnabledResourceCondition;
+import com.farestr06.yavpm.datagen.condition.vanillatweaks.MoreStairsEnabledResourceCondition;
+import com.farestr06.yavpm.datagen.condition.vanillatweaks.MoreTrapdoorsEnabledResourceCondition;
 import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.util.YavpmTags;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
+import net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition;
+import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditions;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
 import net.minecraft.block.Blocks;
-import net.minecraft.data.recipe.CookingRecipeJsonBuilder;
-import net.minecraft.data.recipe.RecipeExporter;
-import net.minecraft.data.recipe.RecipeGenerator;
+import net.minecraft.data.recipe.*;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.RecipeSerializer;
@@ -36,11 +41,18 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
         final RecipeExporter rareEquipmentRecipeExporter =
                 withConditions(exporter, new RareEquipmentRecipesEnabledResourceCondition());
 
+        final ResourceCondition stairCondition = new MoreStairsEnabledResourceCondition();
+        final RecipeExporter ifMoreStairsEnabled = withConditions(exporter, stairCondition);
+        final RecipeExporter ifMoreStairsNotEnabled = withConditions(exporter, ResourceConditions.not(stairCondition));
+
+        final ResourceCondition trapdoorCondition = new MoreTrapdoorsEnabledResourceCondition();
+        final RecipeExporter ifMoreTrapdoorsEnabled = withConditions(exporter, trapdoorCondition);
+        final RecipeExporter ifMoreTrapdoorsNotEnabled = withConditions(exporter, ResourceConditions.not(trapdoorCondition));
+
         return new RecipeGenerator(registryLookup, exporter) {
             final RegistryWrapper.Impl<Item> itemLookup = registryLookup.getOrThrow(RegistryKeys.ITEM);
             @Override
             public void generate() {
-                
                 foodRecipes(exporter);
 
                 kimberlite(exporter);
@@ -50,6 +62,11 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
 
                 obsidianRecipes(exporter);
                 diamondRecipes(exporter);
+
+                vtCompat(exporter);
+
+                densititeRecipes();
+
 
                 createShaped(RecipeCategory.REDSTONE, YavpmBlocks.PINATA)
                         .input('P', Items.PAPER)
@@ -85,6 +102,7 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                         .pattern("CCC")
                         .pattern("CIC")
                         .pattern("CRC")
+                        .group("recycler")
                         .criterion(hasItem(Items.DROPPER), conditionsFromItem(Items.DROPPER))
                         .offerTo(exporter);
 
@@ -96,7 +114,7 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
 
                 offerCompactingRecipe(RecipeCategory.MISC, YavpmItems.MUSIC_DISC_MAGNETIC_CIRCUIT, YavpmItems.DISC_FRAGMENT_MAGNETIC_CIRCUIT);
 
-                this.offer2x2CompactingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.SOULSTONE, Blocks.SAND);
+                this.offer2x2CompactingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.SOULSTONE, Items.SOUL_SAND);
                 this.createSlabRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.SOULSTONE_SLAB, Ingredient.ofItems(YavpmBlocks.SOULSTONE, YavpmBlocks.CHISELED_SOULSTONE))
                         .criterion("has_sandstone", this.conditionsFromItem(YavpmBlocks.SOULSTONE))
                         .criterion("has_chiseled_sandstone", this.conditionsFromItem(YavpmBlocks.CHISELED_SOULSTONE))
@@ -120,6 +138,81 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 this.offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.SOULSTONE_STAIRS, YavpmBlocks.SOULSTONE);
                 this.offerStonecuttingRecipe(RecipeCategory.DECORATIONS, YavpmBlocks.SOULSTONE_WALL, YavpmBlocks.SOULSTONE);
                 this.offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.CHISELED_SOULSTONE, YavpmBlocks.SOULSTONE);
+            }
+
+            private void densititeRecipes() {
+                CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItem(Items.HEAVY_CORE), RecipeCategory.MISC, YavpmBlocks.DENSITITE_BLOCK, 4.0F, 200)
+                        .criterion(hasItem(Items.HEAVY_CORE), this.conditionsFromItem(Items.HEAVY_CORE))
+                        .offerTo(this.exporter, "densitite_block_from_smelting");
+                CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItem(Items.HEAVY_CORE), RecipeCategory.MISC, YavpmBlocks.DENSITITE_BLOCK, 4.0F, 200)
+                        .criterion(hasItem(Items.HEAVY_CORE), this.conditionsFromItem(Items.HEAVY_CORE))
+                        .offerTo(this.exporter, "densitite_block_from_blasting");
+
+                createShapeless(RecipeCategory.MISC, YavpmItems.DENSITITE_INGOT, 3)
+                        .input(YavpmBlocks.DENSITITE_BLOCK)
+                        .criterion(hasItem(YavpmBlocks.DENSITITE_BLOCK), conditionsFromItem(YavpmBlocks.DENSITITE_BLOCK))
+                        .offerTo(exporter);
+
+                offerDensititeUpgradeRecipe(Items.DIAMOND_SWORD, RecipeCategory.TOOLS, YavpmItems.DENSITITE_SWORD);
+                offerDensititeUpgradeRecipe(Items.DIAMOND_SHOVEL, RecipeCategory.TOOLS, YavpmItems.DENSITITE_SHOVEL);
+                offerDensititeUpgradeRecipe(Items.DIAMOND_PICKAXE, RecipeCategory.TOOLS, YavpmItems.DENSITITE_PICKAXE);
+                offerDensititeUpgradeRecipe(Items.DIAMOND_AXE, RecipeCategory.TOOLS, YavpmItems.DENSITITE_AXE);
+                offerDensititeUpgradeRecipe(Items.DIAMOND_HOE, RecipeCategory.TOOLS, YavpmItems.DENSITITE_HOE);
+
+                offerDensititeUpgradeRecipe(Items.DIAMOND_HELMET, RecipeCategory.TOOLS, YavpmItems.DENSITITE_HELMET);
+                offerDensititeUpgradeRecipe(Items.DIAMOND_CHESTPLATE, RecipeCategory.TOOLS, YavpmItems.DENSITITE_CHESTPLATE);
+                offerDensititeUpgradeRecipe(Items.DIAMOND_LEGGINGS, RecipeCategory.TOOLS, YavpmItems.DENSITITE_LEGGINGS);
+                offerDensititeUpgradeRecipe(Items.DIAMOND_BOOTS, RecipeCategory.TOOLS, YavpmItems.DENSITITE_BOOTS);
+            }
+
+            public void offerDensititeUpgradeRecipe(Item input, RecipeCategory category, Item result) {
+                SmithingTransformRecipeJsonBuilder.create(
+                                Ingredient.ofItem(YavpmItems.DENSITITE_UPGRADE_SMITHING_TEMPLATE),
+                                Ingredient.ofItem(input),
+                                this.ingredientFromTag(YavpmTags.Items.DENSITITE_TOOL_MATERIALS),
+                                category,
+                                result
+                        )
+                        .criterion("has_densitite_ingot", this.conditionsFromTag(YavpmTags.Items.DENSITITE_TOOL_MATERIALS))
+                        .offerTo(this.exporter, getItemPath(result) + "_smithing");
+            }
+
+            private void vtCompat(RecipeExporter exporter) {
+                final RecipeExporter dropperToRecycler = withConditions(exporter, new DropperToRecyclerEnabledResourceCondition());
+                createShapeless(RecipeCategory.REDSTONE, YavpmBlocks.RECYCLER)
+                        .input(Items.DROPPER).input(Items.IRON_INGOT)
+                        .criterion(hasItem(Items.DROPPER), conditionsFromItem(Items.DROPPER))
+                        .criterion(hasItem(Items.IRON_INGOT), conditionsFromItem(Items.IRON_INGOT))
+                        .group("recycler")
+                        .offerTo(dropperToRecycler, "recycler_from_dropper");
+
+                doubleSlabs(exporter);
+            }
+
+            private void doubleSlabs(RecipeExporter exporter) {
+                final RecipeExporter doubleSlabs = withConditions(exporter, new DoubleSlabsEnabledResourceCondition());
+
+                createDoubleSlabRecipe(YavpmBlocks.APPLE_PLANKS, YavpmBlocks.APPLE_SLAB).offerTo(doubleSlabs, "double_apple_slabs");
+                createDoubleSlabRecipe(YavpmBlocks.PRICKLE_PLANKS, YavpmBlocks.PRICKLE_SLAB).offerTo(doubleSlabs, "double_prickle_slabs");
+                createDoubleSlabRecipe(YavpmBlocks.PERSIMMON_PLANKS, YavpmBlocks.PERSIMMON_SLAB).offerTo(doubleSlabs, "double_persimmon_slabs");
+                createDoubleSlabRecipe(YavpmBlocks.COBBLED_ANDESITE, YavpmBlocks.COBBLED_ANDESITE_SLAB).offerTo(doubleSlabs, "double_cobbled_andesite_slabs");
+                createDoubleSlabRecipe(YavpmBlocks.COBBLED_DIORITE, YavpmBlocks.COBBLED_DIORITE_SLAB).offerTo(doubleSlabs, "double_cobbled_diorite_slabs");
+                createDoubleSlabRecipe(YavpmBlocks.COBBLED_GRANITE, YavpmBlocks.COBBLED_GRANITE_SLAB).offerTo(doubleSlabs, "double_cobbled_granite_slabs");
+                createDoubleSlabRecipe(YavpmBlocks.POLISHED_ANDESITE_BRICKS, YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB).offerTo(doubleSlabs, "double_polished_andesite_brick_slabs");
+                createDoubleSlabRecipe(YavpmBlocks.POLISHED_DIORITE_BRICKS, YavpmBlocks.POLISHED_DIORITE_BRICK_SLAB).offerTo(doubleSlabs, "double_polished_diorite_brick_slabs");
+                createDoubleSlabRecipe(YavpmBlocks.POLISHED_GRANITE_BRICKS, YavpmBlocks.POLISHED_GRANITE_BRICK_SLAB).offerTo(doubleSlabs, "double_polished_granite_brick_slabs");
+                createDoubleSlabRecipe(YavpmBlocks.KIMBERLITE, YavpmBlocks.KIMBERLITE_SLAB).offerTo(doubleSlabs, "double_kimberlite_slabs");
+                createDoubleSlabRecipe(YavpmBlocks.POLISHED_KIMBERLITE, YavpmBlocks.POLISHED_KIMBERLITE_SLAB).offerTo(doubleSlabs, "double_polished_kimberlite_slabs");
+                createDoubleSlabRecipe(YavpmBlocks.POLISHED_KIMBERLITE_BRICKS, YavpmBlocks.POLISHED_KIMBERLITE_BRICK_SLAB).offerTo(doubleSlabs,"double_polished_kimberlite_brick_slabs");
+                createDoubleSlabRecipe(YavpmBlocks.SOULSTONE, YavpmBlocks.SOULSTONE_SLAB).offerTo(doubleSlabs, "double_soulstone_slabs");
+                createDoubleSlabRecipe(YavpmBlocks.CUT_SOULSTONE, YavpmBlocks.CUT_SOULSTONE_SLAB).offerTo(doubleSlabs, "double_cut_soulstone_slabs");
+                createDoubleSlabRecipe(YavpmBlocks.SMOOTH_SOULSTONE, YavpmBlocks.SMOOTH_SOULSTONE_SLAB).offerTo(doubleSlabs, "double_smooth_soulstone_slabs");
+            }
+
+            private ShapelessRecipeJsonBuilder createDoubleSlabRecipe(ItemConvertible block, ItemConvertible slab){
+                return createShapeless(RecipeCategory.BUILDING_BLOCKS, slab, 2)
+                        .input(block)
+                        .criterion(hasItem(block), conditionsFromItem(block));
             }
 
             private void diamondRecipes(RecipeExporter exporter) {
@@ -326,6 +419,22 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 generateFamily(YavpmBlocks.COBBLED_GRANITE_FAMILY, FeatureSet.of(FeatureFlags.VANILLA));
                 generateFamily(YavpmBlocks.POLISHED_GRANITE_BRICK_FAMILY, FeatureSet.of(FeatureFlags.VANILLA));
 
+                createMoreStairsRecipe(YavpmBlocks.COBBLED_GRANITE_STAIRS, Ingredient.ofItems(YavpmBlocks.COBBLED_GRANITE))
+                        .criterion(hasItem(YavpmBlocks.COBBLED_GRANITE), conditionsFromItem(YavpmBlocks.COBBLED_GRANITE))
+                        .offerTo(ifMoreStairsEnabled, "more_cobbled_granite_stairs");
+
+                createStairsRecipe(YavpmBlocks.COBBLED_GRANITE_STAIRS, Ingredient.ofItems(YavpmBlocks.COBBLED_GRANITE))
+                        .criterion(hasItem(YavpmBlocks.COBBLED_GRANITE), conditionsFromItem(YavpmBlocks.COBBLED_GRANITE))
+                        .offerTo(ifMoreStairsNotEnabled);
+
+                createMoreStairsRecipe(YavpmBlocks.POLISHED_GRANITE_BRICK_STAIRS, Ingredient.ofItems(YavpmBlocks.POLISHED_GRANITE_BRICKS))
+                        .criterion(hasItem(YavpmBlocks.POLISHED_GRANITE_BRICKS), conditionsFromItem(YavpmBlocks.POLISHED_GRANITE_BRICKS))
+                        .offerTo(ifMoreStairsEnabled, "more_polished_granite_brick_stairs");
+
+                createStairsRecipe(YavpmBlocks.POLISHED_GRANITE_BRICK_STAIRS, Ingredient.ofItems(YavpmBlocks.POLISHED_GRANITE_BRICKS))
+                        .criterion(hasItem(YavpmBlocks.POLISHED_GRANITE_BRICKS), conditionsFromItem(YavpmBlocks.POLISHED_GRANITE_BRICKS))
+                        .offerTo(ifMoreStairsNotEnabled);
+
                 offerWallRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.POLISHED_GRANITE_WALL, Blocks.POLISHED_GRANITE);
 
                 CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(YavpmBlocks.COBBLED_GRANITE), RecipeCategory.BUILDING_BLOCKS, Blocks.GRANITE.asItem(), 0.1F, 200)
@@ -374,6 +483,22 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 generateFamily(YavpmBlocks.COBBLED_ANDESITE_FAMILY, FeatureSet.of(FeatureFlags.VANILLA));
                 generateFamily(YavpmBlocks.POLISHED_ANDESITE_BRICK_FAMILY, FeatureSet.of(FeatureFlags.VANILLA));
 
+                createMoreStairsRecipe(YavpmBlocks.COBBLED_ANDESITE_STAIRS, Ingredient.ofItems(YavpmBlocks.COBBLED_ANDESITE))
+                        .criterion(hasItem(YavpmBlocks.COBBLED_ANDESITE), conditionsFromItem(YavpmBlocks.COBBLED_ANDESITE))
+                        .offerTo(ifMoreStairsEnabled, "more_cobbled_andesite_stairs");
+
+                createStairsRecipe(YavpmBlocks.COBBLED_ANDESITE_STAIRS, Ingredient.ofItems(YavpmBlocks.COBBLED_ANDESITE))
+                        .criterion(hasItem(YavpmBlocks.COBBLED_ANDESITE), conditionsFromItem(YavpmBlocks.COBBLED_ANDESITE))
+                        .offerTo(ifMoreStairsNotEnabled);
+
+                createMoreStairsRecipe(YavpmBlocks.POLISHED_ANDESITE_BRICK_STAIRS, Ingredient.ofItems(YavpmBlocks.POLISHED_ANDESITE_BRICKS))
+                        .criterion(hasItem(YavpmBlocks.POLISHED_ANDESITE_BRICKS), conditionsFromItem(YavpmBlocks.POLISHED_ANDESITE_BRICKS))
+                        .offerTo(ifMoreStairsEnabled, "more_polished_andesite_brick_stairs");
+
+                createStairsRecipe(YavpmBlocks.POLISHED_ANDESITE_BRICK_STAIRS, Ingredient.ofItems(YavpmBlocks.POLISHED_ANDESITE_BRICKS))
+                        .criterion(hasItem(YavpmBlocks.POLISHED_ANDESITE_BRICKS), conditionsFromItem(YavpmBlocks.POLISHED_ANDESITE_BRICKS))
+                        .offerTo(ifMoreStairsNotEnabled);
+
                 offerWallRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.POLISHED_ANDESITE_WALL, Blocks.POLISHED_ANDESITE);
 
                 CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItems(YavpmBlocks.COBBLED_ANDESITE), RecipeCategory.BUILDING_BLOCKS, Blocks.ANDESITE.asItem(), 0.1F, 200)
@@ -421,6 +546,23 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
             private void diorite(RecipeExporter exporter) {
                 generateFamily(YavpmBlocks.COBBLED_DIORITE_FAMILY, FeatureSet.of(FeatureFlags.VANILLA));
                 generateFamily(YavpmBlocks.POLISHED_DIORITE_BRICK_FAMILY, FeatureSet.of(FeatureFlags.VANILLA));
+
+                createMoreStairsRecipe(YavpmBlocks.COBBLED_DIORITE_STAIRS, Ingredient.ofItems(YavpmBlocks.COBBLED_DIORITE))
+                        .criterion(hasItem(YavpmBlocks.COBBLED_DIORITE), conditionsFromItem(YavpmBlocks.COBBLED_DIORITE))
+                        .offerTo(ifMoreStairsEnabled, "more_cobbled_diorite_stairs");
+
+                createStairsRecipe(YavpmBlocks.COBBLED_DIORITE_STAIRS, Ingredient.ofItems(YavpmBlocks.COBBLED_DIORITE))
+                        .criterion(hasItem(YavpmBlocks.COBBLED_DIORITE), conditionsFromItem(YavpmBlocks.COBBLED_DIORITE))
+                        .offerTo(ifMoreStairsNotEnabled);
+
+                createMoreStairsRecipe(YavpmBlocks.POLISHED_DIORITE_BRICK_STAIRS, Ingredient.ofItems(YavpmBlocks.POLISHED_DIORITE_BRICKS))
+                        .criterion(hasItem(YavpmBlocks.POLISHED_DIORITE_BRICKS), conditionsFromItem(YavpmBlocks.POLISHED_DIORITE_BRICKS))
+                        .offerTo(ifMoreStairsEnabled, "more_polished_diorite_brick_stairs");
+
+                createStairsRecipe(YavpmBlocks.POLISHED_DIORITE_BRICK_STAIRS, Ingredient.ofItems(YavpmBlocks.POLISHED_DIORITE_BRICKS))
+                        .criterion(hasItem(YavpmBlocks.POLISHED_DIORITE_BRICKS), conditionsFromItem(YavpmBlocks.POLISHED_DIORITE_BRICKS))
+                        .offerTo(ifMoreStairsNotEnabled);
+
 
                 offerWallRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.POLISHED_DIORITE_WALL, Blocks.POLISHED_DIORITE);
 
@@ -482,6 +624,30 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 generateFamily(YavpmBlocks.POLISHED_KIMBERLITE_FAMILY, FeatureSet.of(FeatureFlags.VANILLA));
                 generateFamily(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_FAMILY, FeatureSet.of(FeatureFlags.VANILLA));
 
+                createMoreStairsRecipe(YavpmBlocks.KIMBERLITE_STAIRS, Ingredient.ofItems(YavpmBlocks.KIMBERLITE))
+                        .criterion(hasItem(YavpmBlocks.KIMBERLITE), conditionsFromItem(YavpmBlocks.KIMBERLITE))
+                        .offerTo(ifMoreStairsEnabled, "more_kimberlite_stairs");
+
+                createStairsRecipe(YavpmBlocks.KIMBERLITE_STAIRS, Ingredient.ofItems(YavpmBlocks.KIMBERLITE))
+                        .criterion(hasItem(YavpmBlocks.KIMBERLITE), conditionsFromItem(YavpmBlocks.KIMBERLITE))
+                        .offerTo(ifMoreStairsNotEnabled);
+
+                createMoreStairsRecipe(YavpmBlocks.POLISHED_KIMBERLITE_STAIRS, Ingredient.ofItems(YavpmBlocks.POLISHED_KIMBERLITE))
+                        .criterion(hasItem(YavpmBlocks.POLISHED_KIMBERLITE), conditionsFromItem(YavpmBlocks.POLISHED_KIMBERLITE))
+                        .offerTo(ifMoreStairsEnabled, "more_polished_kimberlite_stairs");
+
+                createStairsRecipe(YavpmBlocks.POLISHED_KIMBERLITE_STAIRS, Ingredient.ofItems(YavpmBlocks.POLISHED_KIMBERLITE))
+                        .criterion(hasItem(YavpmBlocks.POLISHED_KIMBERLITE), conditionsFromItem(YavpmBlocks.POLISHED_KIMBERLITE))
+                        .offerTo(ifMoreStairsNotEnabled);
+
+                createMoreStairsRecipe(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_STAIRS, Ingredient.ofItems(YavpmBlocks.POLISHED_KIMBERLITE_BRICKS))
+                        .criterion(hasItem(YavpmBlocks.POLISHED_KIMBERLITE_BRICKS), conditionsFromItem(YavpmBlocks.POLISHED_KIMBERLITE_BRICKS))
+                        .offerTo(ifMoreStairsEnabled, "more_polished_kimberlite_brick_stairs");
+
+                createStairsRecipe(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_STAIRS, Ingredient.ofItems(YavpmBlocks.POLISHED_KIMBERLITE_BRICKS))
+                        .criterion(hasItem(YavpmBlocks.POLISHED_KIMBERLITE_BRICKS), conditionsFromItem(YavpmBlocks.POLISHED_KIMBERLITE_BRICKS))
+                        .offerTo(ifMoreStairsNotEnabled);
+
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.KIMBERLITE_SLAB, YavpmBlocks.KIMBERLITE, 2);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.KIMBERLITE_STAIRS, YavpmBlocks.KIMBERLITE);
                 offerStonecuttingRecipe(RecipeCategory.DECORATIONS, YavpmBlocks.KIMBERLITE_WALL, YavpmBlocks.KIMBERLITE);
@@ -512,6 +678,28 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 offerBarkBlockRecipe(YavpmBlocks.APPLE_WOOD, YavpmBlocks.APPLE_LOG);
                 offerBarkBlockRecipe(YavpmBlocks.STRIPPED_APPLE_WOOD, YavpmBlocks.STRIPPED_APPLE_LOG);
                 generateFamily(YavpmBlocks.APPLE_FAMILY, FeatureSet.of(FeatureFlags.VANILLA));
+
+                createMoreTrapdoorsRecipe(YavpmBlocks.APPLE_TRAPDOOR, Ingredient.ofItems(YavpmBlocks.APPLE_PLANKS))
+                        .criterion(hasItem(YavpmBlocks.APPLE_PLANKS), conditionsFromItem(YavpmBlocks.APPLE_PLANKS))
+                        .offerTo(ifMoreTrapdoorsEnabled, "more_apple_trapdoors");
+                createTrapdoorRecipe(YavpmBlocks.APPLE_TRAPDOOR, Ingredient.ofItems(YavpmBlocks.APPLE_PLANKS))
+                        .criterion(hasItem(YavpmBlocks.APPLE_PLANKS), conditionsFromItem(YavpmBlocks.APPLE_PLANKS))
+                        .offerTo(ifMoreTrapdoorsNotEnabled);
+
+                createMoreStairsRecipe(YavpmBlocks.APPLE_STAIRS, Ingredient.ofItems(YavpmBlocks.APPLE_PLANKS))
+                        .criterion(hasItem(YavpmBlocks.APPLE_PLANKS), conditionsFromItem(YavpmBlocks.APPLE_PLANKS))
+                        .offerTo(ifMoreStairsEnabled, "more_apple_stairs");
+                createStairsRecipe(YavpmBlocks.APPLE_STAIRS, Ingredient.ofItems(YavpmBlocks.APPLE_PLANKS))
+                        .criterion(hasItem(YavpmBlocks.APPLE_PLANKS), conditionsFromItem(YavpmBlocks.APPLE_PLANKS))
+                        .offerTo(ifMoreStairsNotEnabled);
+            }
+
+            private CraftingRecipeJsonBuilder createMoreTrapdoorsRecipe(ItemConvertible output, Ingredient input) {
+                return this.createShaped(RecipeCategory.REDSTONE, output, 12).input('#', input).pattern("###").pattern("###");
+            }
+
+            public CraftingRecipeJsonBuilder createMoreStairsRecipe(ItemConvertible output, Ingredient input) {
+                return this.createShaped(RecipeCategory.BUILDING_BLOCKS, output, 8).input('#', input).pattern("#  ").pattern("## ").pattern("###");
             }
 
             private void persimmonRecipes() {
@@ -519,6 +707,20 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 offerBarkBlockRecipe(YavpmBlocks.PERSIMMON_WOOD, YavpmBlocks.PERSIMMON_LOG);
                 offerBarkBlockRecipe(YavpmBlocks.STRIPPED_PERSIMMON_WOOD, YavpmBlocks.STRIPPED_PERSIMMON_LOG);
                 generateFamily(YavpmBlocks.PERSIMMON_FAMILY, FeatureSet.of(FeatureFlags.VANILLA));
+
+                createMoreTrapdoorsRecipe(YavpmBlocks.PERSIMMON_TRAPDOOR, Ingredient.ofItems(YavpmBlocks.PERSIMMON_PLANKS))
+                        .criterion(hasItem(YavpmBlocks.PERSIMMON_PLANKS), conditionsFromItem(YavpmBlocks.PERSIMMON_PLANKS))
+                        .offerTo(ifMoreTrapdoorsEnabled, "more_persimmon_trapdoors");
+                createTrapdoorRecipe(YavpmBlocks.PERSIMMON_TRAPDOOR, Ingredient.ofItems(YavpmBlocks.PERSIMMON_PLANKS))
+                        .criterion(hasItem(YavpmBlocks.PERSIMMON_PLANKS), conditionsFromItem(YavpmBlocks.PERSIMMON_PLANKS))
+                        .offerTo(ifMoreTrapdoorsNotEnabled);
+
+                createMoreStairsRecipe(YavpmBlocks.PERSIMMON_STAIRS, Ingredient.ofItems(YavpmBlocks.PERSIMMON_PLANKS))
+                        .criterion(hasItem(YavpmBlocks.PERSIMMON_PLANKS), conditionsFromItem(YavpmBlocks.PERSIMMON_PLANKS))
+                        .offerTo(ifMoreStairsEnabled, "more_persimmon_stairs");
+                createStairsRecipe(YavpmBlocks.PERSIMMON_STAIRS, Ingredient.ofItems(YavpmBlocks.PERSIMMON_PLANKS))
+                        .criterion(hasItem(YavpmBlocks.PERSIMMON_PLANKS), conditionsFromItem(YavpmBlocks.PERSIMMON_PLANKS))
+                        .offerTo(ifMoreStairsNotEnabled);
             }
 
             private void prickleWoodRecipes() {
@@ -526,6 +728,20 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 offerBarkBlockRecipe(YavpmBlocks.PRICKLE_WOOD, YavpmBlocks.PRICKLE_LOG);
                 offerBarkBlockRecipe(YavpmBlocks.STRIPPED_PRICKLE_WOOD, YavpmBlocks.STRIPPED_PRICKLE_LOG);
                 generateFamily(YavpmBlocks.PRICKLE_FAMILY, FeatureSet.of(FeatureFlags.VANILLA));
+
+                createMoreTrapdoorsRecipe(YavpmBlocks.PRICKLE_TRAPDOOR, Ingredient.ofItems(YavpmBlocks.PRICKLE_PLANKS))
+                        .criterion(hasItem(YavpmBlocks.PRICKLE_PLANKS), conditionsFromItem(YavpmBlocks.PRICKLE_PLANKS))
+                        .offerTo(ifMoreTrapdoorsEnabled, "more_prickle_trapdoors");
+                createTrapdoorRecipe(YavpmBlocks.PRICKLE_TRAPDOOR, Ingredient.ofItems(YavpmBlocks.PRICKLE_PLANKS))
+                        .criterion(hasItem(YavpmBlocks.PRICKLE_PLANKS), conditionsFromItem(YavpmBlocks.PRICKLE_PLANKS))
+                        .offerTo(ifMoreTrapdoorsNotEnabled);
+
+                createMoreStairsRecipe(YavpmBlocks.PRICKLE_STAIRS, Ingredient.ofItems(YavpmBlocks.PRICKLE_PLANKS))
+                        .criterion(hasItem(YavpmBlocks.PRICKLE_PLANKS), conditionsFromItem(YavpmBlocks.PRICKLE_PLANKS))
+                        .offerTo(ifMoreStairsEnabled, "more_prickle_stairs");
+                createStairsRecipe(YavpmBlocks.PRICKLE_STAIRS, Ingredient.ofItems(YavpmBlocks.PRICKLE_PLANKS))
+                        .criterion(hasItem(YavpmBlocks.PRICKLE_PLANKS), conditionsFromItem(YavpmBlocks.PRICKLE_PLANKS))
+                        .offerTo(ifMoreStairsNotEnabled);
             }
 
             private void equipmentRecipes(RecipeExporter exporter) {

@@ -123,6 +123,11 @@ public class ItemGroupHelper {
         entries.add(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_SLAB);
         entries.add(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_WALL);
 
+        entries.add(YavpmBlocks.SCULKY_DEEPSLATE_BRICKS);
+        entries.add(YavpmBlocks.SCULKY_DEEPSLATE_BRICK_STAIRS);
+        entries.add(YavpmBlocks.SCULKY_DEEPSLATE_BRICK_SLAB);
+        entries.add(YavpmBlocks.SCULKY_DEEPSLATE_BRICK_WALL);
+
         entries.add(YavpmBlocks.SOULSTONE);
         entries.add(YavpmBlocks.SOULSTONE_STAIRS);
         entries.add(YavpmBlocks.SOULSTONE_SLAB);
@@ -139,6 +144,12 @@ public class ItemGroupHelper {
     }
 
     private static void naturalBlocks(FabricItemGroupEntries entries) {
+        entries.add(YavpmBlocks.INFESTED_COBBLED_DEEPSLATE);
+        entries.add(YavpmBlocks.INFESTED_DEEPSLATE_BRICKS);
+        entries.add(YavpmBlocks.INFESTED_SCULKY_DEEPSLATE_BRICKS);
+        entries.add(YavpmBlocks.INFESTED_CRACKED_DEEPSLATE_BRICKS);
+        entries.add(YavpmBlocks.INFESTED_CHISELED_DEEPSLATE);
+
         entries.add(YavpmBlocks.GLOWING_OBSIDIAN);
         entries.add(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
         entries.add(YavpmBlocks.KIMBERLITE);
@@ -170,6 +181,10 @@ public class ItemGroupHelper {
     }
 
     private static void tools(FabricItemGroupEntries entries) {
+        entries.add(YavpmItems.DENSITITE_SHOVEL);
+        entries.add(YavpmItems.DENSITITE_PICKAXE);
+        entries.add(YavpmItems.DENSITITE_AXE);
+        entries.add(YavpmItems.DENSITITE_HOE);
         entries.add(YavpmItems.VOID_WATER_BUCKET);
         entries.add(YavpmItems.FAKE_MILK_BUCKET);
         entries.add(YavpmItems.FORTUNE_COOKIE);
@@ -180,11 +195,17 @@ public class ItemGroupHelper {
     }
 
     private static void combat(FabricItemGroupEntries entries) {
+        entries.add(YavpmItems.DENSITITE_SWORD);
+        entries.add(YavpmItems.DENSITITE_AXE);
         entries.add(YavpmItems.GAUNTLET);
         entries.add(YavpmItems.STUDDED_HELMET);
         entries.add(YavpmItems.STUDDED_CHESTPLATE);
         entries.add(YavpmItems.STUDDED_LEGGINGS);
         entries.add(YavpmItems.STUDDED_BOOTS);
+        entries.add(YavpmItems.DENSITITE_HELMET);
+        entries.add(YavpmItems.DENSITITE_CHESTPLATE);
+        entries.add(YavpmItems.DENSITITE_LEGGINGS);
+        entries.add(YavpmItems.DENSITITE_BOOTS);
     }
 
     private static void foodAndDrink(FabricItemGroupEntries entries) {
@@ -219,20 +240,23 @@ public class ItemGroupHelper {
     }
 
     private static void ingredients(FabricItemGroupEntries entries) {
-        entries.add(YavpmItems.CHAINMAIL);
         entries.add(YavpmItems.RAW_DIAMOND);
         entries.add(YavpmItems.GRAPHITE);
         entries.add(YavpmBlocks.GRAPHITE_BLOCK);
         entries.add(YavpmBlocks.GRAPHENE_BLOCK);
+        entries.add(YavpmItems.DENSITITE_INGOT);
+        entries.add(YavpmBlocks.DENSITITE_BLOCK);
         entries.add(YavpmItems.BREADING);
         entries.add(YavpmItems.MAGIC_BEAN);
         entries.add(YavpmItems.RICE);
         entries.add(YavpmItems.DISC_FRAGMENT_MAGNETIC_CIRCUIT);
         entries.add(YavpmItems.WARPED_WART);
         entries.add(YavpmItems.BITTER_BERRIES);
+        entries.add(YavpmItems.CHAINMAIL);
         entries.add(YavpmItems.GAUNTLET_FRAGMENT);
         entries.add(YavpmItems.PHANTOM_CHORD);
         entries.add(YavpmItems.THUNDER_SHARD);
+        entries.add(YavpmItems.DENSITITE_UPGRADE_SMITHING_TEMPLATE);
     }
 
     private static void spawnEggs(FabricItemGroupEntries entries) {

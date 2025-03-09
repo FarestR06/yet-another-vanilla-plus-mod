@@ -154,6 +154,17 @@
     ],
     "subtitle": "subtitles.item.armor.equip_studded"
   },
+  "item.armor.equip_densitite": {
+    "sounds": [
+      "item/armor/equip_diamond1",
+      "item/armor/equip_diamond2",
+      "item/armor/equip_diamond3",
+      "item/armor/equip_diamond4",
+      "item/armor/equip_diamond5",
+      "item/armor/equip_diamond6"
+    ],
+    "subtitle": "subtitles.item.armor.equip_densitite"
+  },
   "entity.tanuki.ambient": {
     "sounds": [
       {

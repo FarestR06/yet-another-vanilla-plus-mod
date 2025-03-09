@@ -28,6 +28,7 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.util.Rarity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
@@ -103,6 +104,52 @@ public class YavpmBlocks {
 
     // endregion
 
+    public static final Block SCULKY_DEEPSLATE_BRICKS = makeSimpleBlockAndSimpleItem(
+            makeId("sculky_deepslate_bricks"),
+            AbstractBlock.Settings.copy(Blocks.DEEPSLATE_BRICKS)
+    );
+    public static final Block SCULKY_DEEPSLATE_BRICK_STAIRS = makeBlockAndSimpleItem(
+            makeId("sculky_deepslate_brick_stairs"),
+            settings -> new StairsBlock(SCULKY_DEEPSLATE_BRICKS.getDefaultState(), settings),
+            AbstractBlock.Settings.copy(SCULKY_DEEPSLATE_BRICKS)
+    );
+    public static final Block SCULKY_DEEPSLATE_BRICK_SLAB = makeBlockAndSimpleItem(
+            makeId("sculky_deepslate_brick_slab"),
+            SlabBlock::new,
+            AbstractBlock.Settings.copy(SCULKY_DEEPSLATE_BRICKS)
+    );
+    public static final Block SCULKY_DEEPSLATE_BRICK_WALL = makeBlockAndSimpleItem(
+            makeId("sculky_deepslate_brick_wall"),
+            WallBlock::new,
+            AbstractBlock.Settings.copy(SCULKY_DEEPSLATE_BRICKS).solid()
+    );
+
+    public static final Block INFESTED_COBBLED_DEEPSLATE = makeBlockAndSimpleItem(
+            makeId("infested_cobbled_deepslate"),
+            settings -> new InfestedBlock(Blocks.COBBLED_DEEPSLATE, settings),
+            AbstractBlock.Settings.copy(Blocks.COBBLED_DEEPSLATE)
+    );
+    public static final Block INFESTED_DEEPSLATE_BRICKS = makeBlockAndSimpleItem(
+            makeId("infested_deepslate_bricks"),
+            settings -> new InfestedBlock(Blocks.DEEPSLATE_BRICKS, settings),
+            AbstractBlock.Settings.copy(Blocks.DEEPSLATE_BRICKS)
+    );
+    public static final Block INFESTED_SCULKY_DEEPSLATE_BRICKS = makeBlockAndSimpleItem(
+            makeId("infested_sculky_deepslate_bricks"),
+            settings -> new InfestedBlock(SCULKY_DEEPSLATE_BRICKS, settings),
+            AbstractBlock.Settings.copy(Blocks.DEEPSLATE_BRICKS)
+    );
+    public static final Block INFESTED_CRACKED_DEEPSLATE_BRICKS = makeBlockAndSimpleItem(
+            makeId("infested_cracked_deepslate_bricks"),
+            settings -> new InfestedBlock(Blocks.CRACKED_DEEPSLATE_BRICKS, settings),
+            AbstractBlock.Settings.copy(Blocks.CRACKED_DEEPSLATE_BRICKS)
+    );
+    public static final Block INFESTED_CHISELED_DEEPSLATE = makeBlockAndSimpleItem(
+            makeId("infested_chiseled_deepslate"),
+            settings -> new InfestedBlock(Blocks.CHISELED_DEEPSLATE, settings),
+            AbstractBlock.Settings.copy(Blocks.CHISELED_DEEPSLATE)
+    );
+
     // region Igneous Stone
     public static final Block COBBLED_GRANITE = makeSimpleBlockAndSimpleItem(makeId("cobbled_granite"), AbstractBlock.Settings.copy(Blocks.COBBLESTONE));
     public static final Block COBBLED_DIORITE = makeSimpleBlockAndSimpleItem(makeId("cobbled_diorite"), AbstractBlock.Settings.copy(Blocks.COBBLESTONE));
@@ -168,18 +215,18 @@ public class YavpmBlocks {
             WallBlock::new, AbstractBlock.Settings.copy(Blocks.STONE_BRICK_WALL));
 
     public static final BlockFamily COBBLED_GRANITE_FAMILY = new BlockFamily.Builder(COBBLED_GRANITE)
-            .slab(COBBLED_GRANITE_SLAB).stairs(COBBLED_GRANITE_STAIRS).wall(COBBLED_GRANITE_WALL).build();
+            .slab(COBBLED_GRANITE_SLAB).wall(COBBLED_GRANITE_WALL).build();
     public static final BlockFamily COBBLED_DIORITE_FAMILY = new BlockFamily.Builder(COBBLED_DIORITE)
-            .slab(COBBLED_DIORITE_SLAB).stairs(COBBLED_DIORITE_STAIRS).wall(COBBLED_DIORITE_WALL).build();
+            .slab(COBBLED_DIORITE_SLAB).wall(COBBLED_DIORITE_WALL).build();
     public static final BlockFamily COBBLED_ANDESITE_FAMILY = new BlockFamily.Builder(COBBLED_ANDESITE)
-            .slab(COBBLED_ANDESITE_SLAB).stairs(COBBLED_ANDESITE_STAIRS).wall(COBBLED_ANDESITE_WALL).build();
+            .slab(COBBLED_ANDESITE_SLAB).wall(COBBLED_ANDESITE_WALL).build();
 
     public static final BlockFamily POLISHED_GRANITE_BRICK_FAMILY = new BlockFamily.Builder(POLISHED_GRANITE_BRICKS)
-            .slab(POLISHED_GRANITE_BRICK_SLAB).stairs(POLISHED_GRANITE_BRICK_STAIRS).wall(POLISHED_GRANITE_BRICK_WALL).build();
+            .slab(POLISHED_GRANITE_BRICK_SLAB).wall(POLISHED_GRANITE_BRICK_WALL).build();
     public static final BlockFamily POLISHED_DIORITE_BRICK_FAMILY = new BlockFamily.Builder(POLISHED_DIORITE_BRICKS)
-            .slab(POLISHED_DIORITE_BRICK_SLAB).stairs(POLISHED_DIORITE_BRICK_STAIRS).wall(POLISHED_DIORITE_BRICK_WALL).build();
+            .slab(POLISHED_DIORITE_BRICK_SLAB).wall(POLISHED_DIORITE_BRICK_WALL).build();
     public static final BlockFamily POLISHED_ANDESITE_BRICK_FAMILY = new BlockFamily.Builder(POLISHED_ANDESITE_BRICKS)
-            .slab(POLISHED_ANDESITE_BRICK_SLAB).stairs(POLISHED_ANDESITE_BRICK_STAIRS).wall(POLISHED_ANDESITE_BRICK_WALL).build();
+            .slab(POLISHED_ANDESITE_BRICK_SLAB).wall(POLISHED_ANDESITE_BRICK_WALL).build();
     // endregion
 
     // region Kimberlite
@@ -248,12 +295,19 @@ public class YavpmBlocks {
     );
 
     public static final BlockFamily KIMBERLITE_FAMILY = new BlockFamily.Builder(KIMBERLITE)
-            .slab(KIMBERLITE_SLAB).stairs(KIMBERLITE_STAIRS).wall(KIMBERLITE_WALL).build();
+            .slab(KIMBERLITE_SLAB).wall(KIMBERLITE_WALL).build();
     public static final BlockFamily POLISHED_KIMBERLITE_FAMILY = new BlockFamily.Builder(POLISHED_KIMBERLITE)
-            .slab(POLISHED_KIMBERLITE_SLAB).stairs(POLISHED_KIMBERLITE_STAIRS).wall(POLISHED_KIMBERLITE_WALL).build();
+            .slab(POLISHED_KIMBERLITE_SLAB).wall(POLISHED_KIMBERLITE_WALL).build();
     public static final BlockFamily POLISHED_KIMBERLITE_BRICK_FAMILY = new BlockFamily.Builder(POLISHED_KIMBERLITE_BRICKS)
-            .slab(POLISHED_KIMBERLITE_BRICK_SLAB).stairs(POLISHED_KIMBERLITE_BRICK_STAIRS).wall(POLISHED_KIMBERLITE_BRICK_WALL).build();
+            .slab(POLISHED_KIMBERLITE_BRICK_SLAB).wall(POLISHED_KIMBERLITE_BRICK_WALL).build();
     // endregion
+
+    public static final Block DENSITITE_BLOCK = makeBlockAndItem(
+            makeId("densitite_block"),
+            HeavyCoreBlock::new,
+            AbstractBlock.Settings.copy(Blocks.HEAVY_CORE).sounds(BlockSoundGroup.COPPER),
+            new Item.Settings().rarity(Rarity.RARE)
+    );
 
     // region Soulstone
     public static final Block SOULSTONE = makeSimpleBlockAndSimpleItem(
@@ -391,8 +445,8 @@ public class YavpmBlocks {
             AbstractBlock.Settings.copy(Blocks.OAK_SAPLING)
     );
     public static final BlockFamily APPLE_FAMILY = BlockFamilies.register(APPLE_PLANKS)
-            .slab(APPLE_SLAB).stairs(APPLE_STAIRS).fence(APPLE_FENCE).fenceGate(APPLE_FENCE_GATE)
-            .door(APPLE_DOOR).trapdoor(APPLE_TRAPDOOR)
+            .slab(APPLE_SLAB).fence(APPLE_FENCE).fenceGate(APPLE_FENCE_GATE)
+            .door(APPLE_DOOR)
             .pressurePlate(APPLE_PRESSURE_PLATE).button(APPLE_BUTTON)
             .group("wooden").unlockCriterionName("has_planks").build();
     // endregion
@@ -459,8 +513,8 @@ public class YavpmBlocks {
 
 
     public static final BlockFamily PRICKLE_FAMILY = BlockFamilies.register(PRICKLE_PLANKS)
-            .slab(PRICKLE_SLAB).stairs(PRICKLE_STAIRS).fence(PRICKLE_FENCE).fenceGate(PRICKLE_FENCE_GATE)
-            .door(PRICKLE_DOOR).trapdoor(PRICKLE_TRAPDOOR)
+            .slab(PRICKLE_SLAB).fence(PRICKLE_FENCE).fenceGate(PRICKLE_FENCE_GATE)
+            .door(PRICKLE_DOOR)
             .pressurePlate(PRICKLE_PRESSURE_PLATE).button(PRICKLE_BUTTON)
             .group("wooden").unlockCriterionName("has_planks").build();
 
@@ -540,8 +594,8 @@ public class YavpmBlocks {
     );
 
     public static final BlockFamily PERSIMMON_FAMILY = BlockFamilies.register(PERSIMMON_PLANKS)
-            .slab(PERSIMMON_SLAB).stairs(PERSIMMON_STAIRS).fence(PERSIMMON_FENCE).fenceGate(PERSIMMON_FENCE_GATE)
-            .door(PERSIMMON_DOOR).trapdoor(PERSIMMON_TRAPDOOR)
+            .slab(PERSIMMON_SLAB).fence(PERSIMMON_FENCE).fenceGate(PERSIMMON_FENCE_GATE)
+            .door(PERSIMMON_DOOR)
             .pressurePlate(PERSIMMON_PRESSURE_PLATE).button(PERSIMMON_BUTTON)
             .group("wooden").unlockCriterionName("has_planks").build();
 

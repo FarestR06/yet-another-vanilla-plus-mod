@@ -7,6 +7,7 @@ import com.farestr06.yavpm.item.YavpmItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableProvider;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.CropBlock;
 import net.minecraft.block.SweetBerryBushBlock;
 import net.minecraft.enchantment.Enchantment;
@@ -54,13 +55,14 @@ public class YavpmLootProviders {
 
         @Override
         public void generate() {
-
             addDrop(YavpmBlocks.GLOWING_OBSIDIAN);
             addDrop(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
 
             stoneVariantDrops();
             addDrop(YavpmBlocks.GRAPHITE_BLOCK);
             addDrop(YavpmBlocks.GRAPHENE_BLOCK);
+
+            addDrop(YavpmBlocks.DENSITITE_BLOCK);
 
             addDropWithSilkTouch(YavpmBlocks.POLARIZED_GLASS);
             addDrop(YavpmBlocks.RECYCLER);
@@ -282,6 +284,17 @@ public class YavpmLootProviders {
             addDrop(YavpmBlocks.POLISHED_GRANITE_BRICK_WALL);
             addDrop(YavpmBlocks.POLISHED_DIORITE_BRICK_WALL);
             addDrop(YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL);
+
+            addDrop(YavpmBlocks.SCULKY_DEEPSLATE_BRICKS);
+            addDrop(YavpmBlocks.SCULKY_DEEPSLATE_BRICK_SLAB, this::slabDrops);
+            addDrop(YavpmBlocks.SCULKY_DEEPSLATE_BRICK_STAIRS);
+            addDrop(YavpmBlocks.SCULKY_DEEPSLATE_BRICK_WALL);
+
+            addDropWithSilkTouch(YavpmBlocks.INFESTED_COBBLED_DEEPSLATE, Blocks.COBBLED_DEEPSLATE);
+            addDropWithSilkTouch(YavpmBlocks.INFESTED_DEEPSLATE_BRICKS, Blocks.DEEPSLATE_BRICKS);
+            addDropWithSilkTouch(YavpmBlocks.INFESTED_SCULKY_DEEPSLATE_BRICKS, YavpmBlocks.SCULKY_DEEPSLATE_BRICKS);
+            addDropWithSilkTouch(YavpmBlocks.INFESTED_CRACKED_DEEPSLATE_BRICKS, Blocks.CRACKED_DEEPSLATE_BRICKS);
+            addDropWithSilkTouch(YavpmBlocks.INFESTED_CHISELED_DEEPSLATE, Blocks.CHISELED_DEEPSLATE);
 
             addDrop(YavpmBlocks.SOULSTONE);
             addDrop(YavpmBlocks.CUT_SOULSTONE);

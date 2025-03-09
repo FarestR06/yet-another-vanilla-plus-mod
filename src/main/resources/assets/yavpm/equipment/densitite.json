@@ -1,0 +1,14 @@
+{
+  "layers": {
+    "humanoid": [
+      {
+        "texture": "yavpm:densitite"
+      }
+    ],
+    "humanoid_leggings": [
+      {
+        "texture": "yavpm:densitite"
+      }
+    ]
+  }
+}

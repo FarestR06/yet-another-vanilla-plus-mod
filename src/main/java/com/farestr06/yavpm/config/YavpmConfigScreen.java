@@ -9,6 +9,7 @@ import dev.isxander.yacl3.api.controller.FloatSliderControllerBuilder;
 import dev.isxander.yacl3.api.controller.IntegerSliderControllerBuilder;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
@@ -16,6 +17,10 @@ import static com.farestr06.yavpm.config.YavpmConfig.HANDLER;
 
 public class YavpmConfigScreen implements ModMenuApi {
     private static final Style SGA = Style.EMPTY.withFont(Identifier.ofVanilla("alt"));
+    private static final Style INFO = Style.EMPTY.withFormatting(Formatting.GRAY, Formatting.ITALIC);
+    private static final Style COMPAT_DESC = Style.EMPTY.withFormatting(Formatting.YELLOW, Formatting.ITALIC);
+    private static final Text RESOURCE_CONDITION_NOTE = Text.translatable("option.yavpm.resourcecondition")
+            .setStyle(INFO);
     
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
@@ -55,6 +60,23 @@ public class YavpmConfigScreen implements ModMenuApi {
                                 ))
                                 .option(VOID_TOUCHED_DAMAGE_MULTIPLIER)
                                 .option(VOID_TOUCHED_DRAGON_FIREBALL)
+                                .build())
+                        .build())
+                .category(ConfigCategory.createBuilder()
+                        .name(Text.translatable("option.yavpm.compat"))
+                        .group(OptionGroup.createBuilder()
+                                .name(Text.translatable("option.yavpm.compat.vanillatweaks"))
+                                .description(OptionDescription.createBuilder()
+                                        .text(Text.translatable("option.yavpm.compat.vanillatweaks.desc"))
+                                        .image(makeId("textures/config/vanilla_tweaks.png"), 320, 320)
+                                        .text(Text.translatable("option.yavpm.compat.vanillatweaks.info1").setStyle(COMPAT_DESC))
+                                        .text(Text.translatable("option.yavpm.compat.vanillatweaks.info2").setStyle(INFO))
+                                        .build()
+                                )
+                                .option(DROPPER_TO_RECYCLER)
+                                .option(DOUBLE_SLABS)
+                                .option(MORE_TRAPDOORS)
+                                .option(MORE_STAIRS)
                                 .build())
                         .build())
                 .category(ConfigCategory.createBuilder()
@@ -145,6 +167,7 @@ public class YavpmConfigScreen implements ModMenuApi {
             ).controller(YavpmConfigScreen::booleanBuilder)
             .build();
     // endregion
+
     // region Blocks
     protected static final Option<Boolean> VOID_WATER_SOURCE_CONVERSION = Option.<Boolean>createBuilder()
             .name(Text.translatable("option.yavpm.void_water_source_conversion.title"))
@@ -159,7 +182,6 @@ public class YavpmConfigScreen implements ModMenuApi {
                     newVal -> HANDLER.instance().voidWaterSourceConversion = newVal
             ).controller(YavpmConfigScreen::booleanBuilder)
             .build();
-    // endregion
     protected static final Option<Integer> GLOWING_OBSIDIAN_LUMINANCE = Option.<Integer>createBuilder()
             .name(Text.translatable("option.yavpm.glowing_obsidian_luminance.title"))
             .description(OptionDescription.createBuilder()
@@ -186,11 +208,14 @@ public class YavpmConfigScreen implements ModMenuApi {
                     newVal -> HANDLER.instance().soulGlowingObsidianLuminance = newVal
             ).controller(opt -> IntegerSliderControllerBuilder.create(opt).range(0, 15).step(1))
             .build();
+    // endregion
+
     // region Items
     protected static final Option<Boolean> BABY_KEY_CRIES = Option.<Boolean>createBuilder()
             .name(Text.translatable("option.yavpm.baby_key_cries.title"))
             .description(OptionDescription.createBuilder()
                     .text(Text.translatable("option.yavpm.baby_key_cries.desc"))
+                    .image(makeId("textures/config/baby_key_cries.png"), 480, 360)
                     .build()
             )
             .binding(
@@ -215,6 +240,8 @@ public class YavpmConfigScreen implements ModMenuApi {
             .name(Text.translatable("option.yavpm.rare_equipment_recipes.title"))
             .description(OptionDescription.createBuilder()
                     .text(Text.translatable("option.yavpm.rare_equipment_recipes.desc"))
+                    .text(RESOURCE_CONDITION_NOTE)
+                    .image(makeId("textures/config/rare_equipment_recipes.png"), 480, 360)
                     .build()
             )
             .binding(
@@ -224,6 +251,62 @@ public class YavpmConfigScreen implements ModMenuApi {
             ).controller(YavpmConfigScreen::booleanBuilder)
             .build();
     // endregion
+
+    // region Compat
+    protected static final Option<Boolean> DROPPER_TO_RECYCLER = Option.<Boolean>createBuilder()
+            .name(Text.translatable("option.yavpm.dropper_to_recycler.title"))
+            .description(OptionDescription.createBuilder()
+                    .text(Text.translatable("option.yavpm.dropper_to_recycler.desc"))
+                    .text(RESOURCE_CONDITION_NOTE)
+                    .build()
+            )
+            .binding(
+                    false,
+                    () -> HANDLER.instance().dropperToRecycler,
+                    newVal -> HANDLER.instance().dropperToRecycler = newVal
+            ).controller(YavpmConfigScreen::booleanBuilder)
+            .build();
+    protected static final Option<Boolean> DOUBLE_SLABS = Option.<Boolean>createBuilder()
+            .name(Text.translatable("option.yavpm.double_slabs.title"))
+            .description(OptionDescription.createBuilder()
+                    .text(Text.translatable("option.yavpm.double_slabs.desc"))
+                    .text(RESOURCE_CONDITION_NOTE)
+                    .build()
+            )
+            .binding(
+                    false,
+                    () -> HANDLER.instance().doubleSlabs,
+                    newVal -> HANDLER.instance().doubleSlabs = newVal
+            ).controller(YavpmConfigScreen::booleanBuilder)
+            .build();
+    protected static final Option<Boolean> MORE_TRAPDOORS = Option.<Boolean>createBuilder()
+            .name(Text.translatable("option.yavpm.more_trapdoors.title"))
+            .description(OptionDescription.createBuilder()
+                    .text(Text.translatable("option.yavpm.more_trapdoors.desc"))
+                    .text(RESOURCE_CONDITION_NOTE)
+                    .build()
+            )
+            .binding(
+                    false,
+                    () -> HANDLER.instance().moreTrapdoors,
+                    newVal -> HANDLER.instance().moreTrapdoors = newVal
+            ).controller(YavpmConfigScreen::booleanBuilder)
+            .build();
+    protected static final Option<Boolean> MORE_STAIRS = Option.<Boolean>createBuilder()
+            .name(Text.translatable("option.yavpm.more_stairs.title"))
+            .description(OptionDescription.createBuilder()
+                    .text(Text.translatable("option.yavpm.more_stairs.desc"))
+                    .text(RESOURCE_CONDITION_NOTE)
+                    .build()
+            )
+            .binding(
+                    false,
+                    () -> HANDLER.instance().moreStairs,
+                    newVal -> HANDLER.instance().moreStairs = newVal
+            ).controller(YavpmConfigScreen::booleanBuilder)
+            .build();
+    // endregion
+
     // region Easter Eggs
     protected static final Option<Float> SNAPSHOT_DAY = Option.<Float>createBuilder()
             .name(Text.translatable("option.yavpm.snapshot_day.title").setStyle(SGA))

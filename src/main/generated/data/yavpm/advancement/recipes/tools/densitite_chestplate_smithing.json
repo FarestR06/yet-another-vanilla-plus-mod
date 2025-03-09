@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_densitite_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#yavpm:densitite_tool_materials"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:densitite_chestplate_smithing"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_densitite_ingot"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:densitite_chestplate_smithing"
+    ]
+  }
+}

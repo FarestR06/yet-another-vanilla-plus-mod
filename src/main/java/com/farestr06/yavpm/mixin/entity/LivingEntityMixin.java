@@ -1,5 +1,6 @@
 package com.farestr06.yavpm.mixin.entity;
 
+import com.farestr06.api.util.MathUtil;
 import com.farestr06.yavpm.config.YavpmConfig;
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import net.minecraft.entity.Attackable;
@@ -23,13 +24,16 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
     @Unique
     final LivingEntity thiz = (LivingEntity) (Object) this;
 
-    // Increase damage taken with Voided effect
+    // Increase damage taken with Void Touched effect
     @ModifyVariable(method = "damage", at = @At(value = "HEAD"), argsOnly = true)
     private float voidedMultiplier(float damage) {
+        // Get the entity's Void Touched effect instance (or not)
         StatusEffectInstance effect = thiz.getStatusEffect(YavpmStatusEffects.VOID_TOUCHED);
-        if (effect != null) {
-            return damage * ((effect.getAmplifier() + 1) * YavpmConfig.HANDLER.instance().voidTouchedDamageMultiplier);
-        } else return damage;
+        if (effect != null) { // Do we have an effect instance?
+            // If so, multiply damage...
+            float multipliedDamage = damage * ((effect.getAmplifier() + 1) * YavpmConfig.HANDLER.instance().voidTouchedDamageMultiplier);
+            // ...And round it to a multiple of 0.5! Oh, and inflict it. Can't forget that.
+            return MathUtil.roundToHalf(multipliedDamage);
+        } else return damage; // Otherwise, we'll deal the normal amount of damage.
     }
-
 }

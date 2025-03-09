@@ -12,13 +12,13 @@ import java.util.Map;
 
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
-public class YavpmArmorMaterials {
+public class StuddedMaterial {
 
-    public static final RegistryKey<EquipmentAsset> STUDDED_KEY = RegistryKey.of(
+    public static final RegistryKey<EquipmentAsset> ARMOR_KEY = RegistryKey.of(
             EquipmentAssetKeys.REGISTRY_KEY, makeId("studded")
     );
 
-    public static final ArmorMaterial STUDDED = new ArmorMaterial(
+    public static final ArmorMaterial ARMOR_MATERIAL = new ArmorMaterial(
             20,
             Map.of(
                     EquipmentType.HELMET, 6,
@@ -31,6 +31,6 @@ public class YavpmArmorMaterials {
             0f,
             0f,
             YavpmTags.Items.REPAIRS_STUDDED_ARMOR,
-            STUDDED_KEY
+            ARMOR_KEY
     );
 }
