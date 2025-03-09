@@ -302,6 +302,9 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.STUDDED_BOOTS, "Studded Boots");
         builder.add("subtitles.item.armor.equip_studded", "Studded armor jostles");
 
+        builder.add(YavpmItems.COPPER_HORN, "Copper Horn");
+        builder.add("instrument.yavpm.great_sky_falling", "Great Sky Falling");
+
         builder.add(YavpmItems.MUSIC_DISC_MAGNETIC_CIRCUIT, "Music Disc");
         builder.add("item.yavpm.music_disc_magnetic_circuit.desc", "Notch - Magnetic Circuit");
         builder.add(YavpmItems.DISC_FRAGMENT_MAGNETIC_CIRCUIT, "Disc Fragment");

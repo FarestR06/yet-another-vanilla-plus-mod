@@ -28,6 +28,10 @@ public class YavpmSounds {
     public static final SoundEvent ITEM_BABY_KEY_SCARED = makeEvent(makeId("item.baby_key.scared"));
     public static final SoundEvent ITEM_BABY_KEY_TURN = makeEvent(makeId("item.baby_key.turn"));
 
+    public static final RegistryEntry<SoundEvent> ITEM_COPPER_HORN_SOUND_BASS_0 = makeReferenceEvent(makeId("item.copper_horn.sound.bass.0"));
+    public static final RegistryEntry<SoundEvent> ITEM_COPPER_HORN_SOUND_HARMONY_0 = makeReferenceEvent(makeId("item.copper_horn.sound.harmony.0"));
+    public static final RegistryEntry<SoundEvent> ITEM_COPPER_HORN_SOUND_MELODY_0 = makeReferenceEvent(makeId("item.copper_horn.sound.melody.0"));
+
     public static final RegistryKey<JukeboxSong> MAGNETIC_CIRCUIT_KEY = RegistryKey.of(
             RegistryKeys.JUKEBOX_SONG,
             makeId("magnetic_circuit")

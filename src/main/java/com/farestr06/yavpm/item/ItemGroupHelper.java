@@ -2,6 +2,7 @@ package com.farestr06.yavpm.item;
 
 import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.block.YavpmBlocks;
+import com.farestr06.yavpm.item.custom.CopperHornItem;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.ItemGroups;
@@ -190,6 +191,11 @@ public class ItemGroupHelper {
         entries.add(YavpmItems.FORTUNE_COOKIE);
         entries.add(YavpmItems.REACTOR);
         entries.add(YavpmItems.BABY_KEY);
+
+        entries.add(
+                CopperHornItem.getStackForId(YavpmItems.COPPER_HORN, CopperInstruments.GREAT_SKY_FALLING)
+        );
+
         entries.add(YavpmItems.MUSIC_DISC_MAGNETIC_CIRCUIT);
         entries.add(YavpmItems.MUSIC_DISC_HALLAND_DALARNA);
     }

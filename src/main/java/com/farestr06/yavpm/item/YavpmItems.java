@@ -278,6 +278,12 @@ public class YavpmItems {
     );
     // endregion
 
+    public static final Item COPPER_HORN = makeAdvancedItem(
+            makeId("copper_horn"),
+            CopperHornItem::new,
+            new Item.Settings().rarity(Rarity.UNCOMMON).maxCount(1)
+    );
+
     // region Studded Armor
     public static final Item STUDDED_HELMET = makeAdvancedItem(
             makeId("studded_helmet"),
@@ -367,6 +373,7 @@ public class YavpmItems {
         setUpComponents();
         setUpRegistries();
         setUpMoongusFood();
+        CopperInstruments.init();
     }
 
     private static void setUpMoongusFood() {

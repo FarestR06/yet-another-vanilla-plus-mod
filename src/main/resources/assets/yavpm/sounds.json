@@ -1,4 +1,22 @@
 {
+  "item.copper_horn.sound.bass.0": {
+    "sounds": [
+      "yavpm:item/copper_horn/bass0"
+    ],
+    "subtitle": "subtitles.item.goat_horn.play"
+  },
+  "item.copper_horn.sound.harmony.0": {
+    "sounds": [
+      "yavpm:item/copper_horn/harmony0"
+    ],
+    "subtitle": "subtitles.item.goat_horn.play"
+  },
+  "item.copper_horn.sound.melody.0": {
+    "sounds": [
+      "yavpm:item/copper_horn/melody0"
+    ],
+    "subtitle": "subtitles.item.goat_horn.play"
+  },
   "block.prickle_log.pluck": {
     "sounds": [
       "enchant/thorns/hit1",
