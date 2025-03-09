@@ -144,6 +144,7 @@ ba565c99bd33dc81d363393aba7073491fc1109f assets/yavpm/items/cobbled_granite_wall
 e017bc165618037b9169e8f5fca6f8f7910ebd4c assets/yavpm/items/cooked_egg.json
 cfcd3bb12ed0fd0cd733e34ea5427f9a2c575c4e assets/yavpm/items/cooked_fake_beef.json
 a481b717227fd3f701741877e503e2b1fb997566 assets/yavpm/items/cooked_peanut.json
+112fd5d9e0c54075a2b2410ef4d673a41ae83288 assets/yavpm/items/copper_horn.json
 24df88f6d0c132a0a6ebab36224be36402772a7e assets/yavpm/items/cut_soulstone.json
 ba27432df91e7ff03529fd74eb3eeab4cb3cc812 assets/yavpm/items/cut_soulstone_slab.json
 78db54dcb3bafaadd098a0f28c7169def5a7447a assets/yavpm/items/diamond_acorn.json
@@ -531,6 +532,7 @@ af2fcee0c541eb1f6a4356737bf22077032fbf28 assets/yavpm/models/item/bitter_berries
 fe88064abbfbb15bc4e9c85cda503cde0c81ff84 assets/yavpm/models/item/cooked_egg.json
 cc0c8603e15b2ebbcb4f6b8996c967fc4ad3db26 assets/yavpm/models/item/cooked_fake_beef.json
 60055bd5a3e2ce429d69aadaaac17455390fa5fb assets/yavpm/models/item/cooked_peanut.json
+a203cab0d057cf024cc8829a187b47794e015222 assets/yavpm/models/item/copper_horn.json
 62371db3d557055cf27eef1c3db51650ff56d323 assets/yavpm/models/item/diamond_acorn.json
 f6ee40ccf0afa92b84203ad1847634b6aa1035ab assets/yavpm/models/item/disc_fragment_magnetic_circuit.json
 e4f867e1072f2916a4f6c76b02c86e65f79d1642 assets/yavpm/models/item/fake_beef.json

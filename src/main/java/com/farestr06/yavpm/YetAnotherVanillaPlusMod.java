@@ -12,6 +12,7 @@ import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.ItemGroupHelper;
 import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.item.YavpmPotions;
+import com.farestr06.yavpm.item.component.YavpmDataComponentTypes;
 import com.farestr06.yavpm.item.enchantment.condition.YavpmLootConditions;
 import com.farestr06.yavpm.item.enchantment.effect.YavpmEnchantmentEffects;
 import com.farestr06.yavpm.util.YavpmSounds;
@@ -77,12 +78,14 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 
 		YavpmConfig.HANDLER.load();
 
-		ItemGroupHelper.modifyEntries();
+		YavpmDataComponentTypes.init();
 
 		YavpmItems.init();
 		YavpmBlocks.init();
 		YavpmFluids.init();
 		YavpmBlockEntities.init();
+
+		ItemGroupHelper.modifyEntries();
 
 		YavpmSounds.init();
 

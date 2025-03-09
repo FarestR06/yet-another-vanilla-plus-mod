@@ -4,10 +4,7 @@ import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.fluid.YavpmFluids;
-import com.farestr06.yavpm.item.custom.BabyKeyItem;
-import com.farestr06.yavpm.item.custom.FortuneCookieItem;
-import com.farestr06.yavpm.item.custom.GauntletItem;
-import com.farestr06.yavpm.item.custom.ReactorItem;
+import com.farestr06.yavpm.item.custom.*;
 import com.farestr06.yavpm.util.YavpmSounds;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
@@ -219,6 +216,12 @@ public class YavpmItems {
             new Item.Settings().maxCount(1).rarity(Rarity.UNCOMMON)
     );
 
+    public static final Item COPPER_HORN = makeAdvancedItem(
+            makeId("copper_horn"),
+            CopperHornItem::new,
+            new Item.Settings().rarity(Rarity.UNCOMMON).maxCount(1)
+    );
+
     // region Studded Armor
     public static final Item STUDDED_HELMET = makeAdvancedItem(
             makeId("studded_helmet"),
@@ -308,6 +311,7 @@ public class YavpmItems {
         setUpComponents();
         setUpRegistries();
         setUpMoongusFood();
+        CopperInstruments.init();
     }
 
     private static void setUpMoongusFood() {

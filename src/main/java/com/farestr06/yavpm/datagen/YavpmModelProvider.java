@@ -64,6 +64,7 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.register(YavpmItems.REACTOR, Models.GENERATED);
         generator.register(YavpmItems.HEATED_REACTOR, Models.GENERATED);
 
+        generator.register(YavpmItems.COPPER_HORN, Models.GENERATED);
         generator.register(YavpmItems.BABY_KEY, Models.GENERATED);
 
         generator.register(YavpmItems.PHANTOM_CHORD, Models.GENERATED);
