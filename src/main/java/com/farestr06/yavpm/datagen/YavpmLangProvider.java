@@ -485,6 +485,18 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.SMOOTH_SOULSTONE_STAIRS, "Smooth Soulstone Stairs");
         builder.add(YavpmBlocks.SOULSTONE_WALL, "Soulstone Wall");
 
+        builder.add(YavpmBlocks.CONGLOMERATE, "Conglomerate");
+        builder.add(YavpmBlocks.HARDENED_CONGLOMERATE, "Hardened Conglomerate");
+        builder.add(YavpmBlocks.HARDENED_CONGLOMERATE_STAIRS, "Hardened Conglomerate Stairs");
+        builder.add(YavpmBlocks.HARDENED_CONGLOMERATE_SLAB, "Hardened Conglomerate Slab");
+        builder.add(YavpmBlocks.HARDENED_CONGLOMERATE_WALL, "Hardened Conglomerate Wall");
+        builder.add(YavpmBlocks.HARDENED_CONGLOMERATE_BRICKS, "Hardened Conglomerate Bricks");
+        builder.add(YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_STAIRS, "Hardened Conglomerate Brick Stairs");
+        builder.add(YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_SLAB, "Hardened Conglomerate Brick Slab");
+        builder.add(YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_WALL, "Hardened Conglomerate Brick Wall");
+        builder.add(YavpmBlocks.DULL_CONGLOMERATE, "Dull Conglomerate");
+        builder.add(YavpmBlocks.DULL_CONGLOMERATE_SLAB, "Dull Conglomerate Slab");
+
         builder.add(YavpmBlocks.GLOWING_OBSIDIAN, "Glowing Obsidian");
         builder.add(YavpmBlocks.SOUL_GLOWING_OBSIDIAN, "Soul Glowing Obsidian");
     }

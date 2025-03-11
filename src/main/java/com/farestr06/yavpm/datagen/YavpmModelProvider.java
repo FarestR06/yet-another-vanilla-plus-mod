@@ -61,6 +61,7 @@ public class YavpmModelProvider extends FabricModelProvider {
 
         generator.registerStateWithModelReference(YavpmBlocks.VOID_WATER, Blocks.WATER);
 
+        createConglomerate(generator);
         createNewDeepslate(generator);
     }
 
@@ -96,6 +97,26 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.registerSpawnEgg(YavpmItems.VOID_PHANTOM_SPAWN_EGG, 0x060080, 0xf54bfa);
 
         generator.register(YavpmItems.VOID_WATER_BUCKET, Models.GENERATED);
+    }
+
+    private void createConglomerate(BlockStateModelGenerator generator) {
+        generator.registerSimpleCubeAll(YavpmBlocks.CONGLOMERATE);
+
+        BlockStateModelGenerator.BlockTexturePool hardenedConglomerate =
+                generator.registerCubeAllModelTexturePool(YavpmBlocks.HARDENED_CONGLOMERATE);
+        hardenedConglomerate.slab(YavpmBlocks.HARDENED_CONGLOMERATE_SLAB);
+        hardenedConglomerate.stairs(YavpmBlocks.HARDENED_CONGLOMERATE_STAIRS);
+        hardenedConglomerate.wall(YavpmBlocks.HARDENED_CONGLOMERATE_WALL);
+
+        BlockStateModelGenerator.BlockTexturePool hardenedConglomerateBricks =
+                generator.registerCubeAllModelTexturePool(YavpmBlocks.HARDENED_CONGLOMERATE_BRICKS);
+        hardenedConglomerateBricks.slab(YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_SLAB);
+        hardenedConglomerateBricks.stairs(YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_STAIRS);
+        hardenedConglomerateBricks.wall(YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_WALL);
+
+        BlockStateModelGenerator.BlockTexturePool polishedConglomerate =
+                generator.registerCubeAllModelTexturePool(YavpmBlocks.DULL_CONGLOMERATE);
+        polishedConglomerate.slab(YavpmBlocks.DULL_CONGLOMERATE_SLAB);
     }
 
     private void createDensitite(ItemModelGenerator generator) {

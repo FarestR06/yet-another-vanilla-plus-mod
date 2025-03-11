@@ -59,6 +59,7 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 granite(exporter);
                 andesite(exporter);
                 diorite(exporter);
+                conglomerate(exporter);
 
                 obsidianRecipes(exporter);
                 diamondRecipes(exporter);
@@ -140,11 +141,55 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 this.offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.CHISELED_SOULSTONE, YavpmBlocks.SOULSTONE);
             }
 
+            private void conglomerate(RecipeExporter exporter) {
+                createStairsRecipe(YavpmBlocks.HARDENED_CONGLOMERATE_STAIRS, Ingredient.ofItems(YavpmBlocks.HARDENED_CONGLOMERATE))
+                        .criterion(hasItem(YavpmBlocks.HARDENED_CONGLOMERATE), conditionsFromItem(YavpmBlocks.HARDENED_CONGLOMERATE))
+                        .offerTo(exporter);
+                createSlabRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.HARDENED_CONGLOMERATE_SLAB,
+                        Ingredient.ofItems(YavpmBlocks.HARDENED_CONGLOMERATE))
+                        .criterion(hasItem(YavpmBlocks.HARDENED_CONGLOMERATE), conditionsFromItem(YavpmBlocks.HARDENED_CONGLOMERATE))
+                        .offerTo(exporter);
+                this.offerWallRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.HARDENED_CONGLOMERATE_WALL, YavpmBlocks.HARDENED_CONGLOMERATE);
+
+                createShaped(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.HARDENED_CONGLOMERATE_BRICKS, 4)
+                        .input('C', YavpmBlocks.HARDENED_CONGLOMERATE)
+                        .pattern("CC")
+                        .pattern("CC")
+                        .criterion(hasItem(YavpmBlocks.HARDENED_CONGLOMERATE), conditionsFromItem(YavpmBlocks.HARDENED_CONGLOMERATE))
+                        .offerTo(exporter);
+                createStairsRecipe(YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_STAIRS, Ingredient.ofItems(YavpmBlocks.HARDENED_CONGLOMERATE_BRICKS))
+                        .criterion(hasItem(YavpmBlocks.HARDENED_CONGLOMERATE_BRICKS), conditionsFromItem(YavpmBlocks.HARDENED_CONGLOMERATE_BRICKS))
+                        .offerTo(exporter);
+                createSlabRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_SLAB,
+                        Ingredient.ofItems(YavpmBlocks.HARDENED_CONGLOMERATE_BRICKS))
+                        .criterion(hasItem(YavpmBlocks.HARDENED_CONGLOMERATE_BRICKS), conditionsFromItem(YavpmBlocks.HARDENED_CONGLOMERATE_BRICKS))
+                        .offerTo(exporter);
+                this.offerWallRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_WALL, YavpmBlocks.HARDENED_CONGLOMERATE_BRICKS);
+
+
+                this.offerSmelting(
+                        List.of(YavpmBlocks.HARDENED_CONGLOMERATE), RecipeCategory.BUILDING_BLOCKS,
+                        YavpmBlocks.DULL_CONGLOMERATE, 0.1f, 200, "polished_conglomerate"
+                );
+                createSlabRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.DULL_CONGLOMERATE, Ingredient.ofItems(YavpmBlocks.DULL_CONGLOMERATE_SLAB))
+                        .criterion(hasItem(YavpmBlocks.HARDENED_CONGLOMERATE), conditionsFromItem(YavpmBlocks.HARDENED_CONGLOMERATE))
+                        .offerTo(exporter);
+
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.HARDENED_CONGLOMERATE_SLAB, YavpmBlocks.HARDENED_CONGLOMERATE, 2);
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.HARDENED_CONGLOMERATE_STAIRS, YavpmBlocks.HARDENED_CONGLOMERATE);
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.HARDENED_CONGLOMERATE_WALL, YavpmBlocks.HARDENED_CONGLOMERATE);
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_SLAB, YavpmBlocks.HARDENED_CONGLOMERATE, 2);
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_STAIRS, YavpmBlocks.HARDENED_CONGLOMERATE);
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_WALL, YavpmBlocks.HARDENED_CONGLOMERATE);
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.DULL_CONGLOMERATE, YavpmBlocks.HARDENED_CONGLOMERATE);
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.DULL_CONGLOMERATE_SLAB, YavpmBlocks.HARDENED_CONGLOMERATE, 2);
+            }
+
             private void densititeRecipes() {
                 CookingRecipeJsonBuilder.createSmelting(Ingredient.ofItem(Items.HEAVY_CORE), RecipeCategory.MISC, YavpmBlocks.DENSITITE_BLOCK, 4.0F, 200)
                         .criterion(hasItem(Items.HEAVY_CORE), this.conditionsFromItem(Items.HEAVY_CORE))
                         .offerTo(this.exporter, "densitite_block_from_smelting");
-                CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItem(Items.HEAVY_CORE), RecipeCategory.MISC, YavpmBlocks.DENSITITE_BLOCK, 4.0F, 200)
+                CookingRecipeJsonBuilder.createBlasting(Ingredient.ofItem(Items.HEAVY_CORE), RecipeCategory.MISC, YavpmBlocks.DENSITITE_BLOCK, 4.0F, 100)
                         .criterion(hasItem(Items.HEAVY_CORE), this.conditionsFromItem(Items.HEAVY_CORE))
                         .offerTo(this.exporter, "densitite_block_from_blasting");
 
@@ -207,6 +252,10 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 createDoubleSlabRecipe(YavpmBlocks.SOULSTONE, YavpmBlocks.SOULSTONE_SLAB).offerTo(doubleSlabs, "double_soulstone_slabs");
                 createDoubleSlabRecipe(YavpmBlocks.CUT_SOULSTONE, YavpmBlocks.CUT_SOULSTONE_SLAB).offerTo(doubleSlabs, "double_cut_soulstone_slabs");
                 createDoubleSlabRecipe(YavpmBlocks.SMOOTH_SOULSTONE, YavpmBlocks.SMOOTH_SOULSTONE_SLAB).offerTo(doubleSlabs, "double_smooth_soulstone_slabs");
+
+                createDoubleSlabRecipe(YavpmBlocks.HARDENED_CONGLOMERATE, YavpmBlocks.HARDENED_CONGLOMERATE_SLAB).offerTo(exporter, "double_hardened_conglomerate_slabs");
+                createDoubleSlabRecipe(YavpmBlocks.HARDENED_CONGLOMERATE_BRICKS, YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_SLAB).offerTo(exporter, "double_hardened_conglomerate_brick_slabs");
+                createDoubleSlabRecipe(YavpmBlocks.DULL_CONGLOMERATE, YavpmBlocks.DULL_CONGLOMERATE_SLAB).offerTo(exporter, "double_polished_conglomerate_slabs");
             }
 
             private ShapelessRecipeJsonBuilder createDoubleSlabRecipe(ItemConvertible block, ItemConvertible slab){

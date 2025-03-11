@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_dull_conglomerate": {
+      "conditions": {
+        "items": [
+          {
+            "items": "yavpm:dull_conglomerate"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:double_polished_conglomerate_slabs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_dull_conglomerate"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:double_polished_conglomerate_slabs"
+    ]
+  }
+}

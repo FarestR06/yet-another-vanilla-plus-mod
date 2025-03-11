@@ -19,6 +19,7 @@ public class YavpmMiscPlacedFeatures {
     public static final RegistryKey<PlacedFeature> PATCH_WITHER_ROSE_PLACED = registerKey("patch_wither_rose_placed");
     public static final RegistryKey<PlacedFeature> ORE_KIMBERLITE_UPPER = registerKey("ore_kimberlite_upper");
     public static final RegistryKey<PlacedFeature> ORE_KIMBERLITE_LOWER = registerKey("ore_kimberlite_lower");
+    public static final RegistryKey<PlacedFeature> LAKE_VOID_WATER_PLACED = registerKey("lake_void_water_placed");
 
     public static void bootstrap(Registerable<PlacedFeature> context) {
         var configuredFeatureRegistryEntryLookup = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
@@ -44,7 +45,12 @@ public class YavpmMiscPlacedFeatures {
                 )
         );
 
-
+        register(
+                context,
+                LAKE_VOID_WATER_PLACED,
+                configuredFeatureRegistryEntryLookup.getOrThrow(YavpmMiscConfiguredFeatures.LAKE_VOID_WATER),
+                modifiersWithRarity(111, PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP)
+        );
     }
 
     public static RegistryKey<PlacedFeature> registerKey(String name) {

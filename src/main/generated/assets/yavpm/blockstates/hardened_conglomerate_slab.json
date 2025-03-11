@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "yavpm:block/hardened_conglomerate_slab"
+    },
+    "type=double": {
+      "model": "yavpm:block/hardened_conglomerate"
+    },
+    "type=top": {
+      "model": "yavpm:block/hardened_conglomerate_slab_top"
+    }
+  }
+}

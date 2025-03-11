@@ -140,6 +140,18 @@ public class ItemGroupHelper {
         entries.add(YavpmBlocks.CUT_SOULSTONE);
         entries.add(YavpmBlocks.CUT_SOULSTONE_SLAB);
 
+        entries.add(YavpmBlocks.CONGLOMERATE);
+        entries.add(YavpmBlocks.HARDENED_CONGLOMERATE);
+        entries.add(YavpmBlocks.HARDENED_CONGLOMERATE_STAIRS);
+        entries.add(YavpmBlocks.HARDENED_CONGLOMERATE_SLAB);
+        entries.add(YavpmBlocks.HARDENED_CONGLOMERATE_WALL);
+        entries.add(YavpmBlocks.HARDENED_CONGLOMERATE_BRICKS);
+        entries.add(YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_STAIRS);
+        entries.add(YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_SLAB);
+        entries.add(YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_WALL);
+        entries.add(YavpmBlocks.DULL_CONGLOMERATE);
+        entries.add(YavpmBlocks.DULL_CONGLOMERATE_SLAB);
+
         entries.add(YavpmBlocks.GRAPHITE_BLOCK);
         entries.add(YavpmBlocks.GRAPHENE_BLOCK);
     }

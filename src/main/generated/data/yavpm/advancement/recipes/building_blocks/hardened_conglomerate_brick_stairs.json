@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_hardened_conglomerate_bricks": {
+      "conditions": {
+        "items": [
+          {
+            "items": "yavpm:hardened_conglomerate_bricks"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "yavpm:hardened_conglomerate_brick_stairs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_hardened_conglomerate_bricks"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "yavpm:hardened_conglomerate_brick_stairs"
+    ]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "yavpm:block/hardened_conglomerate",
+    "side": "yavpm:block/hardened_conglomerate",
+    "top": "yavpm:block/hardened_conglomerate"
+  }
+}

@@ -45,7 +45,7 @@ public class YavpmVegetationPlacedFeatures {
                 context,
                 PRICKLE_VEGETAION_PLACED,
                 configuredFeatureRegistryEntryLookup.getOrThrow(YavpmVegetationConfiguredFeatures.PRICKLE_VEGETATION),
-                VegetationPlacedFeatures.treeModifiers(PlacedFeatures.createCountExtraModifier(1, 0.05f, 1))
+                VegetationPlacedFeatures.treeModifiers(PlacedFeatures.createCountExtraModifier(1, 0.005f, 1))
         );
     }
 

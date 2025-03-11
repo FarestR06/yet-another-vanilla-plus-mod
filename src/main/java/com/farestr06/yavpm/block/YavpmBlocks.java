@@ -150,6 +150,58 @@ public class YavpmBlocks {
             AbstractBlock.Settings.copy(Blocks.CHISELED_DEEPSLATE)
     );
 
+    // region Conglomerate
+    public static final Block CONGLOMERATE = makeBlockAndSimpleItem(
+            makeId("conglomerate"), Block::new,
+            AbstractBlock.Settings.copy(Blocks.PURPLE_CONCRETE_POWDER)
+    );
+
+    public static final Block HARDENED_CONGLOMERATE = makeBlockAndSimpleItem(
+            makeId("hardened_conglomerate"), Block::new,
+            AbstractBlock.Settings.copy(Blocks.PURPLE_CONCRETE)
+    );
+    public static final Block HARDENED_CONGLOMERATE_STAIRS = makeBlockAndSimpleItem(
+            makeId("hardened_conglomerate_stairs"),
+            settings -> new StairsBlock(HARDENED_CONGLOMERATE.getDefaultState(), settings),
+            AbstractBlock.Settings.copy(Blocks.PURPLE_CONCRETE)
+    );
+    public static final Block HARDENED_CONGLOMERATE_SLAB = makeBlockAndSimpleItem(
+            makeId("hardened_conglomerate_slab"), SlabBlock::new,
+            AbstractBlock.Settings.copy(Blocks.PURPLE_CONCRETE)
+    );
+    public static final Block HARDENED_CONGLOMERATE_WALL = makeBlockAndSimpleItem(
+            makeId("hardened_conglomerate_wall"), WallBlock::new,
+            AbstractBlock.Settings.copy(Blocks.PURPLE_CONCRETE)
+    );
+
+    public static final Block HARDENED_CONGLOMERATE_BRICKS = makeBlockAndSimpleItem(
+            makeId("hardened_conglomerate_bricks"), Block::new,
+            AbstractBlock.Settings.copy(HARDENED_CONGLOMERATE)
+    );
+    public static final Block HARDENED_CONGLOMERATE_BRICK_STAIRS = makeBlockAndSimpleItem(
+            makeId("hardened_conglomerate_brick_stairs"),
+            settings -> new StairsBlock(HARDENED_CONGLOMERATE_BRICKS.getDefaultState(), settings),
+            AbstractBlock.Settings.copy(Blocks.PURPLE_CONCRETE)
+    );
+    public static final Block HARDENED_CONGLOMERATE_BRICK_SLAB = makeBlockAndSimpleItem(
+            makeId("hardened_conglomerate_brick_slab"), SlabBlock::new,
+            AbstractBlock.Settings.copy(Blocks.PURPLE_CONCRETE)
+    );
+    public static final Block HARDENED_CONGLOMERATE_BRICK_WALL = makeBlockAndSimpleItem(
+            makeId("hardened_conglomerate_brick_wall"), WallBlock::new,
+            AbstractBlock.Settings.copy(Blocks.PURPLE_CONCRETE)
+    );
+
+    public static final Block DULL_CONGLOMERATE = makeBlockAndSimpleItem(
+            makeId("dull_conglomerate"), Block::new,
+            AbstractBlock.Settings.copy(HARDENED_CONGLOMERATE).strength(2.2f)
+    );
+    public static final Block DULL_CONGLOMERATE_SLAB = makeBlockAndSimpleItem(
+            makeId("dull_conglomerate_slab"), SlabBlock::new,
+            AbstractBlock.Settings.copy(Blocks.PURPLE_CONCRETE)
+    );
+    // endregion
+
     // region Igneous Stone
     public static final Block COBBLED_GRANITE = makeSimpleBlockAndSimpleItem(makeId("cobbled_granite"), AbstractBlock.Settings.copy(Blocks.COBBLESTONE));
     public static final Block COBBLED_DIORITE = makeSimpleBlockAndSimpleItem(makeId("cobbled_diorite"), AbstractBlock.Settings.copy(Blocks.COBBLESTONE));

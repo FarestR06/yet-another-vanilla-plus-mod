@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "yavpm:hardened_conglomerate"
+  ],
+  "result": {
+    "count": 2,
+    "id": "yavpm:hardened_conglomerate_slab"
+  }
+}

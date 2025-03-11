@@ -15,20 +15,28 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.biome.*;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
+import net.minecraft.world.gen.feature.EndPlacedFeatures;
 
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmBiomes {
+
+    public static void bootstrap(Registerable<Biome> context) {
+        Overworld.bootstrapOverworld(context);
+        End.bootstrapEnd(context);
+    }
+
+    private static RegistryKey<Biome> of(String id) {
+        return RegistryKey.of(RegistryKeys.BIOME, makeId(id));
+    }
+
     public static class Overworld {
         public static final RegistryKey<Biome> ORCHARD_PEAKS = of("orchard_peaks");
         public static final RegistryKey<Biome> WITHERED_SCAR = of("withered_scar");
         public static final RegistryKey<Biome> EBONY_FOREST = of("ebony_forest");
 
-        private static RegistryKey<Biome> of(String id) {
-            return RegistryKey.of(RegistryKeys.BIOME, makeId(id));
-        }
 
-        public static void bootstrap(Registerable<Biome> context) {
+        protected static void bootstrapOverworld(Registerable<Biome> context) {
             context.register(ORCHARD_PEAKS, makeOrchardGrove(context));
             context.register(WITHERED_SCAR, makeWitheredScar(context));
             context.register(EBONY_FOREST, makeEbonyForest(context));
@@ -182,6 +190,38 @@ public class YavpmBiomes {
             builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.PIG, 5, 1, 1));
             builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.CHICKEN, 6, 1, 1));
             builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.COW, 4, 1, 1));
+        }
+    }
+
+    public static class End {
+        public static final RegistryKey<Biome> END_OASIS = of("end_oasis");
+
+        public static void bootstrapEnd(Registerable<Biome> context) {
+            context.register(END_OASIS, createEndOasis(context));
+        }
+
+        private static Biome createEndBiome(GenerationSettings.LookupBackedBuilder builder) {
+            SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
+            DefaultBiomeFeatures.addEndMobs(spawnBuilder);
+            return new Biome.Builder()
+                    .precipitation(false)
+                    .temperature(0.5F)
+                    .downfall(0.5F)
+                    .effects(new BiomeEffects.Builder().waterColor(4159204).waterFogColor(329011).fogColor(10518688).skyColor(0).moodSound(BiomeMoodSound.CAVE).build())
+                    .spawnSettings(spawnBuilder.build())
+                    .generationSettings(builder.build())
+                    .build();
+        }
+
+        private static Biome createEndOasis(Registerable<Biome> context) {
+            GenerationSettings.LookupBackedBuilder lookupBackedBuilder = new GenerationSettings.LookupBackedBuilder(
+                    context.getRegistryLookup(RegistryKeys.PLACED_FEATURE),
+                    context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER)
+            );
+            lookupBackedBuilder.feature(GenerationStep.Feature.SURFACE_STRUCTURES, EndPlacedFeatures.END_GATEWAY_RETURN);
+            lookupBackedBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, YavpmVegetationPlacedFeatures.PRICKLE_VEGETAION_PLACED);
+            lookupBackedBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, YavpmMiscPlacedFeatures.LAKE_VOID_WATER_PLACED);
+            return createEndBiome(lookupBackedBuilder);
         }
     }
 }

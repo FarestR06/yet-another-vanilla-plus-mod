@@ -11,6 +11,7 @@
     "entity.DragonFireballEntityMixin",
     "entity.LivingEntityMixin",
     "entity.PhantomEntityMixin",
+    "item.PotionItemMixin",
     "item.ShearsItemMixin",
     "item.SmithingTemplateItemInvoker",
     "recipe.BrewingRecipeMixin",
