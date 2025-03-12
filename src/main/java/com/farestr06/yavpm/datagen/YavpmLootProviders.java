@@ -306,6 +306,18 @@ public class YavpmLootProviders {
             addDrop(YavpmBlocks.SOULSTONE_STAIRS);
             addDrop(YavpmBlocks.SMOOTH_SOULSTONE_STAIRS);
             addDrop(YavpmBlocks.SOULSTONE_WALL);
+
+            addDrop(YavpmBlocks.CONGLOMERATE);
+            addDrop(YavpmBlocks.HARDENED_CONGLOMERATE);
+            addDrop(YavpmBlocks.HARDENED_CONGLOMERATE_SLAB, this::slabDrops);
+            addDrop(YavpmBlocks.HARDENED_CONGLOMERATE_STAIRS);
+            addDrop(YavpmBlocks.HARDENED_CONGLOMERATE_WALL);
+            addDrop(YavpmBlocks.HARDENED_CONGLOMERATE_BRICKS);
+            addDrop(YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_SLAB, this::slabDrops);
+            addDrop(YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_STAIRS);
+            addDrop(YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_WALL);
+            addDrop(YavpmBlocks.DULL_CONGLOMERATE);
+            addDrop(YavpmBlocks.DULL_CONGLOMERATE_SLAB, this::slabDrops);
         }
 
         private void appleDrops() {

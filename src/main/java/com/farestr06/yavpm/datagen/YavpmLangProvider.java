@@ -383,6 +383,23 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.APPLE_BUTTON, "Apple Button");
         builder.add(YavpmBlocks.APPLE_SAPLING, "Apple Sapling");
 
+        builder.add(YavpmItems.APPLE_SIGN, "Apple Sign");
+        builder.add(YavpmItems.APPLE_HANGING_SIGN, "Apple Hanging Sign");
+        builder.add(YavpmItems.APPLE_BOAT, "Apple Boat");
+        builder.add("entity.yavpm.apple_boat", "Apple Boat");
+        builder.add(YavpmItems.APPLE_CHEST_BOAT, "Apple Boat with Chest");
+        builder.add("entity.yavpm.apple_chest_boat", "Apple Boat with Chest");
+
+        builder.add(YavpmItems.PERSIMMON_SIGN, "Persimmon Sign");
+        builder.add(YavpmItems.PERSIMMON_HANGING_SIGN, "Persimmon Hanging Sign");
+        builder.add(YavpmItems.PERSIMMON_BOAT, "Persimmon Boat");
+        builder.add("entity.yavpm.persimmon_boat", "Persimmon Boat");
+        builder.add(YavpmItems.PERSIMMON_CHEST_BOAT, "Persimmon Boat with Chest");
+        builder.add("entity.yavpm.persimmon_chest_boat", "Persimmon Boat with Chest");
+
+        builder.add(YavpmItems.PRICKLE_SIGN, "Prickle Sign");
+        builder.add(YavpmItems.PRICKLE_HANGING_SIGN, "Prickle Hanging Sign");
+
         builder.add(YavpmBlocks.PERSIMMON_LOG, "Persimmon Log");
         builder.add(YavpmBlocks.PERSIMMON_WOOD, "Persimmon Wood");
         builder.add(YavpmBlocks.STRIPPED_PERSIMMON_LOG, "Stripped Persimmon Log");

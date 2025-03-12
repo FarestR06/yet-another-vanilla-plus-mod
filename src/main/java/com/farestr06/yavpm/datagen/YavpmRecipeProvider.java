@@ -142,6 +142,8 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
             }
 
             private void conglomerate(RecipeExporter exporter) {
+                this.offerConcretePowderDyeingRecipe(YavpmBlocks.CONGLOMERATE, Items.DRAGON_BREATH);
+
                 createStairsRecipe(YavpmBlocks.HARDENED_CONGLOMERATE_STAIRS, Ingredient.ofItems(YavpmBlocks.HARDENED_CONGLOMERATE))
                         .criterion(hasItem(YavpmBlocks.HARDENED_CONGLOMERATE), conditionsFromItem(YavpmBlocks.HARDENED_CONGLOMERATE))
                         .offerTo(exporter);
@@ -178,9 +180,13 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.HARDENED_CONGLOMERATE_SLAB, YavpmBlocks.HARDENED_CONGLOMERATE, 2);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.HARDENED_CONGLOMERATE_STAIRS, YavpmBlocks.HARDENED_CONGLOMERATE);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.HARDENED_CONGLOMERATE_WALL, YavpmBlocks.HARDENED_CONGLOMERATE);
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.HARDENED_CONGLOMERATE_BRICKS, YavpmBlocks.HARDENED_CONGLOMERATE);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_SLAB, YavpmBlocks.HARDENED_CONGLOMERATE, 2);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_STAIRS, YavpmBlocks.HARDENED_CONGLOMERATE);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_WALL, YavpmBlocks.HARDENED_CONGLOMERATE);
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_SLAB, YavpmBlocks.HARDENED_CONGLOMERATE_BRICKS, 2);
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_STAIRS, YavpmBlocks.HARDENED_CONGLOMERATE_BRICKS);
+                offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_WALL, YavpmBlocks.HARDENED_CONGLOMERATE_BRICKS);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.DULL_CONGLOMERATE, YavpmBlocks.HARDENED_CONGLOMERATE);
                 offerStonecuttingRecipe(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.DULL_CONGLOMERATE_SLAB, YavpmBlocks.HARDENED_CONGLOMERATE, 2);
             }
@@ -727,6 +733,8 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 offerBarkBlockRecipe(YavpmBlocks.APPLE_WOOD, YavpmBlocks.APPLE_LOG);
                 offerBarkBlockRecipe(YavpmBlocks.STRIPPED_APPLE_WOOD, YavpmBlocks.STRIPPED_APPLE_LOG);
                 generateFamily(YavpmBlocks.APPLE_FAMILY, FeatureSet.of(FeatureFlags.VANILLA));
+
+                offerHangingSignRecipe(YavpmItems.APPLE_HANGING_SIGN, YavpmBlocks.STRIPPED_APPLE_LOG);
 
                 createMoreTrapdoorsRecipe(YavpmBlocks.APPLE_TRAPDOOR, Ingredient.ofItems(YavpmBlocks.APPLE_PLANKS))
                         .criterion(hasItem(YavpmBlocks.APPLE_PLANKS), conditionsFromItem(YavpmBlocks.APPLE_PLANKS))

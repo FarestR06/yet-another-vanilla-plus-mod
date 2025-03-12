@@ -99,7 +99,11 @@ public class YavpmTagProviders {
                     YavpmItems.STUDDED_HELMET,
                     YavpmItems.STUDDED_CHESTPLATE,
                     YavpmItems.STUDDED_LEGGINGS,
-                    YavpmItems.STUDDED_BOOTS
+                    YavpmItems.STUDDED_BOOTS,
+                    YavpmItems.DENSITITE_HELMET,
+                    YavpmItems.DENSITITE_CHESTPLATE,
+                    YavpmItems.DENSITITE_LEGGINGS,
+                    YavpmItems.DENSITITE_BOOTS
             );
 
             getOrCreateTagBuilder(YavpmTags.Items.ENCHANTABLE_GLIDER).add(
@@ -116,13 +120,13 @@ public class YavpmTagProviders {
             );
 
             getOrCreateTagBuilder(ItemTags.HEAD_ARMOR)
-                    .add(YavpmItems.STUDDED_HELMET);
+                    .add(YavpmItems.STUDDED_HELMET, YavpmItems.DENSITITE_HELMET);
             getOrCreateTagBuilder(ItemTags.CHEST_ARMOR)
-                    .add(YavpmItems.STUDDED_CHESTPLATE);
+                    .add(YavpmItems.STUDDED_CHESTPLATE, YavpmItems.DENSITITE_CHESTPLATE);
             getOrCreateTagBuilder(ItemTags.LEG_ARMOR)
-                    .add(YavpmItems.STUDDED_LEGGINGS);
+                    .add(YavpmItems.STUDDED_LEGGINGS, YavpmItems.DENSITITE_LEGGINGS);
             getOrCreateTagBuilder(ItemTags.FOOT_ARMOR)
-                    .add(YavpmItems.STUDDED_BOOTS);
+                    .add(YavpmItems.STUDDED_BOOTS, YavpmItems.DENSITITE_BOOTS);
             getOrCreateTagBuilder(ItemTags.FREEZE_IMMUNE_WEARABLES).add(
                     YavpmItems.STUDDED_HELMET,
                     YavpmItems.STUDDED_CHESTPLATE,
@@ -516,7 +520,20 @@ public class YavpmTagProviders {
                     YavpmBlocks.SMOOTH_SOULSTONE_STAIRS,
                     YavpmBlocks.SOULSTONE_WALL,
 
+                    YavpmBlocks.HARDENED_CONGLOMERATE,
+                    YavpmBlocks.HARDENED_CONGLOMERATE_STAIRS,
+                    YavpmBlocks.HARDENED_CONGLOMERATE_SLAB,
+                    YavpmBlocks.HARDENED_CONGLOMERATE_WALL,
+                    YavpmBlocks.HARDENED_CONGLOMERATE_BRICKS,
+                    YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_STAIRS,
+                    YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_SLAB,
+                    YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_WALL,
+
                     YavpmBlocks.FAKE_ORE
+            );
+
+            getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE).add(
+                    YavpmBlocks.CONGLOMERATE
             );
 
             getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL)

@@ -6,6 +6,7 @@ import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.custom.*;
 import com.farestr06.yavpm.util.YavpmSounds;
+import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
@@ -18,6 +19,7 @@ import net.minecraft.item.equipment.EquipmentType;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.Potions;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 
 import java.util.HashMap;
@@ -198,6 +200,54 @@ public class YavpmItems {
             new Item.Settings().rarity(Rarity.UNCOMMON)
                     .food(YavpmFoods.MOLY, YavpmFoods.ConsumableComponents.MOLY_COMPONENT).maxCount(16)
     );
+
+    // region Wood
+    public static final Item APPLE_SIGN = makeAdvancedItem(
+            makeId("apple_sign"),
+            settings -> new SignItem(
+                    YavpmBlocks.APPLE_SIGN, YavpmBlocks.APPLE_WALL_SIGN, settings
+            ), new Item.Settings()
+    );
+    public static final Item APPLE_HANGING_SIGN = makeAdvancedItem(
+            makeId("apple_hanging_sign"),
+            settings -> new HangingSignItem(
+                    YavpmBlocks.APPLE_HANGING_SIGN, YavpmBlocks.APPLE_WALL_HANGING_SIGN, settings
+            ), new Item.Settings()
+    );
+
+    public static final Identifier APPLE_BOAT_ID = makeId("apple");
+    public static final Item APPLE_BOAT = TerraformBoatItemHelper.registerBoatItem(APPLE_BOAT_ID, false);
+    public static final Item APPLE_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(APPLE_BOAT_ID, true);
+
+    public static final Item PERSIMMON_SIGN = makeAdvancedItem(
+            makeId("persimmon_sign"),
+            settings -> new SignItem(
+                    YavpmBlocks.PERSIMMON_SIGN, YavpmBlocks.PERSIMMON_WALL_SIGN, settings
+            ), new Item.Settings()
+    );
+    public static final Item PERSIMMON_HANGING_SIGN = makeAdvancedItem(
+            makeId("persimmon_hanging_sign"),
+            settings -> new HangingSignItem(
+                    YavpmBlocks.PERSIMMON_HANGING_SIGN, YavpmBlocks.PERSIMMON_WALL_HANGING_SIGN, settings
+            ), new Item.Settings()
+    );
+    public static final Identifier PERSIMMON_BOAT_ID = makeId("persimmon");
+    public static final Item PERSIMMON_BOAT = TerraformBoatItemHelper.registerBoatItem(PERSIMMON_BOAT_ID, false);
+    public static final Item PERSIMMON_CHEST_BOAT = TerraformBoatItemHelper.registerBoatItem(PERSIMMON_BOAT_ID, true);
+
+    public static final Item PRICKLE_SIGN = makeAdvancedItem(
+            makeId("prickle_sign"),
+            settings -> new SignItem(
+                    YavpmBlocks.PRICKLE_SIGN, YavpmBlocks.PRICKLE_WALL_SIGN, settings
+            ), new Item.Settings()
+    );
+    public static final Item PRICKLE_HANGING_SIGN = makeAdvancedItem(
+            makeId("prickle_hanging_sign"),
+            settings -> new HangingSignItem(
+                    YavpmBlocks.PRICKLE_HANGING_SIGN, YavpmBlocks.PRICKLE_WALL_HANGING_SIGN, settings
+            ), new Item.Settings()
+    );
+    // endregion
 
     // region Reactor
     public static final Item REACTOR = makeAdvancedItem(

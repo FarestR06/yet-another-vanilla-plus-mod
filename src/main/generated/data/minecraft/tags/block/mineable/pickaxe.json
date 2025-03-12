@@ -57,6 +57,14 @@
     "yavpm:soulstone_stairs",
     "yavpm:smooth_soulstone_stairs",
     "yavpm:soulstone_wall",
+    "yavpm:hardened_conglomerate",
+    "yavpm:hardened_conglomerate_stairs",
+    "yavpm:hardened_conglomerate_slab",
+    "yavpm:hardened_conglomerate_wall",
+    "yavpm:hardened_conglomerate_bricks",
+    "yavpm:hardened_conglomerate_brick_stairs",
+    "yavpm:hardened_conglomerate_brick_slab",
+    "yavpm:hardened_conglomerate_brick_wall",
     "yavpm:fake_ore"
   ]
 }

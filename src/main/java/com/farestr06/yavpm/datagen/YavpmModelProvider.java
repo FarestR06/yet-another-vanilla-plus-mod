@@ -87,6 +87,9 @@ public class YavpmModelProvider extends FabricModelProvider {
         createStuddedArmor(generator);
         createDensitite(generator);
 
+        generator.register(YavpmItems.APPLE_BOAT, Models.GENERATED);
+        generator.register(YavpmItems.APPLE_CHEST_BOAT, Models.GENERATED);
+
         generator.register(YavpmItems.MUSIC_DISC_MAGNETIC_CIRCUIT, Models.TEMPLATE_MUSIC_DISC);
         generator.register(YavpmItems.DISC_FRAGMENT_MAGNETIC_CIRCUIT, Models.GENERATED);
         generator.register(YavpmItems.MUSIC_DISC_HALLAND_DALARNA, Models.TEMPLATE_MUSIC_DISC);
@@ -327,6 +330,7 @@ public class YavpmModelProvider extends FabricModelProvider {
         // Apple Planks and Texture Pool
         BlockStateModelGenerator.BlockTexturePool applePool = generator.registerCubeAllModelTexturePool(YavpmBlocks.APPLE_PLANKS);
         applePool.family(YavpmBlocks.APPLE_FAMILY).stairs(YavpmBlocks.APPLE_STAIRS);
+        generator.registerHangingSign(YavpmBlocks.APPLE_LOG, YavpmBlocks.APPLE_HANGING_SIGN, YavpmBlocks.APPLE_WALL_HANGING_SIGN);
         generator.registerTrapdoor(YavpmBlocks.APPLE_TRAPDOOR);
     }
 
@@ -340,6 +344,7 @@ public class YavpmModelProvider extends FabricModelProvider {
         // Persimmon Planks and Texture Pool
         BlockStateModelGenerator.BlockTexturePool persimmonPool = generator.registerCubeAllModelTexturePool(YavpmBlocks.PERSIMMON_PLANKS);
         persimmonPool.family(YavpmBlocks.PERSIMMON_FAMILY).stairs(YavpmBlocks.PERSIMMON_STAIRS);
+        generator.registerHangingSign(YavpmBlocks.PERSIMMON_LOG, YavpmBlocks.PERSIMMON_HANGING_SIGN, YavpmBlocks.PERSIMMON_WALL_HANGING_SIGN);
         generator.registerTrapdoor(YavpmBlocks.PERSIMMON_TRAPDOOR);
     }
 
@@ -350,6 +355,7 @@ public class YavpmModelProvider extends FabricModelProvider {
         BlockStateModelGenerator.BlockTexturePool pricklePool = generator.registerCubeAllModelTexturePool(YavpmBlocks.PRICKLE_PLANKS);
 
         pricklePool.family(YavpmBlocks.PRICKLE_FAMILY).stairs(YavpmBlocks.PRICKLE_STAIRS);
+        generator.registerHangingSign(YavpmBlocks.PRICKLE_LOG, YavpmBlocks.PRICKLE_HANGING_SIGN, YavpmBlocks.PRICKLE_WALL_HANGING_SIGN);
         generator.registerTrapdoor(YavpmBlocks.PRICKLE_TRAPDOOR);
     }
 

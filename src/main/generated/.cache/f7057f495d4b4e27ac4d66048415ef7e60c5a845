@@ -9,7 +9,8 @@ e4de44b64a769cb6126e0a64e8a3aacff9833795 data/c/tags/block/stripped_woods.json
 0e8f0fe56c5da7e148bcfaaee1cec54d70607b7b data/minecraft/tags/block/logs_that_burn.json
 7620a6f54527179f9ef92f914bce10b0ee3ce179 data/minecraft/tags/block/mineable/axe.json
 846003a1a25ed66d4744cbf09837961fb98c16cc data/minecraft/tags/block/mineable/hoe.json
-35d7aa733ec2e16ddfb5f8a8622305c967d208d6 data/minecraft/tags/block/mineable/pickaxe.json
+216f44a1f65f0766f899a6394c214fc55ab62005 data/minecraft/tags/block/mineable/pickaxe.json
+6ca4dbf0aefc993971191f623c1f13b0e36778f4 data/minecraft/tags/block/mineable/shovel.json
 1acfd7d2d675c5caaa7cfc72edd8bf050e97fa77 data/minecraft/tags/block/needs_diamond_tool.json
 629cdbb8075c3d564170b826c37088c264df2bab data/minecraft/tags/block/needs_iron_tool.json
 8339f55c0cab8e45594c4f8ddda61f2107ae2803 data/minecraft/tags/block/needs_stone_tool.json

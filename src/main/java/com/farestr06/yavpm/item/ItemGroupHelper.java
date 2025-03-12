@@ -190,6 +190,8 @@ public class ItemGroupHelper {
     private static void redstone(FabricItemGroupEntries entries) {
         entries.add(YavpmBlocks.POLARIZED_GLASS);
         entries.add(YavpmBlocks.RECYCLER);
+        entries.add(YavpmItems.APPLE_SIGN);
+        entries.add(YavpmItems.APPLE_HANGING_SIGN);
         entries.add(YavpmBlocks.PINATA);
     }
 
@@ -203,7 +205,8 @@ public class ItemGroupHelper {
         entries.add(YavpmItems.FORTUNE_COOKIE);
         entries.add(YavpmItems.REACTOR);
         entries.add(YavpmItems.BABY_KEY);
-
+        entries.add(YavpmItems.APPLE_BOAT);
+        entries.add(YavpmItems.APPLE_CHEST_BOAT);
         entries.add(
                 CopperHornItem.getStackForId(YavpmItems.COPPER_HORN, CopperInstruments.GREAT_SKY_FALLING)
         );

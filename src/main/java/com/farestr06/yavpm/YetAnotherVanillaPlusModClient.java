@@ -9,6 +9,8 @@ import com.farestr06.yavpm.entity.mob.client.YavpmModelLayers;
 import com.farestr06.yavpm.entity.mob.client.model.TanukiEntityModel;
 import com.farestr06.yavpm.entity.mob.client.moongus.MoongusEntityRenderer;
 import com.farestr06.yavpm.fluid.YavpmFluids;
+import com.farestr06.yavpm.item.YavpmItems;
+import com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
@@ -72,5 +74,8 @@ public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
         EntityRendererRegistry.register(YavpmEntities.TANUKI, TanukiEntityRenderer::new);
 
         EntityModelLayerRegistry.registerModelLayer(YavpmModelLayers.TANUKI, TanukiEntityModel::getTexturedModelData);
+
+        TerraformBoatClientHelper.registerModelLayers(YavpmItems.APPLE_BOAT_ID);
+        TerraformBoatClientHelper.registerModelLayers(YavpmItems.PERSIMMON_BOAT_ID);
     }
 }
