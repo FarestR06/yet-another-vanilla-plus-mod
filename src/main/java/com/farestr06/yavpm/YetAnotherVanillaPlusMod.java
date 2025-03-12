@@ -46,6 +46,9 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		// Proceed with mild caution.
 
 		LOGGER.info("Go go gadget YAVPM!!");
+		if (!FabricLoader.getInstance().isDevelopmentEnvironment()) {
+			LOGGER.warn("Also, YAVPM is a work in progress, so please report any issues you find!");
+		}
 
 		// Load config settings
 		YavpmConfig.HANDLER.load();

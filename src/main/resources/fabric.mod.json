@@ -1,9 +1,9 @@
 {
 	"schemaVersion": 1,
 	"id": "yavpm",
-	"version": "1.0.0",
+	"version": "0.1.0-alpha",
 	"name": "Yet Another Vanilla Plus Mod",
-	"description": "Pretty self-explanatory",
+	"description": "Pretty self-explanatory. Work in progress!",
 	"authors": [
 		"FarestR06"
 	],
