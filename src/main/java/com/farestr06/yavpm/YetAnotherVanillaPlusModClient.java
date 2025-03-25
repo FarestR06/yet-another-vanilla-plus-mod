@@ -2,10 +2,8 @@ package com.farestr06.yavpm;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.entity.YavpmEntities;
-import com.farestr06.yavpm.entity.mob.client.CarbonfowlEntityRenderer;
-import com.farestr06.yavpm.entity.mob.client.TanukiEntityRenderer;
-import com.farestr06.yavpm.entity.mob.client.VoidPhantomEntityRenderer;
-import com.farestr06.yavpm.entity.mob.client.YavpmModelLayers;
+import com.farestr06.yavpm.entity.mob.client.*;
+import com.farestr06.yavpm.entity.mob.client.model.SunburnEntityModel;
 import com.farestr06.yavpm.entity.mob.client.model.TanukiEntityModel;
 import com.farestr06.yavpm.entity.mob.client.moongus.MoongusEntityRenderer;
 import com.farestr06.yavpm.fluid.YavpmFluids;
@@ -70,10 +68,12 @@ public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
     private static void setUpEntities() {
         EntityRendererRegistry.register(YavpmEntities.MOONGUS, MoongusEntityRenderer::new);
         EntityRendererRegistry.register(YavpmEntities.CARBONFOWL, CarbonfowlEntityRenderer::new);
+        EntityRendererRegistry.register(YavpmEntities.SUNBURN, SunburnEntityRenderer::new);
         EntityRendererRegistry.register(YavpmEntities.VOID_PHANTOM, VoidPhantomEntityRenderer::new);
         EntityRendererRegistry.register(YavpmEntities.TANUKI, TanukiEntityRenderer::new);
 
         EntityModelLayerRegistry.registerModelLayer(YavpmModelLayers.TANUKI, TanukiEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(YavpmModelLayers.SUNBURN, SunburnEntityModel::getTexturedModelData);
 
         TerraformBoatClientHelper.registerModelLayers(YavpmItems.APPLE_BOAT_ID);
         TerraformBoatClientHelper.registerModelLayers(YavpmItems.PERSIMMON_BOAT_ID);

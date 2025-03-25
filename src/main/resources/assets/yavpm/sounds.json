@@ -110,6 +110,30 @@
     ],
     "subtitle": "subtitles.entity.chicken.egg_break"
   },
+  "entity.sunburn.ambient": {
+    "sounds": [
+      "yavpm:mob/sunburn/breathe1",
+      "yavpm:mob/sunburn/breathe2",
+      "yavpm:mob/sunburn/breathe3",
+      "yavpm:mob/sunburn/breathe4"
+    ],
+    "subtitle": "subtitles.entity.sunburn.ambient"
+  },
+  "entity.sunburn.death": {
+    "sounds": [
+      "yavpm:mob/sunburn/death"
+    ],
+    "subtitle": "subtitles.entity.sunburn.death"
+  },
+  "entity.sunburn.hurt": {
+    "sounds": [
+      "yavpm:mob/sunburn/hit1",
+      "yavpm:mob/sunburn/hit2",
+      "yavpm:mob/sunburn/hit3",
+      "yavpm:mob/sunburn/hit4"
+    ],
+    "subtitle": "subtitles.entity.sunburn.hurt"
+  },
   "item.baby_key.scared": {
     "sounds": [
       "yavpm:mob/baby_key/scared1",

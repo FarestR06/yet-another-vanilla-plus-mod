@@ -233,6 +233,7 @@ c7371ca7781fb45367efead60431083dcbe47217 assets/yavpm/items/magic_bean.json
 20957b4732d5a02d05aa143c3be6cab908da8387 assets/yavpm/items/moongus_spawn_egg.json
 42d877ecf646a29af8b5d5b80d61d216913e30be assets/yavpm/items/music_disc_halland_dalarna.json
 322a0eac7c9d18ad732a6d4b898ae57acbd68d7e assets/yavpm/items/music_disc_magnetic_circuit.json
+60506f976447d2607503b3045a8d6e4ca7574021 assets/yavpm/items/null_torch.json
 8b235eb191712e80b291c88dac7cea0474e989b0 assets/yavpm/items/peanut.json
 e0ec48b47bdda164fbb6e278b782b87f65b295b4 assets/yavpm/items/persimmon.json
 4d04494a380d6cb4c1481cb081398c6ef6cda86a assets/yavpm/items/persimmon_button.json
@@ -321,6 +322,7 @@ af2262016aa180c192f7a7cface9f63f84b92a25 assets/yavpm/items/stripped_apple_wood.
 262e4b34404e1d095e5ba2b547f4a55039fda536 assets/yavpm/items/studded_chestplate.json
 75beef69904cc527056f2f16d3675a9bc1b4b3b3 assets/yavpm/items/studded_helmet.json
 539112f9022638d9443d813adcda2b5721ed9a7a assets/yavpm/items/studded_leggings.json
+15ecc8e21614d6d45d367d2651083a900c35e894 assets/yavpm/items/sunburn_spawn_egg.json
 d738ea9a80d5a5fe344b9c35cef7ba2651b3257c assets/yavpm/items/sushi.json
 e4a1f63b78b16c92bcec1875706252f6293730e2 assets/yavpm/items/sweet_berry_jelly.json
 18c38a2c98ec2640dbd7dfa3786dc73dce8f180e assets/yavpm/items/tanuki_spawn_egg.json
@@ -718,6 +720,7 @@ c39fd23ef69774f5fe15eed608f24113477e6f84 assets/yavpm/models/item/magic_bean.jso
 3c8ab500fd4fb6c5493beb387f9a6e68af7960a2 assets/yavpm/models/item/moly.json
 7d33bd57047599941b0738c84fe635eb918053b0 assets/yavpm/models/item/music_disc_halland_dalarna.json
 d362f7316be6e362ab28d3daebd0d8c4d6891c15 assets/yavpm/models/item/music_disc_magnetic_circuit.json
+e18ddc540d4b59c068d913f12e5c0e5e73df4981 assets/yavpm/models/item/null_torch.json
 1dc88f5f467b8c2baebd960f6b6de5ab73da6186 assets/yavpm/models/item/peanut.json
 185d8753815f5acd2c7bdcaafb3d60e2f235aa4b assets/yavpm/models/item/persimmon.json
 006059e1acff7b034dfe82fc6c0934c005d5cdc4 assets/yavpm/models/item/persimmon_door.json

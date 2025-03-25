@@ -1,4 +1,5 @@
 // 1.21.4	-999999999-01-01T00:00:00	Yet Another Vanilla Plus Mod/Tags for minecraft:worldgen/biome
+b1070a7eabed0b3452ac26d6fe176a1ca3eca0f1 data/minecraft/tags/worldgen/biome/is_end.json
 8345d82f13438c63f08b7a38c632c2ef6ce038a6 data/yavpm/tags/worldgen/biome/fake_log_is_acacia.json
 f4ffb51afcafaca883f3c6248c7dc605a89d7f8a data/yavpm/tags/worldgen/biome/fake_log_is_birch.json
 8fa151e2ee1d0f8b976788aaa140371a069949f7 data/yavpm/tags/worldgen/biome/fake_log_is_cherry.json

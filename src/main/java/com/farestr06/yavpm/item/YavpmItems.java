@@ -325,6 +325,10 @@ public class YavpmItems {
     );
     // endregion
 
+    public static final Item NULLIUM_NUGGET = makeItem(
+            makeId("nullium_nugget"), new Item.Settings().component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true)
+    );
+
     public static final Item COPPER_HORN = makeAdvancedItem(
             makeId("copper_horn"),
             CopperHornItem::new,
@@ -398,6 +402,11 @@ public class YavpmItems {
     public static final Item TANUKI_SPAWN_EGG = makeAdvancedItemWithDefaultSettings(
             makeId("tanuki_spawn_egg"),
             settings -> new SpawnEggItem(YavpmEntities.TANUKI, settings)
+    );
+
+    public static final Item SUNBURN_SPAWN_EGG = makeAdvancedItemWithDefaultSettings(
+            makeId("sunburn_spawn_egg"),
+            settings -> new SpawnEggItem(YavpmEntities.SUNBURN, settings)
     );
 
     public static final Item VOID_PHANTOM_SPAWN_EGG = makeAdvancedItemWithDefaultSettings(

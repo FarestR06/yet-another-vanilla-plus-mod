@@ -328,6 +328,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmEntities.CARBONFOWL, "Carbonfowl");
         builder.add(YavpmItems.MOONGUS_SPAWN_EGG, "Moongus Spawn Egg");
         builder.add(YavpmEntities.MOONGUS, "Moongus");
+        builder.add(YavpmItems.SUNBURN_SPAWN_EGG, "Sunburn Spawn Egg");
+        builder.add(YavpmEntities.SUNBURN, "Sunburn");
         builder.add(YavpmItems.TANUKI_SPAWN_EGG, "Tanuki Spawn Egg");
         builder.add(YavpmEntities.TANUKI, "Tanuki");
         builder.add(YavpmItems.VOID_PHANTOM_SPAWN_EGG, "Void Phantom Spawn Egg");
@@ -346,6 +348,10 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("subtitles.entity.tanuki.death", "Tanuki dies");
         builder.add("subtitles.entity.tanuki.eat", "Tanuki eats");
         builder.add("subtitles.entity.tanuki.hurt", "Tanuki hurts");
+
+        builder.add("subtitles.entity.sunburn.ambient", "Sunburn breathes");
+        builder.add("subtitles.entity.sunburn.death", "Sunburn dies");
+        builder.add("subtitles.entity.sunburn.hurt", "Sunburn hurts");
 
         builder.add(YavpmItems.BABY_KEY, "Key Golem");
 
@@ -524,6 +530,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.POLARIZED_GLASS, "Polarized Glass");
         builder.add(YavpmBlocks.RECYCLER, "Recycler");
         builder.add("container.recycler", "Recycler");
+
+        builder.add(YavpmBlocks.NULL_TORCH, "Null Torch");
 
         builder.add(YavpmBlocks.PINATA, "Piñata");
         builder.add("subtitles.block.pinata.insert", "Piñata fills");

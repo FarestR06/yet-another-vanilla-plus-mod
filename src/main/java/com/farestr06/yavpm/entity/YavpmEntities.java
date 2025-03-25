@@ -1,10 +1,7 @@
 package com.farestr06.yavpm.entity;
 
 import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
-import com.farestr06.yavpm.entity.mob.CarbonfowlEntity;
-import com.farestr06.yavpm.entity.mob.MoongusEntity;
-import com.farestr06.yavpm.entity.mob.TanukiEntity;
-import com.farestr06.yavpm.entity.mob.VoidPhantomEntity;
+import com.farestr06.yavpm.entity.mob.*;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -48,6 +45,15 @@ public class YavpmEntities {
                     .passengerAttachments(new Vec3d(0.0, 0.6375, -0.25))
                     .maxTrackingRange(8)
     );
+    public static final EntityType<SunburnEntity> SUNBURN = register(
+            "sunburn",
+            EntityType.Builder.create(SunburnEntity::new, SpawnGroup.MONSTER)
+                    .dimensions(0.8f, 0.8f)
+                    .eyeHeight(0.5f)
+                    .passengerAttachments(1)
+                    .vehicleAttachment(0.2f)
+                    .maxTrackingRange(8)
+    );
     public static final EntityType<VoidPhantomEntity> VOID_PHANTOM = register(
             "void_phantom",
             EntityType.Builder.create(VoidPhantomEntity::new, SpawnGroup.MONSTER)
@@ -75,6 +81,9 @@ public class YavpmEntities {
 
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Tanuki attributes...");
         FabricDefaultAttributeRegistry.register(TANUKI, TanukiEntity.createTanukiAttributes().build());
+
+        YetAnotherVanillaPlusMod.LOGGER.debug("Creating Sunburn attributes...");
+        FabricDefaultAttributeRegistry.register(SUNBURN, SunburnEntity.createSunburnAttributes().build());
 
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Void Phantom attributes...");
         FabricDefaultAttributeRegistry.register(VOID_PHANTOM, HostileEntity.createHostileAttributes().build());

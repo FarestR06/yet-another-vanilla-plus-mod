@@ -283,6 +283,7 @@ public class ItemGroupHelper {
     private static void spawnEggs(FabricItemGroupEntries entries) {
         entries.add(YavpmItems.CARBONFOWL_SPAWN_EGG);
         entries.add(YavpmItems.MOONGUS_SPAWN_EGG);
+        entries.add(YavpmItems.SUNBURN_SPAWN_EGG);
         entries.add(YavpmItems.TANUKI_SPAWN_EGG);
         entries.add(YavpmItems.VOID_PHANTOM_SPAWN_EGG);
     }

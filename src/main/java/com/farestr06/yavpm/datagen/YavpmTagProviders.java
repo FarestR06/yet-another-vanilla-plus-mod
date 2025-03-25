@@ -7,6 +7,7 @@ import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.item.enchantment.YavpmEnchantments;
 import com.farestr06.yavpm.util.YavpmTags;
+import com.farestr06.yavpm.world.biome.YavpmBiomes;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags;
@@ -231,8 +232,16 @@ public class YavpmTagProviders {
                     Items.GLOW_BERRIES,
                     Items.MOSS_BLOCK,
                     Items.MOSS_CARPET,
+                    Items.AZALEA,
+                    Items.FLOWERING_AZALEA,
                     Items.SCULK,
                     Items.SCULK_VEIN,
+                    Items.SCULK_CATALYST,
+                    Items.SCULK_SENSOR,
+                    Items.SCULK_SHRIEKER,
+                    Items.ROTTEN_FLESH,
+                    Items.BONE,
+                    Items.GUNPOWDER,
                     Items.SPIDER_EYE
             );
             getOrCreateTagBuilder(YavpmTags.Items.TANUKI_FOOD)
@@ -795,6 +804,8 @@ public class YavpmTagProviders {
 
         @Override
         protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+            getOrCreateTagBuilder(BiomeTags.IS_END).add(YavpmBiomes.End.END_OASIS);
+
             getOrCreateTagBuilder(YavpmTags.Biomes.SPAWNS_CRIMSON_MOONGUS)
                     .add(BiomeKeys.CRIMSON_FOREST);
             getOrCreateTagBuilder(YavpmTags.Biomes.SPAWNS_WARPED_MOONGUS)

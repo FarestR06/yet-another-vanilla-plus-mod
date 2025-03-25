@@ -109,6 +109,6 @@ public class YavpmFoods {
                 .build();
         // Magic Herb
         public static final ConsumableComponent MOLY_COMPONENT = ConsumableComponent.builder()
-                .consumeEffect(ClearAllEffectsConsumeEffect.INSTANCE).consumeSeconds(2.4f).build();
+                .consumeEffect(ClearAllEffectsConsumeEffect.INSTANCE).consumeEffect(new ApplyEffectsConsumeEffect(new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, 1, 4))).consumeSeconds(2.4f).build();
     }
 }

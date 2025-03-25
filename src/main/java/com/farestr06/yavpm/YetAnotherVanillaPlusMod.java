@@ -16,6 +16,7 @@ import com.farestr06.yavpm.item.component.YavpmDataComponentTypes;
 import com.farestr06.yavpm.item.enchantment.condition.YavpmLootConditions;
 import com.farestr06.yavpm.item.enchantment.effect.YavpmEnchantmentEffects;
 import com.farestr06.yavpm.util.LootHelper;
+import com.farestr06.yavpm.util.YavpmHelpCommand;
 import com.farestr06.yavpm.util.YavpmSounds;
 import com.farestr06.yavpm.world.gen.YavpmWorldGeneration;
 import net.fabricmc.api.ModInitializer;
@@ -78,6 +79,8 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 
 		LootHelper.modifyLoot();
 		YavpmTrades.init();
+
+		YavpmHelpCommand.init();
 
 		// setUpVanillaTweaksCompat();
 	}

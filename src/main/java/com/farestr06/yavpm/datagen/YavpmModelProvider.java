@@ -54,6 +54,7 @@ public class YavpmModelProvider extends FabricModelProvider {
 
         registerPolarizedGlass(generator);
         generator.registerDispenserLikeOrientable(YavpmBlocks.RECYCLER);
+        generator.registerItemModel(YavpmBlocks.NULL_TORCH);
 
         generator.registerTintableCross(YavpmBlocks.APPLE_SAPLING, BlockStateModelGenerator.CrossType.NOT_TINTED);
         generator.registerTintableCross(YavpmBlocks.PERSIMMON_SAPLING, BlockStateModelGenerator.CrossType.NOT_TINTED);
@@ -96,6 +97,7 @@ public class YavpmModelProvider extends FabricModelProvider {
 
         generator.registerSpawnEgg(YavpmItems.MOONGUS_SPAWN_EGG, MapColor.BRIGHT_TEAL.color, MapColor.RED.color);
         generator.registerSpawnEgg(YavpmItems.CARBONFOWL_SPAWN_EGG, 0x191919, 0x4aedd9);
+        generator.registerSpawnEgg(YavpmItems.SUNBURN_SPAWN_EGG, 0x22c0c6, 0xfeff00);
         generator.registerSpawnEgg(YavpmItems.TANUKI_SPAWN_EGG, 0x5d4f59, 0xb69578);
         generator.registerSpawnEgg(YavpmItems.VOID_PHANTOM_SPAWN_EGG, 0x060080, 0xf54bfa);
 

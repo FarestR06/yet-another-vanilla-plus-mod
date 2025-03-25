@@ -458,6 +458,20 @@ public class YavpmLootProviders {
                                     )
                     ));
             // endregion
+            // region Sunburn
+            biConsumer.accept(YavpmEntities.SUNBURN.getLootTableKey().orElseThrow(), LootTable.builder()
+                    .pool(
+                    LootPool.builder()
+                            .rolls(ConstantLootNumberProvider.create(1f))
+                            .with(
+                                    ItemEntry.builder(Items.GLOWSTONE_DUST)
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0f, 3f)))
+                                            .apply(EnchantedCountIncreaseLootFunction.builder(lookup, UniformLootNumberProvider.create(1f, 3f)))
+                            )
+                            .conditionally(KilledByPlayerLootCondition.builder())
+                            .conditionally(RandomChanceLootCondition.builder(0.67f))
+            ));
+            // endregion
             // region Tanuki
             biConsumer.accept(YavpmEntities.TANUKI.getLootTableKey().orElseThrow(), LootTable.builder().pool(
                     LootPool.builder()

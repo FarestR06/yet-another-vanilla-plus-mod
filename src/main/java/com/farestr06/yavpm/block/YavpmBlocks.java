@@ -7,6 +7,7 @@ import com.farestr06.yavpm.block.custom.PrickleLogBlock;
 import com.farestr06.yavpm.block.custom.crop.*;
 import com.farestr06.yavpm.block.custom.fake.FakeLogBlock;
 import com.farestr06.yavpm.block.custom.fake.FakeOreBlock;
+import com.farestr06.yavpm.block.custom.nullium.NullTorchBlock;
 import com.farestr06.yavpm.block.custom.recycler.RecyclerBlock;
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import com.farestr06.yavpm.fluid.YavpmFluids;
@@ -406,6 +407,17 @@ public class YavpmBlocks {
             makeId("polarized_glass"),
             PolarizedGlassBlock::new,
             AbstractBlock.Settings.copy(Blocks.TINTED_GLASS).mapColor(MapColor.BRIGHT_TEAL)
+    );
+
+    public static final Block NULL_TORCH = makeBlockAndSimpleItem(
+            makeId("null_torch"),
+            NullTorchBlock::new,
+            AbstractBlock.Settings.create()
+                    .noCollision()
+                    .breakInstantly()
+                    .luminance(value -> value.get(NullTorchBlock.COLOR) != 0 ? 13 : 0)
+                    .sounds(BlockSoundGroup.STONE)
+                    .pistonBehavior(PistonBehavior.DESTROY)
     );
 
     public static final Block RECYCLER = makeBlockAndSimpleItem(

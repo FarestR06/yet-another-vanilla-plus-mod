@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "color=0": {
+      "model": "yavpm:block/null_torch"
+    },
+    "color=1": {
+      "model": "yavpm:block/null_torch_dark_red"
+    },
+    "color=2": {
+      "model": "yavpm:block/null_torch_dark_green"
+    },
+    "color=3": {
+      "model": "yavpm:block/null_torch_dark_yellow"
+    },
+    "color=4": {
+      "model": "yavpm:block/null_torch_dark_blue"
+    },
+    "color=5": {
+      "model": "yavpm:block/null_torch_dark_magenta"
+    },
+    "color=6": {
+      "model": "yavpm:block/null_torch_dark_cyan"
+    },
+    "color=7": {
+      "model": "yavpm:block/null_torch_light_gray"
+    },
+    "color=8": {
+      "model": "yavpm:block/null_torch_dark_gray"
+    },
+    "color=9": {
+      "model": "yavpm:block/null_torch_red"
+    },
+    "color=10": {
+      "model": "yavpm:block/null_torch_green"
+    },
+    "color=11": {
+      "model": "yavpm:block/null_torch_yellow"
+    },
+    "color=12": {
+      "model": "yavpm:block/null_torch_blue"
+    },
+    "color=13": {
+      "model": "yavpm:block/null_torch_magenta"
+    },
+    "color=14": {
+      "model": "yavpm:block/null_torch_cyan"
+    },
+    "color=15": {
+      "model": "yavpm:block/null_torch_white"
+    }
+  }
+}
