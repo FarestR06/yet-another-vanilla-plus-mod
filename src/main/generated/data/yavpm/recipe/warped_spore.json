@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "yavpm:warped_wart",
+    "#c:mushrooms"
+  ],
+  "result": {
+    "count": 1,
+    "id": "yavpm:warped_spore"
+  }
+}

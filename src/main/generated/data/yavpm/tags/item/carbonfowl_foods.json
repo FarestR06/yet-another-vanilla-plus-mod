@@ -3,8 +3,16 @@
     "minecraft:glow_berries",
     "minecraft:moss_block",
     "minecraft:moss_carpet",
+    "minecraft:azalea",
+    "minecraft:flowering_azalea",
     "minecraft:sculk",
     "minecraft:sculk_vein",
+    "minecraft:sculk_catalyst",
+    "minecraft:sculk_sensor",
+    "minecraft:sculk_shrieker",
+    "minecraft:rotten_flesh",
+    "minecraft:bone",
+    "minecraft:gunpowder",
     "minecraft:spider_eye"
   ]
 }

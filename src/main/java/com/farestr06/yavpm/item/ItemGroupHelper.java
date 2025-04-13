@@ -7,6 +7,8 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.item.ItemGroups;
 
+import static com.farestr06.yavpm.config.YavpmConfig.HANDLER;
+
 public class ItemGroupHelper {
     public static void modifyEntries() {
         YetAnotherVanillaPlusMod.LOGGER.info("Modifying item groups for YAVPM!");
@@ -174,6 +176,10 @@ public class ItemGroupHelper {
         entries.add(YavpmBlocks.PERSIMMON_LEAVES);
         entries.add(YavpmBlocks.PRICKLE_SHOOT);
         entries.add(YavpmItems.ACORN);
+        entries.add(YavpmItems.BIRCH_SEEDS);
+        entries.add(YavpmItems.SPRUCE_CONE);
+        entries.add(YavpmItems.CRIMSON_SPORE);
+        entries.add(YavpmItems.WARPED_SPORE);
         entries.add(YavpmItems.BANANA_SEEDS);
         entries.add(YavpmItems.RICE_SEEDS);
         entries.add(YavpmItems.PEANUT);
@@ -189,7 +195,12 @@ public class ItemGroupHelper {
 
     private static void redstone(FabricItemGroupEntries entries) {
         entries.add(YavpmBlocks.POLARIZED_GLASS);
-        entries.add(YavpmBlocks.RECYCLER);
+        if (HANDLER.instance().nulliumExperiment) {
+            entries.add(YavpmBlocks.NULL_TORCH);
+        }
+        if (HANDLER.instance().recyclerExperiment) {
+            entries.add(YavpmBlocks.RECYCLER);
+        }
         entries.add(YavpmItems.APPLE_SIGN);
         entries.add(YavpmItems.APPLE_HANGING_SIGN);
         entries.add(YavpmBlocks.PINATA);
@@ -267,6 +278,9 @@ public class ItemGroupHelper {
         entries.add(YavpmBlocks.GRAPHENE_BLOCK);
         entries.add(YavpmItems.DENSITITE_INGOT);
         entries.add(YavpmBlocks.DENSITITE_BLOCK);
+        if (HANDLER.instance().nulliumExperiment) {
+            entries.add(YavpmItems.NULLIUM_NUGGET);
+        }
         entries.add(YavpmItems.BREADING);
         entries.add(YavpmItems.MAGIC_BEAN);
         entries.add(YavpmItems.RICE);

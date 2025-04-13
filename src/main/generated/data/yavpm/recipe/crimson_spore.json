@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:nether_wart",
+    "#c:mushrooms"
+  ],
+  "result": {
+    "count": 1,
+    "id": "yavpm:crimson_spore"
+  }
+}

@@ -27,6 +27,7 @@ import java.util.Map;
 
 import static com.farestr06.api.item.ItemHelper.*;
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
+import static com.farestr06.yavpm.config.YavpmConfig.HANDLER;
 import static com.farestr06.yavpm.item.StuddedMaterial.ARMOR_MATERIAL;
 
 public class YavpmItems {
@@ -49,9 +50,14 @@ public class YavpmItems {
     public static final Item BANANA_SEEDS = YavpmBlocks.BANANA_CROP.asItem();
     public static final Item RICE_SEEDS = YavpmBlocks.RICE_CROP.asItem();
     public static final Item PEANUT = YavpmBlocks.PEANUT_CROP.asItem();
-    public static final Item ACORN = YavpmBlocks.OAK_SAPLING_CROP.asItem();
     public static final Item MAGIC_BEAN = YavpmBlocks.MAGIC_BEAN_CROP.asItem();
     public static final Item BITTER_BERRIES = YavpmBlocks.BITTER_BERRY_BUSH.asItem();
+
+    public static final Item ACORN = YavpmBlocks.OAK_SAPLING_CROP.asItem();
+    public static final Item BIRCH_SEEDS = YavpmBlocks.BIRCH_SAPLING_CROP.asItem();
+    public static final Item SPRUCE_CONE = makeSimpleItem(makeId("spruce_cone")); // TODO: Make Spruce Crop
+    public static final Item CRIMSON_SPORE = YavpmBlocks.CRIMSON_FUNGUS_CROP.asItem();
+    public static final Item WARPED_SPORE = YavpmBlocks.WARPED_FUNGUS_CROP.asItem();
 
     public static final Item COOKED_PEANUT = makeItem(makeId("cooked_peanut"), new Item.Settings().food(YavpmFoods.COOKED_PEANUT, ConsumableComponents.DRIED_KELP));
     public static final Item BREADING = makeSimpleItem(makeId("breading"));
@@ -325,9 +331,9 @@ public class YavpmItems {
     );
     // endregion
 
-    public static final Item NULLIUM_NUGGET = makeItem(
+    public static final Item NULLIUM_NUGGET = HANDLER.instance().nulliumExperiment ? makeItem(
             makeId("nullium_nugget"), new Item.Settings().component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true)
-    );
+    ) : Items.POISONOUS_POTATO;
 
     public static final Item COPPER_HORN = makeAdvancedItem(
             makeId("copper_horn"),
@@ -464,7 +470,7 @@ public class YavpmItems {
         WARPED_MOONGUS_FOOD.put(Items.STONE, Potions.INFESTED);
         WARPED_MOONGUS_FOOD.put(Items.WITHER_ROSE, YavpmPotions.DECAY);
         WARPED_MOONGUS_FOOD.put(VOID_WATER_BUCKET, YavpmPotions.VOID_TOUCHED);
-        WARPED_MOONGUS_FOOD.put(BITTER_BERRIES.asItem(), YavpmPotions.HASTE);
+        WARPED_MOONGUS_FOOD.put(BITTER_BERRIES, YavpmPotions.HASTE);
         WARPED_MOONGUS_FOOD.put(Items.SWEET_BERRIES, YavpmPotions.INTOXICATION);
     }
 
@@ -482,14 +488,16 @@ public class YavpmItems {
         compostables.add(YavpmBlocks.APPLE_SAPLING.asItem(), 0.3f);
         compostables.add(YavpmBlocks.PERSIMMON_SAPLING.asItem(), 0.3f);
         compostables.add(YavpmBlocks.PRICKLE_SHOOT.asItem(), 0.3f);
-        compostables.add(YavpmBlocks.BANANA_CROP.asItem(), 0.3f);
-        compostables.add(YavpmBlocks.RICE_CROP.asItem(), 0.3f);
-        compostables.add(YavpmBlocks.OAK_SAPLING_CROP.asItem(), 0.3f);
+        compostables.add(BITTER_BERRIES, 0.3f);
+        compostables.add(BANANA_SEEDS, 0.3f);
+        compostables.add(RICE_SEEDS, 0.3f);
+        compostables.add(ACORN, 0.3f);
 
-        compostables.add(YavpmBlocks.PEANUT_CROP.asItem(), 0.5f);
+        compostables.add(PEANUT, 0.5f);
         compostables.add(COOKED_PEANUT, 0.5f);
-        compostables.add(YavpmBlocks.MAGIC_BEAN_CROP.asItem(), 0.5f);
+        compostables.add(MAGIC_BEAN, 0.5f);
 
+        compostables.add(WARPED_WART, 0.65f);
         compostables.add(BANANA, 0.65f);
         compostables.add(RICE, 0.65f);
         compostables.add(PERSIMMON, 0.65f);
@@ -506,9 +514,10 @@ public class YavpmItems {
         YetAnotherVanillaPlusMod.LOGGER.debug("Modifying default item components...");
         // make Glistering Melon edible
         DefaultItemComponentEvents.MODIFY.register(context ->
-                context.modify(Items.GLISTERING_MELON_SLICE, builder ->
-                        builder.add(DataComponentTypes.FOOD, YavpmFoods.GLISTERING_MELON_SLICE)
-                )
+                context.modify(Items.GLISTERING_MELON_SLICE, builder -> {
+                    builder.add(DataComponentTypes.FOOD, YavpmFoods.GLISTERING_MELON_SLICE);
+                    builder.add(DataComponentTypes.CONSUMABLE, ConsumableComponents.FOOD);
+                })
         );
     }
 }

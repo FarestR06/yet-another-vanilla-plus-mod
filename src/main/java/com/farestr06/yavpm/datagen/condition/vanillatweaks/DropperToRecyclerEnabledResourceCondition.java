@@ -20,6 +20,7 @@ public record DropperToRecyclerEnabledResourceCondition() implements ResourceCon
 
     @Override
     public boolean test(RegistryOps.@Nullable RegistryInfoGetter registryInfo) {
-        return YavpmConfig.HANDLER.instance().dropperToRecycler;
+        YavpmConfig config = YavpmConfig.HANDLER.instance();
+        return config.dropperToRecycler && config.recyclerExperiment;
     }
 }

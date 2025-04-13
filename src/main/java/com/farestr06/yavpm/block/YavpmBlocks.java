@@ -12,7 +12,6 @@ import com.farestr06.yavpm.block.custom.recycler.RecyclerBlock;
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.YavpmFoods;
-import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.world.feature.configured.YavpmTreeConfiguredFeatures;
 import com.terraformersmc.terraform.sign.api.block.TerraformHangingSignBlock;
 import com.terraformersmc.terraform.sign.api.block.TerraformSignBlock;
@@ -31,7 +30,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
@@ -81,19 +79,6 @@ public class YavpmBlocks {
             new Item.Settings().food(YavpmFoods.RAW_PEANUT, YavpmFoods.ConsumableComponents.RAW_PEANUT).useItemPrefixedTranslationKey()
     );
 
-    public static final Block OAK_SAPLING_CROP = makeBlockAndAliasedItem(
-            makeId("oak_sapling_crop"),
-            makeId("acorn"),
-            settings -> new SaplingCropBlock(settings) {
-                @Override
-                protected ItemConvertible getSeedsItem() {
-                    return YavpmItems.ACORN;
-                }
-            },
-            AbstractBlock.Settings.copy(Blocks.OAK_SAPLING),
-            new Item.Settings().food(YavpmFoods.ACORN, ConsumableComponents.DRIED_KELP).useItemPrefixedTranslationKey()
-    );
-
     public static final Block MAGIC_BEAN_CROP = makeBlockAndAliasedItem(
             makeId("magic_bean_crop"), makeId("magic_bean"),
             MagicBeanCropBlock::new,
@@ -107,7 +92,37 @@ public class YavpmBlocks {
             AbstractBlock.Settings.copy(Blocks.SWEET_BERRY_BUSH),
             new Item.Settings().food(FoodComponents.SWEET_BERRIES).useItemPrefixedTranslationKey()
     );
+    // Sapling
+    public static final Block OAK_SAPLING_CROP = makeBlockAndAliasedItem(
+            makeId("oak_sapling_crop"),
+            makeId("acorn"),
+            SaplingCropBlock.Oak::new,
+            AbstractBlock.Settings.copy(Blocks.OAK_SAPLING),
+            new Item.Settings().food(YavpmFoods.ACORN, ConsumableComponents.DRIED_KELP).useItemPrefixedTranslationKey()
+    );
+    public static final Block BIRCH_SAPLING_CROP = makeBlockAndAliasedItem(
+            makeId("birch_sapling_crop"),
+            makeId("birch_seeds"),
+            SaplingCropBlock.Birch::new,
+            AbstractBlock.Settings.copy(Blocks.BIRCH_SAPLING),
+            new Item.Settings().useItemPrefixedTranslationKey()
+    );
 
+    public static final Block CRIMSON_FUNGUS_CROP = makeBlockAndAliasedItem(
+            makeId("crimson_fungus_crop"),
+            makeId("crimson_spore"),
+            SaplingCropBlock.Fungus.Crimson::new,
+            AbstractBlock.Settings.copy(Blocks.CRIMSON_FUNGUS),
+            new Item.Settings().useItemPrefixedTranslationKey()
+    );
+    public static final Block WARPED_FUNGUS_CROP = makeBlockAndAliasedItem(
+            makeId("warped_fungus_crop"),
+            makeId("warped_spore"),
+            SaplingCropBlock.Fungus.Warped::new,
+            AbstractBlock.Settings.copy(Blocks.WARPED_FUNGUS),
+            new Item.Settings().useItemPrefixedTranslationKey()
+    );
+    // endregion
     // endregion
 
     public static final Block SCULKY_DEEPSLATE_BRICKS = makeSimpleBlockAndSimpleItem(
@@ -409,7 +424,8 @@ public class YavpmBlocks {
             AbstractBlock.Settings.copy(Blocks.TINTED_GLASS).mapColor(MapColor.BRIGHT_TEAL)
     );
 
-    public static final Block NULL_TORCH = makeBlockAndSimpleItem(
+    public static final Block NULL_TORCH = HANDLER.instance().nulliumExperiment ?
+    makeBlockAndSimpleItem(
             makeId("null_torch"),
             NullTorchBlock::new,
             AbstractBlock.Settings.create()
@@ -418,13 +434,13 @@ public class YavpmBlocks {
                     .luminance(value -> value.get(NullTorchBlock.COLOR) != 0 ? 13 : 0)
                     .sounds(BlockSoundGroup.STONE)
                     .pistonBehavior(PistonBehavior.DESTROY)
-    );
+    ) : Blocks.AIR;
 
-    public static final Block RECYCLER = makeBlockAndSimpleItem(
+    public static final Block RECYCLER = HANDLER.instance().recyclerExperiment ? makeBlockAndSimpleItem(
             makeId("recycler"),
             RecyclerBlock::new,
             AbstractBlock.Settings.copy(Blocks.DROPPER)
-    );
+    ) : Blocks.AIR;
 
     public static final Block PINATA = makeBlockAndSimpleItem(
             makeId("pinata"),

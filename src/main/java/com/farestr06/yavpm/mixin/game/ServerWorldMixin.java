@@ -1,4 +1,4 @@
-package com.farestr06.yavpm.mixin;
+package com.farestr06.yavpm.mixin.game;
 
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import net.minecraft.entity.LivingEntity;

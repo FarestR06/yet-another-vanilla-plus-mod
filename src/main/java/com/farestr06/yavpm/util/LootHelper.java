@@ -50,7 +50,8 @@ public class LootHelper {
             if (source.isBuiltin() && key == (LootTables.SNIFFER_DIGGING_GAMEPLAY)) {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .with(ItemEntry.builder(YavpmItems.TRUFFLE))
-                        .with(ItemEntry.builder(YavpmItems.MAGIC_BEAN));
+                        .with(ItemEntry.builder(YavpmItems.MAGIC_BEAN).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 2f))))
+                        .with(ItemEntry.builder(YavpmItems.BITTER_BERRIES).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 5f))));
 
                 tableBuilder.pool(poolBuilder);
             }
@@ -289,6 +290,9 @@ public class LootHelper {
             if (source.isBuiltin() && key == Blocks.OAK_LEAVES.getLootTableKey().orElseThrow()) {
                 return newOakLeavesDrops(registries, generator).build();
             }
+            if (source.isBuiltin() && key == Blocks.BIRCH_LEAVES.getLootTableKey().orElseThrow()) {
+                return newBirchLeavesDrops(registries, generator).build();
+            }
             if (source.isBuiltin() && key == Blocks.SEAGRASS.getLootTableKey().orElseThrow()) {
                 return shortSeagrassDrops(registries, generator).build();
             }
@@ -368,6 +372,19 @@ public class LootHelper {
                                 .conditionally(generator.createWithoutShearsOrSilkTouchCondition())
                                 .with(
                                         ((LeafEntry.Builder<?>)generator.addSurvivesExplosionCondition(Blocks.OAK_LEAVES, ItemEntry.builder(YavpmItems.ACORN)))
+                                                .conditionally(TableBonusLootCondition.builder(impl.getOrThrow(Enchantments.FORTUNE), 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))
+                                )
+                );
+    }
+    private static LootTable.Builder newBirchLeavesDrops(RegistryWrapper.WrapperLookup lookup, BlockLootTableGenerator generator) {
+        RegistryWrapper.Impl<Enchantment> impl = lookup.getOrThrow(RegistryKeys.ENCHANTMENT);
+        return generator.leavesDrops(Blocks.BIRCH_LEAVES, Blocks.BIRCH_SAPLING, 0.05F, 0.0625F, 0.083333336F, 0.1F)
+                .pool(
+                        LootPool.builder()
+                                .rolls(ConstantLootNumberProvider.create(1.0F))
+                                .conditionally(generator.createWithoutShearsOrSilkTouchCondition())
+                                .with(
+                                        ((LeafEntry.Builder<?>)generator.addSurvivesExplosionCondition(Blocks.BIRCH_LEAVES, ItemEntry.builder(YavpmItems.BIRCH_SEEDS)))
                                                 .conditionally(TableBonusLootCondition.builder(impl.getOrThrow(Enchantments.FORTUNE), 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))
                                 )
                 );

@@ -66,6 +66,7 @@ public class YavpmLootProviders {
 
             addDropWithSilkTouch(YavpmBlocks.POLARIZED_GLASS);
             addDrop(YavpmBlocks.RECYCLER);
+            addDrop(YavpmBlocks.NULL_TORCH);
 
             cropDrops();
 
@@ -220,6 +221,18 @@ public class YavpmLootProviders {
             BlockStatePropertyLootCondition.Builder oakSaplingConditionBuilder = BlockStatePropertyLootCondition.builder(YavpmBlocks.OAK_SAPLING_CROP).properties(StatePredicate.Builder.create()
                     .exactMatch(SaplingCropBlock.AGE, 3));
             addDrop(YavpmBlocks.OAK_SAPLING_CROP, cropDrops(YavpmBlocks.OAK_SAPLING_CROP, Items.OAK_SAPLING, YavpmItems.ACORN, oakSaplingConditionBuilder));
+
+            BlockStatePropertyLootCondition.Builder birchSaplingConditionBuilder = BlockStatePropertyLootCondition.builder(YavpmBlocks.BIRCH_SAPLING_CROP).properties(StatePredicate.Builder.create()
+                    .exactMatch(SaplingCropBlock.AGE, 3));
+            addDrop(YavpmBlocks.BIRCH_SAPLING_CROP, cropDrops(YavpmBlocks.BIRCH_SAPLING_CROP, Items.BIRCH_SAPLING, YavpmItems.BIRCH_SEEDS, birchSaplingConditionBuilder));
+
+            BlockStatePropertyLootCondition.Builder crimsonFungusConditionBuilder = BlockStatePropertyLootCondition.builder(YavpmBlocks.CRIMSON_FUNGUS_CROP).properties(StatePredicate.Builder.create()
+                    .exactMatch(SaplingCropBlock.AGE, 3));
+            addDrop(YavpmBlocks.CRIMSON_FUNGUS_CROP, cropDrops(YavpmBlocks.CRIMSON_FUNGUS_CROP, Items.CRIMSON_FUNGUS, Items.NETHER_WART, crimsonFungusConditionBuilder));
+
+            BlockStatePropertyLootCondition.Builder warpedFungusConditionBuilder = BlockStatePropertyLootCondition.builder(YavpmBlocks.WARPED_FUNGUS_CROP).properties(StatePredicate.Builder.create()
+                    .exactMatch(SaplingCropBlock.AGE, 3));
+            addDrop(YavpmBlocks.WARPED_FUNGUS_CROP, cropDrops(YavpmBlocks.WARPED_FUNGUS_CROP, Items.WARPED_FUNGUS, YavpmItems.WARPED_WART, warpedFungusConditionBuilder));
         }
 
         private void stoneVariantDrops() {
@@ -340,6 +353,11 @@ public class YavpmLootProviders {
             doorDrops(YavpmBlocks.APPLE_DOOR);
             addDrop(YavpmBlocks.APPLE_TRAPDOOR);
 
+            addDrop(YavpmBlocks.APPLE_SIGN);
+            addDrop(YavpmBlocks.APPLE_WALL_SIGN);
+            addDrop(YavpmBlocks.APPLE_HANGING_SIGN);
+            addDrop(YavpmBlocks.APPLE_WALL_HANGING_SIGN);
+
             addDrop(YavpmBlocks.APPLE_SAPLING);
         }
         private void persimmonDrops() {
@@ -371,6 +389,13 @@ public class YavpmLootProviders {
 
             doorDrops(YavpmBlocks.PERSIMMON_DOOR);
             addDrop(YavpmBlocks.PERSIMMON_TRAPDOOR);
+
+            addDrop(YavpmBlocks.PERSIMMON_SIGN);
+            addDrop(YavpmBlocks.PERSIMMON_WALL_SIGN);
+            addDrop(YavpmBlocks.PERSIMMON_HANGING_SIGN);
+            addDrop(YavpmBlocks.PERSIMMON_WALL_HANGING_SIGN);
+
+            addDrop(YavpmBlocks.PERSIMMON_SAPLING);
         }
         private void prickleDrops() {
             addDrop(YavpmBlocks.PRICKLE_LOG);
@@ -388,6 +413,11 @@ public class YavpmLootProviders {
 
             doorDrops(YavpmBlocks.PRICKLE_DOOR);
             addDrop(YavpmBlocks.PRICKLE_TRAPDOOR);
+
+            addDrop(YavpmBlocks.PRICKLE_SIGN);
+            addDrop(YavpmBlocks.PRICKLE_WALL_SIGN);
+            addDrop(YavpmBlocks.PRICKLE_HANGING_SIGN);
+            addDrop(YavpmBlocks.PRICKLE_WALL_HANGING_SIGN);
 
             addDrop(YavpmBlocks.PRICKLE_SHOOT);
         }

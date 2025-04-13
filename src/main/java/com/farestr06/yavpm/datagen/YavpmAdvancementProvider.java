@@ -192,7 +192,7 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
     protected static final AdvancementEntry CONVERT_COW_TO_MOONGUS = Advancement.Builder.create()
             .parent(VanillaAdvancements.Nether.BREW_POTION)
             .display(
-                    Items.NETHER_WART_BLOCK,
+                    YavpmItems.CRIMSON_SPORE,
                     Text.translatable("advancements.nether.convert_cow_to_moongus.title"),
                     Text.translatable("advancements.nether.convert_cow_to_moongus.description"),
                     null,
@@ -201,7 +201,7 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                     true,
                     false
             ).criterion("fed_cow_wart", PlayerInteractedWithEntityCriterion.Conditions.create(
-                    ItemPredicate.Builder.create().items(ITEM_LOOKUP, Items.NETHER_WART_BLOCK, Items.WARPED_WART_BLOCK),
+                    ItemPredicate.Builder.create().items(ITEM_LOOKUP, YavpmItems.CRIMSON_SPORE, YavpmItems.WARPED_SPORE),
                     Optional.of(EntityPredicate.contextPredicateFromEntityPredicate(
                             EntityPredicate.Builder.create().type(EntityTypePredicate.create(ENTITY_LOOKUP, EntityType.COW))))
             )).build(makeId("nether/convert_cow_to_moongus"));

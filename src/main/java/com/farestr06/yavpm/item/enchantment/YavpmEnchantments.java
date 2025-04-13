@@ -60,6 +60,9 @@ public class YavpmEnchantments {
     // Elytra
     public static final RegistryKey<Enchantment> STIFFNESS = registerKey("stiffness");
 
+    // Ranged
+    public static final RegistryKey<Enchantment> TEMPO_THEFT = registerKey("tempo_theft");
+
     // Wolf Armor
     public static final RegistryKey<Enchantment> MAULING = registerKey("mauling");
     public static final RegistryKey<Enchantment> BLEED_OUT = registerKey("bleed_out");
@@ -379,6 +382,46 @@ public class YavpmEnchantments {
                         EnchantmentEffectComponentTypes.DAMAGE_PROTECTION,
                         new AddEnchantmentEffect(EnchantmentLevelBasedValue.linear(1.5f, 0.5f)),
                         DamageSourcePropertiesLootCondition.builder(DamageSourcePredicate.Builder.create().tag(TagPredicate.unexpected(DamageTypeTags.BYPASSES_INVULNERABILITY)))
+                )
+        );
+        // endregion
+        // region Tempo Theft
+        register(
+                registerable,
+                TEMPO_THEFT,
+                Enchantment.builder(
+                        Enchantment.definition(
+                                items.getOrThrow(ItemTags.CROSSBOW_ENCHANTABLE),
+                                items.getOrThrow(ItemTags.CROSSBOW_ENCHANTABLE),
+                                2,
+                                4,
+                                Enchantment.leveledCost(15, 10),
+                                Enchantment.leveledCost(30, 5),
+                                1,
+                                AttributeModifierSlot.MAINHAND
+                        )
+                ).addEffect(
+                        EnchantmentEffectComponentTypes.POST_ATTACK,
+                        EnchantmentEffectTarget.ATTACKER,
+                        EnchantmentEffectTarget.VICTIM,
+                        new ApplyMobEffectEnchantmentEffect(
+                                RegistryEntryList.of(StatusEffects.SLOWNESS),
+                                EnchantmentLevelBasedValue.linear(3f, 3f),
+                                EnchantmentLevelBasedValue.linear(3f, 3f),
+                                EnchantmentLevelBasedValue.constant(0f),
+                                EnchantmentLevelBasedValue.constant(0f)
+                        )
+                ).addEffect(
+                        EnchantmentEffectComponentTypes.POST_ATTACK,
+                        EnchantmentEffectTarget.ATTACKER,
+                        EnchantmentEffectTarget.ATTACKER,
+                        new ApplyMobEffectEnchantmentEffect(
+                                RegistryEntryList.of(StatusEffects.SPEED),
+                                EnchantmentLevelBasedValue.linear(4f, 4f),
+                                EnchantmentLevelBasedValue.linear(4f, 4f),
+                                EnchantmentLevelBasedValue.constant(0f),
+                                EnchantmentLevelBasedValue.constant(0f)
+                        )
                 )
         );
         // endregion

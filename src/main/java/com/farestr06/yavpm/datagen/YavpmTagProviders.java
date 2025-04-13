@@ -245,8 +245,7 @@ public class YavpmTagProviders {
                     Items.SPIDER_EYE
             );
             getOrCreateTagBuilder(YavpmTags.Items.TANUKI_FOOD)
-                    .add(Items.GLOW_BERRIES)
-                    .add(Items.SWEET_BERRIES);
+                    .forceAddTag(ConventionalItemTags.BERRY_FOODS);
 
             getOrCreateTagBuilder(YavpmTags.Items.CRIMSON_MOONGUS_FOOD).add(
                     Items.SUGAR,
@@ -284,6 +283,15 @@ public class YavpmTagProviders {
 
         private void plantTags() {
             getOrCreateTagBuilder(ItemTags.LEAVES).add(YavpmBlocks.APPLE_LEAVES.asItem(), YavpmBlocks.PERSIMMON_LEAVES.asItem());
+
+            getOrCreateTagBuilder(ConventionalItemTags.SEEDS).add(
+                    YavpmItems.BANANA_SEEDS,
+                    YavpmItems.PEANUT,
+                    YavpmItems.MAGIC_BEAN,
+                    YavpmItems.ACORN,
+                    YavpmItems.BIRCH_SEEDS,
+                    YavpmItems.SPRUCE_CONE
+            );
 
             getOrCreateTagBuilder(ConventionalItemTags.CROPS).add(
                     YavpmItems.ACORN,

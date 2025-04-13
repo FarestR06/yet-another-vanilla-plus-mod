@@ -1,9 +1,9 @@
 package com.farestr06.yavpm.fluid;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
-import com.farestr06.yavpm.config.YavpmConfig;
 import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.util.YavpmTags;
+import com.farestr06.yavpm.world.YavpmGameRules;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FluidBlock;
@@ -33,7 +33,7 @@ public abstract class VoidWaterFluid extends FlowableFluid {
 
     @Override
     protected boolean isInfinite(ServerWorld world) {
-        return YavpmConfig.HANDLER.instance().voidWaterSourceConversion;
+        return world.getGameRules().getBoolean(YavpmGameRules.VOID_WATER_SOURCE_CONVERSION);
     }
 
     @Override

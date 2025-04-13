@@ -112,14 +112,14 @@ public class YavpmPotions {
             "silence",
             new StatusEffectInstance(
                     YavpmStatusEffects.SILENCE,
-                    600
+                    500
             )
     ));
     public static final RegistryEntry<Potion> LONG_SILENCE = register("long_silence", new Potion(
             "silence",
             new StatusEffectInstance(
                     YavpmStatusEffects.SILENCE,
-                    1500
+                    1100
             )
     ));
 
@@ -153,7 +153,7 @@ public class YavpmPotions {
             builder.registerPotionRecipe(DECAY, AMPLIFIER, STRONG_DECAY);
 
             YetAnotherVanillaPlusMod.LOGGER.debug("Creating Potions of the Void...");
-            builder.registerPotionRecipe(WEIRD, Ingredient.ofItems(YavpmItems.VOID_WATER_BUCKET), VOID_TOUCHED);
+            // Base Void potion is smelted
             builder.registerPotionRecipe(VOID_TOUCHED, EXTENDER, LONG_VOID_TOUCHED);
             builder.registerPotionRecipe(VOID_TOUCHED, AMPLIFIER, STRONG_VOID_TOUCHED);
 

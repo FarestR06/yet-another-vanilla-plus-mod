@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yavpm:block/crimson_fungus_crop_stage3"
+  }
+}

@@ -24,7 +24,7 @@ public class GauntletItem extends Item {
                         EntityAttributes.ATTACK_DAMAGE,
                         new EntityAttributeModifier(
                                 BASE_ATTACK_DAMAGE_MODIFIER_ID,
-                                3.5, EntityAttributeModifier.Operation.ADD_VALUE
+                                5, EntityAttributeModifier.Operation.ADD_VALUE
                         ),
                         AttributeModifierSlot.MAINHAND
                 ).build();

@@ -3,7 +3,6 @@
   "package": "com.farestr06.yavpm.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ServerWorldMixin",
     "block.LockableContainerBlockEntityAccessor",
     "block.PowderSnowBlockMixin",
     "entity.ChickenEntityMixin",
@@ -11,6 +10,9 @@
     "entity.DragonFireballEntityMixin",
     "entity.LivingEntityMixin",
     "entity.PhantomEntityMixin",
+    "entity.ServerPlayerEntityMixin",
+    "game.MinecraftServerMixin",
+    "game.ServerWorldMixin",
     "item.PotionItemMixin",
     "item.ShearsItemMixin",
     "item.SmithingTemplateItemInvoker",
@@ -29,6 +31,6 @@
     "defaultRequire": 1
   },
   "client": [
-    "client.SplashTextResourceSupplierMixin"
+    "game.SplashTextResourceSupplierMixin"
   ]
 }

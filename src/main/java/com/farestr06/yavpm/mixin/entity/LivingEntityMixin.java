@@ -1,6 +1,6 @@
 package com.farestr06.yavpm.mixin.entity;
 
-import com.farestr06.api.util.MathUtil;
+import com.farestr06.api.util.FarestsUtils;
 import com.farestr06.yavpm.config.YavpmConfig;
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import net.minecraft.entity.Attackable;
@@ -33,7 +33,7 @@ public abstract class LivingEntityMixin extends Entity implements Attackable {
             // If so, multiply damage...
             float multipliedDamage = damage * ((effect.getAmplifier() + 1) * YavpmConfig.HANDLER.instance().voidTouchedDamageMultiplier);
             // ...And round it to a multiple of 0.5! Oh, and inflict it. Can't forget that.
-            return MathUtil.roundToHalf(multipliedDamage);
+            return FarestsUtils.Math.roundToHalf(multipliedDamage);
         } else return damage; // Otherwise, we'll deal the normal amount of damage.
     }
 }

@@ -4,7 +4,10 @@
   "key": {
     "G": "minecraft:gold_ingot",
     "N": "minecraft:gold_nugget",
-    "P": "minecraft:carved_pumpkin"
+    "P": [
+      "minecraft:carved_pumpkin",
+      "minecraft:jack_o_lantern"
+    ]
   },
   "pattern": [
     "GN",

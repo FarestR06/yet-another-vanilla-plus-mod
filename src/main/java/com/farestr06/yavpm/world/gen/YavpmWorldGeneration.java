@@ -20,13 +20,7 @@ public class YavpmWorldGeneration {
     private static void modfiyMobSpawns() {
         YetAnotherVanillaPlusMod.LOGGER.debug("Spawning mobs...");
         BiomeModifications.addSpawn(
-                BiomeSelectors.includeByKey(
-                        BiomeKeys.WINDSWEPT_HILLS,
-                        BiomeKeys.WINDSWEPT_FOREST,
-                        BiomeKeys.JAGGED_PEAKS,
-                        BiomeKeys.GROVE,
-                        BiomeKeys.CHERRY_GROVE
-                ),
+                BiomeSelectors.tag(ConventionalBiomeTags.IS_MOUNTAIN),
                 SpawnGroup.CREATURE,
                 YavpmEntities.TANUKI,
                 8,

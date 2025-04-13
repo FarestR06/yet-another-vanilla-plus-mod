@@ -108,6 +108,9 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.addEnchantment(YavpmEnchantments.STIFFNESS, "Stiffness");
         builder.add("enchantment.yavpm.stiffness.desc", "Slightly reduces damage from most sources when applied to Elytra.");
 
+        builder.addEnchantment(YavpmEnchantments.TEMPO_THEFT, "Tempo Theft");
+        builder.add("enchantment.yavpm.tempo_theft.desc", "Steals a small amount of a mob's movement speed and gives it to the player for a short time.");
+
         builder.addEnchantment(YavpmEnchantments.MAULING, "Mauling");
         builder.add("enchantment.yavpm.mauling.desc", "Increases the damage dealt by your tamed wolf.");
         builder.addEnchantment(YavpmEnchantments.BLEED_OUT, "Bleed Out");
@@ -161,6 +164,16 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.OAK_SAPLING_CROP, "Oak Sapling Crops");
         builder.add(YavpmItems.ACORN, "Acorn");
         builder.add(YavpmItems.DIAMOND_ACORN, "Diamond Acorn");
+
+        builder.add(YavpmBlocks.BIRCH_SAPLING_CROP, "Birch Sapling Crops");
+        builder.add(YavpmItems.BIRCH_SEEDS, "Birch Seeds");
+
+        builder.add(YavpmItems.SPRUCE_CONE, "Spruce Cone");
+
+        builder.add(YavpmBlocks.CRIMSON_FUNGUS_CROP, "Crimson Fungus Crops");
+        builder.add(YavpmItems.CRIMSON_SPORE, "Crimson Spore");
+        builder.add(YavpmBlocks.WARPED_FUNGUS_CROP, "Warped Fungus Crops");
+        builder.add(YavpmItems.WARPED_SPORE, "Warped Spore");
 
         builder.add(YavpmItems.PERSIMMON, "Persimmon");
         builder.add(YavpmItems.GOLDEN_PERSIMMON, "Golden Persimmon");
@@ -538,6 +551,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("subtitles.block.pinata.insert_fail", "Piñata bobbles");
         builder.add("subtitles.block.pinata.break", "Piñata breaks");
         builder.add("subtitles.block.pinata.open", "Piñata opens");
+
+        builder.add("gamerule.voidWaterSourceConversion", "Void Water converts to source");
     }
 
     private static void yaclTranslations(TranslationBuilder builder) {
@@ -548,7 +563,17 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("option.yavpm.format.ticks", "%s ticks (%s seconds)");
         builder.add("option.yavpm.format.multiplier", "%sx");
 
+        builder.add("option.yavpm.experiment", "Experiments");
+        builder.add("option.yavpm.experiment.warning", "This is an experimental setting that could stop working at any time. I can't be sure if it'll work. Here be dragons!");
+        builder.add("option.yavpm.yavpm_help_experiment.title", "Help Command");
+        builder.add("option.yavpm.yavpm_help_experiment.desc", "A client-side command that contains in-game documentation for YAVPM.");
+        builder.add("option.yavpm.recycler_experiment.title", "Recycler");
+        builder.add("option.yavpm.recycler_experiment.desc", "A dropper-like device that salvages materials from unwanted items.");
+        builder.add("option.yavpm.nullium_experiment.title", "Nullium");
+        builder.add("option.yavpm.nullium_experiment.desc", "A rare metal from the End, which has all manner of redstone-related uses!");
+
         builder.add("option.yavpm.easter_eggs", "Easter Eggs");
+        builder.add("option.yavpm.easter_eggs.splashes", "Splashes");
 
         builder.add("option.yavpm.snapshot_day.title", "Snapshot Day Splash");
         builder.add("option.yavpm.snapshot_day.desc", "A special splash will sometimes appear on Wednesday; the likelihood of this happening is determined by this value. Default is 0.2f.");
@@ -558,15 +583,16 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add("option.yavpm.blocks_and_fluids", "Blocks/Fluids");
         builder.add("option.yavpm.blocks_and_fluids.glowing_obsidian", "Glowing Obsidian");
-        builder.add("option.yavpm.blocks_and_fluids.void", "Void Block and Void Water");
 
         builder.add("option.yavpm.items", "Items");
 
         builder.add("option.yavpm.compat", "Compatibility");
         builder.add("option.yavpm.compat.vanillatweaks", "Vanilla Tweaks");
         builder.add("option.yavpm.compat.vanillatweaks.desc", "Compatibility with Vanilla Tweaks recipe packs.");
-        builder.add("option.yavpm.compat.vanillatweaks.info1", "A set of resource and data packs that add relatively small improvements to the game.\nMore Info: https://vanillatweaks.net");
+        builder.add("option.yavpm.compat.vanillatweaks.info1", "A set of resource and data packs that add improvements to the game.\nMore Info: https://vanillatweaks.net");
         builder.add("option.yavpm.compat.vanillatweaks.info2", "Originally made by Xisumavoid, and currently developed by André, Stridey, Grant and rx.");
+        builder.add("option.yavpm.compat.vanillatweaks.link.title", "More Info...");
+        builder.add("option.yavpm.compat.vanillatweaks.link.desc", "Click here to visit the Vanilla Tweaks website at https://vanillatweaks.net.");
 
         builder.add("option.yavpm.entities_and_effects", "Entities/Mob Effects");
 
@@ -598,9 +624,6 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("option.yavpm.soul_glowing_obsidian_luminance.title", "Soul Glowing Obsidian Luminance");
         builder.add("option.yavpm.soul_glowing_obsidian_luminance.desc", "Soul Glowing Obsidian blocks will emit the specified light level. Default is 9.");
 
-        builder.add("option.yavpm.void_water_source_conversion.title", "Void Water Converts To Source");
-        builder.add("option.yavpm.void_water_source_conversion.desc", "When flowing void water is surrounded on two sides by water sources it converts into a source. Default is true.");
-
         builder.add("option.yavpm.baby_key_cries.title", "Key Golems Cry Out");
         builder.add("option.yavpm.baby_key_cries.desc", "If true, Key Golems will cry out when held. Default is true.");
 
@@ -625,11 +648,6 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
     @Deprecated
     private static void unusedTranslations(TranslationBuilder builder) {
-        builder.add("enchantment.yavpm.critical_hit.desc", "Gives you a chance to inflict critical hits dealing triple damage.");
-
-        builder.add("enchantment.yavpm.tempo_theft", "Tempo Theft");
-        builder.add("enchantment.yavpm.tempo_theft.desc", "Steals a small amount of a mob's movement speed and gives it to the player for a short time.");
-
         builder.add("enchantment.yavpm.longstrider", "Longstrider");
         builder.add("enchantment.yavpm.longstrider.desc", "Increases the player's stride, letting them climb higher steps and increasing their speed.");
 

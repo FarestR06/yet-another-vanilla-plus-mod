@@ -1,6 +1,7 @@
 package com.farestr06.yavpm.datagen.condition;
 
 import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
+import com.farestr06.yavpm.datagen.condition.experiment.RecyclerExperimentResourceCondition;
 import com.farestr06.yavpm.datagen.condition.vanillatweaks.DoubleSlabsEnabledResourceCondition;
 import com.farestr06.yavpm.datagen.condition.vanillatweaks.DropperToRecyclerEnabledResourceCondition;
 import com.farestr06.yavpm.datagen.condition.vanillatweaks.MoreStairsEnabledResourceCondition;
@@ -15,6 +16,9 @@ import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 public class YavpmResourceConditionTypes {
     public static final ResourceConditionType<RareEquipmentRecipesEnabledResourceCondition> RARE_EQUIPMENT_RECIPES_ENABLED =
             createResourceConditionType("rare_equipment_recipes_enabled", RareEquipmentRecipesEnabledResourceCondition.CODEC);
+
+    public static final ResourceConditionType<RecyclerExperimentResourceCondition> RECYCLER_EXPERIMENT =
+            createResourceConditionType("recycler_experiment", RecyclerExperimentResourceCondition.CODEC);
 
     public static final ResourceConditionType<DropperToRecyclerEnabledResourceCondition> DROPPER_TO_RECYCLER_ENABLED =
             createResourceConditionType("dropper_to_recycler_enabled", DropperToRecyclerEnabledResourceCondition.CODEC);

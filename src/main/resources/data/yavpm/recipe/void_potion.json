@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smelting",
+  "group": "void_touched",
+  "category": "misc",
+  "ingredient": "minecraft:dragon_breath",
+  "result": {
+    "id": "minecraft:potion",
+    "components": {
+      "minecraft:potion_contents": {
+        "potion": "yavpm:void_touched"
+      }
+    }
+  },
+  "experience": 1,
+  "cookingtime": 200
+}

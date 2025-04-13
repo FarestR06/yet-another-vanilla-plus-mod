@@ -259,6 +259,7 @@ a36e0ac804d9af9df0de915ac76fd4b844dc9cea data/yavpm/advancement/recipes/food/sea
 14f6a6b9c2d3ecd7cc3504e0479e037b17d4f20f data/yavpm/advancement/recipes/misc/black_dye.json
 b7d2742cabda10080013771be0348f2de17ed576 data/yavpm/advancement/recipes/misc/breading.json
 5c19406b95cc8926299238e83937322bd072c37e data/yavpm/advancement/recipes/misc/chainmail.json
+7bdfa527de52180a675a8f740be281651b16a289 data/yavpm/advancement/recipes/misc/crimson_spore.json
 7b39d8f03b5cf9f813a54bef4f66deae905425d4 data/yavpm/advancement/recipes/misc/densitite_block_from_blasting.json
 8d7c78a397bc9034d46892784f07f40200d9affa data/yavpm/advancement/recipes/misc/densitite_block_from_smelting.json
 0ebab3db3b928e95557755a4726113208a6a4012 data/yavpm/advancement/recipes/misc/densitite_ingot.json
@@ -278,6 +279,7 @@ c64db5c4177c4a70dc025e94b81bf0997b474705 data/yavpm/advancement/recipes/misc/stu
 a3cd1de0406e5f4dfcc6dcb4aed13507f00f4f51 data/yavpm/advancement/recipes/misc/studded_helmet.json
 4e7940ca1dcf4a0c08c4fbd037f4ea4a471bad5b data/yavpm/advancement/recipes/misc/studded_leggings.json
 0c6de7622cd4a064da9c897b5a5d95dc4fe6133f data/yavpm/advancement/recipes/misc/void_water_bucket.json
+03355e844e8d8957ae60973ccbaa72dc20d1a071 data/yavpm/advancement/recipes/misc/warped_spore.json
 e377a911e7ef2bd5bc4124772086f2b1afb918ef data/yavpm/advancement/recipes/redstone/apple_button.json
 3d51e3e7fbde416ee16b4c5156784129613176af data/yavpm/advancement/recipes/redstone/apple_door.json
 0ff1e937118a483dd7169182c2b6e22e92cb6aba data/yavpm/advancement/recipes/redstone/apple_fence_gate.json
@@ -298,7 +300,7 @@ eae0065a6ee8a66e83eaeceb315528984feec1f1 data/yavpm/advancement/recipes/redstone
 dac984ad3f0704efe75ab8f3bdc42c4bbfd06e38 data/yavpm/advancement/recipes/redstone/prickle_fence_gate.json
 69249ffae475821649e36dd8ff290de876cb4c8c data/yavpm/advancement/recipes/redstone/prickle_pressure_plate.json
 3880c1ea32e71bf62ef945b1ae6fa92f6608dbd9 data/yavpm/advancement/recipes/redstone/prickle_trapdoor.json
-51ec183e4504365025703ca4070bb8a78137b644 data/yavpm/advancement/recipes/redstone/recycler.json
+87a8d014f38293582dda0379bcd4ba28b99c96c4 data/yavpm/advancement/recipes/redstone/recycler.json
 68bcd45122db5fab60a9e75c410f94e907fb65a9 data/yavpm/advancement/recipes/redstone/recycler_from_dropper.json
 434790a440361e55cc599956991387efc4b4904c data/yavpm/advancement/recipes/tools/baby_key.json
 3045df66481dd0430bde1a638fa97130e2b55a0b data/yavpm/advancement/recipes/tools/chainmail_boots.json
@@ -331,7 +333,7 @@ affd99ddb5f4250526d8a52756d6c6d2462ffbc3 data/yavpm/recipe/apple_slab.json
 eb23a7afa95e77f5ce8e001a328f24d70d43d2a9 data/yavpm/recipe/apple_stairs.json
 8f146f36085d19012731c7d792c26f3d930d6ef4 data/yavpm/recipe/apple_trapdoor.json
 8619e4aa3e13955c69e843319ba35dd4e8afba70 data/yavpm/recipe/apple_wood.json
-6a209a5ec44e591a724ae424150c22dcca940fb6 data/yavpm/recipe/baby_key.json
+746eb646e888ff3b9d8f1d11502fc7d660f25fda data/yavpm/recipe/baby_key.json
 bf5948bd0365e040cb9869f470efc68a8b2be72c data/yavpm/recipe/bean_toast.json
 9cb8d8d5ea7d51b050b9fd7e87eaa5bc14e2ef25 data/yavpm/recipe/black_dye.json
 690d937ab60c30d069b964ea7a52242df93e8116 data/yavpm/recipe/breading.json
@@ -369,6 +371,7 @@ c37122393a2bb836361b0a2cdad4eedd8573d68b data/yavpm/recipe/cooked_egg_from_smoki
 ad66207538ab829c48cca1cd2f0b318c26b1b770 data/yavpm/recipe/cooked_fake_beef_from_smoking.json
 f5e640539553a994e35478e4f5ec9b5b1b906515 data/yavpm/recipe/cooked_peanut_from_smelting_peanut.json
 8268e560a9ef541aac3f18a4037583e41786e77e data/yavpm/recipe/cooked_peanut_from_smoking.json
+29d709b92bdca40041c0e9a54c465edd2fa77f11 data/yavpm/recipe/crimson_spore.json
 ea06b7358772a71088508f934b11607477f3f7ac data/yavpm/recipe/cut_soulstone_from_soulstone_stonecutting.json
 664a70f84637b8d5fb13a076e22ba8acdc697346 data/yavpm/recipe/cut_soulstone_slab_from_cut_soulstone_stonecutting.json
 7edc8055dbeb8dfe13a3272f231d76eebd890ab0 data/yavpm/recipe/cut_soulstone_slab_from_soulstone_stonecutting.json
@@ -610,7 +613,7 @@ adc1c5df67793af32a390f21315f18bdc17a26a8 data/yavpm/recipe/prickle_sign.json
 317148eb3a78087825a8c49231b8c79d170376a4 data/yavpm/recipe/prickle_trapdoor.json
 c50afb27f24191ad85afdba099df1b49ba237659 data/yavpm/recipe/prickle_wood.json
 aa7b4041e634e1d0ef6c758cb9b87eefb92dbf45 data/yavpm/recipe/reactor.json
-a6a4095390a0f1c4b4764f3a39d5a20057c9620a data/yavpm/recipe/recycler.json
+6908dac0ac74809c776c79aadd1862be4a35497a data/yavpm/recipe/recycler.json
 13fd659102a713127bdb4f57b33a80753c274bf2 data/yavpm/recipe/recycler_from_dropper.json
 24769a311618d504049825a720106f8a97e6d7d4 data/yavpm/recipe/rice_bar.json
 b62efef975edd1564a58dbd0aaf67ab8b409229d data/yavpm/recipe/rice_pastry.json
@@ -637,3 +640,4 @@ fa3bd998ce0da7eeef7cb251ed44e8adc273b61a data/yavpm/recipe/studded_boots.json
 aacbc521151134bb5c59287e803e462606fd4877 data/yavpm/recipe/tofu.json
 2bc15ed23296a36b71f4ef651d574d3eb30729af data/yavpm/recipe/trident.json
 f4cb0f53a2bb1297ce1cfe7bc6e7579f3f2e366c data/yavpm/recipe/void_water_bucket.json
+efe90cf5830358b640eeb36d8d2846d3a9bac1e8 data/yavpm/recipe/warped_spore.json

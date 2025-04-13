@@ -2,6 +2,7 @@ package com.farestr06.yavpm.datagen;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.datagen.condition.RareEquipmentRecipesEnabledResourceCondition;
+import com.farestr06.yavpm.datagen.condition.experiment.RecyclerExperimentResourceCondition;
 import com.farestr06.yavpm.datagen.condition.vanillatweaks.DoubleSlabsEnabledResourceCondition;
 import com.farestr06.yavpm.datagen.condition.vanillatweaks.DropperToRecyclerEnabledResourceCondition;
 import com.farestr06.yavpm.datagen.condition.vanillatweaks.MoreStairsEnabledResourceCondition;
@@ -38,6 +39,8 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
 
     @Override
     protected RecipeGenerator getRecipeGenerator(RegistryWrapper.WrapperLookup registryLookup, RecipeExporter exporter) {
+        final RecipeExporter recyclerExperimentRecipeExporter = withConditions(exporter, new RecyclerExperimentResourceCondition());
+
         final RecipeExporter rareEquipmentRecipeExporter =
                 withConditions(exporter, new RareEquipmentRecipesEnabledResourceCondition());
 
@@ -68,6 +71,16 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
 
                 densititeRecipes();
 
+                createShapeless(RecipeCategory.MISC, YavpmItems.CRIMSON_SPORE)
+                        .input(Items.NETHER_WART)
+                        .input(Ingredient.fromTag(itemLookup.getOrThrow(ConventionalItemTags.MUSHROOMS)))
+                        .criterion(hasItem(Items.NETHER_WART), conditionsFromItem(Items.NETHER_WART))
+                        .offerTo(exporter);
+                createShapeless(RecipeCategory.MISC, YavpmItems.WARPED_SPORE)
+                        .input(YavpmItems.WARPED_WART)
+                        .input(Ingredient.fromTag(itemLookup.getOrThrow(ConventionalItemTags.MUSHROOMS)))
+                        .criterion(hasItem(YavpmItems.WARPED_WART), conditionsFromItem(YavpmItems.WARPED_WART))
+                        .offerTo(exporter);
 
                 createShaped(RecipeCategory.REDSTONE, YavpmBlocks.PINATA)
                         .input('P', Items.PAPER)
@@ -105,7 +118,7 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                         .pattern("CRC")
                         .group("recycler")
                         .criterion(hasItem(Items.DROPPER), conditionsFromItem(Items.DROPPER))
-                        .offerTo(exporter);
+                        .offerTo(recyclerExperimentRecipeExporter);
 
                 equipmentRecipes(exporter);
 
@@ -856,7 +869,7 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 createShaped(RecipeCategory.TOOLS, YavpmItems.BABY_KEY)
                         .input('G', Items.GOLD_INGOT)
                         .input('N', Items.GOLD_NUGGET)
-                        .input('P', Items.CARVED_PUMPKIN)
+                        .input('P', Ingredient.ofItems(Items.CARVED_PUMPKIN, Items.JACK_O_LANTERN))
                         .pattern("GN")
                         .pattern("GN")
                         .pattern("P ")

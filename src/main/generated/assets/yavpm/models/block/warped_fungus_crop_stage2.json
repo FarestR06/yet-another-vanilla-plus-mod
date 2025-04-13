@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yavpm:block/warped_fungus_crop_stage2"
+  }
+}

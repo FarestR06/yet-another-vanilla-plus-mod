@@ -1,6 +1,6 @@
 package com.farestr06.yavpm.item.custom;
 
-import com.farestr06.api.util.MathUtil;
+import com.farestr06.api.util.FarestsUtils;
 import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.item.component.CopperInstrument;
 import com.farestr06.yavpm.item.component.YavpmDataComponentTypes;
@@ -129,8 +129,8 @@ public class CopperHornItem extends Item {
                     }
                 }
                 case HARMONY -> {
-                    float healAmount = MathUtil.randomBigFloat(world.getRandom(), 6, 18);
-                    player.heal(MathUtil.roundToHalf(healAmount));
+                    float healAmount = FarestsUtils.Math.randomBigFloat(world.getRandom(), 6, 18);
+                    player.heal(FarestsUtils.Math.roundToHalf(healAmount));
                 }
                 case MELODY -> {
                     List<AnimalEntity> list = world.getEntitiesByType(

@@ -36,8 +36,6 @@ public class YavpmConfig {
     // endregion
 
     // region Blocks/Fluids
-    @SerialEntry(comment = "When set to true, Void Water can create more infinite sources, like how vanilla Water can. Default is true.")
-    public boolean voidWaterSourceConversion = true;
     @SerialEntry(comment = "Glowing Obsidian blocks will emit the specified light level. Default is 12.")
     public int glowingObsidianLuminance = 12;
     @SerialEntry(comment = "Soul Glowing Obsidian blocks will emit the specified light level. Default is 9.")
@@ -52,6 +50,13 @@ public class YavpmConfig {
     @SerialEntry(comment = "Some treasures that are uncraftable in vanilla, like tridents or name tags, are craftable when this option is enabled. Default is true.")
     public boolean rareEquipmentCraftingRecipes = true;
     // endregion
+
+    @SerialEntry
+    public boolean yavpmHelpExperiment = FabricLoader.getInstance().isDevelopmentEnvironment();
+    @SerialEntry
+    public boolean recyclerExperiment = FabricLoader.getInstance().isDevelopmentEnvironment();
+    @SerialEntry
+    public boolean nulliumExperiment = FabricLoader.getInstance().isDevelopmentEnvironment();
 
     // region Compatibility
     @SerialEntry
@@ -76,4 +81,10 @@ public class YavpmConfig {
     @SerialEntry(comment = "A special splash will appear on the mod author's birthday; this only happens if this option is enabled. Default is true.")
     public boolean farestsBirthday = true;
     // endregion
+
+    public void experimentSetup() {
+        if (!recyclerExperiment) {
+            dropperToRecycler = false;
+        }
+    }
 }

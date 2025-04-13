@@ -14,8 +14,8 @@
         ],
         "item": {
           "items": [
-            "minecraft:nether_wart_block",
-            "minecraft:warped_wart_block"
+            "yavpm:crimson_spore",
+            "yavpm:warped_spore"
           ]
         }
       },
@@ -29,7 +29,7 @@
     "frame": "goal",
     "icon": {
       "count": 1,
-      "id": "minecraft:nether_wart_block"
+      "id": "yavpm:crimson_spore"
     },
     "title": {
       "translate": "advancements.nether.convert_cow_to_moongus.title"

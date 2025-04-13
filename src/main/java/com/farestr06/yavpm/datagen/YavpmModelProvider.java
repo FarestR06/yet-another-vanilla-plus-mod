@@ -68,6 +68,8 @@ public class YavpmModelProvider extends FabricModelProvider {
 
     @Override
     public void generateItemModels(ItemModelGenerator generator) {
+        generator.register(YavpmItems.SPRUCE_CONE, Models.GENERATED); // TODO: Replace with block model
+
         generator.register(YavpmItems.REACTOR, Models.GENERATED);
         generator.register(YavpmItems.HEATED_REACTOR, Models.GENERATED);
 
@@ -250,6 +252,9 @@ public class YavpmModelProvider extends FabricModelProvider {
         registerBananaCrop(generator);
 
         registerCrossCrop(generator, YavpmBlocks.OAK_SAPLING_CROP, SaplingCropBlock.AGE, 0,1,2,3);
+        registerCrossCrop(generator, YavpmBlocks.BIRCH_SAPLING_CROP, SaplingCropBlock.AGE, 0,1,2,3);
+        registerCrossCrop(generator, YavpmBlocks.CRIMSON_FUNGUS_CROP, SaplingCropBlock.AGE, 0,1,2,3);
+        registerCrossCrop(generator, YavpmBlocks.WARPED_FUNGUS_CROP, SaplingCropBlock.AGE, 0,1,2,3);
         registerCrossCrop(generator, YavpmBlocks.MAGIC_BEAN_CROP, MagicBeanCropBlock.AGE, 0,1,1,2,3,4,5);
     }
 

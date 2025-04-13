@@ -59,6 +59,7 @@ public class TanukiEntity extends AnimalEntity {
             if (world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
                 if (
                         !this.getWorld().isClient && this.isAlive() && !this.isBaby() && --this.tryTransformTime <= 0
+                                && !this.hasCustomName() && !this.isAiDisabled() && !this.isInvulnerable()
                 ) {
                     if (this.getRandom().nextFloat() <= HANDLER.instance().tanukiTransformChance) {
                         transform();
@@ -85,7 +86,6 @@ public class TanukiEntity extends AnimalEntity {
                 .add(EntityAttributes.MOVEMENT_SPEED, 0.2)
                 .add(EntityAttributes.MAX_HEALTH, 14.0)
                 .add(EntityAttributes.FOLLOW_RANGE, 32.0)
-                .add(EntityAttributes.ATTACK_DAMAGE, 2.0)
                 .add(EntityAttributes.SAFE_FALL_DISTANCE, 3.5);
     }
 

@@ -1,0 +1,65 @@
+{
+  "anvil_cost": 1,
+  "description": {
+    "translate": "enchantment.yavpm.tempo_theft"
+  },
+  "effects": {
+    "minecraft:post_attack": [
+      {
+        "affected": "victim",
+        "effect": {
+          "type": "minecraft:apply_mob_effect",
+          "max_amplifier": 0.0,
+          "max_duration": {
+            "type": "minecraft:linear",
+            "base": 3.0,
+            "per_level_above_first": 3.0
+          },
+          "min_amplifier": 0.0,
+          "min_duration": {
+            "type": "minecraft:linear",
+            "base": 3.0,
+            "per_level_above_first": 3.0
+          },
+          "to_apply": "minecraft:slowness"
+        },
+        "enchanted": "attacker"
+      },
+      {
+        "affected": "attacker",
+        "effect": {
+          "type": "minecraft:apply_mob_effect",
+          "max_amplifier": 0.0,
+          "max_duration": {
+            "type": "minecraft:linear",
+            "base": 4.0,
+            "per_level_above_first": 4.0
+          },
+          "min_amplifier": 0.0,
+          "min_duration": {
+            "type": "minecraft:linear",
+            "base": 4.0,
+            "per_level_above_first": 4.0
+          },
+          "to_apply": "minecraft:speed"
+        },
+        "enchanted": "attacker"
+      }
+    ]
+  },
+  "max_cost": {
+    "base": 30,
+    "per_level_above_first": 5
+  },
+  "max_level": 4,
+  "min_cost": {
+    "base": 15,
+    "per_level_above_first": 10
+  },
+  "primary_items": "#minecraft:enchantable/crossbow",
+  "slots": [
+    "mainhand"
+  ],
+  "supported_items": "#minecraft:enchantable/crossbow",
+  "weight": 2
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "yavpm:block/birch_sapling_crop_stage1"
+  }
+}

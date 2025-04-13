@@ -1,4 +1,9 @@
 {
+  "fabric:load_conditions": [
+    {
+      "condition": "yavpm:recycler_experiment"
+    }
+  ],
   "parent": "minecraft:recipes/root",
   "criteria": {
     "has_dropper": {

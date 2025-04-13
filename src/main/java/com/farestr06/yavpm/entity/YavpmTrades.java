@@ -22,7 +22,9 @@ public class YavpmTrades {
             Items.MUSIC_DISC_13,
             Items.MUSIC_DISC_CAT,
             Items.MUSIC_DISC_WAIT,
-            Items.MUSIC_DISC_MELLOHI
+            Items.MUSIC_DISC_MELLOHI,
+            Items.MUSIC_DISC_STAL,
+            Items.MUSIC_DISC_STRAD
     );
 
     public static void init() {
@@ -176,7 +178,7 @@ public class YavpmTrades {
                             0f
                     );
                 } else {
-                    int index = random.nextInt(4);
+                    int index = random.nextInt(6);
                     return new TradeOffer(
                             new TradedItem(Items.EMERALD, 8),
                             new ItemStack(WANDERING_TRADER_DEFAULT_DISCS.get(index)),
@@ -222,7 +224,7 @@ public class YavpmTrades {
                     0f
             ));
             factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, 3),
+                    new TradedItem(Items.EMERALD, 5),
                     new ItemStack(YavpmItems.MOLY),
                     16,
                     0,

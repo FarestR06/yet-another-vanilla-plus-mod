@@ -1,4 +1,4 @@
-package com.farestr06.yavpm.mixin.client;
+package com.farestr06.yavpm.mixin.game;
 
 import com.farestr06.yavpm.config.YavpmConfig;
 import com.llamalad7.mixinextras.sugar.Local;

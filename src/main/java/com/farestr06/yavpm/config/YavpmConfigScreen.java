@@ -1,5 +1,6 @@
 package com.farestr06.yavpm.config;
 
+import com.farestr06.api.util.FarestsUtils;
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import dev.isxander.yacl3.api.*;
@@ -7,6 +8,7 @@ import dev.isxander.yacl3.api.controller.BooleanControllerBuilder;
 import dev.isxander.yacl3.api.controller.FloatFieldControllerBuilder;
 import dev.isxander.yacl3.api.controller.FloatSliderControllerBuilder;
 import dev.isxander.yacl3.api.controller.IntegerSliderControllerBuilder;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -21,6 +23,7 @@ public class YavpmConfigScreen implements ModMenuApi {
     private static final Style COMPAT_DESC = Style.EMPTY.withFormatting(Formatting.YELLOW, Formatting.ITALIC);
     private static final Text RESOURCE_CONDITION_NOTE = Text.translatable("option.yavpm.resourcecondition")
             .setStyle(INFO);
+    private static final Text EXPERIMENT_WARNING = Text.translatable("option.yavpm.experiment.warning").formatted(Formatting.RED);
     
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
@@ -28,10 +31,6 @@ public class YavpmConfigScreen implements ModMenuApi {
                 .title(Text.translatable("option.yavpm.title"))
                 .category(ConfigCategory.createBuilder()
                         .name(Text.translatable("option.yavpm.blocks_and_fluids"))
-                        .group(OptionGroup.createBuilder()
-                                .name(Text.translatable("option.yavpm.blocks_and_fluids.void"))
-                                .option(VOID_WATER_SOURCE_CONVERSION)
-                                .build())
                         .option(GLOWING_OBSIDIAN_LUMINANCE)
                         .option(SOUL_GLOWING_OBSIDIAN_LUMINANCE)
                         .build())
@@ -63,6 +62,12 @@ public class YavpmConfigScreen implements ModMenuApi {
                                 .build())
                         .build())
                 .category(ConfigCategory.createBuilder()
+                        .name(Text.translatable("option.yavpm.experiment")) // Here be dragons!
+                        .option(HELP_COMMAND_EXPERIMENT)
+                        .option(RECYCLER_EXPERIMENT)
+                        .option(NULLIUM_EXPERIMENT)
+                        .build())
+                .category(ConfigCategory.createBuilder()
                         .name(Text.translatable("option.yavpm.compat"))
                         .group(OptionGroup.createBuilder()
                                 .name(Text.translatable("option.yavpm.compat.vanillatweaks"))
@@ -73,6 +78,7 @@ public class YavpmConfigScreen implements ModMenuApi {
                                         .text(Text.translatable("option.yavpm.compat.vanillatweaks.info2").setStyle(INFO))
                                         .build()
                                 )
+                                .option(VANILLA_TWEAKS_LINK)
                                 .option(DROPPER_TO_RECYCLER)
                                 .option(DOUBLE_SLABS)
                                 .option(MORE_TRAPDOORS)
@@ -169,19 +175,6 @@ public class YavpmConfigScreen implements ModMenuApi {
     // endregion
 
     // region Blocks
-    protected static final Option<Boolean> VOID_WATER_SOURCE_CONVERSION = Option.<Boolean>createBuilder()
-            .name(Text.translatable("option.yavpm.void_water_source_conversion.title"))
-            .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.void_water_source_conversion.desc"))
-                    .image(makeId("textures/config/void_water_source_conversion.png"), 480, 360)
-                    .build()
-            )
-            .binding(
-                    true,
-                    () -> HANDLER.instance().voidWaterSourceConversion,
-                    newVal -> HANDLER.instance().voidWaterSourceConversion = newVal
-            ).controller(YavpmConfigScreen::booleanBuilder)
-            .build();
     protected static final Option<Integer> GLOWING_OBSIDIAN_LUMINANCE = Option.<Integer>createBuilder()
             .name(Text.translatable("option.yavpm.glowing_obsidian_luminance.title"))
             .description(OptionDescription.createBuilder()
@@ -252,7 +245,56 @@ public class YavpmConfigScreen implements ModMenuApi {
             .build();
     // endregion
 
+    protected static final Option<Boolean> HELP_COMMAND_EXPERIMENT = Option.<Boolean>createBuilder()
+            .name(Text.translatable("option.yavpm.yavpm_help_experiment.title"))
+            .description(OptionDescription.createBuilder()
+                    .text(Text.translatable("option.yavpm.yavpm_help_experiment.desc"))
+                    .text(EXPERIMENT_WARNING)
+                    .build()
+            )
+            .binding(
+                    FabricLoader.getInstance().isDevelopmentEnvironment(),
+                    () -> HANDLER.instance().yavpmHelpExperiment,
+                    newVal -> HANDLER.instance().yavpmHelpExperiment = newVal
+            ).controller(YavpmConfigScreen::booleanBuilder)
+            .build();
+    protected static final Option<Boolean> RECYCLER_EXPERIMENT = Option.<Boolean>createBuilder()
+            .name(Text.translatable("option.yavpm.recycler_experiment.title"))
+            .description(OptionDescription.createBuilder()
+                    .text(Text.translatable("option.yavpm.recycler_experiment.desc"))
+                    .text(EXPERIMENT_WARNING)
+                    .build()
+            )
+            .binding(
+                    FabricLoader.getInstance().isDevelopmentEnvironment(),
+                    () -> HANDLER.instance().recyclerExperiment,
+                    newVal -> HANDLER.instance().recyclerExperiment = newVal
+            ).controller(YavpmConfigScreen::booleanBuilder)
+            .build();
+    protected static final Option<Boolean> NULLIUM_EXPERIMENT = Option.<Boolean>createBuilder()
+            .name(Text.translatable("option.yavpm.nullium_experiment.title"))
+            .description(OptionDescription.createBuilder()
+                    .text(Text.translatable("option.yavpm.nullium_experiment.desc"))
+                    .text(EXPERIMENT_WARNING)
+                    .build()
+            )
+            .binding(
+                    FabricLoader.getInstance().isDevelopmentEnvironment(),
+                    () -> HANDLER.instance().nulliumExperiment,
+                    newVal -> HANDLER.instance().nulliumExperiment = newVal
+            ).controller(YavpmConfigScreen::booleanBuilder)
+            .build();
+
     // region Compat
+    protected static final ButtonOption VANILLA_TWEAKS_LINK = ButtonOption.createBuilder()
+            .name(Text.translatable("option.yavpm.compat.vanillatweaks.link.title"))
+            .description(
+                    OptionDescription.createBuilder()
+                            .text(Text.translatable("option.yavpm.compat.vanillatweaks.link.desc"))
+                            .build()
+            )
+            .action((yaclScreen, buttonOption) -> FarestsUtils.openUrl(yaclScreen, "https://vanillatweaks.net"))
+            .build();
     protected static final Option<Boolean> DROPPER_TO_RECYCLER = Option.<Boolean>createBuilder()
             .name(Text.translatable("option.yavpm.dropper_to_recycler.title"))
             .description(OptionDescription.createBuilder()
@@ -260,6 +302,7 @@ public class YavpmConfigScreen implements ModMenuApi {
                     .text(RESOURCE_CONDITION_NOTE)
                     .build()
             )
+            .available(HANDLER.instance().recyclerExperiment)
             .binding(
                     false,
                     () -> HANDLER.instance().dropperToRecycler,

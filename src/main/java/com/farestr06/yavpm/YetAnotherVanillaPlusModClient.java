@@ -38,12 +38,16 @@ public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.POLARIZED_GLASS, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.SHOJI, RenderLayer.getTranslucent());
 
+        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.WARPED_WART_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.BANANA_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.RICE_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PEANUT_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.MAGIC_BEAN_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.BITTER_BERRY_BUSH, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.OAK_SAPLING_CROP, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.BIRCH_SAPLING_CROP, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.CRIMSON_FUNGUS_CROP, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.WARPED_FUNGUS_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.APPLE_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PERSIMMON_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PRICKLE_SHOOT, RenderLayer.getCutout());
