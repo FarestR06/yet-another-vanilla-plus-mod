@@ -1,6 +1,7 @@
 package com.farestr06.yavpm.block;
 
 import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
+import com.farestr06.yavpm.block.custom.BurnerBlock;
 import com.farestr06.yavpm.block.custom.PinataBlock;
 import com.farestr06.yavpm.block.custom.PolarizedGlassBlock;
 import com.farestr06.yavpm.block.custom.PrickleLogBlock;
@@ -448,6 +449,17 @@ public class YavpmBlocks {
             AbstractBlock.Settings.copy(Blocks.DECORATED_POT).mapColor(MapColor.DARK_AQUA).instrument(NoteBlockInstrument.BASS).strength(1.2f, 2.4f)
     );
 
+    public static final Block BURNER = makeBlockAndSimpleItem(
+            makeId("burner"), BurnerBlock::new,
+            AbstractBlock.Settings.create()
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .requiresTool()
+                    .mapColor(MapColor.YELLOW)
+                    .luminance(state -> state.get(BurnerBlock.LIT) ? 3 : 0)
+                    .strength(0.5F)
+                    .allowsSpawning((state, world, pos, entityType) -> entityType.isFireImmune())
+    );
+
     public static final Block SHOJI = makeBlockAndSimpleItem(
             makeId("shoji"), PaneBlock::new, AbstractBlock.Settings.copy(Blocks.BAMBOO_DOOR).pistonBehavior(PistonBehavior.NORMAL)
     );
@@ -475,6 +487,12 @@ public class YavpmBlocks {
     );
     public static final Block APPLE_LEAVES = makeBlockAndSimpleItem(
             makeId("apple_leaves"),
+            LeavesBlock::new,
+            AbstractBlock.Settings.copy(Blocks.AZALEA_LEAVES)
+    );
+
+    public static final Block FLOWERING_APPLE_LEAVES = makeBlockAndSimpleItem(
+            makeId("flowering_apple_leaves"),
             LeavesBlock::new,
             AbstractBlock.Settings.copy(Blocks.FLOWERING_AZALEA_LEAVES)
     );
@@ -838,6 +856,7 @@ public class YavpmBlocks {
         flammables.add(APPLE_FENCE, 5, 20);
         flammables.add(APPLE_FENCE_GATE, 5, 20);
         flammables.add(APPLE_LEAVES, 30, 60);
+        flammables.add(FLOWERING_APPLE_LEAVES, 30, 60);
 
         flammables.add(PERSIMMON_LOG, 5, 5);
         flammables.add(STRIPPED_PERSIMMON_LOG, 5, 5);

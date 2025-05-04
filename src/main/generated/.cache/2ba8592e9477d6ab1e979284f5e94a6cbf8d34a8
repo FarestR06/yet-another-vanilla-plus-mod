@@ -285,6 +285,7 @@ e377a911e7ef2bd5bc4124772086f2b1afb918ef data/yavpm/advancement/recipes/redstone
 0ff1e937118a483dd7169182c2b6e22e92cb6aba data/yavpm/advancement/recipes/redstone/apple_fence_gate.json
 c891865615d21737029c82a380351996d13ff09d data/yavpm/advancement/recipes/redstone/apple_pressure_plate.json
 59ed3f5c27659ae717bd97ba4a800389c961e7aa data/yavpm/advancement/recipes/redstone/apple_trapdoor.json
+c23088e37935c95860970f5422ae6e7a5a2dbefd data/yavpm/advancement/recipes/redstone/burner.json
 bf0d01717e0e7a0dae2be869e3cd93497f723984 data/yavpm/advancement/recipes/redstone/more_apple_trapdoors.json
 dcb5a8fc8994d79aff2c2b2439747175bfc80934 data/yavpm/advancement/recipes/redstone/more_persimmon_trapdoors.json
 e0edc66b93f75e3fdd7253847e549aa87a9e0a40 data/yavpm/advancement/recipes/redstone/more_prickle_trapdoors.json
@@ -337,6 +338,7 @@ eb23a7afa95e77f5ce8e001a328f24d70d43d2a9 data/yavpm/recipe/apple_stairs.json
 bf5948bd0365e040cb9869f470efc68a8b2be72c data/yavpm/recipe/bean_toast.json
 9cb8d8d5ea7d51b050b9fd7e87eaa5bc14e2ef25 data/yavpm/recipe/black_dye.json
 690d937ab60c30d069b964ea7a52242df93e8116 data/yavpm/recipe/breading.json
+1cfe6116182d7372be12ce8c2795e381c4949568 data/yavpm/recipe/burner.json
 66e0ed977d25d4a6a1edae14b05f2b8cd6930e2c data/yavpm/recipe/chainmail.json
 08746254564b2c08267ac86d55c75dd403bc57e0 data/yavpm/recipe/chainmail_boots.json
 3206366ae424f032870251fad8e67dcd4c5a8e83 data/yavpm/recipe/chainmail_chestplate.json

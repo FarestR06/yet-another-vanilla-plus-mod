@@ -14,7 +14,6 @@ import net.minecraft.stat.Stats;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.GameRules;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.SpawnHelper;
 import net.minecraft.world.spawner.SpecialSpawner;
@@ -24,7 +23,7 @@ public class SunburnSpawner implements SpecialSpawner {
     private int cooldown = 0;
     @Override
     public int spawn(ServerWorld world, boolean spawnMonsters, boolean spawnAnimals) {
-        if (!spawnMonsters || !world.getGameRules().getBoolean(GameRules.DO_INSOMNIA)) return 0;
+        if (!spawnMonsters || !world.getGameRules().getBoolean(YavpmGameRules.DO_SUNBURN)) return 0;
         else {
             Random rand = world.getRandom();
             this.cooldown--;

@@ -19,6 +19,8 @@ public class YavpmConfig {
             ).build();
 
     // region Entities/Mob Effects
+    @SerialEntry(comment = "When true, breeding chickens will create an egg item that always hatches, rather than directly spawning a baby. Default is true.")
+    public boolean chickenBreedingCreatesEggs = true;
     // region Tanuki Mob
     @SerialEntry(comment = "Tanukis will attempt to transform after at least this many ticks. Default is 2000.")
     public int tanukiBaseTransformDelay = 2000;

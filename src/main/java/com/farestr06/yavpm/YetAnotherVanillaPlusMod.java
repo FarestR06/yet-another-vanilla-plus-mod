@@ -17,6 +17,7 @@ import com.farestr06.yavpm.item.enchantment.condition.YavpmLootConditions;
 import com.farestr06.yavpm.item.enchantment.effect.YavpmEnchantmentEffects;
 import com.farestr06.yavpm.misc.YavpmHelpCommand;
 import com.farestr06.yavpm.misc.YavpmStats;
+import com.farestr06.yavpm.misc.criterion.YavpmCriteria;
 import com.farestr06.yavpm.util.LootHelper;
 import com.farestr06.yavpm.util.YavpmSounds;
 import com.farestr06.yavpm.world.YavpmGameRules;
@@ -72,6 +73,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		YavpmPotions.init();
 
 		YavpmWorldGeneration.generateModWorldGen();
+		YavpmCriteria.init();
 		YavpmEnchantmentEffects.init();
 		YavpmLootConditions.init();
 

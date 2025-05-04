@@ -17,14 +17,14 @@ import org.jetbrains.annotations.Nullable;
 public class NullTorchBlock extends AbstractTorchBlock {
     public static final MapCodec<NullTorchBlock> CODEC = createCodec(NullTorchBlock::new);
     /*
-     * Black (off): 0
-     * Dark Red: 1
-     * Dark Green: 2
-     * Dark Yellow: 3
-     * Dark Blue: 4
-     * Dark Magenta: 5
-     * Dark Cyan: 6
-     * Gray: 7
+     * Black (off): 0 / 0000
+     * Dark Red: 1 / 0001
+     * Dark Green: 2 / 0010
+     * Dark Yellow: 3 / 0011
+     * Dark Blue: 4 / 0100
+     * Dark Magenta: 5 / 0101
+     * Dark Cyan: 6 / 0110
+     * Gray: 7 / 0111
      * 8 through 15 are the same, but lighter
      */
     public static final IntProperty COLOR = IntProperty.of("color", 0, 15);

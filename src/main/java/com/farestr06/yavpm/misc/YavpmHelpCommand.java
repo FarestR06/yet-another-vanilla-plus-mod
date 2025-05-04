@@ -23,9 +23,13 @@ public final class YavpmHelpCommand {
                     src.sendFeedback(Text.literal("- Blocks\n- Items\n- Mobs\n- Effects\n- World Gen").formatted(Formatting.ITALIC, Formatting.DARK_AQUA));
                     return 1;
                 }).then(
+                        literal("block")
+                                .then(literal("burner").executes(YavpmHelpCommand::burner))
+                ).then(
                         literal("item")
                                 .executes(YavpmHelpCommand::itemInfo)
                                 .then(literal("bitter_berries").executes(YavpmHelpCommand::bitterBerries))
+                                .then(literal("moly").executes(YavpmHelpCommand::moly))
                                 .then(literal("magic_bean").executes(YavpmHelpCommand::magicBean))
                                 .then(literal("fake_beef").executes(YavpmHelpCommand::fakeBeef))
                                 .then(literal("baby_key").executes(YavpmHelpCommand::babyKey))
@@ -48,6 +52,15 @@ public final class YavpmHelpCommand {
         ));
     }
 
+    private static int burner(CommandContext<FabricClientCommandSource> ctx) {
+        FabricClientCommandSource src = ctx.getSource();
+        src.sendFeedback(Text.literal("Burner").formatted(Formatting.BOLD, Formatting.AQUA));
+        src.sendFeedback(Text.literal("Type: Redstone").formatted(Formatting.DARK_AQUA));
+        src.sendFeedback(Text.literal("Hardness: 0.5 | Resistance: 0.5").formatted(Formatting.DARK_AQUA));
+        src.sendFeedback(Text.literal("The Burner is a redstone component that burns any mob standing on it when it's powered. It can be thought of as a toggleable Magma Block.").formatted(Formatting.GRAY));
+        return 1;
+    }
+
     private static int itemInfo(CommandContext<FabricClientCommandSource> ctx) {
         FabricClientCommandSource src = ctx.getSource();
         src.sendFeedback(Text.literal("YAVPM Help (Items)").formatted(Formatting.BOLD, Formatting.AQUA));
@@ -64,13 +77,22 @@ public final class YavpmHelpCommand {
         src.sendFeedback(Text.literal("Bitter Berries are a type of crop obtained from Wandering Traders and Sniffers. When they're brewed into a Weird Potion, you get a Potion of Haste.").formatted(Formatting.GRAY));
         return 1;
     }
+    private static int moly(CommandContext<FabricClientCommandSource> ctx) {
+        FabricClientCommandSource src = ctx.getSource();
+        src.sendFeedback(Text.literal("Magic Herb (yavpm:moly)").formatted(Formatting.BOLD, Formatting.AQUA));
+        src.sendFeedback(Text.literal("Type: Food").formatted(Formatting.DARK_AQUA));
+        src.sendFeedback(Text.literal("Food: Hunger and Health fully restored, effects cleared").formatted(Formatting.DARK_AQUA));
+        src.sendFeedback(Text.literal("The Magic Herb is a rare herb that can be found as treasure or bought from Wandering Traders.").formatted(Formatting.GRAY));
+        src.sendFeedback(Text.literal("It's hard to come by, and it takes a bit longer to eat than other foods, but its potent restorative powers more than make up for it.").formatted(Formatting.GRAY));
+        return 1;
+    }
     private static int magicBean(CommandContext<FabricClientCommandSource> ctx) {
         FabricClientCommandSource src = ctx.getSource();
         src.sendFeedback(Text.literal("Magic Bean").formatted(Formatting.BOLD, Formatting.AQUA));
         src.sendFeedback(Text.literal("Type: Food, Crop, Ingredient").formatted(Formatting.DARK_AQUA));
         src.sendFeedback(Text.literal("Food: 2 hunger, 0.3 saturation").formatted(Formatting.DARK_AQUA));
         src.sendFeedback(Text.literal("The Magic Bean is a versatile crop. It's a bit hard to find, but you'll be happy when you do.").formatted(Formatting.GRAY));
-        src.sendFeedback(Text.literal("It can be used to craft fake animal products, which is nice for those vegan players.").formatted(Formatting.GRAY));
+        src.sendFeedback(Text.literal("It can be used to craft fake animal products, which is nice if you happen to be vegan.").formatted(Formatting.GRAY));
         return 1;
     }
     private static int fakeBeef(CommandContext<FabricClientCommandSource> ctx) {
@@ -84,7 +106,7 @@ public final class YavpmHelpCommand {
     }
     private static int babyKey(CommandContext<FabricClientCommandSource> ctx) {
         FabricClientCommandSource src = ctx.getSource();
-        src.sendFeedback(Text.literal("Key Golem").formatted(Formatting.BOLD, Formatting.AQUA));
+        src.sendFeedback(Text.literal("Key Golem (yavpm:baby_key)").formatted(Formatting.BOLD, Formatting.AQUA));
         src.sendFeedback(Text.literal("Type: Tool").formatted(Formatting.DARK_AQUA));
         src.sendFeedback(Text.literal("Useable Blocks: Lockable Containers (i.e. Chest, Dropper)").formatted(Formatting.DARK_AQUA));
         src.sendFeedback(Text.literal("The Key Golem is a mob that appeared in Minecraft Dungeons. In that game, it was used to unlock gold and diamond doors.").formatted(Formatting.GRAY));

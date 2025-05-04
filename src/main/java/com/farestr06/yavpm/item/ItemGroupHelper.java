@@ -172,6 +172,7 @@ public class ItemGroupHelper {
         entries.add(YavpmBlocks.PERSIMMON_LOG);
         entries.add(YavpmBlocks.PRICKLE_LOG);
         entries.add(YavpmBlocks.APPLE_LEAVES);
+        entries.add(YavpmBlocks.FLOWERING_APPLE_LEAVES);
         entries.add(YavpmBlocks.APPLE_SAPLING);
         entries.add(YavpmBlocks.PERSIMMON_LEAVES);
         entries.add(YavpmBlocks.PRICKLE_SHOOT);
@@ -201,6 +202,7 @@ public class ItemGroupHelper {
         if (HANDLER.instance().recyclerExperiment) {
             entries.add(YavpmBlocks.RECYCLER);
         }
+        entries.add(YavpmBlocks.BURNER);
         entries.add(YavpmItems.APPLE_SIGN);
         entries.add(YavpmItems.APPLE_HANGING_SIGN);
         entries.add(YavpmBlocks.PINATA);

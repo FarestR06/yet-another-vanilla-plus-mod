@@ -66,6 +66,7 @@ public class YavpmLootProviders {
 
             addDropWithSilkTouch(YavpmBlocks.POLARIZED_GLASS);
             addDrop(YavpmBlocks.RECYCLER);
+            addDrop(YavpmBlocks.BURNER);
             addDrop(YavpmBlocks.NULL_TORCH);
 
             cropDrops();
@@ -139,7 +140,7 @@ public class YavpmLootProviders {
                                     )
                                     .with(ItemEntry.builder(YavpmBlocks.PERSIMMON_PLANKS.asItem())
                                             .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 5f)))
-                                    ).conditionally(RandomChanceLootCondition.builder(0.7f))
+                                    )
                     )
             );
             addDrop(YavpmBlocks.FAKE_ORE, LootTable.builder()
@@ -161,7 +162,7 @@ public class YavpmLootProviders {
                                             .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
                                     ).with(ItemEntry.builder(Items.REDSTONE)
                                             .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
-                                    ).conditionally(RandomChanceLootCondition.builder(0.7f))
+                                    )
                     )
             );
         }
@@ -339,8 +340,12 @@ public class YavpmLootProviders {
             addDrop(YavpmBlocks.APPLE_WOOD);
             addDrop(YavpmBlocks.STRIPPED_APPLE_WOOD);
 
-            LootTable.Builder leavesBuilder = oakLeavesDrops(YavpmBlocks.APPLE_LEAVES, YavpmBlocks.APPLE_SAPLING, SAPLING_DROP_CHANCE);
-            addDrop(YavpmBlocks.APPLE_LEAVES, leavesBuilder);
+            addDrop(YavpmBlocks.APPLE_LEAVES, block -> oakLeavesDrops(
+                    block, YavpmBlocks.APPLE_SAPLING, SAPLING_DROP_CHANCE
+            ));
+            addDrop(YavpmBlocks.FLOWERING_APPLE_LEAVES, block -> oakLeavesDrops(
+                    block, YavpmBlocks.APPLE_SAPLING, SAPLING_DROP_CHANCE
+            ));
 
             addDrop(YavpmBlocks.APPLE_PLANKS);
             addDrop(YavpmBlocks.APPLE_STAIRS);

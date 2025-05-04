@@ -1,6 +1,7 @@
 package com.farestr06.yavpm.world.feature.configured;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SaplingGenerator;
 import net.minecraft.registry.Registerable;
@@ -11,12 +12,16 @@ import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.math.intprovider.WeightedListIntProvider;
-import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.FeatureConfig;
+import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraft.world.gen.feature.size.TwoLayersFeatureSize;
 import net.minecraft.world.gen.foliage.BlobFoliagePlacer;
 import net.minecraft.world.gen.foliage.LargeOakFoliagePlacer;
 import net.minecraft.world.gen.foliage.RandomSpreadFoliagePlacer;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
+import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 import net.minecraft.world.gen.treedecorator.BeehiveTreeDecorator;
 import net.minecraft.world.gen.trunk.BendingTrunkPlacer;
 import net.minecraft.world.gen.trunk.CherryTrunkPlacer;
@@ -146,7 +151,11 @@ public class YavpmTreeConfiguredFeatures {
         return new TreeFeatureConfig.Builder(
                 BlockStateProvider.of(YavpmBlocks.APPLE_LOG),
                 new StraightTrunkPlacer(4, 2, 0),
-                BlockStateProvider.of(YavpmBlocks.APPLE_LEAVES),
+                new WeightedBlockStateProvider(
+                        DataPool.<BlockState>builder()
+                                .add(YavpmBlocks.APPLE_LEAVES.getDefaultState(), 3)
+                                .add(YavpmBlocks.FLOWERING_APPLE_LEAVES.getDefaultState(), 1)
+                ),
                 new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 3),
                 new TwoLayersFeatureSize(1, 0, 1)
         );
@@ -156,7 +165,11 @@ public class YavpmTreeConfiguredFeatures {
         return new TreeFeatureConfig.Builder(
                 BlockStateProvider.of(YavpmBlocks.APPLE_LOG),
                 new LargeOakTrunkPlacer(3, 11, 0),
-                BlockStateProvider.of(YavpmBlocks.APPLE_LEAVES),
+                new WeightedBlockStateProvider(
+                        DataPool.<BlockState>builder()
+                                .add(YavpmBlocks.APPLE_LEAVES.getDefaultState(), 5)
+                                .add(YavpmBlocks.FLOWERING_APPLE_LEAVES.getDefaultState(), 2)
+                ),
                 new LargeOakFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(4), 4),
                 new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))
         );

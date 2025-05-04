@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "M": "minecraft:magma_block",
+    "R": "minecraft:redstone"
+  },
+  "pattern": [
+    " R ",
+    "RMR",
+    " R "
+  ],
+  "result": {
+    "count": 1,
+    "id": "yavpm:burner"
+  }
+}

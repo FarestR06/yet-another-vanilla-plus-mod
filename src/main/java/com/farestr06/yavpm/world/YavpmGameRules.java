@@ -9,6 +9,9 @@ public class YavpmGameRules {
     public static final GameRules.Key<GameRules.BooleanRule> VOID_WATER_SOURCE_CONVERSION =
             GameRuleRegistry.register("voidWaterSourceConversion", GameRules.Category.UPDATES,
                     GameRuleFactory.createBooleanRule(true));
+    public static final GameRules.Key<GameRules.BooleanRule> DO_SUNBURN =
+            GameRuleRegistry.register("doSunburn", GameRules.Category.SPAWNING,
+                    GameRuleFactory.createBooleanRule(true));
 
     public static void init() {
         YetAnotherVanillaPlusMod.LOGGER.info("Registering game rules for YAVPM!");

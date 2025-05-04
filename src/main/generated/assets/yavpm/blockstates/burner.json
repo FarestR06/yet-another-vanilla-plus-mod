@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "yavpm:block/burner"
+    },
+    "lit=true": {
+      "model": "yavpm:block/burner_on"
+    }
+  }
+}

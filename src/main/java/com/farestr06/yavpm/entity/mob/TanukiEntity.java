@@ -8,6 +8,7 @@ import com.farestr06.yavpm.util.YavpmSounds;
 import com.farestr06.yavpm.util.YavpmTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.ai.goal.*;
@@ -19,7 +20,6 @@ import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -128,7 +128,7 @@ public class TanukiEntity extends AnimalEntity {
         Random rand = this.getRandom();
         BlockPos blockPos = this.getBlockPos();
         BlockState blockState = worldAccess.getBlockState(blockPos);
-        if (blockState.isIn(BlockTags.AIR)) {
+        if (blockState.isOf(Blocks.AIR) | blockState.isOf(Blocks.CAVE_AIR)) {
             BlockState fake;
             if (blockPos.getY() >= 63) {
                 fake = ((FakeLogBlock) YavpmBlocks.FAKE_LOG).makeFakeBlockState(blockPos, worldAccess);

@@ -53,6 +53,7 @@ public class YavpmModelProvider extends FabricModelProvider {
         registerPane(generator, YavpmBlocks.SHOJI);
 
         registerPolarizedGlass(generator);
+        registerBurner(generator);
         generator.registerDispenserLikeOrientable(YavpmBlocks.RECYCLER);
         generator.registerItemModel(YavpmBlocks.NULL_TORCH);
 
@@ -64,6 +65,13 @@ public class YavpmModelProvider extends FabricModelProvider {
 
         createConglomerate(generator);
         createNewDeepslate(generator);
+    }
+
+    private void registerBurner(BlockStateModelGenerator generator) {
+        Identifier identifier = TexturedModel.CUBE_ALL.upload(YavpmBlocks.BURNER, generator.modelCollector);
+        Identifier identifier2 = generator.createSubModel(YavpmBlocks.BURNER, "_on", Models.CUBE_ALL, TextureMap::all);
+        generator.blockStateCollector
+                .accept(VariantsBlockStateSupplier.create(YavpmBlocks.BURNER).coordinate(BlockStateModelGenerator.createBooleanModelMap(Properties.LIT, identifier2, identifier)));
     }
 
     @Override
@@ -333,6 +341,7 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.registerLog(YavpmBlocks.STRIPPED_APPLE_LOG).log(YavpmBlocks.STRIPPED_APPLE_LOG).wood(YavpmBlocks.STRIPPED_APPLE_WOOD);
 
         generator.registerSimpleCubeAll(YavpmBlocks.APPLE_LEAVES);
+        generator.registerSimpleCubeAll(YavpmBlocks.FLOWERING_APPLE_LEAVES);
 
         // Apple Planks and Texture Pool
         BlockStateModelGenerator.BlockTexturePool applePool = generator.registerCubeAllModelTexturePool(YavpmBlocks.APPLE_PLANKS);

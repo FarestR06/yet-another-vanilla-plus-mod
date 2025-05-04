@@ -4,6 +4,7 @@ import com.farestr06.api.util.VanillaAdvancements;
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.datagen.condition.RareEquipmentRecipesEnabledResourceCondition;
 import com.farestr06.yavpm.item.YavpmItems;
+import com.farestr06.yavpm.misc.criterion.FakeBlockDestroyedCriterion;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
 import net.minecraft.advancement.*;
@@ -23,6 +24,7 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -132,6 +134,38 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                     )
                     .rewards(AdvancementRewards.Builder.experience(50))
                     .build(makeId("husbandry/eat_all_food_bowls"));
+
+    protected static final AdvancementEntry MINE_FAKE_BLOCK = Advancement.Builder.create()
+            .parent(VanillaAdvancements.Husbandry.ROOT)
+            .display(
+                    Blocks.CHERRY_LEAVES,
+                    Text.translatable("advancements.husbandry.mine_fake_block.title"),
+                    Text.translatable("advancements.husbandry.mine_fake_block.description"),
+                    null,
+                    AdvancementFrame.TASK,
+                    true,
+                    true,
+                    true
+            )
+            .criteriaMerger(AdvancementRequirements.CriterionMerger.OR)
+            .criterion(
+                    "mine_fake_log",
+                    FakeBlockDestroyedCriterion.Conditions.create(
+                            YavpmBlocks.FAKE_LOG, ItemPredicate.Builder.create().tag(ITEM_LOOKUP,
+                                    ItemTags.AXES
+                            )
+                    )
+            )
+            .criterion(
+                    "mine_fake_ore",
+                    FakeBlockDestroyedCriterion.Conditions.create(
+                            YavpmBlocks.FAKE_ORE, ItemPredicate.Builder.create().tag(ITEM_LOOKUP,
+                                    ItemTags.PICKAXES
+                            )
+                    )
+            )
+            .build(makeId("husbandry/mine_fake_block"));
+
     protected static final AdvancementEntry CRAFT_DIAMONDS_FROM_GRAPHENE = Advancement.Builder.create()
             .parent(VanillaAdvancements.Husbandry.BREED_AN_ANIMAL)
             .display(

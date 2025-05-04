@@ -42,6 +42,7 @@ public class YavpmConfigScreen implements ModMenuApi {
                         .build())
                 .category(ConfigCategory.createBuilder()
                         .name(Text.translatable("option.yavpm.entities_and_effects"))
+                        .option(CHICKEN_BREEDING_CREATES_EGGS)
                         .group(OptionGroup.createBuilder()
                                 .name(Text.translatable("option.yavpm.entities_and_effects.tanuki"))
                                 .description(OptionDescription.of(
@@ -97,6 +98,19 @@ public class YavpmConfigScreen implements ModMenuApi {
                 .build().generateScreen(screen);
     }
     // region Entities and Effects
+    protected static final Option<Boolean> CHICKEN_BREEDING_CREATES_EGGS = Option.<Boolean>createBuilder()
+            .name(Text.translatable("option.yavpm.chicken_breeding_creates_eggs.title"))
+            .description(OptionDescription.createBuilder()
+                    .text(Text.translatable("option.yavpm.chicken_breeding_creates_eggs.desc"))
+                    .build()
+            )
+            .binding(
+                    true,
+                    () -> HANDLER.instance().chickenBreedingCreatesEggs,
+                    newVal -> HANDLER.instance().chickenBreedingCreatesEggs = newVal
+            ).controller(YavpmConfigScreen::booleanBuilder)
+            .build();
+
     protected static final Option<Integer> TANUKI_BASE_TRANSFORM_DELAY = Option.<Integer>createBuilder()
             .name(Text.translatable("option.yavpm.tanuki_base_transform_delay.title"))
             .description(OptionDescription.createBuilder()
@@ -131,7 +145,6 @@ public class YavpmConfigScreen implements ModMenuApi {
                     }))
             // ).controller(opt -> IntegerFieldControllerBuilder.create(opt).range(500, 4000))
             .build();
-
     protected static final Option<Float> TANUKI_TRANSFORM_CHANCE = Option.<Float>createBuilder()
             .name(Text.translatable("option.yavpm.tanuki_transform_chance.title"))
             .description(OptionDescription.createBuilder()
@@ -145,6 +158,7 @@ public class YavpmConfigScreen implements ModMenuApi {
             ).controller(opt -> FloatSliderControllerBuilder.create(opt).range(0f, 1f).step(0.01f))
             // ).controller(opt -> FloatFieldControllerBuilder.create(opt).range(0f, 1f))
             .build();
+
     protected static final Option<Float> VOID_TOUCHED_DAMAGE_MULTIPLIER = Option.<Float>createBuilder()
             .name(Text.translatable("option.yavpm.void_touched_damage_multiplier.title"))
             .description(OptionDescription.createBuilder()

@@ -69,6 +69,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("advancements.husbandry.fed_wolf_peanut.description", "You'd be surprised by how much wolves enjoy peanuts");
         builder.add("advancements.husbandry.lucky_ticket.title", "Lucky Ticket");
         builder.add("advancements.husbandry.lucky_ticket.description", "Eat a Fortune Cookie and receive your fortune");
+        builder.add("advancements.husbandry.mine_fake_block.title", "Master of Diguise");
+        builder.add("advancements.husbandry.mine_fake_block.description", "Find an ore... that's actually a Tanuki?");
         builder.add("advancements.husbandry.eat_all_food_bowls.title", "For the Soul");
         builder.add("advancements.husbandry.eat_all_food_bowls.description", "Eat all soups and stews");
         builder.add("advancements.husbandry.craft_diamonds_from_graphene.title", "Infinite Diamond Glitch");
@@ -337,6 +339,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
     }
 
     private static void entityTranslations(TranslationBuilder builder) {
+        builder.add("item.minecraft.egg.fertilized", "Always Hatches");
+
         builder.add(YavpmItems.CARBONFOWL_SPAWN_EGG, "Carbonfowl Spawn Egg");
         builder.add(YavpmEntities.CARBONFOWL, "Carbonfowl");
         builder.add(YavpmItems.MOONGUS_SPAWN_EGG, "Moongus Spawn Egg");
@@ -391,6 +395,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.STRIPPED_APPLE_LOG, "Stripped Apple Log");
         builder.add(YavpmBlocks.STRIPPED_APPLE_WOOD, "Stripped Apple Wood");
         builder.add(YavpmBlocks.APPLE_LEAVES, "Apple Leaves");
+        builder.add(YavpmBlocks.FLOWERING_APPLE_LEAVES, "Flowering Apple Leaves");
         builder.add(YavpmBlocks.APPLE_PLANKS, "Apple Planks");
         builder.add(YavpmBlocks.APPLE_STAIRS, "Apple Stairs");
         builder.add(YavpmBlocks.APPLE_SLAB, "Apple Slab");
@@ -543,6 +548,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmBlocks.POLARIZED_GLASS, "Polarized Glass");
         builder.add(YavpmBlocks.RECYCLER, "Recycler");
         builder.add("container.recycler", "Recycler");
+        builder.add(YavpmBlocks.BURNER, "Burner");
 
         builder.add(YavpmBlocks.NULL_TORCH, "Null Torch");
 
@@ -553,6 +559,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("subtitles.block.pinata.open", "Piñata opens");
 
         builder.add("gamerule.voidWaterSourceConversion", "Void Water converts to source");
+        builder.add("gamerule.doSunburn", "Spawn sunburns");
     }
 
     private static void yaclTranslations(TranslationBuilder builder) {
@@ -595,6 +602,9 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("option.yavpm.compat.vanillatweaks.link.desc", "Click here to visit the Vanilla Tweaks website at https://vanillatweaks.net.");
 
         builder.add("option.yavpm.entities_and_effects", "Entities/Mob Effects");
+
+        builder.add("option.yavpm.chicken_breeding_creates_eggs.title", "Chickens Lay Eggs When Bred");
+        builder.add("option.yavpm.chicken_breeding_creates_eggs.desc", "When true, breeding chickens will create an egg item that always hatches, rather than directly spawning a baby. Default is true.");
 
         builder.add("option.yavpm.entities_and_effects.tanuki", "Tanuki Mob");
         builder.add("option.yavpm.entities_and_effects.tanuki.desc1", "The Tanuki is a mob found in the mountains. Pretty cute, huh? Every couple of minutes, a Tanuki will attempt to turn into a fake block, as they do in Japanese folklore.");

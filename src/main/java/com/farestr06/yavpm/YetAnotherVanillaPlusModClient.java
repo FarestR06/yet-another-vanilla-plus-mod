@@ -52,6 +52,7 @@ public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PERSIMMON_SAPLING, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PRICKLE_SHOOT, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.APPLE_LEAVES, RenderLayer.getCutoutMipped());
+        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.FLOWERING_APPLE_LEAVES, RenderLayer.getCutoutMipped());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.APPLE_DOOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.APPLE_TRAPDOOR, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PERSIMMON_LEAVES, RenderLayer.getCutoutMipped());

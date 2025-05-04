@@ -101,12 +101,21 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                         .offerTo(exporter);
 
                 createShaped(RecipeCategory.REDSTONE, YavpmBlocks.POLARIZED_GLASS, 8)
-                        .input('T', Items.TINTED_GLASS)
+                        .input('T', Blocks.TINTED_GLASS)
                         .input('G', Items.GLOW_INK_SAC)
                         .pattern("TTT")
                         .pattern("TGT")
                         .pattern("TTT")
                         .criterion(hasItem(Items.GLOW_INK_SAC), conditionsFromItem(Items.GLOW_INK_SAC))
+                        .offerTo(exporter);
+
+                createShaped(RecipeCategory.REDSTONE, YavpmBlocks.BURNER)
+                        .input('R', Items.REDSTONE)
+                        .input('M', Blocks.MAGMA_BLOCK)
+                        .pattern(" R ")
+                        .pattern("RMR")
+                        .pattern(" R ")
+                        .criterion(hasItem(Blocks.MAGMA_BLOCK), conditionsFromItem(Blocks.MAGMA_BLOCK))
                         .offerTo(exporter);
 
                 createShaped(RecipeCategory.REDSTONE, YavpmBlocks.RECYCLER)
@@ -361,11 +370,11 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
 
             private void seafoods(RecipeExporter exporter) {
                 createShaped(RecipeCategory.FOOD, YavpmItems.SUSHI, 6)
-                        .input('T', Items.TROPICAL_FISH)
+                        .input('F', Ingredient.ofItems(Items.TROPICAL_FISH, Items.SALMON))
                         .input('K', Items.DRIED_KELP)
                         .input('R', YavpmItems.RICE)
                         .pattern("KRK")
-                        .pattern("RTR")
+                        .pattern("RFR")
                         .pattern("KRK")
                         .criterion(hasItem(YavpmItems.RICE), conditionsFromItem(YavpmItems.RICE))
                         .offerTo(exporter);

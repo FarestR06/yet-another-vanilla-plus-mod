@@ -282,7 +282,10 @@ public class YavpmTagProviders {
         }
 
         private void plantTags() {
-            getOrCreateTagBuilder(ItemTags.LEAVES).add(YavpmBlocks.APPLE_LEAVES.asItem(), YavpmBlocks.PERSIMMON_LEAVES.asItem());
+            getOrCreateTagBuilder(ItemTags.LEAVES).add(
+                    YavpmBlocks.APPLE_LEAVES.asItem(), YavpmBlocks.FLOWERING_APPLE_LEAVES.asItem(),
+                    YavpmBlocks.PERSIMMON_LEAVES.asItem()
+            );
 
             getOrCreateTagBuilder(ConventionalItemTags.SEEDS).add(
                     YavpmItems.BANANA_SEEDS,
@@ -464,7 +467,7 @@ public class YavpmTagProviders {
 
         private void mineableTags() {
             getOrCreateTagBuilder(BlockTags.HOE_MINEABLE)
-                    .add(YavpmBlocks.APPLE_LEAVES, YavpmBlocks.PERSIMMON_LEAVES);
+                    .add(YavpmBlocks.APPLE_LEAVES, YavpmBlocks.FLOWERING_APPLE_LEAVES, YavpmBlocks.PERSIMMON_LEAVES);
 
             getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(
                     YavpmBlocks.FAKE_LOG,
@@ -479,6 +482,7 @@ public class YavpmTagProviders {
                     YavpmBlocks.GRAPHENE_BLOCK,
 
                     YavpmBlocks.RECYCLER,
+                    YavpmBlocks.BURNER,
 
                     YavpmBlocks.COBBLED_GRANITE,
                     YavpmBlocks.COBBLED_DIORITE,
@@ -719,7 +723,7 @@ public class YavpmTagProviders {
                     .forceAddTag(YavpmTags.Blocks.PRICKLE_LOGS);
 
             getOrCreateTagBuilder(BlockTags.LEAVES)
-                    .add(YavpmBlocks.APPLE_LEAVES, YavpmBlocks.PERSIMMON_LEAVES);
+                    .add(YavpmBlocks.APPLE_LEAVES, YavpmBlocks.FLOWERING_APPLE_LEAVES, YavpmBlocks.PERSIMMON_LEAVES);
 
 
             getOrCreateTagBuilder(BlockTags.PLANKS)

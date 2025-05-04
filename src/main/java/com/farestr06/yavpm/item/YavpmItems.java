@@ -482,8 +482,8 @@ public class YavpmItems {
 
         // Make new crops compostable
         YetAnotherVanillaPlusMod.LOGGER.debug("Making items compostable...");
-        CompostingChanceRegistry compostables = CompostingChanceRegistry.INSTANCE;
-        compostables.add(YavpmBlocks.APPLE_LEAVES.asItem(), 0.3f);
+        final CompostingChanceRegistry compostables = CompostingChanceRegistry.INSTANCE;
+        compostables.add(YavpmBlocks.FLOWERING_APPLE_LEAVES.asItem(), 0.3f);
         compostables.add(YavpmBlocks.PERSIMMON_LEAVES.asItem(), 0.3f);
         compostables.add(YavpmBlocks.APPLE_SAPLING.asItem(), 0.3f);
         compostables.add(YavpmBlocks.PERSIMMON_SAPLING.asItem(), 0.3f);
