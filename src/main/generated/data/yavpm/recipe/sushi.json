@@ -2,13 +2,16 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
+    "F": [
+      "minecraft:tropical_fish",
+      "minecraft:salmon"
+    ],
     "K": "minecraft:dried_kelp",
-    "R": "yavpm:rice",
-    "T": "minecraft:tropical_fish"
+    "R": "yavpm:rice"
   },
   "pattern": [
     "KRK",
-    "RTR",
+    "RFR",
     "KRK"
   ],
   "result": {

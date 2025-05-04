@@ -5,10 +5,10 @@ e4de44b64a769cb6126e0a64e8a3aacff9833795 data/c/tags/block/stripped_woods.json
 1f6cb37fdf09502386611e9e1b0e9d8032e2c9ef data/minecraft/tags/block/crops.json
 0428e14b34082adc68b1ac07a9e4542228af55ed data/minecraft/tags/block/fence_gates.json
 343470cf7c980c8c0e47201eac0143c490471ab6 data/minecraft/tags/block/impermeable.json
-846003a1a25ed66d4744cbf09837961fb98c16cc data/minecraft/tags/block/leaves.json
+c0a82991c324f362444857c89dff2c67ad83cd11 data/minecraft/tags/block/leaves.json
 0e8f0fe56c5da7e148bcfaaee1cec54d70607b7b data/minecraft/tags/block/logs_that_burn.json
 7620a6f54527179f9ef92f914bce10b0ee3ce179 data/minecraft/tags/block/mineable/axe.json
-846003a1a25ed66d4744cbf09837961fb98c16cc data/minecraft/tags/block/mineable/hoe.json
+c0a82991c324f362444857c89dff2c67ad83cd11 data/minecraft/tags/block/mineable/hoe.json
 35ab8df992f05fa28a45b6bf569077bd77293a5f data/minecraft/tags/block/mineable/pickaxe.json
 6ca4dbf0aefc993971191f623c1f13b0e36778f4 data/minecraft/tags/block/mineable/shovel.json
 1acfd7d2d675c5caaa7cfc72edd8bf050e97fa77 data/minecraft/tags/block/needs_diamond_tool.json

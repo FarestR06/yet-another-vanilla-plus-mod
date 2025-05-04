@@ -24,7 +24,6 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -150,19 +149,11 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
             .criteriaMerger(AdvancementRequirements.CriterionMerger.OR)
             .criterion(
                     "mine_fake_log",
-                    FakeBlockDestroyedCriterion.Conditions.create(
-                            YavpmBlocks.FAKE_LOG, ItemPredicate.Builder.create().tag(ITEM_LOOKUP,
-                                    ItemTags.AXES
-                            )
-                    )
+                    FakeBlockDestroyedCriterion.Conditions.create(YavpmBlocks.FAKE_LOG, ItemPredicate.Builder.create())
             )
             .criterion(
                     "mine_fake_ore",
-                    FakeBlockDestroyedCriterion.Conditions.create(
-                            YavpmBlocks.FAKE_ORE, ItemPredicate.Builder.create().tag(ITEM_LOOKUP,
-                                    ItemTags.PICKAXES
-                            )
-                    )
+                    FakeBlockDestroyedCriterion.Conditions.create(YavpmBlocks.FAKE_ORE, ItemPredicate.Builder.create())
             )
             .build(makeId("husbandry/mine_fake_block"));
 
@@ -282,6 +273,7 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
 
     @Override
     public void generateAdvancement(RegistryWrapper.WrapperLookup registryLookup, Consumer<AdvancementEntry> consumer) {
+
         final Consumer<AdvancementEntry> rareEquipmentConsumer
                 = withConditions(consumer, new RareEquipmentRecipesEnabledResourceCondition());
         // Story
@@ -291,6 +283,7 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
         consumer.accept(FED_WOLF_PEANUT);
         consumer.accept(LUCKY_TICKET);
         consumer.accept(EAT_ALL_FOOD_BOWLS);
+        consumer.accept(MINE_FAKE_BLOCK);
         consumer.accept(CRAFT_DIAMONDS_FROM_GRAPHENE);
         // Adventure
         consumer.accept(LOCK_CONTAINER);
