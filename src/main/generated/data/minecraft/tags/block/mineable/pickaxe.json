@@ -4,7 +4,6 @@
     "yavpm:soul_glowing_obsidian",
     "yavpm:graphite_block",
     "yavpm:graphene_block",
-    "yavpm:recycler",
     "yavpm:burner",
     "yavpm:cobbled_granite",
     "yavpm:cobbled_diorite",
@@ -66,6 +65,10 @@
     "yavpm:hardened_conglomerate_brick_stairs",
     "yavpm:hardened_conglomerate_brick_slab",
     "yavpm:hardened_conglomerate_brick_wall",
-    "yavpm:fake_ore"
+    "yavpm:fake_ore",
+    {
+      "id": "yavpm:recycler",
+      "required": false
+    }
   ]
 }

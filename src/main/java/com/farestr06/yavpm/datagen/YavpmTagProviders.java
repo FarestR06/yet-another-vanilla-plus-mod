@@ -22,6 +22,8 @@ import net.minecraft.world.biome.BiomeKeys;
 
 import java.util.concurrent.CompletableFuture;
 
+import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
+
 public class YavpmTagProviders {
     public static class Item extends FabricTagProvider.ItemTagProvider {
 
@@ -481,7 +483,6 @@ public class YavpmTagProviders {
                     YavpmBlocks.GRAPHITE_BLOCK,
                     YavpmBlocks.GRAPHENE_BLOCK,
 
-                    YavpmBlocks.RECYCLER,
                     YavpmBlocks.BURNER,
 
                     YavpmBlocks.COBBLED_GRANITE,
@@ -551,7 +552,7 @@ public class YavpmTagProviders {
                     YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_WALL,
 
                     YavpmBlocks.FAKE_ORE
-            );
+            ).addOptional(makeId("recycler"));
 
             getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE).add(
                     YavpmBlocks.CONGLOMERATE

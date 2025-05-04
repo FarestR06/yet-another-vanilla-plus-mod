@@ -15,6 +15,7 @@ import net.minecraft.world.BlockView;
 public class MagicBeanCropBlock extends CropBlock {
     private static final VoxelShape[] AGE_TO_SHAPE = new VoxelShape[]{
             Block.createCuboidShape(6.0, 0.0, 6.0, 10.0, 2.0, 10.0),
+            Block.createCuboidShape(6.0, 0.0, 6.0, 10.0, 2.0, 10.0),
             Block.createCuboidShape(6.0, 0.0, 6.0, 10.0, 5.0, 10.0),
             Block.createCuboidShape(5.0, 0.0, 5.0, 11.0, 9.0, 11.0),
             Block.createCuboidShape(4.0, 0.0, 4.0, 12.0, 13.0, 12.0),
