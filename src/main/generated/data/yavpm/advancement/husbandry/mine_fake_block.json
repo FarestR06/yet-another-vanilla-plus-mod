@@ -1,0 +1,39 @@
+{
+  "parent": "minecraft:husbandry/root",
+  "criteria": {
+    "mine_fake_log": {
+      "conditions": {
+        "block": "yavpm:fake_log",
+        "item": {}
+      },
+      "trigger": "yavpm:fake_block_destroyed"
+    },
+    "mine_fake_ore": {
+      "conditions": {
+        "block": "yavpm:fake_ore",
+        "item": {}
+      },
+      "trigger": "yavpm:fake_block_destroyed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.husbandry.mine_fake_block.description"
+    },
+    "hidden": true,
+    "icon": {
+      "count": 1,
+      "id": "minecraft:cherry_leaves"
+    },
+    "title": {
+      "translate": "advancements.husbandry.mine_fake_block.title"
+    }
+  },
+  "requirements": [
+    [
+      "mine_fake_log",
+      "mine_fake_ore"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
