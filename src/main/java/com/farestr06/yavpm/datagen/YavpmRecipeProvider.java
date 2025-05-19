@@ -385,16 +385,14 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                         .input(Items.DRIED_KELP)
                         .input(YavpmItems.MAGIC_BEAN)
                         .input(Items.BOWL)
-                        .criterion(hasItem(Items.TROPICAL_FISH), conditionsFromItem(Items.TROPICAL_FISH))
+                        .criterion(hasItem(Items.BOWL), conditionsFromItem(Items.BOWL))
                         .offerTo(exporter);
             }
 
             private void rareFoods(RecipeExporter exporter) {
                 createShapeless(RecipeCategory.FOOD, YavpmItems.FANCY_MUSHROOM_STEW)
-                        .input(Items.RED_MUSHROOM)
-                        .input(Items.BROWN_MUSHROOM)
-                        .input(Items.CRIMSON_FUNGUS)
-                        .input(Items.WARPED_FUNGUS)
+                        .input(Items.RED_MUSHROOM_BLOCK)
+                        .input(Items.BROWN_MUSHROOM_BLOCK)
                         .input(YavpmItems.TRUFFLE)
                         .input(Items.BOWL)
                         .criterion(hasItem(YavpmItems.TRUFFLE), conditionsFromItem(YavpmItems.TRUFFLE))

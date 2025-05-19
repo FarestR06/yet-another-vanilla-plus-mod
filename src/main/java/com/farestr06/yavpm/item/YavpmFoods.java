@@ -98,7 +98,7 @@ public class YavpmFoods {
 
     public static class ConsumableComponents {
         public static final ConsumableComponent FANCY_MUSHROOM_STEW = food().consumeEffect(
-                new ApplyEffectsConsumeEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 3), 1f)
+                new ApplyEffectsConsumeEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400, 2), 1f)
         ).build();
 
         public static final ConsumableComponent RAW_PEANUT = food()

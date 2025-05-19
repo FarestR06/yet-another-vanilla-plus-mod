@@ -1,10 +1,7 @@
 package com.farestr06.yavpm.block;
 
 import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
-import com.farestr06.yavpm.block.custom.BurnerBlock;
-import com.farestr06.yavpm.block.custom.PinataBlock;
-import com.farestr06.yavpm.block.custom.PolarizedGlassBlock;
-import com.farestr06.yavpm.block.custom.PrickleLogBlock;
+import com.farestr06.yavpm.block.custom.*;
 import com.farestr06.yavpm.block.custom.crop.*;
 import com.farestr06.yavpm.block.custom.fake.FakeLogBlock;
 import com.farestr06.yavpm.block.custom.fake.FakeOreBlock;
@@ -125,6 +122,8 @@ public class YavpmBlocks {
     );
     // endregion
     // endregion
+
+    public static final Block CHOPPING_BLOCK = makeBlockAndSimpleItem(makeId("chopping_block"), ChoppingBlockBlock::new, AbstractBlock.Settings.copy(Blocks.CRAFTING_TABLE));
 
     public static final Block SCULKY_DEEPSLATE_BRICKS = makeSimpleBlockAndSimpleItem(
             makeId("sculky_deepslate_bricks"),

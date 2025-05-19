@@ -72,6 +72,7 @@ public class YavpmLootProviders {
             cropDrops();
 
             addDrop(YavpmBlocks.SHOJI);
+            addDrop(YavpmBlocks.CHOPPING_BLOCK);
             appleDrops();
             persimmonDrops();
             prickleDrops();

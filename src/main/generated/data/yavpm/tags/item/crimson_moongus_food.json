@@ -10,8 +10,6 @@
     "minecraft:pufferfish",
     "minecraft:golden_carrot",
     "minecraft:turtle_helmet",
-    "minecraft:phantom_membrane",
-    "minecraft:wither_skeleton_skull",
-    "minecraft:ender_eye"
+    "minecraft:phantom_membrane"
   ]
 }

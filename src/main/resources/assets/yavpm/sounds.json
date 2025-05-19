@@ -152,6 +152,15 @@
     ],
     "subtitle": "subtitles.item.baby_key.turn"
   },
+  "entity.villager.work_lumberjack": {
+    "sounds": [
+      "dig/wood1",
+      "dig/wood2",
+      "dig/wood3",
+      "dig/wood4"
+    ],
+    "subtitle": "subtitles.entity.villager.work_lumberjack"
+  },
   "enchantment.figure_eight": {
     "sounds": [
       "ui/stonecutter/cut1",

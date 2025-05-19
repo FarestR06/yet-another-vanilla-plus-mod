@@ -260,9 +260,7 @@ public class YavpmTagProviders {
                     Items.PUFFERFISH,
                     Items.GOLDEN_CARROT,
                     Items.TURTLE_HELMET,
-                    Items.PHANTOM_MEMBRANE,
-                    Items.WITHER_SKELETON_SKULL,
-                    Items.ENDER_EYE
+                    Items.PHANTOM_MEMBRANE
             );
             getOrCreateTagBuilder(YavpmTags.Items.CRIMSON_MOONGUS_FOOD_CORRUPTED).add(
                     Items.SUGAR,
@@ -278,8 +276,10 @@ public class YavpmTagProviders {
                     Items.STONE,
                     Items.COBWEB,
                     Items.FERMENTED_SPIDER_EYE,
-                    Items.WITHER_SKELETON_SKULL,
-                    Items.ENDER_EYE
+                    Items.WITHER_ROSE,
+                    Items.DRAGON_BREATH,
+                    YavpmItems.BITTER_BERRIES,
+                    Items.SWEET_BERRIES
             );
         }
 
@@ -472,6 +472,7 @@ public class YavpmTagProviders {
                     .add(YavpmBlocks.APPLE_LEAVES, YavpmBlocks.FLOWERING_APPLE_LEAVES, YavpmBlocks.PERSIMMON_LEAVES);
 
             getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(
+                    YavpmBlocks.CHOPPING_BLOCK,
                     YavpmBlocks.FAKE_LOG,
                     YavpmBlocks.SHOJI
             );

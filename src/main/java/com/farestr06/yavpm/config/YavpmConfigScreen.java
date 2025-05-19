@@ -87,6 +87,16 @@ public class YavpmConfigScreen implements ModMenuApi {
                                 .build())
                         .build())
                 .category(ConfigCategory.createBuilder()
+                        .name(Text.translatable("option.yavpm.misc"))
+                        .group(OptionGroup.createBuilder()
+                                .name(Text.translatable("option.yavpm.misc.splashes"))
+                                .option(LONG_LASTING_SPLASH_CHANCE)
+                                .option(CHRISTIAN_SPLASHES)
+                                .option(ISLAMIC_SPLASHES)
+                                .build()
+                        )
+                        .build())
+                .category(ConfigCategory.createBuilder()
                         .name(Text.translatable("option.yavpm.easter_eggs").setStyle(SGA))
                         .group(OptionGroup.createBuilder()
                                 .name(Text.translatable("option.yavpm.easter_eggs.splashes").setStyle(SGA))
@@ -145,17 +155,18 @@ public class YavpmConfigScreen implements ModMenuApi {
                     }))
             // ).controller(opt -> IntegerFieldControllerBuilder.create(opt).range(500, 4000))
             .build();
-    protected static final Option<Float> TANUKI_TRANSFORM_CHANCE = Option.<Float>createBuilder()
+    protected static final Option<Integer> TANUKI_TRANSFORM_CHANCE = Option.<Integer>createBuilder()
             .name(Text.translatable("option.yavpm.tanuki_transform_chance.title"))
             .description(OptionDescription.createBuilder()
                     .text(Text.translatable("option.yavpm.tanuki_transform_chance.desc"))
                     .build()
             )
             .binding(
-                    0.3f,
-                    () -> HANDLER.instance().tanukiTransformChance,
-                    newVal -> HANDLER.instance().tanukiTransformChance = newVal
-            ).controller(opt -> FloatSliderControllerBuilder.create(opt).range(0f, 1f).step(0.01f))
+                    30,
+                    () -> Math.round(HANDLER.instance().tanukiTransformChance * 100),
+                    newVal -> HANDLER.instance().tanukiTransformChance = newVal / 100f
+            ).controller(opt -> IntegerSliderControllerBuilder.create(opt).range(0, 100).step(1)
+                    .formatValue(val -> Text.translatable("option.yavpm.format.percentage", val)))
             // ).controller(opt -> FloatFieldControllerBuilder.create(opt).range(0f, 1f))
             .build();
 
@@ -360,6 +371,47 @@ public class YavpmConfigScreen implements ModMenuApi {
                     false,
                     () -> HANDLER.instance().moreStairs,
                     newVal -> HANDLER.instance().moreStairs = newVal
+            ).controller(YavpmConfigScreen::booleanBuilder)
+            .build();
+    // endregion
+
+    // region Misc
+
+    protected static final Option<Integer> LONG_LASTING_SPLASH_CHANCE = Option.<Integer>createBuilder()
+            .name(Text.translatable("option.yavpm.long_lasting_splash_chance.title"))
+            .description(OptionDescription.createBuilder()
+                    .text(Text.translatable("option.yavpm.long_lasting_splash_chance.desc"))
+                    .build()
+            )
+            .binding(
+                    30,
+                    () -> Math.round(HANDLER.instance().chanceForLongLastingSplashes * 100),
+                    newVal -> HANDLER.instance().chanceForLongLastingSplashes = newVal / 100f
+            ).controller(opt -> IntegerSliderControllerBuilder.create(opt).range(0, 100).step(1)
+                    .formatValue(val -> Text.translatable("option.yavpm.format.percentage", val)))
+            .build();
+    protected static final Option<Boolean> CHRISTIAN_SPLASHES = Option.<Boolean>createBuilder()
+            .name(Text.translatable("option.yavpm.christian_splashes.title"))
+            .description(OptionDescription.createBuilder()
+                    .text(Text.translatable("option.yavpm.christian_splashes.desc"))
+                    .build()
+            )
+            .binding(
+                    false,
+                    () -> HANDLER.instance().displayChristianHolidaySplashes,
+                    newVal -> HANDLER.instance().displayChristianHolidaySplashes = newVal
+            ).controller(YavpmConfigScreen::booleanBuilder)
+            .build();
+    protected static final Option<Boolean> ISLAMIC_SPLASHES = Option.<Boolean>createBuilder()
+            .name(Text.translatable("option.yavpm.islamic_splashes.title"))
+            .description(OptionDescription.createBuilder()
+                    .text(Text.translatable("option.yavpm.islamic_splashes.desc"))
+                    .build()
+            )
+            .binding(
+                    false,
+                    () -> HANDLER.instance().displayIslamicHolidaySplashes,
+                    newVal -> HANDLER.instance().displayIslamicHolidaySplashes = newVal
             ).controller(YavpmConfigScreen::booleanBuilder)
             .build();
     // endregion

@@ -468,8 +468,9 @@ public class YavpmItems {
         WARPED_MOONGUS_FOOD.put(Items.COBWEB, Potions.WEAVING);
         WARPED_MOONGUS_FOOD.put(Items.SLIME_BLOCK, Potions.OOZING);
         WARPED_MOONGUS_FOOD.put(Items.STONE, Potions.INFESTED);
+        WARPED_MOONGUS_FOOD.put(Items.FERMENTED_SPIDER_EYE, Potions.WEAKNESS);
         WARPED_MOONGUS_FOOD.put(Items.WITHER_ROSE, YavpmPotions.DECAY);
-        WARPED_MOONGUS_FOOD.put(VOID_WATER_BUCKET, YavpmPotions.VOID_TOUCHED);
+        WARPED_MOONGUS_FOOD.put(Items.DRAGON_BREATH, YavpmPotions.VOID_TOUCHED);
         WARPED_MOONGUS_FOOD.put(BITTER_BERRIES, YavpmPotions.HASTE);
         WARPED_MOONGUS_FOOD.put(Items.SWEET_BERRIES, YavpmPotions.INTOXICATION);
     }

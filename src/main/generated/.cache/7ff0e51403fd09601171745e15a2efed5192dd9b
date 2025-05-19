@@ -55,7 +55,7 @@ d841cf7e075636b408025f0af7dabd2429aaf42f data/minecraft/tags/item/wooden_pressur
 3c4770b8d0fefafae9ed8acca95b94e2c1472b41 data/minecraft/tags/item/wooden_trapdoors.json
 1eb3808c624477422ebd1accf95624f2d29543b9 data/yavpm/tags/item/apple_logs.json
 3e3cdc6f2d4dcdcaa1c2d990a3a2708d55c3f487 data/yavpm/tags/item/carbonfowl_foods.json
-c7aab678d8d7c80eb0bbcafe2b01638c294e23ef data/yavpm/tags/item/crimson_moongus_food.json
+aeb3e29580d3b54e8ba2540f0817ba5bec36bf24 data/yavpm/tags/item/crimson_moongus_food.json
 b91dfcf823036f7cb2cb9876a4de10dd7aba95f1 data/yavpm/tags/item/crimson_moongus_food_corrupted.json
 61f64c2c825b79098aa6b858ba013e8db9b6f5d6 data/yavpm/tags/item/densitite_tool_materials.json
 e6a557e0f0c7023bf91eaaf1ba66fadae53fd806 data/yavpm/tags/item/enchantable/glider.json
@@ -67,4 +67,4 @@ f275a7f37363d1bf0a2338331d2e0d2595cfb1ff data/yavpm/tags/item/reactor_rechargers
 ff79b7e120658226ff49a95055ef1e7cf93afacd data/yavpm/tags/item/repairs_studded_armor.json
 53a13473b30a0ca862cb74b2b2575e0e92cb13ca data/yavpm/tags/item/spiral_stalks.json
 b3903dd6f2911c9bfd601eeed539d4df52a7dc6f data/yavpm/tags/item/tanuki_foods.json
-eb8b7d8d53690befcf485678c4ff0a18a658b87c data/yavpm/tags/item/warped_moongus_food.json
+35efcdfa6c7041e6d72423cda4c3d65dd8b6c3a6 data/yavpm/tags/item/warped_moongus_food.json

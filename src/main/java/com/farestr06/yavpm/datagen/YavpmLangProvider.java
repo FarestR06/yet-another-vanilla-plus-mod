@@ -352,6 +352,9 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.VOID_PHANTOM_SPAWN_EGG, "Void Phantom Spawn Egg");
         builder.add(YavpmEntities.VOID_PHANTOM, "Void Phantom");
 
+        builder.add("entity.minecraft.villager.lumberjack", "Lumberjack");
+        builder.add("subtitles.entity.villager.work_lumberjack", "Lumberjack works");
+
         builder.add(YavpmStatusEffects.SILENCE.value(), "Silence");
         builder.add(YavpmStatusEffects.VOID_TOUCHED.value(), "Void Touched");
         builder.add(YavpmStatusEffects.WOUNDED.value(), "Wounded");
@@ -389,6 +392,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
     private static void woodTranslations(TranslationBuilder builder) {
         builder.add(YavpmBlocks.SHOJI, "Shoji");
+
+        builder.add(YavpmBlocks.CHOPPING_BLOCK, "Chopping Block");
 
         builder.add(YavpmBlocks.APPLE_LOG, "Apple Log");
         builder.add(YavpmBlocks.APPLE_WOOD, "Apple Wood");
@@ -569,6 +574,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add("option.yavpm.format.ticks", "%s ticks (%s seconds)");
         builder.add("option.yavpm.format.multiplier", "%sx");
+        builder.add("option.yavpm.format.percentage", "%s %");
 
         builder.add("option.yavpm.experiment", "Experiments");
         builder.add("option.yavpm.experiment.warning", "This is an experimental setting that could stop working at any time. I can't be sure if it'll work. Here be dragons!");
@@ -600,6 +606,9 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("option.yavpm.compat.vanillatweaks.info2", "Originally made by Xisumavoid, and currently developed by André, Stridey, Grant and rx.");
         builder.add("option.yavpm.compat.vanillatweaks.link.title", "More Info...");
         builder.add("option.yavpm.compat.vanillatweaks.link.desc", "Click here to visit the Vanilla Tweaks website at https://vanillatweaks.net.");
+
+        builder.add("option.yavpm.misc", "Misc Options");
+        builder.add("option.yavpm.misc.splashes", "Special Splashes");
 
         builder.add("option.yavpm.entities_and_effects", "Entities/Mob Effects");
 
@@ -648,6 +657,15 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add("option.yavpm.more_stairs.title", "More Stairs");
         builder.add("option.yavpm.more_stairs.desc", "Crafting Stairs yields 8 blocks instead of 4. Default is false.");
+
+        builder.add("option.yavpm.long_lasting_splash_chance.title", "Long-Lasting Splash Display Chance");
+        builder.add("option.yavpm.long_lasting_splash_chance.desc", "Special splashes that last a long time will only appear with the specified probability. Default is 30%.");
+
+        builder.add("option.yavpm.christian_splashes.title", "Splashes for Christian Holidays");
+        builder.add("option.yavpm.christian_splashes.desc", "If true, splashes commemorating Christian holidays (i.e. Easter, Christmas) will be displayed. Default is true, for inclusivity.");
+
+        builder.add("option.yavpm.islamic_splashes.title", "Splashes for Muslim Holidays");
+        builder.add("option.yavpm.islamic_splashes.desc", "If true, splashes commemorating Islamic holidays will be displayed. Default is true, for inclusivity.");
 
         builder.add("option.yavpm.rare_equipment_recipes.title", "Craftable Rare Equipment");
         builder.add("option.yavpm.rare_equipment_recipes.desc", "Some treasures that are uncraftable in vanilla, like tridents or name tags, are craftable when this option is enabled. Default is true.");

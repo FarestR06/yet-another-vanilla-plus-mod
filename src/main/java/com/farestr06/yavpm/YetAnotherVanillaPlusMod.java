@@ -6,7 +6,8 @@ import com.farestr06.yavpm.block.custom.recycler.registry.RecyclingResultRegistr
 import com.farestr06.yavpm.config.YavpmConfig;
 import com.farestr06.yavpm.datagen.condition.YavpmResourceConditionTypes;
 import com.farestr06.yavpm.entity.YavpmEntities;
-import com.farestr06.yavpm.entity.YavpmTrades;
+import com.farestr06.yavpm.village.YavpmProfessions;
+import com.farestr06.yavpm.village.YavpmTrades;
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.ItemGroupHelper;
@@ -83,6 +84,7 @@ public class YetAnotherVanillaPlusMod implements ModInitializer {
 		YavpmResourceConditionTypes.init();
 
 		LootHelper.modifyLoot();
+		YavpmProfessions.init();
 		YavpmTrades.init();
 
 		YavpmGameRules.init();

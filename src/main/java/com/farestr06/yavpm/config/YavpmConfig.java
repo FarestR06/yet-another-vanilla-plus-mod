@@ -77,6 +77,15 @@ public class YavpmConfig {
     public boolean unpackWarpedWart = false;
     // endregion
 
+    // region Misc
+    @SerialEntry(comment = "Special splashes that last a long time will only appear with the specified probability. Default is 30%.")
+    public float chanceForLongLastingSplashes = 0.3f;
+    @SerialEntry(comment = "If true, splashes commemorating Christian holidays (i.e. Easter, Christmas) will be displayed. Default is true, for inclusivity.")
+    public boolean displayChristianHolidaySplashes = true;
+    @SerialEntry(comment = "If true, splashes commemorating Islamic holidays will be displayed. Default is true, for inclusivity.")
+    public boolean displayIslamicHolidaySplashes = true;
+    // endregion
+
     // region Easter Eggs
     @SerialEntry(comment = "A special splash will sometimes appear on Wednesday; the likelihood of this happening is determined by this value. Default is 0.3f.")
     public float snapshotDaySplashChance = 0.3f;

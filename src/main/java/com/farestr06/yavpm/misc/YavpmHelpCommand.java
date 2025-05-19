@@ -29,6 +29,7 @@ public final class YavpmHelpCommand {
                         literal("item")
                                 .executes(YavpmHelpCommand::itemInfo)
                                 .then(literal("bitter_berries").executes(YavpmHelpCommand::bitterBerries))
+                                .then(literal("soups_and_stews").executes(YavpmHelpCommand::soupsAndStews))
                                 .then(literal("moly").executes(YavpmHelpCommand::moly))
                                 .then(literal("magic_bean").executes(YavpmHelpCommand::magicBean))
                                 .then(literal("fake_beef").executes(YavpmHelpCommand::fakeBeef))
@@ -43,6 +44,7 @@ public final class YavpmHelpCommand {
                                 .then(literal("void_phantom").executes(YavpmHelpCommand::voidPhantom))
                 ).then(
                         literal("effect")
+                                .then(literal("wither").executes(YavpmHelpCommand::wither))
                                 .then(literal("haste").executes(YavpmHelpCommand::haste))
                                 .then(literal("nausea").executes(YavpmHelpCommand::nausea))
                                 .then(literal("silence").executes(YavpmHelpCommand::silence))
@@ -50,6 +52,18 @@ public final class YavpmHelpCommand {
                                 .then(literal("void_touched").executes(YavpmHelpCommand::voidTouched))
                 )
         ));
+    }
+
+    private static int soupsAndStews(CommandContext<FabricClientCommandSource> ctx) {
+        FabricClientCommandSource src = ctx.getSource();
+        src.sendFeedback(Text.literal("Soups and Stews").formatted(Formatting.BOLD, Formatting.AQUA));
+        src.sendFeedback(Text.literal("Type: Food").formatted(Formatting.DARK_AQUA));
+        src.sendFeedback(Text.literal("Food: Hunger varies, 0.6 saturation").formatted(Formatting.DARK_AQUA));
+        src.sendFeedback(Text.literal("This mod adds three food bowls: Sea Soup, Chicken Soup, and Fancy Mushroom Stew.").formatted(Formatting.GRAY));
+        src.sendFeedback(Text.literal("Fancy Mushroom Stew is a punched up mushroom stew. It uses full red and brown mushroom blocks rather than little mushrooms, and it uses a truffle dug up by a Sniffer.").formatted(Formatting.GRAY));
+        src.sendFeedback(Text.literal("Sea Soup is loosely based on Japanese miso soup. It's made from tropical fish, rice, dried kelp and a magic bean.").formatted(Formatting.GRAY));
+        src.sendFeedback(Text.literal("Chicken Soup is, well, soup made from chicken. It's made from a cooked chicken, a carrot, a brown mushroom and some rice.").formatted(Formatting.GRAY));
+        return 1;
     }
 
     private static int burner(CommandContext<FabricClientCommandSource> ctx) {
@@ -135,19 +149,20 @@ public final class YavpmHelpCommand {
     private static int moongus(CommandContext<FabricClientCommandSource> ctx) {
         FabricClientCommandSource src = ctx.getSource();
         src.sendFeedback(Text.literal("Moongus").formatted(Formatting.BOLD, Formatting.AQUA));
-        src.sendFeedback(Text.literal("Type: Passive Animal").formatted(Formatting.DARK_AQUA));
+        src.sendFeedback(Text.literal("Type: Passive Animal").formatted(Formatting.GREEN));
         src.sendFeedback(Text.literal("Food: Wheat").formatted(Formatting.DARK_AQUA));
         src.sendFeedback(Text.literal("HP: 10").formatted(Formatting.DARK_AQUA));
         src.sendFeedback(Text.literal("Habitat: Crimson and Warped Forest").formatted(Formatting.DARK_AQUA));
         src.sendFeedback(Text.literal("The Moongus is a cow that has been infested by wart; in other words, it is a Nether variant of the Mooshroom.").formatted(Formatting.GRAY));
         src.sendFeedback(Text.literal("Moongi can be milked for potions, much like how Mooshrooms can be milked for mushroom stew. Crimson Moongi produce Awkward Potions, while Warped produce Weird Potions.").formatted(Formatting.GRAY));
         src.sendFeedback(Text.literal("The milked potions can be modified by feeding the Moongus potion ingredients, like how the rare Brown Mooshroom can be fed a flower to change its stew.").formatted(Formatting.GRAY));
+        src.sendFeedback(Text.literal("Lastly, this mob can be milked for, well, Milk, just like typical Cows and Mooshrooms.").formatted(Formatting.GRAY));
         return 1;
     }
     private static int carbonfowl(CommandContext<FabricClientCommandSource> ctx) {
         FabricClientCommandSource src = ctx.getSource();
         src.sendFeedback(Text.literal("Carbonfowl").formatted(Formatting.BOLD, Formatting.AQUA));
-        src.sendFeedback(Text.literal("Type: Neutral Animal").formatted(Formatting.DARK_AQUA));
+        src.sendFeedback(Text.literal("Type: Neutral Animal").formatted(Formatting.YELLOW));
         src.sendFeedback(Text.literal("Food: Glow Berries, Moss/Azalea, Sculk, common monster drops").formatted(Formatting.DARK_AQUA));
         src.sendFeedback(Text.literal("HP: 8 | ATK: 2.5 | DEF: 7.5").formatted(Formatting.DARK_AQUA));
         src.sendFeedback(Text.literal("Habitat: Cave Biomes (i.e. Lush Caves, Deep Dark)").formatted(Formatting.DARK_AQUA));
@@ -160,7 +175,7 @@ public final class YavpmHelpCommand {
     private static int tanuki(CommandContext<FabricClientCommandSource> ctx) {
         FabricClientCommandSource src = ctx.getSource();
         src.sendFeedback(Text.literal("Tanuki").formatted(Formatting.BOLD, Formatting.AQUA));
-        src.sendFeedback(Text.literal("Type: Passive Animal").formatted(Formatting.DARK_AQUA));
+        src.sendFeedback(Text.literal("Type: Passive Animal").formatted(Formatting.GREEN));
         src.sendFeedback(Text.literal("Food: Berries").formatted(Formatting.DARK_AQUA));
         src.sendFeedback(Text.literal("HP: 14").formatted(Formatting.DARK_AQUA));
         src.sendFeedback(Text.literal("Habitat: Mountain Biomes (i.e. Windswept Hills, Cherry Grove)").formatted(Formatting.DARK_AQUA));
@@ -172,7 +187,7 @@ public final class YavpmHelpCommand {
     private static int voidPhantom(CommandContext<FabricClientCommandSource> ctx) {
         FabricClientCommandSource src = ctx.getSource();
         src.sendFeedback(Text.literal("Void Phantom").formatted(Formatting.BOLD, Formatting.AQUA));
-        src.sendFeedback(Text.literal("Type: Hostile Monster").formatted(Formatting.DARK_AQUA));
+        src.sendFeedback(Text.literal("Type: Hostile Monster").formatted(Formatting.RED));
         src.sendFeedback(Text.literal("HP: 20 | ATK: 7 to 9.5").formatted(Formatting.DARK_AQUA));
         src.sendFeedback(Text.literal("Habitat: The End").formatted(Formatting.DARK_AQUA));
         src.sendFeedback(Text.literal("The Void Phantom is a stronger variant of the Phantom from the End.").formatted(Formatting.GRAY));
@@ -180,6 +195,18 @@ public final class YavpmHelpCommand {
         return 1;
     }
 
+    private static int wither(CommandContext<FabricClientCommandSource> ctx) {
+        FabricClientCommandSource src = ctx.getSource();
+        src.sendFeedback(Text.literal("Wither (Potion of Decay)").setStyle(Style.EMPTY.withFormatting(Formatting.BOLD).withColor(7561558)));
+        src.sendFeedback(Text.literal("Type: Harmful").formatted(Formatting.RED));
+        src.sendFeedback(Text.literal("Crafting: Weird Potion + Wither Rose").formatted(Formatting.DARK_AQUA));
+        src.sendFeedback(Text.literal("Modifiers: Long, Strong").formatted(Formatting.DARK_AQUA));
+        src.sendFeedback(Text.literal("Duration: 30 seconds (Normal), 1 minute (Long), 15 seconds (Strong)").formatted(Formatting.DARK_AQUA));
+        src.sendFeedback(Text.literal("Amplifier: Wither I (Normal, Long), Wither II (Strong)").formatted(Formatting.DARK_AQUA));
+        src.sendFeedback(Text.literal("Wither is a vanilla status effect that is brewable in this mod. When applied, you'll take damage over time. Unlike Poison, the Wither effect will reduce your health to zero and kill you.").formatted(Formatting.GRAY));
+        src.sendFeedback(Text.literal("Normally, this effect is inflicted by Wither Skeletons and the Wither. However, obtaining Wither Roses allows you to have this effect in a potion.").formatted(Formatting.GRAY));
+        return 1;
+    }
     private static int haste(CommandContext<FabricClientCommandSource> ctx) {
         FabricClientCommandSource src = ctx.getSource();
         src.sendFeedback(Text.literal("Haste").setStyle(Style.EMPTY.withFormatting(Formatting.BOLD).withColor(14270531)));
@@ -223,19 +250,19 @@ public final class YavpmHelpCommand {
         src.sendFeedback(Text.literal("Modifiers: Long").formatted(Formatting.DARK_AQUA));
         src.sendFeedback(Text.literal("Duration: 4.5 seconds (Normal), 9 seconds (Long)").formatted(Formatting.DARK_AQUA));
         src.sendFeedback(Text.literal("When applied, the Choking effect will drown you, whether you're underwater or not.").formatted(Formatting.GRAY));
-        src.sendFeedback(Text.literal("The dealt damage bypasses armor and invulnerability, and it does not knock you back.").formatted(Formatting.GRAY));
+        src.sendFeedback(Text.literal("The dealt damage bypasses armor and invulnerability, and will not knock you back.").formatted(Formatting.GRAY));
         return 1;
     }
     private static int voidTouched(CommandContext<FabricClientCommandSource> ctx) {
         FabricClientCommandSource src = ctx.getSource();
         src.sendFeedback(Text.literal("Void Touched").setStyle(Style.EMPTY.withFormatting(Formatting.BOLD).withColor(0xe079fa)));
         src.sendFeedback(Text.literal("Type: Harmful").formatted(Formatting.RED));
-        src.sendFeedback(Text.literal("Crafting: Smelt Dragon's Breath in a Furnace").formatted(Formatting.DARK_AQUA));
+        src.sendFeedback(Text.literal("Crafting: Smelt Dragon's Breath in a Furnace, Feed Dragon's Breath to a Warped Moongus").formatted(Formatting.DARK_AQUA));
         src.sendFeedback(Text.literal("Modifiers: Long, Strong").formatted(Formatting.DARK_AQUA));
         src.sendFeedback(Text.literal("Duration: 40 seconds (Normal), 80 seconds (Long), 20 seconds (Strong)").formatted(Formatting.DARK_AQUA));
         src.sendFeedback(Text.literal("Amplifier: Void Touched I (Normal, Long), Void Touched II (Strong)").formatted(Formatting.DARK_AQUA));
         src.sendFeedback(Text.literal("When the Void Touched effect is applied, any damage you take will be multiplied. The multiplier can be changed in the mod's config in Mod Menu.").formatted(Formatting.GRAY));
-        src.sendFeedback(Text.literal("The effect can be applied by the Ender Dragon's fireball attack when she is flying, but not by her breath when she is perching.").formatted(Formatting.GRAY));
+        src.sendFeedback(Text.literal("The effect can be inflicted by the Ender Dragon's fireball attack when she is flying, but not by her breath when she is perching.").formatted(Formatting.GRAY));
         return 1;
     }
 

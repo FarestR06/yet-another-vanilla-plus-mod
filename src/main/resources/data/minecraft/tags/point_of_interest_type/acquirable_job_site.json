@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    {
+      "id": "yavpm:lumberjack_poi",
+      "required": false
+    }
+  ]
+}

@@ -191,6 +191,7 @@ public class ItemGroupHelper {
     private static void functionalBlocks(FabricItemGroupEntries entries) {
         entries.add(YavpmBlocks.GLOWING_OBSIDIAN);
         entries.add(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
+        entries.add(YavpmBlocks.CHOPPING_BLOCK);
         entries.add(YavpmBlocks.PINATA);
     }
 
