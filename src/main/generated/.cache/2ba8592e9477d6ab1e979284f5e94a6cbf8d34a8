@@ -252,7 +252,7 @@ f984a5ded22e055d77b3154186568b0e97dfe86b data/yavpm/advancement/recipes/food/fri
 444a0afbb0a124713ada6214c34da7df1c80c81c data/yavpm/advancement/recipes/food/jelly.json
 3b686ca4e3297937d4e73c031a11dc3194090c94 data/yavpm/advancement/recipes/food/rice_bar.json
 0939fba49d53c1fa411ca4fd993a54821d315890 data/yavpm/advancement/recipes/food/rice_pastry.json
-a36e0ac804d9af9df0de915ac76fd4b844dc9cea data/yavpm/advancement/recipes/food/sea_soup.json
+d67df07bf800e6be1917d360a0b9f0f8b3af107a data/yavpm/advancement/recipes/food/sea_soup.json
 2f0ef9402e194fc701e8bf8c019e193d0ba60cfb data/yavpm/advancement/recipes/food/sushi.json
 016bf388fac1a7b0f0b0c10ce565d980104a7bc7 data/yavpm/advancement/recipes/food/sweet_berry_jelly.json
 728042518092e6f1d31099bb7594a9ddd6f1451a data/yavpm/advancement/recipes/food/tofu.json
@@ -422,7 +422,7 @@ ff807090af0b1895c81bbe614741950cf987f192 data/yavpm/recipe/dull_conglomerate_sla
 ed74f7c06a8b8d81958fcd61f6d9cd2bef0ef5d4 data/yavpm/recipe/experience_bottle.json
 d651a28497ce200bca013d257e950add97c2590a data/yavpm/recipe/fake_beef.json
 243d3c91d88f7f74f839835b907ac853d44c3329 data/yavpm/recipe/fake_milk_bucket.json
-47139941c007e96b95304ae49f5103c2b182429a data/yavpm/recipe/fancy_mushroom_stew.json
+21c1846cb13983a2643993098e9ad893daf1f723 data/yavpm/recipe/fancy_mushroom_stew.json
 c7965739399b659ba4311cde2bfc12a3d8f5a3eb data/yavpm/recipe/fried_banana.json
 89359efcfe2c5a6f3fc1e6e1341f2d25fb732100 data/yavpm/recipe/fried_cod.json
 94e13d5c481982241f0b3cf38dc4d4df20126809 data/yavpm/recipe/gauntlet.json

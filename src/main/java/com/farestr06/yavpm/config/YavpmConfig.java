@@ -45,6 +45,8 @@ public class YavpmConfig {
     // endregion
 
     // region Items
+    @SerialEntry
+    public boolean potionStacking = true;
     @SerialEntry(comment = "If true, Key Golems will cry out when held. Default is true.")
     public boolean babyKeyCries = true;
     @SerialEntry(comment = "If true, potions spawned by Ominous Spawners will need to be brewed with Warped Wart. Moongi are unaffected by this option. Default is true.")

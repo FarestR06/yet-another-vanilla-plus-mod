@@ -2,10 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "misc",
   "ingredients": [
-    "minecraft:red_mushroom",
-    "minecraft:brown_mushroom",
-    "minecraft:crimson_fungus",
-    "minecraft:warped_fungus",
+    "minecraft:red_mushroom_block",
+    "minecraft:brown_mushroom_block",
     "yavpm:truffle",
     "minecraft:bowl"
   ],

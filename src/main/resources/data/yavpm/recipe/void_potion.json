@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smelting",
   "group": "void_touched",
-  "category": "misc",
+  "category": "food",
   "ingredient": "minecraft:dragon_breath",
   "result": {
     "id": "minecraft:potion",
@@ -11,6 +11,6 @@
       }
     }
   },
-  "experience": 1,
+  "experience": 1.2,
   "cookingtime": 200
 }

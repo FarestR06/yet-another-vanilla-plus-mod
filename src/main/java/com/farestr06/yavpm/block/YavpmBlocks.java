@@ -10,6 +10,7 @@ import com.farestr06.yavpm.block.custom.recycler.RecyclerBlock;
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.YavpmFoods;
+import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.world.feature.configured.YavpmTreeConfiguredFeatures;
 import com.terraformersmc.terraform.sign.api.block.TerraformHangingSignBlock;
 import com.terraformersmc.terraform.sign.api.block.TerraformSignBlock;
@@ -28,6 +29,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.Item;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
@@ -90,7 +93,38 @@ public class YavpmBlocks {
             AbstractBlock.Settings.copy(Blocks.SWEET_BERRY_BUSH),
             new Item.Settings().food(FoodComponents.SWEET_BERRIES).useItemPrefixedTranslationKey()
     );
-    // Sapling
+
+    public static final RegistryKey<Block> CANTALOUPE_KEY = key("cantaloupe");
+    public static final RegistryKey<Block> CANTALOUPE_STEM_KEY = key("cantaloupe_stem");
+    public static final RegistryKey<Block> ATTACHED_CANTALOUPE_STEM_KEY = key("cantaloupe_stem");
+
+    public static final Block CANTALOUPE = register(
+            CANTALOUPE_KEY, Block::new,
+            AbstractBlock.Settings.create().mapColor(MapColor.LIME).strength(1.0F).sounds(BlockSoundGroup.WOOD).pistonBehavior(PistonBehavior.DESTROY)
+    );
+    public static final Block ATTACHED_CANTALOUPE_STEM = register(
+            ATTACHED_CANTALOUPE_STEM_KEY,
+            settings -> new AttachedStemBlock(CANTALOUPE_STEM_KEY, CANTALOUPE_KEY, YavpmItems.CANTALOUPE_SEEDS_KEY, settings),
+            AbstractBlock.Settings.create()
+                    .mapColor(MapColor.DARK_GREEN)
+                    .noCollision()
+                    .breakInstantly()
+                    .sounds(BlockSoundGroup.WOOD)
+                    .pistonBehavior(PistonBehavior.DESTROY)
+    );
+    public static final Block CANTALOUPE_STEM = register(
+            CANTALOUPE_STEM_KEY,
+            settings -> new StemBlock(CANTALOUPE_KEY, ATTACHED_CANTALOUPE_STEM_KEY, YavpmItems.CANTALOUPE_SEEDS_KEY, settings),
+            AbstractBlock.Settings.create()
+                    .mapColor(MapColor.DARK_GREEN)
+                    .noCollision()
+                    .ticksRandomly()
+                    .breakInstantly()
+                    .sounds(BlockSoundGroup.STEM)
+                    .pistonBehavior(PistonBehavior.DESTROY)
+    );
+
+    // region Sapling
     public static final Block OAK_SAPLING_CROP = makeBlockAndAliasedItem(
             makeId("oak_sapling_crop"),
             makeId("acorn"),
@@ -828,6 +862,10 @@ public class YavpmBlocks {
             },
             AbstractBlock.Settings.copy(Blocks.WATER)
     );
+
+    private static RegistryKey<Block> key(String id) {
+        return RegistryKey.of(RegistryKeys.BLOCK, makeId(id));
+    }
 
     public static void init() {
         YetAnotherVanillaPlusMod.LOGGER.info("Registering blocks for YAVPM!");

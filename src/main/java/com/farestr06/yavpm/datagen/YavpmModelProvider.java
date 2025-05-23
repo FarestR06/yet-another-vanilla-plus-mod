@@ -264,6 +264,9 @@ public class YavpmModelProvider extends FabricModelProvider {
         registerCrossCrop(generator, YavpmBlocks.CRIMSON_FUNGUS_CROP, SaplingCropBlock.AGE, 0,1,2,3);
         registerCrossCrop(generator, YavpmBlocks.WARPED_FUNGUS_CROP, SaplingCropBlock.AGE, 0,1,2,3);
         registerCrossCrop(generator, YavpmBlocks.MAGIC_BEAN_CROP, MagicBeanCropBlock.AGE, 0,1,1,2,3,4,5);
+
+        generator.registerSingleton(Blocks.MELON, TexturedModel.CUBE_COLUMN);
+        generator.registerGourd(YavpmBlocks.CANTALOUPE_STEM, YavpmBlocks.ATTACHED_CANTALOUPE_STEM);
     }
 
     private static void registerBananaCrop(BlockStateModelGenerator generator) {
