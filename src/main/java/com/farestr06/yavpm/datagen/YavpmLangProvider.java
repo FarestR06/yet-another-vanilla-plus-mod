@@ -159,6 +159,13 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.FRIED_BANANA, "Fried Bananas");
         builder.add(YavpmItems.FRIED_COD, "Fried Cod");
 
+        builder.add(YavpmBlocks.CANTALOUPE, "Cantaloupe");
+        builder.add(YavpmBlocks.CANTALOUPE_STEM, "Cantaloupe Stem");
+        builder.add(YavpmBlocks.ATTACHED_CANTALOUPE_STEM, "Attached Cantaloupe Stem");
+
+        builder.add(YavpmItems.CANTALOUPE_SEEDS, "Cantaloupe Seeds");
+        builder.add(YavpmItems.CANTALOUPE_SLICE, "Cantaloupe Slice");
+
         builder.add(YavpmBlocks.BANANA_CROP, "Banana Crops");
         builder.add(YavpmItems.BANANA, "Banana Bunch");
         builder.add(YavpmItems.BANANA_SEEDS, "Banana Seeds");

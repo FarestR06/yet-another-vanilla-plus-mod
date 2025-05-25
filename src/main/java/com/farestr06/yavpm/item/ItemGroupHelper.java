@@ -176,6 +176,7 @@ public class ItemGroupHelper {
         entries.add(YavpmBlocks.APPLE_SAPLING);
         entries.add(YavpmBlocks.PERSIMMON_LEAVES);
         entries.add(YavpmBlocks.PRICKLE_SHOOT);
+        entries.add(YavpmItems.CANTALOUPE_SEEDS);
         entries.add(YavpmItems.ACORN);
         entries.add(YavpmItems.BIRCH_SEEDS);
         entries.add(YavpmItems.SPRUCE_CONE);
@@ -186,6 +187,7 @@ public class ItemGroupHelper {
         entries.add(YavpmItems.PEANUT);
         entries.add(YavpmItems.MAGIC_BEAN);
         entries.add(YavpmItems.WARPED_WART);
+        entries.add(YavpmBlocks.CANTALOUPE);
     }
 
     private static void functionalBlocks(FabricItemGroupEntries entries) {
@@ -249,6 +251,7 @@ public class ItemGroupHelper {
         entries.add(YavpmItems.PERSIMMON);
         entries.add(YavpmItems.GOLDEN_PERSIMMON);
         entries.add(YavpmItems.BANANA);
+        entries.add(YavpmItems.CANTALOUPE_SLICE);
         entries.add(YavpmItems.MAGIC_BEAN);
         entries.add(YavpmItems.TRUFFLE);
         entries.add(YavpmItems.CHEESE);

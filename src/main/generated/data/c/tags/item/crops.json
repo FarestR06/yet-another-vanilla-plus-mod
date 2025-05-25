@@ -1,6 +1,10 @@
 {
   "values": [
     "yavpm:acorn",
+    "yavpm:birch_seeds",
+    "yavpm:spruce_cone",
+    "yavpm:crimson_spore",
+    "yavpm:warped_spore",
     "minecraft:oak_sapling",
     "yavpm:banana",
     "yavpm:banana_seeds",

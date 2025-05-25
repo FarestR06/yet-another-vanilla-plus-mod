@@ -10,7 +10,6 @@ import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
-import net.minecraft.block.Block;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ConsumableComponents;
 import net.minecraft.component.type.FoodComponents;
@@ -27,7 +26,6 @@ import net.minecraft.util.Rarity;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
 
 import static com.farestr06.api.item.ItemHelper.*;
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
@@ -58,7 +56,8 @@ public class YavpmItems {
     public static final Item BITTER_BERRIES = YavpmBlocks.BITTER_BERRY_BUSH.asItem();
 
     public static final RegistryKey<Item> CANTALOUPE_SEEDS_KEY = RegistryKey.of(RegistryKeys.ITEM, makeId("cantaloupe_seeds"));
-    public static final Item CANTALOUPE_SEEDS = register(CANTALOUPE_SEEDS_KEY, createBlockItemWithUniqueName(YavpmBlocks.CANTALOUPE));
+    public static final Item CANTALOUPE_SEEDS = register(CANTALOUPE_SEEDS_KEY, settings -> new BlockItem(YavpmBlocks.CANTALOUPE_STEM, settings.useItemPrefixedTranslationKey()));
+    public static final Item CANTALOUPE_SLICE = makeItem(makeId("cantaloupe_slice"), new Item.Settings().food(FoodComponents.MELON_SLICE));
 
     public static final Item ACORN = YavpmBlocks.OAK_SAPLING_CROP.asItem();
     public static final Item BIRCH_SEEDS = YavpmBlocks.BIRCH_SAPLING_CROP.asItem();
@@ -436,12 +435,10 @@ public class YavpmItems {
             new Item.Settings().recipeRemainder(Items.BUCKET)
     );
 
-    private static Function<Item.Settings, Item> createBlockItemWithUniqueName(Block block) {
-        return settings -> new BlockItem(block, settings.useItemPrefixedTranslationKey());
-    }
-
     public static void init() {
         YetAnotherVanillaPlusMod.LOGGER.info("Registering items for YAVPM!");
+
+        makeBlockItem(YavpmBlocks.CANTALOUPE, new Item.Settings());
 
         setUpComponents();
         setUpRegistries();

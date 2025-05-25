@@ -1,8 +1,16 @@
 {
   "values": [
     "yavpm:fake_log",
+    "yavpm:shoji",
     "yavpm:chopping_block",
+    "yavpm:attached_cantaloupe_stem",
+    "yavpm:cantaloupe_stem",
+    "yavpm:cantaloupe",
     "yavpm:fake_log",
-    "yavpm:shoji"
+    "yavpm:shoji",
+    "yavpm:chopping_block",
+    "yavpm:attached_cantaloupe_stem",
+    "yavpm:cantaloupe_stem",
+    "yavpm:cantaloupe"
   ]
 }

@@ -22,8 +22,8 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
     @Unique
     private final ServerPlayerEntity thiz = (ServerPlayerEntity) (Object) this;
 
-    @Inject(method = "sleep", at = @At(value = "TAIL"))
-    private void sleepInject(BlockPos pos, CallbackInfo ci) {
+    @Inject(method = "sleep", at = @At(value = "INVOKE", target = "Lnet/minecraft/server/network/ServerPlayerEntity;resetStat(Lnet/minecraft/stat/Stat;)V", shift = At.Shift.AFTER))
+    private void injected(BlockPos pos, CallbackInfo ci) {
         thiz.increaseStat(Stats.CUSTOM.getOrCreateStat(YavpmStats.DAYS_SLEPT_THROUGH), 1);
     }
 }

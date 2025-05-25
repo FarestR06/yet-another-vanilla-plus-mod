@@ -16,9 +16,11 @@ import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
+import net.minecraft.block.StemBlock;
 import net.minecraft.client.color.world.BiomeColors;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.ColorHelper;
 import net.minecraft.world.biome.FoliageColors;
 
 public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
@@ -30,6 +32,11 @@ public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
     }
 
     private static void setUpColors() {
+        ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> -2046180, YavpmBlocks.ATTACHED_CANTALOUPE_STEM);
+        ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> {
+            int i = state.get(StemBlock.AGE);
+            return ColorHelper.getArgb(i * 32, 255 - i * 8, i * 4);
+        }, YavpmBlocks.CANTALOUPE_STEM);
         ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) ->
                 world != null && pos != null ? BiomeColors.getFoliageColor(world, pos) : FoliageColors.DEFAULT, YavpmBlocks.PERSIMMON_LEAVES);
     }
@@ -38,6 +45,8 @@ public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.POLARIZED_GLASS, RenderLayer.getTranslucent());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.SHOJI, RenderLayer.getTranslucent());
 
+        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.ATTACHED_CANTALOUPE_STEM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.CANTALOUPE_STEM, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.WARPED_WART_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.BANANA_CROP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.RICE_CROP, RenderLayer.getCutout());

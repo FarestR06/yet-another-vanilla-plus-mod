@@ -300,6 +300,10 @@ public class YavpmTagProviders {
 
             getOrCreateTagBuilder(ConventionalItemTags.CROPS).add(
                     YavpmItems.ACORN,
+                    YavpmItems.BIRCH_SEEDS,
+                    YavpmItems.SPRUCE_CONE,
+                    YavpmItems.CRIMSON_SPORE,
+                    YavpmItems.WARPED_SPORE,
                     Items.OAK_SAPLING,
                     YavpmItems.BANANA,
                     YavpmItems.BANANA_SEEDS,
@@ -441,7 +445,14 @@ public class YavpmTagProviders {
                     Blocks.DIRT
             );
 
-            getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(YavpmBlocks.FAKE_LOG);
+            getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(
+                    YavpmBlocks.FAKE_LOG,
+                    YavpmBlocks.SHOJI,
+                    YavpmBlocks.CHOPPING_BLOCK,
+                    YavpmBlocks.ATTACHED_CANTALOUPE_STEM,
+                    YavpmBlocks.CANTALOUPE_STEM,
+                    YavpmBlocks.CANTALOUPE
+            );
 
             getOrCreateTagBuilder(BlockTags.IMPERMEABLE)
                     .add(YavpmBlocks.POLARIZED_GLASS);
@@ -453,13 +464,30 @@ public class YavpmTagProviders {
         }
         private void plantTags() {
             getOrCreateTagBuilder(BlockTags.CROPS).add(
+                    YavpmBlocks.CANTALOUPE_STEM,
                     YavpmBlocks.BANANA_CROP,
                     YavpmBlocks.PEANUT_CROP,
                     YavpmBlocks.RICE_CROP,
                     YavpmBlocks.MAGIC_BEAN_CROP,
                     YavpmBlocks.WARPED_WART_CROP,
-                    YavpmBlocks.OAK_SAPLING_CROP
+                    YavpmBlocks.OAK_SAPLING_CROP,
+                    YavpmBlocks.BIRCH_SAPLING_CROP,
+                    YavpmBlocks.CRIMSON_FUNGUS_CROP,
+                    YavpmBlocks.WARPED_FUNGUS_CROP
             );
+            getOrCreateTagBuilder(BlockTags.MAINTAINS_FARMLAND).add(
+                    YavpmBlocks.CANTALOUPE_STEM,
+                    YavpmBlocks.ATTACHED_CANTALOUPE_STEM,
+                    YavpmBlocks.BANANA_CROP,
+                    YavpmBlocks.PEANUT_CROP,
+                    YavpmBlocks.MAGIC_BEAN_CROP,
+                    YavpmBlocks.WARPED_WART_CROP,
+                    YavpmBlocks.OAK_SAPLING_CROP,
+                    YavpmBlocks.BIRCH_SAPLING_CROP,
+                    YavpmBlocks.CRIMSON_FUNGUS_CROP,
+                    YavpmBlocks.WARPED_FUNGUS_CROP
+            );
+
             getOrCreateTagBuilder(BlockTags.SAPLINGS).add(
                     YavpmBlocks.APPLE_SAPLING,
                     YavpmBlocks.PERSIMMON_SAPLING,
@@ -471,13 +499,23 @@ public class YavpmTagProviders {
             getOrCreateTagBuilder(BlockTags.HOE_MINEABLE)
                     .add(YavpmBlocks.APPLE_LEAVES, YavpmBlocks.FLOWERING_APPLE_LEAVES, YavpmBlocks.PERSIMMON_LEAVES);
 
+            getOrCreateTagBuilder(BlockTags.SWORD_EFFICIENT).add(
+                    YavpmBlocks.CANTALOUPE,
+                    YavpmBlocks.CANTALOUPE_STEM,
+                    YavpmBlocks.ATTACHED_CANTALOUPE_STEM
+            );
             getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(
-                    YavpmBlocks.CHOPPING_BLOCK,
                     YavpmBlocks.FAKE_LOG,
-                    YavpmBlocks.SHOJI
+                    YavpmBlocks.SHOJI,
+                    YavpmBlocks.CHOPPING_BLOCK,
+                    YavpmBlocks.ATTACHED_CANTALOUPE_STEM,
+                    YavpmBlocks.CANTALOUPE_STEM,
+                    YavpmBlocks.CANTALOUPE
             );
 
+
             // Polarized Glass isn't here because normal Glass does not have a required tool.
+            // That's likely a bug, but I want to keep things consistent with vanilla.
             getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(
                     YavpmBlocks.GLOWING_OBSIDIAN,
                     YavpmBlocks.SOUL_GLOWING_OBSIDIAN,
@@ -621,6 +659,8 @@ public class YavpmTagProviders {
                     YavpmBlocks.SOULSTONE
             );
 
+            getOrCreateTagBuilder(BlockTags.ENDERMAN_HOLDABLE).add(YavpmBlocks.CANTALOUPE);
+
             getOrCreateTagBuilder(BlockTags.STAIRS).add(
                     YavpmBlocks.KIMBERLITE_STAIRS,
                     YavpmBlocks.POLISHED_KIMBERLITE_STAIRS,
@@ -635,7 +675,6 @@ public class YavpmTagProviders {
                     YavpmBlocks.KIMBERLITE_SLAB,
                     YavpmBlocks.POLISHED_KIMBERLITE_SLAB,
                     YavpmBlocks.POLISHED_KIMBERLITE_BRICK_SLAB,
-
 
                     YavpmBlocks.SCULKY_DEEPSLATE_BRICK_SLAB,
 

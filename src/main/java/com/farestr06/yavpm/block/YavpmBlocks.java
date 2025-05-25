@@ -96,7 +96,7 @@ public class YavpmBlocks {
 
     public static final RegistryKey<Block> CANTALOUPE_KEY = key("cantaloupe");
     public static final RegistryKey<Block> CANTALOUPE_STEM_KEY = key("cantaloupe_stem");
-    public static final RegistryKey<Block> ATTACHED_CANTALOUPE_STEM_KEY = key("cantaloupe_stem");
+    public static final RegistryKey<Block> ATTACHED_CANTALOUPE_STEM_KEY = key("attached_cantaloupe_stem");
 
     public static final Block CANTALOUPE = register(
             CANTALOUPE_KEY, Block::new,

@@ -20,10 +20,8 @@ import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.entry.LeafEntry;
-import net.minecraft.loot.function.ApplyBonusLootFunction;
-import net.minecraft.loot.function.EnchantedCountIncreaseLootFunction;
-import net.minecraft.loot.function.FurnaceSmeltLootFunction;
-import net.minecraft.loot.function.SetCountLootFunction;
+import net.minecraft.loot.function.*;
+import net.minecraft.loot.operator.BoundedIntUnaryOperator;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.predicate.NumberRange;
@@ -80,32 +78,6 @@ public class YavpmLootProviders {
             fakeDrops();
 
             addDropWithSilkTouch(YavpmBlocks.PINATA);
-
-            // region Warped Wart
-            addDrop(
-                    YavpmBlocks.WARPED_WART_CROP,
-                    block -> LootTable.builder()
-                            .pool(
-                                    applyExplosionDecay(
-                                            block,
-                                            LootPool.builder()
-                                                    .rolls(ConstantLootNumberProvider.create(1f))
-                                                    .with(
-                                                            ItemEntry.builder(YavpmItems.WARPED_WART)
-                                                                    .apply(
-                                                                            SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 4.0F))
-                                                                                    .conditionally(BlockStatePropertyLootCondition.builder(block).properties(StatePredicate.Builder.create().exactMatch(WarpedWartCropBlock.AGE, 3)))
-                                                                    )
-                                                                    .apply(
-                                                                            ApplyBonusLootFunction.uniformBonusCount(lookup.getOrThrow(Enchantments.FORTUNE))
-                                                                                    .conditionally(BlockStatePropertyLootCondition.builder(block).properties(StatePredicate.Builder.create().exactMatch(WarpedWartCropBlock.AGE, 3)))
-                                                                    )
-                                                    )
-                                    )
-                            )
-            );
-            // endregion
-
         }
 
         private void fakeDrops() {
@@ -219,6 +191,45 @@ public class YavpmLootProviders {
                     .exactMatch(BananaCropBlock.AGE, 5));
 
             addDrop(YavpmBlocks.BANANA_CROP, cropDrops(YavpmBlocks.BANANA_CROP, YavpmItems.BANANA, YavpmItems.BANANA_SEEDS, bananaConditionBuilder));
+
+            addDrop(
+                    YavpmBlocks.WARPED_WART_CROP,
+                    block -> LootTable.builder()
+                            .pool(
+                                    applyExplosionDecay(
+                                            block,
+                                            LootPool.builder()
+                                                    .rolls(ConstantLootNumberProvider.create(1f))
+                                                    .with(
+                                                            ItemEntry.builder(YavpmItems.WARPED_WART)
+                                                                    .apply(
+                                                                            SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 4.0F))
+                                                                                    .conditionally(BlockStatePropertyLootCondition.builder(block).properties(StatePredicate.Builder.create().exactMatch(WarpedWartCropBlock.AGE, 3)))
+                                                                    )
+                                                                    .apply(
+                                                                            ApplyBonusLootFunction.uniformBonusCount(lookup.getOrThrow(Enchantments.FORTUNE))
+                                                                                    .conditionally(BlockStatePropertyLootCondition.builder(block).properties(StatePredicate.Builder.create().exactMatch(WarpedWartCropBlock.AGE, 3)))
+                                                                    )
+                                                    )
+                                    )
+                            )
+            );
+
+            this.addDrop(YavpmBlocks.CANTALOUPE_STEM, block -> this.cropStemDrops(block, YavpmItems.CANTALOUPE_SEEDS));
+            this.addDrop(YavpmBlocks.ATTACHED_CANTALOUPE_STEM, block -> this.attachedCropStemDrops(block, YavpmItems.CANTALOUPE_SEEDS));
+            addDrop(
+                    YavpmBlocks.CANTALOUPE,
+                    block -> this.dropsWithSilkTouch(
+                            block,
+                            this.applyExplosionDecay(
+                                    block,
+                                    ItemEntry.builder(YavpmItems.CANTALOUPE_SLICE)
+                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(3.0F, 7.0F)))
+                                            .apply(ApplyBonusLootFunction.uniformBonusCount(lookup.getOrThrow(Enchantments.FORTUNE)))
+                                            .apply(LimitCountLootFunction.builder(BoundedIntUnaryOperator.createMax(9)))
+                            )
+                    )
+            );
 
             BlockStatePropertyLootCondition.Builder oakSaplingConditionBuilder = BlockStatePropertyLootCondition.builder(YavpmBlocks.OAK_SAPLING_CROP).properties(StatePredicate.Builder.create()
                     .exactMatch(SaplingCropBlock.AGE, 3));

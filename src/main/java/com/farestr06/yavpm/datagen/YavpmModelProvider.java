@@ -34,7 +34,7 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.registerSimpleCubeAll(YavpmBlocks.GLOWING_OBSIDIAN);
         generator.registerSimpleCubeAll(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
 
-        crops(generator);
+        createCrops(generator);
 
         createKimberliteSet(generator);
         createGraniteSet(generator);
@@ -207,6 +207,8 @@ public class YavpmModelProvider extends FabricModelProvider {
     private static void food(ItemModelGenerator generator) {
         generator.register(YavpmItems.MOLY, Models.GENERATED);
 
+        generator.register(YavpmItems.CANTALOUPE_SLICE, Models.GENERATED);
+
         generator.register(YavpmItems.BREADING, Models.GENERATED);
         generator.register(YavpmItems.FRIED_BANANA, Models.GENERATED);
         generator.register(YavpmItems.FRIED_COD, Models.GENERATED);
@@ -248,7 +250,7 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.register(YavpmItems.CHICKEN_SOUP, Models.GENERATED);
     }
 
-    private void crops(BlockStateModelGenerator generator) {
+    private void createCrops(BlockStateModelGenerator generator) {
         generator.registerTintableCrossBlockStateWithStages(
                 YavpmBlocks.BITTER_BERRY_BUSH,
                 BlockStateModelGenerator.CrossType.NOT_TINTED,
@@ -265,7 +267,7 @@ public class YavpmModelProvider extends FabricModelProvider {
         registerCrossCrop(generator, YavpmBlocks.WARPED_FUNGUS_CROP, SaplingCropBlock.AGE, 0,1,2,3);
         registerCrossCrop(generator, YavpmBlocks.MAGIC_BEAN_CROP, MagicBeanCropBlock.AGE, 0,1,1,2,3,4,5);
 
-        generator.registerSingleton(Blocks.MELON, TexturedModel.CUBE_COLUMN);
+        generator.registerSingleton(YavpmBlocks.CANTALOUPE, TexturedModel.CUBE_COLUMN);
         generator.registerGourd(YavpmBlocks.CANTALOUPE_STEM, YavpmBlocks.ATTACHED_CANTALOUPE_STEM);
     }
 
