@@ -140,6 +140,7 @@ public class YavpmBlocks {
             new Item.Settings().useItemPrefixedTranslationKey()
     );
 
+    // region Fungus
     public static final Block CRIMSON_FUNGUS_CROP = makeBlockAndAliasedItem(
             makeId("crimson_fungus_crop"),
             makeId("crimson_spore"),
