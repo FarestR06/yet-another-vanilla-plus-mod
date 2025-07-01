@@ -30,7 +30,6 @@ import java.util.Map;
 import static com.farestr06.api.item.ItemHelper.*;
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 import static com.farestr06.yavpm.config.YavpmConfig.HANDLER;
-import static com.farestr06.yavpm.item.StuddedMaterial.ARMOR_MATERIAL;
 
 public class YavpmItems {
 
@@ -40,7 +39,7 @@ public class YavpmItems {
 
     public static final Item PHANTOM_CHORD = makeItem(
             makeId("phantom_chord"),
-            new Item.Settings().rarity(Rarity.RARE)
+            new Item.Settings().rare()
     );
 
     public static final Item THUNDER_SHARD = makeItem(
@@ -79,7 +78,7 @@ public class YavpmItems {
             makeId("diamond_acorn"),
             new Item.Settings()
                     .food(YavpmFoods.DIAMOND_ACORN, ConsumableComponents.ENCHANTED_GOLDEN_APPLE)
-                    .rarity(Rarity.RARE)
+                    .rare()
                     .component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true)
     );
     // endregion
@@ -90,7 +89,7 @@ public class YavpmItems {
     );
     public static final Item GOLDEN_PERSIMMON = makeItem(
             makeId("golden_persimmon"),
-            new Item.Settings().food(FoodComponents.GOLDEN_APPLE).rarity(Rarity.RARE)
+            new Item.Settings().food(FoodComponents.GOLDEN_APPLE).rare()
     );
     // endregion
     // region Food ingredients
@@ -189,7 +188,7 @@ public class YavpmItems {
 
     public static final Item GAUNTLET_FRAGMENT = makeItem(
             makeId("gauntlet_fragment"),
-            new Item.Settings().fireproof().rarity(Rarity.RARE)
+            new Item.Settings().fireproof().rare()
     );
 
     public static final Item GAUNTLET = makeAdvancedItem(
@@ -291,49 +290,45 @@ public class YavpmItems {
 
     public static final Item DENSITITE_SWORD = makeAdvancedItem(
             makeId("densitite_sword"),
-            settings -> new SwordItem(DensititeMaterial.TOOL_MATERIAL, 3f, -2.4f, settings),
-            new Item.Settings().rarity(Rarity.RARE)
+            Item::new,
+            new Item.Settings().sword(DensititeMaterial.TOOL_MATERIAL, 3f, -2.4f).rare()
     );
     public static final Item DENSITITE_SHOVEL = makeAdvancedItem(
             makeId("densitite_shovel"),
-            settings -> new ShovelItem(DensititeMaterial.TOOL_MATERIAL, 1.5f, -3f, settings),
-            new Item.Settings().rarity(Rarity.RARE)
+            Item::new,
+            new Item.Settings().shovel(DensititeMaterial.TOOL_MATERIAL, 1.5f, -3f).rare()
     );
     public static final Item DENSITITE_PICKAXE = makeAdvancedItem(
             makeId("densitite_pickaxe"),
-            settings -> new PickaxeItem(DensititeMaterial.TOOL_MATERIAL, 1f, -2.8f, settings),
-            new Item.Settings().rarity(Rarity.RARE)
+            Item::new,
+            new Item.Settings().pickaxe(DensititeMaterial.TOOL_MATERIAL, 1f, -2.8f).rare()
     );
     public static final Item DENSITITE_AXE = makeAdvancedItem(
             makeId("densitite_axe"),
-            settings -> new AxeItem(DensititeMaterial.TOOL_MATERIAL, 5f, -3f, settings),
-            new Item.Settings().rarity(Rarity.RARE)
+            Item::new,
+            new Item.Settings().axe(DensititeMaterial.TOOL_MATERIAL, 5f, -3f).rare()
     );
     public static final Item DENSITITE_HOE = makeAdvancedItem(
             makeId("densitite_hoe"),
-            settings -> new HoeItem(DensititeMaterial.TOOL_MATERIAL, -5f, -3f, settings),
-            new Item.Settings().rarity(Rarity.RARE)
+            Item::new,
+            new Item.Settings().hoe(DensititeMaterial.TOOL_MATERIAL, -5f, -3f).rare()
     );
 
     public static final Item DENSITITE_HELMET = makeAdvancedItem(
-            makeId("densitite_helmet"),
-            settings -> new ArmorItem(DensititeMaterial.ARMOR_MATERIAL, EquipmentType.HELMET, settings),
-            new Item.Settings().rarity(Rarity.RARE)
+            makeId("densitite_helmet"), Item::new,
+            new Item.Settings().armor(DensititeMaterial.ARMOR_MATERIAL, EquipmentType.HELMET).rare()
     );
     public static final Item DENSITITE_CHESTPLATE = makeAdvancedItem(
-            makeId("densitite_chestplate"),
-            settings -> new ArmorItem(DensititeMaterial.ARMOR_MATERIAL, EquipmentType.CHESTPLATE, settings),
-            new Item.Settings().rarity(Rarity.RARE)
+            makeId("densitite_chestplate"), Item::new,
+            new Item.Settings().armor(DensititeMaterial.ARMOR_MATERIAL, EquipmentType.CHESTPLATE).rare()
     );
     public static final Item DENSITITE_LEGGINGS = makeAdvancedItem(
-            makeId("densitite_leggings"),
-            settings -> new ArmorItem(DensititeMaterial.ARMOR_MATERIAL, EquipmentType.LEGGINGS, settings),
-            new Item.Settings().rarity(Rarity.RARE)
+            makeId("densitite_leggings"), Item::new,
+            new Item.Settings().armor(DensititeMaterial.ARMOR_MATERIAL, EquipmentType.LEGGINGS).rare()
     );
     public static final Item DENSITITE_BOOTS = makeAdvancedItem(
-            makeId("densitite_boots"),
-            settings -> new ArmorItem(DensititeMaterial.ARMOR_MATERIAL, EquipmentType.BOOTS, settings),
-            new Item.Settings().rarity(Rarity.RARE)
+            makeId("densitite_boots"), Item::new,
+            new Item.Settings().armor(DensititeMaterial.ARMOR_MATERIAL, EquipmentType.BOOTS).rare()
     );
     // endregion
 
@@ -349,46 +344,26 @@ public class YavpmItems {
 
     // region Studded Armor
     public static final Item STUDDED_HELMET = makeAdvancedItem(
-            makeId("studded_helmet"),
-            settings -> new ArmorItem(
-                    ARMOR_MATERIAL,
-                    EquipmentType.HELMET,
-                    settings
-            ),
-            new Item.Settings().maxDamage(EquipmentType.HELMET.getMaxDamage(20))
+            makeId("studded_helmet"), Item::new,
+            new Item.Settings().armor(StuddedMaterial.ARMOR_MATERIAL, EquipmentType.HELMET)
     );
     public static final Item STUDDED_CHESTPLATE = makeAdvancedItem(
-            makeId("studded_chestplate"),
-            settings -> new ArmorItem(
-                    ARMOR_MATERIAL,
-                    EquipmentType.CHESTPLATE,
-                    settings
-            ),
-            new Item.Settings().maxDamage(EquipmentType.CHESTPLATE.getMaxDamage(20))
+            makeId("studded_chestplate"), Item::new,
+            new Item.Settings().armor(StuddedMaterial.ARMOR_MATERIAL, EquipmentType.CHESTPLATE)
     );
     public static final Item STUDDED_LEGGINGS = makeAdvancedItem(
-            makeId("studded_leggings"),
-            settings -> new ArmorItem(
-                    ARMOR_MATERIAL,
-                    EquipmentType.LEGGINGS,
-                    settings
-            ),
-            new Item.Settings().maxDamage(EquipmentType.LEGGINGS.getMaxDamage(20))
+            makeId("studded_leggings"), Item::new,
+            new Item.Settings().armor(StuddedMaterial.ARMOR_MATERIAL, EquipmentType.LEGGINGS)
     );
     public static final Item STUDDED_BOOTS = makeAdvancedItem(
-            makeId("studded_boots"),
-            settings -> new ArmorItem(
-                    ARMOR_MATERIAL,
-                    EquipmentType.BOOTS,
-                    settings
-            ),
-            new Item.Settings().maxDamage(EquipmentType.BOOTS.getMaxDamage(20))
+            makeId("studded_boots"), Item::new,
+            new Item.Settings().armor(StuddedMaterial.ARMOR_MATERIAL, EquipmentType.BOOTS)
     );
     // endregion
 
     public static final Item MUSIC_DISC_MAGNETIC_CIRCUIT = makeItem(
             makeId("music_disc_magnetic_circuit"),
-            new Item.Settings().rarity(Rarity.RARE).jukeboxPlayable(YavpmSounds.MAGNETIC_CIRCUIT_KEY).maxCount(1)
+            new Item.Settings().rare().jukeboxPlayable(YavpmSounds.MAGNETIC_CIRCUIT_KEY).maxCount(1)
     );
     public static final Item DISC_FRAGMENT_MAGNETIC_CIRCUIT = makeAdvancedItem(
             makeId("disc_fragment_magnetic_circuit"),

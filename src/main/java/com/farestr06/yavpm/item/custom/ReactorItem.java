@@ -8,7 +8,7 @@ import net.minecraft.util.Formatting;
 import net.minecraft.util.math.random.Random;
 
 public class ReactorItem extends Item {
-    public ReactorItem(net.minecraft.item.Item.Settings settings) {
+    public ReactorItem(Item.Settings settings) {
         super(settings);
     }
 
@@ -26,7 +26,7 @@ public class ReactorItem extends Item {
     public ItemStack getRecipeRemainder(ItemStack stack) {
         if (stack.isOf(YavpmItems.HEATED_REACTOR)) {
             ItemStack damaged = new ItemStack(YavpmItems.REACTOR);
-            int damageAmount = stack.getDamage() + Random.create().nextBetween(1, 8);
+            int damageAmount = stack.getDamage() + Random.create().nextBetween(1, 12);
             if (damageAmount >= 1024) {
                 return ItemStack.EMPTY;
             }

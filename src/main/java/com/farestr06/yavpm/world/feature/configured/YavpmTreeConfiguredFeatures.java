@@ -7,7 +7,7 @@ import net.minecraft.block.SaplingGenerator;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.util.collection.DataPool;
+import net.minecraft.util.collection.Pool;
 import net.minecraft.util.math.intprovider.ConstantIntProvider;
 import net.minecraft.util.math.intprovider.IntProvider;
 import net.minecraft.util.math.intprovider.UniformIntProvider;
@@ -134,7 +134,7 @@ public class YavpmTreeConfiguredFeatures {
                         1,
                         2,
                         new WeightedListIntProvider(
-                                DataPool.<IntProvider>builder().add(ConstantIntProvider.create(1), 1)
+                                Pool.<IntProvider>builder().add(ConstantIntProvider.create(1), 1)
                                         .add(ConstantIntProvider.create(1), 1)
                                         .add(ConstantIntProvider.create(2), 1)
                                         .build()
@@ -152,9 +152,9 @@ public class YavpmTreeConfiguredFeatures {
                 BlockStateProvider.of(YavpmBlocks.APPLE_LOG),
                 new StraightTrunkPlacer(4, 2, 0),
                 new WeightedBlockStateProvider(
-                        DataPool.<BlockState>builder()
-                                .add(YavpmBlocks.APPLE_LEAVES.getDefaultState(), 3)
-                                .add(YavpmBlocks.FLOWERING_APPLE_LEAVES.getDefaultState(), 1)
+                        Pool.<BlockState>builder()
+                                .add(YavpmBlocks.APPLE_LEAVES.getDefaultState(), 2)
+                                .add(YavpmBlocks.FLOWERING_APPLE_LEAVES.getDefaultState(), 5)
                 ),
                 new BlobFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(0), 3),
                 new TwoLayersFeatureSize(1, 0, 1)
@@ -166,9 +166,9 @@ public class YavpmTreeConfiguredFeatures {
                 BlockStateProvider.of(YavpmBlocks.APPLE_LOG),
                 new LargeOakTrunkPlacer(3, 11, 0),
                 new WeightedBlockStateProvider(
-                        DataPool.<BlockState>builder()
-                                .add(YavpmBlocks.APPLE_LEAVES.getDefaultState(), 5)
-                                .add(YavpmBlocks.FLOWERING_APPLE_LEAVES.getDefaultState(), 2)
+                        Pool.<BlockState>builder()
+                                .add(YavpmBlocks.APPLE_LEAVES.getDefaultState(), 2)
+                                .add(YavpmBlocks.FLOWERING_APPLE_LEAVES.getDefaultState(), 5)
                 ),
                 new LargeOakFoliagePlacer(ConstantIntProvider.create(2), ConstantIntProvider.create(4), 4),
                 new TwoLayersFeatureSize(0, 0, 0, OptionalInt.of(4))

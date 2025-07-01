@@ -26,9 +26,12 @@ import net.minecraft.component.type.FoodComponents;
 import net.minecraft.data.family.BlockFamilies;
 import net.minecraft.data.family.BlockFamily;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCollisionHandler;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.Item;
+import net.minecraft.particle.EntityEffectParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BlockSoundGroup;
@@ -521,13 +524,14 @@ public class YavpmBlocks {
     );
     public static final Block APPLE_LEAVES = makeBlockAndSimpleItem(
             makeId("apple_leaves"),
-            LeavesBlock::new,
+            settings -> new UntintedParticleLeavesBlock(0.01F, EntityEffectParticleEffect.create(ParticleTypes.TINTED_LEAVES, 0x3f, 0x99, 0x49), settings),
             AbstractBlock.Settings.copy(Blocks.AZALEA_LEAVES)
     );
 
+    // 0x3f9949
     public static final Block FLOWERING_APPLE_LEAVES = makeBlockAndSimpleItem(
             makeId("flowering_apple_leaves"),
-            LeavesBlock::new,
+            settings -> new UntintedParticleLeavesBlock(0.01F, EntityEffectParticleEffect.create(ParticleTypes.TINTED_LEAVES, 0x3f, 0x99, 0x49), settings),
             AbstractBlock.Settings.copy(Blocks.FLOWERING_AZALEA_LEAVES)
     );
 
@@ -743,7 +747,8 @@ public class YavpmBlocks {
     );
     public static final Block PERSIMMON_LEAVES = makeBlockAndSimpleItem(
             makeId("persimmon_leaves"),
-            LeavesBlock::new, AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)
+            settings -> new TintedParticleLeavesBlock(0.01F, settings),
+            AbstractBlock.Settings.copy(Blocks.OAK_LEAVES)
     );
 
     public static final Block PERSIMMON_PLANKS = makeSimpleBlockAndSimpleItem(
@@ -853,12 +858,13 @@ public class YavpmBlocks {
             makeId("void_water"),
             settings -> new FluidBlock(YavpmFluids.STILL_VOID_WATER, settings) {
                 @Override
-                protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+                protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, EntityCollisionHandler handler) {
                     if (!world.isClient) {
                         if (entity instanceof LivingEntity livingEntity) {
                             livingEntity.addStatusEffect(new StatusEffectInstance(YavpmStatusEffects.VOID_TOUCHED, 220));
                         }
                     }
+                    super.onEntityCollision(state, world, pos, entity, handler);
                 }
             },
             AbstractBlock.Settings.copy(Blocks.WATER)
