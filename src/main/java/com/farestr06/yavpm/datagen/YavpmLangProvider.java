@@ -141,6 +141,8 @@ public class YavpmLangProvider extends FabricLanguageProvider {
     }
 
     private static void foodAndCropTranslations(TranslationBuilder builder) {
+        builder.add(YavpmItems.PRETZEL, "Pretzel");
+
         builder.add(YavpmItems.CHOCOLATE, "Chocolate Bar");
 
         builder.add(YavpmItems.MOLY, "Magic Herb");
@@ -336,6 +338,11 @@ public class YavpmLangProvider extends FabricLanguageProvider {
     }
 
     private static void ingredientTranslations(TranslationBuilder builder) {
+        builder.add(YavpmBlocks.NAHCOLITE_ORE, "Nahcolite Ore");
+        builder.add(YavpmBlocks.DEEPSLATE_NAHCOLITE_ORE, "Deepslate Nahcolite Ore");
+        builder.add(YavpmItems.BAKING_SODA, "Baking Soda");
+
+        builder.add(YavpmItems.CARBON_EGG, "Carbon Egg");
         builder.add(YavpmItems.PHANTOM_CHORD, "Phantom Chord");
         builder.add(YavpmItems.THUNDER_SHARD, "Thunder Shard");
 
@@ -359,7 +366,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add(YavpmItems.VOID_PHANTOM_SPAWN_EGG, "Void Phantom Spawn Egg");
         builder.add(YavpmEntities.VOID_PHANTOM, "Void Phantom");
 
-        builder.add("entity.minecraft.villager.lumberjack", "Lumberjack");
+        builder.add("entity.yavpm.villager.lumberjack", "Lumberjack");
         builder.add("subtitles.entity.villager.work_lumberjack", "Lumberjack works");
 
         builder.add(YavpmStatusEffects.SILENCE.value(), "Silence");
@@ -596,7 +603,7 @@ public class YavpmLangProvider extends FabricLanguageProvider {
         builder.add("option.yavpm.easter_eggs.splashes", "Splashes");
 
         builder.add("option.yavpm.snapshot_day.title", "Snapshot Day Splash");
-        builder.add("option.yavpm.snapshot_day.desc", "A special splash will sometimes appear on Wednesday; the likelihood of this happening is determined by this value. Default is 0.2f.");
+        builder.add("option.yavpm.snapshot_day.desc", "A special splash will sometimes appear on Tuesday; the likelihood of this happening is determined by this value. Default is 0.2f.");
 
         builder.add("option.yavpm.farests_birthday.title", "FarestR06's Birthday Splash");
         builder.add("option.yavpm.farests_birthday.desc", "A special splash will appear on the mod author's birthday; this only happens if this option is enabled. Default is true.");

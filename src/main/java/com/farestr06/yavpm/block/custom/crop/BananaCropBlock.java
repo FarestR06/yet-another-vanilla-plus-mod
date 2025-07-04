@@ -5,6 +5,7 @@ import com.farestr06.yavpm.item.YavpmItems;
 import net.minecraft.block.*;
 import net.minecraft.block.enums.DoubleBlockHalf;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityCollisionHandler;
 import net.minecraft.entity.mob.RavagerEntity;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemPlacementContext;
@@ -157,13 +158,14 @@ public class BananaCropBlock extends CropBlock {
     }
 
     @Override
-    public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+    protected void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity, EntityCollisionHandler handler) {
         if (entity instanceof RavagerEntity && world instanceof ServerWorld server && server.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
             world.breakBlock(pos, true, entity);
         }
 
-        super.onEntityCollision(state, world, pos, entity);
+        super.onEntityCollision(state, world, pos, entity, handler);
     }
+
     @Override
     public boolean isFertilizable(WorldView world, BlockPos pos, BlockState state) {
         BottomContext ctx = this.getLowerHalfContext(world, pos, state);

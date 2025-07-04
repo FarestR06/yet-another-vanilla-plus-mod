@@ -293,6 +293,15 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
             }
 
             private void diamondRecipes(RecipeExporter exporter) {
+                createShaped(RecipeCategory.MISC, YavpmItems.CARBON_EGG)
+                        .input('#', YavpmItems.GRAPHITE)
+                        .input('%', ItemTags.EGGS)
+                        .pattern(" # ")
+                        .pattern("#%#")
+                        .pattern(" # ")
+                        .criterion(hasItem(YavpmItems.GRAPHITE), conditionsFromItem(YavpmItems.GRAPHITE))
+                        .offerTo(exporter);
+
                 createShapeless(RecipeCategory.MISC, Items.BLACK_DYE, 3)
                         .input(YavpmItems.GRAPHITE)
                         .criterion(hasItem(YavpmItems.GRAPHITE), conditionsFromItem(YavpmItems.GRAPHITE))
@@ -332,6 +341,12 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                 sweetFoods(exporter);
                 seafoods(exporter);
                 rareFoods(exporter);
+
+                createShapeless(RecipeCategory.MISC, YavpmItems.PRETZEL, 4)
+                        .input(Items.BREAD, 4)
+                        .input(YavpmItems.BAKING_SODA)
+                        .criterion(hasItem(YavpmItems.BAKING_SODA), conditionsFromItem(YavpmItems.BAKING_SODA))
+                        .offerTo(exporter);
 
                 createShapeless(RecipeCategory.MISC, Items.EXPERIENCE_BOTTLE)
                         .input(Items.SCULK, 4)

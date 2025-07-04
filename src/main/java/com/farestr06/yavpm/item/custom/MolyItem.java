@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.consume.UseAction;
 import net.minecraft.world.World;
 
+@Deprecated(forRemoval = true)
 public class MolyItem extends Item {
 
     public MolyItem(net.minecraft.item.Item.Settings settings) {

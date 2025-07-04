@@ -33,7 +33,7 @@ public class PotionItemMixin {
         PotionContentsComponent contents = stack.getOrDefault(DataComponentTypes.POTION_CONTENTS, PotionContentsComponent.DEFAULT);
         BlockState state = world.getBlockState(pos);
 
-        if (context.getSide() != Direction.DOWN && state.isOf(YavpmBlocks.CONGLOMERATE) && contents.matches(Potions.WATER)) {
+        if (player != null && context.getSide() != Direction.DOWN && state.isOf(YavpmBlocks.CONGLOMERATE) && contents.matches(Potions.WATER)) {
             world.playSound(null, pos, SoundEvents.ENTITY_GENERIC_SPLASH, SoundCategory.BLOCKS, 1.0F, 1.0F);
             player.setStackInHand(context.getHand(), ItemUsage.exchangeStack(stack, player, new ItemStack(Items.GLASS_BOTTLE)));
             player.incrementStat(Stats.USED.getOrCreateStat(stack.getItem()));

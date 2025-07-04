@@ -79,7 +79,7 @@ public class YavpmTrades {
     private static void lumberjack() {
         // region Novice
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Lumberjack Novice trades...");
-        TradeOfferHelper.registerVillagerOffers(YavpmProfessions.LUMBERJACK, 1, factories -> {
+        TradeOfferHelper.registerVillagerOffers(YavpmProfessions.LUMBERJACK_KEY, 1, factories -> {
             factories.add((entity, random) -> new TradeOffer(
                     new TradedItem(NOVICE_PLANK_BUY_OFFERS.get(random.nextInt(NOVICE_PLANK_BUY_OFFERS.size())), 8),
                     new ItemStack(Items.EMERALD), 16, 2, LOW_MULTIPLIER
@@ -95,7 +95,7 @@ public class YavpmTrades {
         // endregion
         // region Apprentice
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Lumberjack Apprentice trades...");
-        TradeOfferHelper.registerVillagerOffers(YavpmProfessions.LUMBERJACK, 2, factories -> {
+        TradeOfferHelper.registerVillagerOffers(YavpmProfessions.LUMBERJACK_KEY, 2, factories -> {
             factories.add((entity, random) -> new TradeOffer(
                     new TradedItem(Items.EMERALD),
                     new ItemStack(Items.BOWL, 3),
@@ -124,7 +124,7 @@ public class YavpmTrades {
         // endregion
         // region Journeyman
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Lumberjack Journeyman trades...");
-        TradeOfferHelper.registerVillagerOffers(YavpmProfessions.LUMBERJACK, 3, factories -> {
+        TradeOfferHelper.registerVillagerOffers(YavpmProfessions.LUMBERJACK_KEY, 3, factories -> {
             factories.add((entity, random) -> new TradeOffer(
                     new TradedItem(Items.EMERALD, 5),
                     new ItemStack(Items.CHISELED_BOOKSHELF),
@@ -153,7 +153,7 @@ public class YavpmTrades {
         // endregion
         // region Expert
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Lumberjack Expert trades...");
-        TradeOfferHelper.registerVillagerOffers(YavpmProfessions.LUMBERJACK, 4, factories -> {
+        TradeOfferHelper.registerVillagerOffers(YavpmProfessions.LUMBERJACK_KEY, 4, factories -> {
             factories.add((entity, random) -> new TradeOffer(
                     new TradedItem(Items.EMERALD, 4),
                     new ItemStack(random.nextBoolean() ? Items.CHEST : Items.BARREL, 2),
@@ -175,7 +175,7 @@ public class YavpmTrades {
         // endregion
         // region Master
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Lumberjack Master trades...");
-        TradeOfferHelper.registerVillagerOffers(YavpmProfessions.LUMBERJACK, 5, factories -> {
+        TradeOfferHelper.registerVillagerOffers(YavpmProfessions.LUMBERJACK_KEY, 5, factories -> {
             factories.add((entity, random) -> new TradeOffer(
                     new TradedItem(Items.EMERALD, 11),
                     new ItemStack(Items.JUKEBOX), 12, 30, HIGH_MULTIPLIER
@@ -197,10 +197,12 @@ public class YavpmTrades {
     }
 
     private static void wanderingTrader() {
+        YetAnotherVanillaPlusMod.LOGGER.warn("Wandering Trader trades aren't finished!");
+        /*
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Wandering Trader trades...");
         setUpDiscList();
-        TradeOfferHelper.registerWanderingTraderOffers(1, factories -> {
-            factories.add((entity, random) -> {
+        TradeOfferHelper.registerWanderingTraderOffers(factories -> {
+            factories.(entity, random) -> {
                 if (random.nextFloat() <= 0.19f) {
                     return new TradeOffer(
                             new TradedItem(Items.EMERALD, random.nextBetween(12, 16)),
@@ -284,6 +286,7 @@ public class YavpmTrades {
                     0f
             ));
         });
+         */
     }
 
     private static void armorer() {

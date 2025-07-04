@@ -12,13 +12,14 @@ import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.MapColor;
 import net.minecraft.client.data.*;
+import net.minecraft.client.render.model.json.WeightedVariant;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.state.property.Properties;
 import net.minecraft.state.property.Property;
 import net.minecraft.util.Identifier;
+import static net.minecraft.client.data.BlockStateModelGenerator.*;
 
 public class YavpmModelProvider extends FabricModelProvider {
     public YavpmModelProvider(FabricDataOutput output) {
@@ -35,6 +36,9 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.registerSimpleCubeAll(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
 
         createCrops(generator);
+
+        generator.registerSimpleCubeAll(YavpmBlocks.NAHCOLITE_ORE);
+        generator.registerSimpleCubeAll(YavpmBlocks.DEEPSLATE_NAHCOLITE_ORE);
 
         createKimberliteSet(generator);
         createGraniteSet(generator);
@@ -68,14 +72,16 @@ public class YavpmModelProvider extends FabricModelProvider {
     }
 
     private void registerBurner(BlockStateModelGenerator generator) {
-        Identifier identifier = TexturedModel.CUBE_ALL.upload(YavpmBlocks.BURNER, generator.modelCollector);
-        Identifier identifier2 = generator.createSubModel(YavpmBlocks.BURNER, "_on", Models.CUBE_ALL, TextureMap::all);
+        WeightedVariant variant = BlockStateModelGenerator.createWeightedVariant(TexturedModel.CUBE_ALL.upload(YavpmBlocks.BURNER, generator.modelCollector));
+        WeightedVariant variant2 = BlockStateModelGenerator.createWeightedVariant(generator.createSubModel(YavpmBlocks.BURNER, "_on", Models.CUBE_ALL, TextureMap::all));
         generator.blockStateCollector
-                .accept(VariantsBlockStateSupplier.create(YavpmBlocks.BURNER).coordinate(BlockStateModelGenerator.createBooleanModelMap(Properties.LIT, identifier2, identifier)));
+                .accept(VariantsBlockModelDefinitionCreator.of(YavpmBlocks.BURNER).with(BlockStateModelGenerator.createBooleanModelMap(Properties.LIT, variant, variant2)));
     }
 
     @Override
     public void generateItemModels(ItemModelGenerator generator) {
+        generator.register(YavpmItems.BAKING_SODA, Models.GENERATED);
+
         generator.register(YavpmItems.SPRUCE_CONE, Models.GENERATED); // TODO: Replace with block model
 
         generator.register(YavpmItems.REACTOR, Models.GENERATED);
@@ -89,6 +95,7 @@ public class YavpmModelProvider extends FabricModelProvider {
 
         food(generator);
 
+        generator.register(YavpmItems.CARBON_EGG, Models.GENERATED);
         generator.register(YavpmItems.GRAPHITE, Models.GENERATED);
         generator.register(YavpmItems.RAW_DIAMOND, Models.GENERATED);
 
@@ -105,11 +112,11 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.register(YavpmItems.DISC_FRAGMENT_MAGNETIC_CIRCUIT, Models.GENERATED);
         generator.register(YavpmItems.MUSIC_DISC_HALLAND_DALARNA, Models.TEMPLATE_MUSIC_DISC);
 
-        generator.registerSpawnEgg(YavpmItems.MOONGUS_SPAWN_EGG, MapColor.BRIGHT_TEAL.color, MapColor.RED.color);
-        generator.registerSpawnEgg(YavpmItems.CARBONFOWL_SPAWN_EGG, 0x191919, 0x4aedd9);
-        generator.registerSpawnEgg(YavpmItems.SUNBURN_SPAWN_EGG, 0x22c0c6, 0xfeff00);
-        generator.registerSpawnEgg(YavpmItems.TANUKI_SPAWN_EGG, 0x5d4f59, 0xb69578);
-        generator.registerSpawnEgg(YavpmItems.VOID_PHANTOM_SPAWN_EGG, 0x060080, 0xf54bfa);
+        generator.register(YavpmItems.MOONGUS_SPAWN_EGG, Models.GENERATED);
+        generator.register(YavpmItems.CARBONFOWL_SPAWN_EGG, Models.GENERATED);
+        generator.register(YavpmItems.SUNBURN_SPAWN_EGG, Models.GENERATED);
+        generator.register(YavpmItems.TANUKI_SPAWN_EGG, Models.GENERATED);
+        generator.register(YavpmItems.VOID_PHANTOM_SPAWN_EGG, Models.GENERATED);
 
         generator.register(YavpmItems.VOID_WATER_BUCKET, Models.GENERATED);
     }
@@ -144,10 +151,10 @@ public class YavpmModelProvider extends FabricModelProvider {
         generator.register(YavpmItems.DENSITITE_AXE, Models.HANDHELD);
         generator.register(YavpmItems.DENSITITE_HOE, Models.HANDHELD);
 
-        generator.registerArmor(YavpmItems.DENSITITE_HELMET, DensititeMaterial.ARMOR_KEY, "helmet", false);
-        generator.registerArmor(YavpmItems.DENSITITE_CHESTPLATE, DensititeMaterial.ARMOR_KEY, "chestplate", false);
-        generator.registerArmor(YavpmItems.DENSITITE_LEGGINGS, DensititeMaterial.ARMOR_KEY, "leggings", false);
-        generator.registerArmor(YavpmItems.DENSITITE_BOOTS, DensititeMaterial.ARMOR_KEY, "boots", false);
+        generator.registerArmor(YavpmItems.DENSITITE_HELMET, DensititeMaterial.ARMOR_KEY, ItemModelGenerator.HELMET_TRIM_ID_PREFIX, false);
+        generator.registerArmor(YavpmItems.DENSITITE_CHESTPLATE, DensititeMaterial.ARMOR_KEY, ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, false);
+        generator.registerArmor(YavpmItems.DENSITITE_LEGGINGS, DensititeMaterial.ARMOR_KEY, ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, false);
+        generator.registerArmor(YavpmItems.DENSITITE_BOOTS, DensititeMaterial.ARMOR_KEY, ItemModelGenerator.BOOTS_TRIM_ID_PREFIX, false);
     }
 
     private void createNewDeepslate(BlockStateModelGenerator generator) {
@@ -161,51 +168,40 @@ public class YavpmModelProvider extends FabricModelProvider {
 
     public final void registerPane(BlockStateModelGenerator generator, Block pane) {
         TextureMap textureMap = paneTextureMap(pane);
-        Identifier identifier = Models.TEMPLATE_GLASS_PANE_POST.upload(pane, textureMap, generator.modelCollector);
-        Identifier identifier2 = Models.TEMPLATE_GLASS_PANE_SIDE.upload(pane, textureMap, generator.modelCollector);
-        Identifier identifier3 = Models.TEMPLATE_GLASS_PANE_SIDE_ALT.upload(pane, textureMap, generator.modelCollector);
-        Identifier identifier4 = Models.TEMPLATE_GLASS_PANE_NOSIDE.upload(pane, textureMap, generator.modelCollector);
-        Identifier identifier5 = Models.TEMPLATE_GLASS_PANE_NOSIDE_ALT.upload(pane, textureMap, generator.modelCollector);
+        WeightedVariant weightedVariant = createWeightedVariant(Models.TEMPLATE_GLASS_PANE_POST.upload(pane, textureMap, generator.modelCollector));
+        WeightedVariant weightedVariant2 = createWeightedVariant(Models.TEMPLATE_GLASS_PANE_SIDE.upload(pane, textureMap, generator.modelCollector));
+        WeightedVariant weightedVariant3 = createWeightedVariant(Models.TEMPLATE_GLASS_PANE_SIDE_ALT.upload(pane, textureMap, generator.modelCollector));
+        WeightedVariant weightedVariant4 = createWeightedVariant(Models.TEMPLATE_GLASS_PANE_NOSIDE.upload(pane, textureMap, generator.modelCollector));
+        WeightedVariant weightedVariant5 = createWeightedVariant(Models.TEMPLATE_GLASS_PANE_NOSIDE_ALT.upload(pane, textureMap, generator.modelCollector));
         Item item = pane.asItem();
         generator.registerItemModel(item, generator.uploadBlockItemModel(item, pane));
         generator.blockStateCollector
                 .accept(
-                        MultipartBlockStateSupplier.create(pane)
-                                .with(BlockStateVariant.create().put(VariantSettings.MODEL, identifier))
-                                .with(When.create().set(Properties.NORTH, true), BlockStateVariant.create().put(VariantSettings.MODEL, identifier2))
-                                .with(
-                                        When.create().set(Properties.EAST, true),
-                                        BlockStateVariant.create().put(VariantSettings.MODEL, identifier2).put(VariantSettings.Y, VariantSettings.Rotation.R90)
-                                )
-                                .with(When.create().set(Properties.SOUTH, true), BlockStateVariant.create().put(VariantSettings.MODEL, identifier3))
-                                .with(
-                                        When.create().set(Properties.WEST, true),
-                                        BlockStateVariant.create().put(VariantSettings.MODEL, identifier3).put(VariantSettings.Y, VariantSettings.Rotation.R90)
-                                )
-                                .with(When.create().set(Properties.NORTH, false), BlockStateVariant.create().put(VariantSettings.MODEL, identifier4))
-                                .with(When.create().set(Properties.EAST, false), BlockStateVariant.create().put(VariantSettings.MODEL, identifier5))
-                                .with(
-                                        When.create().set(Properties.SOUTH, false),
-                                        BlockStateVariant.create().put(VariantSettings.MODEL, identifier5).put(VariantSettings.Y, VariantSettings.Rotation.R90)
-                                )
-                                .with(
-                                        When.create().set(Properties.WEST, false),
-                                        BlockStateVariant.create().put(VariantSettings.MODEL, identifier4).put(VariantSettings.Y, VariantSettings.Rotation.R270)
-                                )
+                        MultipartBlockModelDefinitionCreator.create(pane)
+                                .with(weightedVariant)
+                                .with(createMultipartConditionBuilder().put(Properties.NORTH, true), weightedVariant2)
+                                .with(createMultipartConditionBuilder().put(Properties.EAST, true), weightedVariant2.apply(ROTATE_Y_90))
+                                .with(createMultipartConditionBuilder().put(Properties.SOUTH, true), weightedVariant3)
+                                .with(createMultipartConditionBuilder().put(Properties.WEST, true), weightedVariant3.apply(ROTATE_Y_90))
+                                .with(createMultipartConditionBuilder().put(Properties.NORTH, false), weightedVariant4)
+                                .with(createMultipartConditionBuilder().put(Properties.EAST, false), weightedVariant5)
+                                .with(createMultipartConditionBuilder().put(Properties.SOUTH, false), weightedVariant5.apply(ROTATE_Y_90))
+                                .with(createMultipartConditionBuilder().put(Properties.WEST, false), weightedVariant4.apply(ROTATE_Y_270))
                 );
     }
 
     private void registerPolarizedGlass(BlockStateModelGenerator generator) {
-        Identifier identifier = TexturedModel.CUBE_ALL.upload(YavpmBlocks.POLARIZED_GLASS, generator.modelCollector);
-        Identifier identifier2 = generator.createSubModel(YavpmBlocks.POLARIZED_GLASS, "_on", Models.CUBE_ALL, TextureMap::all);
+        WeightedVariant variant = BlockStateModelGenerator.createWeightedVariant(TexturedModel.CUBE_ALL.upload(YavpmBlocks.POLARIZED_GLASS, generator.modelCollector));
+        WeightedVariant variant2 = BlockStateModelGenerator.createWeightedVariant(generator.createSubModel(YavpmBlocks.POLARIZED_GLASS, "_on", Models.CUBE_ALL, TextureMap::all));
         generator.blockStateCollector
-                .accept(VariantsBlockStateSupplier.create(YavpmBlocks.POLARIZED_GLASS).coordinate(
-                        BlockStateModelGenerator.createBooleanModelMap(Properties.POWERED, identifier2, identifier)
-                ));
+                .accept(VariantsBlockModelDefinitionCreator.of(YavpmBlocks.POLARIZED_GLASS)
+                        .with(BlockStateModelGenerator.createBooleanModelMap(Properties.POWERED, variant, variant2)));
     }
 
     private static void food(ItemModelGenerator generator) {
         generator.register(YavpmItems.MOLY, Models.GENERATED);
+
+        generator.register(YavpmItems.PRETZEL, Models.GENERATED);
 
         generator.register(YavpmItems.CANTALOUPE_SLICE, Models.GENERATED);
 
@@ -274,11 +270,14 @@ public class YavpmModelProvider extends FabricModelProvider {
     private static void registerBananaCrop(BlockStateModelGenerator generator) {
         Block block = YavpmBlocks.BANANA_CROP;
         generator.registerItemModel(block.asItem());
-        BlockStateVariantMap blockStateVariantMap = BlockStateVariantMap.create(BananaCropBlock.AGE, Properties.DOUBLE_BLOCK_HALF).register((age, half) -> switch (half) {
-            case UPPER -> BlockStateVariant.create().put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(block, "_top_stage_" + age));
-            case LOWER -> BlockStateVariant.create().put(VariantSettings.MODEL, ModelIds.getBlockSubModelId(block, "_bottom_stage_" + age));
-        });
-        generator.blockStateCollector.accept(VariantsBlockStateSupplier.create(block).coordinate(blockStateVariantMap));
+        generator.blockStateCollector
+                .accept(
+                        VariantsBlockModelDefinitionCreator.of(block)
+                                .with(BlockStateVariantMap.models(BananaCropBlock.AGE, Properties.DOUBLE_BLOCK_HALF).generate((age, half) -> switch (half) {
+                                    case UPPER -> createWeightedVariant(ModelIds.getBlockSubModelId(block, "_top_stage_" + age));
+                                    case LOWER -> createWeightedVariant(ModelIds.getBlockSubModelId(block, "_bottom_stage_" + age));
+                                }))
+                );
     }
 
     private static void createKimberliteSet(BlockStateModelGenerator generator) {
@@ -342,8 +341,8 @@ public class YavpmModelProvider extends FabricModelProvider {
 
     private static void createAppleSet(BlockStateModelGenerator generator) {
         // Apple Logs and Woods
-        generator.registerLog(YavpmBlocks.APPLE_LOG).log(YavpmBlocks.APPLE_LOG).wood(YavpmBlocks.APPLE_WOOD);
-        generator.registerLog(YavpmBlocks.STRIPPED_APPLE_LOG).log(YavpmBlocks.STRIPPED_APPLE_LOG).wood(YavpmBlocks.STRIPPED_APPLE_WOOD);
+        generator.createLogTexturePool(YavpmBlocks.APPLE_LOG).log(YavpmBlocks.APPLE_LOG).wood(YavpmBlocks.APPLE_WOOD);
+        generator.createLogTexturePool(YavpmBlocks.STRIPPED_APPLE_LOG).log(YavpmBlocks.STRIPPED_APPLE_LOG).wood(YavpmBlocks.STRIPPED_APPLE_WOOD);
 
         generator.registerSimpleCubeAll(YavpmBlocks.APPLE_LEAVES);
         generator.registerSimpleCubeAll(YavpmBlocks.FLOWERING_APPLE_LEAVES);
@@ -357,8 +356,8 @@ public class YavpmModelProvider extends FabricModelProvider {
 
     private static void createPersimmonSet(BlockStateModelGenerator generator) {
         // Persimmon Logs and Woods
-        generator.registerLog(YavpmBlocks.PERSIMMON_LOG).log(YavpmBlocks.PERSIMMON_LOG).wood(YavpmBlocks.PERSIMMON_WOOD);
-        generator.registerLog(YavpmBlocks.STRIPPED_PERSIMMON_LOG).log(YavpmBlocks.STRIPPED_PERSIMMON_LOG).wood(YavpmBlocks.STRIPPED_PERSIMMON_WOOD);
+        generator.createLogTexturePool(YavpmBlocks.PERSIMMON_LOG).log(YavpmBlocks.PERSIMMON_LOG).wood(YavpmBlocks.PERSIMMON_WOOD);
+        generator.createLogTexturePool(YavpmBlocks.STRIPPED_PERSIMMON_LOG).log(YavpmBlocks.STRIPPED_PERSIMMON_LOG).wood(YavpmBlocks.STRIPPED_PERSIMMON_WOOD);
 
         generator.registerSingleton(YavpmBlocks.PERSIMMON_LEAVES, TexturedModel.LEAVES);
 
@@ -370,8 +369,8 @@ public class YavpmModelProvider extends FabricModelProvider {
     }
 
     private static void createPrickleSet(BlockStateModelGenerator generator) {
-        generator.registerLog(YavpmBlocks.PRICKLE_LOG).log(YavpmBlocks.PRICKLE_LOG).wood(YavpmBlocks.PRICKLE_WOOD);
-        generator.registerLog(YavpmBlocks.STRIPPED_PRICKLE_LOG).log(YavpmBlocks.STRIPPED_PRICKLE_LOG).wood(YavpmBlocks.STRIPPED_PRICKLE_WOOD);
+        generator.createLogTexturePool(YavpmBlocks.PRICKLE_LOG).log(YavpmBlocks.PRICKLE_LOG).wood(YavpmBlocks.PRICKLE_WOOD);
+        generator.createLogTexturePool(YavpmBlocks.STRIPPED_PRICKLE_LOG).log(YavpmBlocks.STRIPPED_PRICKLE_LOG).wood(YavpmBlocks.STRIPPED_PRICKLE_WOOD);
 
         BlockStateModelGenerator.BlockTexturePool pricklePool = generator.registerCubeAllModelTexturePool(YavpmBlocks.PRICKLE_PLANKS);
 
@@ -381,30 +380,36 @@ public class YavpmModelProvider extends FabricModelProvider {
     }
 
     private static void createStuddedArmor(ItemModelGenerator generator) {
-        generator.registerArmor(YavpmItems.STUDDED_HELMET, StuddedMaterial.ARMOR_KEY, "helmet", true);
-        generator.registerArmor(YavpmItems.STUDDED_CHESTPLATE, StuddedMaterial.ARMOR_KEY, "chestplate", true);
-        generator.registerArmor(YavpmItems.STUDDED_LEGGINGS, StuddedMaterial.ARMOR_KEY, "leggings", true);
-        generator.registerArmor(YavpmItems.STUDDED_BOOTS, StuddedMaterial.ARMOR_KEY, "boots", true);
+        generator.registerArmor(YavpmItems.STUDDED_HELMET, StuddedMaterial.ARMOR_KEY, ItemModelGenerator.HELMET_TRIM_ID_PREFIX, true);
+        generator.registerArmor(YavpmItems.STUDDED_CHESTPLATE, StuddedMaterial.ARMOR_KEY, ItemModelGenerator.CHESTPLATE_TRIM_ID_PREFIX, true);
+        generator.registerArmor(YavpmItems.STUDDED_LEGGINGS, StuddedMaterial.ARMOR_KEY, ItemModelGenerator.LEGGINGS_TRIM_ID_PREFIX, true);
+        generator.registerArmor(YavpmItems.STUDDED_BOOTS, StuddedMaterial.ARMOR_KEY, ItemModelGenerator.BOOTS_TRIM_ID_PREFIX, true);
 
     }
 
     public final void registerCrossCrop(BlockStateModelGenerator generator, Block crop, Property<Integer> ageProperty, int... ageTextureIndices) {
+        generator.registerItemModel(crop.asItem());
         if (ageProperty.getValues().size() != ageTextureIndices.length) {
             throw new IllegalArgumentException();
         } else {
             Int2ObjectMap<Identifier> int2ObjectMap = new Int2ObjectOpenHashMap<>();
-            BlockStateVariantMap blockStateVariantMap = BlockStateVariantMap.create(ageProperty)
-                    .register(
-                            integer -> {
-                                int i = ageTextureIndices[integer];
-                                Identifier identifier = int2ObjectMap.computeIfAbsent(
-                                        i, (Int2ObjectFunction<? extends Identifier>)(j -> generator.createSubModel(crop, "_stage" + i, Models.CROSS, TextureMap::cross))
-                                );
-                                return BlockStateVariant.create().put(VariantSettings.MODEL, identifier);
-                            }
+            generator.blockStateCollector
+                    .accept(
+                            VariantsBlockModelDefinitionCreator.of(crop)
+                                    .with(
+                                            BlockStateVariantMap.models(ageProperty)
+                                                    .generate(
+                                                            age -> {
+                                                                int i = ageTextureIndices[age];
+                                                                return createWeightedVariant(
+                                                                        int2ObjectMap.computeIfAbsent(
+                                                                                i, (Int2ObjectFunction<? extends Identifier>) (stage -> generator.createSubModel(crop, "_stage" + stage, Models.CROSS, TextureMap::cross))
+                                                                        )
+                                                                );
+                                                            }
+                                                    )
+                                    )
                     );
-            generator.registerItemModel(crop.asItem());
-            generator.blockStateCollector.accept(VariantsBlockStateSupplier.create(crop).coordinate(blockStateVariantMap));
         }
     }
 }

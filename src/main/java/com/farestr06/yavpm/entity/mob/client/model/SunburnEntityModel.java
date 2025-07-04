@@ -19,11 +19,11 @@ public class SunburnEntityModel extends EntityModel<LivingEntityRenderState> {
 		ModelData modelData = new ModelData();
 		ModelPartData modelPartData = modelData.getRoot();
 		ModelPartData body = modelPartData.addChild("body", ModelPartBuilder.create().uv(0, 8).cuboid(0.0F, -4.0F, -4.0F, 0.0F, 8.0F, 8.0F, new Dilation(0.0F))
-				.uv(-8, 16).cuboid(-4.0F, 0.0F, -4.0F, 8.0F, 0.0F, 8.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 16.0F, 0.0F));
+				.uv(-8, 16).cuboid(-4.0F, 0.0F, -4.0F, 8.0F, 0.0F, 8.0F, new Dilation(0.0F)), ModelTransform.rotation(0.0F, 16.0F, 0.0F));
 
         body.addChild("cube_r1", ModelPartBuilder.create().uv(0, 8).cuboid(0.0F, -4.0F, -4.0F, 0.0F, 8.0F, 8.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.0F, -1.5708F, 0.0F));
 
-        modelPartData.addChild("head", ModelPartBuilder.create().uv(0, 25).cuboid(-3.0F, -9.0F, -4.25F, 6.0F, 1.0F, 0.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
+        modelPartData.addChild("head", ModelPartBuilder.create().uv(0, 25).cuboid(-3.0F, -9.0F, -4.25F, 6.0F, 1.0F, 0.0F, new Dilation(0.0F)), ModelTransform.rotation(0.0F, 24.0F, 0.0F));
         return TexturedModelData.of(modelData, 32, 32);
 	}
 
@@ -31,7 +31,7 @@ public class SunburnEntityModel extends EntityModel<LivingEntityRenderState> {
 	public void setAngles(LivingEntityRenderState state) {
 		super.setAngles(state);
 		this.head.pitch = state.pitch * (float) (Math.PI / 180.0);
-		this.head.yaw = state.yawDegrees * (float) (Math.PI / 180.0);
+		this.head.yaw = state.relativeHeadYaw * (float) (Math.PI / 180.0);
 		this.body.pitch = state.age / 20;
 		this.body.yaw = state.age / 20;
 		this.body.roll = state.age / 20;

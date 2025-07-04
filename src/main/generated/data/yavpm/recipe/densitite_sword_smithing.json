@@ -3,7 +3,6 @@
   "addition": "#yavpm:densitite_tool_materials",
   "base": "minecraft:diamond_sword",
   "result": {
-    "count": 1,
     "id": "yavpm:densitite_sword"
   },
   "template": "yavpm:densitite_upgrade_smithing_template"

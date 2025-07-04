@@ -549,6 +549,9 @@ public class YavpmTagProviders {
                     YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB,
                     YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL,
 
+                    YavpmBlocks.NAHCOLITE_ORE,
+                    YavpmBlocks.DEEPSLATE_NAHCOLITE_ORE,
+
                     YavpmBlocks.KIMBERLITE,
                     YavpmBlocks.POLISHED_KIMBERLITE,
                     YavpmBlocks.POLISHED_KIMBERLITE_BRICKS,
@@ -599,6 +602,8 @@ public class YavpmTagProviders {
 
             getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL)
                     .add(
+                            YavpmBlocks.NAHCOLITE_ORE,
+                            YavpmBlocks.DEEPSLATE_NAHCOLITE_ORE,
                             YavpmBlocks.KIMBERLITE,
                             YavpmBlocks.POLISHED_KIMBERLITE,
                             YavpmBlocks.POLISHED_KIMBERLITE_BRICKS,
@@ -627,6 +632,9 @@ public class YavpmTagProviders {
         }
 
         private void generalBlockTags() {
+            getOrCreateTagBuilder(ConventionalBlockTags.ORES_IN_GROUND_STONE).add(YavpmBlocks.NAHCOLITE_ORE);
+            getOrCreateTagBuilder(ConventionalBlockTags.ORES_IN_GROUND_DEEPSLATE).add(YavpmBlocks.DEEPSLATE_NAHCOLITE_ORE);
+
             getOrCreateTagBuilder(BlockTags.WITHER_SUMMON_BASE_BLOCKS).add(
                     YavpmBlocks.SOUL_GLOWING_OBSIDIAN,
                     YavpmBlocks.SOULSTONE,

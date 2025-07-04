@@ -20,13 +20,13 @@ import java.util.Calendar;
 @Mixin(SplashTextResourceSupplier.class)
 public class SplashTextResourceSupplierMixin {
     @Unique
-    private static final SplashTextRenderer _MURICA__ = new SplashTextRenderer("`MURICA!!");
+    private static final SplashTextRenderer _MURICA__ = new SplashTextRenderer("`MURICA!!"); // 4th of July
     @Unique
-    private static final SplashTextRenderer HAPPY_BIRTHDAY__FAREST_ = new SplashTextRenderer("Happy birthday, FarestR06!");
+    private static final SplashTextRenderer HAPPY_BIRTHDAY__FAREST_ = new SplashTextRenderer("Happy birthday, FarestR06!"); // Farest's Birthday
     @Unique
-    private static final SplashTextRenderer IT_IS_SNAPSHOT_DAY__MY_DUDES_ = new SplashTextRenderer("It is snapshot day, my dudes!");
+    private static final SplashTextRenderer IT_IS_SNAPSHOT_DAY__MY_DUDES_ = new SplashTextRenderer("It is snapshot day, my dudes!"); // Snapshot Day (Tuesday)
     @Unique
-    private static final SplashTextRenderer RAMADAN_MUBARAK_ = new SplashTextRenderer("Ramadan mubarak!");
+    private static final SplashTextRenderer RAMADAN_MUBARAK_ = new SplashTextRenderer("Ramadan mubarak!"); // Ramadan
 
     @Redirect(method = "get", at = @At(value = "INVOKE", target = "Ljava/util/Calendar;get(I)I", ordinal = 0))
     private int redirected(Calendar instance, int field) {

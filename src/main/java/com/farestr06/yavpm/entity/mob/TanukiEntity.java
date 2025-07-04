@@ -113,7 +113,7 @@ public class TanukiEntity extends AnimalEntity {
     public void readCustomDataFromNbt(NbtCompound nbt) {
         super.readCustomDataFromNbt(nbt);
         if (nbt.contains("TryTransformTime")) {
-            this.tryTransformTime = nbt.getInt("TryTransformTime");
+            this.tryTransformTime = nbt.getInt("TryTransformTime", 4000);
         }
     }
 

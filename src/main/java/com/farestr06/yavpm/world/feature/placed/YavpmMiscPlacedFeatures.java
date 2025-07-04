@@ -17,6 +17,7 @@ import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmMiscPlacedFeatures {
     public static final RegistryKey<PlacedFeature> PATCH_WITHER_ROSE_PLACED = registerKey("patch_wither_rose_placed");
+    public static final RegistryKey<PlacedFeature> ORE_NAHCOLITE_PLACED = registerKey("ore_nahcolite_placed");
     public static final RegistryKey<PlacedFeature> ORE_KIMBERLITE_UPPER = registerKey("ore_kimberlite_upper");
     public static final RegistryKey<PlacedFeature> ORE_KIMBERLITE_LOWER = registerKey("ore_kimberlite_lower");
     public static final RegistryKey<PlacedFeature> LAKE_VOID_WATER_PLACED = registerKey("lake_void_water_placed");
@@ -26,12 +27,19 @@ public class YavpmMiscPlacedFeatures {
 
         RegistryEntry<ConfiguredFeature<?, ?>> kimberlite = configuredFeatureRegistryEntryLookup.getOrThrow(YavpmMiscConfiguredFeatures.ORE_KIMBERLITE);
 
+        RegistryEntry<ConfiguredFeature<?, ?>> nahcolite = configuredFeatureRegistryEntryLookup.getOrThrow(YavpmMiscConfiguredFeatures.ORE_NAHCOLITE);
+
         register(
                 context, ORE_KIMBERLITE_UPPER, kimberlite, modifiersWithRarity(3, HeightRangePlacementModifier.uniform(YOffset.fixed(64), YOffset.fixed(128)))
         );
         register(
                 context, ORE_KIMBERLITE_LOWER, kimberlite, modifiersWithCount(1, HeightRangePlacementModifier.uniform(YOffset.fixed(0), YOffset.fixed(60)))
         );
+
+
+        PlacedFeatures.register(
+                context, ORE_NAHCOLITE_PLACED, nahcolite, modifiersWithCount(15, HeightRangePlacementModifier.uniform(YOffset.aboveBottom(52), YOffset.belowTop(72))
+        ));
 
         register(
                 context,

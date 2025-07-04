@@ -5,12 +5,14 @@ import com.farestr06.yavpm.util.YavpmSounds;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.LockableContainerBlockEntity;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.ContainerLock;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
-import net.minecraft.predicate.ComponentPredicate;
+import net.minecraft.predicate.component.ComponentMapPredicate;
+import net.minecraft.predicate.component.ComponentsPredicate;
 import net.minecraft.predicate.item.ItemPredicate;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
@@ -18,6 +20,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
 
 import static com.farestr06.yavpm.config.YavpmConfig.HANDLER;
 
@@ -27,13 +30,13 @@ public class BabyKeyItem extends Item {
     }
 
     @Override
-    public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
+    public void inventoryTick(ItemStack stack, ServerWorld world, Entity entity, @Nullable EquipmentSlot slot) {
         if (HANDLER.instance().babyKeyCries && entity instanceof PlayerEntity player) {
-            if (player.age % 45 == 0 && player.getRandom().nextFloat() <= 0.40f && selected) {
+            if (player.age % 45 == 0 && player.getRandom().nextFloat() <= 0.15f) {
                 player.playSound(YavpmSounds.ITEM_BABY_KEY_SCARED, 1f, 1f);
             }
         }
-        super.inventoryTick(stack, world, entity, slot, selected);
+        super.inventoryTick(stack, world, entity, slot);
     }
 
     @Override
@@ -48,7 +51,9 @@ public class BabyKeyItem extends Item {
                 ItemStack stack = context.getStack(); // Grab the stack
                 ItemPredicate predicate = ItemPredicate.Builder.create() // Make a predicate from our stack
                         .items(itemLookup, stack.getItem())
-                        .component(ComponentPredicate.of(stack.getComponents())).build();
+                        .components(ComponentsPredicate.Builder.create().exact(
+                                ComponentMapPredicate.of(stack.getComponents())
+                        ).build()).build();
                 if (entity instanceof LockableContainerBlockEntity lockable) { // If there's a chest
                     if (((LockableContainerBlockEntityAccessor) lockable).getLock() == ContainerLock.EMPTY) {
                         ((LockableContainerBlockEntityAccessor) lockable).setLock(new ContainerLock(predicate));

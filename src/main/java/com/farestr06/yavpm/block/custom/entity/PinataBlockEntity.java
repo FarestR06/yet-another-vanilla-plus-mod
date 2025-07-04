@@ -3,6 +3,7 @@ package com.farestr06.yavpm.block.custom.entity;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.component.ComponentMap;
+import net.minecraft.component.ComponentsAccess;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ContainerComponent;
 import net.minecraft.inventory.SingleStackInventory.SingleStackBlockEntityInventory;
@@ -32,8 +33,8 @@ public class PinataBlockEntity extends BlockEntity implements SingleStackBlockEn
     @Override
     protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries) {
         super.readNbt(nbt, registries);
-        if (nbt.contains("item", NbtElement.COMPOUND_TYPE)) {
-            this.stack = ItemStack.fromNbt(registries, nbt.getCompound("item")).orElse(ItemStack.EMPTY);
+        if (nbt.get("item") != null) {
+            this.stack = ItemStack.fromNbt(registries, nbt.get("item")).orElse(ItemStack.EMPTY);
         } else {
             this.stack = ItemStack.EMPTY;
         }

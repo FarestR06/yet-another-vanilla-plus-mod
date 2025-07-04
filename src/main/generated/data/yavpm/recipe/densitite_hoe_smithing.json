@@ -3,7 +3,6 @@
   "addition": "#yavpm:densitite_tool_materials",
   "base": "minecraft:diamond_hoe",
   "result": {
-    "count": 1,
     "id": "yavpm:densitite_hoe"
   },
   "template": "yavpm:densitite_upgrade_smithing_template"

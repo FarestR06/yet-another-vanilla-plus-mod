@@ -22,18 +22,13 @@ import net.minecraft.world.spawner.SpecialSpawner;
 public class SunburnSpawner implements SpecialSpawner {
     private int cooldown = 0;
     @Override
-    public int spawn(ServerWorld world, boolean spawnMonsters, boolean spawnAnimals) {
-        if (!spawnMonsters || !world.getGameRules().getBoolean(YavpmGameRules.DO_SUNBURN)) return 0;
-        else {
+    public void spawn(ServerWorld world, boolean spawnMonsters, boolean spawnAnimals) {
+        if (!(!spawnMonsters || !world.getGameRules().getBoolean(YavpmGameRules.DO_SUNBURN))) {
             Random rand = world.getRandom();
             this.cooldown--;
-            if (this.cooldown > 0) return 0;
-            else {
+            if (!(this.cooldown > 0)) {
                 this.cooldown = this.cooldown + (90 + rand.nextInt(90)) * 20;
-                if (world.getAmbientDarkness() > 10 && !world.getDimension().hasSkyLight()) {
-                    return 0;
-                } else {
-                    int returnValue = 0;
+                if (!(world.getAmbientDarkness() > 10 && !world.getDimension().hasSkyLight()))  {
                     for (ServerPlayerEntity serverPlayerEntity : world.getPlayers()) {
                         if (!serverPlayerEntity.isSpectator() ) {
                             BlockPos blockPos = serverPlayerEntity.getBlockPos();
@@ -58,7 +53,6 @@ public class SunburnSpawner implements SpecialSpawner {
                                                     sunburnEntity.refreshPositionAndAngles(blockPos2, 0.0F, 0.0F);
                                                     entityData = sunburnEntity.initialize(world, localDifficulty, SpawnReason.NATURAL, entityData);
                                                     world.spawnEntityAndPassengers(sunburnEntity);
-                                                    returnValue++;
                                                 }
                                             }
                                         }
@@ -67,8 +61,6 @@ public class SunburnSpawner implements SpecialSpawner {
                             }
                         }
                     }
-
-                    return returnValue;
                 }
             }
         }

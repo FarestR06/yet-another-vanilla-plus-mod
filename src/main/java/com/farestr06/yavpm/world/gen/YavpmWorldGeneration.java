@@ -2,6 +2,7 @@ package com.farestr06.yavpm.world.gen;
 
 import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.entity.YavpmEntities;
+import com.farestr06.yavpm.world.feature.placed.YavpmMiscPlacedFeatures;
 import com.farestr06.yavpm.world.feature.placed.YavpmVegetationPlacedFeatures;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -13,8 +14,28 @@ import net.minecraft.world.gen.GenerationStep;
 public class YavpmWorldGeneration {
     public static void generateModWorldGen() {
         YetAnotherVanillaPlusMod.LOGGER.info("Modifying worldgen for YAVPM!");
+        generateOres();
         generateTrees();
         modfiyMobSpawns();
+    }
+
+    private static void generateOres() {
+        YetAnotherVanillaPlusMod.LOGGER.debug("Placing ores...");
+        BiomeModifications.addFeature(
+                BiomeSelectors.tag(ConventionalBiomeTags.IS_HOT_OVERWORLD),
+                GenerationStep.Feature.UNDERGROUND_ORES,
+                YavpmMiscPlacedFeatures.ORE_KIMBERLITE_LOWER
+        );
+        BiomeModifications.addFeature(
+                BiomeSelectors.tag(ConventionalBiomeTags.IS_HOT_OVERWORLD),
+                GenerationStep.Feature.UNDERGROUND_ORES,
+                YavpmMiscPlacedFeatures.ORE_KIMBERLITE_UPPER
+        );
+        BiomeModifications.addFeature(
+                BiomeSelectors.foundInOverworld(),
+                GenerationStep.Feature.UNDERGROUND_ORES,
+                YavpmMiscPlacedFeatures.ORE_NAHCOLITE_PLACED
+        );
     }
 
     private static void modfiyMobSpawns() {

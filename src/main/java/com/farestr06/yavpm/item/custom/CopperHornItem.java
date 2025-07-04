@@ -1,27 +1,17 @@
 package com.farestr06.yavpm.item.custom;
 
-import com.farestr06.api.util.FarestsUtils;
-import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.item.component.CopperInstrument;
 import com.farestr06.yavpm.item.component.YavpmDataComponentTypes;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.consume.UseAction;
-import net.minecraft.item.tooltip.TooltipType;
-import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.stat.Stats;
-import net.minecraft.text.MutableText;
-import net.minecraft.text.Style;
-import net.minecraft.text.Text;
-import net.minecraft.text.Texts;
 import net.minecraft.util.*;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.MathHelper;
@@ -32,6 +22,15 @@ import java.util.*;
 
 public class CopperHornItem extends Item {
     protected static final Map<Identifier, CopperInstrument> INSTRUMENTS = new HashMap<>();
+    private static final StatusEffectInstance BASS_EFFECT = new StatusEffectInstance(
+            StatusEffects.RESISTANCE, 16 * 20
+    );
+    private static final StatusEffectInstance HARMONY_EFFECT = new StatusEffectInstance(
+            StatusEffects.STRENGTH, 16 * 20
+    );
+    private static final StatusEffectInstance MELODY_EFFECT = new StatusEffectInstance(
+            StatusEffects.SPEED, 16 * 20
+    );
 
     public CopperHornItem(Settings settings) {
         super(settings);
@@ -86,68 +85,42 @@ public class CopperHornItem extends Item {
     }
 
     @Override
-    public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        super.appendTooltip(stack, context, tooltip, type);
-
-        CopperInstrument component = stack.get(YavpmDataComponentTypes.COPPER_INSTRUMENT);
-        if (component != null) {
-            MutableText text = component.description().copy();
-            Texts.setStyleIfAbsent(text, Style.EMPTY.withColor(Formatting.GRAY));
-            tooltip.add(text);
-        }
-    }
-
-    @Override
     public ActionResult use(World world, PlayerEntity user, Hand hand) {
-        ItemStack stack = user.getStackInHand(hand);
-        Optional<CopperInstrument> optional = this.getInstrument(stack);
-        if (optional.isPresent()) {
-            CopperInstrument instrument = optional.get();
-            user.setCurrentHand(hand);
-            affectWorld(world, user, playSound(world, user, instrument));
-            user.getItemCooldownManager().set(stack, MathHelper.floor(instrument.useDuration() * 2 * 20f));
-            user.incrementStat(Stats.USED.getOrCreateStat(this));
-            return ActionResult.CONSUME;
-        } else return ActionResult.FAIL;
+        if (!world.isClient()) {
+            ItemStack stack = user.getStackInHand(hand);
+            Optional<CopperInstrument> optional = this.getInstrument(stack);
+            if (optional.isPresent()) {
+                CopperInstrument instrument = optional.get();
+                user.setCurrentHand(hand);
+                affectUser(world, user, playSound(world, user, instrument));
+                user.getItemCooldownManager().set(stack, MathHelper.floor(instrument.useDuration() * 2 * 20f));
+                user.incrementStat(Stats.USED.getOrCreateStat(this));
+                return ActionResult.CONSUME;
+            } else return ActionResult.FAIL;
+        } else return ActionResult.PASS;
     }
 
-    private void affectWorld(World world, PlayerEntity player, TootResult result) {
-        if (world instanceof ServerWorld) {
-            switch (result) {
-                case BASS -> {
-                    List<HostileEntity> list = world.getEntitiesByType(
-                            TypeFilter.instanceOf(HostileEntity.class),
-                            Box.of(player.getPos(), 24, 8, 24),
-                            hostileEntity -> true
-                    );
-                    for (HostileEntity entity : list) {
-                        entity.addStatusEffect(new StatusEffectInstance(
-                                StatusEffects.SLOWNESS,
-                                24 * 20,
-                                3
-                        ));
-                    }
-                }
-                case HARMONY -> {
-                    float healAmount = FarestsUtils.Math.randomBigFloat(world.getRandom(), 6, 18);
-                    player.heal(FarestsUtils.Math.roundToHalf(healAmount));
-                }
-                case MELODY -> {
-                    List<AnimalEntity> list = world.getEntitiesByType(
-                            TypeFilter.instanceOf(AnimalEntity.class),
-                            Box.of(player.getPos(), 24, 8, 24),
-                            animalEntity -> true
-                    );
-                    for (AnimalEntity entity : list) {
-                        entity.getNavigation().startMovingTo(player, 1.2);
-                    }
-                }
-                case null, default -> {
-                    YetAnotherVanillaPlusMod.LOGGER.warn("Couldn't affect world, as no TootResult was passed in");
-                }
+    private void affectUser(World world, PlayerEntity user, TootResult tootResult) {
+        StatusEffectInstance effectInstance = switch (tootResult) {
+            case BASS -> BASS_EFFECT;
+            case HARMONY -> HARMONY_EFFECT;
+            case MELODY -> MELODY_EFFECT;
+            case null -> null;
+        };
+        if (effectInstance != null) {
+            Box box = new Box(user.getX() - 24, user.getY() - 24, user.getZ() - 24,
+                    user.getX() + 24, user.getY() + 24, user.getZ() + 24);
+            List<PlayerEntity> list = world.getEntitiesByType(TypeFilter.instanceOf(PlayerEntity.class), box, playerEntity -> {
+                if (playerEntity.getScoreboardTeam() != null) {
+                    return playerEntity.isTeammate(user);
+                } else return true;
+            });
+            for (PlayerEntity player : list) {
+                player.addStatusEffect(effectInstance, user);
             }
         }
     }
+
 
     @Override
     public int getMaxUseTime(ItemStack stack, LivingEntity user) {

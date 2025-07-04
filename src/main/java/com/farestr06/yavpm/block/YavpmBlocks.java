@@ -38,6 +38,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
@@ -46,6 +47,24 @@ import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 import static com.farestr06.yavpm.config.YavpmConfig.HANDLER;
 
 public class YavpmBlocks {
+
+    public static final Block NAHCOLITE_ORE = makeBlockAndSimpleItem(
+            makeId("nahcolite_ore"),
+            settings -> new ExperienceDroppingBlock(UniformIntProvider.create(1, 5), settings),
+            AbstractBlock.Settings.create()
+                    .mapColor(MapColor.STONE_GRAY)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .requiresTool()
+                    .strength(3.0F, 3.0F)
+    );
+    public static final Block DEEPSLATE_NAHCOLITE_ORE = makeBlockAndSimpleItem(
+            makeId("deepslate_nahcolite_ore"),
+            settings -> new ExperienceDroppingBlock(UniformIntProvider.create(1, 5), settings),
+            AbstractBlock.Settings.copy(NAHCOLITE_ORE)
+                    .mapColor(MapColor.DEEPSLATE_GRAY)
+                    .strength(4.5F, 3.0F)
+                    .sounds(BlockSoundGroup.DEEPSLATE)
+    );
 
     // region Glowing Obsidian
     public static final Block GLOWING_OBSIDIAN = makeSimpleBlockAndSimpleItem(makeId("glowing_obsidian"),

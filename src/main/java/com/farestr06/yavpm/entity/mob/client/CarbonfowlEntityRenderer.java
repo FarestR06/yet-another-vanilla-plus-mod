@@ -47,7 +47,7 @@ public class CarbonfowlEntityRenderer extends MobEntityRenderer<CarbonfowlEntity
     @Override
     public void updateRenderState(CarbonfowlEntity livingEntity, ChickenEntityRenderState renderState, float f) {
         super.updateRenderState(livingEntity, renderState, f);
-        renderState.flapProgress = MathHelper.lerp(f, livingEntity.prevFlapProgress, livingEntity.flapProgress);
-        renderState.maxWingDeviation = MathHelper.lerp(f, livingEntity.prevMaxWingDeviation, livingEntity.maxWingDeviation);
+        renderState.flapProgress = MathHelper.lerp(f, livingEntity.lastFlapProgress, livingEntity.flapProgress);
+        renderState.maxWingDeviation = MathHelper.lerp(f, livingEntity.lastMaxWingDeviation, livingEntity.maxWingDeviation);
     }
 }

@@ -7,6 +7,7 @@ import com.farestr06.yavpm.item.YavpmItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableProvider;
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CropBlock;
 import net.minecraft.block.SweetBerryBushBlock;
@@ -20,19 +21,21 @@ import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.entry.LeafEntry;
+import net.minecraft.loot.entry.LootPoolEntry;
 import net.minecraft.loot.function.*;
 import net.minecraft.loot.operator.BoundedIntUnaryOperator;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.StatePredicate;
+import net.minecraft.predicate.component.ComponentPredicateTypes;
+import net.minecraft.predicate.component.ComponentsPredicate;
 import net.minecraft.predicate.entity.EntityEquipmentPredicate;
 import net.minecraft.predicate.entity.EntityFlagsPredicate;
 import net.minecraft.predicate.entity.EntityPredicate;
 import net.minecraft.predicate.item.EnchantmentPredicate;
 import net.minecraft.predicate.item.EnchantmentsPredicate;
 import net.minecraft.predicate.item.ItemPredicate;
-import net.minecraft.predicate.item.ItemSubPredicateTypes;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
@@ -57,6 +60,8 @@ public class YavpmLootProviders {
             addDrop(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
 
             stoneVariantDrops();
+            addDrop(YavpmBlocks.NAHCOLITE_ORE, this::nahcoliteOreDrops);
+            addDrop(YavpmBlocks.DEEPSLATE_NAHCOLITE_ORE, this::nahcoliteOreDrops);
             addDrop(YavpmBlocks.GRAPHITE_BLOCK);
             addDrop(YavpmBlocks.GRAPHENE_BLOCK);
 
@@ -438,6 +443,18 @@ public class YavpmLootProviders {
 
             addDrop(YavpmBlocks.PRICKLE_SHOOT);
         }
+
+        public LootTable.Builder nahcoliteOreDrops(net.minecraft.block.Block drop) {
+            return this.dropsWithSilkTouch(
+                    drop,
+                    this.applyExplosionDecay(
+                            drop,
+                            ItemEntry.builder(YavpmItems.BAKING_SODA)
+                                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(4.0F, 5.0F)))
+                                    .apply(ApplyBonusLootFunction.uniformBonusCount(lookup.getOrThrow(Enchantments.FORTUNE)))
+                    )
+            );
+        }
     }
 
     public static class Entity extends SimpleFabricLootTableProvider {
@@ -567,9 +584,10 @@ public class YavpmLootProviders {
                                             EntityEquipmentPredicate.Builder.create()
                                                     .mainhand(
                                                             ItemPredicate.Builder.create()
-                                                                    .subPredicate(
-                                                                            ItemSubPredicateTypes.ENCHANTMENTS,
-                                                                            EnchantmentsPredicate.enchantments(List.of(new EnchantmentPredicate(impl.getOrThrow(EnchantmentTags.SMELTS_LOOT), NumberRange.IntRange.ANY)))
+                                                                    .components(ComponentsPredicate.Builder.create()
+                                                                            .partial(ComponentPredicateTypes.ENCHANTMENTS,
+                                                                                    EnchantmentsPredicate.enchantments(List.of(new EnchantmentPredicate(impl.getOrThrow(EnchantmentTags.SMELTS_LOOT), NumberRange.IntRange.ANY))))
+                                                                            .build()
                                                                     )
                                                     )
                                     )

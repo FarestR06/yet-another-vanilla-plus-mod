@@ -7,7 +7,7 @@
     "block.PowderSnowBlockMixin",
     "entity.AnimalEntityMixin",
     "entity.ChickenEntityMixin",
-    "entity.CowEntityMixin",
+    "entity.AbstractCowEntityMixin",
     "entity.DragonFireballEntityMixin",
     "entity.EggEntityMixin",
     "entity.LivingEntityMixin",

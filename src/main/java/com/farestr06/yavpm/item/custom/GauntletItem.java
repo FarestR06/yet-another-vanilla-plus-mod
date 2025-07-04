@@ -31,12 +31,7 @@ public class GauntletItem extends Item {
     }
 
     public static ToolComponent createToolComponent() {
-        return new ToolComponent(List.of(), 1.0f, 2);
-    }
-
-    @Override
-    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        return true;
+        return new ToolComponent(List.of(), 1.0f, 2, false);
     }
 
     @Override

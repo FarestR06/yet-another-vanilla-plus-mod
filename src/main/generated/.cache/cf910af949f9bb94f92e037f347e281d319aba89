@@ -1,4 +1,4 @@
-// 1.21.4	-999999999-01-01T00:00:00	Yet Another Vanilla Plus Mod/Block Loot Tables
+// 1.21.5	-999999999-01-01T00:00:00	Yet Another Vanilla Plus Mod/Block Loot Tables
 c45798c2538dfc05f6f6e7bd4c27675bb6e0c9d8 data/minecraft/loot_table/blocks/cherry_hanging_sign.json
 59fa95863b09841746e88984bd376f07a9f4ae23 data/minecraft/loot_table/blocks/cherry_sign.json
 767233aebf94888c07e9bbf3a393858e58b613aa data/minecraft/loot_table/blocks/oak_hanging_sign.json
@@ -44,6 +44,7 @@ f1a78b2a24eba2811b03a74eab16185e192f6a5d data/yavpm/loot_table/blocks/cobbled_gr
 e0d310d7b51cec14aeeabeb2ff5f4c8f34f592d0 data/yavpm/loot_table/blocks/crimson_fungus_crop.json
 9afce6bb69bb4f01ee1e9e99cc6bd48b0d40866c data/yavpm/loot_table/blocks/cut_soulstone.json
 17ff70e097f82b7bc619ea3b6e8f69acc3779e4f data/yavpm/loot_table/blocks/cut_soulstone_slab.json
+902688c8e6c56b4ea7e5cdeba19ebae022350be3 data/yavpm/loot_table/blocks/deepslate_nahcolite_ore.json
 24c0dfcacab438518ae505db105cef2274eca3e1 data/yavpm/loot_table/blocks/densitite_block.json
 21aeabee20b26f2d34b549ff485e72e895d5d59f data/yavpm/loot_table/blocks/dull_conglomerate.json
 07cb1c96a532cdc6b2b6743775f6e29883a4a66d data/yavpm/loot_table/blocks/dull_conglomerate_slab.json
@@ -71,6 +72,7 @@ ee55e7eeb3343b3831101ac3966b9d400b0d3dd8 data/yavpm/loot_table/blocks/infested_s
 51d0925a7211d22290dec8619c4f6a830d56d19b data/yavpm/loot_table/blocks/kimberlite_stairs.json
 058c12b4225b243ec09bfd31d69b10d613efa5b2 data/yavpm/loot_table/blocks/kimberlite_wall.json
 0a6ebab0f748384d0ff30b9367ea4d6a02ac0f67 data/yavpm/loot_table/blocks/magic_bean_crop.json
+361b722cdec555b56ecb2e2b07cae050c29ba0d5 data/yavpm/loot_table/blocks/nahcolite_ore.json
 23817764ddc3e2a96d8d539e1cbf98c27d2998f8 data/yavpm/loot_table/blocks/null_torch.json
 b09cb51d445db8ee90ea6e203cf6e4c09b23f79e data/yavpm/loot_table/blocks/oak_sapling_crop.json
 ee57413bf33ae49011e43051707d064fbd4ffe8a data/yavpm/loot_table/blocks/peanut_crop.json

@@ -16,7 +16,8 @@ public class YavpmDataComponentTypes {
             "copper_instrument", builder ->
                     builder.codec(CopperInstrument.CODEC).packetCodec(CopperInstrument.PACKET_CODEC)
     );
-    public static final ComponentType<Unit> ALWAYS_HATCHES = register("always_hatches", builder -> builder.codec(Unit.CODEC).packetCodec(PacketCodec.unit(Unit.INSTANCE)));
+    public static final ComponentType<AlwaysHatchesComponent> ALWAYS_HATCHES = register("always_hatches", builder -> builder.codec(AlwaysHatchesComponent.CODEC).packetCodec(PacketCodec.unit(AlwaysHatchesComponent.INSTANCE)));
+    public static final ComponentType<Unit> HATCHES_CARBONFOWL = register("hatches_carbonfowl", builder -> builder.codec(Unit.CODEC).packetCodec(PacketCodec.unit(Unit.INSTANCE)));
 
     private static <T> ComponentType<T> register(String id, UnaryOperator<ComponentType.Builder<T>> builderOperator) {
         return Registry.register(Registries.DATA_COMPONENT_TYPE, makeId(id), builderOperator.apply(ComponentType.builder()).build());

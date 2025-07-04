@@ -11,10 +11,13 @@ import net.minecraft.structure.rule.TagMatchRuleTest;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 
+import java.util.List;
+
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmMiscConfiguredFeatures {
 
+    public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_NAHCOLITE = of("ore_nahcolite");
     public static final RegistryKey<ConfiguredFeature<?, ?>> ORE_KIMBERLITE = of("ore_kimberlite");
     public static final RegistryKey<ConfiguredFeature<?, ?>> PATCH_WITHER_ROSE = of("patch_wither_rose");
     public static final RegistryKey<ConfiguredFeature<?, ?>> LAKE_VOID_WATER = of("lake_void_water");
@@ -23,7 +26,22 @@ public class YavpmMiscConfiguredFeatures {
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
 
         RuleTest ruleTest = new TagMatchRuleTest(BlockTags.BASE_STONE_OVERWORLD);
+        RuleTest stoneRuleTest = new TagMatchRuleTest(BlockTags.STONE_ORE_REPLACEABLES);
+        RuleTest deepslateRuleTest = new TagMatchRuleTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
+
         register(context, ORE_KIMBERLITE, Feature.ORE, new OreFeatureConfig(ruleTest, YavpmBlocks.KIMBERLITE.getDefaultState(), 20));
+
+        register(context, ORE_NAHCOLITE, Feature.ORE,
+                new OreFeatureConfig(
+                        List.of(
+                                OreFeatureConfig.createTarget(stoneRuleTest, YavpmBlocks.NAHCOLITE_ORE.getDefaultState()),
+                                OreFeatureConfig.createTarget(deepslateRuleTest, YavpmBlocks.DEEPSLATE_NAHCOLITE_ORE.getDefaultState())
+                        ),
+                        8
+                )
+        );
+
+
         register(
                 context, PATCH_WITHER_ROSE, Feature.RANDOM_PATCH, createRandomPatchFeatureConfig(BlockStateProvider.of(Blocks.WITHER_ROSE), 4)
         );

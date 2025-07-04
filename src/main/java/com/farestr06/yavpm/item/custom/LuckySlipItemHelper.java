@@ -3,7 +3,6 @@ package com.farestr06.yavpm.item.custom;
 import com.farestr06.yavpm.item.YavpmItems;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentLevelEntry;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
@@ -40,7 +39,7 @@ public class LuckySlipItemHelper {
     public static ItemStack forEnchantment(@Nullable EnchantmentLevelEntry info) {
         ItemStack itemStack = new ItemStack(YavpmItems.LUCKY_SLIP);
         if (info != null) {
-            itemStack.addEnchantment(info.enchantment, info.level);
+            itemStack.addEnchantment(info.enchantment(), info.level());
         }
         return itemStack;
     }

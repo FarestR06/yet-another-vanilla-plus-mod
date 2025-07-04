@@ -4,9 +4,11 @@ import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.fluid.YavpmFluids;
+import com.farestr06.yavpm.item.component.YavpmDataComponentTypes;
 import com.farestr06.yavpm.item.custom.*;
 import com.farestr06.yavpm.util.YavpmSounds;
 import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;
+import net.fabricmc.fabric.api.item.v1.ComponentTooltipAppenderRegistry;
 import net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents;
 import net.fabricmc.fabric.api.registry.CompostingChanceRegistry;
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
@@ -23,6 +25,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
+import net.minecraft.util.Unit;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -46,6 +49,9 @@ public class YavpmItems {
             makeId("thunder_shard"),
             new Item.Settings().rarity(Rarity.UNCOMMON).component(DataComponentTypes.ENCHANTMENT_GLINT_OVERRIDE, true)
     );
+
+    public static final Item BAKING_SODA = makeSimpleItem(makeId("baking_soda"));
+    public static final Item PRETZEL = makeItem(makeId("pretzel"), new Item.Settings().food(YavpmFoods.PRETZEL));
 
     public static final Item WARPED_WART = YavpmBlocks.WARPED_WART_CROP.asItem();
     public static final Item BANANA_SEEDS = YavpmBlocks.BANANA_CROP.asItem();
@@ -203,6 +209,10 @@ public class YavpmItems {
 
     public static final Item RAW_DIAMOND = makeSimpleItem(makeId("raw_diamond"));
     public static final Item GRAPHITE = makeSimpleItem(makeId("graphite"));
+
+    public static final Item CARBON_EGG = makeAdvancedItem(makeId("carbon_egg"), EggItem::new, new Item.Settings()
+            .maxCount(16).component(YavpmDataComponentTypes.HATCHES_CARBONFOWL, Unit.INSTANCE)
+    );
 
     public static final Item CHAINMAIL = makeSimpleItem(makeId("chainmail"));
 
@@ -491,10 +501,11 @@ public class YavpmItems {
 
         compostables.add(MOLY, 1f);
         compostables.add(TRUFFLE, 1f);
+
+        ComponentTooltipAppenderRegistry.addAfter(DataComponentTypes.INSTRUMENT, YavpmDataComponentTypes.COPPER_INSTRUMENT);
     }
 
     private static void setUpComponents() {
-
         YetAnotherVanillaPlusMod.LOGGER.debug("Modifying default item components...");
         // make Glistering Melon edible
         DefaultItemComponentEvents.MODIFY.register(context -> {

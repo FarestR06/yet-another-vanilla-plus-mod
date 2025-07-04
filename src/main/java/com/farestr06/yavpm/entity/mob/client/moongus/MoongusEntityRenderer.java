@@ -14,9 +14,9 @@ import java.util.Map;
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class MoongusEntityRenderer extends MobEntityRenderer<MoongusEntity, MoongusEntityRenderState, CowEntityModel> {
-    private static final Map<MoongusEntity.Type, Identifier> TEXTURES = Util.make(Maps.newHashMap(), map -> {
-        map.put(MoongusEntity.Type.WARPED, makeId("textures/entity/cow/warped_moongus.png"));
-        map.put(MoongusEntity.Type.CRIMSON, makeId("textures/entity/cow/crimson_moongus.png"));
+    private static final Map<MoongusEntity.Variant, Identifier> TEXTURES = Util.make(Maps.newHashMap(), map -> {
+        map.put(MoongusEntity.Variant.WARPED, makeId("textures/entity/cow/warped_moongus.png"));
+        map.put(MoongusEntity.Variant.CRIMSON, makeId("textures/entity/cow/crimson_moongus.png"));
     });
 
     public MoongusEntityRenderer(EntityRendererFactory.Context context) {
@@ -32,7 +32,7 @@ public class MoongusEntityRenderer extends MobEntityRenderer<MoongusEntity, Moon
     @Override
     public void updateRenderState(MoongusEntity livingEntity, MoongusEntityRenderState livingEntityRenderState, float f) {
         super.updateRenderState(livingEntity, livingEntityRenderState, f);
-        livingEntityRenderState.type = livingEntity.getVariant();
+        livingEntityRenderState.type = livingEntity.getMoongusVariant();
         livingEntityRenderState.sheared = livingEntity.isSheared();
     }
 

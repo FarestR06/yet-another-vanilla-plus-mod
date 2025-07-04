@@ -72,7 +72,7 @@ public class YavpmBiomes {
             DefaultBiomeFeatures.addDefaultFlowers(biomeBuilder);
             DefaultBiomeFeatures.addDefaultGrass(biomeBuilder);
             DefaultBiomeFeatures.addDefaultMushrooms(biomeBuilder);
-            DefaultBiomeFeatures.addDefaultVegetation(biomeBuilder);
+            DefaultBiomeFeatures.addDefaultVegetation(biomeBuilder, false);
 
             return new Biome.Builder()
                     .precipitation(true)
@@ -109,7 +109,7 @@ public class YavpmBiomes {
             DefaultBiomeFeatures.addDefaultFlowers(biomeBuilder);
             DefaultBiomeFeatures.addDefaultGrass(biomeBuilder);
             DefaultBiomeFeatures.addDefaultMushrooms(biomeBuilder);
-            DefaultBiomeFeatures.addDefaultVegetation(biomeBuilder);
+            DefaultBiomeFeatures.addDefaultVegetation(biomeBuilder, true);
 
             return new Biome.Builder()
                     .precipitation(true)
@@ -174,22 +174,22 @@ public class YavpmBiomes {
 
         private static void addWitheredScarMonsters(SpawnSettings.Builder builder) {
             DefaultBiomeFeatures.addCaveMobs(builder);
-            builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SPIDER, 100, 4, 4));
-            builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIE, 75, 4, 4));
-            builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 25, 1, 1));
-            builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SKELETON, 75, 4, 4));
-            builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.WITHER_SKELETON, 25, 1, 1));
-            builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.CREEPER, 100, 4, 4));
-            builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.SLIME, 75, 4, 4));
-            builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.MAGMA_CUBE, 25, 1, 1));
-            builder.spawn(SpawnGroup.MONSTER, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 10, 1, 4));
-        }
+            builder.spawn(SpawnGroup.MONSTER, 100, new SpawnSettings.SpawnEntry(EntityType.SPIDER, 4, 4));
+            builder.spawn(SpawnGroup.MONSTER, 30, new SpawnSettings.SpawnEntry(EntityType.ZOMBIE, 4, 4));
+            builder.spawn(SpawnGroup.MONSTER, 70, new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 4, 4));
+            builder.spawn(SpawnGroup.MONSTER, 30, new SpawnSettings.SpawnEntry(EntityType.SKELETON, 4, 4));
+            builder.spawn(SpawnGroup.MONSTER, 30, new SpawnSettings.SpawnEntry(EntityType.WITHER_SKELETON, 4, 4));
+            builder.spawn(SpawnGroup.MONSTER, 100, new SpawnSettings.SpawnEntry(EntityType.CREEPER, 4, 4));
+            builder.spawn(SpawnGroup.MONSTER, 100, new SpawnSettings.SpawnEntry(EntityType.SLIME, 4, 4));
+            builder.spawn(SpawnGroup.MONSTER, 10, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 1, 4));
+            builder.spawn(SpawnGroup.MONSTER, 5, new SpawnSettings.SpawnEntry(EntityType.WITCH, 1, 1));
+            }
 
         private static void addWitheredScarFarmAnimals(SpawnSettings.Builder builder) {
-            builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.SHEEP, 6, 1, 1));
-            builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.PIG, 5, 1, 1));
-            builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.CHICKEN, 6, 1, 1));
-            builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.COW, 4, 1, 1));
+            builder.spawn(SpawnGroup.CREATURE, 12, new SpawnSettings.SpawnEntry(EntityType.SHEEP, 1, 1));
+            builder.spawn(SpawnGroup.CREATURE, 10, new SpawnSettings.SpawnEntry(EntityType.PIG, 1, 1));
+            builder.spawn(SpawnGroup.CREATURE, 10, new SpawnSettings.SpawnEntry(EntityType.CHICKEN, 1, 1));
+            builder.spawn(SpawnGroup.CREATURE, 8, new SpawnSettings.SpawnEntry(EntityType.COW, 1, 1));
         }
     }
 

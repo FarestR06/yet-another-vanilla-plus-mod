@@ -6,8 +6,8 @@ import com.farestr06.yavpm.item.YavpmItems;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.conversion.EntityConversionContext;
+import net.minecraft.entity.passive.AbstractCowEntity;
 import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -19,14 +19,14 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(CowEntity.class)
-public abstract class CowEntityMixin extends AnimalEntity {
-    private CowEntityMixin(EntityType<? extends AnimalEntity> entityType, World world) {
+@Mixin(AbstractCowEntity.class)
+public abstract class AbstractCowEntityMixin extends AnimalEntity {
+    private AbstractCowEntityMixin(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
     }
 
     @Unique
-    private final CowEntity thiz = (CowEntity) (Object) this;
+    private final AbstractCowEntity thiz = (AbstractCowEntity) (Object) this;
 
     @Inject(method = "interactMob", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z"), cancellable = true)
     private void injected(PlayerEntity player, Hand hand, CallbackInfoReturnable<ActionResult> cir, @Local ItemStack stack) {
@@ -35,14 +35,14 @@ public abstract class CowEntityMixin extends AnimalEntity {
                 thiz.convertTo( // We'll turn it into a Crimson Moongus!
                         YavpmEntities.MOONGUS,
                         EntityConversionContext.create(thiz, false, false),
-                        convertedEntity -> convertedEntity.setVariant(MoongusEntity.Type.CRIMSON)
+                        convertedEntity -> convertedEntity.setMoongusVariant(MoongusEntity.Variant.CRIMSON)
                 );
                 cir.setReturnValue(ActionResult.SUCCESS);
             } else if (stack.isOf(YavpmItems.WARPED_SPORE)) { // Likewise, if we feed it a Warped Wart Block...
                 thiz.convertTo( // It'll become a Warped Moongus!
                         YavpmEntities.MOONGUS,
                         EntityConversionContext.create(thiz, false, false),
-                        convertedEntity -> convertedEntity.setVariant(MoongusEntity.Type.WARPED)
+                        convertedEntity -> convertedEntity.setMoongusVariant(MoongusEntity.Variant.WARPED)
                 );
                 cir.setReturnValue(ActionResult.SUCCESS);
             }

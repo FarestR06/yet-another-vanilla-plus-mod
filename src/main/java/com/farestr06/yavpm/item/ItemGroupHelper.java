@@ -167,6 +167,8 @@ public class ItemGroupHelper {
 
         entries.add(YavpmBlocks.GLOWING_OBSIDIAN);
         entries.add(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
+        entries.add(YavpmBlocks.NAHCOLITE_ORE);
+        entries.add(YavpmBlocks.DEEPSLATE_NAHCOLITE_ORE);
         entries.add(YavpmBlocks.KIMBERLITE);
         entries.add(YavpmBlocks.APPLE_LOG);
         entries.add(YavpmBlocks.PERSIMMON_LOG);
@@ -243,6 +245,7 @@ public class ItemGroupHelper {
         entries.add(YavpmItems.DENSITITE_CHESTPLATE);
         entries.add(YavpmItems.DENSITITE_LEGGINGS);
         entries.add(YavpmItems.DENSITITE_BOOTS);
+        entries.add(YavpmItems.CARBON_EGG);
     }
 
     private static void foodAndDrink(FabricItemGroupEntries entries) {
@@ -254,6 +257,7 @@ public class ItemGroupHelper {
         entries.add(YavpmItems.CANTALOUPE_SLICE);
         entries.add(YavpmItems.MAGIC_BEAN);
         entries.add(YavpmItems.TRUFFLE);
+        entries.add(YavpmItems.PRETZEL);
         entries.add(YavpmItems.CHEESE);
         entries.add(YavpmItems.TOFU);
         entries.add(YavpmItems.PEANUT);
@@ -287,6 +291,8 @@ public class ItemGroupHelper {
         if (HANDLER.instance().nulliumExperiment) {
             entries.add(YavpmItems.NULLIUM_NUGGET);
         }
+        entries.add(YavpmItems.CARBON_EGG);
+        entries.add(YavpmItems.BAKING_SODA);
         entries.add(YavpmItems.BREADING);
         entries.add(YavpmItems.MAGIC_BEAN);
         entries.add(YavpmItems.RICE);
