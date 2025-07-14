@@ -1,6 +1,6 @@
 {
   "model": {
     "type": "minecraft:model",
-    "model": "yavpm:block/pinata"
+    "model": "yavpm:item/carbon_egg"
   }
 }

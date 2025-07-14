@@ -18,7 +18,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:double_cobbled_diorite_slabs"
+        "recipe": "yavpm:double_cobbled_diorite_slabs"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -31,7 +31,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:double_cobbled_diorite_slabs"
+      "yavpm:double_cobbled_diorite_slabs"
     ]
   }
 }

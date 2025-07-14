@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:polished_diorite_bricks_from_cobbled_diorite_stonecutting"
+        "recipe": "yavpm:polished_diorite_bricks_from_cobbled_diorite_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:polished_diorite_bricks_from_cobbled_diorite_stonecutting"
+      "yavpm:polished_diorite_bricks_from_cobbled_diorite_stonecutting"
     ]
   }
 }

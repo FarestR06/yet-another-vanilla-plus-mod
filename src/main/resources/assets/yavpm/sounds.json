@@ -90,6 +90,73 @@
     ],
     "subtitle": "subtitles.block.pinata.open"
   },
+  "music.cave": {
+    "sounds": [
+      {
+        "name": "music/game/oxygene",
+        "stream": true
+      },
+      {
+        "name": "music/game/left_to_bloom",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/infinite_amethyst",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/ancestry",
+        "stream": true
+      },
+      {
+        "name": "music/game/deeper",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/eld_unknown",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/endless",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "yavpm:music/game/excuse",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "yavpm:music/game/nevele",
+        "stream": true,
+        "volume": 0.6
+      },
+      {
+        "name": "music/game/featherfall",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/watcher",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/puzzlebox",
+        "stream": true,
+        "volume": 0.4
+      },
+      {
+        "name": "music/game/os_piano",
+        "stream": true,
+        "volume": 0.4
+      }
+    ]
+  },
   "music.overworld.withered_scar": {
     "sounds": [
       {

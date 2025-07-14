@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:densitite_block_from_blasting"
+        "recipe": "yavpm:densitite_block_from_blasting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:densitite_block_from_blasting"
+      "yavpm:densitite_block_from_blasting"
     ]
   }
 }

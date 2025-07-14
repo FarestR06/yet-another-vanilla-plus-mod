@@ -8,9 +8,8 @@ import net.minecraft.component.DataComponentTypes;
 import net.minecraft.component.type.ContainerComponent;
 import net.minecraft.inventory.SingleStackInventory.SingleStackBlockEntityInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 import net.minecraft.util.math.BlockPos;
 
 import java.util.List;
@@ -23,21 +22,17 @@ public class PinataBlockEntity extends BlockEntity implements SingleStackBlockEn
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries) {
-        super.writeNbt(nbt, registries);
+    protected void writeData(WriteView view) {
+        super.writeData(view);
         if (!this.stack.isEmpty()) {
-            nbt.put("item", this.stack.toNbt(registries));
+            view.put("item", ItemStack.CODEC, stack);
         }
     }
 
     @Override
-    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries) {
-        super.readNbt(nbt, registries);
-        if (nbt.get("item") != null) {
-            this.stack = ItemStack.fromNbt(registries, nbt.get("item")).orElse(ItemStack.EMPTY);
-        } else {
-            this.stack = ItemStack.EMPTY;
-        }
+    protected void readData(ReadView view) {
+        super.readData(view);
+        this.stack = view.read("item", ItemStack.CODEC).orElse(ItemStack.EMPTY);
     }
 
     @Override

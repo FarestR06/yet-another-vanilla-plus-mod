@@ -39,13 +39,17 @@ public class LootHelper {
         LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
             RegistryWrapper.Impl<Enchantment> enchantmentLookup = registries.getOrThrow(RegistryKeys.ENCHANTMENT);
             if (source.isBuiltin() && key == (LootTables.PIGLIN_BARTERING_GAMEPLAY)) {
-                LootPool.Builder poolBuilder = LootPool.builder()
+                LootPool.Builder poolBuilder1 = LootPool.builder()
                         .with(ItemEntry.builder(YavpmItems.GAUNTLET_FRAGMENT)
                                 .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
                         )
                         .conditionally(RandomChanceLootCondition.builder(0.0079f));
 
-                tableBuilder.pool(poolBuilder);
+                LootPool.Builder poolBuilder2 = LootPool.builder()
+                        .with(ItemEntry.builder(Items.NETHERITE_UPGRADE_SMITHING_TEMPLATE))
+                        .conditionally(RandomChanceLootCondition.builder(0.079f));
+
+                tableBuilder.pool(poolBuilder1);
             }
             if (source.isBuiltin() && key == (LootTables.SNIFFER_DIGGING_GAMEPLAY)) {
                 LootPool.Builder poolBuilder = LootPool.builder()

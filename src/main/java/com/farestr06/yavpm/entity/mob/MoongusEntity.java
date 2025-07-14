@@ -22,8 +22,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsage;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtOps;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.potion.Potion;
@@ -31,6 +29,8 @@ import net.minecraft.potion.Potions;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.StringIdentifiable;
@@ -102,25 +102,21 @@ public class MoongusEntity extends CowEntity implements Shearable {
     }
 
     @Override
-    public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
-        nbt.putInt("Variant", this.getMoongusVariant().getIndex());
+    protected void writeCustomData(WriteView view) {
+        super.writeCustomData(view);
+        view.put("Type", Variant.CODEC, this.getMoongusVariant());
         if (this.potionContents != null) {
-            Potion.CODEC.encodeStart(NbtOps.INSTANCE, this.potionContents).ifSuccess(nbtElement -> nbt.put("potion_contents", nbtElement));
+            view.putNullable("potion_contents", Potion.CODEC, potionContents);
         }
-        nbt.putBoolean("Corrupted", corrupted);
+        view.putBoolean("Corrupted", corrupted);
     }
 
     @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
-        this.setMoongusVariant(MoongusEntity.Variant.fromIndex(nbt.getInt("Variant").orElse(Variant.DEFAULT.getIndex())));
-        if (nbt.contains("potion_contents")) {
-            Potion.CODEC
-                    .parse(NbtOps.INSTANCE, nbt.get("potion_contents"))
-                    .ifSuccess(component -> this.potionContents = component);
-        }
-        corrupted = nbt.getBoolean("Corrupted").orElse(false);
+    protected void readCustomData(ReadView view) {
+        super.readCustomData(view);
+        this.setMoongusVariant(view.read("Type", Variant.CODEC).orElse(Variant.DEFAULT));
+        this.potionContents = view.read("potion_contents", Potion.CODEC).orElse(null);
+        view.getBoolean("Corrupted", false);
     }
 
     @Override
@@ -221,7 +217,7 @@ public class MoongusEntity extends CowEntity implements Shearable {
         return Variant.fromIndex(this.dataTracker.get(TYPE));
     }
 
-    public static enum Variant implements StringIdentifiable {
+    public enum Variant implements StringIdentifiable {
         CRIMSON("crimson", 0, Blocks.CRIMSON_FUNGUS.getDefaultState()),
         WARPED("warped", 1, Blocks.WARPED_FUNGUS.getDefaultState());
 
@@ -235,7 +231,7 @@ public class MoongusEntity extends CowEntity implements Shearable {
         final int index;
         private final BlockState fungus;
 
-        private Variant(final String name, final int index, final BlockState mushroom) {
+        Variant(final String name, final int index, final BlockState mushroom) {
             this.name = name;
             this.index = index;
             this.fungus = mushroom;

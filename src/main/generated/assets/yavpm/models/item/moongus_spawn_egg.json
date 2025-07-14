@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "yavpm:item/moongus_spawn_egg"
+  }
+}

@@ -18,7 +18,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:more_apple_stairs"
+        "recipe": "yavpm:more_apple_stairs"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -31,7 +31,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:more_apple_stairs"
+      "yavpm:more_apple_stairs"
     ]
   }
 }

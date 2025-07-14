@@ -21,6 +21,7 @@ public class YavpmTrades {
     private static final float HIGH_MULTIPLIER = 0.2f;
 
     private static final List<Item> WANDERING_TRADER_DISCS = new ArrayList<>();
+    private static final List<Item> WANDERING_TRADER_SMITHING_TEMPLATES = new ArrayList<>();
 
     private static final List<Item> NOVICE_PLANK_BUY_OFFERS = List.of(
             Items.OAK_PLANKS,
@@ -197,96 +198,109 @@ public class YavpmTrades {
     }
 
     private static void wanderingTrader() {
-        YetAnotherVanillaPlusMod.LOGGER.warn("Wandering Trader trades aren't finished!");
-        /*
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Wandering Trader trades...");
-        setUpDiscList();
-        TradeOfferHelper.registerWanderingTraderOffers(factories -> {
-            factories.(entity, random) -> {
-                if (random.nextFloat() <= 0.19f) {
-                    return new TradeOffer(
-                            new TradedItem(Items.EMERALD, random.nextBetween(12, 16)),
-                            new ItemStack(YavpmItems.MUSIC_DISC_HALLAND_DALARNA),
-                            1,
-                            0,
-                            0f
-                    );
-                } else {
-                    int randInt = random.nextInt(WANDERING_TRADER_DISCS.size());
-                    return new TradeOffer(
-                            new TradedItem(Items.EMERALD, random.nextBetween(7, 10)),
-                            new ItemStack(WANDERING_TRADER_DISCS.get(randInt)),
-                            1,
-                            0,
-                            0f
-                    );
-                }
-            });
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD),
-                    new ItemStack(YavpmItems.BITTER_BERRIES),
+        setUpWanderingTraderList();
+        TradeOfferHelper.registerWanderingTraderOffers(builder -> {
+            builder.addOffersToPool(TradeOfferHelper.WanderingTraderOffersBuilder.BUY_ITEMS_POOL, (entity, random) -> new TradeOffer(
+                    new TradedItem(Items.STRING, 3),
+                    new ItemStack(Items.EMERALD, 2),
+                    2,
+                    0,
+                    0f
+            ));
+            builder.addOffersToPool(TradeOfferHelper.WanderingTraderOffersBuilder.SELL_COMMON_ITEMS_POOL, (entity, random) -> new TradeOffer(
+                        new TradedItem(Items.EMERALD, 2),
+                        new ItemStack(YavpmItems.BITTER_BERRIES, 2),
+                        12,
+                        0,
+                        0f
+            ), (entity, random) -> new TradeOffer(
+                    new TradedItem(Items.EMERALD, 2),
+                    new ItemStack(Items.SWEET_BERRIES, 2),
                     12,
                     0,
                     0f
-            ));
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD),
-                    new ItemStack(YavpmItems.BANANA_SEEDS),
+            ), (entity, random) -> new TradeOffer(
+                    new TradedItem(Items.EMERALD, 2),
+                    new ItemStack(Items.BEETROOT_SEEDS, 3),
                     8,
                     0,
                     0f
-            ));
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD),
+            ), (entity, random) -> new TradeOffer(
+                    new TradedItem(Items.EMERALD, 2),
+                    new ItemStack(Items.POTATO, 3),
+                    8,
+                    0,
+                    0f
+            ), (entity, random) -> new TradeOffer(
+                    new TradedItem(Items.EMERALD, 2),
+                    new ItemStack(Items.CARROT, 3),
+                    8,
+                    0,
+                    0f
+            ), (entity, random) -> new TradeOffer(
+                    new TradedItem(Items.EMERALD, 2),
+                    new ItemStack(YavpmItems.BANANA_SEEDS, 3),
+                    8,
+                    0,
+                    0f
+            ), (entity, random) -> new TradeOffer(
+                    new TradedItem(Items.EMERALD, 2),
                     new ItemStack(YavpmItems.PEANUT),
                     12,
                     0,
                     0f
-            ));
-            factories.add((entity, random) -> new TradeOffer(
+            ), (entity, random) -> new TradeOffer(
                     new TradedItem(Items.EMERALD, 2),
                     new ItemStack(YavpmItems.ACORN),
                     8,
                     0,
                     0f
-            ));
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD),
-                    new ItemStack(YavpmItems.MAGIC_BEAN),
+            ), (entity, random) -> new TradeOffer(
+                    new TradedItem(Items.EMERALD, 2),
+                    new ItemStack(YavpmItems.MAGIC_BEAN, 3),
                     12,
                     0,
                     0f
-            ));
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, 5),
+            ), (entity, random) -> new TradeOffer(
+                    new TradedItem(Items.EMERALD, 6),
                     new ItemStack(YavpmItems.MOLY),
-                    16,
+                    4,
                     0,
                     0f
-            ));
-            factories.add((entity, random) -> new TradeOffer(
+            ), (entity, random) -> new TradeOffer(
                     new TradedItem(Items.EMERALD, 5),
                     new ItemStack(YavpmBlocks.APPLE_SAPLING),
                     8,
                     0,
                     0f
-            ));
-            factories.add((entity, random) -> new TradeOffer(
+            ), (entity, random) -> new TradeOffer(
                     new TradedItem(Items.EMERALD, 5),
                     new ItemStack(YavpmBlocks.PERSIMMON_SAPLING),
                     8,
                     0,
                     0f
             ));
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, 8),
-                    new ItemStack(YavpmItems.MOLY),
-                    3,
+            builder.addOffersToPool(TradeOfferHelper.WanderingTraderOffersBuilder.SELL_SPECIAL_ITEMS_POOL, (entity, random) -> new TradeOffer(
+                    new TradedItem(Items.EMERALD, random.nextBetween(18, 24)),
+                    new ItemStack(YavpmItems.MUSIC_DISC_HALLAND_DALARNA),
+                    1,
+                    0,
+                    0f
+            ), (entity, random) ->  new TradeOffer(
+                    new TradedItem(Items.EMERALD, random.nextBetween(10, 16)),
+                    new ItemStack(WANDERING_TRADER_DISCS.get(random.nextInt(WANDERING_TRADER_DISCS.size()))),
+                    1,
+                    0,
+                    0f
+            ), (entity, random) -> new TradeOffer(
+                    new TradedItem(Items.EMERALD, random.nextBetween(8, 12)),
+                    new ItemStack(WANDERING_TRADER_SMITHING_TEMPLATES.get(random.nextInt(WANDERING_TRADER_SMITHING_TEMPLATES.size()))),
+                    1,
                     0,
                     0f
             ));
         });
-         */
     }
 
     private static void armorer() {
@@ -434,24 +448,40 @@ public class YavpmTrades {
         )));
     }
 
-    private static void setUpDiscList() {
-        addABunchOfItemsToDiscList(Items.MUSIC_DISC_13, 8);
-        addABunchOfItemsToDiscList(Items.MUSIC_DISC_CAT, 8);
-        addABunchOfItemsToDiscList(Items.MUSIC_DISC_WAIT, 6);
-        addABunchOfItemsToDiscList(Items.MUSIC_DISC_MELLOHI, 6);
-        addABunchOfItemsToDiscList(Items.MUSIC_DISC_STAL, 5);
-        addABunchOfItemsToDiscList(Items.MUSIC_DISC_STRAD, 5);
-        addABunchOfItemsToDiscList(Items.MUSIC_DISC_BLOCKS, 4);
-        addABunchOfItemsToDiscList(Items.MUSIC_DISC_CHIRP, 4);
-        addABunchOfItemsToDiscList(Items.MUSIC_DISC_MALL, 3);
-        addABunchOfItemsToDiscList(Items.MUSIC_DISC_WARD, 3);
-        addABunchOfItemsToDiscList(Items.MUSIC_DISC_OTHERSIDE, 1);
+    private static void setUpWanderingTraderList() {
+        disksBulkAdd(Items.MUSIC_DISC_13, 8);
+        disksBulkAdd(Items.MUSIC_DISC_CAT, 8);
+        disksBulkAdd(Items.MUSIC_DISC_WAIT, 6);
+        disksBulkAdd(Items.MUSIC_DISC_MELLOHI, 6);
+        disksBulkAdd(Items.MUSIC_DISC_STAL, 5);
+        disksBulkAdd(Items.MUSIC_DISC_STRAD, 5);
+        disksBulkAdd(Items.MUSIC_DISC_BLOCKS, 4);
+        disksBulkAdd(Items.MUSIC_DISC_CHIRP, 4);
+        disksBulkAdd(Items.MUSIC_DISC_MALL, 3);
+        disksBulkAdd(Items.MUSIC_DISC_WARD, 3);
+        disksBulkAdd(Items.MUSIC_DISC_OTHERSIDE, 1);
         Collections.shuffle(WANDERING_TRADER_DISCS);
+
+        templatesBulkAdd(Items.SENTRY_ARMOR_TRIM_SMITHING_TEMPLATE, 1);
+        templatesBulkAdd(Items.VEX_ARMOR_TRIM_SMITHING_TEMPLATE, 1);
+        templatesBulkAdd(Items.COAST_ARMOR_TRIM_SMITHING_TEMPLATE, 2);
+        templatesBulkAdd(Items.DUNE_ARMOR_TRIM_SMITHING_TEMPLATE, 2);
+        templatesBulkAdd(Items.WILD_ARMOR_TRIM_SMITHING_TEMPLATE, 2);
+        templatesBulkAdd(Items.WAYFINDER_ARMOR_TRIM_SMITHING_TEMPLATE, 4);
+        templatesBulkAdd(Items.RAISER_ARMOR_TRIM_SMITHING_TEMPLATE, 4);
+        templatesBulkAdd(Items.SHAPER_ARMOR_TRIM_SMITHING_TEMPLATE, 4);
+        templatesBulkAdd(Items.HOST_ARMOR_TRIM_SMITHING_TEMPLATE, 4);
+        Collections.shuffle(WANDERING_TRADER_SMITHING_TEMPLATES);
     }
 
-    private static void addABunchOfItemsToDiscList(Item item, int count) {
+    private static void disksBulkAdd(Item item, int count) {
         for (int i = 0; i < count; i++) {
             WANDERING_TRADER_DISCS.add(item);
+        }
+    }
+    private static void templatesBulkAdd(Item item, int count) {
+        for (int i = 0; i < count; i++) {
+            WANDERING_TRADER_SMITHING_TEMPLATES.add(item);
         }
     }
 }

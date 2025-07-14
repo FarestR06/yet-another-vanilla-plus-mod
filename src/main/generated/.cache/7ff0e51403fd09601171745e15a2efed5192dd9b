@@ -1,4 +1,4 @@
-// 1.21.5	-999999999-01-01T00:00:00	Yet Another Vanilla Plus Mod/Tags for minecraft:item
+// 1.21.7	-999999999-01-01T00:00:00	Yet Another Vanilla Plus Mod/Tags for minecraft:item
 13b8af1be6d4d3d4ba852cdccf0a768d98e82415 data/c/tags/item/animal_foods.json
 ab457b02838f0e0da2fa966c49ef8d025ad48685 data/c/tags/item/armors.json
 64e120a9a466c6f434ae459d7bb42a52b8f404c7 data/c/tags/item/buckets/milk.json
@@ -29,7 +29,7 @@ cab5091759f754366d145d2d7969912c201786d7 data/minecraft/tags/item/head_armor.jso
 50679f3b7c43af1b08657e2062a0a3a917e110c1 data/minecraft/tags/item/hoes.json
 c0a82991c324f362444857c89dff2c67ad83cd11 data/minecraft/tags/item/leaves.json
 42a2e9d4355b087d6635a20aa96fc6a6d62b0fe0 data/minecraft/tags/item/leg_armor.json
-63a5efa04106a4f747df0f0eb0203691d15b76ce data/minecraft/tags/item/logs_that_burn.json
+fb6efbec53fcb59b7b99f4a39ede85da4970866e data/minecraft/tags/item/logs_that_burn.json
 38ebd85d0677fbe41ab0f9f26555150c3c30d3d6 data/minecraft/tags/item/parrot_food.json
 88d697b8b7cc84ab64ba28a926caecbdc8ee47a1 data/minecraft/tags/item/parrot_poisonous_food.json
 34b3e5774d5dc4ec29f36084e2245d03ed34cc13 data/minecraft/tags/item/pickaxes.json
@@ -66,5 +66,5 @@ f275a7f37363d1bf0a2338331d2e0d2595cfb1ff data/yavpm/tags/item/reactor_rechargers
 61f64c2c825b79098aa6b858ba013e8db9b6f5d6 data/yavpm/tags/item/repairs_densitite_armor.json
 ff79b7e120658226ff49a95055ef1e7cf93afacd data/yavpm/tags/item/repairs_studded_armor.json
 53a13473b30a0ca862cb74b2b2575e0e92cb13ca data/yavpm/tags/item/spiral_stalks.json
-b3903dd6f2911c9bfd601eeed539d4df52a7dc6f data/yavpm/tags/item/tanuki_foods.json
+83bb82d1ff4deaadb9912b047cc823355b393985 data/yavpm/tags/item/tanuki_foods.json
 35efcdfa6c7041e6d72423cda4c3d65dd8b6c3a6 data/yavpm/tags/item/warped_moongus_food.json

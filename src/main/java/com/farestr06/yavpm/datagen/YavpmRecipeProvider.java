@@ -73,12 +73,12 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
 
                 createShapeless(RecipeCategory.MISC, YavpmItems.CRIMSON_SPORE)
                         .input(Items.NETHER_WART)
-                        .input(Ingredient.fromTag(itemLookup.getOrThrow(ConventionalItemTags.MUSHROOMS)))
+                        .input(Ingredient.ofTag(itemLookup.getOrThrow(ConventionalItemTags.MUSHROOMS)))
                         .criterion(hasItem(Items.NETHER_WART), conditionsFromItem(Items.NETHER_WART))
                         .offerTo(exporter);
                 createShapeless(RecipeCategory.MISC, YavpmItems.WARPED_SPORE)
                         .input(YavpmItems.WARPED_WART)
-                        .input(Ingredient.fromTag(itemLookup.getOrThrow(ConventionalItemTags.MUSHROOMS)))
+                        .input(Ingredient.ofTag(itemLookup.getOrThrow(ConventionalItemTags.MUSHROOMS)))
                         .criterion(hasItem(YavpmItems.WARPED_WART), conditionsFromItem(YavpmItems.WARPED_WART))
                         .offerTo(exporter);
 
@@ -325,7 +325,7 @@ public class YavpmRecipeProvider extends FabricRecipeProvider {
                         .criterion(hasItem(Items.OBSIDIAN), conditionsFromItem(Items.OBSIDIAN))
                         .offerTo(exporter);
                 createShapeless(RecipeCategory.BUILDING_BLOCKS, YavpmBlocks.SOUL_GLOWING_OBSIDIAN, 4)
-                        .input(Ingredient.fromTag(itemLookup.getOrThrow(ItemTags.SOUL_FIRE_BASE_BLOCKS)))
+                        .input(Ingredient.ofTag(itemLookup.getOrThrow(ItemTags.SOUL_FIRE_BASE_BLOCKS)))
                         .input(Items.BLAZE_POWDER)
                         .input(Items.OBSIDIAN)
                         .input(Items.OBSIDIAN)

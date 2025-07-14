@@ -1,4 +1,4 @@
-// 1.21.5	-999999999-01-01T00:00:00	Yet Another Vanilla Plus Mod/Tags for minecraft:block
+// 1.21.7	-999999999-01-01T00:00:00	Yet Another Vanilla Plus Mod/Tags for minecraft:block
 1acfd7d2d675c5caaa7cfc72edd8bf050e97fa77 data/c/tags/block/obsidians.json
 6b2679ea9d788fbbf2fdeafabc7f9de141d40a91 data/c/tags/block/ores_in_ground/deepslate.json
 d8455ca85dd2d28f2d5e756eeb109708eca66a53 data/c/tags/block/ores_in_ground/stone.json
@@ -9,11 +9,11 @@ e4de44b64a769cb6126e0a64e8a3aacff9833795 data/c/tags/block/stripped_woods.json
 0428e14b34082adc68b1ac07a9e4542228af55ed data/minecraft/tags/block/fence_gates.json
 343470cf7c980c8c0e47201eac0143c490471ab6 data/minecraft/tags/block/impermeable.json
 c0a82991c324f362444857c89dff2c67ad83cd11 data/minecraft/tags/block/leaves.json
-0e8f0fe56c5da7e148bcfaaee1cec54d70607b7b data/minecraft/tags/block/logs_that_burn.json
+a1267052f5a7af375926b8953e19bf4eed187db5 data/minecraft/tags/block/logs_that_burn.json
 3941ee58b91eb549e68d734965c442b4747782a6 data/minecraft/tags/block/maintains_farmland.json
 c6e2887d955a9e09d841620a323f877bfe963563 data/minecraft/tags/block/mineable/axe.json
 c0a82991c324f362444857c89dff2c67ad83cd11 data/minecraft/tags/block/mineable/hoe.json
-0c6643c9d90f21e2b1b872d649a1583fda27e67e data/minecraft/tags/block/mineable/pickaxe.json
+f19c0b51809bd450e5aa0fa1c06ac9932f720593 data/minecraft/tags/block/mineable/pickaxe.json
 6ca4dbf0aefc993971191f623c1f13b0e36778f4 data/minecraft/tags/block/mineable/shovel.json
 1acfd7d2d675c5caaa7cfc72edd8bf050e97fa77 data/minecraft/tags/block/needs_diamond_tool.json
 629cdbb8075c3d564170b826c37088c264df2bab data/minecraft/tags/block/needs_iron_tool.json

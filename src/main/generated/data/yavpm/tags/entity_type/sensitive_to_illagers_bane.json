@@ -1,6 +1,12 @@
 {
   "values": [
-    "#minecraft:illager",
-    "#minecraft:illager_friends"
+    {
+      "id": "#minecraft:illager",
+      "required": false
+    },
+    {
+      "id": "#minecraft:illager_friends",
+      "required": false
+    }
   ]
 }

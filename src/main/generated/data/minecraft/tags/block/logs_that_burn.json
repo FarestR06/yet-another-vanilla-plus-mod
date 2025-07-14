@@ -1,7 +1,16 @@
 {
   "values": [
-    "#yavpm:apple_logs",
-    "#yavpm:persimmon_logs",
-    "#yavpm:prickle_logs"
+    {
+      "id": "#yavpm:apple_logs",
+      "required": false
+    },
+    {
+      "id": "#yavpm:persimmon_logs",
+      "required": false
+    },
+    {
+      "id": "#yavpm:prickle_logs",
+      "required": false
+    }
   ]
 }

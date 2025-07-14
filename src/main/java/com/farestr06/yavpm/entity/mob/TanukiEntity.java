@@ -19,9 +19,10 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
+import net.minecraft.storage.ReadView;
+import net.minecraft.storage.WriteView;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.GameRules;
@@ -110,17 +111,15 @@ public class TanukiEntity extends AnimalEntity {
     }
 
     @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
-        if (nbt.contains("TryTransformTime")) {
-            this.tryTransformTime = nbt.getInt("TryTransformTime", 4000);
-        }
+    protected void readCustomData(ReadView view) {
+        super.readCustomData(view);
+        this.tryTransformTime = view.getInt("TryTransformTime", 4000);
     }
 
     @Override
-    public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
-        nbt.putInt("TryTransformTime", this.tryTransformTime);
+    public void writeData(WriteView view) {
+        super.writeData(view);
+        view.putInt("TryTransformTime", this.tryTransformTime);
     }
 
     private void transform() {

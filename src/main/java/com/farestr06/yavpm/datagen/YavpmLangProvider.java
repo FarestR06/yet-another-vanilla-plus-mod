@@ -579,6 +579,9 @@ public class YavpmLangProvider extends FabricLanguageProvider {
 
         builder.add("gamerule.voidWaterSourceConversion", "Void Water converts to source");
         builder.add("gamerule.doSunburn", "Spawn sunburns");
+
+        builder.add("music.game.nevele", "C418 - 11 (Volume Beta)");
+        builder.add("music.game.excuse", "C418 - Excuse");
     }
 
     private static void yaclTranslations(TranslationBuilder builder) {

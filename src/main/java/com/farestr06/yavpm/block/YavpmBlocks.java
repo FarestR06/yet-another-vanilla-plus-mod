@@ -12,10 +12,7 @@ import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.YavpmFoods;
 import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.world.feature.configured.YavpmTreeConfiguredFeatures;
-import com.terraformersmc.terraform.sign.api.block.TerraformHangingSignBlock;
-import com.terraformersmc.terraform.sign.api.block.TerraformSignBlock;
-import com.terraformersmc.terraform.sign.api.block.TerraformWallHangingSignBlock;
-import com.terraformersmc.terraform.sign.api.block.TerraformWallSignBlock;
+import com.terraformersmc.terraform.sign.api.block.TerraformSignBlockHelper;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.fabricmc.fabric.api.registry.StrippableBlockRegistry;
 import net.minecraft.block.*;
@@ -30,8 +27,8 @@ import net.minecraft.entity.EntityCollisionHandler;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.Item;
-import net.minecraft.particle.EntityEffectParticleEffect;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.particle.TintedParticleEffect;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.BlockSoundGroup;
@@ -543,14 +540,14 @@ public class YavpmBlocks {
     );
     public static final Block APPLE_LEAVES = makeBlockAndSimpleItem(
             makeId("apple_leaves"),
-            settings -> new UntintedParticleLeavesBlock(0.01F, EntityEffectParticleEffect.create(ParticleTypes.TINTED_LEAVES, 0x3f, 0x99, 0x49), settings),
+            settings -> new UntintedParticleLeavesBlock(0.01F, TintedParticleEffect.create(ParticleTypes.TINTED_LEAVES, 0x3f, 0x99, 0x49), settings),
             AbstractBlock.Settings.copy(Blocks.AZALEA_LEAVES)
     );
 
     // 0x3f9949
     public static final Block FLOWERING_APPLE_LEAVES = makeBlockAndSimpleItem(
             makeId("flowering_apple_leaves"),
-            settings -> new UntintedParticleLeavesBlock(0.01F, EntityEffectParticleEffect.create(ParticleTypes.TINTED_LEAVES, 0x3f, 0x99, 0x49), settings),
+            settings -> new UntintedParticleLeavesBlock(0.01F, TintedParticleEffect.create(ParticleTypes.TINTED_LEAVES, 0x3f, 0x99, 0x49), settings),
             AbstractBlock.Settings.copy(Blocks.FLOWERING_AZALEA_LEAVES)
     );
 
@@ -604,32 +601,27 @@ public class YavpmBlocks {
             settings -> new SaplingBlock(YavpmTreeConfiguredFeatures.APPLEWOOD_GENERATOR, settings),
             AbstractBlock.Settings.copy(Blocks.OAK_SAPLING)
     );
-    protected static final Identifier APPLE_SIGN_TEXTURE = makeId("entity/signs/apple");
-    protected static final Identifier APPLE_HANGING_SIGN_TEXTURE = makeId("entity/signs/hanging/apple");
-    protected static final Identifier APPLE_HANGING_SIGN_GUI_TEXTURE = makeId("textures/gui/hanging_signs/apple");
 
-    public static final Block APPLE_SIGN = makeBlock(
+    public static final WoodType APPLE_SIGN_TYPE = TerraformSignBlockHelper.registerDefaultWoodType(makeId("apple"));
+
+    public static final Block APPLE_SIGN = TerraformSignBlockHelper.registerSignBlock(
             makeId("apple_sign"),
-            settings -> new TerraformSignBlock(APPLE_SIGN_TEXTURE, WoodType.CHERRY, settings),
+            settings -> new SignBlock(APPLE_SIGN_TYPE, settings),
             AbstractBlock.Settings.copy(Blocks.CHERRY_SIGN)
     );
-    public static final Block APPLE_WALL_SIGN = makeBlock(
+    public static final Block APPLE_WALL_SIGN = TerraformSignBlockHelper.registerSignBlock(
             makeId("apple_wall_sign"),
-            settings -> new TerraformWallSignBlock(APPLE_SIGN_TEXTURE, WoodType.CHERRY, settings),
+            settings -> new WallSignBlock(APPLE_SIGN_TYPE, settings),
             AbstractBlock.Settings.copy(Blocks.CHERRY_WALL_SIGN)
     );
-    public static final Block APPLE_HANGING_SIGN = makeBlock(
+    public static final Block APPLE_HANGING_SIGN = TerraformSignBlockHelper.registerSignBlock(
             makeId("apple_hanging_sign"),
-            settings -> new TerraformHangingSignBlock(
-                    APPLE_HANGING_SIGN_TEXTURE, APPLE_HANGING_SIGN_GUI_TEXTURE, WoodType.CHERRY, settings
-            ),
+            settings -> new HangingSignBlock(APPLE_SIGN_TYPE, settings),
             AbstractBlock.Settings.copy(Blocks.CHERRY_HANGING_SIGN)
     );
-    public static final Block APPLE_WALL_HANGING_SIGN = makeBlock(
+    public static final Block APPLE_WALL_HANGING_SIGN = TerraformSignBlockHelper.registerSignBlock(
             makeId("apple_wall_hanging_sign"),
-            settings -> new TerraformWallHangingSignBlock(
-                    APPLE_HANGING_SIGN_TEXTURE, APPLE_HANGING_SIGN_GUI_TEXTURE, WoodType.CHERRY, settings
-            ),
+            settings -> new WallHangingSignBlock(APPLE_SIGN_TYPE, settings),
             AbstractBlock.Settings.copy(Blocks.CHERRY_WALL_HANGING_SIGN)
     );
 
@@ -700,32 +692,26 @@ public class YavpmBlocks {
             AbstractBlock.Settings.copy(Blocks.WARPED_PRESSURE_PLATE)
     );
 
-    protected static final Identifier PRICKLE_SIGN_TEXTURE = makeId("entity/signs/prickle");
-    protected static final Identifier PRICKLE_HANGING_SIGN_TEXTURE = makeId("entity/signs/hanging/prickle");
-    protected static final Identifier PRICKLE_HANGING_SIGN_GUI_TEXTURE = makeId("textures/gui/hanging_signs/prickle");
+    public static final WoodType PRICKLE_SIGN_TYPE = TerraformSignBlockHelper.registerDefaultWoodType(makeId("prickle"));
 
-    public static final Block PRICKLE_SIGN = makeBlock(
+    public static final Block PRICKLE_SIGN = TerraformSignBlockHelper.registerSignBlock(
             makeId("prickle_sign"),
-            settings -> new TerraformSignBlock(PRICKLE_SIGN_TEXTURE, WoodType.WARPED, settings),
+            settings -> new SignBlock(PRICKLE_SIGN_TYPE, settings),
             AbstractBlock.Settings.copy(Blocks.WARPED_SIGN)
     );
-    public static final Block PRICKLE_WALL_SIGN = makeBlock(
+    public static final Block PRICKLE_WALL_SIGN = TerraformSignBlockHelper.registerSignBlock(
             makeId("prickle_wall_sign"),
-            settings -> new TerraformWallSignBlock(PRICKLE_SIGN_TEXTURE, WoodType.WARPED, settings),
+            settings -> new WallSignBlock(PRICKLE_SIGN_TYPE, settings),
             AbstractBlock.Settings.copy(Blocks.WARPED_WALL_SIGN)
     );
-    public static final Block PRICKLE_HANGING_SIGN = makeBlock(
+    public static final Block PRICKLE_HANGING_SIGN = TerraformSignBlockHelper.registerSignBlock(
             makeId("prickle_hanging_sign"),
-            settings -> new TerraformHangingSignBlock(
-                    PRICKLE_HANGING_SIGN_TEXTURE, PRICKLE_HANGING_SIGN_GUI_TEXTURE, WoodType.WARPED, settings
-            ),
+            settings -> new HangingSignBlock(PRICKLE_SIGN_TYPE, settings),
             AbstractBlock.Settings.copy(Blocks.WARPED_HANGING_SIGN)
     );
-    public static final Block PRICKLE_WALL_HANGING_SIGN = makeBlock(
+    public static final Block PRICKLE_WALL_HANGING_SIGN = TerraformSignBlockHelper.registerSignBlock(
             makeId("prickle_wall_hanging_sign"),
-            settings -> new TerraformWallHangingSignBlock(
-                    PRICKLE_HANGING_SIGN_TEXTURE, PRICKLE_HANGING_SIGN_GUI_TEXTURE, WoodType.WARPED, settings
-            ),
+            settings -> new WallHangingSignBlock(PRICKLE_SIGN_TYPE, settings),
             AbstractBlock.Settings.copy(Blocks.WARPED_WALL_HANGING_SIGN)
     );
 
@@ -811,32 +797,27 @@ public class YavpmBlocks {
             AbstractBlock.Settings.copy(Blocks.OAK_PRESSURE_PLATE)
     );
 
-    protected static final Identifier PERSIMMON_SIGN_TEXTURE = makeId("entity/signs/persimmon");
-    protected static final Identifier PERSIMMON_HANGING_SIGN_TEXTURE = makeId("entity/signs/hanging/persimmon");
-    protected static final Identifier PERSIMMON_HANGING_SIGN_GUI_TEXTURE = makeId("textures/gui/hanging_signs/persimmon");
 
-    public static final Block PERSIMMON_SIGN = makeBlock(
+    public static final WoodType PERSIMMON_SIGN_TYPE = TerraformSignBlockHelper.registerDefaultWoodType(makeId("persimmon"));
+
+    public static final Block PERSIMMON_SIGN = TerraformSignBlockHelper.registerSignBlock(
             makeId("persimmon_sign"),
-            settings -> new TerraformSignBlock(PERSIMMON_SIGN_TEXTURE, WoodType.OAK, settings),
+            settings -> new SignBlock(PERSIMMON_SIGN_TYPE, settings),
             AbstractBlock.Settings.copy(Blocks.OAK_SIGN)
     );
-    public static final Block PERSIMMON_WALL_SIGN = makeBlock(
+    public static final Block PERSIMMON_WALL_SIGN = TerraformSignBlockHelper.registerSignBlock(
             makeId("persimmon_wall_sign"),
-            settings -> new TerraformWallSignBlock(PERSIMMON_SIGN_TEXTURE, WoodType.OAK, settings),
+            settings -> new WallSignBlock(PERSIMMON_SIGN_TYPE, settings),
             AbstractBlock.Settings.copy(Blocks.OAK_WALL_SIGN)
     );
-    public static final Block PERSIMMON_HANGING_SIGN = makeBlock(
+    public static final Block PERSIMMON_HANGING_SIGN = TerraformSignBlockHelper.registerSignBlock(
             makeId("persimmon_hanging_sign"),
-            settings -> new TerraformHangingSignBlock(
-                    PERSIMMON_HANGING_SIGN_TEXTURE, PERSIMMON_HANGING_SIGN_GUI_TEXTURE, WoodType.OAK, settings
-            ),
+            settings -> new HangingSignBlock(PERSIMMON_SIGN_TYPE, settings),
             AbstractBlock.Settings.copy(Blocks.OAK_HANGING_SIGN)
     );
-    public static final Block PERSIMMON_WALL_HANGING_SIGN = makeBlock(
+    public static final Block PERSIMMON_WALL_HANGING_SIGN = TerraformSignBlockHelper.registerSignBlock(
             makeId("persimmon_wall_hanging_sign"),
-            settings -> new TerraformWallHangingSignBlock(
-                    PERSIMMON_HANGING_SIGN_TEXTURE, PERSIMMON_HANGING_SIGN_GUI_TEXTURE, WoodType.OAK, settings
-            ),
+            settings -> new WallHangingSignBlock(PERSIMMON_SIGN_TYPE, settings),
             AbstractBlock.Settings.copy(Blocks.OAK_WALL_HANGING_SIGN)
     );
 

@@ -7,6 +7,8 @@ import net.minecraft.block.jukebox.JukeboxSong;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.sound.MusicSound;
+import net.minecraft.sound.MusicType;
 import net.minecraft.sound.SoundEvent;
 
 import static com.farestr06.api.sound.SoundHelper.makeEvent;
@@ -31,6 +33,9 @@ public class YavpmSounds {
     public static final RegistryEntry<SoundEvent> ITEM_COPPER_HORN_SOUND_BASS_0 = makeReferenceEvent(makeId("item.copper_horn.sound.bass.0"));
     public static final RegistryEntry<SoundEvent> ITEM_COPPER_HORN_SOUND_HARMONY_0 = makeReferenceEvent(makeId("item.copper_horn.sound.harmony.0"));
     public static final RegistryEntry<SoundEvent> ITEM_COPPER_HORN_SOUND_MELODY_0 = makeReferenceEvent(makeId("item.copper_horn.sound.melody.0"));
+
+    public static final RegistryEntry.Reference<SoundEvent> MUSIC_CAVE = makeReferenceEvent(makeId("music.cave"));
+    public static final MusicSound CAVE = MusicType.createIngameMusic(MUSIC_CAVE);
 
     public static final RegistryKey<JukeboxSong> MAGNETIC_CIRCUIT_KEY = RegistryKey.of(
             RegistryKeys.JUKEBOX_SONG,
