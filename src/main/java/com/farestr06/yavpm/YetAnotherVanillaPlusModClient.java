@@ -19,6 +19,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.block.StemBlock;
 import net.minecraft.client.color.world.BiomeColors;
 import net.minecraft.client.render.BlockRenderLayer;
+import net.minecraft.client.render.entity.model.CowEntityModel;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.ColorHelper;
 import net.minecraft.world.biome.FoliageColors;
@@ -87,6 +88,7 @@ public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
         EntityRendererRegistry.register(YavpmEntities.TANUKI, TanukiEntityRenderer::new);
 
         EntityModelLayerRegistry.registerModelLayer(YavpmModelLayers.TANUKI, TanukiEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(YavpmModelLayers.TANUKI_BABY, () -> TanukiEntityModel.getTexturedModelData().transform(TanukiEntityModel.BABY_TRANSFORMER));
         EntityModelLayerRegistry.registerModelLayer(YavpmModelLayers.SUNBURN, SunburnEntityModel::getTexturedModelData);
 
         TerraformBoatClientHelper.registerModelLayers(YavpmItems.APPLE_BOAT_ID);

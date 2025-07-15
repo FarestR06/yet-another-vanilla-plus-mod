@@ -3,6 +3,7 @@ package com.farestr06.yavpm.entity.mob.client;
 import com.farestr06.yavpm.entity.mob.CarbonfowlEntity;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.model.BabyModelPair;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.MobEntityRenderer;
@@ -18,9 +19,13 @@ import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 @Environment(EnvType.CLIENT)
 public class CarbonfowlEntityRenderer extends MobEntityRenderer<CarbonfowlEntity, ChickenEntityRenderState, ChickenEntityModel> {
     private static final Identifier TEXTURE = makeId("textures/entity/carbonfowl.png");
+    private final BabyModelPair<ChickenEntityModel> babyModelPair;
 
     public CarbonfowlEntityRenderer(EntityRendererFactory.Context context) {
         super(context, new ChickenEntityModel(context.getPart(EntityModelLayers.CHICKEN)), 0.3f);
+        this.babyModelPair = new BabyModelPair<>(
+                new ChickenEntityModel(context.getPart(EntityModelLayers.CHICKEN)), new ChickenEntityModel(context.getPart(EntityModelLayers.CHICKEN_BABY))
+        );
     }
 
     @Override
@@ -35,13 +40,7 @@ public class CarbonfowlEntityRenderer extends MobEntityRenderer<CarbonfowlEntity
 
     @Override
     public void render(ChickenEntityRenderState renderState, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
-        if (renderState.baby) {
-            matrixStack.scale(0.5f, 0.5f, 0.5f);
-        } else {
-            matrixStack.scale(1f, 1f, 1f);
-        }
-
-        super.render(renderState, matrixStack, vertexConsumerProvider, i);
+        this.model = babyModelPair.get(renderState.baby);
     }
 
     @Override

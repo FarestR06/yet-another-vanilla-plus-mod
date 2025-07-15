@@ -10,6 +10,11 @@ public class YavpmModelLayers {
             "main"
     );
 
+    public static final EntityModelLayer TANUKI_BABY = new EntityModelLayer(
+            makeId("tanuki_baby"),
+            "main"
+    );
+
     public static final EntityModelLayer SUNBURN = new EntityModelLayer(
             makeId("sunburn"),
             "main"
