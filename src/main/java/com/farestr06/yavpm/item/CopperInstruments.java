@@ -1,7 +1,7 @@
 package com.farestr06.yavpm.item;
 
 import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
-import com.farestr06.yavpm.item.component.CopperInstrument;
+import com.farestr06.yavpm.component.CopperInstrument;
 import com.farestr06.yavpm.item.custom.CopperHornItem;
 import com.farestr06.yavpm.util.YavpmSounds;
 import net.minecraft.registry.entry.RegistryEntry;

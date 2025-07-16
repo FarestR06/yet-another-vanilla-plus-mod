@@ -26,10 +26,10 @@ public class MoongusFungusFeatureRenderer extends FeatureRenderer<MoongusEntityR
     public void render(
             MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, MoongusEntityRenderState renderState, float f, float g
     ) {
-        if (!renderState.baby && !renderState.sheared) {
+        if (!renderState.baby) {
             boolean bl = renderState.hasOutline && renderState.invisible;
             if (!renderState.invisible || bl) {
-                BlockState blockState = renderState.type.getFungusState();
+                BlockState blockState = renderState.sheared ? Blocks.AIR.getDefaultState() : renderState.type.getFungusState();
                 int j = LivingEntityRenderer.getOverlay(renderState, 0.0F);
                 BlockStateModel bakedModel = this.blockRenderManager.getModel(blockState);
                 matrixStack.push();

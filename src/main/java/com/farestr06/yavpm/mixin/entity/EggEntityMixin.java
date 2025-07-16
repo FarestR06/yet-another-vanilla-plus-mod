@@ -1,7 +1,7 @@
 package com.farestr06.yavpm.mixin.entity;
 
 import com.farestr06.yavpm.entity.YavpmEntities;
-import com.farestr06.yavpm.item.component.YavpmDataComponentTypes;
+import com.farestr06.yavpm.component.YavpmDataComponentTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;

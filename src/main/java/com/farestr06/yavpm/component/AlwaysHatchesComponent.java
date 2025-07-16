@@ -1,4 +1,4 @@
-package com.farestr06.yavpm.item.component;
+package com.farestr06.yavpm.component;
 
 import com.mojang.serialization.Codec;
 import net.minecraft.component.ComponentsAccess;

@@ -13,7 +13,7 @@ import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.ItemGroupHelper;
 import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.item.YavpmPotions;
-import com.farestr06.yavpm.item.component.YavpmDataComponentTypes;
+import com.farestr06.yavpm.component.YavpmDataComponentTypes;
 import com.farestr06.yavpm.item.enchantment.condition.YavpmLootConditions;
 import com.farestr06.yavpm.item.enchantment.effect.YavpmEnchantmentEffects;
 import com.farestr06.yavpm.misc.YavpmHelpCommand;

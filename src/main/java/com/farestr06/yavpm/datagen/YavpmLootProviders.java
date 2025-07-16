@@ -2,12 +2,14 @@ package com.farestr06.yavpm.datagen;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.block.custom.crop.*;
+import com.farestr06.yavpm.component.YavpmDataComponentTypes;
 import com.farestr06.yavpm.entity.YavpmEntities;
+import com.farestr06.yavpm.entity.mob.MoongusEntity;
 import com.farestr06.yavpm.item.YavpmItems;
+import com.farestr06.yavpm.util.YavpmLootTables;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableProvider;
-import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.CropBlock;
 import net.minecraft.block.SweetBerryBushBlock;
@@ -19,15 +21,17 @@ import net.minecraft.loot.LootTable;
 import net.minecraft.loot.condition.*;
 import net.minecraft.loot.context.LootContext;
 import net.minecraft.loot.context.LootContextTypes;
+import net.minecraft.loot.entry.AlternativeEntry;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.entry.LeafEntry;
-import net.minecraft.loot.entry.LootPoolEntry;
+import net.minecraft.loot.entry.LootTableEntry;
 import net.minecraft.loot.function.*;
 import net.minecraft.loot.operator.BoundedIntUnaryOperator;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
 import net.minecraft.loot.provider.number.UniformLootNumberProvider;
 import net.minecraft.predicate.NumberRange;
 import net.minecraft.predicate.StatePredicate;
+import net.minecraft.predicate.component.ComponentMapPredicate;
 import net.minecraft.predicate.component.ComponentPredicateTypes;
 import net.minecraft.predicate.component.ComponentsPredicate;
 import net.minecraft.predicate.entity.EntityEquipmentPredicate;
@@ -593,6 +597,60 @@ public class YavpmLootProviders {
                                     )
                     )
             );
+        }
+    }
+
+    public static class Misc {
+        public static class Shearing extends SimpleFabricLootTableProvider {
+            final RegistryWrapper.WrapperLookup lookup;
+
+            public Shearing(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+                super(output, registryLookup, LootContextTypes.SHEARING);
+                lookup = registryLookup.join();
+            }
+
+            @Override
+            public void accept(BiConsumer<RegistryKey<LootTable>, LootTable.Builder> lootTableBiConsumer) {
+                lootTableBiConsumer.accept(
+                        YavpmLootTables.Shearing.MOONGUS,
+                        LootTable.builder()
+                                .pool(
+                                        LootPool.builder()
+                                                .with(
+                                                        AlternativeEntry.builder(
+                                                                LootTableEntry.builder(YavpmLootTables.Shearing.MOONGUS_CRIMSON)
+                                                                        .conditionally(
+                                                                                EntityPropertiesLootCondition.builder(
+                                                                                        LootContext.EntityTarget.THIS,
+                                                                                        EntityPredicate.Builder.create()
+                                                                                                .components(
+                                                                                                        ComponentsPredicate.Builder.create().exact(ComponentMapPredicate.of(YavpmDataComponentTypes.MOONGUS_VARIANT, MoongusEntity.Variant.CRIMSON)).build()
+                                                                                                )
+                                                                                )
+                                                                        ),
+                                                                LootTableEntry.builder(YavpmLootTables.Shearing.MOONGUS_WARPED)
+                                                                        .conditionally(
+                                                                                EntityPropertiesLootCondition.builder(
+                                                                                        LootContext.EntityTarget.THIS,
+                                                                                        EntityPredicate.Builder.create()
+                                                                                                .components(
+                                                                                                        ComponentsPredicate.Builder.create().exact(ComponentMapPredicate.of(YavpmDataComponentTypes.MOONGUS_VARIANT, MoongusEntity.Variant.WARPED)).build()
+                                                                                                )
+                                                                                )
+                                                                        )
+                                                        )
+                                                )
+                                )
+                );
+                lootTableBiConsumer.accept(
+                        YavpmLootTables.Shearing.MOONGUS_CRIMSON,
+                        LootTable.builder().pool(LootPool.builder().rolls(ConstantLootNumberProvider.create(5.0F)).with(ItemEntry.builder(Items.CRIMSON_FUNGUS)))
+                );
+                lootTableBiConsumer.accept(
+                        YavpmLootTables.Shearing.MOONGUS_WARPED,
+                        LootTable.builder().pool(LootPool.builder().rolls(ConstantLootNumberProvider.create(5.0F)).with(ItemEntry.builder(Items.WARPED_FUNGUS)))
+                );
+            }
         }
     }
 }

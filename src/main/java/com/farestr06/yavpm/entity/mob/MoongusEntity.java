@@ -3,11 +3,11 @@ package com.farestr06.yavpm.entity.mob;
 import com.farestr06.yavpm.entity.YavpmDamageTypes;
 import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.item.YavpmPotions;
+import com.farestr06.yavpm.util.YavpmLootTables;
 import com.farestr06.yavpm.util.YavpmSounds;
 import com.farestr06.yavpm.util.YavpmTags;
 import com.mojang.serialization.Codec;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.component.type.PotionContentsComponent;
@@ -181,15 +181,6 @@ public class MoongusEntity extends CowEntity implements Shearable {
         return super.interactMob(player, hand);
     }
 
-
-    protected Block getMushroom() {
-        if (this.getMoongusVariant() == Variant.CRIMSON) {
-            return Blocks.CRIMSON_FUNGUS;
-        } else {
-            return Blocks.WARPED_FUNGUS;
-        }
-    }
-
     public boolean isSheared() {
         return isSheared;
     }
@@ -198,10 +189,11 @@ public class MoongusEntity extends CowEntity implements Shearable {
     public void sheared(ServerWorld world, SoundCategory shearedSoundCategory, ItemStack shears) {
         this.getWorld().playSoundFromEntity(null, this, YavpmSounds.ENTITY_MOONGUS_SHEAR, shearedSoundCategory, 1.0F, 1.0F);
         this.isSheared = true;
-        for (int i = 0; i < 5; i++) {
-            this.getWorld()
-                    .spawnEntity(new ItemEntity(this.getWorld(), this.getX(), this.getBodyY(1.0), this.getZ(), new ItemStack(this.getMushroom())));
-        }
+        this.forEachShearedItem(world, YavpmLootTables.Shearing.MOONGUS, shears, (server, stack) -> {
+            for (int i = 0; i < stack.getCount(); i++) {
+                server.spawnEntity(new ItemEntity(this.getWorld(), this.getX(), this.getBodyY(1.0), this.getZ(), stack.copyWithCount(1)));
+            }
+        });
     }
 
     @Override

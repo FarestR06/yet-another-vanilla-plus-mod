@@ -1,7 +1,7 @@
 package com.farestr06.yavpm.item.custom;
 
-import com.farestr06.yavpm.item.component.CopperInstrument;
-import com.farestr06.yavpm.item.component.YavpmDataComponentTypes;
+import com.farestr06.yavpm.component.CopperInstrument;
+import com.farestr06.yavpm.component.YavpmDataComponentTypes;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -150,6 +150,6 @@ public class CopperHornItem extends Item {
     private enum TootResult {
         BASS,
         HARMONY,
-        MELODY;
+        MELODY
     }
 }

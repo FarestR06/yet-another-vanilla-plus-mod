@@ -4,7 +4,7 @@ import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.fluid.YavpmFluids;
-import com.farestr06.yavpm.item.component.YavpmDataComponentTypes;
+import com.farestr06.yavpm.component.YavpmDataComponentTypes;
 import com.farestr06.yavpm.item.custom.*;
 import com.farestr06.yavpm.util.YavpmSounds;
 import com.terraformersmc.terraform.boat.api.item.TerraformBoatItemHelper;

@@ -1,6 +1,6 @@
 package com.farestr06.yavpm.mixin.item;
 
-import com.farestr06.yavpm.item.component.YavpmDataComponentTypes;
+import com.farestr06.yavpm.component.YavpmDataComponentTypes;
 import net.minecraft.component.type.TooltipDisplayComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -13,7 +13,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.List;
 import java.util.function.Consumer;
 
 @Mixin(Item.class)

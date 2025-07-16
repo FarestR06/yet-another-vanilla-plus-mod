@@ -1,0 +1,46 @@
+{
+  "type": "minecraft:shearing",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:alternatives",
+          "children": [
+            {
+              "type": "minecraft:loot_table",
+              "conditions": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "components": {
+                      "yavpm:moongus/variant": "crimson"
+                    }
+                  }
+                }
+              ],
+              "value": "yavpm:shearing/moongus/crimson"
+            },
+            {
+              "type": "minecraft:loot_table",
+              "conditions": [
+                {
+                  "condition": "minecraft:entity_properties",
+                  "entity": "this",
+                  "predicate": {
+                    "components": {
+                      "yavpm:moongus/variant": "warped"
+                    }
+                  }
+                }
+              ],
+              "value": "yavpm:shearing/moongus/warped"
+            }
+          ]
+        }
+      ],
+      "rolls": 1.0
+    }
+  ]
+}

@@ -1,6 +1,7 @@
-package com.farestr06.yavpm.item.component;
+package com.farestr06.yavpm.component;
 
 import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
+import com.farestr06.yavpm.entity.mob.MoongusEntity;
 import net.minecraft.component.ComponentType;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.registry.Registries;
@@ -18,6 +19,12 @@ public class YavpmDataComponentTypes {
     );
     public static final ComponentType<AlwaysHatchesComponent> ALWAYS_HATCHES = register("always_hatches", builder -> builder.codec(AlwaysHatchesComponent.CODEC).packetCodec(PacketCodec.unit(AlwaysHatchesComponent.INSTANCE)));
     public static final ComponentType<Unit> HATCHES_CARBONFOWL = register("hatches_carbonfowl", builder -> builder.codec(Unit.CODEC).packetCodec(PacketCodec.unit(Unit.INSTANCE)));
+
+    public static final ComponentType<MoongusEntity.Variant> MOONGUS_VARIANT = register(
+            "moongus/variant", builder -> builder
+                    .codec(MoongusEntity.Variant.CODEC)
+                    .packetCodec(MoongusEntity.Variant.PACKET_CODEC)
+    );
 
     private static <T> ComponentType<T> register(String id, UnaryOperator<ComponentType.Builder<T>> builderOperator) {
         return Registry.register(Registries.DATA_COMPONENT_TYPE, makeId(id), builderOperator.apply(ComponentType.builder()).build());

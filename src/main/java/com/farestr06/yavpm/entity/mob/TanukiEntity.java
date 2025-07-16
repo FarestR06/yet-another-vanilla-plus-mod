@@ -59,13 +59,13 @@ public class TanukiEntity extends AnimalEntity {
         if (this.getWorld() instanceof ServerWorld world) {
             if (world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
                 if (
-                        !this.getWorld().isClient && this.isAlive() && !this.isBaby() && --this.tryTransformTime <= 0
+                        this.isAlive() && !this.isBaby() && --this.tryTransformTime <= 0
                                 && !this.hasCustomName() && !this.isAiDisabled() && !this.isInvulnerable()
                 ) {
                     if (this.getRandom().nextFloat() <= HANDLER.instance().tanukiTransformChance) {
                         transform();
                     } else {
-                        this.tryTransformTime = this.random.nextInt(4000) + 2000;
+                        this.tryTransformTime = this.random.nextInt(HANDLER.instance().tanukiRandomTransformDelay) + HANDLER.instance().tanukiBaseTransformDelay;
                     }
                 }
             }

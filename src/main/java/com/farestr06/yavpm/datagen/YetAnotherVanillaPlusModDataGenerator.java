@@ -17,12 +17,18 @@ public class YetAnotherVanillaPlusModDataGenerator implements DataGeneratorEntry
 		pack.addProvider(YavpmLangProvider::new);
 		pack.addProvider(YavpmModelProvider::new);
 		pack.addProvider(YavpmRecipeProvider::new);
+
+		// Loot Tables
 		pack.addProvider(YavpmLootProviders.Block::new);
 		pack.addProvider(YavpmLootProviders.Entity::new);
+		pack.addProvider(YavpmLootProviders.Misc.Shearing::new);
+
+		// Tags
 		pack.addProvider(YavpmTagProviders.Item::new);
 		pack.addProvider(YavpmTagProviders.Block::new);
 		pack.addProvider(YavpmTagProviders.Fluid::new);
 		pack.addProvider(YavpmTagProviders.EntityType::new);
+
 		pack.addProvider(YavpmAdvancementProvider::new);
 		pack.addProvider(YavpmMiscDataGenerator::new);
 		pack.addProvider(YavpmWorldGenerator::new);
