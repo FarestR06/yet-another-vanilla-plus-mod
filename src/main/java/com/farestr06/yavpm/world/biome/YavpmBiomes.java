@@ -3,224 +3,223 @@ package com.farestr06.yavpm.world.biome;
 import com.farestr06.yavpm.util.YavpmSounds;
 import com.farestr06.yavpm.world.feature.placed.YavpmMiscPlacedFeatures;
 import com.farestr06.yavpm.world.feature.placed.YavpmVegetationPlacedFeatures;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnGroup;
-import net.minecraft.registry.Registerable;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.sound.BiomeAdditionsSound;
-import net.minecraft.sound.BiomeMoodSound;
-import net.minecraft.sound.MusicType;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.world.biome.*;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.feature.DefaultBiomeFeatures;
-import net.minecraft.world.gen.feature.EndPlacedFeatures;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BiomeDefaultFeatures;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.data.worldgen.biome.OverworldBiomes;
+import net.minecraft.data.worldgen.placement.EndPlacements;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.sounds.Musics;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.level.biome.*;
+import net.minecraft.world.level.levelgen.GenerationStep;
 
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmBiomes {
 
-    public static void bootstrap(Registerable<Biome> context) {
+    public static void bootstrap(BootstrapContext<Biome> context) {
         Overworld.bootstrapOverworld(context);
         End.bootstrapEnd(context);
     }
 
-    private static RegistryKey<Biome> of(String id) {
-        return RegistryKey.of(RegistryKeys.BIOME, makeId(id));
+    private static ResourceKey<Biome> of(String id) {
+        return ResourceKey.create(Registries.BIOME, makeId(id));
     }
 
     public static class Overworld {
-        public static final RegistryKey<Biome> ORCHARD_PEAKS = of("orchard_peaks");
-        public static final RegistryKey<Biome> WITHERED_SCAR = of("withered_scar");
-        public static final RegistryKey<Biome> EBONY_FOREST = of("ebony_forest");
+        public static final ResourceKey<Biome> ORCHARD_PEAKS = of("orchard_peaks");
+        public static final ResourceKey<Biome> WITHERED_SCAR = of("withered_scar");
+        public static final ResourceKey<Biome> EBONY_FOREST = of("ebony_forest");
 
 
-        protected static void bootstrapOverworld(Registerable<Biome> context) {
+        protected static void bootstrapOverworld(BootstrapContext<Biome> context) {
             context.register(ORCHARD_PEAKS, makeOrchardGrove(context));
             context.register(WITHERED_SCAR, makeWitheredScar(context));
             context.register(EBONY_FOREST, makeEbonyForest(context));
         }
 
-        public static void globalOverworldGeneration(GenerationSettings.LookupBackedBuilder builder) {
-            DefaultBiomeFeatures.addLandCarvers(builder);
-            DefaultBiomeFeatures.addAmethystGeodes(builder);
-            DefaultBiomeFeatures.addDungeons(builder);
-            DefaultBiomeFeatures.addMineables(builder);
-            DefaultBiomeFeatures.addSprings(builder);
-            DefaultBiomeFeatures.addFrozenTopLayer(builder);
+        public static void globalOverworldGeneration(BiomeGenerationSettings.Builder builder) {
+            BiomeDefaultFeatures.addDefaultCarversAndLakes(builder);
+            BiomeDefaultFeatures.addDefaultCrystalFormations(builder);
+            BiomeDefaultFeatures.addDefaultMonsterRoom(builder);
+            BiomeDefaultFeatures.addDefaultUndergroundVariety(builder);
+            BiomeDefaultFeatures.addDefaultSprings(builder);
+            BiomeDefaultFeatures.addSurfaceFreezing(builder);
         }
 
-        private static Biome makeOrchardGrove(Registerable<Biome> context) {
-            SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
+        private static Biome makeOrchardGrove(BootstrapContext<Biome> context) {
+            MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
 
-            DefaultBiomeFeatures.addFarmAnimals(spawnBuilder);
-            DefaultBiomeFeatures.addBatsAndMonsters(spawnBuilder);
+            BiomeDefaultFeatures.farmAnimals(spawnBuilder);
+            BiomeDefaultFeatures.commonSpawns(spawnBuilder);
 
-            GenerationSettings.LookupBackedBuilder biomeBuilder =
-                    new GenerationSettings.LookupBackedBuilder(context.getRegistryLookup(RegistryKeys.PLACED_FEATURE),
-                            context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER));
+            BiomeGenerationSettings.Builder biomeBuilder =
+                    new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE),
+                            context.lookup(Registries.CONFIGURED_CARVER));
 
             globalOverworldGeneration(biomeBuilder);
 
-            DefaultBiomeFeatures.addDefaultOres(biomeBuilder);
-            DefaultBiomeFeatures.addEmeraldOre(biomeBuilder);
+            BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+            BiomeDefaultFeatures.addExtraEmeralds(biomeBuilder);
 
-            DefaultBiomeFeatures.addInfestedStone(biomeBuilder);
+            BiomeDefaultFeatures.addInfestedStone(biomeBuilder);
 
-            biomeBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, YavpmVegetationPlacedFeatures.APPLE_ORCHARD_GROVE_VEGETAION_PLACED);
-            DefaultBiomeFeatures.addDefaultFlowers(biomeBuilder);
-            DefaultBiomeFeatures.addDefaultGrass(biomeBuilder);
-            DefaultBiomeFeatures.addDefaultMushrooms(biomeBuilder);
-            DefaultBiomeFeatures.addDefaultVegetation(biomeBuilder, false);
+            biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, YavpmVegetationPlacedFeatures.APPLE_ORCHARD_GROVE_VEGETAION_PLACED);
+            BiomeDefaultFeatures.addDefaultFlowers(biomeBuilder);
+            BiomeDefaultFeatures.addDefaultGrass(biomeBuilder);
+            BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
+            BiomeDefaultFeatures.addDefaultExtraVegetation(biomeBuilder, false);
 
-            return new Biome.Builder()
-                    .precipitation(true)
+            return new Biome.BiomeBuilder()
+                    .hasPrecipitation(true)
                     .downfall(0.2f)
                     .temperature(0.3f)
                     .generationSettings(biomeBuilder.build())
-                    .spawnSettings(spawnBuilder.build())
-                    .effects((new BiomeEffects.Builder())
+                    .mobSpawnSettings(spawnBuilder.build())
+                    .specialEffects((new BiomeSpecialEffects.Builder())
                             .skyColor(8233727)
                             .fogColor(12638463)
                             .waterColor(4159204)
                             .waterFogColor(329011)
-                            .moodSound(BiomeMoodSound.CAVE)
-                            .music(MusicType.GAME).build())
+                            .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                            .backgroundMusic(Musics.GAME).build())
                     .build();
         }
 
-        private static Biome makeEbonyForest(Registerable<Biome> context) {
-            SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
+        private static Biome makeEbonyForest(BootstrapContext<Biome> context) {
+            MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
 
-            DefaultBiomeFeatures.addFarmAnimals(spawnBuilder);
-            DefaultBiomeFeatures.addBatsAndMonsters(spawnBuilder);
+            BiomeDefaultFeatures.farmAnimals(spawnBuilder);
+            BiomeDefaultFeatures.commonSpawns(spawnBuilder);
 
 
-            GenerationSettings.LookupBackedBuilder biomeBuilder =
-                    new GenerationSettings.LookupBackedBuilder(context.getRegistryLookup(RegistryKeys.PLACED_FEATURE),
-                            context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER));
+            BiomeGenerationSettings.Builder biomeBuilder =
+                    new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE),
+                            context.lookup(Registries.CONFIGURED_CARVER));
 
             globalOverworldGeneration(biomeBuilder);
 
-            DefaultBiomeFeatures.addDefaultOres(biomeBuilder);
+            BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
 
-            biomeBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, YavpmVegetationPlacedFeatures.PERSIMMON_VEGETAION_PLACED);
-            DefaultBiomeFeatures.addDefaultFlowers(biomeBuilder);
-            DefaultBiomeFeatures.addDefaultGrass(biomeBuilder);
-            DefaultBiomeFeatures.addDefaultMushrooms(biomeBuilder);
-            DefaultBiomeFeatures.addDefaultVegetation(biomeBuilder, true);
+            biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, YavpmVegetationPlacedFeatures.PERSIMMON_VEGETAION_PLACED);
+            BiomeDefaultFeatures.addDefaultFlowers(biomeBuilder);
+            BiomeDefaultFeatures.addDefaultGrass(biomeBuilder);
+            BiomeDefaultFeatures.addDefaultMushrooms(biomeBuilder);
+            BiomeDefaultFeatures.addDefaultExtraVegetation(biomeBuilder, true);
 
-            return new Biome.Builder()
-                    .precipitation(true)
+            return new Biome.BiomeBuilder()
+                    .hasPrecipitation(true)
                     .downfall(0.8f)
                     .temperature(0.7f)
                     .generationSettings(biomeBuilder.build())
-                    .spawnSettings(spawnBuilder.build())
-                    .effects(
-                            new BiomeEffects.Builder()
+                    .mobSpawnSettings(spawnBuilder.build())
+                    .specialEffects(
+                            new BiomeSpecialEffects.Builder()
                                     .waterColor(4159204)
                                     .waterFogColor(329011)
                                     .fogColor(12638463)
-                                    .skyColor(OverworldBiomeCreator.getSkyColor(0.7f))
-                                    .grassColorModifier(BiomeEffects.GrassColorModifier.DARK_FOREST)
-                                    .moodSound(BiomeMoodSound.CAVE)
-                                    .music(MusicType.GAME)
+                                    .skyColor(OverworldBiomes.calculateSkyColor(0.7f))
+                                    .grassColorModifier(BiomeSpecialEffects.GrassColorModifier.DARK_FOREST)
+                                    .ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS)
+                                    .backgroundMusic(Musics.GAME)
                                     .build()
                     ).build();
         }
 
-        private static Biome makeWitheredScar(Registerable<Biome> context) {
-            SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
+        private static Biome makeWitheredScar(BootstrapContext<Biome> context) {
+            MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
 
             addWitheredScarFarmAnimals(spawnBuilder);
             addWitheredScarMonsters(spawnBuilder);
 
-            GenerationSettings.LookupBackedBuilder biomeBuilder =
-                    new GenerationSettings.LookupBackedBuilder(context.getRegistryLookup(RegistryKeys.PLACED_FEATURE),
-                            context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER));
+            BiomeGenerationSettings.Builder biomeBuilder =
+                    new BiomeGenerationSettings.Builder(context.lookup(Registries.PLACED_FEATURE),
+                            context.lookup(Registries.CONFIGURED_CARVER));
 
             globalOverworldGeneration(biomeBuilder);
 
-            DefaultBiomeFeatures.addDefaultOres(biomeBuilder);
-            DefaultBiomeFeatures.addExtraGoldOre(biomeBuilder);
+            BiomeDefaultFeatures.addDefaultOres(biomeBuilder);
+            BiomeDefaultFeatures.addExtraGold(biomeBuilder);
 
-            biomeBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, YavpmMiscPlacedFeatures.PATCH_WITHER_ROSE_PLACED);
-            DefaultBiomeFeatures.addDefaultGrass(biomeBuilder);
+            biomeBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, YavpmMiscPlacedFeatures.PATCH_WITHER_ROSE_PLACED);
+            BiomeDefaultFeatures.addDefaultGrass(biomeBuilder);
 
 
-            return new Biome.Builder()
-                    .precipitation(false)
+            return new Biome.BiomeBuilder()
+                    .hasPrecipitation(false)
                     .temperature(2.0F)
                     .downfall(0.0F)
-                    .effects(
-                            new BiomeEffects.Builder()
+                    .specialEffects(
+                            new BiomeSpecialEffects.Builder()
                                     .waterColor(4159204)
                                     .waterFogColor(329011)
                                     .fogColor(3344392)
-                                    .skyColor(OverworldBiomeCreator.getSkyColor(2.0F))
-                                    .grassColor(0x2A3114)
-                                    .foliageColor(0x999999)
-                                    .loopSound(SoundEvents.AMBIENT_NETHER_WASTES_LOOP)
-                                    .moodSound(new BiomeMoodSound(SoundEvents.AMBIENT_NETHER_WASTES_MOOD, 6000, 8, 2.0))
-                                    .additionsSound(new BiomeAdditionsSound(SoundEvents.AMBIENT_NETHER_WASTES_ADDITIONS, 0.0111))
-                                    .music(MusicType.createIngameMusic(YavpmSounds.MUSIC_OVERWORLD_WITHERED_SCAR))
+                                    .skyColor(OverworldBiomes.calculateSkyColor(2.0F))
+                                    .grassColorOverride(0x2A3114)
+                                    .foliageColorOverride(0x999999)
+                                    .ambientLoopSound(SoundEvents.AMBIENT_NETHER_WASTES_LOOP)
+                                    .ambientMoodSound(new AmbientMoodSettings(SoundEvents.AMBIENT_NETHER_WASTES_MOOD, 6000, 8, 2.0))
+                                    .ambientAdditionsSound(new AmbientAdditionsSettings(SoundEvents.AMBIENT_NETHER_WASTES_ADDITIONS, 0.0111))
+                                    .backgroundMusic(Musics.createGameMusic(YavpmSounds.MUSIC_OVERWORLD_WITHERED_SCAR))
                                     .build()
                     )
-                    .spawnSettings(spawnBuilder.build())
+                    .mobSpawnSettings(spawnBuilder.build())
                     .generationSettings(biomeBuilder.build())
                     .build();
         }
 
-        private static void addWitheredScarMonsters(SpawnSettings.Builder builder) {
-            DefaultBiomeFeatures.addCaveMobs(builder);
-            builder.spawn(SpawnGroup.MONSTER, 100, new SpawnSettings.SpawnEntry(EntityType.SPIDER, 4, 4));
-            builder.spawn(SpawnGroup.MONSTER, 30, new SpawnSettings.SpawnEntry(EntityType.ZOMBIE, 4, 4));
-            builder.spawn(SpawnGroup.MONSTER, 70, new SpawnSettings.SpawnEntry(EntityType.ZOMBIFIED_PIGLIN, 4, 4));
-            builder.spawn(SpawnGroup.MONSTER, 30, new SpawnSettings.SpawnEntry(EntityType.SKELETON, 4, 4));
-            builder.spawn(SpawnGroup.MONSTER, 30, new SpawnSettings.SpawnEntry(EntityType.WITHER_SKELETON, 4, 4));
-            builder.spawn(SpawnGroup.MONSTER, 100, new SpawnSettings.SpawnEntry(EntityType.CREEPER, 4, 4));
-            builder.spawn(SpawnGroup.MONSTER, 100, new SpawnSettings.SpawnEntry(EntityType.SLIME, 4, 4));
-            builder.spawn(SpawnGroup.MONSTER, 10, new SpawnSettings.SpawnEntry(EntityType.ENDERMAN, 1, 4));
-            builder.spawn(SpawnGroup.MONSTER, 5, new SpawnSettings.SpawnEntry(EntityType.WITCH, 1, 1));
+        private static void addWitheredScarMonsters(MobSpawnSettings.Builder builder) {
+            BiomeDefaultFeatures.caveSpawns(builder);
+            builder.addSpawn(MobCategory.MONSTER, 100, new MobSpawnSettings.SpawnerData(EntityType.SPIDER, 4, 4));
+            builder.addSpawn(MobCategory.MONSTER, 30, new MobSpawnSettings.SpawnerData(EntityType.ZOMBIE, 4, 4));
+            builder.addSpawn(MobCategory.MONSTER, 70, new MobSpawnSettings.SpawnerData(EntityType.ZOMBIFIED_PIGLIN, 4, 4));
+            builder.addSpawn(MobCategory.MONSTER, 30, new MobSpawnSettings.SpawnerData(EntityType.SKELETON, 4, 4));
+            builder.addSpawn(MobCategory.MONSTER, 30, new MobSpawnSettings.SpawnerData(EntityType.WITHER_SKELETON, 4, 4));
+            builder.addSpawn(MobCategory.MONSTER, 100, new MobSpawnSettings.SpawnerData(EntityType.CREEPER, 4, 4));
+            builder.addSpawn(MobCategory.MONSTER, 100, new MobSpawnSettings.SpawnerData(EntityType.SLIME, 4, 4));
+            builder.addSpawn(MobCategory.MONSTER, 10, new MobSpawnSettings.SpawnerData(EntityType.ENDERMAN, 1, 4));
+            builder.addSpawn(MobCategory.MONSTER, 5, new MobSpawnSettings.SpawnerData(EntityType.WITCH, 1, 1));
             }
 
-        private static void addWitheredScarFarmAnimals(SpawnSettings.Builder builder) {
-            builder.spawn(SpawnGroup.CREATURE, 12, new SpawnSettings.SpawnEntry(EntityType.SHEEP, 1, 1));
-            builder.spawn(SpawnGroup.CREATURE, 10, new SpawnSettings.SpawnEntry(EntityType.PIG, 1, 1));
-            builder.spawn(SpawnGroup.CREATURE, 10, new SpawnSettings.SpawnEntry(EntityType.CHICKEN, 1, 1));
-            builder.spawn(SpawnGroup.CREATURE, 8, new SpawnSettings.SpawnEntry(EntityType.COW, 1, 1));
+        private static void addWitheredScarFarmAnimals(MobSpawnSettings.Builder builder) {
+            builder.addSpawn(MobCategory.CREATURE, 12, new MobSpawnSettings.SpawnerData(EntityType.SHEEP, 1, 1));
+            builder.addSpawn(MobCategory.CREATURE, 10, new MobSpawnSettings.SpawnerData(EntityType.PIG, 1, 1));
+            builder.addSpawn(MobCategory.CREATURE, 10, new MobSpawnSettings.SpawnerData(EntityType.CHICKEN, 1, 1));
+            builder.addSpawn(MobCategory.CREATURE, 8, new MobSpawnSettings.SpawnerData(EntityType.COW, 1, 1));
         }
     }
 
     public static class End {
-        public static final RegistryKey<Biome> END_OASIS = of("end_oasis");
+        public static final ResourceKey<Biome> END_OASIS = of("end_oasis");
 
-        public static void bootstrapEnd(Registerable<Biome> context) {
+        public static void bootstrapEnd(BootstrapContext<Biome> context) {
             context.register(END_OASIS, createEndOasis(context));
         }
 
-        private static Biome createEndBiome(GenerationSettings.LookupBackedBuilder builder) {
-            SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
-            DefaultBiomeFeatures.addEndMobs(spawnBuilder);
-            return new Biome.Builder()
-                    .precipitation(false)
+        private static Biome createEndBiome(BiomeGenerationSettings.Builder builder) {
+            MobSpawnSettings.Builder spawnBuilder = new MobSpawnSettings.Builder();
+            BiomeDefaultFeatures.endSpawns(spawnBuilder);
+            return new Biome.BiomeBuilder()
+                    .hasPrecipitation(false)
                     .temperature(0.5F)
                     .downfall(0.5F)
-                    .effects(new BiomeEffects.Builder().waterColor(4159204).waterFogColor(329011).fogColor(10518688).skyColor(0).moodSound(BiomeMoodSound.CAVE).build())
-                    .spawnSettings(spawnBuilder.build())
+                    .specialEffects(new BiomeSpecialEffects.Builder().waterColor(4159204).waterFogColor(329011).fogColor(10518688).skyColor(0).ambientMoodSound(AmbientMoodSettings.LEGACY_CAVE_SETTINGS).build())
+                    .mobSpawnSettings(spawnBuilder.build())
                     .generationSettings(builder.build())
                     .build();
         }
 
-        private static Biome createEndOasis(Registerable<Biome> context) {
-            GenerationSettings.LookupBackedBuilder lookupBackedBuilder = new GenerationSettings.LookupBackedBuilder(
-                    context.getRegistryLookup(RegistryKeys.PLACED_FEATURE),
-                    context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER)
+        private static Biome createEndOasis(BootstrapContext<Biome> context) {
+            BiomeGenerationSettings.Builder lookupBackedBuilder = new BiomeGenerationSettings.Builder(
+                    context.lookup(Registries.PLACED_FEATURE),
+                    context.lookup(Registries.CONFIGURED_CARVER)
             );
-            lookupBackedBuilder.feature(GenerationStep.Feature.SURFACE_STRUCTURES, EndPlacedFeatures.END_GATEWAY_RETURN);
-            lookupBackedBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, YavpmVegetationPlacedFeatures.PRICKLE_VEGETAION_PLACED);
-            lookupBackedBuilder.feature(GenerationStep.Feature.VEGETAL_DECORATION, YavpmMiscPlacedFeatures.LAKE_VOID_WATER_PLACED);
+            lookupBackedBuilder.addFeature(GenerationStep.Decoration.SURFACE_STRUCTURES, EndPlacements.END_GATEWAY_RETURN);
+            lookupBackedBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, YavpmVegetationPlacedFeatures.PRICKLE_VEGETAION_PLACED);
+            lookupBackedBuilder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, YavpmMiscPlacedFeatures.LAKE_VOID_WATER_PLACED);
             return createEndBiome(lookupBackedBuilder);
         }
     }

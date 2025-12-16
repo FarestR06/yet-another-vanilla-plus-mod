@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:double_hardened_conglomerate_brick_slabs"
+        "recipe": "yavpm:double_hardened_conglomerate_brick_slabs"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:double_hardened_conglomerate_brick_slabs"
+      "yavpm:double_hardened_conglomerate_brick_slabs"
     ]
   }
 }

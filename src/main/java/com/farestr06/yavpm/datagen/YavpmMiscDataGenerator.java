@@ -2,21 +2,21 @@ package com.farestr06.yavpm.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 
 import java.util.concurrent.CompletableFuture;
 
 public class YavpmMiscDataGenerator extends FabricDynamicRegistryProvider {
 
-    public YavpmMiscDataGenerator(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+    public YavpmMiscDataGenerator(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 
     @Override
-    protected void configure(RegistryWrapper.WrapperLookup registries, Entries entries) {
-        entries.addAll(registries.getOrThrow(RegistryKeys.DAMAGE_TYPE));
-        entries.addAll(registries.getOrThrow(RegistryKeys.ENCHANTMENT));
+    protected void configure(HolderLookup.Provider registries, Entries entries) {
+        entries.addAll(registries.lookupOrThrow(Registries.DAMAGE_TYPE));
+        entries.addAll(registries.lookupOrThrow(Registries.ENCHANTMENT));
     }
 
     @Override

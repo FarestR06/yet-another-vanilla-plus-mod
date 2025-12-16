@@ -10,18 +10,18 @@ import com.farestr06.yavpm.fluid.YavpmFluids;
 import com.farestr06.yavpm.item.YavpmItems;
 import com.terraformersmc.terraform.boat.api.client.TerraformBoatClientHelper;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.minecraft.block.StemBlock;
-import net.minecraft.client.color.world.BiomeColors;
-import net.minecraft.client.render.RenderLayer;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.ColorHelper;
-import net.minecraft.world.biome.FoliageColors;
+import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
+import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.ARGB;
+import net.minecraft.world.level.FoliageColor;
+import net.minecraft.world.level.block.StemBlock;
 
 public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
     @Override
@@ -34,57 +34,57 @@ public class YetAnotherVanillaPlusModClient implements ClientModInitializer {
     private static void setUpColors() {
         ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> -2046180, YavpmBlocks.ATTACHED_CANTALOUPE_STEM);
         ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) -> {
-            int i = state.get(StemBlock.AGE);
-            return ColorHelper.getArgb(i * 32, 255 - i * 8, i * 4);
+            int i = state.getValue(StemBlock.AGE);
+            return ARGB.color(i * 32, 255 - i * 8, i * 4);
         }, YavpmBlocks.CANTALOUPE_STEM);
         ColorProviderRegistry.BLOCK.register((state, world, pos, tintIndex) ->
-                world != null && pos != null ? BiomeColors.getFoliageColor(world, pos) : FoliageColors.DEFAULT, YavpmBlocks.PERSIMMON_LEAVES);
+                world != null && pos != null ? BiomeColors.getAverageFoliageColor(world, pos) : FoliageColor.FOLIAGE_DEFAULT, YavpmBlocks.PERSIMMON_LEAVES);
     }
 
     private static void setUpBlocks() {
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.POLARIZED_GLASS, RenderLayer.getTranslucent());
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.SHOJI, RenderLayer.getTranslucent());
+        BlockRenderLayerMap.putBlock(YavpmBlocks.POLARIZED_GLASS, ChunkSectionLayer.TRANSLUCENT);
+        BlockRenderLayerMap.putBlock(YavpmBlocks.SHOJI, ChunkSectionLayer.TRANSLUCENT);
 
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.ATTACHED_CANTALOUPE_STEM, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.CANTALOUPE_STEM, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.WARPED_WART_CROP, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.BANANA_CROP, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.RICE_CROP, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PEANUT_CROP, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.MAGIC_BEAN_CROP, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.BITTER_BERRY_BUSH, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.OAK_SAPLING_CROP, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.BIRCH_SAPLING_CROP, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.CRIMSON_FUNGUS_CROP, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.WARPED_FUNGUS_CROP, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.APPLE_SAPLING, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PERSIMMON_SAPLING, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PRICKLE_SHOOT, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.APPLE_LEAVES, RenderLayer.getCutoutMipped());
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.FLOWERING_APPLE_LEAVES, RenderLayer.getCutoutMipped());
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.APPLE_DOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.APPLE_TRAPDOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PERSIMMON_LEAVES, RenderLayer.getCutoutMipped());
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PERSIMMON_DOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PERSIMMON_TRAPDOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PRICKLE_DOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PRICKLE_TRAPDOOR, RenderLayer.getCutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(YavpmBlocks.PINATA, RenderLayer.getCutout());
+        BlockRenderLayerMap.putBlock(YavpmBlocks.ATTACHED_CANTALOUPE_STEM, ChunkSectionLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(YavpmBlocks.CANTALOUPE_STEM, ChunkSectionLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(YavpmBlocks.WARPED_WART_CROP, ChunkSectionLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(YavpmBlocks.BANANA_CROP, ChunkSectionLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(YavpmBlocks.RICE_CROP, ChunkSectionLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(YavpmBlocks.PEANUT_CROP, ChunkSectionLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(YavpmBlocks.MAGIC_BEAN_CROP, ChunkSectionLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(YavpmBlocks.BITTER_BERRY_BUSH, ChunkSectionLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(YavpmBlocks.OAK_SAPLING_CROP, ChunkSectionLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(YavpmBlocks.BIRCH_SAPLING_CROP, ChunkSectionLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(YavpmBlocks.CRIMSON_FUNGUS_CROP, ChunkSectionLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(YavpmBlocks.WARPED_FUNGUS_CROP, ChunkSectionLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(YavpmBlocks.APPLE_SAPLING, ChunkSectionLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(YavpmBlocks.PERSIMMON_SAPLING, ChunkSectionLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(YavpmBlocks.PRICKLE_SHOOT, ChunkSectionLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(YavpmBlocks.APPLE_LEAVES, ChunkSectionLayer.CUTOUT_MIPPED);
+        BlockRenderLayerMap.putBlock(YavpmBlocks.FLOWERING_APPLE_LEAVES, ChunkSectionLayer.CUTOUT_MIPPED);
+        BlockRenderLayerMap.putBlock(YavpmBlocks.APPLE_DOOR, ChunkSectionLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(YavpmBlocks.APPLE_TRAPDOOR, ChunkSectionLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(YavpmBlocks.PERSIMMON_LEAVES, ChunkSectionLayer.CUTOUT_MIPPED);
+        BlockRenderLayerMap.putBlock(YavpmBlocks.PERSIMMON_DOOR, ChunkSectionLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(YavpmBlocks.PERSIMMON_TRAPDOOR, ChunkSectionLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(YavpmBlocks.PRICKLE_DOOR, ChunkSectionLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(YavpmBlocks.PRICKLE_TRAPDOOR, ChunkSectionLayer.CUTOUT);
+        BlockRenderLayerMap.putBlock(YavpmBlocks.PINATA, ChunkSectionLayer.CUTOUT);
 
         FluidRenderHandlerRegistry.INSTANCE.register(YavpmFluids.STILL_VOID_WATER, YavpmFluids.FLOWING_VOID_WATER, new SimpleFluidRenderHandler(
-                Identifier.ofVanilla("block/water_still"),
-                Identifier.ofVanilla("block/water_flow"),
+                ResourceLocation.withDefaultNamespace("block/water_still"),
+                ResourceLocation.withDefaultNamespace("block/water_flow"),
                 0x1f001f
         ));
-        BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), YavpmFluids.STILL_VOID_WATER, YavpmFluids.FLOWING_VOID_WATER);
+        BlockRenderLayerMap.putFluids(ChunkSectionLayer.TRANSLUCENT, YavpmFluids.STILL_VOID_WATER, YavpmFluids.FLOWING_VOID_WATER);
     }
 
     private static void setUpEntities() {
-        EntityRendererRegistry.register(YavpmEntities.MOONGUS, MoongusEntityRenderer::new);
-        EntityRendererRegistry.register(YavpmEntities.CARBONFOWL, CarbonfowlEntityRenderer::new);
-        EntityRendererRegistry.register(YavpmEntities.SUNBURN, SunburnEntityRenderer::new);
-        EntityRendererRegistry.register(YavpmEntities.VOID_PHANTOM, VoidPhantomEntityRenderer::new);
-        EntityRendererRegistry.register(YavpmEntities.TANUKI, TanukiEntityRenderer::new);
+        EntityRenderers.register(YavpmEntities.MOONGUS, MoongusEntityRenderer::new);
+        EntityRenderers.register(YavpmEntities.CARBONFOWL, CarbonfowlEntityRenderer::new);
+        EntityRenderers.register(YavpmEntities.SUNBURN, SunburnEntityRenderer::new);
+        EntityRenderers.register(YavpmEntities.VOID_PHANTOM, VoidPhantomEntityRenderer::new);
+        EntityRenderers.register(YavpmEntities.TANUKI, TanukiEntityRenderer::new);
 
         EntityModelLayerRegistry.registerModelLayer(YavpmModelLayers.TANUKI, TanukiEntityModel::getTexturedModelData);
         EntityModelLayerRegistry.registerModelLayer(YavpmModelLayers.SUNBURN, SunburnEntityModel::getTexturedModelData);

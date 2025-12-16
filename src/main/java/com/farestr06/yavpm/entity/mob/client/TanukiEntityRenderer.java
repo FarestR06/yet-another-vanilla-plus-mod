@@ -2,31 +2,32 @@ package com.farestr06.yavpm.entity.mob.client;
 
 import com.farestr06.yavpm.entity.mob.TanukiEntity;
 import com.farestr06.yavpm.entity.mob.client.model.TanukiEntityModel;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.MobEntityRenderer;
-import net.minecraft.client.render.entity.state.LivingEntityRenderState;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Identifier;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
+import net.minecraft.client.renderer.state.CameraRenderState;
+import net.minecraft.resources.ResourceLocation;
 
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
-public class TanukiEntityRenderer extends MobEntityRenderer<TanukiEntity, LivingEntityRenderState, TanukiEntityModel> {
-    public static final Identifier TEXTURE = makeId("textures/entity/tanuki.png");
+public class TanukiEntityRenderer extends MobRenderer<TanukiEntity, LivingEntityRenderState, TanukiEntityModel> {
+    public static final ResourceLocation TEXTURE = makeId("textures/entity/tanuki.png");
 
-    public TanukiEntityRenderer(EntityRendererFactory.Context context) {
-        super(context, new TanukiEntityModel(context.getPart(YavpmModelLayers.TANUKI)), 0.6f);
+    public TanukiEntityRenderer(EntityRendererProvider.Context context) {
+        super(context, new TanukiEntityModel(context.bakeLayer(YavpmModelLayers.TANUKI)), 0.6f);
     }
 
     @Override
-    public void render(LivingEntityRenderState renderState, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
-        if (renderState.baby) {
-            matrixStack.scale(0.5f, 0.5f, 0.5f);
+    public void submit(LivingEntityRenderState renderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
+        if (renderState.isBaby) {
+            poseStack.scale(0.5f, 0.5f, 0.5f);
         } else {
-            matrixStack.scale(1f, 1f, 1f);
+            poseStack.scale(1f, 1f, 1f);
         }
 
-        super.render(renderState, matrixStack, vertexConsumerProvider, i);
+        super.submit(renderState, poseStack, submitNodeCollector, cameraRenderState);
     }
 
     @Override
@@ -35,7 +36,7 @@ public class TanukiEntityRenderer extends MobEntityRenderer<TanukiEntity, Living
     }
 
     @Override
-    public Identifier getTexture(LivingEntityRenderState state) {
+    public ResourceLocation getTextureLocation(LivingEntityRenderState state) {
         return TEXTURE;
     }
 }

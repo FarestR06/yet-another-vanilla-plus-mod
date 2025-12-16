@@ -1,10 +1,10 @@
 package com.farestr06.yavpm.block.custom.recycler;
 
 import com.farestr06.yavpm.block.custom.entity.YavpmBlockEntities;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.DispenserBlockEntity;
-import net.minecraft.text.Text;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.level.block.entity.DispenserBlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class RecyclerBlockEntity extends DispenserBlockEntity {
     public RecyclerBlockEntity(BlockPos blockPos, BlockState blockState) {
@@ -12,7 +12,7 @@ public class RecyclerBlockEntity extends DispenserBlockEntity {
     }
 
     @Override
-    protected Text getContainerName() {
-        return Text.translatable("container.recycler");
+    protected Component getDefaultName() {
+        return Component.translatable("container.recycler");
     }
 }

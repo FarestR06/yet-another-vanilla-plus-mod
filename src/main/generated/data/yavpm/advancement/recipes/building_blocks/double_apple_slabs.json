@@ -18,7 +18,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:double_apple_slabs"
+        "recipe": "yavpm:double_apple_slabs"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -31,7 +31,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:double_apple_slabs"
+      "yavpm:double_apple_slabs"
     ]
   }
 }

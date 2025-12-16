@@ -1,31 +1,26 @@
 package com.farestr06.yavpm.datagen;
 
-import com.farestr06.api.util.VanillaAdvancements;
+import com.farestr06.api.util.datagen.VanillaAdvancements;
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.datagen.condition.RareEquipmentRecipesEnabledResourceCondition;
 import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.misc.criterion.FakeBlockDestroyedCriterion;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricAdvancementProvider;
-import net.minecraft.advancement.*;
-import net.minecraft.advancement.criterion.*;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.EntityType;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
-import net.minecraft.predicate.BlockPredicate;
-import net.minecraft.predicate.entity.EntityPredicate;
-import net.minecraft.predicate.entity.EntityTypePredicate;
-import net.minecraft.predicate.entity.LocationPredicate;
-import net.minecraft.predicate.item.ItemPredicate;
-import net.minecraft.recipe.Recipe;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.advancements.*;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,46 +30,46 @@ import java.util.function.Consumer;
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmAdvancementProvider extends FabricAdvancementProvider {
-    private static RegistryWrapper.Impl<Block> BLOCK_LOOKUP;
-    private static RegistryWrapper.Impl<Item> ITEM_LOOKUP;
-    private static RegistryWrapper.Impl<EntityType<?>> ENTITY_LOOKUP;
+    private static HolderLookup.RegistryLookup<Block> BLOCK_LOOKUP;
+    private static HolderLookup.RegistryLookup<Item> ITEM_LOOKUP;
+    private static HolderLookup.RegistryLookup<EntityType<?>> ENTITY_LOOKUP;
 
     // region Story
-    protected static final AdvancementEntry SMELT_KIMBERLITE = Advancement.Builder.create()
+    protected static final AdvancementHolder SMELT_KIMBERLITE = Advancement.Builder.advancement()
             .parent(VanillaAdvancements.Story.MINE_STONE)
             .display(
                     YavpmItems.RAW_DIAMOND,
-                    Text.translatable("advancements.story.smelt_kimberlite.title"),
-                    Text.translatable("advancements.story.smelt_kimberlite.description"),
+                    Component.translatable("advancements.story.smelt_kimberlite.title"),
+                    Component.translatable("advancements.story.smelt_kimberlite.description"),
                     null,
-                    AdvancementFrame.TASK,
+                    AdvancementType.TASK,
                     true,
                     true,
                     true
             )
-            .criteriaMerger(AdvancementRequirements.CriterionMerger.OR)
-            .criterion("craft_diamonds_via_smelting", RecipeCraftedCriterion.Conditions.create(
+            .requirements(AdvancementRequirements.Strategy.OR)
+            .addCriterion("craft_diamonds_via_smelting", RecipeCraftedTrigger.TriggerInstance.craftedItem(
                     makeRecipeKey(makeId("diamond_from_smelting_raw_diamond"))
             ))
-            .criterion("craft_diamonds_via_blasting", RecipeCraftedCriterion.Conditions.create(
+            .addCriterion("craft_diamonds_via_blasting", RecipeCraftedTrigger.TriggerInstance.craftedItem(
                    makeRecipeKey( makeId("diamond_from_blasting_raw_diamond"))
             ))
             .build(makeId("story/smelt_kimberlite"));
     // endregion
     // region Husbandry
-    protected static final AdvancementEntry EAT_FAKE_ANIMAL_PRODUCT = Advancement.Builder.create()
+    protected static final AdvancementHolder EAT_FAKE_ANIMAL_PRODUCT = Advancement.Builder.advancement()
             .parent(VanillaAdvancements.Husbandry.PLANT_SEED)
             .display(
                     YavpmItems.COOKED_FAKE_BEEF,
-                    Text.translatable("advancements.husbandry.eat_fake_animal_product.title"),
-                    Text.translatable("advancements.husbandry.eat_fake_animal_product.description"),
+                    Component.translatable("advancements.husbandry.eat_fake_animal_product.title"),
+                    Component.translatable("advancements.husbandry.eat_fake_animal_product.description"),
                     null,
-                    AdvancementFrame.TASK,
+                    AdvancementType.TASK,
                     true,
                     true,
                     false
-            ).criterion("ate_fake_animal_product", ConsumeItemCriterion.Conditions.predicate(
-                    ItemPredicate.Builder.create().items(
+            ).addCriterion("ate_fake_animal_product", ConsumeItemTrigger.TriggerInstance.usedItem(
+                    ItemPredicate.Builder.item().of(
                             ITEM_LOOKUP,
                             YavpmItems.FAKE_BEEF,
                             YavpmItems.COOKED_FAKE_BEEF,
@@ -83,50 +78,50 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                     )
             )).build(makeId("husbandry/eat_fake_animal_product"));
 
-    protected static final AdvancementEntry FED_WOLF_PEANUT = Advancement.Builder.create()
+    protected static final AdvancementHolder FED_WOLF_PEANUT = Advancement.Builder.advancement()
             .parent(VanillaAdvancements.Husbandry.TAME_AN_ANIMAL)
             .display(
                     YavpmItems.COOKED_PEANUT,
-                    Text.translatable("advancements.husbandry.fed_wolf_peanut.title"),
-                    Text.translatable("advancements.husbandry.fed_wolf_peanut.description"),
+                    Component.translatable("advancements.husbandry.fed_wolf_peanut.title"),
+                    Component.translatable("advancements.husbandry.fed_wolf_peanut.description"),
                     null,
-                    AdvancementFrame.TASK,
+                    AdvancementType.TASK,
                     true,
                     true,
                     true
-            ).criterion("fed_wolf_peanut", PlayerInteractedWithEntityCriterion.Conditions.create(
-                    ItemPredicate.Builder.create().items(ITEM_LOOKUP, YavpmItems.COOKED_PEANUT),
-                    Optional.of(EntityPredicate.contextPredicateFromEntityPredicate(
-                            EntityPredicate.Builder.create().type(EntityTypePredicate.create(ENTITY_LOOKUP, EntityType.WOLF))))
+            ).addCriterion("fed_wolf_peanut", PlayerInteractTrigger.TriggerInstance.itemUsedOnEntity(
+                    ItemPredicate.Builder.item().of(ITEM_LOOKUP, YavpmItems.COOKED_PEANUT),
+                    Optional.of(EntityPredicate.wrap(
+                            EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(ENTITY_LOOKUP, EntityType.WOLF))))
             )).build(makeId("husbandry/fed_wolf_peanut"));
 
-    protected static final AdvancementEntry LUCKY_TICKET = Advancement.Builder.create()
+    protected static final AdvancementHolder LUCKY_TICKET = Advancement.Builder.advancement()
             .parent(VanillaAdvancements.Husbandry.PLANT_SEED)
             .display(
                     YavpmItems.FORTUNE_COOKIE,
-                    Text.translatable("advancements.husbandry.lucky_ticket.title"),
-                    Text.translatable("advancements.husbandry.lucky_ticket.description"),
+                    Component.translatable("advancements.husbandry.lucky_ticket.title"),
+                    Component.translatable("advancements.husbandry.lucky_ticket.description"),
                     null,
-                    AdvancementFrame.TASK,
+                    AdvancementType.TASK,
                     true,
                     true,
                     false
-            ).criterion("ate_fortune_cookie", ConsumeItemCriterion.Conditions.predicate(
-                    ItemPredicate.Builder.create().items(
+            ).addCriterion("ate_fortune_cookie", ConsumeItemTrigger.TriggerInstance.usedItem(
+                    ItemPredicate.Builder.item().of(
                             ITEM_LOOKUP,
                             YavpmItems.FORTUNE_COOKIE
                     )
             )).build(makeId("husbandry/lucky_ticket"));
 
-    protected static final AdvancementEntry EAT_ALL_FOOD_BOWLS =
-            requireFoodBowlItemsEaten(Advancement.Builder.create())
+    protected static final AdvancementHolder EAT_ALL_FOOD_BOWLS =
+            requireFoodBowlItemsEaten(Advancement.Builder.advancement())
                     .parent(VanillaAdvancements.Husbandry.PLANT_SEED)
                     .display(
                             Items.SUSPICIOUS_STEW,
-                            Text.translatable("advancements.husbandry.eat_all_food_bowls.title"),
-                            Text.translatable("advancements.husbandry.eat_all_food_bowls.description"),
+                            Component.translatable("advancements.husbandry.eat_all_food_bowls.title"),
+                            Component.translatable("advancements.husbandry.eat_all_food_bowls.description"),
                             null,
-                            AdvancementFrame.CHALLENGE,
+                            AdvancementType.CHALLENGE,
                             true,
                             true,
                             false
@@ -134,67 +129,67 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                     .rewards(AdvancementRewards.Builder.experience(50))
                     .build(makeId("husbandry/eat_all_food_bowls"));
 
-    protected static final AdvancementEntry MINE_FAKE_BLOCK = Advancement.Builder.create()
+    protected static final AdvancementHolder MINE_FAKE_BLOCK = Advancement.Builder.advancement()
             .parent(VanillaAdvancements.Husbandry.ROOT)
             .display(
                     Blocks.CHERRY_LEAVES,
-                    Text.translatable("advancements.husbandry.mine_fake_block.title"),
-                    Text.translatable("advancements.husbandry.mine_fake_block.description"),
+                    Component.translatable("advancements.husbandry.mine_fake_block.title"),
+                    Component.translatable("advancements.husbandry.mine_fake_block.description"),
                     null,
-                    AdvancementFrame.TASK,
+                    AdvancementType.TASK,
                     true,
                     true,
                     true
             )
-            .criteriaMerger(AdvancementRequirements.CriterionMerger.OR)
-            .criterion(
+            .requirements(AdvancementRequirements.Strategy.OR)
+            .addCriterion(
                     "mine_fake_log",
-                    FakeBlockDestroyedCriterion.Conditions.create(YavpmBlocks.FAKE_LOG, ItemPredicate.Builder.create())
+                    FakeBlockDestroyedCriterion.Conditions.create(YavpmBlocks.FAKE_LOG, ItemPredicate.Builder.item())
             )
-            .criterion(
+            .addCriterion(
                     "mine_fake_ore",
-                    FakeBlockDestroyedCriterion.Conditions.create(YavpmBlocks.FAKE_ORE, ItemPredicate.Builder.create())
+                    FakeBlockDestroyedCriterion.Conditions.create(YavpmBlocks.FAKE_ORE, ItemPredicate.Builder.item())
             )
             .build(makeId("husbandry/mine_fake_block"));
 
-    protected static final AdvancementEntry CRAFT_DIAMONDS_FROM_GRAPHENE = Advancement.Builder.create()
+    protected static final AdvancementHolder CRAFT_DIAMONDS_FROM_GRAPHENE = Advancement.Builder.advancement()
             .parent(VanillaAdvancements.Husbandry.BREED_AN_ANIMAL)
             .display(
                     YavpmBlocks.GRAPHENE_BLOCK,
-                    Text.translatable("advancements.husbandry.craft_diamonds_from_graphene.title"),
-                    Text.translatable("advancements.husbandry.craft_diamonds_from_graphene.description"),
+                    Component.translatable("advancements.husbandry.craft_diamonds_from_graphene.title"),
+                    Component.translatable("advancements.husbandry.craft_diamonds_from_graphene.description"),
                     null,
-                    AdvancementFrame.CHALLENGE,
+                    AdvancementType.CHALLENGE,
                     true,
                     true,
                     false
             )
-            .criteriaMerger(AdvancementRequirements.CriterionMerger.OR)
-            .criterion("craft_diamonds_via_smelting", RecipeCraftedCriterion.Conditions.create(
+            .requirements(AdvancementRequirements.Strategy.OR)
+            .addCriterion("craft_diamonds_via_smelting", RecipeCraftedTrigger.TriggerInstance.craftedItem(
                     makeRecipeKey(makeId("diamond_from_smelting_graphene_block"))
             ))
-            .criterion("craft_diamonds_via_blasting", RecipeCraftedCriterion.Conditions.create(
+            .addCriterion("craft_diamonds_via_blasting", RecipeCraftedTrigger.TriggerInstance.craftedItem(
                     makeRecipeKey(makeId("diamond_from_blasting_graphene_block"))
             ))
             .rewards(AdvancementRewards.Builder.experience(100))
             .build(makeId("husbandry/craft_diamonds_from_graphene"));
     // endregion
     // region Adventure
-    protected static final AdvancementEntry LOCK_CONTAINER = Advancement.Builder.create()
+    protected static final AdvancementHolder LOCK_CONTAINER = Advancement.Builder.advancement()
             .parent(VanillaAdvancements.Adventure.SUMMON_IRON_GOLEM)
             .display(
                     YavpmItems.BABY_KEY,
-                    Text.translatable("advancements.adventure.lock_container.title"),
-                    Text.translatable("advancements.adventure.lock_container.description"),
+                    Component.translatable("advancements.adventure.lock_container.title"),
+                    Component.translatable("advancements.adventure.lock_container.description"),
                     null,
-                    AdvancementFrame.TASK,
+                    AdvancementType.TASK,
                     true,
                     true,
                     false
-            ).criterion(
+            ).addCriterion(
                     "lock",
-                    ItemCriterion.Conditions.createItemUsedOnBlock(
-                            LocationPredicate.Builder.create().block(BlockPredicate.Builder.create().blocks(
+                    ItemUsedOnLocationTrigger.TriggerInstance.itemUsedOnBlock(
+                            LocationPredicate.Builder.location().setBlock(BlockPredicate.Builder.block().of(
                                     BLOCK_LOOKUP,
                                     Blocks.BARREL,
                                     Blocks.BLAST_FURNACE,
@@ -209,72 +204,72 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                                     Blocks.SMOKER,
                                     Blocks.TRAPPED_CHEST
                             )),
-                            ItemPredicate.Builder.create().items(ITEM_LOOKUP, YavpmItems.BABY_KEY)
+                            ItemPredicate.Builder.item().of(ITEM_LOOKUP, YavpmItems.BABY_KEY)
                     ))
             .build(makeId("adventure/lock_container"));
     // endregion
     // region Nether
-    protected static final AdvancementEntry CONVERT_COW_TO_MOONGUS = Advancement.Builder.create()
+    protected static final AdvancementHolder CONVERT_COW_TO_MOONGUS = Advancement.Builder.advancement()
             .parent(VanillaAdvancements.Nether.BREW_POTION)
             .display(
                     YavpmItems.CRIMSON_SPORE,
-                    Text.translatable("advancements.nether.convert_cow_to_moongus.title"),
-                    Text.translatable("advancements.nether.convert_cow_to_moongus.description"),
+                    Component.translatable("advancements.nether.convert_cow_to_moongus.title"),
+                    Component.translatable("advancements.nether.convert_cow_to_moongus.description"),
                     null,
-                    AdvancementFrame.GOAL,
+                    AdvancementType.GOAL,
                     true,
                     true,
                     false
-            ).criterion("fed_cow_wart", PlayerInteractedWithEntityCriterion.Conditions.create(
-                    ItemPredicate.Builder.create().items(ITEM_LOOKUP, YavpmItems.CRIMSON_SPORE, YavpmItems.WARPED_SPORE),
-                    Optional.of(EntityPredicate.contextPredicateFromEntityPredicate(
-                            EntityPredicate.Builder.create().type(EntityTypePredicate.create(ENTITY_LOOKUP, EntityType.COW))))
+            ).addCriterion("fed_cow_wart", PlayerInteractTrigger.TriggerInstance.itemUsedOnEntity(
+                    ItemPredicate.Builder.item().of(ITEM_LOOKUP, YavpmItems.CRIMSON_SPORE, YavpmItems.WARPED_SPORE),
+                    Optional.of(EntityPredicate.wrap(
+                            EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(ENTITY_LOOKUP, EntityType.COW))))
             )).build(makeId("nether/convert_cow_to_moongus"));
     // endregion
     // region End
-    protected static final AdvancementEntry PLUCK_NEEDLES_FROM_PRICKLE_LOG = Advancement.Builder.create()
+    protected static final AdvancementHolder PLUCK_NEEDLES_FROM_PRICKLE_LOG = Advancement.Builder.advancement()
             .parent(VanillaAdvancements.End.ENTER_END_GATEWAY)
             .display(
                     Items.SHEARS,
-                    Text.translatable("advancements.end.pluck_needles_from_prickle_log.title"),
-                    Text.translatable("advancements.end.pluck_needles_from_prickle_log.description"),
+                    Component.translatable("advancements.end.pluck_needles_from_prickle_log.title"),
+                    Component.translatable("advancements.end.pluck_needles_from_prickle_log.description"),
                     null,
-                    AdvancementFrame.TASK,
+                    AdvancementType.TASK,
                     true,
                     true,
                     false
-            ).criterion("pluck", InventoryChangedCriterion.Conditions.items(YavpmBlocks.PRICKLE_SHOOT))
+            ).addCriterion("pluck", InventoryChangeTrigger.TriggerInstance.hasItems(YavpmBlocks.PRICKLE_SHOOT))
             .build(makeId("end/pluck_needles_from_prickle_log"));
 
-    protected static final AdvancementEntry CRAFT_AN_ELYTRA = Advancement.Builder.create()
+    protected static final AdvancementHolder CRAFT_AN_ELYTRA = Advancement.Builder.advancement()
             .parent(VanillaAdvancements.End.FIND_ELYTRA)
             .display(
                     YavpmItems.PHANTOM_CHORD,
-                    Text.translatable("advancements.end.craft_an_elytra.title"),
-                    Text.translatable("advancements.end.craft_an_elytra.description"),
+                    Component.translatable("advancements.end.craft_an_elytra.title"),
+                    Component.translatable("advancements.end.craft_an_elytra.description"),
                     null,
-                    AdvancementFrame.CHALLENGE,
+                    AdvancementType.CHALLENGE,
                     true,
                     true,
                     true
-            ).criterion("craft_elytra", RecipeCraftedCriterion.Conditions.create(
+            ).addCriterion("craft_elytra", RecipeCraftedTrigger.TriggerInstance.craftedItem(
                     makeRecipeKey(makeId("elytra"))
             ))
             .rewards(AdvancementRewards.Builder.experience(75))
             .build(makeId("end/craft_an_elytra"));
     // endregion
 
-    protected YavpmAdvancementProvider(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+    protected YavpmAdvancementProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registryLookup) {
         super(output, registryLookup);
-        BLOCK_LOOKUP = registryLookup.join().getOrThrow(RegistryKeys.BLOCK);
-        ITEM_LOOKUP = registryLookup.join().getOrThrow(RegistryKeys.ITEM);
-        ENTITY_LOOKUP = registryLookup.join().getOrThrow(RegistryKeys.ENTITY_TYPE);
+        BLOCK_LOOKUP = registryLookup.join().lookupOrThrow(Registries.BLOCK);
+        ITEM_LOOKUP = registryLookup.join().lookupOrThrow(Registries.ITEM);
+        ENTITY_LOOKUP = registryLookup.join().lookupOrThrow(Registries.ENTITY_TYPE);
     }
 
     @Override
-    public void generateAdvancement(RegistryWrapper.WrapperLookup registryLookup, Consumer<AdvancementEntry> consumer) {
+    public void generateAdvancement(HolderLookup.Provider registryLookup, Consumer<AdvancementHolder> consumer) {
 
-        final Consumer<AdvancementEntry> rareEquipmentConsumer
+        final Consumer<AdvancementHolder> rareEquipmentConsumer
                 = withConditions(consumer, new RareEquipmentRecipesEnabledResourceCondition());
         // Story
         consumer.accept(SMELT_KIMBERLITE);
@@ -305,13 +300,13 @@ public class YavpmAdvancementProvider extends FabricAdvancementProvider {
                 YavpmItems.FANCY_MUSHROOM_STEW
         );
         for (Item item : bowls) {
-            builder.criterion(Registries.ITEM.getId(item).getPath(), ConsumeItemCriterion.Conditions.item(ITEM_LOOKUP, item));
+            builder.addCriterion(BuiltInRegistries.ITEM.getKey(item).getPath(), ConsumeItemTrigger.TriggerInstance.usedItem(ITEM_LOOKUP, item));
         }
 
         return builder;
     }
 
-    private static RegistryKey<Recipe<?>> makeRecipeKey(Identifier id) {
-        return RegistryKey.of(RegistryKeys.RECIPE, id);
+    private static ResourceKey<Recipe<?>> makeRecipeKey(ResourceLocation id) {
+        return ResourceKey.create(Registries.RECIPE, id);
     }
 }

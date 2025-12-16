@@ -1,19 +1,19 @@
 package com.farestr06.yavpm.block.custom.crop;
 
 import com.farestr06.yavpm.item.YavpmItems;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.NetherWartBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.WorldView;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.NetherWartBlock;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class WarpedWartCropBlock extends NetherWartBlock {
-    public WarpedWartCropBlock(Settings settings) {
+    public WarpedWartCropBlock(Properties settings) {
         super(settings);
     }
 
     @Override
-    protected ItemStack getPickStack(WorldView world, BlockPos pos, BlockState state, boolean includeData) {
+    protected ItemStack getCloneItemStack(LevelReader world, BlockPos pos, BlockState state, boolean includeData) {
         return new ItemStack(YavpmItems.WARPED_WART);
     }
 }

@@ -28,7 +28,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:recycler_from_dropper"
+        "recipe": "yavpm:recycler_from_dropper"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -42,7 +42,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:recycler_from_dropper"
+      "yavpm:recycler_from_dropper"
     ]
   }
 }

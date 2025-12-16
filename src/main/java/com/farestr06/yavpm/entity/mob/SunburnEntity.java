@@ -1,81 +1,83 @@
 package com.farestr06.yavpm.entity.mob;
 
 import com.farestr06.yavpm.util.YavpmSounds;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.ai.control.MoveControl;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.attribute.DefaultAttributeContainer;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.mob.HostileEntity;
-import net.minecraft.entity.mob.PhantomEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.MoveControl;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.Phantom;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.EnumSet;
 
-public class SunburnEntity extends HostileEntity {
-    protected static final TrackedData<Byte> SUNBURN_FLAGS = DataTracker.registerData(SunburnEntity.class, TrackedDataHandlerRegistry.BYTE);
+public class SunburnEntity extends Monster {
+    protected static final EntityDataAccessor<Byte> SUNBURN_FLAGS = SynchedEntityData.defineId(SunburnEntity.class, EntityDataSerializers.BYTE);
     private static final int CHARGING_FLAG = 1;
-    public SunburnEntity(EntityType<? extends HostileEntity> entityType, World world) {
+    public SunburnEntity(EntityType<? extends Monster> entityType, Level world) {
         super(entityType, world);
         this.moveControl = new SunburnMoveControl(this);
-        this.experiencePoints = 4;
+        this.xpReward = 4;
     }
 
     @Override
-    protected void initGoals() {
-        super.initGoals();
-        this.goalSelector.add(0, new SwimGoal(this));
-        this.goalSelector.add(4, new ChargeTargetGoal());
-        this.goalSelector.add(9, new LookAtEntityGoal(this, PlayerEntity.class, 8f));
-        this.targetSelector.add(1, new RevengeGoal(this).setGroupRevenge());
-        this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, false));
-        this.targetSelector.add(3, new ActiveTargetGoal<>(this, PhantomEntity.class, false));
+    protected void registerGoals() {
+        super.registerGoals();
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(4, new ChargeTargetGoal());
+        this.goalSelector.addGoal(9, new LookAtPlayerGoal(this, Player.class, 8f));
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setAlertOthers());
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, Player.class, false));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Phantom.class, false));
     }
 
     @Override
-    protected void initDataTracker(DataTracker.Builder builder) {
-        super.initDataTracker(builder);
-        builder.add(SUNBURN_FLAGS, (byte)0);
+    protected void defineSynchedData(SynchedEntityData.Builder builder) {
+        super.defineSynchedData(builder);
+        builder.define(SUNBURN_FLAGS, (byte)0);
     }
 
-    public static DefaultAttributeContainer.Builder createSunburnAttributes() {
-        return HostileEntity.createHostileAttributes().add(EntityAttributes.MAX_HEALTH, 22).add(EntityAttributes.ATTACK_DAMAGE, 3);
+    public static AttributeSupplier.Builder createSunburnAttributes() {
+        return Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 22).add(Attributes.ATTACK_DAMAGE, 3);
     }
 
     @Override
     public void tick() {
-        this.noClip = true;
         super.tick();
-        this.noClip = false;
         this.setNoGravity(true);
     }
 
     private boolean areFlagsSet() {
-        int i = this.dataTracker.get(SUNBURN_FLAGS);
+        int i = this.entityData.get(SUNBURN_FLAGS);
         return (i & SunburnEntity.CHARGING_FLAG) != 0;
     }
 
     private void setSunburnFlag(boolean value) {
-        int i = this.dataTracker.get(SUNBURN_FLAGS);
+        int i = this.entityData.get(SUNBURN_FLAGS);
         if (value) {
             i |= SunburnEntity.CHARGING_FLAG;
         } else {
             i &= ~SunburnEntity.CHARGING_FLAG;
         }
 
-        this.dataTracker.set(SUNBURN_FLAGS, (byte)(i & 0xFF));
+        this.entityData.set(SUNBURN_FLAGS, (byte)(i & 0xFF));
     }
 
     public boolean isCharging() {
@@ -86,9 +88,9 @@ public class SunburnEntity extends HostileEntity {
     }
 
     @Override
-    public boolean tryAttack(ServerWorld world, Entity target) {
-        target.setOnFireFor(5f);
-        return super.tryAttack(world, target);
+    public boolean doHurtTarget(ServerLevel world, Entity target) {
+        target.igniteForSeconds(5f);
+        return super.doHurtTarget(world, target);
     }
 
     @Override
@@ -107,24 +109,24 @@ public class SunburnEntity extends HostileEntity {
     }
 
     @Override
-    public boolean hurtByWater() {
+    public boolean isSensitiveToWater() {
         return true;
     }
 
     class ChargeTargetGoal extends Goal {
         public ChargeTargetGoal() {
-            this.setControls(EnumSet.of(Goal.Control.MOVE));
+            this.setFlags(EnumSet.of(Goal.Flag.MOVE));
         }
 
         @Override
-        public boolean canStart() {
+        public boolean canUse() {
             LivingEntity livingEntity = SunburnEntity.this.getTarget();
-            return livingEntity != null && livingEntity.isAlive() && !SunburnEntity.this.getMoveControl().isMoving() && SunburnEntity.this.random.nextInt(toGoalTicks(7)) == 0 && SunburnEntity.this.squaredDistanceTo(livingEntity) > 4.0;
+            return livingEntity != null && livingEntity.isAlive() && !SunburnEntity.this.getMoveControl().hasWanted() && SunburnEntity.this.random.nextInt(reducedTickDelay(7)) == 0 && SunburnEntity.this.distanceToSqr(livingEntity) > 4.0;
         }
 
         @Override
-        public boolean shouldContinue() {
-            return SunburnEntity.this.getMoveControl().isMoving()
+        public boolean canContinueToUse() {
+            return SunburnEntity.this.getMoveControl().hasWanted()
                     && SunburnEntity.this.isCharging()
                     && SunburnEntity.this.getTarget() != null
                     && SunburnEntity.this.getTarget().isAlive();
@@ -134,8 +136,8 @@ public class SunburnEntity extends HostileEntity {
         public void start() {
             LivingEntity livingEntity = SunburnEntity.this.getTarget();
             if (livingEntity != null) {
-                Vec3d vec3d = livingEntity.getEyePos();
-                SunburnEntity.this.moveControl.moveTo(vec3d.x, vec3d.y, vec3d.z, 1.0);
+                Vec3 vec3d = livingEntity.getEyePosition();
+                SunburnEntity.this.moveControl.setWantedPosition(vec3d.x, vec3d.y, vec3d.z, 1.0);
             }
 
             SunburnEntity.this.setCharging(true);
@@ -147,7 +149,7 @@ public class SunburnEntity extends HostileEntity {
         }
 
         @Override
-        public boolean shouldRunEveryTick() {
+        public boolean requiresUpdateEveryTick() {
             return true;
         }
 
@@ -156,13 +158,13 @@ public class SunburnEntity extends HostileEntity {
             LivingEntity livingEntity = SunburnEntity.this.getTarget();
             if (livingEntity != null) {
                 if (SunburnEntity.this.getBoundingBox().intersects(livingEntity.getBoundingBox())) {
-                    SunburnEntity.this.tryAttack(castToServerWorld(SunburnEntity.this.getWorld()), livingEntity);
+                    SunburnEntity.this.doHurtTarget(getServerLevel(SunburnEntity.this.level()), livingEntity);
                     SunburnEntity.this.setCharging(false);
                 } else {
-                    double d = SunburnEntity.this.squaredDistanceTo(livingEntity);
+                    double d = SunburnEntity.this.distanceToSqr(livingEntity);
                     if (d < 9.0) {
-                        Vec3d vec3d = livingEntity.getEyePos();
-                        SunburnEntity.this.moveControl.moveTo(vec3d.x, vec3d.y, vec3d.z, 1.0);
+                        Vec3 vec3d = livingEntity.getEyePosition();
+                        SunburnEntity.this.moveControl.setWantedPosition(vec3d.x, vec3d.y, vec3d.z, 1.0);
                     }
                 }
             }
@@ -175,26 +177,25 @@ public class SunburnEntity extends HostileEntity {
             super(owner);
         }
 
-        @SuppressWarnings("SuspiciousNameCombination")
         @Override
         public void tick() {
-            if (this.state == MoveControl.State.MOVE_TO) {
-                Vec3d vec3d = new Vec3d(this.targetX - SunburnEntity.this.getX(), this.targetY - SunburnEntity.this.getY(), this.targetZ - SunburnEntity.this.getZ());
+            if (this.operation == MoveControl.Operation.MOVE_TO) {
+                Vec3 vec3d = new Vec3(this.wantedX - SunburnEntity.this.getX(), this.wantedY - SunburnEntity.this.getY(), this.wantedZ - SunburnEntity.this.getZ());
                 double d = vec3d.length();
-                if (d < SunburnEntity.this.getBoundingBox().getAverageSideLength()) {
-                    this.state = MoveControl.State.WAIT;
-                    SunburnEntity.this.setVelocity(SunburnEntity.this.getVelocity().multiply(0.5));
+                if (d < SunburnEntity.this.getBoundingBox().getSize()) {
+                    this.operation = MoveControl.Operation.WAIT;
+                    SunburnEntity.this.setDeltaMovement(SunburnEntity.this.getDeltaMovement().scale(0.5));
                 } else {
-                    SunburnEntity.this.setVelocity(SunburnEntity.this.getVelocity().add(vec3d.multiply(this.speed * 0.05 / d)));
+                    SunburnEntity.this.setDeltaMovement(SunburnEntity.this.getDeltaMovement().add(vec3d.scale(this.speedModifier * 0.05 / d)));
                     if (SunburnEntity.this.getTarget() == null) {
-                        Vec3d vec3d2 = SunburnEntity.this.getVelocity();
-                        SunburnEntity.this.setYaw(-((float) MathHelper.atan2(vec3d2.x, vec3d2.z)) * (180.0F / (float)Math.PI));
+                        Vec3 vec3d2 = SunburnEntity.this.getDeltaMovement();
+                        SunburnEntity.this.setYRot(-((float) Mth.atan2(vec3d2.x, vec3d2.z)) * (180.0F / (float)Math.PI));
                     } else {
                         double e = SunburnEntity.this.getTarget().getX() - SunburnEntity.this.getX();
                         double f = SunburnEntity.this.getTarget().getZ() - SunburnEntity.this.getZ();
-                        SunburnEntity.this.setYaw(-((float)MathHelper.atan2(e, f)) * (180.0F / (float)Math.PI));
+                        SunburnEntity.this.setYRot(-((float)Mth.atan2(e, f)) * (180.0F / (float)Math.PI));
                     }
-                    SunburnEntity.this.bodyYaw = SunburnEntity.this.getYaw();
+                    SunburnEntity.this.yBodyRot = SunburnEntity.this.getYRot();
                 }
             }
         }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:dull_conglomerate_from_smelting_hardened_conglomerate"
+        "recipe": "yavpm:dull_conglomerate_from_smelting_hardened_conglomerate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:dull_conglomerate_from_smelting_hardened_conglomerate"
+      "yavpm:dull_conglomerate_from_smelting_hardened_conglomerate"
     ]
   }
 }

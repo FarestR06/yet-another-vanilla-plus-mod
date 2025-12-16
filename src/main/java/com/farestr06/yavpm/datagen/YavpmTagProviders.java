@@ -13,26 +13,25 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBlockTags;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
-import net.minecraft.block.Blocks;
-import net.minecraft.item.Items;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.*;
-import net.minecraft.world.biome.BiomeKeys;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.*;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.concurrent.CompletableFuture;
-
-import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmTagProviders {
     public static class Item extends FabricTagProvider.ItemTagProvider {
 
-        public Item(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
+        public Item(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
             super(output, completableFuture);
         }
 
         @Override
-        protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+        protected void addTags(HolderLookup.Provider wrapperLookup) {
             craftingTags();
             recyclingTags();
             equipmentTags();
@@ -44,44 +43,44 @@ public class YavpmTagProviders {
         }
 
         private void craftingTags() {
-            getOrCreateTagBuilder(ItemTags.REPAIRS_CHAIN_ARMOR).setReplace(true).add(YavpmItems.CHAINMAIL);
-            getOrCreateTagBuilder(YavpmTags.Items.REPAIRS_STUDDED_ARMOR).add(
+            valueLookupBuilder(ItemTags.REPAIRS_CHAIN_ARMOR).setReplace(true).add(YavpmItems.CHAINMAIL);
+            valueLookupBuilder(YavpmTags.Items.REPAIRS_STUDDED_ARMOR).add(
                     Items.LEATHER,
                     YavpmItems.CHAINMAIL
             );
 
-            getOrCreateTagBuilder(YavpmTags.Items.DENSITITE_TOOL_MATERIALS).add(YavpmItems.DENSITITE_INGOT);
-            getOrCreateTagBuilder(YavpmTags.Items.REPAIRS_DENSITITE_ARMOR).add(YavpmItems.DENSITITE_INGOT);
+            valueLookupBuilder(YavpmTags.Items.DENSITITE_TOOL_MATERIALS).add(YavpmItems.DENSITITE_INGOT);
+            valueLookupBuilder(YavpmTags.Items.REPAIRS_DENSITITE_ARMOR).add(YavpmItems.DENSITITE_INGOT);
 
-            getOrCreateTagBuilder(ItemTags.STONE_TOOL_MATERIALS).add(
+            valueLookupBuilder(ItemTags.STONE_TOOL_MATERIALS).add(
                     YavpmBlocks.COBBLED_GRANITE.asItem(),
                     YavpmBlocks.COBBLED_DIORITE.asItem(),
                     YavpmBlocks.COBBLED_ANDESITE.asItem()
             );
 
-            getOrCreateTagBuilder(ItemTags.STONE_CRAFTING_MATERIALS).add(
+            valueLookupBuilder(ItemTags.STONE_CRAFTING_MATERIALS).add(
                     YavpmBlocks.COBBLED_GRANITE.asItem(),
                     YavpmBlocks.COBBLED_DIORITE.asItem(),
                     YavpmBlocks.COBBLED_ANDESITE.asItem()
             );
-            getOrCreateTagBuilder(ItemTags.DYEABLE).add(
+            valueLookupBuilder(ItemTags.DYEABLE).add(
                     YavpmItems.STUDDED_HELMET,
                     YavpmItems.STUDDED_CHESTPLATE,
                     YavpmItems.STUDDED_LEGGINGS,
                     YavpmItems.STUDDED_BOOTS
             );
-            getOrCreateTagBuilder(ItemTags.TRIMMABLE_ARMOR).add(
+            valueLookupBuilder(ItemTags.TRIMMABLE_ARMOR).add(
                     YavpmItems.STUDDED_HELMET,
                     YavpmItems.STUDDED_CHESTPLATE,
                     YavpmItems.STUDDED_LEGGINGS,
                     YavpmItems.STUDDED_BOOTS
             );
-            getOrCreateTagBuilder(ConventionalItemTags.RAW_MATERIALS).add(
+            valueLookupBuilder(ConventionalItemTags.RAW_MATERIALS).add(
                     YavpmItems.RAW_DIAMOND,
                     YavpmBlocks.GRAPHENE_BLOCK.asItem()
             );
 
-            getOrCreateTagBuilder(YavpmTags.Items.REACTOR_RECHARGERS).add(
+            valueLookupBuilder(YavpmTags.Items.REACTOR_RECHARGERS).add(
                     Items.BLAZE_POWDER,
                     Items.BLAZE_ROD,
                     Items.FIRE_CHARGE,
@@ -92,13 +91,13 @@ public class YavpmTagProviders {
         }
 
         private void equipmentTags() {
-            getOrCreateTagBuilder(ItemTags.SWORDS).add(YavpmItems.DENSITITE_SWORD);
-            getOrCreateTagBuilder(ItemTags.SHOVELS).add(YavpmItems.DENSITITE_SHOVEL);
-            getOrCreateTagBuilder(ItemTags.PICKAXES).add(YavpmItems.DENSITITE_PICKAXE);
-            getOrCreateTagBuilder(ItemTags.AXES).add(YavpmItems.DENSITITE_AXE);
-            getOrCreateTagBuilder(ItemTags.HOES).add(YavpmItems.DENSITITE_HOE);
+            valueLookupBuilder(ItemTags.SWORDS).add(YavpmItems.DENSITITE_SWORD);
+            valueLookupBuilder(ItemTags.SHOVELS).add(YavpmItems.DENSITITE_SHOVEL);
+            valueLookupBuilder(ItemTags.PICKAXES).add(YavpmItems.DENSITITE_PICKAXE);
+            valueLookupBuilder(ItemTags.AXES).add(YavpmItems.DENSITITE_AXE);
+            valueLookupBuilder(ItemTags.HOES).add(YavpmItems.DENSITITE_HOE);
 
-            getOrCreateTagBuilder(ConventionalItemTags.ARMORS).add(
+            valueLookupBuilder(ConventionalItemTags.ARMORS).add(
                     YavpmItems.STUDDED_HELMET,
                     YavpmItems.STUDDED_CHESTPLATE,
                     YavpmItems.STUDDED_LEGGINGS,
@@ -109,28 +108,28 @@ public class YavpmTagProviders {
                     YavpmItems.DENSITITE_BOOTS
             );
 
-            getOrCreateTagBuilder(YavpmTags.Items.ENCHANTABLE_GLIDER).add(
+            valueLookupBuilder(YavpmTags.Items.ENCHANTABLE_GLIDER).add(
                     Items.ELYTRA
             );
-            getOrCreateTagBuilder(YavpmTags.Items.ENCHANTABLE_WOLF_ARMOR).add(
+            valueLookupBuilder(YavpmTags.Items.ENCHANTABLE_WOLF_ARMOR).add(
                     Items.WOLF_ARMOR
             );
-            getOrCreateTagBuilder(YavpmTags.Items.ENCHANTABLE_HORSE_ARMOR).add(
+            valueLookupBuilder(YavpmTags.Items.ENCHANTABLE_HORSE_ARMOR).add(
                     Items.LEATHER_HORSE_ARMOR,
                     Items.GOLDEN_HORSE_ARMOR,
                     Items.IRON_HORSE_ARMOR,
                     Items.DIAMOND_HORSE_ARMOR
             );
 
-            getOrCreateTagBuilder(ItemTags.HEAD_ARMOR)
+            valueLookupBuilder(ItemTags.HEAD_ARMOR)
                     .add(YavpmItems.STUDDED_HELMET, YavpmItems.DENSITITE_HELMET);
-            getOrCreateTagBuilder(ItemTags.CHEST_ARMOR)
+            valueLookupBuilder(ItemTags.CHEST_ARMOR)
                     .add(YavpmItems.STUDDED_CHESTPLATE, YavpmItems.DENSITITE_CHESTPLATE);
-            getOrCreateTagBuilder(ItemTags.LEG_ARMOR)
+            valueLookupBuilder(ItemTags.LEG_ARMOR)
                     .add(YavpmItems.STUDDED_LEGGINGS, YavpmItems.DENSITITE_LEGGINGS);
-            getOrCreateTagBuilder(ItemTags.FOOT_ARMOR)
+            valueLookupBuilder(ItemTags.FOOT_ARMOR)
                     .add(YavpmItems.STUDDED_BOOTS, YavpmItems.DENSITITE_BOOTS);
-            getOrCreateTagBuilder(ItemTags.FREEZE_IMMUNE_WEARABLES).add(
+            valueLookupBuilder(ItemTags.FREEZE_IMMUNE_WEARABLES).add(
                     YavpmItems.STUDDED_HELMET,
                     YavpmItems.STUDDED_CHESTPLATE,
                     YavpmItems.STUDDED_LEGGINGS,
@@ -139,7 +138,7 @@ public class YavpmTagProviders {
         }
 
         private void foodTags() {
-            getOrCreateTagBuilder(ConventionalItemTags.FOODS).add(
+            valueLookupBuilder(ConventionalItemTags.FOODS).add(
                     YavpmItems.BANANA,
                     YavpmItems.FRIED_BANANA,
                     YavpmItems.FRIED_COD,
@@ -165,72 +164,72 @@ public class YavpmTagProviders {
                     YavpmItems.CHICKEN_SOUP,
                     YavpmItems.FANCY_MUSHROOM_STEW
             );
-            getOrCreateTagBuilder(ConventionalItemTags.MILK_BUCKETS).add(
+            valueLookupBuilder(ConventionalItemTags.MILK_BUCKETS).add(
                     YavpmItems.FAKE_MILK_BUCKET
             );
-            getOrCreateTagBuilder(ConventionalItemTags.RAW_MEAT_FOODS).add(
+            valueLookupBuilder(ConventionalItemTags.RAW_MEAT_FOODS).add(
                     YavpmItems.FAKE_BEEF
             );
-            getOrCreateTagBuilder(ConventionalItemTags.COOKED_MEAT_FOODS).add(
+            valueLookupBuilder(ConventionalItemTags.COOKED_MEAT_FOODS).add(
                     YavpmItems.COOKED_FAKE_BEEF,
                     YavpmItems.FRIED_COD
             );
-            getOrCreateTagBuilder(ConventionalItemTags.COOKED_FISH_FOODS)
+            valueLookupBuilder(ConventionalItemTags.COOKED_FISH_FOODS)
                     .add(YavpmItems.FRIED_COD);
-            getOrCreateTagBuilder(ConventionalItemTags.FRUIT_FOODS).add(
+            valueLookupBuilder(ConventionalItemTags.FRUIT_FOODS).add(
                     YavpmItems.BANANA
             );
-            getOrCreateTagBuilder(ConventionalItemTags.VEGETABLE_FOODS).add(
+            valueLookupBuilder(ConventionalItemTags.VEGETABLE_FOODS).add(
                     YavpmItems.MOLY,
                     YavpmItems.MAGIC_BEAN
             );
-            getOrCreateTagBuilder(ConventionalItemTags.SOUP_FOODS).add(
+            valueLookupBuilder(ConventionalItemTags.SOUP_FOODS).add(
                     YavpmItems.SEA_SOUP,
                     YavpmItems.CHICKEN_SOUP,
                     YavpmItems.FANCY_MUSHROOM_STEW
             );
-            getOrCreateTagBuilder(ConventionalItemTags.COOKIE_FOODS)
+            valueLookupBuilder(ConventionalItemTags.COOKIE_FOODS)
                     .add(YavpmItems.FORTUNE_COOKIE);
-            getOrCreateTagBuilder(ConventionalItemTags.CANDY_FOODS)
+            valueLookupBuilder(ConventionalItemTags.CANDY_FOODS)
                     .add(YavpmItems.CHOCOLATE)
                     .add(YavpmItems.JELLY)
                     .add(YavpmItems.SWEET_BERRY_JELLY);
-            getOrCreateTagBuilder(ConventionalItemTags.FOOD_POISONING_FOODS).add(
+            valueLookupBuilder(ConventionalItemTags.FOOD_POISONING_FOODS).add(
                     YavpmItems.PEANUT
             );
 
-            getOrCreateTagBuilder(ConventionalItemTags.ANIMAL_FOODS).add(
+            valueLookupBuilder(ConventionalItemTags.ANIMAL_FOODS).add(
                     YavpmItems.ACORN,
                     YavpmItems.DIAMOND_ACORN,
                     YavpmItems.TRUFFLE,
                     YavpmItems.BANANA_SEEDS
             );
-            getOrCreateTagBuilder(ItemTags.PARROT_POISONOUS_FOOD).add(
+            valueLookupBuilder(ItemTags.PARROT_POISONOUS_FOOD).add(
                     YavpmItems.CHOCOLATE
             );
-            getOrCreateTagBuilder(ItemTags.CHICKEN_FOOD).add(
+            valueLookupBuilder(ItemTags.CHICKEN_FOOD).add(
                     YavpmItems.ACORN,
                     YavpmItems.DIAMOND_ACORN,
                     YavpmItems.BANANA_SEEDS
             );
-            getOrCreateTagBuilder(ItemTags.PARROT_FOOD).add(
+            valueLookupBuilder(ItemTags.PARROT_FOOD).add(
                     YavpmItems.ACORN,
                     YavpmItems.DIAMOND_ACORN,
                     YavpmItems.BANANA_SEEDS
             );
-            getOrCreateTagBuilder(ItemTags.PIG_FOOD).add(
+            valueLookupBuilder(ItemTags.PIG_FOOD).add(
                     YavpmItems.ACORN,
                     YavpmItems.DIAMOND_ACORN,
                     YavpmItems.TRUFFLE
             );
-            getOrCreateTagBuilder(ItemTags.WOLF_FOOD).add(
+            valueLookupBuilder(ItemTags.WOLF_FOOD).add(
                     YavpmItems.COOKED_PEANUT,
                     YavpmItems.CHEESE,
                     YavpmItems.FAKE_BEEF,
                     YavpmItems.COOKED_FAKE_BEEF,
                     YavpmItems.TOFU
             );
-            getOrCreateTagBuilder(YavpmTags.Items.CARBONFOWL_FOODS).add(
+            valueLookupBuilder(YavpmTags.Items.CARBONFOWL_FOODS).add(
                     Items.GLOW_BERRIES,
                     Items.MOSS_BLOCK,
                     Items.MOSS_CARPET,
@@ -246,10 +245,10 @@ public class YavpmTagProviders {
                     Items.GUNPOWDER,
                     Items.SPIDER_EYE
             );
-            getOrCreateTagBuilder(YavpmTags.Items.TANUKI_FOOD)
+            valueLookupBuilder(YavpmTags.Items.TANUKI_FOOD)
                     .forceAddTag(ConventionalItemTags.BERRY_FOODS);
 
-            getOrCreateTagBuilder(YavpmTags.Items.CRIMSON_MOONGUS_FOOD).add(
+            valueLookupBuilder(YavpmTags.Items.CRIMSON_MOONGUS_FOOD).add(
                     Items.SUGAR,
                     Items.RABBIT_FOOT,
                     Items.BLAZE_POWDER,
@@ -262,7 +261,7 @@ public class YavpmTagProviders {
                     Items.TURTLE_HELMET,
                     Items.PHANTOM_MEMBRANE
             );
-            getOrCreateTagBuilder(YavpmTags.Items.CRIMSON_MOONGUS_FOOD_CORRUPTED).add(
+            valueLookupBuilder(YavpmTags.Items.CRIMSON_MOONGUS_FOOD_CORRUPTED).add(
                     Items.SUGAR,
                     Items.RABBIT_FOOT,
                     Items.GLISTERING_MELON_SLICE,
@@ -270,7 +269,7 @@ public class YavpmTagProviders {
                     Items.GOLDEN_CARROT,
                     Items.PUFFERFISH
             );
-            getOrCreateTagBuilder(YavpmTags.Items.WARPED_MOONGUS_FOOD).add(
+            valueLookupBuilder(YavpmTags.Items.WARPED_MOONGUS_FOOD).add(
                     Items.BREEZE_ROD,
                     Items.SLIME_BLOCK,
                     Items.STONE,
@@ -284,12 +283,12 @@ public class YavpmTagProviders {
         }
 
         private void plantTags() {
-            getOrCreateTagBuilder(ItemTags.LEAVES).add(
+            valueLookupBuilder(ItemTags.LEAVES).add(
                     YavpmBlocks.APPLE_LEAVES.asItem(), YavpmBlocks.FLOWERING_APPLE_LEAVES.asItem(),
                     YavpmBlocks.PERSIMMON_LEAVES.asItem()
             );
 
-            getOrCreateTagBuilder(ConventionalItemTags.SEEDS).add(
+            valueLookupBuilder(ConventionalItemTags.SEEDS).add(
                     YavpmItems.BANANA_SEEDS,
                     YavpmItems.PEANUT,
                     YavpmItems.MAGIC_BEAN,
@@ -298,7 +297,7 @@ public class YavpmTagProviders {
                     YavpmItems.SPRUCE_CONE
             );
 
-            getOrCreateTagBuilder(ConventionalItemTags.CROPS).add(
+            valueLookupBuilder(ConventionalItemTags.CROPS).add(
                     YavpmItems.ACORN,
                     YavpmItems.BIRCH_SEEDS,
                     YavpmItems.SPRUCE_CONE,
@@ -311,7 +310,7 @@ public class YavpmTagProviders {
                     YavpmItems.MAGIC_BEAN
             );
 
-            getOrCreateTagBuilder(ItemTags.SAPLINGS).add(
+            valueLookupBuilder(ItemTags.SAPLINGS).add(
                     YavpmBlocks.APPLE_SAPLING.asItem(),
                     YavpmBlocks.PERSIMMON_SAPLING.asItem(),
                     YavpmBlocks.PRICKLE_SHOOT.asItem()
@@ -319,12 +318,12 @@ public class YavpmTagProviders {
         }
 
         private void buildingBlockTags() {
-            getOrCreateTagBuilder(ConventionalItemTags.OBSIDIANS).add(
+            valueLookupBuilder(ConventionalItemTags.OBSIDIANS).add(
                     YavpmBlocks.GLOWING_OBSIDIAN.asItem(),
                     YavpmBlocks.SOUL_GLOWING_OBSIDIAN.asItem()
             );
 
-            getOrCreateTagBuilder(ItemTags.STAIRS).add(
+            valueLookupBuilder(ItemTags.STAIRS).add(
                     YavpmBlocks.KIMBERLITE_STAIRS.asItem(),
                     YavpmBlocks.POLISHED_KIMBERLITE_STAIRS.asItem(),
                     YavpmBlocks.POLISHED_KIMBERLITE_BRICK_STAIRS.asItem(),
@@ -338,7 +337,7 @@ public class YavpmTagProviders {
                     YavpmBlocks.SOULSTONE_STAIRS.asItem(),
                     YavpmBlocks.SMOOTH_SOULSTONE_STAIRS.asItem()
             );
-            getOrCreateTagBuilder(ItemTags.SLABS).add(
+            valueLookupBuilder(ItemTags.SLABS).add(
                     YavpmBlocks.KIMBERLITE_SLAB.asItem(),
                     YavpmBlocks.POLISHED_KIMBERLITE_SLAB.asItem(),
                     YavpmBlocks.POLISHED_KIMBERLITE_BRICK_SLAB.asItem(),
@@ -353,7 +352,7 @@ public class YavpmTagProviders {
                     YavpmBlocks.CUT_SOULSTONE_SLAB.asItem(),
                     YavpmBlocks.SMOOTH_SOULSTONE_SLAB.asItem()
             );
-            getOrCreateTagBuilder(ItemTags.WALLS).add(
+            valueLookupBuilder(ItemTags.WALLS).add(
                     YavpmBlocks.KIMBERLITE_WALL.asItem(),
                     YavpmBlocks.POLISHED_KIMBERLITE_WALL.asItem(),
                     YavpmBlocks.POLISHED_KIMBERLITE_BRICK_WALL.asItem(),
@@ -367,58 +366,58 @@ public class YavpmTagProviders {
                     YavpmBlocks.SOULSTONE_WALL.asItem()
             );
 
-            getOrCreateTagBuilder(ConventionalItemTags.STRIPPED_LOGS).add(
+            valueLookupBuilder(ConventionalItemTags.STRIPPED_LOGS).add(
                     YavpmBlocks.STRIPPED_APPLE_LOG.asItem(),
                     YavpmBlocks.STRIPPED_PERSIMMON_LOG.asItem(),
                     YavpmBlocks.STRIPPED_PRICKLE_LOG.asItem()
             );
-            getOrCreateTagBuilder(ConventionalItemTags.STRIPPED_WOODS).add(
+            valueLookupBuilder(ConventionalItemTags.STRIPPED_WOODS).add(
                     YavpmBlocks.STRIPPED_APPLE_WOOD.asItem(),
                     YavpmBlocks.STRIPPED_PERSIMMON_WOOD.asItem(),
                     YavpmBlocks.STRIPPED_PRICKLE_WOOD.asItem()
             );
-            getOrCreateTagBuilder(YavpmTags.Items.APPLE_LOGS).add(
+            valueLookupBuilder(YavpmTags.Items.APPLE_LOGS).add(
                     YavpmBlocks.APPLE_LOG.asItem(),
                     YavpmBlocks.APPLE_WOOD.asItem(),
                     YavpmBlocks.STRIPPED_APPLE_LOG.asItem(),
                     YavpmBlocks.STRIPPED_APPLE_WOOD.asItem()
             );
-            getOrCreateTagBuilder(YavpmTags.Items.PERSIMMON_LOGS).add(
+            valueLookupBuilder(YavpmTags.Items.PERSIMMON_LOGS).add(
                     YavpmBlocks.PERSIMMON_LOG.asItem(),
                     YavpmBlocks.PERSIMMON_WOOD.asItem(),
                     YavpmBlocks.STRIPPED_PERSIMMON_LOG.asItem(),
                     YavpmBlocks.STRIPPED_PERSIMMON_WOOD.asItem()
             );
-            getOrCreateTagBuilder(YavpmTags.Items.PRICKLE_LOGS).add(
+            valueLookupBuilder(YavpmTags.Items.PRICKLE_LOGS).add(
                     YavpmBlocks.PRICKLE_LOG.asItem(),
                     YavpmBlocks.PRICKLE_WOOD.asItem(),
                     YavpmBlocks.STRIPPED_PRICKLE_LOG.asItem(),
                     YavpmBlocks.STRIPPED_PRICKLE_WOOD.asItem()
             );
-            getOrCreateTagBuilder(ItemTags.LOGS_THAT_BURN)
+            valueLookupBuilder(ItemTags.LOGS_THAT_BURN)
                     .forceAddTag(YavpmTags.Items.APPLE_LOGS)
                     .forceAddTag(YavpmTags.Items.PERSIMMON_LOGS)
                     .forceAddTag(YavpmTags.Items.PRICKLE_LOGS);
 
-            getOrCreateTagBuilder(ItemTags.PLANKS).add(
+            valueLookupBuilder(ItemTags.PLANKS).add(
                     YavpmBlocks.APPLE_PLANKS.asItem(),
                     YavpmBlocks.PERSIMMON_PLANKS.asItem(),
                     YavpmBlocks.PRICKLE_PLANKS.asItem()
             );
 
-            getOrCreateTagBuilder(ItemTags.WOODEN_STAIRS).add(YavpmBlocks.APPLE_STAIRS.asItem(), YavpmBlocks.PERSIMMON_STAIRS.asItem(), YavpmBlocks.PRICKLE_STAIRS.asItem());
-            getOrCreateTagBuilder(ItemTags.WOODEN_SLABS).add(YavpmBlocks.APPLE_SLAB.asItem(), YavpmBlocks.PERSIMMON_SLAB.asItem(), YavpmBlocks.PRICKLE_SLAB.asItem());
-            getOrCreateTagBuilder(ItemTags.WOODEN_FENCES).add(YavpmBlocks.APPLE_FENCE.asItem(), YavpmBlocks.PERSIMMON_FENCE.asItem(), YavpmBlocks.PRICKLE_FENCE.asItem());
-            getOrCreateTagBuilder(ItemTags.FENCE_GATES).add(YavpmBlocks.APPLE_FENCE_GATE.asItem(), YavpmBlocks.PERSIMMON_FENCE_GATE.asItem(), YavpmBlocks.PRICKLE_FENCE_GATE.asItem());
-            getOrCreateTagBuilder(ItemTags.WOODEN_DOORS).add(YavpmBlocks.APPLE_DOOR.asItem() ,YavpmBlocks.PERSIMMON_DOOR.asItem(), YavpmBlocks.PRICKLE_DOOR.asItem());
-            getOrCreateTagBuilder(ItemTags.WOODEN_TRAPDOORS).add(YavpmBlocks.APPLE_TRAPDOOR.asItem(), YavpmBlocks.PERSIMMON_TRAPDOOR.asItem(), YavpmBlocks.PRICKLE_TRAPDOOR.asItem());
+            valueLookupBuilder(ItemTags.WOODEN_STAIRS).add(YavpmBlocks.APPLE_STAIRS.asItem(), YavpmBlocks.PERSIMMON_STAIRS.asItem(), YavpmBlocks.PRICKLE_STAIRS.asItem());
+            valueLookupBuilder(ItemTags.WOODEN_SLABS).add(YavpmBlocks.APPLE_SLAB.asItem(), YavpmBlocks.PERSIMMON_SLAB.asItem(), YavpmBlocks.PRICKLE_SLAB.asItem());
+            valueLookupBuilder(ItemTags.WOODEN_FENCES).add(YavpmBlocks.APPLE_FENCE.asItem(), YavpmBlocks.PERSIMMON_FENCE.asItem(), YavpmBlocks.PRICKLE_FENCE.asItem());
+            valueLookupBuilder(ItemTags.FENCE_GATES).add(YavpmBlocks.APPLE_FENCE_GATE.asItem(), YavpmBlocks.PERSIMMON_FENCE_GATE.asItem(), YavpmBlocks.PRICKLE_FENCE_GATE.asItem());
+            valueLookupBuilder(ItemTags.WOODEN_DOORS).add(YavpmBlocks.APPLE_DOOR.asItem() ,YavpmBlocks.PERSIMMON_DOOR.asItem(), YavpmBlocks.PRICKLE_DOOR.asItem());
+            valueLookupBuilder(ItemTags.WOODEN_TRAPDOORS).add(YavpmBlocks.APPLE_TRAPDOOR.asItem(), YavpmBlocks.PERSIMMON_TRAPDOOR.asItem(), YavpmBlocks.PRICKLE_TRAPDOOR.asItem());
 
-            getOrCreateTagBuilder(ItemTags.WOODEN_PRESSURE_PLATES).add(
+            valueLookupBuilder(ItemTags.WOODEN_PRESSURE_PLATES).add(
                     YavpmBlocks.APPLE_PRESSURE_PLATE.asItem(),
                     YavpmBlocks.PERSIMMON_PRESSURE_PLATE.asItem(),
                     YavpmBlocks.PRICKLE_PRESSURE_PLATE.asItem()
             );
-            getOrCreateTagBuilder(ItemTags.WOODEN_BUTTONS).add(
+            valueLookupBuilder(ItemTags.WOODEN_BUTTONS).add(
                     YavpmBlocks.APPLE_BUTTON.asItem(),
                     YavpmBlocks.PERSIMMON_BUTTON.asItem(),
                     YavpmBlocks.PRICKLE_BUTTON.asItem()
@@ -427,25 +426,25 @@ public class YavpmTagProviders {
     }
 
     public static class Block extends FabricTagProvider.BlockTagProvider {
-        public Block(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
+        public Block(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
             super(output, registriesFuture);
         }
 
         @Override
-        protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
-            getOrCreateTagBuilder(ConventionalBlockTags.OBSIDIANS).add(
+        protected void addTags(HolderLookup.Provider wrapperLookup) {
+            valueLookupBuilder(ConventionalBlockTags.OBSIDIANS).add(
                     YavpmBlocks.GLOWING_OBSIDIAN,
                     YavpmBlocks.SOUL_GLOWING_OBSIDIAN
             );
 
-            getOrCreateTagBuilder(YavpmTags.Blocks.RICE_GROWABLE_ON).add(
+            valueLookupBuilder(YavpmTags.Blocks.RICE_GROWABLE_ON).add(
                     Blocks.SAND,
                     Blocks.GRAVEL,
                     Blocks.CLAY,
                     Blocks.DIRT
             );
 
-            getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(
+            valueLookupBuilder(BlockTags.MINEABLE_WITH_AXE).add(
                     YavpmBlocks.FAKE_LOG,
                     YavpmBlocks.SHOJI,
                     YavpmBlocks.CHOPPING_BLOCK,
@@ -454,7 +453,7 @@ public class YavpmTagProviders {
                     YavpmBlocks.CANTALOUPE
             );
 
-            getOrCreateTagBuilder(BlockTags.IMPERMEABLE)
+            valueLookupBuilder(BlockTags.IMPERMEABLE)
                     .add(YavpmBlocks.POLARIZED_GLASS);
 
             plantTags();
@@ -463,7 +462,7 @@ public class YavpmTagProviders {
             woodenBlockTags();
         }
         private void plantTags() {
-            getOrCreateTagBuilder(BlockTags.CROPS).add(
+            valueLookupBuilder(BlockTags.CROPS).add(
                     YavpmBlocks.CANTALOUPE_STEM,
                     YavpmBlocks.BANANA_CROP,
                     YavpmBlocks.PEANUT_CROP,
@@ -475,7 +474,7 @@ public class YavpmTagProviders {
                     YavpmBlocks.CRIMSON_FUNGUS_CROP,
                     YavpmBlocks.WARPED_FUNGUS_CROP
             );
-            getOrCreateTagBuilder(BlockTags.MAINTAINS_FARMLAND).add(
+            valueLookupBuilder(BlockTags.MAINTAINS_FARMLAND).add(
                     YavpmBlocks.CANTALOUPE_STEM,
                     YavpmBlocks.ATTACHED_CANTALOUPE_STEM,
                     YavpmBlocks.BANANA_CROP,
@@ -488,7 +487,7 @@ public class YavpmTagProviders {
                     YavpmBlocks.WARPED_FUNGUS_CROP
             );
 
-            getOrCreateTagBuilder(BlockTags.SAPLINGS).add(
+            valueLookupBuilder(BlockTags.SAPLINGS).add(
                     YavpmBlocks.APPLE_SAPLING,
                     YavpmBlocks.PERSIMMON_SAPLING,
                     YavpmBlocks.PRICKLE_SHOOT
@@ -496,15 +495,15 @@ public class YavpmTagProviders {
         }
 
         private void mineableTags() {
-            getOrCreateTagBuilder(BlockTags.HOE_MINEABLE)
+            valueLookupBuilder(BlockTags.MINEABLE_WITH_HOE)
                     .add(YavpmBlocks.APPLE_LEAVES, YavpmBlocks.FLOWERING_APPLE_LEAVES, YavpmBlocks.PERSIMMON_LEAVES);
 
-            getOrCreateTagBuilder(BlockTags.SWORD_EFFICIENT).add(
+            valueLookupBuilder(BlockTags.SWORD_EFFICIENT).add(
                     YavpmBlocks.CANTALOUPE,
                     YavpmBlocks.CANTALOUPE_STEM,
                     YavpmBlocks.ATTACHED_CANTALOUPE_STEM
             );
-            getOrCreateTagBuilder(BlockTags.AXE_MINEABLE).add(
+            valueLookupBuilder(BlockTags.MINEABLE_WITH_AXE).add(
                     YavpmBlocks.FAKE_LOG,
                     YavpmBlocks.SHOJI,
                     YavpmBlocks.CHOPPING_BLOCK,
@@ -516,7 +515,7 @@ public class YavpmTagProviders {
 
             // Polarized Glass isn't here because normal Glass does not have a required tool.
             // That's likely a bug, but I want to keep things consistent with vanilla.
-            getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE).add(
+            valueLookupBuilder(BlockTags.MINEABLE_WITH_PICKAXE).add(
                     YavpmBlocks.GLOWING_OBSIDIAN,
                     YavpmBlocks.SOUL_GLOWING_OBSIDIAN,
                     YavpmBlocks.GRAPHITE_BLOCK,
@@ -594,13 +593,13 @@ public class YavpmTagProviders {
                     YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_WALL,
 
                     YavpmBlocks.FAKE_ORE
-            ).addOptional(makeId("recycler"));
+            ); //.addOptional(makeId("recycler"));
 
-            getOrCreateTagBuilder(BlockTags.SHOVEL_MINEABLE).add(
+            valueLookupBuilder(BlockTags.MINEABLE_WITH_SHOVEL).add(
                     YavpmBlocks.CONGLOMERATE
             );
 
-            getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL)
+            valueLookupBuilder(BlockTags.NEEDS_STONE_TOOL)
                     .add(
                             YavpmBlocks.NAHCOLITE_ORE,
                             YavpmBlocks.DEEPSLATE_NAHCOLITE_ORE,
@@ -618,13 +617,13 @@ public class YavpmTagProviders {
                             YavpmBlocks.POLISHED_KIMBERLITE_BRICK_WALL
                     );
 
-            getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
+            valueLookupBuilder(BlockTags.NEEDS_IRON_TOOL)
                     .add(
                             YavpmBlocks.GRAPHITE_BLOCK,
                             YavpmBlocks.GRAPHENE_BLOCK
                     );
 
-            getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL).add(
+            valueLookupBuilder(BlockTags.NEEDS_DIAMOND_TOOL).add(
                     YavpmBlocks.GLOWING_OBSIDIAN,
                     YavpmBlocks.SOUL_GLOWING_OBSIDIAN
             );
@@ -632,24 +631,24 @@ public class YavpmTagProviders {
         }
 
         private void generalBlockTags() {
-            getOrCreateTagBuilder(ConventionalBlockTags.ORES_IN_GROUND_STONE).add(YavpmBlocks.NAHCOLITE_ORE);
-            getOrCreateTagBuilder(ConventionalBlockTags.ORES_IN_GROUND_DEEPSLATE).add(YavpmBlocks.DEEPSLATE_NAHCOLITE_ORE);
+            valueLookupBuilder(ConventionalBlockTags.ORES_IN_GROUND_STONE).add(YavpmBlocks.NAHCOLITE_ORE);
+            valueLookupBuilder(ConventionalBlockTags.ORES_IN_GROUND_DEEPSLATE).add(YavpmBlocks.DEEPSLATE_NAHCOLITE_ORE);
 
-            getOrCreateTagBuilder(BlockTags.WITHER_SUMMON_BASE_BLOCKS).add(
+            valueLookupBuilder(BlockTags.WITHER_SUMMON_BASE_BLOCKS).add(
                     YavpmBlocks.SOUL_GLOWING_OBSIDIAN,
                     YavpmBlocks.SOULSTONE,
                     YavpmBlocks.CUT_SOULSTONE,
                     YavpmBlocks.CHISELED_SOULSTONE,
                     YavpmBlocks.SMOOTH_SOULSTONE
             );
-            getOrCreateTagBuilder(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(
+            valueLookupBuilder(BlockTags.SOUL_FIRE_BASE_BLOCKS).add(
                     YavpmBlocks.SOUL_GLOWING_OBSIDIAN,
                     YavpmBlocks.SOULSTONE,
                     YavpmBlocks.CUT_SOULSTONE,
                     YavpmBlocks.CHISELED_SOULSTONE,
                     YavpmBlocks.SMOOTH_SOULSTONE
             );
-            getOrCreateTagBuilder(BlockTags.SOUL_SPEED_BLOCKS).add(
+            valueLookupBuilder(BlockTags.SOUL_SPEED_BLOCKS).add(
                     YavpmBlocks.SOUL_GLOWING_OBSIDIAN,
                     YavpmBlocks.SOULSTONE,
                     YavpmBlocks.CUT_SOULSTONE,
@@ -663,13 +662,13 @@ public class YavpmTagProviders {
                     YavpmBlocks.SOULSTONE_WALL
             );
 
-            getOrCreateTagBuilder(BlockTags.SCULK_REPLACEABLE).add(
+            valueLookupBuilder(BlockTags.SCULK_REPLACEABLE).add(
                     YavpmBlocks.SOULSTONE
             );
 
-            getOrCreateTagBuilder(BlockTags.ENDERMAN_HOLDABLE).add(YavpmBlocks.CANTALOUPE);
+            valueLookupBuilder(BlockTags.ENDERMAN_HOLDABLE).add(YavpmBlocks.CANTALOUPE);
 
-            getOrCreateTagBuilder(BlockTags.STAIRS).add(
+            valueLookupBuilder(BlockTags.STAIRS).add(
                     YavpmBlocks.KIMBERLITE_STAIRS,
                     YavpmBlocks.POLISHED_KIMBERLITE_STAIRS,
                     YavpmBlocks.POLISHED_KIMBERLITE_BRICK_STAIRS,
@@ -679,7 +678,7 @@ public class YavpmTagProviders {
                     YavpmBlocks.SOULSTONE_STAIRS,
                     YavpmBlocks.SMOOTH_SOULSTONE_STAIRS
             );
-            getOrCreateTagBuilder(BlockTags.SLABS).add(
+            valueLookupBuilder(BlockTags.SLABS).add(
                     YavpmBlocks.KIMBERLITE_SLAB,
                     YavpmBlocks.POLISHED_KIMBERLITE_SLAB,
                     YavpmBlocks.POLISHED_KIMBERLITE_BRICK_SLAB,
@@ -690,7 +689,7 @@ public class YavpmTagProviders {
                     YavpmBlocks.CUT_SOULSTONE_SLAB,
                     YavpmBlocks.SMOOTH_SOULSTONE_SLAB
             );
-            getOrCreateTagBuilder(BlockTags.WALLS).add(
+            valueLookupBuilder(BlockTags.WALLS).add(
                     YavpmBlocks.KIMBERLITE_WALL,
                     YavpmBlocks.POLISHED_KIMBERLITE_WALL,
                     YavpmBlocks.POLISHED_KIMBERLITE_BRICK_WALL,
@@ -699,216 +698,218 @@ public class YavpmTagProviders {
 
                     YavpmBlocks.SOULSTONE_WALL
             );
-            getOrCreateTagBuilder(BlockTags.WOODEN_STAIRS).add(
+            valueLookupBuilder(BlockTags.WOODEN_STAIRS).add(
                     YavpmBlocks.APPLE_STAIRS,
                     YavpmBlocks.PERSIMMON_STAIRS,
                     YavpmBlocks.PRICKLE_STAIRS
             );
-            getOrCreateTagBuilder(BlockTags.WOODEN_SLABS).add(
+            valueLookupBuilder(BlockTags.WOODEN_SLABS).add(
                     YavpmBlocks.APPLE_SLAB,
                     YavpmBlocks.PERSIMMON_SLAB,
                     YavpmBlocks.PRICKLE_SLAB
             );
 
-            getOrCreateTagBuilder(BlockTags.WALLS).add(
+            valueLookupBuilder(BlockTags.WALLS).add(
                     YavpmBlocks.KIMBERLITE_WALL,
                     YavpmBlocks.POLISHED_KIMBERLITE_WALL,
                     YavpmBlocks.POLISHED_KIMBERLITE_BRICK_WALL
             );
 
-            getOrCreateTagBuilder(BlockTags.WOODEN_FENCES)
+            valueLookupBuilder(BlockTags.WOODEN_FENCES)
                     .add(YavpmBlocks.APPLE_FENCE, YavpmBlocks.PERSIMMON_FENCE, YavpmBlocks.PRICKLE_FENCE);
 
-            getOrCreateTagBuilder(BlockTags.FENCE_GATES)
+            valueLookupBuilder(BlockTags.FENCE_GATES)
                     .add(YavpmBlocks.APPLE_FENCE_GATE, YavpmBlocks.PERSIMMON_FENCE_GATE, YavpmBlocks.PRICKLE_FENCE_GATE);
 
-            getOrCreateTagBuilder(BlockTags.WOODEN_DOORS)
+            valueLookupBuilder(BlockTags.WOODEN_DOORS)
                     .add(YavpmBlocks.APPLE_DOOR, YavpmBlocks.PERSIMMON_DOOR, YavpmBlocks.PRICKLE_DOOR);
 
-            getOrCreateTagBuilder(BlockTags.WOODEN_TRAPDOORS)
+            valueLookupBuilder(BlockTags.WOODEN_TRAPDOORS)
                     .add(YavpmBlocks.APPLE_TRAPDOOR, YavpmBlocks.PERSIMMON_TRAPDOOR, YavpmBlocks.PRICKLE_TRAPDOOR);
 
-            getOrCreateTagBuilder(BlockTags.WOODEN_PRESSURE_PLATES)
+            valueLookupBuilder(BlockTags.WOODEN_PRESSURE_PLATES)
                     .add(YavpmBlocks.APPLE_PRESSURE_PLATE, YavpmBlocks.PERSIMMON_PRESSURE_PLATE, YavpmBlocks.PRICKLE_PRESSURE_PLATE);
 
-            getOrCreateTagBuilder(BlockTags.WOODEN_BUTTONS)
+            valueLookupBuilder(BlockTags.WOODEN_BUTTONS)
                     .add(YavpmBlocks.APPLE_BUTTON, YavpmBlocks.PERSIMMON_BUTTON, YavpmBlocks.PRICKLE_BUTTON);
         }
 
         private void woodenBlockTags() {
-            getOrCreateTagBuilder(ConventionalBlockTags.STRIPPED_LOGS).add(
+            valueLookupBuilder(ConventionalBlockTags.STRIPPED_LOGS).add(
                     YavpmBlocks.STRIPPED_APPLE_LOG,
                     YavpmBlocks.STRIPPED_PERSIMMON_LOG,
                     YavpmBlocks.STRIPPED_PRICKLE_LOG
             );
-            getOrCreateTagBuilder(ConventionalBlockTags.STRIPPED_WOODS).add(
+            valueLookupBuilder(ConventionalBlockTags.STRIPPED_WOODS).add(
                     YavpmBlocks.STRIPPED_APPLE_WOOD,
                     YavpmBlocks.STRIPPED_PERSIMMON_WOOD,
                     YavpmBlocks.STRIPPED_PRICKLE_WOOD
             );
 
-            getOrCreateTagBuilder(YavpmTags.Blocks.APPLE_LOGS).add(
+            valueLookupBuilder(YavpmTags.Blocks.APPLE_LOGS).add(
                     YavpmBlocks.APPLE_LOG,
                     YavpmBlocks.APPLE_WOOD,
                     YavpmBlocks.STRIPPED_APPLE_LOG,
                     YavpmBlocks.STRIPPED_APPLE_WOOD
             );
-            getOrCreateTagBuilder(YavpmTags.Blocks.PERSIMMON_LOGS).add(
+            valueLookupBuilder(YavpmTags.Blocks.PERSIMMON_LOGS).add(
                     YavpmBlocks.PERSIMMON_LOG,
                     YavpmBlocks.PERSIMMON_WOOD,
                     YavpmBlocks.STRIPPED_PERSIMMON_LOG,
                     YavpmBlocks.STRIPPED_PERSIMMON_WOOD
             );
-            getOrCreateTagBuilder(YavpmTags.Blocks.PRICKLE_LOGS).add(
+            valueLookupBuilder(YavpmTags.Blocks.PRICKLE_LOGS).add(
                     YavpmBlocks.PRICKLE_LOG,
                     YavpmBlocks.PRICKLE_WOOD,
                     YavpmBlocks.STRIPPED_PRICKLE_LOG,
                     YavpmBlocks.STRIPPED_PRICKLE_WOOD
             );
 
-            getOrCreateTagBuilder(BlockTags.LOGS_THAT_BURN)
+            valueLookupBuilder(BlockTags.LOGS_THAT_BURN)
                     .forceAddTag(YavpmTags.Blocks.APPLE_LOGS)
                     .forceAddTag(YavpmTags.Blocks.PERSIMMON_LOGS)
                     .forceAddTag(YavpmTags.Blocks.PRICKLE_LOGS);
 
-            getOrCreateTagBuilder(BlockTags.LEAVES)
+            valueLookupBuilder(BlockTags.LEAVES)
                     .add(YavpmBlocks.APPLE_LEAVES, YavpmBlocks.FLOWERING_APPLE_LEAVES, YavpmBlocks.PERSIMMON_LEAVES);
 
 
-            getOrCreateTagBuilder(BlockTags.PLANKS)
+            valueLookupBuilder(BlockTags.PLANKS)
                     .add(YavpmBlocks.APPLE_PLANKS, YavpmBlocks.PERSIMMON_PLANKS, YavpmBlocks.PRICKLE_PLANKS);
         }
     }
 
     public static class Fluid extends FabricTagProvider.FluidTagProvider {
 
-        public Fluid(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
+        public Fluid(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
             super(output, completableFuture);
         }
 
         @Override
-        protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
-            getOrCreateTagBuilder(YavpmTags.Fluids.VOID_WATER).add(YavpmFluids.FLOWING_VOID_WATER, YavpmFluids.STILL_VOID_WATER);
-            getOrCreateTagBuilder(FluidTags.WATER).add(YavpmFluids.FLOWING_VOID_WATER, YavpmFluids.STILL_VOID_WATER);
+        protected void addTags(HolderLookup.Provider wrapperLookup) {
+            valueLookupBuilder(YavpmTags.Fluids.VOID_WATER).add(YavpmFluids.FLOWING_VOID_WATER, YavpmFluids.STILL_VOID_WATER);
+            valueLookupBuilder(FluidTags.WATER).add(YavpmFluids.FLOWING_VOID_WATER, YavpmFluids.STILL_VOID_WATER);
         }
     }
 
     public static class EntityType extends FabricTagProvider.EntityTypeTagProvider {
 
-        public EntityType(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
+        public EntityType(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
             super(output, completableFuture);
         }
 
         @Override
-        protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
+        protected void addTags(HolderLookup.Provider wrapperLookup) {
 
-            getOrCreateTagBuilder(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(
+            valueLookupBuilder(EntityTypeTags.FALL_DAMAGE_IMMUNE).add(
                     YavpmEntities.CARBONFOWL
             );
 
-            getOrCreateTagBuilder(YavpmTags.EntityTypes.SENSITIVE_TO_ILLAGERS_BANE)
+            valueLookupBuilder(YavpmTags.EntityTypes.SENSITIVE_TO_ILLAGERS_BANE)
                     .forceAddTag(EntityTypeTags.ILLAGER)
                     .forceAddTag(EntityTypeTags.ILLAGER_FRIENDS);
 
-            getOrCreateTagBuilder(YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_25).add(
-                    net.minecraft.entity.EntityType.PHANTOM
+            valueLookupBuilder(YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_25).add(
+                    net.minecraft.world.entity.EntityType.PHANTOM
             );
-            getOrCreateTagBuilder(YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_50).add(
-                    net.minecraft.entity.EntityType.ENDERMITE,
+            valueLookupBuilder(YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_50).add(
+                    net.minecraft.world.entity.EntityType.ENDERMITE,
                     YavpmEntities.VOID_PHANTOM
             );
-            getOrCreateTagBuilder(YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_75).add(
-                    net.minecraft.entity.EntityType.ENDERMAN,
-                    net.minecraft.entity.EntityType.SHULKER
+            valueLookupBuilder(YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_75).add(
+                    net.minecraft.world.entity.EntityType.ENDERMAN,
+                    net.minecraft.world.entity.EntityType.SHULKER
             );
-            getOrCreateTagBuilder(YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_100).add(
-                    net.minecraft.entity.EntityType.ENDER_DRAGON
-            );
-        }
-    }
-
-    public static class DamageType extends FabricTagProvider<net.minecraft.entity.damage.DamageType> {
-        public DamageType(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
-            super(output, RegistryKeys.DAMAGE_TYPE, registriesFuture);
-        }
-
-        @Override
-        protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
-            getOrCreateTagBuilder(DamageTypeTags.NO_KNOCKBACK).add(
-                    YavpmDamageTypes.CUT,
-                    YavpmDamageTypes.CHOKE
-            );
-            getOrCreateTagBuilder(DamageTypeTags.BYPASSES_ARMOR).add(
-                    YavpmDamageTypes.CUT,
-                    YavpmDamageTypes.CHOKE
-            );
-            getOrCreateTagBuilder(DamageTypeTags.NO_IMPACT).add(
-                    YavpmDamageTypes.CUT,
-                    YavpmDamageTypes.CHOKE
-            );
-            getOrCreateTagBuilder(DamageTypeTags.WITHER_IMMUNE_TO).add(
-                    YavpmDamageTypes.CUT
-            );
-            getOrCreateTagBuilder(DamageTypeTags.BYPASSES_EFFECTS).add(
-                    YavpmDamageTypes.CUT
-            );
-            getOrCreateTagBuilder(DamageTypeTags.BYPASSES_INVULNERABILITY).add(
-                    YavpmDamageTypes.CHOKE
+            valueLookupBuilder(YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_100).add(
+                    net.minecraft.world.entity.EntityType.ENDER_DRAGON
             );
         }
     }
 
-    public static class Biome extends FabricTagProvider<net.minecraft.world.biome.Biome> {
-        public Biome(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registriesFuture) {
-            super(output, RegistryKeys.BIOME, registriesFuture);
+    public static class DamageType extends FabricTagProvider<net.minecraft.world.damagesource.DamageType> {
+        public DamageType(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+            super(output, Registries.DAMAGE_TYPE, registriesFuture);
+        }
+
+        @SuppressWarnings("unchecked")
+        @Override
+        protected void addTags(HolderLookup.Provider wrapperLookup) {
+            builder(DamageTypeTags.NO_KNOCKBACK).add(
+                    YavpmDamageTypes.CUT,
+                    YavpmDamageTypes.CHOKE
+            );
+            builder(DamageTypeTags.BYPASSES_ARMOR).add(
+                    YavpmDamageTypes.CUT,
+                    YavpmDamageTypes.CHOKE
+            );
+            builder(DamageTypeTags.NO_IMPACT).add(
+                    YavpmDamageTypes.CUT,
+                    YavpmDamageTypes.CHOKE
+            );
+            builder(DamageTypeTags.WITHER_IMMUNE_TO).add(
+                    YavpmDamageTypes.CUT
+            );
+            builder(DamageTypeTags.BYPASSES_EFFECTS).add(
+                    YavpmDamageTypes.CUT
+            );
+            builder(DamageTypeTags.BYPASSES_INVULNERABILITY).add(
+                    YavpmDamageTypes.CHOKE
+            );
+        }
+    }
+
+    public static class Biome extends FabricTagProvider<net.minecraft.world.level.biome.Biome> {
+        public Biome(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+            super(output, Registries.BIOME, registriesFuture);
         }
 
         @Override
-        protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
-            getOrCreateTagBuilder(BiomeTags.IS_END).add(YavpmBiomes.End.END_OASIS);
+        protected void addTags(HolderLookup.Provider wrapperLookup) {
+            builder(BiomeTags.IS_END).add(YavpmBiomes.End.END_OASIS);
 
-            getOrCreateTagBuilder(YavpmTags.Biomes.SPAWNS_CRIMSON_MOONGUS)
-                    .add(BiomeKeys.CRIMSON_FOREST);
-            getOrCreateTagBuilder(YavpmTags.Biomes.SPAWNS_WARPED_MOONGUS)
-                    .add(BiomeKeys.WARPED_FOREST)
+            builder(YavpmTags.Biomes.SPAWNS_CRIMSON_MOONGUS)
+                    .add(Biomes.CRIMSON_FOREST);
+            builder(YavpmTags.Biomes.SPAWNS_WARPED_MOONGUS)
+                    .add(Biomes.WARPED_FOREST)
                     .forceAddTag(ConventionalBiomeTags.IS_END);
 
-            getOrCreateTagBuilder(YavpmTags.Biomes.FAKE_LOG_IS_SPRUCE)
+            builder(YavpmTags.Biomes.FAKE_LOG_IS_SPRUCE)
                     .forceAddTag(ConventionalBiomeTags.IS_TAIGA)
                     .forceAddTag(ConventionalBiomeTags.IS_MOUNTAIN)
                     .forceAddTag(ConventionalBiomeTags.IS_CONIFEROUS_TREE);
 
-            getOrCreateTagBuilder(YavpmTags.Biomes.FAKE_LOG_IS_BIRCH)
+            builder(YavpmTags.Biomes.FAKE_LOG_IS_BIRCH)
                     .forceAddTag(ConventionalBiomeTags.IS_BIRCH_FOREST);
 
-            getOrCreateTagBuilder(YavpmTags.Biomes.FAKE_LOG_IS_JUNGLE)
+            builder(YavpmTags.Biomes.FAKE_LOG_IS_JUNGLE)
                     .forceAddTag(ConventionalBiomeTags.IS_JUNGLE)
                     .forceAddTag(ConventionalBiomeTags.IS_JUNGLE_TREE);
 
-            getOrCreateTagBuilder(YavpmTags.Biomes.FAKE_LOG_IS_ACACIA)
+            builder(YavpmTags.Biomes.FAKE_LOG_IS_ACACIA)
                     .forceAddTag(ConventionalBiomeTags.IS_SAVANNA)
                     .forceAddTag(ConventionalBiomeTags.IS_SAVANNA_TREE);
 
-            getOrCreateTagBuilder(YavpmTags.Biomes.FAKE_LOG_IS_CHERRY)
+            builder(YavpmTags.Biomes.FAKE_LOG_IS_CHERRY)
                     .forceAddTag(ConventionalBiomeTags.IS_FLORAL);
 
-            getOrCreateTagBuilder(YavpmTags.Biomes.FAKE_LOG_IS_DARK_OAK)
-                    .add(BiomeKeys.DARK_FOREST);
+            builder(YavpmTags.Biomes.FAKE_LOG_IS_DARK_OAK)
+                    .add(Biomes.DARK_FOREST);
 
-            getOrCreateTagBuilder(YavpmTags.Biomes.FAKE_LOG_IS_MANGROVE)
+            builder(YavpmTags.Biomes.FAKE_LOG_IS_MANGROVE)
                     .forceAddTag(ConventionalBiomeTags.IS_SWAMP);
         }
     }
 
-    public static class Enchantment extends FabricTagProvider.EnchantmentTagProvider {
+    public static class Enchantments extends FabricTagProvider<Enchantment> {
 
-        public Enchantment(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> completableFuture) {
-            super(output, completableFuture);
+        public Enchantments(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
+            super(output, Registries.ENCHANTMENT, completableFuture);
         }
-
+        @SuppressWarnings("unchecked")
         @Override
-        protected void configure(RegistryWrapper.WrapperLookup wrapperLookup) {
-            getOrCreateTagBuilder(EnchantmentTags.NON_TREASURE).add(
+        protected void addTags(HolderLookup.Provider wrapperLookup) {
+
+            builder(EnchantmentTags.NON_TREASURE).add(
                     YavpmEnchantments.CRITICAL_HIT,
                     YavpmEnchantments.ILLAGERS_BANE,
                     YavpmEnchantments.ENDERBANE,
@@ -921,34 +922,35 @@ public class YavpmTagProviders {
                     YavpmEnchantments.GALLOP,
                     YavpmEnchantments.BOUNDING
             );
-            getOrCreateTagBuilder(EnchantmentTags.TREASURE).add(
+            builder(EnchantmentTags.TREASURE).add(
                     YavpmEnchantments.VOID_STRIKE,
                     YavpmEnchantments.STIFFNESS,
                     YavpmEnchantments.BLEED_OUT,
                     YavpmEnchantments.CRUSHING
             );
-            getOrCreateTagBuilder(EnchantmentTags.TRADEABLE).add(
+            builder(EnchantmentTags.TRADEABLE).add(
                     YavpmEnchantments.VOID_STRIKE,
                     YavpmEnchantments.ENDERBANE
             );
-            getOrCreateTagBuilder(EnchantmentTags.DOUBLE_TRADE_PRICE).add(
+            builder(EnchantmentTags.DOUBLE_TRADE_PRICE).add(
                     YavpmEnchantments.CRITICAL_HIT
             );
-            getOrCreateTagBuilder(YavpmTags.Enchantments.END_ENCHANTMENTS).add(
+            builder(YavpmTags.Enchantments.END_ENCHANTMENTS).add(
                     YavpmEnchantments.VOID_STRIKE,
                     YavpmEnchantments.ENDERBANE,
                     YavpmEnchantments.STIFFNESS
             );
-            getOrCreateTagBuilder(YavpmTags.Enchantments.EXCLUSIVE_SET_WOLF_ARMOR_OFFENSE).add(
+            builder(YavpmTags.Enchantments.EXCLUSIVE_SET_WOLF_ARMOR_OFFENSE).add(
                     YavpmEnchantments.MAULING,
                     YavpmEnchantments.BLEED_OUT,
                     YavpmEnchantments.CRUSHING
             );
-            getOrCreateTagBuilder(YavpmTags.Enchantments.EXCLUSIVE_SET_WOLF_ARMOR_DEFENSE).add(
+            builder(YavpmTags.Enchantments.EXCLUSIVE_SET_WOLF_ARMOR_DEFENSE).add(
                     YavpmEnchantments.LAP_DOG,
                     YavpmEnchantments.COUNTER,
                     YavpmEnchantments.PLAGUE
             );
+
         }
     }
 }

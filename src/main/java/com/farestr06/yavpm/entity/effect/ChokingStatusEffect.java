@@ -1,26 +1,26 @@
 package com.farestr06.yavpm.entity.effect;
 
 import com.farestr06.yavpm.entity.YavpmDamageTypes;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.LivingEntity;
 
-public class ChokingStatusEffect extends StatusEffect {
+public class ChokingStatusEffect extends MobEffect {
     protected ChokingStatusEffect() {
-        super(StatusEffectCategory.HARMFUL, 0x7a583d);
+        super(MobEffectCategory.HARMFUL, 0x7a583d);
     }
 
     @Override
-    public boolean applyUpdateEffect(ServerWorld world, LivingEntity entity, int amplifier) {
-        if (!entity.isInCreativeMode()) {
-            entity.damage(world, YavpmDamageTypes.choke(entity.getWorld()), (amplifier + 1) * 2);
+    public boolean applyEffectTick(ServerLevel world, LivingEntity entity, int amplifier) {
+        if (!entity.hasInfiniteMaterials()) {
+            entity.hurtServer(world, YavpmDamageTypes.choke(entity.level()), (amplifier + 1) * 2);
         }
-        return super.applyUpdateEffect(world, entity, amplifier);
+        return super.applyEffectTick(world, entity, amplifier);
     }
 
     @Override
-    public boolean canApplyUpdateEffect(int duration, int amplifier) {
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         int i = 20 >> amplifier;
         return i == 0 || duration % i == 0;
     }

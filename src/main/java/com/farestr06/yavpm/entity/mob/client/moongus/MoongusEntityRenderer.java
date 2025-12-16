@@ -1,27 +1,27 @@
 package com.farestr06.yavpm.entity.mob.client.moongus;
 
-import com.farestr06.yavpm.entity.mob.MoongusEntity;
+import com.farestr06.yavpm.entity.mob.FungusCowEntity;
 import com.google.common.collect.Maps;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.MobEntityRenderer;
-import net.minecraft.client.render.entity.model.CowEntityModel;
-import net.minecraft.client.render.entity.model.EntityModelLayers;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Util;
+import net.minecraft.Util;
+import net.minecraft.client.model.CowModel;
+import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.resources.ResourceLocation;
 
 import java.util.Map;
 
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
-public class MoongusEntityRenderer extends MobEntityRenderer<MoongusEntity, MoongusEntityRenderState, CowEntityModel> {
-    private static final Map<MoongusEntity.Variant, Identifier> TEXTURES = Util.make(Maps.newHashMap(), map -> {
-        map.put(MoongusEntity.Variant.WARPED, makeId("textures/entity/cow/warped_moongus.png"));
-        map.put(MoongusEntity.Variant.CRIMSON, makeId("textures/entity/cow/crimson_moongus.png"));
+public class MoongusEntityRenderer extends MobRenderer<FungusCowEntity, MoongusEntityRenderState, CowModel> {
+    private static final Map<FungusCowEntity.Variant, ResourceLocation> TEXTURES = Util.make(Maps.newHashMap(), map -> {
+        map.put(FungusCowEntity.Variant.WARPED, makeId("textures/entity/cow/warped_moongus.png"));
+        map.put(FungusCowEntity.Variant.CRIMSON, makeId("textures/entity/cow/crimson_moongus.png"));
     });
 
-    public MoongusEntityRenderer(EntityRendererFactory.Context context) {
-        super(context, new CowEntityModel(context.getPart(EntityModelLayers.MOOSHROOM)), 0.7f);
-        this.addFeature(new MoongusFungusFeatureRenderer(this, context.getBlockRenderManager()));
+    public MoongusEntityRenderer(EntityRendererProvider.Context context) {
+        super(context, new CowModel(context.bakeLayer(ModelLayers.MOOSHROOM)), 0.7f);
+        this.addLayer(new MoongusFungusFeatureRenderer(this, context.getBlockRenderDispatcher()));
     }
 
     @Override
@@ -30,14 +30,14 @@ public class MoongusEntityRenderer extends MobEntityRenderer<MoongusEntity, Moon
     }
 
     @Override
-    public void updateRenderState(MoongusEntity livingEntity, MoongusEntityRenderState livingEntityRenderState, float f) {
-        super.updateRenderState(livingEntity, livingEntityRenderState, f);
-        livingEntityRenderState.type = livingEntity.getMoongusVariant();
-        livingEntityRenderState.sheared = livingEntity.isSheared();
+    public void extractRenderState(FungusCowEntity livingEntity, MoongusEntityRenderState state, float f) {
+        super.extractRenderState(livingEntity, state, f);
+        state.type = livingEntity.getMoongusVariant();
+        state.sheared = livingEntity.isSheared();
     }
 
     @Override
-    public Identifier getTexture(MoongusEntityRenderState state) {
+    public ResourceLocation getTextureLocation(MoongusEntityRenderState state) {
         return TEXTURES.get(state.type);
     }
 }

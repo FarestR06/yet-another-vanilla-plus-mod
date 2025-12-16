@@ -1,52 +1,52 @@
 package com.farestr06.yavpm.block.custom;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.PillarBlock;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.Properties;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
-public class PrickleLogBlock extends PillarBlock {
-    public static final BooleanProperty PRICKLY = BooleanProperty.of("prickly");
+public class PrickleLogBlock extends RotatedPillarBlock {
+    public static final BooleanProperty PRICKLY = BooleanProperty.create("prickly");
 
-    public PrickleLogBlock(Settings settings) {
+    public PrickleLogBlock(Properties settings) {
         super(settings);
-        this.setDefaultState(this.getDefaultState().with(PRICKLY, true)); // Naturally spawning Prickle Logs are prickly! Ouch!
+        this.registerDefaultState(this.defaultBlockState().setValue(PRICKLY, true)); // Naturally spawning Prickle Logs are prickly! Ouch!
     }
 
     @Override
-    public BlockState getPlacementState(ItemPlacementContext ctx) {
-        return super.getPlacementState(ctx).with(PRICKLY, false); // Player-placed Prickle Logs shouldn't be prickly.
+    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+        return super.getStateForPlacement(ctx).setValue(PRICKLY, false); // Player-placed Prickle Logs shouldn't be prickly.
     }
 
     @Override
-    public void onSteppedOn(World world, BlockPos pos, BlockState state, Entity entity) {
+    public void stepOn(Level world, BlockPos pos, BlockState state, Entity entity) {
         // Are we on the server side?
-        if (world instanceof ServerWorld serverWorld) {
+        if (world instanceof ServerLevel serverWorld) {
             if (
                     // If it's a horizontal Prickle Log or a Prickle Wood...
-                    (state.get(Properties.AXIS).isHorizontal() || state.isOf(YavpmBlocks.PRICKLE_WOOD))
-                            && state.get(PRICKLY) // And it has the needles...
+                    (state.getValue(BlockStateProperties.AXIS).isHorizontal() || state.is(YavpmBlocks.PRICKLE_WOOD))
+                            && state.getValue(PRICKLY) // And it has the needles...
             ) {
                 if (entity instanceof LivingEntity livingEntity) { // Then we'll check if the entity is alive.
                     // If they are, we'll poke them!
-                    livingEntity.damage(serverWorld, livingEntity.getDamageSources().cactus(), 1.5f);
+                    livingEntity.hurtServer(serverWorld, livingEntity.damageSources().cactus(), 1.5f);
                 }
             }
         }
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
-        super.appendProperties(builder);
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
         builder.add(PRICKLY);
     }
 }

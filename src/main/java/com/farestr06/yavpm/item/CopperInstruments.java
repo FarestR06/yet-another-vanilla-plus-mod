@@ -1,31 +1,31 @@
 package com.farestr06.yavpm.item;
 
 import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
-import com.farestr06.yavpm.item.component.CopperInstrument;
 import com.farestr06.yavpm.item.custom.CopperHornItem;
 import com.farestr06.yavpm.util.YavpmSounds;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Util;
+import com.farestr06.yavpm.world.component.CopperInstrument;
+import net.minecraft.Util;
+import net.minecraft.core.Holder;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public final class CopperInstruments {
-    public static final Identifier GREAT_SKY_FALLING = makeId("great_sky_falling");
+    public static final ResourceLocation GREAT_SKY_FALLING = makeId("great_sky_falling");
 
     private static CopperInstrument register(
-            RegistryEntry<SoundEvent> harmony,
-            RegistryEntry<SoundEvent> melody,
-            RegistryEntry<SoundEvent> bass,
-            Identifier id) {
+            Holder<SoundEvent> harmony,
+            Holder<SoundEvent> melody,
+            Holder<SoundEvent> bass,
+            ResourceLocation id) {
         CopperInstrument instrument = new CopperInstrument(
                 harmony,
                 melody,
                 bass,
                 7.0F, 256.0F,
-                Text.translatable(Util.createTranslationKey("instrument", id))
+                Component.translatable(Util.makeDescriptionId("instrument", id))
         );
         CopperHornItem.registerCopperInstrument(id, instrument);
         return instrument;

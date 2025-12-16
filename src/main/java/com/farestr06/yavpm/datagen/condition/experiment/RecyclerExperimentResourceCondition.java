@@ -5,7 +5,7 @@ import com.farestr06.yavpm.datagen.condition.YavpmResourceConditionTypes;
 import com.mojang.serialization.MapCodec;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType;
-import net.minecraft.registry.RegistryOps;
+import net.minecraft.resources.RegistryOps;
 import org.jetbrains.annotations.Nullable;
 
 public record RecyclerExperimentResourceCondition() implements ResourceCondition {
@@ -18,7 +18,7 @@ public record RecyclerExperimentResourceCondition() implements ResourceCondition
     }
 
     @Override
-    public boolean test(RegistryOps.@Nullable RegistryInfoGetter registryInfo) {
+    public boolean test(RegistryOps.@Nullable RegistryInfoLookup registryInfo) {
         return YavpmConfig.HANDLER.instance().recyclerExperiment;
     }
 }

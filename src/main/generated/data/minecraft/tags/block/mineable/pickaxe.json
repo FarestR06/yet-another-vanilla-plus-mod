@@ -67,10 +67,6 @@
     "yavpm:hardened_conglomerate_brick_stairs",
     "yavpm:hardened_conglomerate_brick_slab",
     "yavpm:hardened_conglomerate_brick_wall",
-    "yavpm:fake_ore",
-    {
-      "id": "yavpm:recycler",
-      "required": false
-    }
+    "yavpm:fake_ore"
   ]
 }

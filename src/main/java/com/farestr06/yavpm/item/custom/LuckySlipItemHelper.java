@@ -1,15 +1,15 @@
 package com.farestr06.yavpm.item.custom;
 
 import com.farestr06.yavpm.item.YavpmItems;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentLevelEntry;
-import net.minecraft.item.ItemStack;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.registry.tag.EnchantmentTags;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.World;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.EnchantmentTags;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentInstance;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
@@ -17,29 +17,29 @@ import java.util.Optional;
 public class LuckySlipItemHelper {
 
     @Nullable
-    public static EnchantmentLevelEntry choose(World world) {
-        Random rand = world.getRandom();
-        Optional<RegistryEntry<Enchantment>> optional = world
-                .getRegistryManager()
-                .getOrThrow(RegistryKeys.ENCHANTMENT)
-                .getRandomEntry(EnchantmentTags.TRADEABLE, rand);
+    public static EnchantmentInstance choose(Level world) {
+        RandomSource rand = world.getRandom();
+        Optional<Holder<Enchantment>> optional = world
+                .registryAccess()
+                .lookupOrThrow(Registries.ENCHANTMENT)
+                .getRandomElementOf(EnchantmentTags.TRADEABLE, rand);
         if (optional.isPresent()) {
 
-            RegistryEntry<Enchantment> registryEntry = optional.get();
+            Holder<Enchantment> registryEntry = optional.get();
             Enchantment enchantment = registryEntry.value();
             int i = Math.max(enchantment.getMinLevel(), 0);
             int j = Math.min(enchantment.getMaxLevel(), 10);
-            int level = MathHelper.nextInt(rand, i, j);
+            int level = Mth.nextInt(rand, i, j);
 
-            return new EnchantmentLevelEntry(registryEntry, level);
+            return new EnchantmentInstance(registryEntry, level);
         }
         return null;
     }
 
-    public static ItemStack forEnchantment(@Nullable EnchantmentLevelEntry info) {
+    public static ItemStack forEnchantment(@Nullable EnchantmentInstance info) {
         ItemStack itemStack = new ItemStack(YavpmItems.LUCKY_SLIP);
         if (info != null) {
-            itemStack.addEnchantment(info.enchantment(), info.level());
+            itemStack.enchant(info.enchantment(), info.level());
         }
         return itemStack;
     }

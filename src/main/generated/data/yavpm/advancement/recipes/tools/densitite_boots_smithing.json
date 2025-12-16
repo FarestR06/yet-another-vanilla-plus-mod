@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:densitite_boots_smithing"
+        "recipe": "yavpm:densitite_boots_smithing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:densitite_boots_smithing"
+      "yavpm:densitite_boots_smithing"
     ]
   }
 }

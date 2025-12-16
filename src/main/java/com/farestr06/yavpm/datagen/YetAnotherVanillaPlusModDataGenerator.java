@@ -7,8 +7,8 @@ import com.farestr06.yavpm.world.feature.configured.YavpmConfiguredFeatureBootst
 import com.farestr06.yavpm.world.feature.placed.YavpmPlacedFeatureBootstrapper;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
-import net.minecraft.registry.RegistryBuilder;
-import net.minecraft.registry.RegistryKeys;
+import net.minecraft.core.RegistrySetBuilder;
+import net.minecraft.core.registries.Registries;
 
 public class YetAnotherVanillaPlusModDataGenerator implements DataGeneratorEntrypoint {
 	@Override
@@ -25,18 +25,18 @@ public class YetAnotherVanillaPlusModDataGenerator implements DataGeneratorEntry
 		pack.addProvider(YavpmTagProviders.EntityType::new);
 		pack.addProvider(YavpmTagProviders.DamageType::new);
 		pack.addProvider(YavpmTagProviders.Biome::new);
-		pack.addProvider(YavpmTagProviders.Enchantment::new);
+		pack.addProvider(YavpmTagProviders.Enchantments::new);
 		pack.addProvider(YavpmAdvancementProvider::new);
 		pack.addProvider(YavpmMiscDataGenerator::new);
 		pack.addProvider(YavpmWorldGenerator::new);
 	}
 
 	@Override
-	public void buildRegistry(RegistryBuilder registryBuilder) {
-		registryBuilder.addRegistry(RegistryKeys.DAMAGE_TYPE, YavpmDamageTypes::bootstrap);
-		registryBuilder.addRegistry(RegistryKeys.ENCHANTMENT, YavpmEnchantments::bootstrap);
-		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, YavpmConfiguredFeatureBootstrapper::bootstrap);
-		registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, YavpmPlacedFeatureBootstrapper::bootstrap);
-		registryBuilder.addRegistry(RegistryKeys.BIOME, YavpmBiomes::bootstrap);
+	public void buildRegistry(RegistrySetBuilder registryBuilder) {
+		registryBuilder.add(Registries.DAMAGE_TYPE, YavpmDamageTypes::bootstrap);
+		registryBuilder.add(Registries.ENCHANTMENT, YavpmEnchantments::bootstrap);
+		registryBuilder.add(Registries.CONFIGURED_FEATURE, YavpmConfiguredFeatureBootstrapper::bootstrap);
+		registryBuilder.add(Registries.PLACED_FEATURE, YavpmPlacedFeatureBootstrapper::bootstrap);
+		registryBuilder.add(Registries.BIOME, YavpmBiomes::bootstrap);
 	}
 }

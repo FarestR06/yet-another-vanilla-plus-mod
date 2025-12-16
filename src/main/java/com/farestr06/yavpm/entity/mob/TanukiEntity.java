@@ -6,60 +6,61 @@ import com.farestr06.yavpm.block.custom.fake.FakeOreBlock;
 import com.farestr06.yavpm.entity.YavpmEntities;
 import com.farestr06.yavpm.util.YavpmSounds;
 import com.farestr06.yavpm.util.YavpmTags;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.SpawnReason;
-import net.minecraft.entity.ai.goal.*;
-import net.minecraft.entity.attribute.DefaultAttributeContainer;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.PassiveEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.world.GameRules;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.event.GameEvent;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.GameRules;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import org.jetbrains.annotations.Nullable;
 
 import static com.farestr06.yavpm.config.YavpmConfig.HANDLER;
 
-public class TanukiEntity extends AnimalEntity {
+public class TanukiEntity extends Animal {
     public int tryTransformTime = this.random.nextInt(HANDLER.instance().tanukiRandomTransformDelay) + HANDLER.instance().tanukiBaseTransformDelay;
 
-    public TanukiEntity(EntityType<? extends AnimalEntity> entityType, World world) {
+    public TanukiEntity(EntityType<? extends Animal> entityType, Level world) {
         super(entityType, world);
     }
 
     @Override
-    protected void initGoals() {
-        this.goalSelector.add(0, new SwimGoal(this));
-        this.goalSelector.add(0, new PowderSnowJumpGoal(this, this.getWorld()));
-        this.goalSelector.add(1, new EscapeDangerGoal(this, 1.8));
-        this.goalSelector.add(2, new AnimalMateGoal(this, 1));
-        this.goalSelector.add(3, new TemptGoal(this, 1.15, stack -> stack.isIn(YavpmTags.Items.TANUKI_FOOD), false));
-        this.goalSelector.add(4, new FollowParentGoal(this, 1.25));
-        this.goalSelector.add(5, new WanderAroundGoal(this, 1));
-        this.goalSelector.add(6, new LookAtEntityGoal(this, PlayerEntity.class, 3f));
-        this.goalSelector.add(7, new LookAroundGoal(this));
+    protected void registerGoals() {
+        this.goalSelector.addGoal(0, new FloatGoal(this));
+        this.goalSelector.addGoal(0, new ClimbOnTopOfPowderSnowGoal(this, this.level()));
+        this.goalSelector.addGoal(1, new PanicGoal(this, 1.8));
+        this.goalSelector.addGoal(2, new BreedGoal(this, 1));
+        this.goalSelector.addGoal(3, new TemptGoal(this, 1.15, stack -> stack.is(YavpmTags.Items.TANUKI_FOOD), false));
+        this.goalSelector.addGoal(4, new FollowParentGoal(this, 1.25));
+        this.goalSelector.addGoal(5, new RandomStrollGoal(this, 1));
+        this.goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 3f));
+        this.goalSelector.addGoal(7, new RandomLookAroundGoal(this));
     }
 
     @Override
-    public void tickMovement() {
-        super.tickMovement();
-        if (this.getWorld() instanceof ServerWorld world) {
-            if (world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) {
+    public void aiStep() {
+        super.aiStep();
+        if (this.level() instanceof ServerLevel world) {
+            if (world.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING)) {
                 if (
-                        !this.getWorld().isClient && this.isAlive() && !this.isBaby() && --this.tryTransformTime <= 0
-                                && !this.hasCustomName() && !this.isAiDisabled() && !this.isInvulnerable()
+                        !this.level().isClientSide() && this.isAlive() && !this.isBaby() && --this.tryTransformTime <= 0
+                                && !this.hasCustomName() && !this.isNoAi() && !this.isInvulnerable()
                 ) {
                     if (this.getRandom().nextFloat() <= HANDLER.instance().tanukiTransformChance) {
                         transform();
@@ -72,21 +73,21 @@ public class TanukiEntity extends AnimalEntity {
     }
 
     @Override
-    public boolean isBreedingItem(ItemStack stack) {
-        return stack.isIn(YavpmTags.Items.TANUKI_FOOD);
+    public boolean isFood(ItemStack stack) {
+        return stack.is(YavpmTags.Items.TANUKI_FOOD);
     }
 
     @Override
-    public @Nullable PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-        return YavpmEntities.TANUKI.create(world, SpawnReason.BREEDING);
+    public @Nullable AgeableMob getBreedOffspring(ServerLevel world, AgeableMob entity) {
+        return YavpmEntities.TANUKI.create(world, EntitySpawnReason.BREEDING);
     }
 
-    public static DefaultAttributeContainer.Builder createTanukiAttributes() {
-        return AnimalEntity.createAnimalAttributes()
-                .add(EntityAttributes.MOVEMENT_SPEED, 0.2)
-                .add(EntityAttributes.MAX_HEALTH, 14.0)
-                .add(EntityAttributes.FOLLOW_RANGE, 32.0)
-                .add(EntityAttributes.SAFE_FALL_DISTANCE, 3.5);
+    public static AttributeSupplier.Builder createTanukiAttributes() {
+        return Animal.createAnimalAttributes()
+                .add(Attributes.MOVEMENT_SPEED, 0.2)
+                .add(Attributes.MAX_HEALTH, 14.0)
+                .add(Attributes.FOLLOW_RANGE, 32.0)
+                .add(Attributes.SAFE_FALL_DISTANCE, 3.5);
     }
 
     @Override
@@ -105,39 +106,39 @@ public class TanukiEntity extends AnimalEntity {
     }
 
     @Override
-    protected void playEatSound() {
+    protected void playEatingSound() {
         this.playSound(YavpmSounds.ENTITY_TANUKI_EAT, 1.0F, 1.0F);
     }
 
     @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
-        if (nbt.contains("TryTransformTime")) {
-            this.tryTransformTime = nbt.getInt("TryTransformTime", 4000);
+    protected void readAdditionalSaveData(ValueInput valueInput) {
+        super.readAdditionalSaveData(valueInput);
+        if (valueInput.contains("TryTransformTime")) {
+            this.tryTransformTime = valueInput.getIntOr("TryTransformTime", 4000);
         }
     }
 
     @Override
-    public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
-        nbt.putInt("TryTransformTime", this.tryTransformTime);
+    protected void addAdditionalSaveData(ValueOutput valueOutput) {
+        super.addAdditionalSaveData(valueOutput);
+        valueOutput.putInt("TryTransformTime", this.tryTransformTime);
     }
 
     private void transform() {
-        WorldAccess worldAccess = this.getWorld();
-        Random rand = this.getRandom();
-        BlockPos blockPos = this.getBlockPos();
+        LevelAccessor worldAccess = this.level();
+        RandomSource rand = this.getRandom();
+        BlockPos blockPos = this.blockPosition();
         BlockState blockState = worldAccess.getBlockState(blockPos);
-        if (blockState.isOf(Blocks.AIR) | blockState.isOf(Blocks.CAVE_AIR)) {
+        if (blockState.is(Blocks.AIR) | blockState.is(Blocks.CAVE_AIR)) {
             BlockState fake;
             if (blockPos.getY() >= 63) {
                 fake = ((FakeLogBlock) YavpmBlocks.FAKE_LOG).makeFakeBlockState(blockPos, worldAccess);
             } else {
                 fake = ((FakeOreBlock) YavpmBlocks.FAKE_ORE).makeFakeBlockState(rand, blockPos);
             }
-            this.emitGameEvent(GameEvent.BLOCK_PLACE);
-            worldAccess.setBlockState(blockPos, fake, Block.NOTIFY_ALL);
-            this.playSpawnEffects();
+            this.gameEvent(GameEvent.BLOCK_PLACE);
+            worldAccess.setBlock(blockPos, fake, Block.UPDATE_ALL);
+            this.spawnAnim();
             this.discard();
         }
     }

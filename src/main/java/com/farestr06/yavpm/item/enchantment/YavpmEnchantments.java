@@ -6,106 +6,97 @@ import com.farestr06.yavpm.item.enchantment.effect.ParryEnchantmentEffect;
 import com.farestr06.yavpm.util.YavpmSounds;
 import com.farestr06.yavpm.util.YavpmTags;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalItemTags;
-import net.minecraft.component.EnchantmentEffectComponentTypes;
-import net.minecraft.component.type.AttributeModifierSlot;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentLevelBasedValue;
-import net.minecraft.enchantment.effect.AllOfEnchantmentEffects;
-import net.minecraft.enchantment.effect.AttributeEnchantmentEffect;
-import net.minecraft.enchantment.effect.EnchantmentEffectTarget;
-import net.minecraft.enchantment.effect.entity.ApplyMobEffectEnchantmentEffect;
-import net.minecraft.enchantment.effect.entity.ChangeItemDamageEnchantmentEffect;
-import net.minecraft.enchantment.effect.entity.DamageEntityEnchantmentEffect;
-import net.minecraft.enchantment.effect.entity.PlaySoundEnchantmentEffect;
-import net.minecraft.enchantment.effect.value.AddEnchantmentEffect;
-import net.minecraft.enchantment.effect.value.MultiplyEnchantmentEffect;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageTypes;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.loot.condition.*;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.provider.number.EnchantmentLevelLootNumberProvider;
-import net.minecraft.predicate.NumberRange;
-import net.minecraft.predicate.TagPredicate;
-import net.minecraft.predicate.entity.*;
-import net.minecraft.registry.Registerable;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryEntryList;
-import net.minecraft.registry.tag.BlockTags;
-import net.minecraft.registry.tag.DamageTypeTags;
-import net.minecraft.registry.tag.EnchantmentTags;
-import net.minecraft.registry.tag.ItemTags;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.math.floatprovider.ConstantFloatProvider;
-import net.minecraft.util.math.floatprovider.UniformFloatProvider;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.core.HolderSet;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.DamageTypeTags;
+import net.minecraft.tags.EnchantmentTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.util.valueproviders.ConstantFloat;
+import net.minecraft.util.valueproviders.UniformFloat;
+import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.EnchantmentEffectComponents;
+import net.minecraft.world.item.enchantment.EnchantmentTarget;
+import net.minecraft.world.item.enchantment.LevelBasedValue;
+import net.minecraft.world.item.enchantment.effects.*;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.predicates.*;
+import net.minecraft.world.level.storage.loot.providers.number.EnchantmentLevelProvider;
 
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmEnchantments {
     // Damage
-    public static final RegistryKey<Enchantment> CRITICAL_HIT = registerKey("critical_hit");
-    public static final RegistryKey<Enchantment> VOID_STRIKE = registerKey("void_strike");
-    public static final RegistryKey<Enchantment> ILLAGERS_BANE = registerKey("illagers_bane");
-    public static final RegistryKey<Enchantment> ENDERBANE = registerKey("enderbane");
+    public static final ResourceKey<Enchantment> CRITICAL_HIT = registerKey("critical_hit");
+    public static final ResourceKey<Enchantment> VOID_STRIKE = registerKey("void_strike");
+    public static final ResourceKey<Enchantment> ILLAGERS_BANE = registerKey("illagers_bane");
+    public static final ResourceKey<Enchantment> ENDERBANE = registerKey("enderbane");
 
     // Boots
-    public static final RegistryKey<Enchantment> FIGURE_EIGHT = registerKey("figure_eight");
+    public static final ResourceKey<Enchantment> FIGURE_EIGHT = registerKey("figure_eight");
 
     // Shield
-    public static final RegistryKey<Enchantment> PARRY = registerKey("parry");
+    public static final ResourceKey<Enchantment> PARRY = registerKey("parry");
 
     // Elytra
-    public static final RegistryKey<Enchantment> STIFFNESS = registerKey("stiffness");
+    public static final ResourceKey<Enchantment> STIFFNESS = registerKey("stiffness");
 
     // Ranged
-    public static final RegistryKey<Enchantment> TEMPO_THEFT = registerKey("tempo_theft");
+    public static final ResourceKey<Enchantment> TEMPO_THEFT = registerKey("tempo_theft");
 
     // Wolf Armor
-    public static final RegistryKey<Enchantment> MAULING = registerKey("mauling");
-    public static final RegistryKey<Enchantment> BLEED_OUT = registerKey("bleed_out");
-    public static final RegistryKey<Enchantment> CRUSHING = registerKey("crushing");
+    public static final ResourceKey<Enchantment> MAULING = registerKey("mauling");
+    public static final ResourceKey<Enchantment> BLEED_OUT = registerKey("bleed_out");
+    public static final ResourceKey<Enchantment> CRUSHING = registerKey("crushing");
 
-    public static final RegistryKey<Enchantment> RETRIEVE = registerKey("retrieve");
+    public static final ResourceKey<Enchantment> RETRIEVE = registerKey("retrieve");
 
-    public static final RegistryKey<Enchantment> LAP_DOG = registerKey("lap_dog");
-    public static final RegistryKey<Enchantment> COUNTER = registerKey("counter");
-    public static final RegistryKey<Enchantment> PLAGUE = registerKey("plague");
+    public static final ResourceKey<Enchantment> LAP_DOG = registerKey("lap_dog");
+    public static final ResourceKey<Enchantment> COUNTER = registerKey("counter");
+    public static final ResourceKey<Enchantment> PLAGUE = registerKey("plague");
     // Horse Armor
-    public static final RegistryKey<Enchantment> GALLOP = registerKey("gallop");
-    public static final RegistryKey<Enchantment> BOUNDING = registerKey("bounding");
+    public static final ResourceKey<Enchantment> GALLOP = registerKey("gallop");
+    public static final ResourceKey<Enchantment> BOUNDING = registerKey("bounding");
 
-    public static void bootstrap(Registerable<Enchantment> registerable) {
-        var enchantments = registerable.getRegistryLookup(RegistryKeys.ENCHANTMENT);
-        var blocks = registerable.getRegistryLookup(RegistryKeys.BLOCK);
-        var items = registerable.getRegistryLookup(RegistryKeys.ITEM);
-        var entities = registerable.getRegistryLookup(RegistryKeys.ENTITY_TYPE);
-        var damageTypes = registerable.getRegistryLookup(RegistryKeys.DAMAGE_TYPE);
+    public static void bootstrap(BootstrapContext<Enchantment> registerable) {
+        var enchantments = registerable.lookup(Registries.ENCHANTMENT);
+        var blocks = registerable.lookup(Registries.BLOCK);
+        var items = registerable.lookup(Registries.ITEM);
+        var entities = registerable.lookup(Registries.ENTITY_TYPE);
+        var damageTypes = registerable.lookup(Registries.DAMAGE_TYPE);
 
         // region Critical Hit
         register(
                 registerable,
                 CRITICAL_HIT,
-                Enchantment.builder(
+                Enchantment.enchantment(
                         Enchantment.definition(
                                 items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
                                 items.getOrThrow(ItemTags.SWORD_ENCHANTABLE),
                                 2,
                                 3,
-                                Enchantment.leveledCost(10, 5),
-                                Enchantment.leveledCost(15, 5),
+                                Enchantment.dynamicCost(10, 5),
+                                Enchantment.dynamicCost(15, 5),
                                 6,
-                                AttributeModifierSlot.MAINHAND
+                                EquipmentSlotGroup.MAINHAND
                         ))
-                        .exclusiveSet(enchantments.getOrThrow(EnchantmentTags.DAMAGE_EXCLUSIVE_SET))
-                        .addEffect(
-                                EnchantmentEffectComponentTypes.DAMAGE,
-                                new MultiplyEnchantmentEffect(EnchantmentLevelBasedValue.constant(2.5f)),
-                                RandomChanceLootCondition.builder(
-                                        EnchantmentLevelLootNumberProvider.create(
-                                                EnchantmentLevelBasedValue.linear(0.1f, 0.05f)
+                        .exclusiveWith(enchantments.getOrThrow(EnchantmentTags.DAMAGE_EXCLUSIVE))
+                        .withEffect(
+                                EnchantmentEffectComponents.DAMAGE,
+                                new MultiplyValue(LevelBasedValue.constant(2.5f)),
+                                LootItemRandomChanceCondition.randomChance(
+                                        EnchantmentLevelProvider.forEnchantmentLevel(
+                                                LevelBasedValue.perLevel(0.1f, 0.05f)
                                         )
                                 )
                         )
@@ -115,27 +106,27 @@ public class YavpmEnchantments {
         register(
                 registerable,
                 VOID_STRIKE,
-                Enchantment.builder(
+                Enchantment.enchantment(
                         Enchantment.definition(
                                 items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
                                 3,
                                 4,
-                                Enchantment.leveledCost(10, 5),
-                                Enchantment.leveledCost(15, 5),
+                                Enchantment.dynamicCost(10, 5),
+                                Enchantment.dynamicCost(15, 5),
                                 6,
-                                AttributeModifierSlot.MAINHAND
+                                EquipmentSlotGroup.MAINHAND
                         ))
-                        .exclusiveSet(enchantments.getOrThrow(EnchantmentTags.DAMAGE_EXCLUSIVE_SET))
-                        .addEffect(
-                                EnchantmentEffectComponentTypes.POST_ATTACK,
-                                EnchantmentEffectTarget.ATTACKER,
-                                EnchantmentEffectTarget.VICTIM,
-                                new ApplyMobEffectEnchantmentEffect(
-                                        RegistryEntryList.of(YavpmStatusEffects.VOID_TOUCHED),
-                                        EnchantmentLevelBasedValue.constant(1f),
-                                        EnchantmentLevelBasedValue.linear(1.5f, 0.5F),
-                                        EnchantmentLevelBasedValue.constant(0.0F),
-                                        EnchantmentLevelBasedValue.constant(1.0F)
+                        .exclusiveWith(enchantments.getOrThrow(EnchantmentTags.DAMAGE_EXCLUSIVE))
+                        .withEffect(
+                                EnchantmentEffectComponents.POST_ATTACK,
+                                EnchantmentTarget.ATTACKER,
+                                EnchantmentTarget.VICTIM,
+                                new ApplyMobEffect(
+                                        HolderSet.direct(YavpmStatusEffects.VOID_TOUCHED),
+                                        LevelBasedValue.constant(1f),
+                                        LevelBasedValue.perLevel(1.5f, 0.5F),
+                                        LevelBasedValue.constant(0.0F),
+                                        LevelBasedValue.constant(1.0F)
                                 )
                         )
         );
@@ -144,193 +135,193 @@ public class YavpmEnchantments {
         register(
                 registerable,
                 ILLAGERS_BANE,
-                Enchantment.builder(
+                Enchantment.enchantment(
                                 Enchantment.definition(
                                         items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
                                         items.getOrThrow(ItemTags.SWORD_ENCHANTABLE),
                                         5,
                                         5,
-                                        Enchantment.leveledCost(5, 8),
-                                        Enchantment.leveledCost(25, 8),
+                                        Enchantment.dynamicCost(5, 8),
+                                        Enchantment.dynamicCost(25, 8),
                                         2,
-                                        AttributeModifierSlot.MAINHAND
+                                        EquipmentSlotGroup.MAINHAND
                                 )
                         )
-                        .exclusiveSet(enchantments.getOrThrow(EnchantmentTags.DAMAGE_EXCLUSIVE_SET))
-                        .addEffect(
-                                EnchantmentEffectComponentTypes.DAMAGE,
-                                new AddEnchantmentEffect(EnchantmentLevelBasedValue.linear(2.5F)),
-                                EntityPropertiesLootCondition.builder(
-                                        LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().type(EntityTypePredicate.create(entities, YavpmTags.EntityTypes.SENSITIVE_TO_ILLAGERS_BANE))
+                        .exclusiveWith(enchantments.getOrThrow(EnchantmentTags.DAMAGE_EXCLUSIVE))
+                        .withEffect(
+                                EnchantmentEffectComponents.DAMAGE,
+                                new AddValue(LevelBasedValue.perLevel(2.5F)),
+                                LootItemEntityPropertyCondition.hasProperties(
+                                        LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entities, YavpmTags.EntityTypes.SENSITIVE_TO_ILLAGERS_BANE))
                                 )
                         )
-                        .addEffect(
-                                EnchantmentEffectComponentTypes.POST_ATTACK,
-                                EnchantmentEffectTarget.ATTACKER,
-                                EnchantmentEffectTarget.VICTIM,
-                                new ApplyMobEffectEnchantmentEffect(
-                                        RegistryEntryList.of(StatusEffects.SLOWNESS),
-                                        EnchantmentLevelBasedValue.constant(1.5F),
-                                        EnchantmentLevelBasedValue.linear(1.5F, 0.5F),
-                                        EnchantmentLevelBasedValue.constant(3.0F),
-                                        EnchantmentLevelBasedValue.constant(3.0F)
+                        .withEffect(
+                                EnchantmentEffectComponents.POST_ATTACK,
+                                EnchantmentTarget.ATTACKER,
+                                EnchantmentTarget.VICTIM,
+                                new ApplyMobEffect(
+                                        HolderSet.direct(MobEffects.SLOWNESS),
+                                        LevelBasedValue.constant(1.5F),
+                                        LevelBasedValue.perLevel(1.5F, 0.5F),
+                                        LevelBasedValue.constant(3.0F),
+                                        LevelBasedValue.constant(3.0F)
                                 ),
-                                EntityPropertiesLootCondition.builder(
-                                                LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().type(EntityTypePredicate.create(entities, YavpmTags.EntityTypes.SENSITIVE_TO_ILLAGERS_BANE))
+                                LootItemEntityPropertyCondition.hasProperties(
+                                                LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entities, YavpmTags.EntityTypes.SENSITIVE_TO_ILLAGERS_BANE))
                                         )
-                                        .and(DamageSourcePropertiesLootCondition.builder(DamageSourcePredicate.Builder.create().isDirect(true)))
+                                        .and(DamageSourceCondition.hasDamageSource(DamageSourcePredicate.Builder.damageType().isDirect(true)))
                         )
         );
         // endregion
         // region Enderbane
         register(registerable,
                 ENDERBANE,
-                Enchantment.builder(
+                Enchantment.enchantment(
                         Enchantment.definition(
                                 items.getOrThrow(ItemTags.WEAPON_ENCHANTABLE),
                                 items.getOrThrow(ItemTags.SWORD_ENCHANTABLE),
                                 5,
                                 1,
-                                Enchantment.leveledCost(5, 8),
-                                Enchantment.leveledCost(25, 8),
+                                Enchantment.dynamicCost(5, 8),
+                                Enchantment.dynamicCost(25, 8),
                                 2,
-                                AttributeModifierSlot.MAINHAND
+                                EquipmentSlotGroup.MAINHAND
                         )
-                ).exclusiveSet(enchantments.getOrThrow(EnchantmentTags.DAMAGE_EXCLUSIVE_SET))
-                        .addEffect(
-                                EnchantmentEffectComponentTypes.DAMAGE,
-                                new MultiplyEnchantmentEffect(EnchantmentLevelBasedValue.constant(1.25f)),
-                                EntityPropertiesLootCondition.builder(
-                                        LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().type(
-                                                EntityTypePredicate.create(entities, YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_25)
+                ).exclusiveWith(enchantments.getOrThrow(EnchantmentTags.DAMAGE_EXCLUSIVE))
+                        .withEffect(
+                                EnchantmentEffectComponents.DAMAGE,
+                                new MultiplyValue(LevelBasedValue.constant(1.25f)),
+                                LootItemEntityPropertyCondition.hasProperties(
+                                        LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().entityType(
+                                                EntityTypePredicate.of(entities, YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_25)
                                         )
                                 )
                         )
-                        .addEffect(
-                                EnchantmentEffectComponentTypes.DAMAGE,
-                                new MultiplyEnchantmentEffect(EnchantmentLevelBasedValue.constant(1.5f)),
-                                EntityPropertiesLootCondition.builder(
-                                        LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().type(
-                                                EntityTypePredicate.create(entities, YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_50)
+                        .withEffect(
+                                EnchantmentEffectComponents.DAMAGE,
+                                new MultiplyValue(LevelBasedValue.constant(1.5f)),
+                                LootItemEntityPropertyCondition.hasProperties(
+                                        LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().entityType(
+                                                EntityTypePredicate.of(entities, YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_50)
                                         )
                                 )
                         )
-                        .addEffect(
-                                EnchantmentEffectComponentTypes.DAMAGE,
-                                new MultiplyEnchantmentEffect(EnchantmentLevelBasedValue.constant(1.75f)),
-                                EntityPropertiesLootCondition.builder(
-                                        LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().type(
-                                                EntityTypePredicate.create(entities, YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_75)
+                        .withEffect(
+                                EnchantmentEffectComponents.DAMAGE,
+                                new MultiplyValue(LevelBasedValue.constant(1.75f)),
+                                LootItemEntityPropertyCondition.hasProperties(
+                                        LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().entityType(
+                                                EntityTypePredicate.of(entities, YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_75)
                                         )
                                 )
                         )
-                        .addEffect(
-                                EnchantmentEffectComponentTypes.DAMAGE,
-                                new MultiplyEnchantmentEffect(EnchantmentLevelBasedValue.constant(2)),
-                                EntityPropertiesLootCondition.builder(
-                                        LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().type(
-                                                EntityTypePredicate.create(entities, YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_100)
+                        .withEffect(
+                                EnchantmentEffectComponents.DAMAGE,
+                                new MultiplyValue(LevelBasedValue.constant(2)),
+                                LootItemEntityPropertyCondition.hasProperties(
+                                        LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().entityType(
+                                                EntityTypePredicate.of(entities, YavpmTags.EntityTypes.SENSITIVE_TO_ENDERBANE_100)
                                         )
                                 )
                         )
         );
         // endregion
         // region Figure Eight
-        EntityPredicate.Builder builder = EntityPredicate.Builder.create()
+        EntityPredicate.Builder builder = EntityPredicate.Builder.entity()
                 .periodicTick(5)
-                .flags(EntityFlagsPredicate.Builder.create().flying(false).onGround(true))
-                .movement(MovementPredicate.horizontalSpeed(NumberRange.DoubleRange.atLeast(1.0E-5F)))
-                .movementAffectedBy(LocationPredicate.Builder.create().block(net.minecraft.predicate.BlockPredicate.Builder.create().tag(blocks, BlockTags.ICE)));
+                .flags(EntityFlagsPredicate.Builder.flags().setIsFlying(false).setOnGround(true))
+                .moving(MovementPredicate.horizontalSpeed(MinMaxBounds.Doubles.atLeast(1.0E-5F)))
+                .movementAffectedBy(LocationPredicate.Builder.location().setBlock(net.minecraft.advancements.critereon.BlockPredicate.Builder.block().of(blocks, BlockTags.ICE)));
         register(
                 registerable,
                 FIGURE_EIGHT,
-                Enchantment.builder(
+                Enchantment.enchantment(
                                 Enchantment.definition(
                                         items.getOrThrow(ItemTags.FOOT_ARMOR_ENCHANTABLE),
                                         1,
                                         1,
-                                        Enchantment.leveledCost(10, 10),
-                                        Enchantment.leveledCost(25, 10),
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(25, 10),
                                         8,
-                                        AttributeModifierSlot.FEET
+                                        EquipmentSlotGroup.FEET
                                 )
                         )
-                        .addEffect(
-                                EnchantmentEffectComponentTypes.LOCATION_CHANGED,
-                                new AttributeEnchantmentEffect(
-                                        Identifier.ofVanilla("enchantment.figure_eight"),
-                                        EntityAttributes.MOVEMENT_SPEED,
-                                        EnchantmentLevelBasedValue.constant(0.06f),
-                                        EntityAttributeModifier.Operation.ADD_VALUE
+                        .withEffect(
+                                EnchantmentEffectComponents.LOCATION_CHANGED,
+                                new EnchantmentAttributeEffect(
+                                        ResourceLocation.withDefaultNamespace("enchantment.figure_eight"),
+                                        Attributes.MOVEMENT_SPEED,
+                                        LevelBasedValue.constant(0.06f),
+                                        AttributeModifier.Operation.ADD_VALUE
                                 ),
-                                AllOfLootCondition.builder(
-                                        InvertedLootCondition.builder(
-                                                EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().vehicle(EntityPredicate.Builder.create()))
+                                AllOfCondition.allOf(
+                                        InvertedLootItemCondition.invert(
+                                                LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().vehicle(EntityPredicate.Builder.entity()))
                                         ),
-                                        AnyOfLootCondition.builder(
-                                                AllOfLootCondition.builder(
-                                                        EnchantmentActiveCheckLootCondition.requireActive(),
-                                                        EntityPropertiesLootCondition.builder(
-                                                                LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().flags(EntityFlagsPredicate.Builder.create().flying(false))
+                                        AnyOfCondition.anyOf(
+                                                AllOfCondition.allOf(
+                                                        EnchantmentActiveCheck.enchantmentActiveCheck(),
+                                                        LootItemEntityPropertyCondition.hasProperties(
+                                                                LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setIsFlying(false))
                                                         ),
-                                                        AnyOfLootCondition.builder(
-                                                                EntityPropertiesLootCondition.builder(
+                                                        AnyOfCondition.anyOf(
+                                                                LootItemEntityPropertyCondition.hasProperties(
                                                                         LootContext.EntityTarget.THIS,
-                                                                        EntityPredicate.Builder.create()
+                                                                        EntityPredicate.Builder.entity()
                                                                                 .movementAffectedBy(
-                                                                                        LocationPredicate.Builder.create().block(net.minecraft.predicate.BlockPredicate.Builder.create().tag(blocks, BlockTags.ICE))
+                                                                                        LocationPredicate.Builder.location().setBlock(net.minecraft.advancements.critereon.BlockPredicate.Builder.block().of(blocks, BlockTags.ICE))
                                                                                 )
                                                                 ),
-                                                                EntityPropertiesLootCondition.builder(
-                                                                        LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().flags(EntityFlagsPredicate.Builder.create().onGround(false)).build()
+                                                                LootItemEntityPropertyCondition.hasProperties(
+                                                                        LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnGround(false)).build()
                                                                 )
                                                         )
                                                 ),
-                                                AllOfLootCondition.builder(
-                                                        EnchantmentActiveCheckLootCondition.requireInactive(),
-                                                        EntityPropertiesLootCondition.builder(
+                                                AllOfCondition.allOf(
+                                                        EnchantmentActiveCheck.enchantmentInactiveCheck(),
+                                                        LootItemEntityPropertyCondition.hasProperties(
                                                                 LootContext.EntityTarget.THIS,
-                                                                EntityPredicate.Builder.create()
+                                                                EntityPredicate.Builder.entity()
                                                                         .movementAffectedBy(
-                                                                                LocationPredicate.Builder.create().block(net.minecraft.predicate.BlockPredicate.Builder.create().tag(blocks, BlockTags.ICE))
+                                                                                LocationPredicate.Builder.location().setBlock(net.minecraft.advancements.critereon.BlockPredicate.Builder.block().of(blocks, BlockTags.ICE))
                                                                         )
-                                                                        .flags(EntityFlagsPredicate.Builder.create().flying(false))
+                                                                        .flags(EntityFlagsPredicate.Builder.flags().setIsFlying(false))
                                                         )
                                                 )
                                         )
                                 )
                         )
-                        .addEffect(
-                                EnchantmentEffectComponentTypes.LOCATION_CHANGED,
-                                new AttributeEnchantmentEffect(
-                                        Identifier.ofVanilla("enchantment.figure_eight"),
-                                        EntityAttributes.MOVEMENT_EFFICIENCY,
-                                        EnchantmentLevelBasedValue.constant(1.0f),
-                                        EntityAttributeModifier.Operation.ADD_VALUE
+                        .withEffect(
+                                EnchantmentEffectComponents.LOCATION_CHANGED,
+                                new EnchantmentAttributeEffect(
+                                        ResourceLocation.withDefaultNamespace("enchantment.figure_eight"),
+                                        Attributes.MOVEMENT_EFFICIENCY,
+                                        LevelBasedValue.constant(1.0f),
+                                        AttributeModifier.Operation.ADD_VALUE
                                 ),
-                                EntityPropertiesLootCondition.builder(
+                                LootItemEntityPropertyCondition.hasProperties(
                                         LootContext.EntityTarget.THIS,
-                                        EntityPredicate.Builder.create()
-                                                .movementAffectedBy(LocationPredicate.Builder.create().block(net.minecraft.predicate.BlockPredicate.Builder.create().tag(blocks, BlockTags.ICE)))
+                                        EntityPredicate.Builder.entity()
+                                                .movementAffectedBy(LocationPredicate.Builder.location().setBlock(net.minecraft.advancements.critereon.BlockPredicate.Builder.block().of(blocks, BlockTags.ICE)))
                                 )
                         )
-                        .addEffect(
-                                EnchantmentEffectComponentTypes.LOCATION_CHANGED,
-                                new ChangeItemDamageEnchantmentEffect(EnchantmentLevelBasedValue.constant(1f)),
-                                AllOfLootCondition.builder(
-                                        RandomChanceLootCondition.builder(EnchantmentLevelLootNumberProvider.create(EnchantmentLevelBasedValue.constant(0.04F))),
-                                        EntityPropertiesLootCondition.builder(
+                        .withEffect(
+                                EnchantmentEffectComponents.LOCATION_CHANGED,
+                                new ChangeItemDamage(LevelBasedValue.constant(1f)),
+                                AllOfCondition.allOf(
+                                        LootItemRandomChanceCondition.randomChance(EnchantmentLevelProvider.forEnchantmentLevel(LevelBasedValue.constant(0.04F))),
+                                        LootItemEntityPropertyCondition.hasProperties(
                                                 LootContext.EntityTarget.THIS,
-                                                EntityPredicate.Builder.create()
-                                                        .flags(EntityFlagsPredicate.Builder.create().onGround(true))
-                                                        .movementAffectedBy(LocationPredicate.Builder.create().block(net.minecraft.predicate.BlockPredicate.Builder.create().tag(blocks, BlockTags.ICE)))
+                                                EntityPredicate.Builder.entity()
+                                                        .flags(EntityFlagsPredicate.Builder.flags().setOnGround(true))
+                                                        .movementAffectedBy(LocationPredicate.Builder.location().setBlock(net.minecraft.advancements.critereon.BlockPredicate.Builder.block().of(blocks, BlockTags.ICE)))
                                         )
                                 )
                         )
-                        .addEffect(
-                                EnchantmentEffectComponentTypes.TICK,
-                                new PlaySoundEnchantmentEffect(YavpmSounds.ENCHANTMENT_FIGURE_EIGHT, ConstantFloatProvider.create(0.6f), UniformFloatProvider.create(1f, 1.5f)),
-                                AllOfLootCondition.builder(RandomChanceLootCondition.builder(0.9f), EntityPropertiesLootCondition.builder(LootContext.EntityTarget.THIS, builder))
+                        .withEffect(
+                                EnchantmentEffectComponents.TICK,
+                                new PlaySoundEffect(YavpmSounds.ENCHANTMENT_FIGURE_EIGHT, ConstantFloat.of(0.6f), UniformFloat.of(1f, 1.5f)),
+                                AllOfCondition.allOf(LootItemRandomChanceCondition.randomChance(0.9f), LootItemEntityPropertyCondition.hasProperties(LootContext.EntityTarget.THIS, builder))
                         )
         );
         // endregion
@@ -338,28 +329,28 @@ public class YavpmEnchantments {
         register(
                 registerable,
                 PARRY,
-                Enchantment.builder(
+                Enchantment.enchantment(
                         Enchantment.definition(
                                 items.getOrThrow(ConventionalItemTags.SHIELD_TOOLS),
                                 items.getOrThrow(ConventionalItemTags.SHIELD_TOOLS),
                                 8,
                                 2,
-                                Enchantment.leveledCost(10, 20),
-                                Enchantment.leveledCost(60, 20),
+                                Enchantment.dynamicCost(10, 20),
+                                Enchantment.dynamicCost(60, 20),
                                 8,
-                                AttributeModifierSlot.OFFHAND
+                                EquipmentSlotGroup.OFFHAND
                         )
-                ).addEffect(
-                        EnchantmentEffectComponentTypes.POST_ATTACK,
-                        EnchantmentEffectTarget.VICTIM,
-                        EnchantmentEffectTarget.ATTACKER,
-                        AllOfEnchantmentEffects.allOf(
+                ).withEffect(
+                        EnchantmentEffectComponents.POST_ATTACK,
+                        EnchantmentTarget.VICTIM,
+                        EnchantmentTarget.ATTACKER,
+                        AllOf.entityEffects(
                                 new ParryEnchantmentEffect(
-                                        EnchantmentLevelBasedValue.constant(1.0F), EnchantmentLevelBasedValue.constant(5.0F), damageTypes.getOrThrow(DamageTypes.THORNS)
+                                        LevelBasedValue.constant(1.0F), LevelBasedValue.constant(5.0F), damageTypes.getOrThrow(DamageTypes.THORNS)
                                 ),
-                                new ChangeItemDamageEnchantmentEffect(EnchantmentLevelBasedValue.constant(2.0F))
+                                new ChangeItemDamage(LevelBasedValue.constant(2.0F))
                         ),
-                        RandomChanceLootCondition.builder(EnchantmentLevelLootNumberProvider.create(EnchantmentLevelBasedValue.linear(0.15F)))
+                        LootItemRandomChanceCondition.randomChance(EnchantmentLevelProvider.forEnchantmentLevel(LevelBasedValue.perLevel(0.15F)))
                 )
         );
         // endregion
@@ -367,21 +358,21 @@ public class YavpmEnchantments {
         register(
                 registerable,
                 STIFFNESS,
-                Enchantment.builder(
+                Enchantment.enchantment(
                         Enchantment.definition(
                                 items.getOrThrow(YavpmTags.Items.ENCHANTABLE_GLIDER),
                                 items.getOrThrow(YavpmTags.Items.ENCHANTABLE_GLIDER),
                                 10,
                                 3,
-                                Enchantment.leveledCost(1, 11),
-                                Enchantment.leveledCost(12, 11),
+                                Enchantment.dynamicCost(1, 11),
+                                Enchantment.dynamicCost(12, 11),
                                 1,
-                                AttributeModifierSlot.CHEST
+                                EquipmentSlotGroup.CHEST
                         )
-                ).addEffect(
-                        EnchantmentEffectComponentTypes.DAMAGE_PROTECTION,
-                        new AddEnchantmentEffect(EnchantmentLevelBasedValue.linear(1.5f, 0.5f)),
-                        DamageSourcePropertiesLootCondition.builder(DamageSourcePredicate.Builder.create().tag(TagPredicate.unexpected(DamageTypeTags.BYPASSES_INVULNERABILITY)))
+                ).withEffect(
+                        EnchantmentEffectComponents.DAMAGE_PROTECTION,
+                        new AddValue(LevelBasedValue.perLevel(1.5f, 0.5f)),
+                        DamageSourceCondition.hasDamageSource(DamageSourcePredicate.Builder.damageType().tag(TagPredicate.isNot(DamageTypeTags.BYPASSES_INVULNERABILITY)))
                 )
         );
         // endregion
@@ -389,38 +380,38 @@ public class YavpmEnchantments {
         register(
                 registerable,
                 TEMPO_THEFT,
-                Enchantment.builder(
+                Enchantment.enchantment(
                         Enchantment.definition(
                                 items.getOrThrow(ItemTags.CROSSBOW_ENCHANTABLE),
                                 items.getOrThrow(ItemTags.CROSSBOW_ENCHANTABLE),
                                 2,
                                 4,
-                                Enchantment.leveledCost(15, 10),
-                                Enchantment.leveledCost(30, 5),
+                                Enchantment.dynamicCost(15, 10),
+                                Enchantment.dynamicCost(30, 5),
                                 1,
-                                AttributeModifierSlot.MAINHAND
+                                EquipmentSlotGroup.MAINHAND
                         )
-                ).addEffect(
-                        EnchantmentEffectComponentTypes.POST_ATTACK,
-                        EnchantmentEffectTarget.ATTACKER,
-                        EnchantmentEffectTarget.VICTIM,
-                        new ApplyMobEffectEnchantmentEffect(
-                                RegistryEntryList.of(StatusEffects.SLOWNESS),
-                                EnchantmentLevelBasedValue.linear(3f, 3f),
-                                EnchantmentLevelBasedValue.linear(3f, 3f),
-                                EnchantmentLevelBasedValue.constant(0f),
-                                EnchantmentLevelBasedValue.constant(0f)
+                ).withEffect(
+                        EnchantmentEffectComponents.POST_ATTACK,
+                        EnchantmentTarget.ATTACKER,
+                        EnchantmentTarget.VICTIM,
+                        new ApplyMobEffect(
+                                HolderSet.direct(MobEffects.SLOWNESS),
+                                LevelBasedValue.perLevel(3f, 3f),
+                                LevelBasedValue.perLevel(3f, 3f),
+                                LevelBasedValue.constant(0f),
+                                LevelBasedValue.constant(0f)
                         )
-                ).addEffect(
-                        EnchantmentEffectComponentTypes.POST_ATTACK,
-                        EnchantmentEffectTarget.ATTACKER,
-                        EnchantmentEffectTarget.ATTACKER,
-                        new ApplyMobEffectEnchantmentEffect(
-                                RegistryEntryList.of(StatusEffects.SPEED),
-                                EnchantmentLevelBasedValue.linear(4f, 4f),
-                                EnchantmentLevelBasedValue.linear(4f, 4f),
-                                EnchantmentLevelBasedValue.constant(0f),
-                                EnchantmentLevelBasedValue.constant(0f)
+                ).withEffect(
+                        EnchantmentEffectComponents.POST_ATTACK,
+                        EnchantmentTarget.ATTACKER,
+                        EnchantmentTarget.ATTACKER,
+                        new ApplyMobEffect(
+                                HolderSet.direct(MobEffects.SPEED),
+                                LevelBasedValue.perLevel(4f, 4f),
+                                LevelBasedValue.perLevel(4f, 4f),
+                                LevelBasedValue.constant(0f),
+                                LevelBasedValue.constant(0f)
                         )
                 )
         );
@@ -429,21 +420,21 @@ public class YavpmEnchantments {
         register(
                 registerable,
                 MAULING,
-                Enchantment.builder(
+                Enchantment.enchantment(
                                 Enchantment.definition(
                                         items.getOrThrow(YavpmTags.Items.ENCHANTABLE_WOLF_ARMOR),
                                         items.getOrThrow(YavpmTags.Items.ENCHANTABLE_WOLF_ARMOR),
                                         10,
                                         3,
-                                        Enchantment.leveledCost(1, 11),
-                                        Enchantment.leveledCost(21, 11),
+                                        Enchantment.dynamicCost(1, 11),
+                                        Enchantment.dynamicCost(21, 11),
                                         2,
-                                        AttributeModifierSlot.BODY
+                                        EquipmentSlotGroup.BODY
                                 )
                         )
-                        .exclusiveSet(enchantments.getOrThrow(YavpmTags.Enchantments.EXCLUSIVE_SET_WOLF_ARMOR_OFFENSE))
-                        .addEffect(
-                                EnchantmentEffectComponentTypes.DAMAGE, new AddEnchantmentEffect(EnchantmentLevelBasedValue.linear(1.5f, 1.5f)
+                        .exclusiveWith(enchantments.getOrThrow(YavpmTags.Enchantments.EXCLUSIVE_SET_WOLF_ARMOR_OFFENSE))
+                        .withEffect(
+                                EnchantmentEffectComponents.DAMAGE, new AddValue(LevelBasedValue.perLevel(1.5f, 1.5f)
                                 )
                         )
         );
@@ -452,29 +443,29 @@ public class YavpmEnchantments {
         register(
                 registerable,
                 BLEED_OUT,
-                Enchantment.builder(
+                Enchantment.enchantment(
                                 Enchantment.definition(
                                         items.getOrThrow(YavpmTags.Items.ENCHANTABLE_WOLF_ARMOR),
                                         items.getOrThrow(YavpmTags.Items.ENCHANTABLE_WOLF_ARMOR),
                                         7,
                                         4,
-                                        Enchantment.leveledCost(5, 8),
-                                        Enchantment.leveledCost(25, 8),
+                                        Enchantment.dynamicCost(5, 8),
+                                        Enchantment.dynamicCost(25, 8),
                                         2,
-                                        AttributeModifierSlot.BODY
+                                        EquipmentSlotGroup.BODY
                                 )
                         )
-                        .exclusiveSet(enchantments.getOrThrow(YavpmTags.Enchantments.EXCLUSIVE_SET_WOLF_ARMOR_OFFENSE))
-                        .addEffect(
-                                EnchantmentEffectComponentTypes.POST_ATTACK,
-                                EnchantmentEffectTarget.ATTACKER,
-                                EnchantmentEffectTarget.VICTIM,
-                                new ApplyMobEffectEnchantmentEffect(
-                                        RegistryEntryList.of(YavpmStatusEffects.WOUNDED),
-                                        EnchantmentLevelBasedValue.constant(2f),
-                                        EnchantmentLevelBasedValue.linear(2f, 1f),
-                                        EnchantmentLevelBasedValue.constant(0f),
-                                        EnchantmentLevelBasedValue.constant(0f)
+                        .exclusiveWith(enchantments.getOrThrow(YavpmTags.Enchantments.EXCLUSIVE_SET_WOLF_ARMOR_OFFENSE))
+                        .withEffect(
+                                EnchantmentEffectComponents.POST_ATTACK,
+                                EnchantmentTarget.ATTACKER,
+                                EnchantmentTarget.VICTIM,
+                                new ApplyMobEffect(
+                                        HolderSet.direct(YavpmStatusEffects.WOUNDED),
+                                        LevelBasedValue.constant(2f),
+                                        LevelBasedValue.perLevel(2f, 1f),
+                                        LevelBasedValue.constant(0f),
+                                        LevelBasedValue.constant(0f)
                                 )
                         )
         );
@@ -483,45 +474,45 @@ public class YavpmEnchantments {
         register(
                 registerable,
                 CRUSHING,
-                Enchantment.builder(
+                Enchantment.enchantment(
                         Enchantment.definition(
                                 items.getOrThrow(YavpmTags.Items.ENCHANTABLE_WOLF_ARMOR),
                                 items.getOrThrow(YavpmTags.Items.ENCHANTABLE_WOLF_ARMOR),
                                 2,
                                 4,
-                                Enchantment.leveledCost(15, 9),
-                                Enchantment.leveledCost(65, 9),
+                                Enchantment.dynamicCost(15, 9),
+                                Enchantment.dynamicCost(65, 9),
                                 4,
-                                AttributeModifierSlot.BODY
+                                EquipmentSlotGroup.BODY
                         )
                 )
-                        .exclusiveSet(enchantments.getOrThrow(YavpmTags.Enchantments.EXCLUSIVE_SET_WOLF_ARMOR_OFFENSE))
-                        .addEffect(EnchantmentEffectComponentTypes.ARMOR_EFFECTIVENESS, new AddEnchantmentEffect(EnchantmentLevelBasedValue.linear(-0.1f)))
+                        .exclusiveWith(enchantments.getOrThrow(YavpmTags.Enchantments.EXCLUSIVE_SET_WOLF_ARMOR_OFFENSE))
+                        .withEffect(EnchantmentEffectComponents.ARMOR_EFFECTIVENESS, new AddValue(LevelBasedValue.perLevel(-0.1f)))
         );
         // endregion
         // region Retrieve
         register(
                 registerable,
                 RETRIEVE,
-                Enchantment.builder(
+                Enchantment.enchantment(
                         Enchantment.definition(
                                 items.getOrThrow(YavpmTags.Items.ENCHANTABLE_WOLF_ARMOR),
                                 items.getOrThrow(YavpmTags.Items.ENCHANTABLE_WOLF_ARMOR),
                                 2,
                                 5,
-                                Enchantment.leveledCost(15, 9),
-                                Enchantment.leveledCost(65, 9),
+                                Enchantment.dynamicCost(15, 9),
+                                Enchantment.dynamicCost(65, 9),
                                 4,
-                                AttributeModifierSlot.BODY
+                                EquipmentSlotGroup.BODY
                         )
                 )
-                        .addEffect(
-                                EnchantmentEffectComponentTypes.EQUIPMENT_DROPS,
-                                EnchantmentEffectTarget.ATTACKER,
-                                EnchantmentEffectTarget.VICTIM,
-                                new AddEnchantmentEffect(EnchantmentLevelBasedValue.linear(0.0075F)),
-                                EntityPropertiesLootCondition.builder(
-                                        LootContext.EntityTarget.ATTACKER, EntityPredicate.Builder.create().type(EntityTypePredicate.create(entities, EntityType.WOLF))
+                        .withEffect(
+                                EnchantmentEffectComponents.EQUIPMENT_DROPS,
+                                EnchantmentTarget.ATTACKER,
+                                EnchantmentTarget.VICTIM,
+                                new AddValue(LevelBasedValue.perLevel(0.0075F)),
+                                LootItemEntityPropertyCondition.hasProperties(
+                                        LootContext.EntityTarget.ATTACKER, EntityPredicate.Builder.entity().entityType(EntityTypePredicate.of(entities, EntityType.WOLF))
                                 )
                         )
         );
@@ -530,21 +521,21 @@ public class YavpmEnchantments {
         register(
                 registerable,
                 LAP_DOG,
-                Enchantment.builder(
+                Enchantment.enchantment(
                         Enchantment.definition(
                                 items.getOrThrow(YavpmTags.Items.ENCHANTABLE_WOLF_ARMOR),
                                 items.getOrThrow(YavpmTags.Items.ENCHANTABLE_WOLF_ARMOR),
                                 10,
                                 3,
-                                Enchantment.leveledCost(1, 11),
-                                Enchantment.leveledCost(12, 11),
+                                Enchantment.dynamicCost(1, 11),
+                                Enchantment.dynamicCost(12, 11),
                                 1,
-                                AttributeModifierSlot.BODY
+                                EquipmentSlotGroup.BODY
                         )
                 )
-                        .exclusiveSet(enchantments.getOrThrow(YavpmTags.Enchantments.EXCLUSIVE_SET_WOLF_ARMOR_DEFENSE))
-                        .addEffect(
-                                EnchantmentEffectComponentTypes.TICK,
+                        .exclusiveWith(enchantments.getOrThrow(YavpmTags.Enchantments.EXCLUSIVE_SET_WOLF_ARMOR_DEFENSE))
+                        .withEffect(
+                                EnchantmentEffectComponents.TICK,
                                 new LapDogEnchantmentEffect()
                         )
         );
@@ -553,29 +544,29 @@ public class YavpmEnchantments {
         register(
                 registerable,
                 COUNTER,
-                Enchantment.builder(
+                Enchantment.enchantment(
                                 Enchantment.definition(
                                         items.getOrThrow(YavpmTags.Items.ENCHANTABLE_WOLF_ARMOR),
                                         items.getOrThrow(YavpmTags.Items.ENCHANTABLE_WOLF_ARMOR),
                                         3,
                                         2,
-                                        Enchantment.leveledCost(10, 20),
-                                        Enchantment.leveledCost(60, 20),
+                                        Enchantment.dynamicCost(10, 20),
+                                        Enchantment.dynamicCost(60, 20),
                                         8,
-                                        AttributeModifierSlot.BODY
+                                        EquipmentSlotGroup.BODY
                                 )
                         )
-                        .exclusiveSet(enchantments.getOrThrow(YavpmTags.Enchantments.EXCLUSIVE_SET_WOLF_ARMOR_DEFENSE))
-                        .addEffect(
-                                EnchantmentEffectComponentTypes.POST_ATTACK,
-                                EnchantmentEffectTarget.VICTIM,
-                                EnchantmentEffectTarget.ATTACKER,
-                                new DamageEntityEnchantmentEffect(
-                                        EnchantmentLevelBasedValue.constant(1f),
-                                        EnchantmentLevelBasedValue.constant(4f),
+                        .exclusiveWith(enchantments.getOrThrow(YavpmTags.Enchantments.EXCLUSIVE_SET_WOLF_ARMOR_DEFENSE))
+                        .withEffect(
+                                EnchantmentEffectComponents.POST_ATTACK,
+                                EnchantmentTarget.VICTIM,
+                                EnchantmentTarget.ATTACKER,
+                                new DamageEntity(
+                                        LevelBasedValue.constant(1f),
+                                        LevelBasedValue.constant(4f),
                                         damageTypes.getOrThrow(DamageTypes.THORNS)
                                 ),
-                                RandomChanceLootCondition.builder(EnchantmentLevelLootNumberProvider.create(EnchantmentLevelBasedValue.linear(0.15f)))
+                                LootItemRandomChanceCondition.randomChance(EnchantmentLevelProvider.forEnchantmentLevel(LevelBasedValue.perLevel(0.15f)))
                         )
         );
         // endregion
@@ -583,31 +574,31 @@ public class YavpmEnchantments {
         register(
                 registerable,
                 PLAGUE,
-                Enchantment.builder(
+                Enchantment.enchantment(
                                 Enchantment.definition(
                                         items.getOrThrow(YavpmTags.Items.ENCHANTABLE_WOLF_ARMOR),
                                         items.getOrThrow(YavpmTags.Items.ENCHANTABLE_WOLF_ARMOR),
                                         7,
                                         2,
-                                        Enchantment.leveledCost(10, 20),
-                                        Enchantment.leveledCost(60, 20),
+                                        Enchantment.dynamicCost(10, 20),
+                                        Enchantment.dynamicCost(60, 20),
                                         8,
-                                        AttributeModifierSlot.BODY
+                                        EquipmentSlotGroup.BODY
                                 )
                         )
-                        .exclusiveSet(enchantments.getOrThrow(YavpmTags.Enchantments.EXCLUSIVE_SET_WOLF_ARMOR_DEFENSE))
-                        .addEffect(
-                                EnchantmentEffectComponentTypes.POST_ATTACK,
-                                EnchantmentEffectTarget.VICTIM,
-                                EnchantmentEffectTarget.ATTACKER,
-                                new ApplyMobEffectEnchantmentEffect(
-                                        RegistryEntryList.of(StatusEffects.INFESTED),
-                                        EnchantmentLevelBasedValue.constant(2f),
-                                        EnchantmentLevelBasedValue.linear(2f),
-                                        EnchantmentLevelBasedValue.constant(0f),
-                                        EnchantmentLevelBasedValue.linear(0f, 1f)
+                        .exclusiveWith(enchantments.getOrThrow(YavpmTags.Enchantments.EXCLUSIVE_SET_WOLF_ARMOR_DEFENSE))
+                        .withEffect(
+                                EnchantmentEffectComponents.POST_ATTACK,
+                                EnchantmentTarget.VICTIM,
+                                EnchantmentTarget.ATTACKER,
+                                new ApplyMobEffect(
+                                        HolderSet.direct(MobEffects.INFESTED),
+                                        LevelBasedValue.constant(2f),
+                                        LevelBasedValue.perLevel(2f),
+                                        LevelBasedValue.constant(0f),
+                                        LevelBasedValue.perLevel(0f, 1f)
                                 ),
-                                RandomChanceLootCondition.builder(EnchantmentLevelLootNumberProvider.create(EnchantmentLevelBasedValue.linear(0.2f)))
+                                LootItemRandomChanceCondition.randomChance(EnchantmentLevelProvider.forEnchantmentLevel(LevelBasedValue.perLevel(0.2f)))
                         )
         );
         // endregion
@@ -615,25 +606,25 @@ public class YavpmEnchantments {
         register(
                 registerable,
                 GALLOP,
-                Enchantment.builder(
+                Enchantment.enchantment(
                         Enchantment.definition(
                                 items.getOrThrow(YavpmTags.Items.ENCHANTABLE_HORSE_ARMOR),
                                 items.getOrThrow(YavpmTags.Items.ENCHANTABLE_HORSE_ARMOR),
                                 6,
                                 3,
-                                Enchantment.leveledCost(10, 10),
-                                Enchantment.leveledCost(25, 10),
+                                Enchantment.dynamicCost(10, 10),
+                                Enchantment.dynamicCost(25, 10),
                                 5,
-                                AttributeModifierSlot.BODY
+                                EquipmentSlotGroup.BODY
                         )
                 )
-                        .addEffect(
-                                EnchantmentEffectComponentTypes.ATTRIBUTES,
-                                new AttributeEnchantmentEffect(
+                        .withEffect(
+                                EnchantmentEffectComponents.ATTRIBUTES,
+                                new EnchantmentAttributeEffect(
                                         makeId("enchantment.gallop"),
-                                        EntityAttributes.MOVEMENT_SPEED,
-                                        EnchantmentLevelBasedValue.linear(0.04f, 0.03f),
-                                        EntityAttributeModifier.Operation.ADD_VALUE
+                                        Attributes.MOVEMENT_SPEED,
+                                        LevelBasedValue.perLevel(0.04f, 0.03f),
+                                        AttributeModifier.Operation.ADD_VALUE
                                 ))
         );
         // endregion
@@ -641,44 +632,44 @@ public class YavpmEnchantments {
         register(
                 registerable,
                 BOUNDING,
-                Enchantment.builder(
+                Enchantment.enchantment(
                                 Enchantment.definition(
                                         items.getOrThrow(YavpmTags.Items.ENCHANTABLE_HORSE_ARMOR),
                                         items.getOrThrow(YavpmTags.Items.ENCHANTABLE_HORSE_ARMOR),
                                         14,
                                         2,
-                                        Enchantment.leveledCost(10, 10),
-                                        Enchantment.leveledCost(25, 10),
+                                        Enchantment.dynamicCost(10, 10),
+                                        Enchantment.dynamicCost(25, 10),
                                         5,
-                                        AttributeModifierSlot.BODY
+                                        EquipmentSlotGroup.BODY
                                 )
                         )
-                        .addEffect(
-                                EnchantmentEffectComponentTypes.ATTRIBUTES,
-                                new AttributeEnchantmentEffect(
+                        .withEffect(
+                                EnchantmentEffectComponents.ATTRIBUTES,
+                                new EnchantmentAttributeEffect(
                                         makeId("enchantment.bounding.jump_strength"),
-                                        EntityAttributes.JUMP_STRENGTH,
-                                        EnchantmentLevelBasedValue.linear(0.25f, 0.75f),
-                                        EntityAttributeModifier.Operation.ADD_VALUE
+                                        Attributes.JUMP_STRENGTH,
+                                        LevelBasedValue.perLevel(0.25f, 0.75f),
+                                        AttributeModifier.Operation.ADD_VALUE
                                 ))
-                        .addEffect(
-                                EnchantmentEffectComponentTypes.ATTRIBUTES,
-                                new AttributeEnchantmentEffect(
+                        .withEffect(
+                                EnchantmentEffectComponents.ATTRIBUTES,
+                                new EnchantmentAttributeEffect(
                                         makeId("enchantment.bounding.safe_fall_distance"),
-                                        EntityAttributes.SAFE_FALL_DISTANCE,
-                                        EnchantmentLevelBasedValue.linear(3f, 5f),
-                                        EntityAttributeModifier.Operation.ADD_VALUE
+                                        Attributes.SAFE_FALL_DISTANCE,
+                                        LevelBasedValue.perLevel(3f, 5f),
+                                        AttributeModifier.Operation.ADD_VALUE
                                 )
                         )
         );
         // endregion
     }
 
-    private static void register(Registerable<Enchantment> registry, RegistryKey<Enchantment> key, Enchantment.Builder builder) {
-        registry.register(key, builder.build(key.getValue()));
+    private static void register(BootstrapContext<Enchantment> registry, ResourceKey<Enchantment> key, Enchantment.Builder builder) {
+        registry.register(key, builder.build(key.location()));
     }
 
-    private static RegistryKey<Enchantment> registerKey(String id) {
-        return RegistryKey.of(RegistryKeys.ENCHANTMENT, makeId(id));
+    private static ResourceKey<Enchantment> registerKey(String id) {
+        return ResourceKey.create(Registries.ENCHANTMENT, makeId(id));
     }
 }

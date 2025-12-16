@@ -1,6 +1,5 @@
 package com.farestr06.yavpm.config;
 
-import com.farestr06.api.util.FarestsUtils;
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import dev.isxander.yacl3.api.*;
@@ -9,74 +8,76 @@ import dev.isxander.yacl3.api.controller.FloatFieldControllerBuilder;
 import dev.isxander.yacl3.api.controller.FloatSliderControllerBuilder;
 import dev.isxander.yacl3.api.controller.IntegerSliderControllerBuilder;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.text.Style;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.util.Identifier;
+import net.minecraft.ChatFormatting;
+import net.minecraft.Util;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.FontDescription;
+import net.minecraft.network.chat.Style;
+import net.minecraft.resources.ResourceLocation;
 
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 import static com.farestr06.yavpm.config.YavpmConfig.HANDLER;
 
 public class YavpmConfigScreen implements ModMenuApi {
-    private static final Style SGA = Style.EMPTY.withFont(Identifier.ofVanilla("alt"));
-    private static final Style INFO = Style.EMPTY.withFormatting(Formatting.GRAY, Formatting.ITALIC);
-    private static final Style COMPAT_DESC = Style.EMPTY.withFormatting(Formatting.YELLOW, Formatting.ITALIC);
-    private static final Text RESOURCE_CONDITION_NOTE = Text.translatable("option.yavpm.resourcecondition")
+    private static final Style ILLAGERALT = Style.EMPTY.withFont(new FontDescription.Resource(ResourceLocation.withDefaultNamespace("illageralt")));
+    private static final Style INFO = Style.EMPTY.applyFormats(ChatFormatting.GRAY, ChatFormatting.ITALIC);
+    private static final Style COMPAT_DESC = Style.EMPTY.applyFormats(ChatFormatting.YELLOW, ChatFormatting.ITALIC);
+    private static final Component RESOURCE_CONDITION_NOTE = Component.translatable("option.yavpm.resourcecondition")
             .setStyle(INFO);
-    private static final Text EXPERIMENT_WARNING = Text.translatable("option.yavpm.experiment.warning").formatted(Formatting.RED);
+    private static final Component EXPERIMENT_WARNING = Component.translatable("option.yavpm.experiment.warning").withStyle(ChatFormatting.RED);
     
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
         return screen -> YetAnotherConfigLib.createBuilder()
-                .title(Text.translatable("option.yavpm.title"))
+                .title(Component.translatable("option.yavpm.title"))
                 .category(ConfigCategory.createBuilder()
-                        .name(Text.translatable("option.yavpm.blocks_and_fluids"))
+                        .name(Component.translatable("option.yavpm.blocks_and_fluids"))
                         .option(GLOWING_OBSIDIAN_LUMINANCE)
                         .option(SOUL_GLOWING_OBSIDIAN_LUMINANCE)
                         .build())
                 .category(ConfigCategory.createBuilder()
-                        .name(Text.translatable("option.yavpm.items"))
+                        .name(Component.translatable("option.yavpm.items"))
                         .option(BABY_KEY_CRIES)
                         .option(WEIRD_TRIAL_CHAMBER_POTIONS)
                         .option(RARE_EQUIPMENT_RECIPES)
                         .build())
                 .category(ConfigCategory.createBuilder()
-                        .name(Text.translatable("option.yavpm.entities_and_effects"))
+                        .name(Component.translatable("option.yavpm.entities_and_effects"))
                         .option(CHICKEN_BREEDING_CREATES_EGGS)
                         .group(OptionGroup.createBuilder()
-                                .name(Text.translatable("option.yavpm.entities_and_effects.tanuki"))
+                                .name(Component.translatable("option.yavpm.entities_and_effects.tanuki"))
                                 .description(OptionDescription.of(
-                                        Text.translatable("option.yavpm.entities_and_effects.tanuki.desc1"),
-                                        Text.translatable("option.yavpm.entities_and_effects.tanuki.desc2")
+                                        Component.translatable("option.yavpm.entities_and_effects.tanuki.desc1"),
+                                        Component.translatable("option.yavpm.entities_and_effects.tanuki.desc2")
                                 ))
                                 .option(TANUKI_TRANSFORM_CHANCE)
                                 .option(TANUKI_BASE_TRANSFORM_DELAY)
                                 .option(TANUKI_RANDOM_TRANSFORM_DELAY)
                                 .build())
                         .group(OptionGroup.createBuilder()
-                                .name(Text.translatable("option.yavpm.entities_and_effects.void_touched"))
+                                .name(Component.translatable("option.yavpm.entities_and_effects.void_touched"))
                                 .description(OptionDescription.of(
-                                        Text.translatable("option.yavpm.entities_and_effects.void_touched.desc")
+                                        Component.translatable("option.yavpm.entities_and_effects.void_touched.desc")
                                 ))
                                 .option(VOID_TOUCHED_DAMAGE_MULTIPLIER)
                                 .option(VOID_TOUCHED_DRAGON_FIREBALL)
                                 .build())
                         .build())
                 .category(ConfigCategory.createBuilder()
-                        .name(Text.translatable("option.yavpm.experiment")) // Here be dragons!
+                        .name(Component.translatable("option.yavpm.experiment")) // Here be dragons!
                         .option(HELP_COMMAND_EXPERIMENT)
                         .option(RECYCLER_EXPERIMENT)
                         .option(NULLIUM_EXPERIMENT)
                         .build())
                 .category(ConfigCategory.createBuilder()
-                        .name(Text.translatable("option.yavpm.compat"))
+                        .name(Component.translatable("option.yavpm.compat"))
                         .group(OptionGroup.createBuilder()
-                                .name(Text.translatable("option.yavpm.compat.vanillatweaks"))
+                                .name(Component.translatable("option.yavpm.compat.vanillatweaks"))
                                 .description(OptionDescription.createBuilder()
-                                        .text(Text.translatable("option.yavpm.compat.vanillatweaks.desc"))
+                                        .text(Component.translatable("option.yavpm.compat.vanillatweaks.desc"))
                                         .image(makeId("textures/config/vanilla_tweaks.png"), 320, 320)
-                                        .text(Text.translatable("option.yavpm.compat.vanillatweaks.info1").setStyle(COMPAT_DESC))
-                                        .text(Text.translatable("option.yavpm.compat.vanillatweaks.info2").setStyle(INFO))
+                                        .text(Component.translatable("option.yavpm.compat.vanillatweaks.info1").setStyle(COMPAT_DESC))
+                                        .text(Component.translatable("option.yavpm.compat.vanillatweaks.info2").setStyle(INFO))
                                         .build()
                                 )
                                 .option(VANILLA_TWEAKS_LINK)
@@ -87,9 +88,9 @@ public class YavpmConfigScreen implements ModMenuApi {
                                 .build())
                         .build())
                 .category(ConfigCategory.createBuilder()
-                        .name(Text.translatable("option.yavpm.misc"))
+                        .name(Component.translatable("option.yavpm.misc"))
                         .group(OptionGroup.createBuilder()
-                                .name(Text.translatable("option.yavpm.misc.splashes"))
+                                .name(Component.translatable("option.yavpm.misc.splashes"))
                                 .option(LONG_LASTING_SPLASH_CHANCE)
                                 .option(CHRISTIAN_SPLASHES)
                                 .option(ISLAMIC_SPLASHES)
@@ -97,9 +98,9 @@ public class YavpmConfigScreen implements ModMenuApi {
                         )
                         .build())
                 .category(ConfigCategory.createBuilder()
-                        .name(Text.translatable("option.yavpm.easter_eggs").setStyle(SGA))
+                        .name(Component.translatable("option.yavpm.easter_eggs").setStyle(ILLAGERALT))
                         .group(OptionGroup.createBuilder()
-                                .name(Text.translatable("option.yavpm.easter_eggs.splashes").setStyle(SGA))
+                                .name(Component.translatable("option.yavpm.easter_eggs.splashes").setStyle(ILLAGERALT))
                                 .option(SNAPSHOT_DAY)
                                 .option(FARESTS_BIRTHDAY)
                                 .build())
@@ -109,9 +110,9 @@ public class YavpmConfigScreen implements ModMenuApi {
     }
     // region Entities and Effects
     protected static final Option<Boolean> CHICKEN_BREEDING_CREATES_EGGS = Option.<Boolean>createBuilder()
-            .name(Text.translatable("option.yavpm.chicken_breeding_creates_eggs.title"))
+            .name(Component.translatable("option.yavpm.chicken_breeding_creates_eggs.title"))
             .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.chicken_breeding_creates_eggs.desc"))
+                    .text(Component.translatable("option.yavpm.chicken_breeding_creates_eggs.desc"))
                     .build()
             )
             .binding(
@@ -122,9 +123,9 @@ public class YavpmConfigScreen implements ModMenuApi {
             .build();
 
     protected static final Option<Integer> TANUKI_BASE_TRANSFORM_DELAY = Option.<Integer>createBuilder()
-            .name(Text.translatable("option.yavpm.tanuki_base_transform_delay.title"))
+            .name(Component.translatable("option.yavpm.tanuki_base_transform_delay.title"))
             .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.tanuki_base_transform_delay.desc"))
+                    .text(Component.translatable("option.yavpm.tanuki_base_transform_delay.desc"))
                     .build()
             )
             .binding(
@@ -134,14 +135,14 @@ public class YavpmConfigScreen implements ModMenuApi {
             ).controller(opt -> IntegerSliderControllerBuilder.create(opt).range(500, 5000).step(50)
                     .formatValue(val -> {
                         float valInSeconds = val / 20f;
-                        return Text.translatable("option.yavpm.format.ticks", val, valInSeconds);
+                        return Component.translatable("option.yavpm.format.ticks", val, valInSeconds);
                     }))
             .build();
     protected static final Option<Integer> TANUKI_RANDOM_TRANSFORM_DELAY = Option.<Integer>createBuilder()
 
-            .name(Text.translatable("option.yavpm.tanuki_random_transform_delay.title"))
+            .name(Component.translatable("option.yavpm.tanuki_random_transform_delay.title"))
             .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.tanuki_random_transform_delay.desc"))
+                    .text(Component.translatable("option.yavpm.tanuki_random_transform_delay.desc"))
                     .build()
             )
             .binding(
@@ -151,14 +152,14 @@ public class YavpmConfigScreen implements ModMenuApi {
             ).controller(opt -> IntegerSliderControllerBuilder.create(opt).range(500, 5000).step(50)
                     .formatValue(val -> {
                         float valInSeconds = val / 20f;
-                        return Text.translatable("option.yavpm.format.ticks", val, valInSeconds);
+                        return Component.translatable("option.yavpm.format.ticks", val, valInSeconds);
                     }))
             // ).controller(opt -> IntegerFieldControllerBuilder.create(opt).range(500, 4000))
             .build();
     protected static final Option<Integer> TANUKI_TRANSFORM_CHANCE = Option.<Integer>createBuilder()
-            .name(Text.translatable("option.yavpm.tanuki_transform_chance.title"))
+            .name(Component.translatable("option.yavpm.tanuki_transform_chance.title"))
             .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.tanuki_transform_chance.desc"))
+                    .text(Component.translatable("option.yavpm.tanuki_transform_chance.desc"))
                     .build()
             )
             .binding(
@@ -166,14 +167,14 @@ public class YavpmConfigScreen implements ModMenuApi {
                     () -> Math.round(HANDLER.instance().tanukiTransformChance * 100),
                     newVal -> HANDLER.instance().tanukiTransformChance = newVal / 100f
             ).controller(opt -> IntegerSliderControllerBuilder.create(opt).range(0, 100).step(1)
-                    .formatValue(val -> Text.translatable("option.yavpm.format.percentage", val)))
+                    .formatValue(val -> Component.translatable("option.yavpm.format.percentage", val)))
             // ).controller(opt -> FloatFieldControllerBuilder.create(opt).range(0f, 1f))
             .build();
 
     protected static final Option<Float> VOID_TOUCHED_DAMAGE_MULTIPLIER = Option.<Float>createBuilder()
-            .name(Text.translatable("option.yavpm.void_touched_damage_multiplier.title"))
+            .name(Component.translatable("option.yavpm.void_touched_damage_multiplier.title"))
             .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.void_touched_damage_multiplier.desc"))
+                    .text(Component.translatable("option.yavpm.void_touched_damage_multiplier.desc"))
                     .build()
             )
             .binding(
@@ -181,14 +182,14 @@ public class YavpmConfigScreen implements ModMenuApi {
                     () -> HANDLER.instance().voidTouchedDamageMultiplier,
                     newVal -> HANDLER.instance().voidTouchedDamageMultiplier = newVal
             ).controller(opt -> FloatSliderControllerBuilder.create(opt).range(1f, 3f).step(0.1f)
-                    .formatValue(val -> Text.translatable("option.yavpm.format.multiplier", val)))
+                    .formatValue(val -> Component.translatable("option.yavpm.format.multiplier", val)))
             // ).controller(opt -> FloatFieldControllerBuilder.create(opt).range(0.5f, 2.5f))
             .build();
 
     protected static final Option<Boolean> VOID_TOUCHED_DRAGON_FIREBALL = Option.<Boolean>createBuilder()
-            .name(Text.translatable("option.yavpm.void_touched_dragon_fireball.title"))
+            .name(Component.translatable("option.yavpm.void_touched_dragon_fireball.title"))
             .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.void_touched_dragon_fireball.desc"))
+                    .text(Component.translatable("option.yavpm.void_touched_dragon_fireball.desc"))
                     .build()
             )
             .binding(
@@ -201,9 +202,9 @@ public class YavpmConfigScreen implements ModMenuApi {
 
     // region Blocks
     protected static final Option<Integer> GLOWING_OBSIDIAN_LUMINANCE = Option.<Integer>createBuilder()
-            .name(Text.translatable("option.yavpm.glowing_obsidian_luminance.title"))
+            .name(Component.translatable("option.yavpm.glowing_obsidian_luminance.title"))
             .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.glowing_obsidian_luminance.desc"))
+                    .text(Component.translatable("option.yavpm.glowing_obsidian_luminance.desc"))
                     .image(makeId("textures/config/glowing_obsidian_luminance.png"), 480, 360)
                     .build()
             )
@@ -214,9 +215,9 @@ public class YavpmConfigScreen implements ModMenuApi {
             ).controller(opt -> IntegerSliderControllerBuilder.create(opt).range(1, 15).step(1))
             .build();
     protected static final Option<Integer> SOUL_GLOWING_OBSIDIAN_LUMINANCE = Option.<Integer>createBuilder()
-            .name(Text.translatable("option.yavpm.soul_glowing_obsidian_luminance.title"))
+            .name(Component.translatable("option.yavpm.soul_glowing_obsidian_luminance.title"))
             .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.soul_glowing_obsidian_luminance.desc"))
+                    .text(Component.translatable("option.yavpm.soul_glowing_obsidian_luminance.desc"))
                     .image(makeId("textures/config/soul_glowing_obsidian_luminance.png"), 480, 360)
                     .build()
             )
@@ -230,9 +231,9 @@ public class YavpmConfigScreen implements ModMenuApi {
 
     // region Items
     protected static final Option<Boolean> BABY_KEY_CRIES = Option.<Boolean>createBuilder()
-            .name(Text.translatable("option.yavpm.baby_key_cries.title"))
+            .name(Component.translatable("option.yavpm.baby_key_cries.title"))
             .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.baby_key_cries.desc"))
+                    .text(Component.translatable("option.yavpm.baby_key_cries.desc"))
                     .image(makeId("textures/config/baby_key_cries.png"), 480, 360)
                     .build()
             )
@@ -243,9 +244,9 @@ public class YavpmConfigScreen implements ModMenuApi {
             ).controller(YavpmConfigScreen::booleanBuilder)
             .build();
     protected static final Option<Boolean> WEIRD_TRIAL_CHAMBER_POTIONS = Option.<Boolean>createBuilder()
-            .name(Text.translatable("option.yavpm.weird_trial_chamber_potions.title"))
+            .name(Component.translatable("option.yavpm.weird_trial_chamber_potions.title"))
             .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.weird_trial_chamber_potions.desc"))
+                    .text(Component.translatable("option.yavpm.weird_trial_chamber_potions.desc"))
                     .build()
             )
             .binding(
@@ -255,9 +256,9 @@ public class YavpmConfigScreen implements ModMenuApi {
             ).controller(YavpmConfigScreen::booleanBuilder).flag(OptionFlag.GAME_RESTART)
             .build();
     protected static final Option<Boolean> RARE_EQUIPMENT_RECIPES = Option.<Boolean>createBuilder()
-            .name(Text.translatable("option.yavpm.rare_equipment_recipes.title"))
+            .name(Component.translatable("option.yavpm.rare_equipment_recipes.title"))
             .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.rare_equipment_recipes.desc"))
+                    .text(Component.translatable("option.yavpm.rare_equipment_recipes.desc"))
                     .text(RESOURCE_CONDITION_NOTE)
                     .image(makeId("textures/config/rare_equipment_recipes.png"), 480, 360)
                     .build()
@@ -271,9 +272,9 @@ public class YavpmConfigScreen implements ModMenuApi {
     // endregion
 
     protected static final Option<Boolean> HELP_COMMAND_EXPERIMENT = Option.<Boolean>createBuilder()
-            .name(Text.translatable("option.yavpm.yavpm_help_experiment.title"))
+            .name(Component.translatable("option.yavpm.yavpm_help_experiment.title"))
             .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.yavpm_help_experiment.desc"))
+                    .text(Component.translatable("option.yavpm.yavpm_help_experiment.desc"))
                     .text(EXPERIMENT_WARNING)
                     .build()
             )
@@ -284,9 +285,9 @@ public class YavpmConfigScreen implements ModMenuApi {
             ).controller(YavpmConfigScreen::booleanBuilder)
             .build();
     protected static final Option<Boolean> RECYCLER_EXPERIMENT = Option.<Boolean>createBuilder()
-            .name(Text.translatable("option.yavpm.recycler_experiment.title"))
+            .name(Component.translatable("option.yavpm.recycler_experiment.title"))
             .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.recycler_experiment.desc"))
+                    .text(Component.translatable("option.yavpm.recycler_experiment.desc"))
                     .text(EXPERIMENT_WARNING)
                     .build()
             )
@@ -297,9 +298,9 @@ public class YavpmConfigScreen implements ModMenuApi {
             ).controller(YavpmConfigScreen::booleanBuilder)
             .build();
     protected static final Option<Boolean> NULLIUM_EXPERIMENT = Option.<Boolean>createBuilder()
-            .name(Text.translatable("option.yavpm.nullium_experiment.title"))
+            .name(Component.translatable("option.yavpm.nullium_experiment.title"))
             .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.nullium_experiment.desc"))
+                    .text(Component.translatable("option.yavpm.nullium_experiment.desc"))
                     .text(EXPERIMENT_WARNING)
                     .build()
             )
@@ -312,18 +313,18 @@ public class YavpmConfigScreen implements ModMenuApi {
 
     // region Compat
     protected static final ButtonOption VANILLA_TWEAKS_LINK = ButtonOption.createBuilder()
-            .name(Text.translatable("option.yavpm.compat.vanillatweaks.link.title"))
+            .name(Component.translatable("option.yavpm.compat.vanillatweaks.link.title"))
             .description(
                     OptionDescription.createBuilder()
-                            .text(Text.translatable("option.yavpm.compat.vanillatweaks.link.desc"))
+                            .text(Component.translatable("option.yavpm.compat.vanillatweaks.link.desc"))
                             .build()
             )
-            .action((yaclScreen, buttonOption) -> FarestsUtils.openUrl(yaclScreen, "https://vanillatweaks.net"))
+            .action((yaclScreen, buttonOption) -> Util.getPlatform().openUri("https://vanillatweaks.net"))
             .build();
     protected static final Option<Boolean> DROPPER_TO_RECYCLER = Option.<Boolean>createBuilder()
-            .name(Text.translatable("option.yavpm.dropper_to_recycler.title"))
+            .name(Component.translatable("option.yavpm.dropper_to_recycler.title"))
             .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.dropper_to_recycler.desc"))
+                    .text(Component.translatable("option.yavpm.dropper_to_recycler.desc"))
                     .text(RESOURCE_CONDITION_NOTE)
                     .build()
             )
@@ -335,9 +336,9 @@ public class YavpmConfigScreen implements ModMenuApi {
             ).controller(YavpmConfigScreen::booleanBuilder)
             .build();
     protected static final Option<Boolean> DOUBLE_SLABS = Option.<Boolean>createBuilder()
-            .name(Text.translatable("option.yavpm.double_slabs.title"))
+            .name(Component.translatable("option.yavpm.double_slabs.title"))
             .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.double_slabs.desc"))
+                    .text(Component.translatable("option.yavpm.double_slabs.desc"))
                     .text(RESOURCE_CONDITION_NOTE)
                     .build()
             )
@@ -348,9 +349,9 @@ public class YavpmConfigScreen implements ModMenuApi {
             ).controller(YavpmConfigScreen::booleanBuilder)
             .build();
     protected static final Option<Boolean> MORE_TRAPDOORS = Option.<Boolean>createBuilder()
-            .name(Text.translatable("option.yavpm.more_trapdoors.title"))
+            .name(Component.translatable("option.yavpm.more_trapdoors.title"))
             .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.more_trapdoors.desc"))
+                    .text(Component.translatable("option.yavpm.more_trapdoors.desc"))
                     .text(RESOURCE_CONDITION_NOTE)
                     .build()
             )
@@ -361,9 +362,9 @@ public class YavpmConfigScreen implements ModMenuApi {
             ).controller(YavpmConfigScreen::booleanBuilder)
             .build();
     protected static final Option<Boolean> MORE_STAIRS = Option.<Boolean>createBuilder()
-            .name(Text.translatable("option.yavpm.more_stairs.title"))
+            .name(Component.translatable("option.yavpm.more_stairs.title"))
             .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.more_stairs.desc"))
+                    .text(Component.translatable("option.yavpm.more_stairs.desc"))
                     .text(RESOURCE_CONDITION_NOTE)
                     .build()
             )
@@ -378,9 +379,9 @@ public class YavpmConfigScreen implements ModMenuApi {
     // region Misc
 
     protected static final Option<Integer> LONG_LASTING_SPLASH_CHANCE = Option.<Integer>createBuilder()
-            .name(Text.translatable("option.yavpm.long_lasting_splash_chance.title"))
+            .name(Component.translatable("option.yavpm.long_lasting_splash_chance.title"))
             .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.long_lasting_splash_chance.desc"))
+                    .text(Component.translatable("option.yavpm.long_lasting_splash_chance.desc"))
                     .build()
             )
             .binding(
@@ -388,12 +389,12 @@ public class YavpmConfigScreen implements ModMenuApi {
                     () -> Math.round(HANDLER.instance().chanceForLongLastingSplashes * 100),
                     newVal -> HANDLER.instance().chanceForLongLastingSplashes = newVal / 100f
             ).controller(opt -> IntegerSliderControllerBuilder.create(opt).range(0, 100).step(1)
-                    .formatValue(val -> Text.translatable("option.yavpm.format.percentage", val)))
+                    .formatValue(val -> Component.translatable("option.yavpm.format.percentage", val)))
             .build();
     protected static final Option<Boolean> CHRISTIAN_SPLASHES = Option.<Boolean>createBuilder()
-            .name(Text.translatable("option.yavpm.christian_splashes.title"))
+            .name(Component.translatable("option.yavpm.christian_splashes.title"))
             .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.christian_splashes.desc"))
+                    .text(Component.translatable("option.yavpm.christian_splashes.desc"))
                     .build()
             )
             .binding(
@@ -403,9 +404,9 @@ public class YavpmConfigScreen implements ModMenuApi {
             ).controller(YavpmConfigScreen::booleanBuilder)
             .build();
     protected static final Option<Boolean> ISLAMIC_SPLASHES = Option.<Boolean>createBuilder()
-            .name(Text.translatable("option.yavpm.islamic_splashes.title"))
+            .name(Component.translatable("option.yavpm.islamic_splashes.title"))
             .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.islamic_splashes.desc"))
+                    .text(Component.translatable("option.yavpm.islamic_splashes.desc"))
                     .build()
             )
             .binding(
@@ -418,9 +419,9 @@ public class YavpmConfigScreen implements ModMenuApi {
 
     // region Easter Eggs
     protected static final Option<Float> SNAPSHOT_DAY = Option.<Float>createBuilder()
-            .name(Text.translatable("option.yavpm.snapshot_day.title").setStyle(SGA))
+            .name(Component.translatable("option.yavpm.snapshot_day.title").setStyle(ILLAGERALT))
             .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.snapshot_day.desc").setStyle(SGA))
+                    .text(Component.translatable("option.yavpm.snapshot_day.desc").setStyle(ILLAGERALT))
                     .build()
             )
             .binding(
@@ -431,9 +432,9 @@ public class YavpmConfigScreen implements ModMenuApi {
             .build();
 
     protected static final Option<Boolean> FARESTS_BIRTHDAY = Option.<Boolean>createBuilder()
-            .name(Text.translatable("option.yavpm.farests_birthday.title").setStyle(SGA))
+            .name(Component.translatable("option.yavpm.farests_birthday.title").setStyle(ILLAGERALT))
             .description(OptionDescription.createBuilder()
-                    .text(Text.translatable("option.yavpm.farests_birthday.desc").setStyle(SGA))
+                    .text(Component.translatable("option.yavpm.farests_birthday.desc").setStyle(ILLAGERALT))
                     .build()
             )
             .binding(

@@ -1,8 +1,8 @@
 package com.farestr06.yavpm.block.custom.recycler.registry;
 
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.random.Random;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -11,17 +11,17 @@ import org.jetbrains.annotations.Nullable;
  * @param min The minimum count for the dispensed item stack.
  * @param max The maximum count for the dispensed item stack. If null, the count will always match the minimum value.
  */
-public record RecyclingResult(@Nullable ItemConvertible item, Integer min, @Nullable Integer max) {
+public record RecyclingResult(@Nullable ItemLike item, Integer min, @Nullable Integer max) {
     public static final RecyclingResult EMPTY = new RecyclingResult(null, 0, 0);
 
-    public ItemStack toStack(Random rand) {
+    public ItemStack toStack(RandomSource rand) {
         if (item == null) {
             return ItemStack.EMPTY;
         }
         if (max == null) {
             return new ItemStack(item, min);
         }
-        int count = rand.nextBetween(min, max);
+        int count = rand.nextIntBetweenInclusive(min, max);
         return new ItemStack(item, count);
     }
 }

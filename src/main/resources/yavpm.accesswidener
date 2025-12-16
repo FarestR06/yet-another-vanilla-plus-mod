@@ -1,4 +1,4 @@
 accessWidener v2 named
-extendable method net/minecraft/entity/mob/PhantomEntity onSizeChanged ()V
-accessible class net/minecraft/structure/StrongholdGenerator$Piece
-accessible class net/minecraft/structure/StrongholdGenerator$StoneBrickRandomizer
+extendable method net/minecraft/world/entity/monster/Phantom updatePhantomSizeInfo ()V
+accessible class net/minecraft/world/level/levelgen/structure/structures/StrongholdPieces$StrongholdPiece
+accessible class net/minecraft/world/level/levelgen/structure/structures/StrongholdPieces$SmoothStoneSelector

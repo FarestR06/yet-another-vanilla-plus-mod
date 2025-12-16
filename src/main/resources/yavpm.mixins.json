@@ -5,14 +5,14 @@
   "mixins": [
     "block.LockableContainerBlockEntityAccessor",
     "block.PowderSnowBlockMixin",
+    "entity.AbstractCowEntityMixin",
     "entity.AnimalEntityMixin",
     "entity.ChickenEntityMixin",
-    "entity.AbstractCowEntityMixin",
     "entity.DragonFireballEntityMixin",
-    "entity.EggEntityMixin",
     "entity.LivingEntityMixin",
     "entity.PhantomEntityMixin",
     "entity.ServerPlayerEntityMixin",
+    "entity.ThrownEggMixin",
     "game.MinecraftServerMixin",
     "game.ServerWorldMixin",
     "item.ItemMixin",
@@ -21,14 +21,14 @@
     "item.SmithingTemplateItemInvoker",
     "recipe.BrewingRecipeMixin",
     "stronghold.ChestCorridorMixin",
-    "stronghold.FiveWayCrossingMixin",
-    "stronghold.PieceMixin",
+    "stronghold.FillerCorridorMixin",
+    "stronghold.FiveCrossingMixin",
     "stronghold.PortalRoomMixin",
-    "stronghold.SmallCorridorMixin",
-    "stronghold.SpiralStaircaseMixin",
-    "stronghold.SquareRoomMixin",
-    "stronghold.StairsMixin",
-    "stronghold.StoneBrickRandomizerMixin"
+    "stronghold.RoomCrossingMixin",
+    "stronghold.SmoothStoneSelectorMixin",
+    "stronghold.StairsDownMixin",
+    "stronghold.StraightStairsDownMixin",
+    "stronghold.StrongholdPieceMixin"
   ],
   "injectors": {
     "defaultRequire": 1

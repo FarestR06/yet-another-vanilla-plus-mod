@@ -1,20 +1,20 @@
 package com.farestr06.yavpm.item.enchantment.effect;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.enchantment.EnchantmentEffectContext;
-import net.minecraft.enchantment.effect.EnchantmentEntityEffect;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.passive.WolfEntity;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.animal.wolf.Wolf;
+import net.minecraft.world.item.enchantment.EnchantedItemInUse;
+import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
+import net.minecraft.world.phys.Vec3;
 
 public record LapDogEnchantmentEffect() implements EnchantmentEntityEffect {
     public static final MapCodec<LapDogEnchantmentEffect> CODEC = MapCodec.unit(LapDogEnchantmentEffect::new);
 
     @Override
-    public void apply(ServerWorld world, int level, EnchantmentEffectContext context, Entity user, Vec3d pos) {
-        if (user instanceof WolfEntity wolf) {
-            if (wolf.getTarget() == null && wolf.age % getHealRate(level) == 0) {
+    public void apply(ServerLevel world, int level, EnchantedItemInUse context, Entity user, Vec3 pos) {
+        if (user instanceof Wolf wolf) {
+            if (wolf.getTarget() == null && wolf.tickCount % getHealRate(level) == 0) {
                 wolf.heal(level * 2);
                 if (wolf.getOwner() != null) {
                     wolf.getOwner().heal(level * 1.5f);
@@ -28,7 +28,7 @@ public record LapDogEnchantmentEffect() implements EnchantmentEntityEffect {
     }
 
     @Override
-    public MapCodec<? extends EnchantmentEntityEffect> getCodec() {
+    public MapCodec<? extends EnchantmentEntityEffect> codec() {
         return CODEC;
     }
 }

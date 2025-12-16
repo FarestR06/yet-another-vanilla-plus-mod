@@ -4,388 +4,388 @@ import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.item.YavpmItems;
 import net.fabricmc.fabric.api.loot.v3.LootTableEvents;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.TallSeagrassBlock;
-import net.minecraft.block.enums.DoubleBlockHalf;
-import net.minecraft.data.loottable.BlockLootTableGenerator;
-import net.minecraft.data.loottable.vanilla.VanillaBlockLootTableGenerator;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.entity.EntityType;
-import net.minecraft.item.Items;
-import net.minecraft.loot.LootPool;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.LootTables;
-import net.minecraft.loot.condition.*;
-import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.loot.entry.LeafEntry;
-import net.minecraft.loot.entry.LootPoolEntry;
-import net.minecraft.loot.function.ApplyBonusLootFunction;
-import net.minecraft.loot.function.EnchantRandomlyLootFunction;
-import net.minecraft.loot.function.SetCountLootFunction;
-import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
-import net.minecraft.loot.provider.number.UniformLootNumberProvider;
-import net.minecraft.predicate.BlockPredicate;
-import net.minecraft.predicate.StatePredicate;
-import net.minecraft.predicate.entity.LocationPredicate;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.advancements.critereon.BlockPredicate;
+import net.minecraft.advancements.critereon.LocationPredicate;
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.data.loot.packs.VanillaBlockLoot;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.TallSeagrassBlock;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
+import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
+import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
+import net.minecraft.world.level.storage.loot.functions.EnchantRandomlyFunction;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.predicates.*;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 public class LootHelper {
     public static void modifyLoot() {
         YetAnotherVanillaPlusMod.LOGGER.info("Modifying loot for YAVPM!");
         LootTableEvents.MODIFY.register((key, tableBuilder, source, registries) -> {
-            RegistryWrapper.Impl<Enchantment> enchantmentLookup = registries.getOrThrow(RegistryKeys.ENCHANTMENT);
-            if (source.isBuiltin() && key == (LootTables.PIGLIN_BARTERING_GAMEPLAY)) {
-                LootPool.Builder poolBuilder = LootPool.builder()
-                        .with(ItemEntry.builder(YavpmItems.GAUNTLET_FRAGMENT)
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
+            HolderLookup.RegistryLookup<Enchantment> enchantmentLookup = registries.lookupOrThrow(Registries.ENCHANTMENT);
+            if (source.isBuiltin() && key == (BuiltInLootTables.PIGLIN_BARTERING)) {
+                LootPool.Builder poolBuilder = LootPool.lootPool()
+                        .add(LootItem.lootTableItem(YavpmItems.GAUNTLET_FRAGMENT)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 3f)))
                         )
-                        .conditionally(RandomChanceLootCondition.builder(0.0079f));
+                        .when(LootItemRandomChanceCondition.randomChance(0.0079f));
 
-                tableBuilder.pool(poolBuilder);
+                tableBuilder.withPool(poolBuilder);
             }
-            if (source.isBuiltin() && key == (LootTables.SNIFFER_DIGGING_GAMEPLAY)) {
-                LootPool.Builder poolBuilder = LootPool.builder()
-                        .with(ItemEntry.builder(YavpmItems.TRUFFLE))
-                        .with(ItemEntry.builder(YavpmItems.MAGIC_BEAN).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 2f))))
-                        .with(ItemEntry.builder(YavpmItems.BITTER_BERRIES).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 5f))));
+            if (source.isBuiltin() && key == (BuiltInLootTables.SNIFFER_DIGGING)) {
+                LootPool.Builder poolBuilder = LootPool.lootPool()
+                        .add(LootItem.lootTableItem(YavpmItems.TRUFFLE))
+                        .add(LootItem.lootTableItem(YavpmItems.MAGIC_BEAN).apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 2f))))
+                        .add(LootItem.lootTableItem(YavpmItems.BITTER_BERRIES).apply(SetItemCountFunction.setCount(UniformGenerator.between(2f, 5f))));
 
-                tableBuilder.pool(poolBuilder);
+                tableBuilder.withPool(poolBuilder);
             }
-            if (source.isBuiltin() && key == (EntityType.ZOMBIE.getLootTableKey().orElseThrow())) {
-                LootPool.Builder poolBuilder = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1f))
-                        .with(ItemEntry.builder(YavpmItems.MAGIC_BEAN).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f))))
-                        .with(ItemEntry.builder(YavpmItems.PEANUT).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f))))
-                        .conditionally(KilledByPlayerLootCondition.builder())
-                        .conditionally(RandomChanceWithEnchantedBonusLootCondition.builder(registries, 0.025F, 0.01F));
+            if (source.isBuiltin() && key == (EntityType.ZOMBIE.getDefaultLootTable().orElseThrow())) {
+                LootPool.Builder poolBuilder = LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1f))
+                        .add(LootItem.lootTableItem(YavpmItems.MAGIC_BEAN).apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 3f))))
+                        .add(LootItem.lootTableItem(YavpmItems.PEANUT).apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 3f))))
+                        .when(LootItemKilledByPlayerCondition.killedByPlayer())
+                        .when(LootItemRandomChanceWithEnchantedBonusCondition.randomChanceAndLootingBoost(registries, 0.025F, 0.01F));
 
-                tableBuilder.pool(poolBuilder);
+                tableBuilder.withPool(poolBuilder);
             }
-            if (source.isBuiltin() && key == (LootTables.BASTION_TREASURE_CHEST)) {
-                LootPool.Builder poolBuilder = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1f))
-                        .with(ItemEntry.builder(YavpmItems.GAUNTLET_FRAGMENT).apply(
-                                SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 2f))
+            if (source.isBuiltin() && key == (BuiltInLootTables.BASTION_TREASURE)) {
+                LootPool.Builder poolBuilder = LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1f))
+                        .add(LootItem.lootTableItem(YavpmItems.GAUNTLET_FRAGMENT).apply(
+                                SetItemCountFunction.setCount(UniformGenerator.between(1f, 2f))
                         ))
-                        .conditionally(RandomChanceLootCondition.builder(0.79f));
+                        .when(LootItemRandomChanceCondition.randomChance(0.79f));
 
-                tableBuilder.pool(poolBuilder);
+                tableBuilder.withPool(poolBuilder);
             }
-            if (source.isBuiltin() && key == (LootTables.BASTION_BRIDGE_CHEST)) {
-                LootPool.Builder poolBuilder = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1f))
-                        .with(ItemEntry.builder(YavpmItems.GAUNTLET_FRAGMENT))
-                        .conditionally(RandomChanceLootCondition.builder(0.11f));
+            if (source.isBuiltin() && key == (BuiltInLootTables.BASTION_BRIDGE)) {
+                LootPool.Builder poolBuilder = LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1f))
+                        .add(LootItem.lootTableItem(YavpmItems.GAUNTLET_FRAGMENT))
+                        .when(LootItemRandomChanceCondition.randomChance(0.11f));
 
-                tableBuilder.pool(poolBuilder);
+                tableBuilder.withPool(poolBuilder);
             }
-            if (source.isBuiltin() && key == (LootTables.BASTION_HOGLIN_STABLE_CHEST)) {
-                LootPool.Builder poolBuilder = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1f))
-                        .with(ItemEntry.builder(YavpmItems.GAUNTLET_FRAGMENT))
-                        .conditionally(RandomChanceLootCondition.builder(0.11f));
+            if (source.isBuiltin() && key == (BuiltInLootTables.BASTION_HOGLIN_STABLE)) {
+                LootPool.Builder poolBuilder = LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1f))
+                        .add(LootItem.lootTableItem(YavpmItems.GAUNTLET_FRAGMENT))
+                        .when(LootItemRandomChanceCondition.randomChance(0.11f));
 
-                tableBuilder.pool(poolBuilder);
+                tableBuilder.withPool(poolBuilder);
             }
-            if (source.isBuiltin() && key == (LootTables.BASTION_OTHER_CHEST)) {
-                LootPool.Builder poolBuilder = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1f))
-                        .with(ItemEntry.builder(YavpmItems.GAUNTLET_FRAGMENT))
-                        .conditionally(RandomChanceLootCondition.builder(0.079f));
+            if (source.isBuiltin() && key == (BuiltInLootTables.BASTION_OTHER)) {
+                LootPool.Builder poolBuilder = LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1f))
+                        .add(LootItem.lootTableItem(YavpmItems.GAUNTLET_FRAGMENT))
+                        .when(LootItemRandomChanceCondition.randomChance(0.079f));
 
-                tableBuilder.pool(poolBuilder);
+                tableBuilder.withPool(poolBuilder);
             }
-            if (source.isBuiltin() && key == (LootTables.SIMPLE_DUNGEON_CHEST)) {
-                LootPool.Builder poolBuilder1 = LootPool.builder()
-                        .rolls(UniformLootNumberProvider.create(1f,3f))
-                        .with(ItemEntry.builder(YavpmItems.PEANUT).apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 5.0F))))
-                        .conditionally(RandomChanceLootCondition.builder(0.35f));
+            if (source.isBuiltin() && key == (BuiltInLootTables.SIMPLE_DUNGEON)) {
+                LootPool.Builder poolBuilder1 = LootPool.lootPool()
+                        .setRolls(UniformGenerator.between(1f,3f))
+                        .add(LootItem.lootTableItem(YavpmItems.PEANUT).apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 5.0F))))
+                        .when(LootItemRandomChanceCondition.randomChance(0.35f));
 
-                tableBuilder.pool(poolBuilder1);
+                tableBuilder.withPool(poolBuilder1);
             }
-            if (source.isBuiltin() && key == (LootTables.TRIAL_CHAMBER_CONSUMABLES_SPAWNER)) {
-                LootPool.Builder poolBuilder = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1f))
-                        .with(ItemEntry.builder(YavpmItems.COOKED_PEANUT)
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 4f)))
-                                .weight(24)
+            if (source.isBuiltin() && key == (BuiltInLootTables.SPAWNER_TRIAL_CHAMBER_CONSUMABLES)) {
+                LootPool.Builder poolBuilder = LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1f))
+                        .add(LootItem.lootTableItem(YavpmItems.COOKED_PEANUT)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 4f)))
+                                .setWeight(24)
                         )
-                        .with(ItemEntry.builder(YavpmItems.COOKED_PEANUT)
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 4f)))
-                                .weight(24)
+                        .add(LootItem.lootTableItem(YavpmItems.COOKED_PEANUT)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 4f)))
+                                .setWeight(24)
                         )
-                        .with(ItemEntry.builder(YavpmItems.PERSIMMON)
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 2f)))
-                                .weight(20)
+                        .add(LootItem.lootTableItem(YavpmItems.PERSIMMON)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 2f)))
+                                .setWeight(20)
                         )
-                        .with(ItemEntry.builder(YavpmItems.GOLDEN_PERSIMMON)
-                                .weight(2)
+                        .add(LootItem.lootTableItem(YavpmItems.GOLDEN_PERSIMMON)
+                                .setWeight(2)
                         )
-                        .with(ItemEntry.builder(YavpmItems.MOLY)
-                                .weight(2)
+                        .add(LootItem.lootTableItem(YavpmItems.MOLY)
+                                .setWeight(2)
                         )
-                        .conditionally(RandomChanceLootCondition.builder(0.4f));
+                        .when(LootItemRandomChanceCondition.randomChance(0.4f));
 
-                tableBuilder.pool(poolBuilder);
+                tableBuilder.withPool(poolBuilder);
             }
-            if (source.isBuiltin() && key == (LootTables.CAT_MORNING_GIFT_GAMEPLAY)) {
-                LootPool.Builder poolBuilder1 = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1f))
-                        .with(ItemEntry.builder(YavpmItems.MAGIC_BEAN)
-                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
-                                .weight(12)
+            if (source.isBuiltin() && key == (BuiltInLootTables.CAT_MORNING_GIFT)) {
+                LootPool.Builder poolBuilder1 = LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1f))
+                        .add(LootItem.lootTableItem(YavpmItems.MAGIC_BEAN)
+                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 3f)))
+                                .setWeight(12)
                         )
-                        .with(ItemEntry.builder(Items.CARROT)
-                                .weight(12)
+                        .add(LootItem.lootTableItem(Items.CARROT)
+                                .setWeight(12)
                         )
-                        .with(ItemEntry.builder(YavpmItems.MOLY).weight(1))
-                        .conditionally(RandomChanceLootCondition.builder(0.18f));
-                LootPool.Builder poolBuilder2 = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1f))
-                        .with(ItemEntry.builder(YavpmItems.DISC_FRAGMENT_MAGNETIC_CIRCUIT))
-                        .conditionally(RandomChanceLootCondition.builder(0.2f));
+                        .add(LootItem.lootTableItem(YavpmItems.MOLY).setWeight(1))
+                        .when(LootItemRandomChanceCondition.randomChance(0.18f));
+                LootPool.Builder poolBuilder2 = LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1f))
+                        .add(LootItem.lootTableItem(YavpmItems.DISC_FRAGMENT_MAGNETIC_CIRCUIT))
+                        .when(LootItemRandomChanceCondition.randomChance(0.2f));
 
-                tableBuilder.pool(poolBuilder1).pool(poolBuilder2);
+                tableBuilder.withPool(poolBuilder1).withPool(poolBuilder2);
             }
-            if (source.isBuiltin() && key == (LootTables.UNDERWATER_RUIN_BIG_CHEST)) {
-                LootPool.Builder poolBuilder = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1f))
-                        .with(ItemEntry.builder(Items.MUSIC_DISC_MALL))
-                        .conditionally(RandomChanceLootCondition.builder(0.19f));
+            if (source.isBuiltin() && key == (BuiltInLootTables.UNDERWATER_RUIN_BIG)) {
+                LootPool.Builder poolBuilder = LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1f))
+                        .add(LootItem.lootTableItem(Items.MUSIC_DISC_MALL))
+                        .when(LootItemRandomChanceCondition.randomChance(0.19f));
 
-                tableBuilder.pool(poolBuilder);
+                tableBuilder.withPool(poolBuilder);
             }
-            if (source.isBuiltin() && key == (LootTables.WOODLAND_MANSION_CHEST)) {
-                LootPool.Builder poolBuilder1 = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1f))
-                        .with(ItemEntry.builder(Items.MUSIC_DISC_STAL))
-                        .conditionally(RandomChanceLootCondition.builder(0.19f));
+            if (source.isBuiltin() && key == (BuiltInLootTables.WOODLAND_MANSION)) {
+                LootPool.Builder poolBuilder1 = LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1f))
+                        .add(LootItem.lootTableItem(Items.MUSIC_DISC_STAL))
+                        .when(LootItemRandomChanceCondition.randomChance(0.19f));
 
-                tableBuilder.pool(poolBuilder1);
+                tableBuilder.withPool(poolBuilder1);
             }
-            if (source.isBuiltin() && key == (LootTables.DESERT_PYRAMID_CHEST)) {
-                LootPool.Builder poolbuilder1 = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1f))
-                        .with(ItemEntry.builder(YavpmItems.MOLY))
-                        .conditionally(RandomChanceLootCondition.builder(ConstantLootNumberProvider.create(0.08f)));
+            if (source.isBuiltin() && key == (BuiltInLootTables.DESERT_PYRAMID)) {
+                LootPool.Builder poolbuilder1 = LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1f))
+                        .add(LootItem.lootTableItem(YavpmItems.MOLY))
+                        .when(LootItemRandomChanceCondition.randomChance(ConstantValue.exactly(0.08f)));
 
-                LootPool.Builder poolBuilder2 = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1f))
-                        .with(ItemEntry.builder(Items.MUSIC_DISC_FAR))
-                        .conditionally(RandomChanceLootCondition.builder(0.19f));
-                tableBuilder.pool(poolbuilder1).pool(poolBuilder2);
+                LootPool.Builder poolBuilder2 = LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1f))
+                        .add(LootItem.lootTableItem(Items.MUSIC_DISC_FAR))
+                        .when(LootItemRandomChanceCondition.randomChance(0.19f));
+                tableBuilder.withPool(poolbuilder1).withPool(poolBuilder2);
             }
-            if (source.isBuiltin() && key == (LootTables.JUNGLE_TEMPLE_CHEST)) {
-                LootPool.Builder poolBuilder1 = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1f))
-                        .with(ItemEntry.builder(YavpmItems.BANANA_SEEDS)).apply(
-                                SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 6f))
+            if (source.isBuiltin() && key == (BuiltInLootTables.JUNGLE_TEMPLE)) {
+                LootPool.Builder poolBuilder1 = LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1f))
+                        .add(LootItem.lootTableItem(YavpmItems.BANANA_SEEDS)).apply(
+                                SetItemCountFunction.setCount(UniformGenerator.between(1f, 6f))
                         )
-                        .with(ItemEntry.builder(YavpmItems.RICE)).apply(
-                                SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 8f))
+                        .add(LootItem.lootTableItem(YavpmItems.RICE)).apply(
+                                SetItemCountFunction.setCount(UniformGenerator.between(2f, 8f))
                         )
-                        .conditionally(RandomChanceLootCondition.builder(0.24f));
+                        .when(LootItemRandomChanceCondition.randomChance(0.24f));
 
-                LootPool.Builder poolBuilder2 = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1f))
-                        .with(ItemEntry.builder(Items.MUSIC_DISC_CHIRP))
-                        .conditionally(RandomChanceLootCondition.builder(0.19f));
+                LootPool.Builder poolBuilder2 = LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1f))
+                        .add(LootItem.lootTableItem(Items.MUSIC_DISC_CHIRP))
+                        .when(LootItemRandomChanceCondition.randomChance(0.19f));
 
-                LootPool.Builder poolBuilder3 = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1f))
-                        .with(ItemEntry.builder(YavpmItems.FORTUNE_COOKIE))
-                        .conditionally(RandomChanceLootCondition.builder(0.24f));
+                LootPool.Builder poolBuilder3 = LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1f))
+                        .add(LootItem.lootTableItem(YavpmItems.FORTUNE_COOKIE))
+                        .when(LootItemRandomChanceCondition.randomChance(0.24f));
 
-                tableBuilder.pool(poolBuilder1).pool(poolBuilder2).pool(poolBuilder3);
+                tableBuilder.withPool(poolBuilder1).withPool(poolBuilder2).withPool(poolBuilder3);
             }
-            if (source.isBuiltin() && key == (LootTables.IGLOO_CHEST_CHEST)) {
-                LootPool.Builder poolBuilder = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1f))
-                        .with(ItemEntry.builder(Items.MUSIC_DISC_BLOCKS))
-                        .conditionally(RandomChanceLootCondition.builder(0.19f));
+            if (source.isBuiltin() && key == (BuiltInLootTables.IGLOO_CHEST)) {
+                LootPool.Builder poolBuilder = LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1f))
+                        .add(LootItem.lootTableItem(Items.MUSIC_DISC_BLOCKS))
+                        .when(LootItemRandomChanceCondition.randomChance(0.19f));
 
-                tableBuilder.pool(poolBuilder);
+                tableBuilder.withPool(poolBuilder);
             }
-            if (source.isBuiltin() && key == (LootTables.STRONGHOLD_CROSSING_CHEST)) {
-                LootPool.Builder poolBuilder1 = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1f))
-                        .with(ItemEntry.builder(Items.MUSIC_DISC_11))
-                        .conditionally(RandomChanceLootCondition.builder(0.19f));
+            if (source.isBuiltin() && key == (BuiltInLootTables.STRONGHOLD_CROSSING)) {
+                LootPool.Builder poolBuilder1 = LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1f))
+                        .add(LootItem.lootTableItem(Items.MUSIC_DISC_11))
+                        .when(LootItemRandomChanceCondition.randomChance(0.19f));
 
-                LootPool.Builder poolBuilder2 = LootPool.builder()
-                        .rolls(UniformLootNumberProvider.create(1f, 2f))
-                        .with(ItemEntry.builder(YavpmItems.RICE_SEEDS).apply(
-                                SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f))
+                LootPool.Builder poolBuilder2 = LootPool.lootPool()
+                        .setRolls(UniformGenerator.between(1f, 2f))
+                        .add(LootItem.lootTableItem(YavpmItems.RICE_SEEDS).apply(
+                                SetItemCountFunction.setCount(UniformGenerator.between(1f, 3f))
                         ))
-                        .with(ItemEntry.builder(Items.CARROT).apply(
-                                SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f))
+                        .add(LootItem.lootTableItem(Items.CARROT).apply(
+                                SetItemCountFunction.setCount(UniformGenerator.between(1f, 3f))
                         ))
-                        .with(ItemEntry.builder(Items.POTATO).apply(
-                                SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f))
+                        .add(LootItem.lootTableItem(Items.POTATO).apply(
+                                SetItemCountFunction.setCount(UniformGenerator.between(1f, 3f))
                         ))
-                        .with(ItemEntry.builder(YavpmItems.MAGIC_BEAN).apply(
-                                SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f))
+                        .add(LootItem.lootTableItem(YavpmItems.MAGIC_BEAN).apply(
+                                SetItemCountFunction.setCount(UniformGenerator.between(1f, 3f))
                         ))
-                        .with(ItemEntry.builder(YavpmItems.PEANUT).apply(
-                                SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f))
+                        .add(LootItem.lootTableItem(YavpmItems.PEANUT).apply(
+                                SetItemCountFunction.setCount(UniformGenerator.between(1f, 3f))
                         ));
 
-                LootPool.Builder poolBuilder3 = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1f))
-                        .with(ItemEntry.builder(Items.APPLE).weight(15))
-                        .with(ItemEntry.builder(Items.GOLDEN_APPLE).weight(5))
-                        .with(ItemEntry.builder(YavpmItems.PERSIMMON).weight(15))
-                        .with(ItemEntry.builder(YavpmItems.GOLDEN_PERSIMMON).weight(5))
-                        .with(ItemEntry.builder(Items.ENCHANTED_GOLDEN_APPLE).weight(1))
-                        .conditionally(RandomChanceLootCondition.builder(0.2f));
+                LootPool.Builder poolBuilder3 = LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1f))
+                        .add(LootItem.lootTableItem(Items.APPLE).setWeight(15))
+                        .add(LootItem.lootTableItem(Items.GOLDEN_APPLE).setWeight(5))
+                        .add(LootItem.lootTableItem(YavpmItems.PERSIMMON).setWeight(15))
+                        .add(LootItem.lootTableItem(YavpmItems.GOLDEN_PERSIMMON).setWeight(5))
+                        .add(LootItem.lootTableItem(Items.ENCHANTED_GOLDEN_APPLE).setWeight(1))
+                        .when(LootItemRandomChanceCondition.randomChance(0.2f));
 
-                tableBuilder.pool(poolBuilder1).pool(poolBuilder2).pool(poolBuilder3);
+                tableBuilder.withPool(poolBuilder1).withPool(poolBuilder2).withPool(poolBuilder3);
             }
-            if (source.isBuiltin() && key == (LootTables.STRONGHOLD_LIBRARY_CHEST)) {
-                LootPool.Builder poolBuilder = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1f))
-                        .with(ItemEntry.builder(Items.BOOK).apply(EnchantRandomlyLootFunction.builder(registries).options(
+            if (source.isBuiltin() && key == (BuiltInLootTables.STRONGHOLD_LIBRARY)) {
+                LootPool.Builder poolBuilder = LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1f))
+                        .add(LootItem.lootTableItem(Items.BOOK).apply(EnchantRandomlyFunction.randomApplicableEnchantment(registries).withOneOf(
                                 enchantmentLookup.getOrThrow(YavpmTags.Enchantments.END_ENCHANTMENTS))))
-                        .conditionally(RandomChanceLootCondition.builder(0.67f));
+                        .when(LootItemRandomChanceCondition.randomChance(0.67f));
 
-                tableBuilder.pool(poolBuilder);
+                tableBuilder.withPool(poolBuilder);
             }
-            if (source.isBuiltin() && key == (LootTables.END_CITY_TREASURE_CHEST)) {
-                LootPool.Builder poolBuilder1 = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1f))
-                        .with(ItemEntry.builder(Items.BOOK).apply(EnchantRandomlyLootFunction.builder(registries).options(
+            if (source.isBuiltin() && key == (BuiltInLootTables.END_CITY_TREASURE)) {
+                LootPool.Builder poolBuilder1 = LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1f))
+                        .add(LootItem.lootTableItem(Items.BOOK).apply(EnchantRandomlyFunction.randomApplicableEnchantment(registries).withOneOf(
                                 enchantmentLookup.getOrThrow(YavpmTags.Enchantments.END_ENCHANTMENTS))))
-                        .conditionally(RandomChanceLootCondition.builder(0.24f));
-                LootPool.Builder poolBuilder2 = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1f))
-                        .with(ItemEntry.builder(YavpmItems.PHANTOM_CHORD))
-                        .conditionally(RandomChanceLootCondition.builder(0.011f));
+                        .when(LootItemRandomChanceCondition.randomChance(0.24f));
+                LootPool.Builder poolBuilder2 = LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1f))
+                        .add(LootItem.lootTableItem(YavpmItems.PHANTOM_CHORD))
+                        .when(LootItemRandomChanceCondition.randomChance(0.011f));
 
-                tableBuilder.pool(poolBuilder1).pool(poolBuilder2);
+                tableBuilder.withPool(poolBuilder1).withPool(poolBuilder2);
             }
-            if (source.isBuiltin() && key == (LootTables.NETHER_BRIDGE_CHEST)) {
-                LootPool.Builder poolBuilder = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1f))
-                        .with(ItemEntry.builder(Items.MUSIC_DISC_WARD))
-                        .conditionally(RandomChanceLootCondition.builder(0.19f));
+            if (source.isBuiltin() && key == (BuiltInLootTables.NETHER_BRIDGE)) {
+                LootPool.Builder poolBuilder = LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1f))
+                        .add(LootItem.lootTableItem(Items.MUSIC_DISC_WARD))
+                        .when(LootItemRandomChanceCondition.randomChance(0.19f));
 
-                tableBuilder.pool(poolBuilder);
+                tableBuilder.withPool(poolBuilder);
             }
-            if (source.isBuiltin() && key == (LootTables.BURIED_TREASURE_CHEST)) {
-                LootPool.Builder poolBuilder = LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1f))
-                        .with(ItemEntry.builder(Items.MUSIC_DISC_MELLOHI))
-                        .with(ItemEntry.builder(Items.MUSIC_DISC_WAIT))
-                        .conditionally(RandomChanceLootCondition.builder(0.19f));
+            if (source.isBuiltin() && key == (BuiltInLootTables.BURIED_TREASURE)) {
+                LootPool.Builder poolBuilder = LootPool.lootPool()
+                        .setRolls(ConstantValue.exactly(1f))
+                        .add(LootItem.lootTableItem(Items.MUSIC_DISC_MELLOHI))
+                        .add(LootItem.lootTableItem(Items.MUSIC_DISC_WAIT))
+                        .when(LootItemRandomChanceCondition.randomChance(0.19f));
 
-                tableBuilder.pool(poolBuilder);
+                tableBuilder.withPool(poolBuilder);
             }
         });
         LootTableEvents.REPLACE.register((key, original, source, registries) -> {
-            BlockLootTableGenerator generator = new VanillaBlockLootTableGenerator(registries);
-            if (source.isBuiltin() && key == Blocks.OAK_LEAVES.getLootTableKey().orElseThrow()) {
+            BlockLootSubProvider generator = new VanillaBlockLoot(registries);
+            if (source.isBuiltin() && key == Blocks.OAK_LEAVES.getLootTable().orElseThrow()) {
                 return newOakLeavesDrops(registries, generator).build();
             }
-            if (source.isBuiltin() && key == Blocks.BIRCH_LEAVES.getLootTableKey().orElseThrow()) {
+            if (source.isBuiltin() && key == Blocks.BIRCH_LEAVES.getLootTable().orElseThrow()) {
                 return newBirchLeavesDrops(registries, generator).build();
             }
-            if (source.isBuiltin() && key == Blocks.SEAGRASS.getLootTableKey().orElseThrow()) {
+            if (source.isBuiltin() && key == Blocks.SEAGRASS.getLootTable().orElseThrow()) {
                 return shortSeagrassDrops(registries, generator).build();
             }
-            if (source.isBuiltin() && key == Blocks.TALL_SEAGRASS.getLootTableKey().orElseThrow()) {
+            if (source.isBuiltin() && key == Blocks.TALL_SEAGRASS.getLootTable().orElseThrow()) {
                 return tallSeagrassDrops(registries, generator).build();
             }
-            if (source.isBuiltin() && key == Blocks.GRANITE.getLootTableKey().orElseThrow()) {
-                return generator.drops(Blocks.GRANITE, YavpmBlocks.COBBLED_GRANITE).build();
+            if (source.isBuiltin() && key == Blocks.GRANITE.getLootTable().orElseThrow()) {
+                return generator.createSingleItemTableWithSilkTouch(Blocks.GRANITE, YavpmBlocks.COBBLED_GRANITE).build();
             }
-            if (source.isBuiltin() && key == Blocks.DIORITE.getLootTableKey().orElseThrow()) {
-                return generator.drops(Blocks.DIORITE, YavpmBlocks.COBBLED_DIORITE).build();
+            if (source.isBuiltin() && key == Blocks.DIORITE.getLootTable().orElseThrow()) {
+                return generator.createSingleItemTableWithSilkTouch(Blocks.DIORITE, YavpmBlocks.COBBLED_DIORITE).build();
             }
-            if (source.isBuiltin() && key == Blocks.ANDESITE.getLootTableKey().orElseThrow()) {
-                return generator.drops(Blocks.ANDESITE, YavpmBlocks.COBBLED_ANDESITE).build();
+            if (source.isBuiltin() && key == Blocks.ANDESITE.getLootTable().orElseThrow()) {
+                return generator.createSingleItemTableWithSilkTouch(Blocks.ANDESITE, YavpmBlocks.COBBLED_ANDESITE).build();
             }
             return original;
         });
     }
 
-    private static LootTable.Builder shortSeagrassDrops(RegistryWrapper.WrapperLookup lookup, BlockLootTableGenerator generator) {
-        RegistryWrapper.Impl<Enchantment> impl = lookup.getOrThrow(RegistryKeys.ENCHANTMENT);
-        return generator.dropsWithShears(
+    private static LootTable.Builder shortSeagrassDrops(HolderLookup.Provider lookup, BlockLootSubProvider generator) {
+        HolderLookup.RegistryLookup<Enchantment> impl = lookup.lookupOrThrow(Registries.ENCHANTMENT);
+        return generator.createShearsDispatchTable(
                 Blocks.SEAGRASS,
                 generator.applyExplosionDecay(
                         Blocks.SEAGRASS,
-                        ItemEntry.builder(YavpmItems.RICE_SEEDS)
-                                .conditionally(RandomChanceLootCondition.builder(0.125F))
-                                .apply(ApplyBonusLootFunction.uniformBonusCount(impl.getOrThrow(Enchantments.FORTUNE), 2))
+                        LootItem.lootTableItem(YavpmItems.RICE_SEEDS)
+                                .when(LootItemRandomChanceCondition.randomChance(0.125F))
+                                .apply(ApplyBonusCount.addUniformBonusCount(impl.getOrThrow(Enchantments.FORTUNE), 2))
                 )
         );
     }
-    private static LootTable.Builder tallSeagrassDrops(RegistryWrapper.WrapperLookup lookup, BlockLootTableGenerator generator) {
-        RegistryWrapper.Impl<Block> impl = lookup.getOrThrow(RegistryKeys.BLOCK);
-        LootPoolEntry.Builder<?> builder = ItemEntry.builder(Blocks.SEAGRASS)
-                .apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(2.0F)))
-                .conditionally(generator.createWithShearsCondition())
-                .alternatively(
-                        ((LeafEntry.Builder<?>)generator.addSurvivesExplosionCondition(Blocks.TALL_SEAGRASS, ItemEntry.builder(YavpmItems.RICE_SEEDS)))
-                                .conditionally(RandomChanceLootCondition.builder(0.125F))
+    private static LootTable.Builder tallSeagrassDrops(HolderLookup.Provider lookup, BlockLootSubProvider generator) {
+        HolderLookup.RegistryLookup<Block> impl = lookup.lookupOrThrow(Registries.BLOCK);
+        LootPoolEntryContainer.Builder<?> builder = LootItem.lootTableItem(Blocks.SEAGRASS)
+                .apply(SetItemCountFunction.setCount(ConstantValue.exactly(2.0F)))
+                .when(generator.hasShears())
+                .otherwise(
+                        ((LootPoolSingletonContainer.Builder<?>)generator.applyExplosionCondition(Blocks.TALL_SEAGRASS, LootItem.lootTableItem(YavpmItems.RICE_SEEDS)))
+                                .when(LootItemRandomChanceCondition.randomChance(0.125F))
                 );
-        return LootTable.builder()
-                .pool(
-                        LootPool.builder()
-                                .with(builder)
-                                .conditionally(
-                                        BlockStatePropertyLootCondition.builder(Blocks.TALL_SEAGRASS).properties(StatePredicate.Builder.create().exactMatch(TallSeagrassBlock.HALF, DoubleBlockHalf.LOWER))
+        return LootTable.lootTable()
+                .withPool(
+                        LootPool.lootPool()
+                                .add(builder)
+                                .when(
+                                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.TALL_SEAGRASS).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(TallSeagrassBlock.HALF, DoubleBlockHalf.LOWER))
                                 )
-                                .conditionally(
-                                        LocationCheckLootCondition.builder(
-                                                LocationPredicate.Builder.create()
-                                                        .block(BlockPredicate.Builder.create().blocks(impl, Blocks.TALL_SEAGRASS).state(StatePredicate.Builder.create().exactMatch(TallSeagrassBlock.HALF, DoubleBlockHalf.UPPER))),
+                                .when(
+                                        LocationCheck.checkLocation(
+                                                LocationPredicate.Builder.location()
+                                                        .setBlock(BlockPredicate.Builder.block().of(impl, Blocks.TALL_SEAGRASS).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(TallSeagrassBlock.HALF, DoubleBlockHalf.UPPER))),
                                                 new BlockPos(0, 1, 0)
                                         )
                                 )
                 )
-                .pool(
-                        LootPool.builder()
-                                .with(builder)
-                                .conditionally(
-                                        BlockStatePropertyLootCondition.builder(Blocks.TALL_SEAGRASS).properties(StatePredicate.Builder.create().exactMatch(TallSeagrassBlock.HALF, DoubleBlockHalf.UPPER))
+                .withPool(
+                        LootPool.lootPool()
+                                .add(builder)
+                                .when(
+                                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(Blocks.TALL_SEAGRASS).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(TallSeagrassBlock.HALF, DoubleBlockHalf.UPPER))
                                 )
-                                .conditionally(
-                                        LocationCheckLootCondition.builder(
-                                                LocationPredicate.Builder.create()
-                                                        .block(BlockPredicate.Builder.create().blocks(impl, Blocks.TALL_SEAGRASS).state(StatePredicate.Builder.create().exactMatch(TallSeagrassBlock.HALF, DoubleBlockHalf.LOWER))),
+                                .when(
+                                        LocationCheck.checkLocation(
+                                                LocationPredicate.Builder.location()
+                                                        .setBlock(BlockPredicate.Builder.block().of(impl, Blocks.TALL_SEAGRASS).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(TallSeagrassBlock.HALF, DoubleBlockHalf.LOWER))),
                                                 new BlockPos(0, -1, 0)
                                         )
                                 )
                 );
     }
-    private static LootTable.Builder newOakLeavesDrops(RegistryWrapper.WrapperLookup lookup, BlockLootTableGenerator generator) {
-        RegistryWrapper.Impl<Enchantment> impl = lookup.getOrThrow(RegistryKeys.ENCHANTMENT);
-        return generator.leavesDrops(Blocks.OAK_LEAVES, Blocks.OAK_SAPLING, 0.05F, 0.0625F, 0.083333336F, 0.1F)
-                .pool(
-                        LootPool.builder()
-                                .rolls(ConstantLootNumberProvider.create(1.0F))
-                                .conditionally(generator.createWithoutShearsOrSilkTouchCondition())
-                                .with(
-                                        ((LeafEntry.Builder<?>)generator.addSurvivesExplosionCondition(Blocks.OAK_LEAVES, ItemEntry.builder(YavpmItems.ACORN)))
-                                                .conditionally(TableBonusLootCondition.builder(impl.getOrThrow(Enchantments.FORTUNE), 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))
+    private static LootTable.Builder newOakLeavesDrops(HolderLookup.Provider lookup, BlockLootSubProvider generator) {
+        HolderLookup.RegistryLookup<Enchantment> impl = lookup.lookupOrThrow(Registries.ENCHANTMENT);
+        return generator.createLeavesDrops(Blocks.OAK_LEAVES, Blocks.OAK_SAPLING, 0.05F, 0.0625F, 0.083333336F, 0.1F)
+                .withPool(
+                        LootPool.lootPool()
+                                .setRolls(ConstantValue.exactly(1.0F))
+                                .when(generator.doesNotHaveShearsOrSilkTouch())
+                                .add(
+                                        ((LootPoolSingletonContainer.Builder<?>)generator.applyExplosionCondition(Blocks.OAK_LEAVES, LootItem.lootTableItem(YavpmItems.ACORN)))
+                                                .when(BonusLevelTableCondition.bonusLevelFlatChance(impl.getOrThrow(Enchantments.FORTUNE), 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))
                                 )
                 );
     }
-    private static LootTable.Builder newBirchLeavesDrops(RegistryWrapper.WrapperLookup lookup, BlockLootTableGenerator generator) {
-        RegistryWrapper.Impl<Enchantment> impl = lookup.getOrThrow(RegistryKeys.ENCHANTMENT);
-        return generator.leavesDrops(Blocks.BIRCH_LEAVES, Blocks.BIRCH_SAPLING, 0.05F, 0.0625F, 0.083333336F, 0.1F)
-                .pool(
-                        LootPool.builder()
-                                .rolls(ConstantLootNumberProvider.create(1.0F))
-                                .conditionally(generator.createWithoutShearsOrSilkTouchCondition())
-                                .with(
-                                        ((LeafEntry.Builder<?>)generator.addSurvivesExplosionCondition(Blocks.BIRCH_LEAVES, ItemEntry.builder(YavpmItems.BIRCH_SEEDS)))
-                                                .conditionally(TableBonusLootCondition.builder(impl.getOrThrow(Enchantments.FORTUNE), 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))
+    private static LootTable.Builder newBirchLeavesDrops(HolderLookup.Provider lookup, BlockLootSubProvider generator) {
+        HolderLookup.RegistryLookup<Enchantment> impl = lookup.lookupOrThrow(Registries.ENCHANTMENT);
+        return generator.createLeavesDrops(Blocks.BIRCH_LEAVES, Blocks.BIRCH_SAPLING, 0.05F, 0.0625F, 0.083333336F, 0.1F)
+                .withPool(
+                        LootPool.lootPool()
+                                .setRolls(ConstantValue.exactly(1.0F))
+                                .when(generator.doesNotHaveShearsOrSilkTouch())
+                                .add(
+                                        ((LootPoolSingletonContainer.Builder<?>)generator.applyExplosionCondition(Blocks.BIRCH_LEAVES, LootItem.lootTableItem(YavpmItems.BIRCH_SEEDS)))
+                                                .when(BonusLevelTableCondition.bonusLevelFlatChance(impl.getOrThrow(Enchantments.FORTUNE), 0.005F, 0.0055555557F, 0.00625F, 0.008333334F, 0.025F))
                                 )
                 );
     }

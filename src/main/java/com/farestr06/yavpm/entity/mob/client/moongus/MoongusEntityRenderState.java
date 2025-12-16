@@ -1,9 +1,9 @@
 package com.farestr06.yavpm.entity.mob.client.moongus;
 
-import com.farestr06.yavpm.entity.mob.MoongusEntity;
-import net.minecraft.client.render.entity.state.LivingEntityRenderState;
+import com.farestr06.yavpm.entity.mob.FungusCowEntity;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
 
 public class MoongusEntityRenderState extends LivingEntityRenderState {
-    public MoongusEntity.Variant type = MoongusEntity.Variant.CRIMSON;
+    public FungusCowEntity.Variant type = FungusCowEntity.Variant.CRIMSON;
     public boolean sheared = false;
 }

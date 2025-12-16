@@ -1,21 +1,20 @@
 package com.farestr06.yavpm.block.custom.entity;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.component.ComponentMap;
-import net.minecraft.component.ComponentsAccess;
-import net.minecraft.component.DataComponentTypes;
-import net.minecraft.component.type.ContainerComponent;
-import net.minecraft.inventory.SingleStackInventory.SingleStackBlockEntityInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.component.DataComponentGetter;
+import net.minecraft.core.component.DataComponentMap;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemContainerContents;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
+import net.minecraft.world.ticks.ContainerSingleItem;
 
 import java.util.List;
 
-public class PinataBlockEntity extends BlockEntity implements SingleStackBlockEntityInventory {
+public class PinataBlockEntity extends BlockEntity implements ContainerSingleItem.BlockContainerSingleItem {
     private ItemStack stack = ItemStack.EMPTY;
 
     public PinataBlockEntity(BlockPos pos, BlockState state) {
@@ -23,37 +22,33 @@ public class PinataBlockEntity extends BlockEntity implements SingleStackBlockEn
     }
 
     @Override
-    protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries) {
-        super.writeNbt(nbt, registries);
+    protected void saveAdditional(ValueOutput valueOutput) {
+        super.saveAdditional(valueOutput);
         if (!this.stack.isEmpty()) {
-            nbt.put("item", this.stack.toNbt(registries));
+            valueOutput.store("item", ItemStack.CODEC, this.stack);
         }
     }
 
     @Override
-    protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registries) {
-        super.readNbt(nbt, registries);
-        if (nbt.get("item") != null) {
-            this.stack = ItemStack.fromNbt(registries, nbt.get("item")).orElse(ItemStack.EMPTY);
-        } else {
-            this.stack = ItemStack.EMPTY;
-        }
+    protected void loadAdditional(ValueInput valueInput) {
+        super.loadAdditional(valueInput);
+        this.stack = valueInput.read("item", ItemStack.CODEC).orElse(ItemStack.EMPTY);
     }
 
     @Override
-    protected void addComponents(ComponentMap.Builder builder) {
-        super.addComponents(builder);
-        builder.add(DataComponentTypes.CONTAINER, ContainerComponent.fromStacks(List.of(this.stack)));
+    protected void collectImplicitComponents(DataComponentMap.Builder builder) {
+        super.collectImplicitComponents(builder);
+        builder.set(DataComponents.CONTAINER, ItemContainerContents.fromItems(List.of(this.stack)));
     }
 
     @Override
-    protected void readComponents(ComponentsAccess components) {
-        super.readComponents(components);
-        this.stack = components.getOrDefault(DataComponentTypes.CONTAINER, ContainerComponent.DEFAULT).copyFirstStack();
+    protected void applyImplicitComponents(DataComponentGetter components) {
+        super.applyImplicitComponents(components);
+        this.stack = components.getOrDefault(DataComponents.CONTAINER, ItemContainerContents.EMPTY).copyOne();
     }
 
     @Override
-    public ItemStack decreaseStack(int count) {
+    public ItemStack splitTheItem(int count) {
         ItemStack itemStack = this.stack.split(count);
         if (this.stack.isEmpty()) {
             this.stack = ItemStack.EMPTY;
@@ -63,17 +58,17 @@ public class PinataBlockEntity extends BlockEntity implements SingleStackBlockEn
     }
 
     @Override
-    public BlockEntity asBlockEntity() {
+    public BlockEntity getContainerBlockEntity() {
         return this;
     }
 
     @Override
-    public ItemStack getStack() {
+    public ItemStack getTheItem() {
         return this.stack;
     }
 
     @Override
-    public void setStack(ItemStack stack) {
+    public void setTheItem(ItemStack stack) {
         this.stack = stack;
     }
 }

@@ -1,15 +1,15 @@
 package com.farestr06.yavpm.mixin.entity;
 
 import com.farestr06.yavpm.entity.YavpmEntities;
-import net.minecraft.entity.mob.PhantomEntity;
+import net.minecraft.world.entity.monster.Phantom;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-@Mixin(PhantomEntity.class)
+@Mixin(Phantom.class)
 public class PhantomEntityMixin {
-    @Redirect(method = "initialize", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/mob/PhantomEntity;setPhantomSize(I)V"))
-    private void injected(PhantomEntity instance, int size) {
+    @Redirect(method = "finalizeSpawn", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/monster/Phantom;setPhantomSize(I)V"))
+    private void injected(Phantom instance, int size) {
         if (instance.getType() == YavpmEntities.VOID_PHANTOM) {
             int voidPhantomSize = instance.getRandom().nextInt(3);
             instance.setPhantomSize(voidPhantomSize);

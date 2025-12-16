@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:cut_soulstone_from_soulstone_stonecutting"
+        "recipe": "yavpm:cut_soulstone_from_soulstone_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +26,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:cut_soulstone_from_soulstone_stonecutting"
+      "yavpm:cut_soulstone_from_soulstone_stonecutting"
     ]
   }
 }

@@ -2,31 +2,32 @@ package com.farestr06.yavpm.entity.mob.client;
 
 import com.farestr06.yavpm.entity.mob.SunburnEntity;
 import com.farestr06.yavpm.entity.mob.client.model.SunburnEntityModel;
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.entity.MobEntityRenderer;
-import net.minecraft.client.render.entity.state.LivingEntityRenderState;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.util.Identifier;
+import com.mojang.blaze3d.vertex.PoseStack;
+import net.minecraft.client.renderer.SubmitNodeCollector;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.state.LivingEntityRenderState;
+import net.minecraft.client.renderer.state.CameraRenderState;
+import net.minecraft.resources.ResourceLocation;
 
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
-public class SunburnEntityRenderer extends MobEntityRenderer<SunburnEntity, LivingEntityRenderState, SunburnEntityModel> {
-    public static final Identifier TEXTURE = makeId("textures/entity/sunburn.png");
+public class SunburnEntityRenderer extends MobRenderer<SunburnEntity, LivingEntityRenderState, SunburnEntityModel> {
+    public static final ResourceLocation TEXTURE = makeId("textures/entity/sunburn.png");
 
-    public SunburnEntityRenderer(EntityRendererFactory.Context context) {
-        super(context, new SunburnEntityModel(context.getPart(YavpmModelLayers.SUNBURN)), 0.7f);
+    public SunburnEntityRenderer(EntityRendererProvider.Context context) {
+        super(context, new SunburnEntityModel(context.bakeLayer(YavpmModelLayers.SUNBURN)), 0.7f);
     }
 
     @Override
-    public void render(LivingEntityRenderState livingEntityRenderState, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
-        matrixStack.scale(1f, 1f, 1f);
+    public void submit(LivingEntityRenderState livingEntityRenderState, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState cameraRenderState) {
+        poseStack.scale(1f, 1f, 1f);
 
-        super.render(livingEntityRenderState, matrixStack, vertexConsumerProvider, i);
+        super.submit(livingEntityRenderState, poseStack, submitNodeCollector, cameraRenderState);
     }
 
     @Override
-    public Identifier getTexture(LivingEntityRenderState state) {
+    public ResourceLocation getTextureLocation(LivingEntityRenderState state) {
         return TEXTURE;
     }
 

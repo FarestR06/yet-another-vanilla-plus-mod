@@ -7,39 +7,30 @@ import com.farestr06.yavpm.item.YavpmItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
 import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableProvider;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.CropBlock;
-import net.minecraft.block.SweetBerryBushBlock;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.item.Items;
-import net.minecraft.loot.LootPool;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.condition.*;
-import net.minecraft.loot.context.LootContext;
-import net.minecraft.loot.context.LootContextTypes;
-import net.minecraft.loot.entry.ItemEntry;
-import net.minecraft.loot.entry.LeafEntry;
-import net.minecraft.loot.entry.LootPoolEntry;
-import net.minecraft.loot.function.*;
-import net.minecraft.loot.operator.BoundedIntUnaryOperator;
-import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
-import net.minecraft.loot.provider.number.UniformLootNumberProvider;
-import net.minecraft.predicate.NumberRange;
-import net.minecraft.predicate.StatePredicate;
-import net.minecraft.predicate.component.ComponentPredicateTypes;
-import net.minecraft.predicate.component.ComponentsPredicate;
-import net.minecraft.predicate.entity.EntityEquipmentPredicate;
-import net.minecraft.predicate.entity.EntityFlagsPredicate;
-import net.minecraft.predicate.entity.EntityPredicate;
-import net.minecraft.predicate.item.EnchantmentPredicate;
-import net.minecraft.predicate.item.EnchantmentsPredicate;
-import net.minecraft.predicate.item.ItemPredicate;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.RegistryWrapper;
-import net.minecraft.registry.tag.EnchantmentTags;
+import net.minecraft.advancements.critereon.*;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.predicates.DataComponentPredicates;
+import net.minecraft.core.component.predicates.EnchantmentsPredicate;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.EnchantmentTags;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.SweetBerryBushBlock;
+import net.minecraft.world.level.storage.loot.IntRange;
+import net.minecraft.world.level.storage.loot.LootContext;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
+import net.minecraft.world.level.storage.loot.functions.*;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.predicates.*;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -48,410 +39,410 @@ import java.util.function.BiConsumer;
 public class YavpmLootProviders {
     public static class Block extends FabricBlockLootTableProvider {
 
-        final RegistryWrapper.Impl<Enchantment> lookup = registries.getOrThrow(RegistryKeys.ENCHANTMENT);
+        final HolderLookup.RegistryLookup<Enchantment> lookup = registries.lookupOrThrow(Registries.ENCHANTMENT);
 
-        protected Block(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+        protected Block(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
             super(dataOutput, registryLookup);
         }
 
         @Override
         public void generate() {
-            addDrop(YavpmBlocks.GLOWING_OBSIDIAN);
-            addDrop(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
+            dropSelf(YavpmBlocks.GLOWING_OBSIDIAN);
+            dropSelf(YavpmBlocks.SOUL_GLOWING_OBSIDIAN);
 
             stoneVariantDrops();
-            addDrop(YavpmBlocks.NAHCOLITE_ORE, this::nahcoliteOreDrops);
-            addDrop(YavpmBlocks.DEEPSLATE_NAHCOLITE_ORE, this::nahcoliteOreDrops);
-            addDrop(YavpmBlocks.GRAPHITE_BLOCK);
-            addDrop(YavpmBlocks.GRAPHENE_BLOCK);
+            add(YavpmBlocks.NAHCOLITE_ORE, this::nahcoliteOreDrops);
+            add(YavpmBlocks.DEEPSLATE_NAHCOLITE_ORE, this::nahcoliteOreDrops);
+            dropSelf(YavpmBlocks.GRAPHITE_BLOCK);
+            dropSelf(YavpmBlocks.GRAPHENE_BLOCK);
 
-            addDrop(YavpmBlocks.DENSITITE_BLOCK);
+            dropSelf(YavpmBlocks.DENSITITE_BLOCK);
 
-            addDropWithSilkTouch(YavpmBlocks.POLARIZED_GLASS);
-            addDrop(YavpmBlocks.RECYCLER);
-            addDrop(YavpmBlocks.BURNER);
-            addDrop(YavpmBlocks.NULL_TORCH);
+            dropWhenSilkTouch(YavpmBlocks.POLARIZED_GLASS);
+            dropSelf(YavpmBlocks.RECYCLER);
+            dropSelf(YavpmBlocks.BURNER);
+            dropSelf(YavpmBlocks.NULL_TORCH);
 
             cropDrops();
 
-            addDrop(YavpmBlocks.SHOJI);
-            addDrop(YavpmBlocks.CHOPPING_BLOCK);
+            dropSelf(YavpmBlocks.SHOJI);
+            dropSelf(YavpmBlocks.CHOPPING_BLOCK);
             appleDrops();
             persimmonDrops();
             prickleDrops();
 
             fakeDrops();
 
-            addDropWithSilkTouch(YavpmBlocks.PINATA);
+            dropWhenSilkTouch(YavpmBlocks.PINATA);
         }
 
         private void fakeDrops() {
-            addDrop(YavpmBlocks.FAKE_LOG, LootTable.builder()
-                    .pool(
-                            LootPool.builder().rolls(ConstantLootNumberProvider.create(1f))
-                                    .with(ItemEntry.builder(Items.ACACIA_PLANKS)
-                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 5f)))
+            add(YavpmBlocks.FAKE_LOG, LootTable.lootTable()
+                    .withPool(
+                            LootPool.lootPool().setRolls(ConstantValue.exactly(1f))
+                                    .add(LootItem.lootTableItem(Items.ACACIA_PLANKS)
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(2f, 5f)))
                                     )
-                                    .with(ItemEntry.builder(Items.BIRCH_PLANKS)
-                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 5f)))
+                                    .add(LootItem.lootTableItem(Items.BIRCH_PLANKS)
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(2f, 5f)))
                                     )
-                                    .with(ItemEntry.builder(Items.CHERRY_PLANKS)
-                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 5f)))
+                                    .add(LootItem.lootTableItem(Items.CHERRY_PLANKS)
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(2f, 5f)))
                                     )
-                                    .with(ItemEntry.builder(Items.DARK_OAK_PLANKS)
-                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 5f)))
+                                    .add(LootItem.lootTableItem(Items.DARK_OAK_PLANKS)
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(2f, 5f)))
                                     )
-                                    .with(ItemEntry.builder(Items.JUNGLE_PLANKS)
-                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 5f)))
+                                    .add(LootItem.lootTableItem(Items.JUNGLE_PLANKS)
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(2f, 5f)))
                                     )
-                                    .with(ItemEntry.builder(Items.OAK_PLANKS)
-                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 5f)))
+                                    .add(LootItem.lootTableItem(Items.OAK_PLANKS)
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(2f, 5f)))
                                     )
-                                    .with(ItemEntry.builder(Items.MANGROVE_PLANKS)
-                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 5f)))
+                                    .add(LootItem.lootTableItem(Items.MANGROVE_PLANKS)
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(2f, 5f)))
                                     )
-                                    .with(ItemEntry.builder(Items.SPRUCE_PLANKS)
-                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 5f)))
+                                    .add(LootItem.lootTableItem(Items.SPRUCE_PLANKS)
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(2f, 5f)))
                                     )
-                                    .with(ItemEntry.builder(YavpmBlocks.APPLE_PLANKS.asItem())
-                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 5f)))
+                                    .add(LootItem.lootTableItem(YavpmBlocks.APPLE_PLANKS.asItem())
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(2f, 5f)))
                                     )
-                                    .with(ItemEntry.builder(YavpmBlocks.PERSIMMON_PLANKS.asItem())
-                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2f, 5f)))
+                                    .add(LootItem.lootTableItem(YavpmBlocks.PERSIMMON_PLANKS.asItem())
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(2f, 5f)))
                                     )
                     )
             );
-            addDrop(YavpmBlocks.FAKE_ORE, LootTable.builder()
-                    .pool(
-                            LootPool.builder().rolls(ConstantLootNumberProvider.create(1f))
-                                    .with(ItemEntry.builder(Items.COAL)
-                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
-                                    ).with(ItemEntry.builder(Items.RAW_COPPER)
-                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
-                                    ).with(ItemEntry.builder(Items.RAW_IRON)
-                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
-                                    ).with(ItemEntry.builder(Items.RAW_GOLD)
-                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
-                                    ).with(ItemEntry.builder(Items.LAPIS_LAZULI)
-                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
-                                    ).with(ItemEntry.builder(Items.DIAMOND)
-                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
-                                    ).with(ItemEntry.builder(Items.EMERALD)
-                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
-                                    ).with(ItemEntry.builder(Items.REDSTONE)
-                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
+            add(YavpmBlocks.FAKE_ORE, LootTable.lootTable()
+                    .withPool(
+                            LootPool.lootPool().setRolls(ConstantValue.exactly(1f))
+                                    .add(LootItem.lootTableItem(Items.COAL)
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 3f)))
+                                    ).add(LootItem.lootTableItem(Items.RAW_COPPER)
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 3f)))
+                                    ).add(LootItem.lootTableItem(Items.RAW_IRON)
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 3f)))
+                                    ).add(LootItem.lootTableItem(Items.RAW_GOLD)
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 3f)))
+                                    ).add(LootItem.lootTableItem(Items.LAPIS_LAZULI)
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 3f)))
+                                    ).add(LootItem.lootTableItem(Items.DIAMOND)
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 3f)))
+                                    ).add(LootItem.lootTableItem(Items.EMERALD)
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 3f)))
+                                    ).add(LootItem.lootTableItem(Items.REDSTONE)
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 3f)))
                                     )
                     )
             );
         }
 
         private void cropDrops() {
-            addDrop(
+            add(
                     YavpmBlocks.BITTER_BERRY_BUSH,
-                    (net.minecraft.block.Block block) -> this.applyExplosionDecay(
-                            block, LootTable.builder().pool(LootPool.builder().conditionally(
-                                    BlockStatePropertyLootCondition.builder(YavpmBlocks.BITTER_BERRY_BUSH)
-                                            .properties(StatePredicate.Builder.create().exactMatch(SweetBerryBushBlock.AGE, 3)))
-                                    .with(ItemEntry.builder(YavpmItems.BITTER_BERRIES))
-                                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0f, 3.0f)))
-                                    .apply(ApplyBonusLootFunction.uniformBonusCount(lookup.getOrThrow(Enchantments.FORTUNE))))
-                                    .pool(LootPool.builder().conditionally(
-                                            BlockStatePropertyLootCondition.builder(YavpmBlocks.BITTER_BERRY_BUSH)
-                                                    .properties(StatePredicate.Builder.create().exactMatch(SweetBerryBushBlock.AGE, 2)))
-                                            .with(ItemEntry.builder(YavpmItems.BITTER_BERRIES))
-                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0f, 2.0f)))
-                                            .apply(ApplyBonusLootFunction.uniformBonusCount(lookup.getOrThrow(Enchantments.FORTUNE)))
+                    (net.minecraft.world.level.block.Block block) -> this.applyExplosionDecay(
+                            block, LootTable.lootTable().withPool(LootPool.lootPool().when(
+                                    LootItemBlockStatePropertyCondition.hasBlockStateProperties(YavpmBlocks.BITTER_BERRY_BUSH)
+                                            .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SweetBerryBushBlock.AGE, 3)))
+                                    .add(LootItem.lootTableItem(YavpmItems.BITTER_BERRIES))
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0f, 3.0f)))
+                                    .apply(ApplyBonusCount.addUniformBonusCount(lookup.getOrThrow(Enchantments.FORTUNE))))
+                                    .withPool(LootPool.lootPool().when(
+                                            LootItemBlockStatePropertyCondition.hasBlockStateProperties(YavpmBlocks.BITTER_BERRY_BUSH)
+                                                    .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SweetBerryBushBlock.AGE, 2)))
+                                            .add(LootItem.lootTableItem(YavpmItems.BITTER_BERRIES))
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0f, 2.0f)))
+                                            .apply(ApplyBonusCount.addUniformBonusCount(lookup.getOrThrow(Enchantments.FORTUNE)))
                                     )
                     )
             );
 
-            BlockStatePropertyLootCondition.Builder builder2 = BlockStatePropertyLootCondition.builder(YavpmBlocks.RICE_CROP)
-                    .properties(StatePredicate.Builder.create()
-                            .exactMatch(CropBlock.AGE, 7));
-            this.addDrop(YavpmBlocks.RICE_CROP, this.cropDrops(YavpmBlocks.RICE_CROP, YavpmItems.RICE, YavpmItems.RICE_SEEDS, builder2));
+            LootItemBlockStatePropertyCondition.Builder builder2 = LootItemBlockStatePropertyCondition.hasBlockStateProperties(YavpmBlocks.RICE_CROP)
+                    .setProperties(StatePropertiesPredicate.Builder.properties()
+                            .hasProperty(CropBlock.AGE, 7));
+            this.add(YavpmBlocks.RICE_CROP, this.createCropDrops(YavpmBlocks.RICE_CROP, YavpmItems.RICE, YavpmItems.RICE_SEEDS, builder2));
 
-            BlockStatePropertyLootCondition.Builder peanutConditionBuilder = BlockStatePropertyLootCondition.builder(YavpmBlocks.PEANUT_CROP).properties(StatePredicate.Builder.create()
-                    .exactMatch(PeanutCropBlock.AGE, 3));
-            addDrop(YavpmBlocks.PEANUT_CROP, applyExplosionDecay(YavpmBlocks.PEANUT_CROP, LootTable.builder().pool(
-                    LootPool.builder().with(
-                            ItemEntry.builder(YavpmItems.PEANUT)
-                    )).pool(LootPool.builder().conditionally(peanutConditionBuilder)
-                    .with(ItemEntry.builder(YavpmItems.PEANUT)
-                            .apply(ApplyBonusLootFunction.binomialWithBonusCount
+            LootItemBlockStatePropertyCondition.Builder peanutConditionBuilder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(YavpmBlocks.PEANUT_CROP).setProperties(StatePropertiesPredicate.Builder.properties()
+                    .hasProperty(PeanutCropBlock.AGE, 3));
+            add(YavpmBlocks.PEANUT_CROP, applyExplosionDecay(YavpmBlocks.PEANUT_CROP, LootTable.lootTable().withPool(
+                    LootPool.lootPool().add(
+                            LootItem.lootTableItem(YavpmItems.PEANUT)
+                    )).withPool(LootPool.lootPool().when(peanutConditionBuilder)
+                    .add(LootItem.lootTableItem(YavpmItems.PEANUT)
+                            .apply(ApplyBonusCount.addBonusBinomialDistributionCount
                                     (lookup.getOrThrow(Enchantments.FORTUNE), 0.5714286f, 7)
                             )))));
 
-            BlockStatePropertyLootCondition.Builder magicBeanConditionBuilder = BlockStatePropertyLootCondition.builder(YavpmBlocks.MAGIC_BEAN_CROP).properties(StatePredicate.Builder.create()
-                    .exactMatch(MagicBeanCropBlock.AGE, 6));
-            addDrop(YavpmBlocks.MAGIC_BEAN_CROP, applyExplosionDecay(YavpmBlocks.MAGIC_BEAN_CROP, LootTable.builder().pool(
-                    LootPool.builder().with(
-                            ItemEntry.builder(YavpmItems.MAGIC_BEAN)
-                    )).pool(LootPool.builder().conditionally(magicBeanConditionBuilder)
-                    .with(ItemEntry.builder(YavpmItems.MAGIC_BEAN)
-                            .apply(ApplyBonusLootFunction.binomialWithBonusCount
+            LootItemBlockStatePropertyCondition.Builder magicBeanConditionBuilder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(YavpmBlocks.MAGIC_BEAN_CROP).setProperties(StatePropertiesPredicate.Builder.properties()
+                    .hasProperty(MagicBeanCropBlock.AGE, 6));
+            add(YavpmBlocks.MAGIC_BEAN_CROP, applyExplosionDecay(YavpmBlocks.MAGIC_BEAN_CROP, LootTable.lootTable().withPool(
+                    LootPool.lootPool().add(
+                            LootItem.lootTableItem(YavpmItems.MAGIC_BEAN)
+                    )).withPool(LootPool.lootPool().when(magicBeanConditionBuilder)
+                    .add(LootItem.lootTableItem(YavpmItems.MAGIC_BEAN)
+                            .apply(ApplyBonusCount.addBonusBinomialDistributionCount
                                     (lookup.getOrThrow(Enchantments.FORTUNE), 0.5714286f, 4)
                             )))));
 
-            BlockStatePropertyLootCondition.Builder bananaConditionBuilder = BlockStatePropertyLootCondition.builder(YavpmBlocks.BANANA_CROP).properties(StatePredicate.Builder.create()
-                    .exactMatch(BananaCropBlock.AGE, 5));
+            LootItemBlockStatePropertyCondition.Builder bananaConditionBuilder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(YavpmBlocks.BANANA_CROP).setProperties(StatePropertiesPredicate.Builder.properties()
+                    .hasProperty(BananaCropBlock.AGE, 5));
 
-            addDrop(YavpmBlocks.BANANA_CROP, cropDrops(YavpmBlocks.BANANA_CROP, YavpmItems.BANANA, YavpmItems.BANANA_SEEDS, bananaConditionBuilder));
+            add(YavpmBlocks.BANANA_CROP, createCropDrops(YavpmBlocks.BANANA_CROP, YavpmItems.BANANA, YavpmItems.BANANA_SEEDS, bananaConditionBuilder));
 
-            addDrop(
+            add(
                     YavpmBlocks.WARPED_WART_CROP,
-                    block -> LootTable.builder()
-                            .pool(
+                    block -> LootTable.lootTable()
+                            .withPool(
                                     applyExplosionDecay(
                                             block,
-                                            LootPool.builder()
-                                                    .rolls(ConstantLootNumberProvider.create(1f))
-                                                    .with(
-                                                            ItemEntry.builder(YavpmItems.WARPED_WART)
+                                            LootPool.lootPool()
+                                                    .setRolls(ConstantValue.exactly(1f))
+                                                    .add(
+                                                            LootItem.lootTableItem(YavpmItems.WARPED_WART)
                                                                     .apply(
-                                                                            SetCountLootFunction.builder(UniformLootNumberProvider.create(2.0F, 4.0F))
-                                                                                    .conditionally(BlockStatePropertyLootCondition.builder(block).properties(StatePredicate.Builder.create().exactMatch(WarpedWartCropBlock.AGE, 3)))
+                                                                            SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 4.0F))
+                                                                                    .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(WarpedWartCropBlock.AGE, 3)))
                                                                     )
                                                                     .apply(
-                                                                            ApplyBonusLootFunction.uniformBonusCount(lookup.getOrThrow(Enchantments.FORTUNE))
-                                                                                    .conditionally(BlockStatePropertyLootCondition.builder(block).properties(StatePredicate.Builder.create().exactMatch(WarpedWartCropBlock.AGE, 3)))
+                                                                            ApplyBonusCount.addUniformBonusCount(lookup.getOrThrow(Enchantments.FORTUNE))
+                                                                                    .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(WarpedWartCropBlock.AGE, 3)))
                                                                     )
                                                     )
                                     )
                             )
             );
 
-            this.addDrop(YavpmBlocks.CANTALOUPE_STEM, block -> this.cropStemDrops(block, YavpmItems.CANTALOUPE_SEEDS));
-            this.addDrop(YavpmBlocks.ATTACHED_CANTALOUPE_STEM, block -> this.attachedCropStemDrops(block, YavpmItems.CANTALOUPE_SEEDS));
-            addDrop(
+            this.add(YavpmBlocks.CANTALOUPE_STEM, block -> this.createStemDrops(block, YavpmItems.CANTALOUPE_SEEDS));
+            this.add(YavpmBlocks.ATTACHED_CANTALOUPE_STEM, block -> this.createAttachedStemDrops(block, YavpmItems.CANTALOUPE_SEEDS));
+            add(
                     YavpmBlocks.CANTALOUPE,
-                    block -> this.dropsWithSilkTouch(
+                    block -> this.createSilkTouchDispatchTable(
                             block,
                             this.applyExplosionDecay(
                                     block,
-                                    ItemEntry.builder(YavpmItems.CANTALOUPE_SLICE)
-                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(3.0F, 7.0F)))
-                                            .apply(ApplyBonusLootFunction.uniformBonusCount(lookup.getOrThrow(Enchantments.FORTUNE)))
-                                            .apply(LimitCountLootFunction.builder(BoundedIntUnaryOperator.createMax(9)))
+                                    LootItem.lootTableItem(YavpmItems.CANTALOUPE_SLICE)
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(3.0F, 7.0F)))
+                                            .apply(ApplyBonusCount.addUniformBonusCount(lookup.getOrThrow(Enchantments.FORTUNE)))
+                                            .apply(LimitCount.limitCount(IntRange.upperBound(9)))
                             )
                     )
             );
 
-            BlockStatePropertyLootCondition.Builder oakSaplingConditionBuilder = BlockStatePropertyLootCondition.builder(YavpmBlocks.OAK_SAPLING_CROP).properties(StatePredicate.Builder.create()
-                    .exactMatch(SaplingCropBlock.AGE, 3));
-            addDrop(YavpmBlocks.OAK_SAPLING_CROP, cropDrops(YavpmBlocks.OAK_SAPLING_CROP, Items.OAK_SAPLING, YavpmItems.ACORN, oakSaplingConditionBuilder));
+            LootItemBlockStatePropertyCondition.Builder oakSaplingConditionBuilder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(YavpmBlocks.OAK_SAPLING_CROP).setProperties(StatePropertiesPredicate.Builder.properties()
+                    .hasProperty(SaplingCropBlock.AGE, 3));
+            add(YavpmBlocks.OAK_SAPLING_CROP, createCropDrops(YavpmBlocks.OAK_SAPLING_CROP, Items.OAK_SAPLING, YavpmItems.ACORN, oakSaplingConditionBuilder));
 
-            BlockStatePropertyLootCondition.Builder birchSaplingConditionBuilder = BlockStatePropertyLootCondition.builder(YavpmBlocks.BIRCH_SAPLING_CROP).properties(StatePredicate.Builder.create()
-                    .exactMatch(SaplingCropBlock.AGE, 3));
-            addDrop(YavpmBlocks.BIRCH_SAPLING_CROP, cropDrops(YavpmBlocks.BIRCH_SAPLING_CROP, Items.BIRCH_SAPLING, YavpmItems.BIRCH_SEEDS, birchSaplingConditionBuilder));
+            LootItemBlockStatePropertyCondition.Builder birchSaplingConditionBuilder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(YavpmBlocks.BIRCH_SAPLING_CROP).setProperties(StatePropertiesPredicate.Builder.properties()
+                    .hasProperty(SaplingCropBlock.AGE, 3));
+            add(YavpmBlocks.BIRCH_SAPLING_CROP, createCropDrops(YavpmBlocks.BIRCH_SAPLING_CROP, Items.BIRCH_SAPLING, YavpmItems.BIRCH_SEEDS, birchSaplingConditionBuilder));
 
-            BlockStatePropertyLootCondition.Builder crimsonFungusConditionBuilder = BlockStatePropertyLootCondition.builder(YavpmBlocks.CRIMSON_FUNGUS_CROP).properties(StatePredicate.Builder.create()
-                    .exactMatch(SaplingCropBlock.AGE, 3));
-            addDrop(YavpmBlocks.CRIMSON_FUNGUS_CROP, cropDrops(YavpmBlocks.CRIMSON_FUNGUS_CROP, Items.CRIMSON_FUNGUS, Items.NETHER_WART, crimsonFungusConditionBuilder));
+            LootItemBlockStatePropertyCondition.Builder crimsonFungusConditionBuilder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(YavpmBlocks.CRIMSON_FUNGUS_CROP).setProperties(StatePropertiesPredicate.Builder.properties()
+                    .hasProperty(SaplingCropBlock.AGE, 3));
+            add(YavpmBlocks.CRIMSON_FUNGUS_CROP, createCropDrops(YavpmBlocks.CRIMSON_FUNGUS_CROP, Items.CRIMSON_FUNGUS, Items.NETHER_WART, crimsonFungusConditionBuilder));
 
-            BlockStatePropertyLootCondition.Builder warpedFungusConditionBuilder = BlockStatePropertyLootCondition.builder(YavpmBlocks.WARPED_FUNGUS_CROP).properties(StatePredicate.Builder.create()
-                    .exactMatch(SaplingCropBlock.AGE, 3));
-            addDrop(YavpmBlocks.WARPED_FUNGUS_CROP, cropDrops(YavpmBlocks.WARPED_FUNGUS_CROP, Items.WARPED_FUNGUS, YavpmItems.WARPED_WART, warpedFungusConditionBuilder));
+            LootItemBlockStatePropertyCondition.Builder warpedFungusConditionBuilder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(YavpmBlocks.WARPED_FUNGUS_CROP).setProperties(StatePropertiesPredicate.Builder.properties()
+                    .hasProperty(SaplingCropBlock.AGE, 3));
+            add(YavpmBlocks.WARPED_FUNGUS_CROP, createCropDrops(YavpmBlocks.WARPED_FUNGUS_CROP, Items.WARPED_FUNGUS, YavpmItems.WARPED_WART, warpedFungusConditionBuilder));
         }
 
         private void stoneVariantDrops() {
-            addDrop(
+            add(
                     YavpmBlocks.KIMBERLITE,
-                    block -> dropsWithSilkTouch(
+                    block -> createSilkTouchDispatchTable(
                             block,
-                            addSurvivesExplosionCondition(
+                            applyExplosionCondition(
                                     block,
-                                    ItemEntry.builder(YavpmItems.RAW_DIAMOND)
-                                            .conditionally(TableBonusLootCondition.builder(
+                                    LootItem.lootTableItem(YavpmItems.RAW_DIAMOND)
+                                            .when(BonusLevelTableCondition.bonusLevelFlatChance(
                                                     lookup.getOrThrow(Enchantments.FORTUNE),
                                                     0.01f, 0.02f, 0.04f, 0.08f))
-                                            .alternatively(ItemEntry.builder(block))
+                                            .otherwise(LootItem.lootTableItem(block))
                             )
                     )
             );
 
-            addDrop(YavpmBlocks.POLISHED_KIMBERLITE);
-            addDrop(YavpmBlocks.POLISHED_KIMBERLITE_BRICKS);
+            dropSelf(YavpmBlocks.POLISHED_KIMBERLITE);
+            dropSelf(YavpmBlocks.POLISHED_KIMBERLITE_BRICKS);
 
-            addDrop(YavpmBlocks.KIMBERLITE_STAIRS);
-            addDrop(YavpmBlocks.POLISHED_KIMBERLITE_STAIRS);
-            addDrop(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_STAIRS);
+            dropSelf(YavpmBlocks.KIMBERLITE_STAIRS);
+            dropSelf(YavpmBlocks.POLISHED_KIMBERLITE_STAIRS);
+            dropSelf(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_STAIRS);
 
-            addDrop(YavpmBlocks.KIMBERLITE_SLAB, slabDrops(YavpmBlocks.KIMBERLITE_SLAB));
-            addDrop(YavpmBlocks.POLISHED_KIMBERLITE_SLAB, slabDrops(YavpmBlocks.POLISHED_KIMBERLITE_SLAB));
-            addDrop(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_SLAB, slabDrops(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_SLAB));
+            add(YavpmBlocks.KIMBERLITE_SLAB, createSlabItemTable(YavpmBlocks.KIMBERLITE_SLAB));
+            add(YavpmBlocks.POLISHED_KIMBERLITE_SLAB, createSlabItemTable(YavpmBlocks.POLISHED_KIMBERLITE_SLAB));
+            add(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_SLAB, createSlabItemTable(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_SLAB));
 
-            addDrop(YavpmBlocks.KIMBERLITE_WALL);
-            addDrop(YavpmBlocks.POLISHED_KIMBERLITE_WALL);
-            addDrop(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_WALL);
+            dropSelf(YavpmBlocks.KIMBERLITE_WALL);
+            dropSelf(YavpmBlocks.POLISHED_KIMBERLITE_WALL);
+            dropSelf(YavpmBlocks.POLISHED_KIMBERLITE_BRICK_WALL);
 
-            addDrop(YavpmBlocks.COBBLED_GRANITE);
-            addDrop(YavpmBlocks.COBBLED_DIORITE);
-            addDrop(YavpmBlocks.COBBLED_ANDESITE);
+            dropSelf(YavpmBlocks.COBBLED_GRANITE);
+            dropSelf(YavpmBlocks.COBBLED_DIORITE);
+            dropSelf(YavpmBlocks.COBBLED_ANDESITE);
 
-            addDrop(YavpmBlocks.COBBLED_GRANITE_STAIRS);
-            addDrop(YavpmBlocks.COBBLED_DIORITE_STAIRS);
-            addDrop(YavpmBlocks.COBBLED_ANDESITE_STAIRS);
+            dropSelf(YavpmBlocks.COBBLED_GRANITE_STAIRS);
+            dropSelf(YavpmBlocks.COBBLED_DIORITE_STAIRS);
+            dropSelf(YavpmBlocks.COBBLED_ANDESITE_STAIRS);
 
-            addDrop(YavpmBlocks.COBBLED_GRANITE_SLAB, slabDrops(YavpmBlocks.COBBLED_GRANITE_SLAB));
-            addDrop(YavpmBlocks.COBBLED_DIORITE_SLAB, slabDrops(YavpmBlocks.COBBLED_DIORITE_SLAB));
-            addDrop(YavpmBlocks.COBBLED_ANDESITE_SLAB, slabDrops(YavpmBlocks.COBBLED_ANDESITE_SLAB));
+            add(YavpmBlocks.COBBLED_GRANITE_SLAB, createSlabItemTable(YavpmBlocks.COBBLED_GRANITE_SLAB));
+            add(YavpmBlocks.COBBLED_DIORITE_SLAB, createSlabItemTable(YavpmBlocks.COBBLED_DIORITE_SLAB));
+            add(YavpmBlocks.COBBLED_ANDESITE_SLAB, createSlabItemTable(YavpmBlocks.COBBLED_ANDESITE_SLAB));
 
-            addDrop(YavpmBlocks.COBBLED_GRANITE_WALL);
-            addDrop(YavpmBlocks.COBBLED_DIORITE_WALL);
-            addDrop(YavpmBlocks.COBBLED_ANDESITE_WALL);
+            dropSelf(YavpmBlocks.COBBLED_GRANITE_WALL);
+            dropSelf(YavpmBlocks.COBBLED_DIORITE_WALL);
+            dropSelf(YavpmBlocks.COBBLED_ANDESITE_WALL);
 
-            addDrop(YavpmBlocks.POLISHED_GRANITE_BRICKS);
-            addDrop(YavpmBlocks.POLISHED_DIORITE_BRICKS);
-            addDrop(YavpmBlocks.POLISHED_ANDESITE_BRICKS);
+            dropSelf(YavpmBlocks.POLISHED_GRANITE_BRICKS);
+            dropSelf(YavpmBlocks.POLISHED_DIORITE_BRICKS);
+            dropSelf(YavpmBlocks.POLISHED_ANDESITE_BRICKS);
 
-            addDrop(YavpmBlocks.POLISHED_GRANITE_BRICK_STAIRS);
-            addDrop(YavpmBlocks.POLISHED_DIORITE_BRICK_STAIRS);
-            addDrop(YavpmBlocks.POLISHED_ANDESITE_BRICK_STAIRS);
+            dropSelf(YavpmBlocks.POLISHED_GRANITE_BRICK_STAIRS);
+            dropSelf(YavpmBlocks.POLISHED_DIORITE_BRICK_STAIRS);
+            dropSelf(YavpmBlocks.POLISHED_ANDESITE_BRICK_STAIRS);
 
-            addDrop(YavpmBlocks.POLISHED_GRANITE_BRICK_SLAB, slabDrops(YavpmBlocks.POLISHED_GRANITE_BRICK_SLAB));
-            addDrop(YavpmBlocks.POLISHED_DIORITE_BRICK_SLAB, slabDrops(YavpmBlocks.POLISHED_DIORITE_BRICK_SLAB));
-            addDrop(YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB, slabDrops(YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB));
+            add(YavpmBlocks.POLISHED_GRANITE_BRICK_SLAB, createSlabItemTable(YavpmBlocks.POLISHED_GRANITE_BRICK_SLAB));
+            add(YavpmBlocks.POLISHED_DIORITE_BRICK_SLAB, createSlabItemTable(YavpmBlocks.POLISHED_DIORITE_BRICK_SLAB));
+            add(YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB, createSlabItemTable(YavpmBlocks.POLISHED_ANDESITE_BRICK_SLAB));
 
-            addDrop(YavpmBlocks.POLISHED_GRANITE_BRICK_WALL);
-            addDrop(YavpmBlocks.POLISHED_DIORITE_BRICK_WALL);
-            addDrop(YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL);
+            dropSelf(YavpmBlocks.POLISHED_GRANITE_BRICK_WALL);
+            dropSelf(YavpmBlocks.POLISHED_DIORITE_BRICK_WALL);
+            dropSelf(YavpmBlocks.POLISHED_ANDESITE_BRICK_WALL);
 
-            addDrop(YavpmBlocks.SCULKY_DEEPSLATE_BRICKS);
-            addDrop(YavpmBlocks.SCULKY_DEEPSLATE_BRICK_SLAB, this::slabDrops);
-            addDrop(YavpmBlocks.SCULKY_DEEPSLATE_BRICK_STAIRS);
-            addDrop(YavpmBlocks.SCULKY_DEEPSLATE_BRICK_WALL);
+            dropSelf(YavpmBlocks.SCULKY_DEEPSLATE_BRICKS);
+            add(YavpmBlocks.SCULKY_DEEPSLATE_BRICK_SLAB, this::createSlabItemTable);
+            dropSelf(YavpmBlocks.SCULKY_DEEPSLATE_BRICK_STAIRS);
+            dropSelf(YavpmBlocks.SCULKY_DEEPSLATE_BRICK_WALL);
 
-            addDropWithSilkTouch(YavpmBlocks.INFESTED_COBBLED_DEEPSLATE, Blocks.COBBLED_DEEPSLATE);
-            addDropWithSilkTouch(YavpmBlocks.INFESTED_DEEPSLATE_BRICKS, Blocks.DEEPSLATE_BRICKS);
-            addDropWithSilkTouch(YavpmBlocks.INFESTED_SCULKY_DEEPSLATE_BRICKS, YavpmBlocks.SCULKY_DEEPSLATE_BRICKS);
-            addDropWithSilkTouch(YavpmBlocks.INFESTED_CRACKED_DEEPSLATE_BRICKS, Blocks.CRACKED_DEEPSLATE_BRICKS);
-            addDropWithSilkTouch(YavpmBlocks.INFESTED_CHISELED_DEEPSLATE, Blocks.CHISELED_DEEPSLATE);
+            otherWhenSilkTouch(YavpmBlocks.INFESTED_COBBLED_DEEPSLATE, Blocks.COBBLED_DEEPSLATE);
+            otherWhenSilkTouch(YavpmBlocks.INFESTED_DEEPSLATE_BRICKS, Blocks.DEEPSLATE_BRICKS);
+            otherWhenSilkTouch(YavpmBlocks.INFESTED_SCULKY_DEEPSLATE_BRICKS, YavpmBlocks.SCULKY_DEEPSLATE_BRICKS);
+            otherWhenSilkTouch(YavpmBlocks.INFESTED_CRACKED_DEEPSLATE_BRICKS, Blocks.CRACKED_DEEPSLATE_BRICKS);
+            otherWhenSilkTouch(YavpmBlocks.INFESTED_CHISELED_DEEPSLATE, Blocks.CHISELED_DEEPSLATE);
 
-            addDrop(YavpmBlocks.SOULSTONE);
-            addDrop(YavpmBlocks.CUT_SOULSTONE);
-            addDrop(YavpmBlocks.CHISELED_SOULSTONE);
-            addDrop(YavpmBlocks.SMOOTH_SOULSTONE);
-            addDrop(YavpmBlocks.SOULSTONE_SLAB, this::slabDrops);
-            addDrop(YavpmBlocks.CUT_SOULSTONE_SLAB, this::slabDrops);
-            addDrop(YavpmBlocks.SMOOTH_SOULSTONE_SLAB, this::slabDrops);
-            addDrop(YavpmBlocks.SOULSTONE_STAIRS);
-            addDrop(YavpmBlocks.SMOOTH_SOULSTONE_STAIRS);
-            addDrop(YavpmBlocks.SOULSTONE_WALL);
+            dropSelf(YavpmBlocks.SOULSTONE);
+            dropSelf(YavpmBlocks.CUT_SOULSTONE);
+            dropSelf(YavpmBlocks.CHISELED_SOULSTONE);
+            dropSelf(YavpmBlocks.SMOOTH_SOULSTONE);
+            add(YavpmBlocks.SOULSTONE_SLAB, this::createSlabItemTable);
+            add(YavpmBlocks.CUT_SOULSTONE_SLAB, this::createSlabItemTable);
+            add(YavpmBlocks.SMOOTH_SOULSTONE_SLAB, this::createSlabItemTable);
+            dropSelf(YavpmBlocks.SOULSTONE_STAIRS);
+            dropSelf(YavpmBlocks.SMOOTH_SOULSTONE_STAIRS);
+            dropSelf(YavpmBlocks.SOULSTONE_WALL);
 
-            addDrop(YavpmBlocks.CONGLOMERATE);
-            addDrop(YavpmBlocks.HARDENED_CONGLOMERATE);
-            addDrop(YavpmBlocks.HARDENED_CONGLOMERATE_SLAB, this::slabDrops);
-            addDrop(YavpmBlocks.HARDENED_CONGLOMERATE_STAIRS);
-            addDrop(YavpmBlocks.HARDENED_CONGLOMERATE_WALL);
-            addDrop(YavpmBlocks.HARDENED_CONGLOMERATE_BRICKS);
-            addDrop(YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_SLAB, this::slabDrops);
-            addDrop(YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_STAIRS);
-            addDrop(YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_WALL);
-            addDrop(YavpmBlocks.DULL_CONGLOMERATE);
-            addDrop(YavpmBlocks.DULL_CONGLOMERATE_SLAB, this::slabDrops);
+            dropSelf(YavpmBlocks.CONGLOMERATE);
+            dropSelf(YavpmBlocks.HARDENED_CONGLOMERATE);
+            add(YavpmBlocks.HARDENED_CONGLOMERATE_SLAB, this::createSlabItemTable);
+            dropSelf(YavpmBlocks.HARDENED_CONGLOMERATE_STAIRS);
+            dropSelf(YavpmBlocks.HARDENED_CONGLOMERATE_WALL);
+            dropSelf(YavpmBlocks.HARDENED_CONGLOMERATE_BRICKS);
+            add(YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_SLAB, this::createSlabItemTable);
+            dropSelf(YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_STAIRS);
+            dropSelf(YavpmBlocks.HARDENED_CONGLOMERATE_BRICK_WALL);
+            dropSelf(YavpmBlocks.DULL_CONGLOMERATE);
+            add(YavpmBlocks.DULL_CONGLOMERATE_SLAB, this::createSlabItemTable);
         }
 
         private void appleDrops() {
-            addDrop(YavpmBlocks.APPLE_LOG);
-            addDrop(YavpmBlocks.STRIPPED_APPLE_LOG);
-            addDrop(YavpmBlocks.APPLE_WOOD);
-            addDrop(YavpmBlocks.STRIPPED_APPLE_WOOD);
+            dropSelf(YavpmBlocks.APPLE_LOG);
+            dropSelf(YavpmBlocks.STRIPPED_APPLE_LOG);
+            dropSelf(YavpmBlocks.APPLE_WOOD);
+            dropSelf(YavpmBlocks.STRIPPED_APPLE_WOOD);
 
-            addDrop(YavpmBlocks.APPLE_LEAVES, block -> oakLeavesDrops(
-                    block, YavpmBlocks.APPLE_SAPLING, SAPLING_DROP_CHANCE
+            add(YavpmBlocks.APPLE_LEAVES, block -> createOakLeavesDrops(
+                    block, YavpmBlocks.APPLE_SAPLING, NORMAL_LEAVES_SAPLING_CHANCES
             ));
-            addDrop(YavpmBlocks.FLOWERING_APPLE_LEAVES, block -> oakLeavesDrops(
-                    block, YavpmBlocks.APPLE_SAPLING, SAPLING_DROP_CHANCE
+            add(YavpmBlocks.FLOWERING_APPLE_LEAVES, block -> createOakLeavesDrops(
+                    block, YavpmBlocks.APPLE_SAPLING, NORMAL_LEAVES_SAPLING_CHANCES
             ));
 
-            addDrop(YavpmBlocks.APPLE_PLANKS);
-            addDrop(YavpmBlocks.APPLE_STAIRS);
-            addDrop(YavpmBlocks.APPLE_SLAB, slabDrops(YavpmBlocks.APPLE_SLAB));
-            addDrop(YavpmBlocks.APPLE_FENCE);
-            addDrop(YavpmBlocks.APPLE_FENCE_GATE);
-            addDrop(YavpmBlocks.APPLE_BUTTON);
-            addDrop(YavpmBlocks.APPLE_PRESSURE_PLATE);
+            dropSelf(YavpmBlocks.APPLE_PLANKS);
+            dropSelf(YavpmBlocks.APPLE_STAIRS);
+            add(YavpmBlocks.APPLE_SLAB, createSlabItemTable(YavpmBlocks.APPLE_SLAB));
+            dropSelf(YavpmBlocks.APPLE_FENCE);
+            dropSelf(YavpmBlocks.APPLE_FENCE_GATE);
+            dropSelf(YavpmBlocks.APPLE_BUTTON);
+            dropSelf(YavpmBlocks.APPLE_PRESSURE_PLATE);
 
-            doorDrops(YavpmBlocks.APPLE_DOOR);
-            addDrop(YavpmBlocks.APPLE_TRAPDOOR);
+            createDoorTable(YavpmBlocks.APPLE_DOOR);
+            dropSelf(YavpmBlocks.APPLE_TRAPDOOR);
 
-            addDrop(YavpmBlocks.APPLE_SIGN);
-            addDrop(YavpmBlocks.APPLE_WALL_SIGN);
-            addDrop(YavpmBlocks.APPLE_HANGING_SIGN);
-            addDrop(YavpmBlocks.APPLE_WALL_HANGING_SIGN);
+            dropSelf(YavpmBlocks.APPLE_SIGN);
+            dropSelf(YavpmBlocks.APPLE_WALL_SIGN);
+            dropSelf(YavpmBlocks.APPLE_HANGING_SIGN);
+            dropSelf(YavpmBlocks.APPLE_WALL_HANGING_SIGN);
 
-            addDrop(YavpmBlocks.APPLE_SAPLING);
+            dropSelf(YavpmBlocks.APPLE_SAPLING);
         }
         private void persimmonDrops() {
-            addDrop(YavpmBlocks.PERSIMMON_LOG);
-            addDrop(YavpmBlocks.STRIPPED_PERSIMMON_LOG);
-            addDrop(YavpmBlocks.PERSIMMON_WOOD);
-            addDrop(YavpmBlocks.STRIPPED_PERSIMMON_WOOD);
+            dropSelf(YavpmBlocks.PERSIMMON_LOG);
+            dropSelf(YavpmBlocks.STRIPPED_PERSIMMON_LOG);
+            dropSelf(YavpmBlocks.PERSIMMON_WOOD);
+            dropSelf(YavpmBlocks.STRIPPED_PERSIMMON_WOOD);
 
-            LootTable.Builder leavesBuilder = leavesDrops(YavpmBlocks.PERSIMMON_LEAVES, YavpmBlocks.PERSIMMON_SAPLING, SAPLING_DROP_CHANCE)
-                    .pool(
-                            LootPool.builder()
-                                    .rolls(ConstantLootNumberProvider.create(1f))
-                                    .conditionally(createWithoutShearsOrSilkTouchCondition())
-                                    .with(
-                                            ((LeafEntry.Builder<?>)addSurvivesExplosionCondition(YavpmBlocks.PERSIMMON_LEAVES, ItemEntry.builder(YavpmItems.PERSIMMON)))
-                                                    .conditionally(TableBonusLootCondition.builder(lookup.getOrThrow(Enchantments.FORTUNE), 0.004f, 0.006f, 0.008f, 0.01f, 0.025f))
+            LootTable.Builder leavesBuilder = createLeavesDrops(YavpmBlocks.PERSIMMON_LEAVES, YavpmBlocks.PERSIMMON_SAPLING, NORMAL_LEAVES_SAPLING_CHANCES)
+                    .withPool(
+                            LootPool.lootPool()
+                                    .setRolls(ConstantValue.exactly(1f))
+                                    .when(doesNotHaveShearsOrSilkTouch())
+                                    .add(
+                                            ((LootPoolSingletonContainer.Builder<?>)applyExplosionCondition(YavpmBlocks.PERSIMMON_LEAVES, LootItem.lootTableItem(YavpmItems.PERSIMMON)))
+                                                    .when(BonusLevelTableCondition.bonusLevelFlatChance(lookup.getOrThrow(Enchantments.FORTUNE), 0.004f, 0.006f, 0.008f, 0.01f, 0.025f))
                                     )
                     );
 
-            addDrop(YavpmBlocks.PERSIMMON_LEAVES, leavesBuilder);
+            add(YavpmBlocks.PERSIMMON_LEAVES, leavesBuilder);
 
-            addDrop(YavpmBlocks.PERSIMMON_PLANKS);
-            addDrop(YavpmBlocks.PERSIMMON_STAIRS);
-            addDrop(YavpmBlocks.PERSIMMON_SLAB, slabDrops(YavpmBlocks.PERSIMMON_SLAB));
-            addDrop(YavpmBlocks.PERSIMMON_FENCE);
-            addDrop(YavpmBlocks.PERSIMMON_FENCE_GATE);
-            addDrop(YavpmBlocks.PERSIMMON_BUTTON);
-            addDrop(YavpmBlocks.PERSIMMON_PRESSURE_PLATE);
+            dropSelf(YavpmBlocks.PERSIMMON_PLANKS);
+            dropSelf(YavpmBlocks.PERSIMMON_STAIRS);
+            add(YavpmBlocks.PERSIMMON_SLAB, createSlabItemTable(YavpmBlocks.PERSIMMON_SLAB));
+            dropSelf(YavpmBlocks.PERSIMMON_FENCE);
+            dropSelf(YavpmBlocks.PERSIMMON_FENCE_GATE);
+            dropSelf(YavpmBlocks.PERSIMMON_BUTTON);
+            dropSelf(YavpmBlocks.PERSIMMON_PRESSURE_PLATE);
 
-            doorDrops(YavpmBlocks.PERSIMMON_DOOR);
-            addDrop(YavpmBlocks.PERSIMMON_TRAPDOOR);
+            createDoorTable(YavpmBlocks.PERSIMMON_DOOR);
+            dropSelf(YavpmBlocks.PERSIMMON_TRAPDOOR);
 
-            addDrop(YavpmBlocks.PERSIMMON_SIGN);
-            addDrop(YavpmBlocks.PERSIMMON_WALL_SIGN);
-            addDrop(YavpmBlocks.PERSIMMON_HANGING_SIGN);
-            addDrop(YavpmBlocks.PERSIMMON_WALL_HANGING_SIGN);
+            dropSelf(YavpmBlocks.PERSIMMON_SIGN);
+            dropSelf(YavpmBlocks.PERSIMMON_WALL_SIGN);
+            dropSelf(YavpmBlocks.PERSIMMON_HANGING_SIGN);
+            dropSelf(YavpmBlocks.PERSIMMON_WALL_HANGING_SIGN);
 
-            addDrop(YavpmBlocks.PERSIMMON_SAPLING);
+            dropSelf(YavpmBlocks.PERSIMMON_SAPLING);
         }
         private void prickleDrops() {
-            addDrop(YavpmBlocks.PRICKLE_LOG);
-            addDrop(YavpmBlocks.STRIPPED_PRICKLE_LOG);
-            addDrop(YavpmBlocks.PRICKLE_WOOD);
-            addDrop(YavpmBlocks.STRIPPED_PRICKLE_WOOD);
+            dropSelf(YavpmBlocks.PRICKLE_LOG);
+            dropSelf(YavpmBlocks.STRIPPED_PRICKLE_LOG);
+            dropSelf(YavpmBlocks.PRICKLE_WOOD);
+            dropSelf(YavpmBlocks.STRIPPED_PRICKLE_WOOD);
 
-            addDrop(YavpmBlocks.PRICKLE_PLANKS);
-            addDrop(YavpmBlocks.PRICKLE_STAIRS);
-            addDrop(YavpmBlocks.PRICKLE_SLAB, slabDrops(YavpmBlocks.PRICKLE_SLAB));
-            addDrop(YavpmBlocks.PRICKLE_FENCE);
-            addDrop(YavpmBlocks.PRICKLE_FENCE_GATE);
-            addDrop(YavpmBlocks.PRICKLE_BUTTON);
-            addDrop(YavpmBlocks.PRICKLE_PRESSURE_PLATE);
+            dropSelf(YavpmBlocks.PRICKLE_PLANKS);
+            dropSelf(YavpmBlocks.PRICKLE_STAIRS);
+            add(YavpmBlocks.PRICKLE_SLAB, createSlabItemTable(YavpmBlocks.PRICKLE_SLAB));
+            dropSelf(YavpmBlocks.PRICKLE_FENCE);
+            dropSelf(YavpmBlocks.PRICKLE_FENCE_GATE);
+            dropSelf(YavpmBlocks.PRICKLE_BUTTON);
+            dropSelf(YavpmBlocks.PRICKLE_PRESSURE_PLATE);
 
-            doorDrops(YavpmBlocks.PRICKLE_DOOR);
-            addDrop(YavpmBlocks.PRICKLE_TRAPDOOR);
+            createDoorTable(YavpmBlocks.PRICKLE_DOOR);
+            dropSelf(YavpmBlocks.PRICKLE_TRAPDOOR);
 
-            addDrop(YavpmBlocks.PRICKLE_SIGN);
-            addDrop(YavpmBlocks.PRICKLE_WALL_SIGN);
-            addDrop(YavpmBlocks.PRICKLE_HANGING_SIGN);
-            addDrop(YavpmBlocks.PRICKLE_WALL_HANGING_SIGN);
+            dropSelf(YavpmBlocks.PRICKLE_SIGN);
+            dropSelf(YavpmBlocks.PRICKLE_WALL_SIGN);
+            dropSelf(YavpmBlocks.PRICKLE_HANGING_SIGN);
+            dropSelf(YavpmBlocks.PRICKLE_WALL_HANGING_SIGN);
 
-            addDrop(YavpmBlocks.PRICKLE_SHOOT);
+            dropSelf(YavpmBlocks.PRICKLE_SHOOT);
         }
 
-        public LootTable.Builder nahcoliteOreDrops(net.minecraft.block.Block drop) {
-            return this.dropsWithSilkTouch(
+        public LootTable.Builder nahcoliteOreDrops(net.minecraft.world.level.block.Block drop) {
+            return this.createSilkTouchDispatchTable(
                     drop,
                     this.applyExplosionDecay(
                             drop,
-                            ItemEntry.builder(YavpmItems.BAKING_SODA)
-                                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(4.0F, 5.0F)))
-                                    .apply(ApplyBonusLootFunction.uniformBonusCount(lookup.getOrThrow(Enchantments.FORTUNE)))
+                            LootItem.lootTableItem(YavpmItems.BAKING_SODA)
+                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(4.0F, 5.0F)))
+                                    .apply(ApplyBonusCount.addUniformBonusCount(lookup.getOrThrow(Enchantments.FORTUNE)))
                     )
             );
         }
@@ -459,134 +450,134 @@ public class YavpmLootProviders {
 
     public static class Entity extends SimpleFabricLootTableProvider {
 
-        final RegistryWrapper.WrapperLookup lookup;
+        final HolderLookup.Provider lookup;
 
-        public Entity(FabricDataOutput output, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
-            super(output, registryLookup, LootContextTypes.ENTITY);
+        public Entity(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registryLookup) {
+            super(output, registryLookup, LootContextParamSets.ENTITY);
             lookup = registryLookup.join();
         }
 
         @Override
-        public void accept(BiConsumer<RegistryKey<LootTable>, LootTable.Builder> biConsumer) {
+        public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> biConsumer) {
             // region Carbonfowl
-            biConsumer.accept(YavpmEntities.CARBONFOWL.getLootTableKey().orElseThrow(), LootTable.builder().pool(
-                    LootPool.builder()
-                            .rolls(ConstantLootNumberProvider.create(1f))
-                            .with(
-                                    ItemEntry.builder(Items.FEATHER)
-                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0f, 2.0F)))
-                                            .apply(EnchantedCountIncreaseLootFunction.builder(lookup, UniformLootNumberProvider.create(0f, 1f)))
+            biConsumer.accept(YavpmEntities.CARBONFOWL.getDefaultLootTable().orElseThrow(), LootTable.lootTable().withPool(
+                    LootPool.lootPool()
+                            .setRolls(ConstantValue.exactly(1f))
+                            .add(
+                                    LootItem.lootTableItem(Items.FEATHER)
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(0f, 2.0F)))
+                                            .apply(EnchantedCountIncreaseFunction.lootingMultiplier(lookup, UniformGenerator.between(0f, 1f)))
                             )
-                    ).pool(
-                            LootPool.builder()
-                                    .rolls(ConstantLootNumberProvider.create(1f))
-                                    .with(
-                                            ItemEntry.builder(Items.CHICKEN)
-                                                    .apply(FurnaceSmeltLootFunction.builder().conditionally(createSmeltLootCondition()))
-                                                    .apply(EnchantedCountIncreaseLootFunction.builder(lookup, UniformLootNumberProvider.create(0f, 1f)))
+                    ).withPool(
+                            LootPool.lootPool()
+                                    .setRolls(ConstantValue.exactly(1f))
+                                    .add(
+                                            LootItem.lootTableItem(Items.CHICKEN)
+                                                    .apply(SmeltItemFunction.smelted().when(createSmeltLootCondition()))
+                                                    .apply(EnchantedCountIncreaseFunction.lootingMultiplier(lookup, UniformGenerator.between(0f, 1f)))
                                     )
-                    ).pool(
-                            LootPool.builder()
-                                    .rolls(ConstantLootNumberProvider.create(1.0f))
-                                    .with(
-                                            ItemEntry.builder(Items.DIAMOND)
-                                                    .apply(EnchantedCountIncreaseLootFunction.builder(
+                    ).withPool(
+                            LootPool.lootPool()
+                                    .setRolls(ConstantValue.exactly(1.0f))
+                                    .add(
+                                            LootItem.lootTableItem(Items.DIAMOND)
+                                                    .apply(EnchantedCountIncreaseFunction.lootingMultiplier(
                                                             lookup,
-                                                            UniformLootNumberProvider.create(
+                                                            UniformGenerator.between(
                                                                     0f,
                                                                     1f
                                                             )
                                                     ))
-                                    ).conditionally(RandomChanceLootCondition.builder(0.2f))
+                                    ).when(LootItemRandomChanceCondition.randomChance(0.2f))
                     )
             );
             // endregion
             // region Moongus
-            biConsumer.accept(YavpmEntities.MOONGUS.getLootTableKey().orElseThrow(), LootTable.builder().pool(
-                            LootPool.builder()
-                                    .rolls(ConstantLootNumberProvider.create(1f))
-                                    .with(
-                                            ItemEntry.builder(Items.LEATHER)
-                                                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0f, 2f)))
-                                                    .apply(EnchantedCountIncreaseLootFunction.builder(lookup, UniformLootNumberProvider.create(0f, 1f)))
+            biConsumer.accept(YavpmEntities.MOONGUS.getDefaultLootTable().orElseThrow(), LootTable.lootTable().withPool(
+                            LootPool.lootPool()
+                                    .setRolls(ConstantValue.exactly(1f))
+                                    .add(
+                                            LootItem.lootTableItem(Items.LEATHER)
+                                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(0f, 2f)))
+                                                    .apply(EnchantedCountIncreaseFunction.lootingMultiplier(lookup, UniformGenerator.between(0f, 1f)))
                                     )
                     )
-                    .pool(
-                            LootPool.builder()
-                                    .rolls(ConstantLootNumberProvider.create(1f))
-                                    .with(
-                                            ItemEntry.builder(Items.BEEF)
-                                                    .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1f, 3f)))
-                                                    .apply(FurnaceSmeltLootFunction.builder().conditionally(createSmeltLootCondition()))
-                                                    .apply(EnchantedCountIncreaseLootFunction.builder(lookup, UniformLootNumberProvider.create(0f, 1f)))
+                    .withPool(
+                            LootPool.lootPool()
+                                    .setRolls(ConstantValue.exactly(1f))
+                                    .add(
+                                            LootItem.lootTableItem(Items.BEEF)
+                                                    .apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 3f)))
+                                                    .apply(SmeltItemFunction.smelted().when(createSmeltLootCondition()))
+                                                    .apply(EnchantedCountIncreaseFunction.lootingMultiplier(lookup, UniformGenerator.between(0f, 1f)))
                                     )
                     ));
             // endregion
             // region Sunburn
-            biConsumer.accept(YavpmEntities.SUNBURN.getLootTableKey().orElseThrow(), LootTable.builder()
-                    .pool(
-                    LootPool.builder()
-                            .rolls(ConstantLootNumberProvider.create(1f))
-                            .with(
-                                    ItemEntry.builder(Items.GLOWSTONE_DUST)
-                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0f, 3f)))
-                                            .apply(EnchantedCountIncreaseLootFunction.builder(lookup, UniformLootNumberProvider.create(1f, 3f)))
+            biConsumer.accept(YavpmEntities.SUNBURN.getDefaultLootTable().orElseThrow(), LootTable.lootTable()
+                    .withPool(
+                    LootPool.lootPool()
+                            .setRolls(ConstantValue.exactly(1f))
+                            .add(
+                                    LootItem.lootTableItem(Items.GLOWSTONE_DUST)
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(0f, 3f)))
+                                            .apply(EnchantedCountIncreaseFunction.lootingMultiplier(lookup, UniformGenerator.between(1f, 3f)))
                             )
-                            .conditionally(KilledByPlayerLootCondition.builder())
-                            .conditionally(RandomChanceLootCondition.builder(0.67f))
+                            .when(LootItemKilledByPlayerCondition.killedByPlayer())
+                            .when(LootItemRandomChanceCondition.randomChance(0.67f))
             ));
             // endregion
             // region Tanuki
-            biConsumer.accept(YavpmEntities.TANUKI.getLootTableKey().orElseThrow(), LootTable.builder().pool(
-                    LootPool.builder()
-                            .rolls(ConstantLootNumberProvider.create(1f))
-                            .with(
-                                    ItemEntry.builder(Items.CHERRY_LEAVES)
-                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0f, 1f)))
-                                            .apply(EnchantedCountIncreaseLootFunction.builder(lookup, UniformLootNumberProvider.create(1f, 3f))))
+            biConsumer.accept(YavpmEntities.TANUKI.getDefaultLootTable().orElseThrow(), LootTable.lootTable().withPool(
+                    LootPool.lootPool()
+                            .setRolls(ConstantValue.exactly(1f))
+                            .add(
+                                    LootItem.lootTableItem(Items.CHERRY_LEAVES)
+                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(0f, 1f)))
+                                            .apply(EnchantedCountIncreaseFunction.lootingMultiplier(lookup, UniformGenerator.between(1f, 3f))))
             ));
             // endregion
             // region Void Phantom
-            biConsumer.accept(YavpmEntities.VOID_PHANTOM.getLootTableKey().orElseThrow(),
-                    LootTable.builder()
-                            .pool(
-                                    LootPool.builder()
-                                            .rolls(ConstantLootNumberProvider.create(1f))
-                                            .with(
-                                                    ItemEntry.builder(Items.PHANTOM_MEMBRANE)
-                                                            .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(0f, 1f)))
-                                                            .apply(EnchantedCountIncreaseLootFunction.builder(lookup, UniformLootNumberProvider.create(0f, 1f)))
+            biConsumer.accept(YavpmEntities.VOID_PHANTOM.getDefaultLootTable().orElseThrow(),
+                    LootTable.lootTable()
+                            .withPool(
+                                    LootPool.lootPool()
+                                            .setRolls(ConstantValue.exactly(1f))
+                                            .add(
+                                                    LootItem.lootTableItem(Items.PHANTOM_MEMBRANE)
+                                                            .apply(SetItemCountFunction.setCount(UniformGenerator.between(0f, 1f)))
+                                                            .apply(EnchantedCountIncreaseFunction.lootingMultiplier(lookup, UniformGenerator.between(0f, 1f)))
                                             )
-                                            .conditionally(KilledByPlayerLootCondition.builder())
-                                            .conditionally(RandomChanceLootCondition.builder(0.67f))
-                            ).pool(
-                                    LootPool.builder()
-                                            .rolls(ConstantLootNumberProvider.create(1f))
-                                            .with(
-                                                    ItemEntry.builder(YavpmItems.PHANTOM_CHORD)
+                                            .when(LootItemKilledByPlayerCondition.killedByPlayer())
+                                            .when(LootItemRandomChanceCondition.randomChance(0.67f))
+                            ).withPool(
+                                    LootPool.lootPool()
+                                            .setRolls(ConstantValue.exactly(1f))
+                                            .add(
+                                                    LootItem.lootTableItem(YavpmItems.PHANTOM_CHORD)
                                             )
-                                            .conditionally(KilledByPlayerLootCondition.builder())
-                                            .conditionally(RandomChanceWithEnchantedBonusLootCondition.builder(lookup, 0.005f, 0.005f)))
+                                            .when(LootItemKilledByPlayerCondition.killedByPlayer())
+                                            .when(LootItemRandomChanceWithEnchantedBonusCondition.randomChanceAndLootingBoost(lookup, 0.005f, 0.005f)))
             );
             // endregion
         }
 
-        protected final AnyOfLootCondition.Builder createSmeltLootCondition() {
-            RegistryWrapper.Impl<Enchantment> impl = lookup.getOrThrow(RegistryKeys.ENCHANTMENT);
-            return AnyOfLootCondition.builder(
-                    EntityPropertiesLootCondition.builder(
-                            LootContext.EntityTarget.THIS, EntityPredicate.Builder.create().flags(EntityFlagsPredicate.Builder.create().onFire(true))
+        protected final AnyOfCondition.Builder createSmeltLootCondition() {
+            HolderLookup.RegistryLookup<Enchantment> impl = lookup.lookupOrThrow(Registries.ENCHANTMENT);
+            return AnyOfCondition.anyOf(
+                    LootItemEntityPropertyCondition.hasProperties(
+                            LootContext.EntityTarget.THIS, EntityPredicate.Builder.entity().flags(EntityFlagsPredicate.Builder.flags().setOnFire(true))
                     ),
-                    EntityPropertiesLootCondition.builder(
+                    LootItemEntityPropertyCondition.hasProperties(
                             LootContext.EntityTarget.DIRECT_ATTACKER,
-                            EntityPredicate.Builder.create()
+                            EntityPredicate.Builder.entity()
                                     .equipment(
-                                            EntityEquipmentPredicate.Builder.create()
+                                            EntityEquipmentPredicate.Builder.equipment()
                                                     .mainhand(
-                                                            ItemPredicate.Builder.create()
-                                                                    .components(ComponentsPredicate.Builder.create()
-                                                                            .partial(ComponentPredicateTypes.ENCHANTMENTS,
-                                                                                    EnchantmentsPredicate.enchantments(List.of(new EnchantmentPredicate(impl.getOrThrow(EnchantmentTags.SMELTS_LOOT), NumberRange.IntRange.ANY))))
+                                                            ItemPredicate.Builder.item()
+                                                                    .withComponents(DataComponentMatchers.Builder.components()
+                                                                            .partial(DataComponentPredicates.ENCHANTMENTS,
+                                                                                    EnchantmentsPredicate.enchantments(List.of(new EnchantmentPredicate(impl.getOrThrow(EnchantmentTags.SMELTS_LOOT), MinMaxBounds.Ints.ANY))))
                                                                             .build()
                                                                     )
                                                     )

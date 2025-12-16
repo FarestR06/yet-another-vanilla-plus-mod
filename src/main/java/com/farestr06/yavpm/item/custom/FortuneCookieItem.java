@@ -1,21 +1,21 @@
 package com.farestr06.yavpm.item.custom;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 public class FortuneCookieItem extends Item {
-    public FortuneCookieItem(net.minecraft.item.Item.Settings settings) {
+    public FortuneCookieItem(net.minecraft.world.item.Item.Properties settings) {
         super(settings);
     }
 
     @Override
-    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        if (user instanceof PlayerEntity playerEntity) {
-            playerEntity.giveItemStack(LuckySlipItemHelper.forEnchantment(LuckySlipItemHelper.choose(world)));
+    public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity user) {
+        if (user instanceof Player playerEntity) {
+            playerEntity.addItem(LuckySlipItemHelper.forEnchantment(LuckySlipItemHelper.choose(world)));
         }
-        return super.finishUsing(stack, world, user);
+        return super.finishUsingItem(stack, world, user);
     }
 }

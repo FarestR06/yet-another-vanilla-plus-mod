@@ -18,7 +18,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:more_prickle_trapdoors"
+        "recipe": "yavpm:more_prickle_trapdoors"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -31,7 +31,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:more_prickle_trapdoors"
+      "yavpm:more_prickle_trapdoors"
     ]
   }
 }

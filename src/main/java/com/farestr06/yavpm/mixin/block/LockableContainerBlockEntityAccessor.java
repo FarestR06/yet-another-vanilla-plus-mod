@@ -1,15 +1,15 @@
 package com.farestr06.yavpm.mixin.block;
 
-import net.minecraft.block.entity.LockableContainerBlockEntity;
-import net.minecraft.inventory.ContainerLock;
+import net.minecraft.world.LockCode;
+import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
-@Mixin(LockableContainerBlockEntity.class)
+@Mixin(BaseContainerBlockEntity.class)
 public interface LockableContainerBlockEntityAccessor {
     @Accessor
-    ContainerLock getLock();
+    LockCode getLockKey();
 
     @Accessor
-    void setLock(ContainerLock lock);
+    void setLockKey(LockCode lock);
 }

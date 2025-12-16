@@ -1,10 +1,10 @@
 package com.farestr06.yavpm.world.feature.configured;
 
-import net.minecraft.registry.Registerable;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 
 public class YavpmConfiguredFeatureBootstrapper {
-    public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
+    public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         YavpmMiscConfiguredFeatures.bootstrap(context);
         YavpmTreeConfiguredFeatures.bootstrap(context);
         YavpmVegetationConfiguredFeatures.bootstrap(context);

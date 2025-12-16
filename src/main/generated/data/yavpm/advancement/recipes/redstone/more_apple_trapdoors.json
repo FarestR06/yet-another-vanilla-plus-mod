@@ -18,7 +18,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:more_apple_trapdoors"
+        "recipe": "yavpm:more_apple_trapdoors"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -31,7 +31,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:more_apple_trapdoors"
+      "yavpm:more_apple_trapdoors"
     ]
   }
 }

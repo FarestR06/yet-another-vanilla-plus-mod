@@ -1,56 +1,56 @@
 package com.farestr06.yavpm.item.custom;
 
-import net.minecraft.component.type.AttributeModifierSlot;
-import net.minecraft.component.type.AttributeModifiersComponent;
-import net.minecraft.component.type.ToolComponent;
-import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.EquipmentSlotGroup;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
+import net.minecraft.world.item.component.Tool;
 
 import java.util.List;
 
 public class GauntletItem extends Item {
-    public GauntletItem(net.minecraft.item.Item.Settings settings) {
+    public GauntletItem(net.minecraft.world.item.Item.Properties settings) {
         super(settings);
     }
 
-    public static AttributeModifiersComponent createAttributeModifiers() {
-        return AttributeModifiersComponent.builder()
+    public static ItemAttributeModifiers createAttributeModifiers() {
+        return ItemAttributeModifiers.builder()
                 .add(
-                        EntityAttributes.ATTACK_DAMAGE,
-                        new EntityAttributeModifier(
-                                BASE_ATTACK_DAMAGE_MODIFIER_ID,
-                                5, EntityAttributeModifier.Operation.ADD_VALUE
+                        Attributes.ATTACK_DAMAGE,
+                        new AttributeModifier(
+                                BASE_ATTACK_DAMAGE_ID,
+                                5, AttributeModifier.Operation.ADD_VALUE
                         ),
-                        AttributeModifierSlot.MAINHAND
+                        EquipmentSlotGroup.MAINHAND
                 ).build();
     }
 
-    public static ToolComponent createToolComponent() {
-        return new ToolComponent(List.of(), 1.0f, 2, false);
+    public static Tool createToolComponent() {
+        return new Tool(List.of(), 1.0f, 2, false);
     }
 
     @Override
-    public void postDamageEntity(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+    public void postHurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         int damage = 1;
         if (attacker.isSprinting()) {
-            damage = attacker.getRandom().nextBetween(1, 4);
+            damage = attacker.getRandom().nextIntBetweenInclusive(1, 4);
         } else if (isAttackCritical(attacker)) {
-            damage = attacker.getRandom().nextBetween(4, 16);
+            damage = attacker.getRandom().nextIntBetweenInclusive(4, 16);
         }
-        stack.damage(damage, attacker, EquipmentSlot.MAINHAND);
+        stack.hurtAndBreak(damage, attacker, EquipmentSlot.MAINHAND);
     }
 
     private boolean isAttackCritical(LivingEntity attacker) {
         return attacker.fallDistance > 0.0f
-                && !attacker.isOnGround()
-                && !attacker.isClimbing()
-                && !attacker.isTouchingWater()
-                && !attacker.hasStatusEffect(StatusEffects.BLINDNESS)
-                && !attacker.hasVehicle() && !attacker.isSprinting();
+                && !attacker.onGround()
+                && !attacker.onClimbable()
+                && !attacker.isInWater()
+                && !attacker.hasEffect(MobEffects.BLINDNESS)
+                && !attacker.isPassenger() && !attacker.isSprinting();
     }
 }

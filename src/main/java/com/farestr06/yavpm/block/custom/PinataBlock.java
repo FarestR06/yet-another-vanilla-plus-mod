@@ -5,202 +5,206 @@ import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.block.custom.entity.PinataBlockEntity;
 import com.farestr06.yavpm.util.YavpmSounds;
 import com.mojang.serialization.MapCodec;
-import net.minecraft.block.*;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.ai.pathing.NavigationType;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemPlacementContext;
-import net.minecraft.item.ItemStack;
-import net.minecraft.registry.tag.EnchantmentTags;
-import net.minecraft.screen.ScreenHandler;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvents;
-import net.minecraft.stat.Stats;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.IntProperty;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.random.Random;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
-import net.minecraft.world.block.WireOrientation;
-import net.minecraft.world.event.GameEvent;
-import net.minecraft.world.tick.ScheduledTickView;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
+import net.minecraft.tags.EnchantmentTags;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
+import net.minecraft.world.level.block.BaseEntityBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.level.redstone.Orientation;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class PinataBlock extends BlockWithEntity {
-    public static final MapCodec<PinataBlock> CODEC = createCodec(PinataBlock::new);
-    public static final IntProperty HITS = IntProperty.of("hits", 0, 8);
-    public static final BooleanProperty OPENED = BooleanProperty.of("opened");
-    private static final VoxelShape SHAPE = Block.createCuboidShape(4, 0, 4, 12, 8, 12);
+public class PinataBlock extends BaseEntityBlock {
+    public static final MapCodec<PinataBlock> CODEC = simpleCodec(PinataBlock::new);
+    public static final IntegerProperty HITS = IntegerProperty.create("hits", 0, 8);
+    public static final BooleanProperty OPENED = BooleanProperty.create("opened");
+    private static final VoxelShape SHAPE = Block.box(4, 0, 4, 12, 8, 12);
 
-    public PinataBlock(Settings settings) {
+    public PinataBlock(Properties settings) {
         super(settings);
-        setDefaultState(getDefaultState().with(OPENED, true).with(HITS, 0));
+        registerDefaultState(defaultBlockState().setValue(OPENED, true).setValue(HITS, 0));
     }
 
     @Override
-    public @Nullable BlockState getPlacementState(ItemPlacementContext ctx) {
-        Random rand = ctx.getWorld().getRandom();
-        return this.getDefaultState().with(HITS, rand.nextBetween(0, 4));
+    public @Nullable BlockState getStateForPlacement(BlockPlaceContext ctx) {
+        RandomSource rand = ctx.getLevel().getRandom();
+        return this.defaultBlockState().setValue(HITS, rand.nextIntBetweenInclusive(0, 4));
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(HITS);
         builder.add(OPENED);
     }
 
     @Override
-    protected MapCodec<? extends BlockWithEntity> getCodec() {
+    protected MapCodec<? extends BaseEntityBlock> codec() {
         return CODEC;
     }
 
     @Override
-    public @Nullable BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+    public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new PinataBlockEntity(pos, state);
     }
 
     @Override
-    protected ActionResult onUseWithItem(ItemStack stack, BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+    protected InteractionResult useItemOn(ItemStack stack, BlockState state, Level world, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hit) {
         if (world.getBlockEntity(pos) instanceof PinataBlockEntity entity) {
-            if (world.isClient) {
-                return ActionResult.SUCCESS;
+            if (world.isClientSide()) {
+                return InteractionResult.SUCCESS;
             } else {
-                ItemStack entityStack = entity.getStack();
+                ItemStack entityStack = entity.getTheItem();
                 if (
                         !stack.isEmpty()
-                                && (entityStack.isEmpty() || ItemStack.areItemsAndComponentsEqual(entityStack, stack)
-                                && entityStack.getCount() < entityStack.getMaxCount())
+                                && (entityStack.isEmpty() || ItemStack.isSameItemSameComponents(entityStack, stack)
+                                && entityStack.getCount() < entityStack.getMaxStackSize())
                 ) {
-                    player.incrementStat(Stats.USED.getOrCreateStat(stack.getItem()));
-                    ItemStack toPutIn = stack.splitUnlessCreative(1, player);
+                    player.awardStat(Stats.ITEM_USED.get(stack.getItem()));
+                    ItemStack toPutIn = stack.consumeAndReturn(1, player);
                     float f;
                     if (entity.isEmpty()) {
-                        entity.setStack(toPutIn);
-                        f = (float) toPutIn.getCount() / (float)toPutIn.getMaxCount();
-                        world.setBlockState(pos, state.with(OPENED, false));
+                        entity.setTheItem(toPutIn);
+                        f = (float) toPutIn.getCount() / (float)toPutIn.getMaxStackSize();
+                        world.setBlockAndUpdate(pos, state.setValue(OPENED, false));
                     } else {
-                        entityStack.increment(1);
-                        f = (float)entityStack.getCount() / (float)entityStack.getMaxCount();
+                        entityStack.grow(1);
+                        f = (float)entityStack.getCount() / (float)entityStack.getMaxStackSize();
                     }
 
-                    world.playSound(null, pos, YavpmSounds.BLOCK_PINATA_INSERT, SoundCategory.BLOCKS, 1f, 0.7f + 0.5f * f);
-                    entity.markDirty();
-                    world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
-                    return ActionResult.SUCCESS;
+                    world.playSound(null, pos, YavpmSounds.BLOCK_PINATA_INSERT, SoundSource.BLOCKS, 1f, 0.7f + 0.5f * f);
+                    entity.setChanged();
+                    world.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
+                    return InteractionResult.SUCCESS;
                 } else {
-                    return ActionResult.PASS_TO_DEFAULT_BLOCK_ACTION;
+                    return InteractionResult.TRY_WITH_EMPTY_HAND;
                 }
             }
-        } else return ActionResult.PASS;
+        } else return InteractionResult.PASS;
     }
 
     @Override
-    protected ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, BlockHitResult hit) {
+    protected InteractionResult useWithoutItem(BlockState state, Level world, BlockPos pos, Player player, BlockHitResult hit) {
         if (world.getBlockEntity(pos) instanceof PinataBlockEntity) {
-            world.playSound(null, pos, YavpmSounds.BLOCK_PINATA_INSERT_FAIL, SoundCategory.BLOCKS, 1f, 1f);
-            world.emitGameEvent(player, GameEvent.BLOCK_CHANGE, pos);
-            return ActionResult.SUCCESS;
-        } else return ActionResult.PASS;
+            world.playSound(null, pos, YavpmSounds.BLOCK_PINATA_INSERT_FAIL, SoundSource.BLOCKS, 1f, 1f);
+            world.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
+            return InteractionResult.SUCCESS;
+        } else return InteractionResult.PASS;
     }
 
     @Override
-    protected boolean canPathfindThrough(BlockState state, NavigationType type) {
+    protected boolean isPathfindable(BlockState state, PathComputationType type) {
         return false;
     }
 
     @Override
-    protected VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+    protected VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return SHAPE;
     }
 
     @Override
-    protected boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
-        return Block.sideCoversSmallSquare(world, pos.offset(Direction.UP), Direction.UP.getOpposite())
-        && !world.getBlockState(pos.up()).isOf(YavpmBlocks.PINATA);
+    protected boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
+        return Block.canSupportCenter(world, pos.relative(Direction.UP), Direction.UP.getOpposite())
+        && !world.getBlockState(pos.above()).is(YavpmBlocks.PINATA);
     }
 
     @Override
-    protected void onBlockBreakStart(BlockState state, World world, BlockPos pos, PlayerEntity player) {
-        if (!state.get(OPENED) && !player.isInCreativeMode() && hasNoSilkTouch(player)) {
-            player.playSound(SoundEvents.ENTITY_PLAYER_ATTACK_WEAK);
-            int hitCount = state.get(HITS);
+    protected void attack(BlockState state, Level world, BlockPos pos, Player player) {
+        if (!state.getValue(OPENED) && !player.hasInfiniteMaterials() && hasNoSilkTouch(player)) {
+            player.makeSound(SoundEvents.PLAYER_ATTACK_WEAK);
+            int hitCount = state.getValue(HITS);
             if (hitCount == 4) {
                 crackOpen(world, pos, player);
             } else {
-                world.setBlockState(pos, state.with(HITS, ++hitCount));
+                world.setBlockAndUpdate(pos, state.setValue(HITS, ++hitCount));
             }
         }
-        super.onBlockBreakStart(state, world, pos, player);
+        super.attack(state, world, pos, player);
     }
 
-    private boolean hasNoSilkTouch(PlayerEntity player) {
-        ItemStack stack = player.getMainHandStack();
-        return !EnchantmentHelper.hasAnyEnchantmentsIn(stack, EnchantmentTags.PREVENTS_DECORATED_POT_SHATTERING);
-    }
-
-    @Override
-    protected boolean canReplace(BlockState state, ItemPlacementContext context) {
-        return super.canReplace(state, context);
+    private boolean hasNoSilkTouch(Player player) {
+        ItemStack stack = player.getMainHandItem();
+        return !EnchantmentHelper.hasTag(stack, EnchantmentTags.PREVENTS_DECORATED_POT_SHATTERING);
     }
 
     @Override
-    protected boolean hasComparatorOutput(BlockState state) {
+    protected boolean canBeReplaced(BlockState state, BlockPlaceContext context) {
+        return super.canBeReplaced(state, context);
+    }
+
+    @Override
+    protected boolean hasAnalogOutputSignal(BlockState state) {
         return true;
     }
 
     @Override
-    protected int getComparatorOutput(BlockState state, World world, BlockPos pos) {
-        return ScreenHandler.calculateComparatorOutput(world.getBlockEntity(pos));
+    protected int getAnalogOutputSignal(BlockState blockState, Level level, BlockPos blockPos, Direction direction) {
+        return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(level.getBlockEntity(blockPos));
     }
 
     @Override
-    protected BlockState getStateForNeighborUpdate(BlockState state, WorldView world, ScheduledTickView tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, Random random) {
-        return !canPlaceAt(state, world, pos) ? Blocks.AIR.getDefaultState() : super.getStateForNeighborUpdate(
+    protected BlockState updateShape(BlockState state, LevelReader world, ScheduledTickAccess tickView, BlockPos pos, Direction direction, BlockPos neighborPos, BlockState neighborState, RandomSource random) {
+        return !canSurvive(state, world, pos) ? Blocks.AIR.defaultBlockState() : super.updateShape(
                 state, world, tickView, pos, direction, neighborPos, neighborState, random
         );
     }
 
     @Override
-    protected void neighborUpdate(BlockState state, World world, BlockPos pos, Block sourceBlock, @Nullable WireOrientation wireOrientation, boolean notify) {
-        if (!state.get(OPENED)) {
-            boolean bl = world.isReceivingRedstonePower(pos) || world.isReceivingRedstonePower(pos.up()) || world.isReceivingRedstonePower(pos.up(2));
+    protected void neighborChanged(BlockState state, Level world, BlockPos pos, Block sourceBlock, @Nullable Orientation wireOrientation, boolean notify) {
+        if (!state.getValue(OPENED)) {
+            boolean bl = world.hasNeighborSignal(pos) || world.hasNeighborSignal(pos.above()) || world.hasNeighborSignal(pos.above(2));
             if (bl) releaseContents(world, pos, state);
         }
     }
 
-    private void crackOpen(World world, BlockPos pos, PlayerEntity player) {
+    private void crackOpen(Level world, BlockPos pos, Player player) {
         if (world.getBlockEntity(pos) instanceof PinataBlockEntity entity) {
-            dropStack(world, pos, Direction.DOWN, entity.getStack());
-            world.playSound(player, pos, YavpmSounds.BLOCK_PINATA_BREAK, SoundCategory.BLOCKS, 1f, getPitch(world.getRandom()));
-            world.breakBlock(pos, true);
+            popResourceFromFace(world, pos, Direction.DOWN, entity.getTheItem());
+            world.playSound(player, pos, YavpmSounds.BLOCK_PINATA_BREAK, SoundSource.BLOCKS, 1f, getPitch(world.getRandom()));
+            world.destroyBlock(pos, true);
         } else {
-            world.breakBlock(pos, true);
+            world.destroyBlock(pos, true);
             YetAnotherVanillaPlusMod.LOGGER.warn("Couldn't drop contents; not a pinata block entity");
         }
     }
 
-    private void releaseContents(World world, BlockPos pos, BlockState state) {
+    private void releaseContents(Level world, BlockPos pos, BlockState state) {
         if (world.getBlockEntity(pos) instanceof PinataBlockEntity entity) {
             if (!entity.isEmpty()) {
-                dropStack(world, pos, Direction.DOWN, entity.getStack());
-                world.playSound(null, pos, YavpmSounds.BLOCK_PINATA_OPEN, SoundCategory.BLOCKS, 1f, getPitch(world.getRandom()));
-                entity.setStack(ItemStack.EMPTY);
+                popResourceFromFace(world, pos, Direction.DOWN, entity.getTheItem());
+                world.playSound(null, pos, YavpmSounds.BLOCK_PINATA_OPEN, SoundSource.BLOCKS, 1f, getPitch(world.getRandom()));
+                entity.setTheItem(ItemStack.EMPTY);
             }
-            world.setBlockState(pos, state.with(OPENED, true));
+            world.setBlockAndUpdate(pos, state.setValue(OPENED, true));
         }
     }
 
-    private float getPitch(Random rand) {
-        return MathHelper.map(rand.nextFloat(), 0, 1, 0.85f, 1.15f);
+    private float getPitch(RandomSource rand) {
+        return Mth.map(rand.nextFloat(), 0, 1, 0.85f, 1.15f);
     }
 }

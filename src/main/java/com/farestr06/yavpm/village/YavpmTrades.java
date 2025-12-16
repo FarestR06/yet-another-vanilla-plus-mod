@@ -4,12 +4,12 @@ import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.item.YavpmItems;
 import net.fabricmc.fabric.api.object.builder.v1.trade.TradeOfferHelper;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
-import net.minecraft.village.TradeOffer;
-import net.minecraft.village.TradedItem;
-import net.minecraft.village.VillagerProfession;
+import net.minecraft.world.entity.npc.VillagerProfession;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.trading.ItemCost;
+import net.minecraft.world.item.trading.MerchantOffer;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -80,12 +80,12 @@ public class YavpmTrades {
         // region Novice
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Lumberjack Novice trades...");
         TradeOfferHelper.registerVillagerOffers(YavpmProfessions.LUMBERJACK_KEY, 1, factories -> {
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(NOVICE_PLANK_BUY_OFFERS.get(random.nextInt(NOVICE_PLANK_BUY_OFFERS.size())), 8),
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(NOVICE_PLANK_BUY_OFFERS.get(random.nextInt(NOVICE_PLANK_BUY_OFFERS.size())), 8),
                     new ItemStack(Items.EMERALD), 16, 2, LOW_MULTIPLIER
             ));
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, 4),
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 4),
                     new ItemStack(NOVICE_SAPLING_SELL_OFFERS.get(
                             random.nextInt(NOVICE_SAPLING_SELL_OFFERS.size())
                     ), 3),
@@ -96,25 +96,25 @@ public class YavpmTrades {
         // region Apprentice
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Lumberjack Apprentice trades...");
         TradeOfferHelper.registerVillagerOffers(YavpmProfessions.LUMBERJACK_KEY, 2, factories -> {
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD),
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD),
                     new ItemStack(Items.BOWL, 3),
                     12, 5, LOW_MULTIPLIER
             ));
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(APPRENTICE_PLANK_BUY_OFFERS.get(random.nextInt(APPRENTICE_PLANK_BUY_OFFERS.size())), 8),
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(APPRENTICE_PLANK_BUY_OFFERS.get(random.nextInt(APPRENTICE_PLANK_BUY_OFFERS.size())), 8),
                     new ItemStack(Items.EMERALD), 16, 10, LOW_MULTIPLIER
             ));
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, 4),
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 4),
                     new ItemStack(APPRENTICE_SAPLING_SELL_OFFERS.get(
                             random.nextInt(APPRENTICE_SAPLING_SELL_OFFERS.size())
                     ), 3),
                     16, 10, LOW_MULTIPLIER
             ));
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD),
-                    Optional.of(new TradedItem(
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD),
+                    Optional.of(new ItemCost(
                             NOVICE_PLANK_BUY_OFFERS.get(random.nextInt(NOVICE_PLANK_BUY_OFFERS.size())), 2
                     )),
                     new ItemStack(Items.STICK, 7),
@@ -125,25 +125,25 @@ public class YavpmTrades {
         // region Journeyman
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Lumberjack Journeyman trades...");
         TradeOfferHelper.registerVillagerOffers(YavpmProfessions.LUMBERJACK_KEY, 3, factories -> {
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, 5),
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 5),
                     new ItemStack(Items.CHISELED_BOOKSHELF),
                     12,
                     10, LOW_MULTIPLIER
             ));
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, 3),
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 3),
                     new ItemStack(Items.CHARCOAL, 12),
                     12, 10, LOW_MULTIPLIER
             ));
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.BAMBOO, 15),
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(Items.BAMBOO, 15),
                     new ItemStack(Items.EMERALD),
                     12, 20, LOW_MULTIPLIER
             ));
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD),
-                    Optional.of(new TradedItem(
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD),
+                    Optional.of(new ItemCost(
                             APPRENTICE_PLANK_BUY_OFFERS.get(random.nextInt(APPRENTICE_PLANK_BUY_OFFERS.size())), 2
                     )),
                     new ItemStack(Items.STICK, 7),
@@ -154,18 +154,18 @@ public class YavpmTrades {
         // region Expert
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Lumberjack Expert trades...");
         TradeOfferHelper.registerVillagerOffers(YavpmProfessions.LUMBERJACK_KEY, 4, factories -> {
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, 4),
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 4),
                     new ItemStack(random.nextBoolean() ? Items.CHEST : Items.BARREL, 2),
                     12,
                     15, LOW_MULTIPLIER
             ));
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(EXPERT_PLANK_BUY_OFFERS.get(random.nextInt(EXPERT_PLANK_BUY_OFFERS.size())), 8),
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(EXPERT_PLANK_BUY_OFFERS.get(random.nextInt(EXPERT_PLANK_BUY_OFFERS.size())), 8),
                     new ItemStack(Items.EMERALD), 16, 30, LOW_MULTIPLIER
             ));
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, 4),
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 4),
                     new ItemStack(EXPERT_SAPLING_SELL_OFFERS.get(
                             random.nextInt(EXPERT_SAPLING_SELL_OFFERS.size())
                     ), 3),
@@ -176,17 +176,17 @@ public class YavpmTrades {
         // region Master
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Lumberjack Master trades...");
         TradeOfferHelper.registerVillagerOffers(YavpmProfessions.LUMBERJACK_KEY, 5, factories -> {
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, 11),
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 11),
                     new ItemStack(Items.JUKEBOX), 12, 30, HIGH_MULTIPLIER
             ));
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(MASTER_PLANK_BUY_OFFERS.get(random.nextInt(MASTER_PLANK_BUY_OFFERS.size())), 8),
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(MASTER_PLANK_BUY_OFFERS.get(random.nextInt(MASTER_PLANK_BUY_OFFERS.size())), 8),
                     new ItemStack(Items.EMERALD, 2), 16, 30, LOW_MULTIPLIER
             ));
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD),
-                    Optional.of(new TradedItem(
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD),
+                    Optional.of(new ItemCost(
                             EXPERT_PLANK_BUY_OFFERS.get(random.nextInt(EXPERT_PLANK_BUY_OFFERS.size())), 2
                     )),
                     new ItemStack(Items.STICK, 7),
@@ -292,17 +292,17 @@ public class YavpmTrades {
     private static void armorer() {
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Armorer Expert trades...");
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.ARMORER, 4, factories -> {
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, random.nextBetween(7, 18)),
-                    Optional.of(new TradedItem(Items.LEATHER_HELMET)),
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, random.nextIntBetweenInclusive(7, 18)),
+                    Optional.of(new ItemCost(Items.LEATHER_HELMET)),
                     new ItemStack(YavpmItems.STUDDED_HELMET),
                     5,
                     15,
                     HIGH_MULTIPLIER
             ));
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, random.nextBetween(7, 18)),
-                    Optional.of(new TradedItem(Items.LEATHER_LEGGINGS)),
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, random.nextIntBetweenInclusive(7, 18)),
+                    Optional.of(new ItemCost(Items.LEATHER_LEGGINGS)),
                     new ItemStack(YavpmItems.STUDDED_LEGGINGS),
                     5,
                     15,
@@ -311,17 +311,17 @@ public class YavpmTrades {
         });
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Armorer Master trades...");
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.ARMORER, 5, factories -> {
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, random.nextBetween(7, 18)),
-                    Optional.of(new TradedItem(Items.LEATHER_CHESTPLATE)),
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, random.nextIntBetweenInclusive(7, 18)),
+                    Optional.of(new ItemCost(Items.LEATHER_CHESTPLATE)),
                     new ItemStack(YavpmItems.STUDDED_CHESTPLATE),
                     5,
                     15,
                     HIGH_MULTIPLIER
             ));
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, random.nextBetween(7, 18)),
-                    Optional.of(new TradedItem(Items.LEATHER_BOOTS)),
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, random.nextIntBetweenInclusive(7, 18)),
+                    Optional.of(new ItemCost(Items.LEATHER_BOOTS)),
                     new ItemStack(YavpmItems.STUDDED_BOOTS),
                     5,
                     15,
@@ -333,15 +333,15 @@ public class YavpmTrades {
     private static void fisherman() {
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Fisherman Expert trades...");
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.FISHERMAN, 4, factories -> {
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, 3),
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 3),
                     new ItemStack(YavpmItems.SUSHI, 4),
                     12,
                     15,
                     LOW_MULTIPLIER
             ));
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, 5),
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 5),
                     new ItemStack(YavpmItems.SEA_SOUP),
                     12,
                     15,
@@ -354,10 +354,10 @@ public class YavpmTrades {
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Mason Master trades...");
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.MASON, 5, factories ->
                 factories.add((entity, random) -> {
-                    int amount = random.nextBetween(8, 16);
-                    return new TradeOffer(
-                        new TradedItem(Items.EMERALD, 20),
-                        Optional.of(new TradedItem(YavpmBlocks.KIMBERLITE, amount)),
+                    int amount = random.nextIntBetweenInclusive(8, 16);
+                    return new MerchantOffer(
+                        new ItemCost(Items.EMERALD, 20),
+                        Optional.of(new ItemCost(YavpmBlocks.KIMBERLITE, amount)),
                         new ItemStack(YavpmItems.RAW_DIAMOND, amount),
                         12,
                         30,
@@ -369,8 +369,8 @@ public class YavpmTrades {
     private static void butcher() {
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Butcher Novice trades...");
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.BUTCHER, 1, factories ->
-                factories.add((entity, random) -> new TradeOffer(
-                        new TradedItem(Items.EMERALD),
+                factories.add((entity, random) -> new MerchantOffer(
+                        new ItemCost(Items.EMERALD),
                         new ItemStack(YavpmItems.CHICKEN_SOUP),
                         12,
                         1,
@@ -379,8 +379,8 @@ public class YavpmTrades {
         );
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Butcher Master trades...");
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.BUTCHER, 5, factories ->
-                factories.add((entity, random) -> new TradeOffer(
-                new TradedItem(Items.EMERALD, 3),
+                factories.add((entity, random) -> new MerchantOffer(
+                new ItemCost(Items.EMERALD, 3),
                 new ItemStack(YavpmItems.CHEESE, 6),
                 12,
                 30,
@@ -391,15 +391,15 @@ public class YavpmTrades {
     private static void farmer() {
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Farmer Novice trades...");
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.FARMER, 1, factories -> {
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(YavpmItems.MAGIC_BEAN, 24),
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(YavpmItems.MAGIC_BEAN, 24),
                     new ItemStack(Items.EMERALD),
                     16,
                     2,
                     LOW_MULTIPLIER
             ));
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(YavpmItems.PEANUT, 28),
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(YavpmItems.PEANUT, 28),
                     new ItemStack(Items.EMERALD),
                     16,
                     2,
@@ -408,15 +408,15 @@ public class YavpmTrades {
         });
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Farmer Journeyman trades...");
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.FARMER, 3, factories -> {
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, random.nextBetween(24, 32)),
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, random.nextIntBetweenInclusive(24, 32)),
                     new ItemStack(YavpmItems.FORTUNE_COOKIE),
                     4,
                     10,
                     HIGH_MULTIPLIER
             ));
-            factories.add((entity, random) -> new TradeOffer(
-                    new TradedItem(Items.EMERALD, 3),
+            factories.add((entity, random) -> new MerchantOffer(
+                    new ItemCost(Items.EMERALD, 3),
                     new ItemStack(YavpmItems.RICE, 16),
                     12,
                     10,
@@ -425,8 +425,8 @@ public class YavpmTrades {
         });
         YetAnotherVanillaPlusMod.LOGGER.debug("Creating Farmer Master trades...");
         TradeOfferHelper.registerVillagerOffers(VillagerProfession.FARMER, 5, factories ->
-                factories.add((entity, random) -> new TradeOffer(
-                new TradedItem(Items.EMERALD, random.nextBetween(8, 16)),
+                factories.add((entity, random) -> new MerchantOffer(
+                new ItemCost(Items.EMERALD, random.nextIntBetweenInclusive(8, 16)),
                 new ItemStack(YavpmItems.FORTUNE_COOKIE),
                 1,
                 30,

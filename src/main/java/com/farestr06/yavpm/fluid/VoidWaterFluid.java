@@ -4,111 +4,111 @@ import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.item.YavpmItems;
 import com.farestr06.yavpm.util.YavpmTags;
 import com.farestr06.yavpm.world.YavpmGameRules;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.FluidBlock;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.fluid.FlowableFluid;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.FluidState;
-import net.minecraft.item.Item;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.state.StateManager;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
-import net.minecraft.world.BlockView;
-import net.minecraft.world.WorldAccess;
-import net.minecraft.world.WorldView;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.material.FlowingFluid;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.FluidState;
 
-public abstract class VoidWaterFluid extends FlowableFluid {
+public abstract class VoidWaterFluid extends FlowingFluid {
     @Override
     public Fluid getFlowing() {
         return YavpmFluids.FLOWING_VOID_WATER;
     }
 
     @Override
-    public Fluid getStill() {
+    public Fluid getSource() {
         return YavpmFluids.STILL_VOID_WATER;
     }
 
     @Override
-    protected boolean isInfinite(ServerWorld world) {
+    protected boolean canConvertToSource(ServerLevel world) {
         return world.getGameRules().getBoolean(YavpmGameRules.VOID_WATER_SOURCE_CONVERSION);
     }
 
     @Override
-    protected void beforeBreakingBlock(WorldAccess world, BlockPos pos, BlockState state) {
+    protected void beforeDestroyingBlock(LevelAccessor world, BlockPos pos, BlockState state) {
         BlockEntity blockEntity = state.hasBlockEntity() ? world.getBlockEntity(pos) : null;
-        Block.dropStacks(state, world, pos, blockEntity);
+        Block.dropResources(state, world, pos, blockEntity);
     }
 
     @Override
-    protected int getMaxFlowDistance(WorldView world) {
+    protected int getSlopeFindDistance(LevelReader world) {
         return 4;
     }
 
     @Override
-    protected int getLevelDecreasePerBlock(WorldView world) {
+    protected int getDropOff(LevelReader world) {
         return 1;
     }
 
     @Override
-    public Item getBucketItem() {
+    public Item getBucket() {
         return YavpmItems.VOID_WATER_BUCKET;
     }
 
     @Override
     @SuppressWarnings("deprecation")
-    protected boolean canBeReplacedWith(FluidState state, BlockView world, BlockPos pos, Fluid fluid, Direction direction) {
-        return direction == Direction.DOWN && !fluid.isIn(YavpmTags.Fluids.VOID_WATER);
+    protected boolean canBeReplacedWith(FluidState state, BlockGetter world, BlockPos pos, Fluid fluid, Direction direction) {
+        return direction == Direction.DOWN && !fluid.is(YavpmTags.Fluids.VOID_WATER);
     }
 
     @Override
-    public int getTickRate(WorldView world) {
+    public int getTickDelay(LevelReader world) {
         return 5;
     }
 
     @Override
-    protected float getBlastResistance() {
+    protected float getExplosionResistance() {
         return 100f;
     }
 
     @Override
-    protected BlockState toBlockState(FluidState state) {
-        return YavpmBlocks.VOID_WATER.getDefaultState().with(FluidBlock.LEVEL, getBlockStateLevel(state));
+    protected BlockState createLegacyBlock(FluidState state) {
+        return YavpmBlocks.VOID_WATER.defaultBlockState().setValue(LiquidBlock.LEVEL, getLegacyLevel(state));
     }
 
     @Override
-    public boolean matchesType(Fluid fluid) {
+    public boolean isSame(Fluid fluid) {
         return fluid == YavpmFluids.STILL_VOID_WATER || fluid == YavpmFluids.FLOWING_VOID_WATER;
     }
 
     public static class Flowing extends VoidWaterFluid {
         @Override
-        protected void appendProperties(StateManager.Builder<Fluid, FluidState> builder) {
-            super.appendProperties(builder);
+        protected void createFluidStateDefinition(StateDefinition.Builder<Fluid, FluidState> builder) {
+            super.createFluidStateDefinition(builder);
             builder.add(LEVEL);
         }
 
         @Override
-        public int getLevel(FluidState state) {
-            return state.get(LEVEL);
+        public int getAmount(FluidState state) {
+            return state.getValue(LEVEL);
         }
 
         @Override
-        public boolean isStill(FluidState state) {
+        public boolean isSource(FluidState state) {
             return false;
         }
     }
 
     public static class Still extends VoidWaterFluid {
         @Override
-        public int getLevel(FluidState state) {
+        public int getAmount(FluidState state) {
             return 8;
         }
 
         @Override
-        public boolean isStill(FluidState state) {
+        public boolean isSource(FluidState state) {
             return true;
         }
     }

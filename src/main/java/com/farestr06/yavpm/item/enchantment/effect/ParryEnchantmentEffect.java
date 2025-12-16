@@ -2,41 +2,41 @@ package com.farestr06.yavpm.item.enchantment.effect;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import net.minecraft.enchantment.EnchantmentEffectContext;
-import net.minecraft.enchantment.EnchantmentLevelBasedValue;
-import net.minecraft.enchantment.effect.EnchantmentEntityEffect;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.damage.DamageType;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.core.Holder;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageType;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.enchantment.EnchantedItemInUse;
+import net.minecraft.world.item.enchantment.LevelBasedValue;
+import net.minecraft.world.item.enchantment.effects.EnchantmentEntityEffect;
+import net.minecraft.world.phys.Vec3;
 
-public record ParryEnchantmentEffect(EnchantmentLevelBasedValue minDamage, EnchantmentLevelBasedValue maxDamage, RegistryEntry<DamageType> damageType) implements EnchantmentEntityEffect {
+public record ParryEnchantmentEffect(LevelBasedValue minDamage, LevelBasedValue maxDamage, Holder<DamageType> damageType) implements EnchantmentEntityEffect {
     public static final MapCodec<ParryEnchantmentEffect> CODEC = RecordCodecBuilder.mapCodec(
             instance -> instance.group(
-                            EnchantmentLevelBasedValue.CODEC.fieldOf("min_damage").forGetter(ParryEnchantmentEffect::minDamage),
-                            EnchantmentLevelBasedValue.CODEC.fieldOf("max_damage").forGetter(ParryEnchantmentEffect::maxDamage),
-                            DamageType.ENTRY_CODEC.fieldOf("damage_type").forGetter(ParryEnchantmentEffect::damageType)
+                            LevelBasedValue.CODEC.fieldOf("min_damage").forGetter(ParryEnchantmentEffect::minDamage),
+                            LevelBasedValue.CODEC.fieldOf("max_damage").forGetter(ParryEnchantmentEffect::maxDamage),
+                            DamageType.CODEC.fieldOf("damage_type").forGetter(ParryEnchantmentEffect::damageType)
                     )
                     .apply(instance, ParryEnchantmentEffect::new)
     );
 
     @Override
-    public void apply(ServerWorld world, int level, EnchantmentEffectContext context, Entity user, Vec3d pos) {
+    public void apply(ServerLevel world, int level, EnchantedItemInUse context, Entity user, Vec3 pos) {
         if (context.owner() != null) {
             LivingEntity owner = context.owner();
             if (owner.isBlocking()) {
-                float f = MathHelper.nextBetween(user.getRandom(), this.minDamage.getValue(level), this.maxDamage.getValue(level));
-                user.damage(world, new DamageSource(this.damageType, context.owner()), f);
+                float f = Mth.randomBetween(user.getRandom(), this.minDamage.calculate(level), this.maxDamage.calculate(level));
+                user.hurtServer(world, new DamageSource(this.damageType, context.owner()), f);
             }
         }
     }
 
     @Override
-    public MapCodec<? extends EnchantmentEntityEffect> getCodec() {
+    public MapCodec<? extends EnchantmentEntityEffect> codec() {
         return CODEC;
     }
 }

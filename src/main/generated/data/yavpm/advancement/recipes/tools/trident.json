@@ -8,7 +8,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:trident"
+        "recipe": "yavpm:trident"
       },
       "trigger": "minecraft:recipe_unlocked"
     },
@@ -31,7 +31,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:trident"
+      "yavpm:trident"
     ]
   }
 }

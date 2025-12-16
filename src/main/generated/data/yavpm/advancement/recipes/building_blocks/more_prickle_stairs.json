@@ -18,7 +18,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "minecraft:more_prickle_stairs"
+        "recipe": "yavpm:more_prickle_stairs"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -31,7 +31,7 @@
   ],
   "rewards": {
     "recipes": [
-      "minecraft:more_prickle_stairs"
+      "yavpm:more_prickle_stairs"
     ]
   }
 }

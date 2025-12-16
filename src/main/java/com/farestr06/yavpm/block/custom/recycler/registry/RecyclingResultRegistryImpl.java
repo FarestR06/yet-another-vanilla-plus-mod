@@ -1,22 +1,22 @@
 package com.farestr06.yavpm.block.custom.recycler.registry;
 
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.registry.tag.TagKey;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.ItemLike;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class RecyclingResultRegistryImpl implements RecyclingResultRegistry {
-    private final Map<ItemConvertible, RecyclingResult> results = new HashMap<>();
+    private final Map<ItemLike, RecyclingResult> results = new HashMap<>();
 
     @Override
-    public RecyclingResult get(ItemConvertible item) {
+    public RecyclingResult get(ItemLike item) {
         return results.get(item);
     }
 
     @Override
-    public void add(ItemConvertible item, RecyclingResult value) {
+    public void add(ItemLike item, RecyclingResult value) {
         results.put(item, value);
     }
 
@@ -26,7 +26,7 @@ public class RecyclingResultRegistryImpl implements RecyclingResultRegistry {
     }
 
     @Override
-    public void remove(ItemConvertible item) {
+    public void remove(ItemLike item) {
         add(item, RecyclingResult.EMPTY);
     }
 
@@ -36,7 +36,7 @@ public class RecyclingResultRegistryImpl implements RecyclingResultRegistry {
     }
 
     @Override
-    public void clear(ItemConvertible item) {
+    public void clear(ItemLike item) {
         results.remove(item);
     }
 

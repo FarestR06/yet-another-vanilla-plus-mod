@@ -1,19 +1,19 @@
 package com.farestr06.yavpm.block.custom.recycler;
 
-import net.minecraft.block.DispenserBlock;
-import net.minecraft.block.dispenser.ItemDispenserBehavior;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPointer;
-import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Position;
+import net.minecraft.core.Direction;
+import net.minecraft.core.Position;
+import net.minecraft.core.dispenser.BlockSource;
+import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.DispenserBlock;
 
-public class RecycleDispenserBehavior extends ItemDispenserBehavior {
+public class RecycleDispenserBehavior extends DefaultDispenseItemBehavior {
 
     @Override
-    protected ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
-        Direction direction = pointer.state().get(DispenserBlock.FACING);
-        Position position = DispenserBlock.getOutputLocation(pointer);
-        spawnItem(pointer.world(), stack, 6, direction, position);
+    protected ItemStack execute(BlockSource pointer, ItemStack stack) {
+        Direction direction = pointer.state().getValue(DispenserBlock.FACING);
+        Position position = DispenserBlock.getDispensePosition(pointer);
+        spawnItem(pointer.level(), stack, 6, direction, position);
         return stack;
     }
 }

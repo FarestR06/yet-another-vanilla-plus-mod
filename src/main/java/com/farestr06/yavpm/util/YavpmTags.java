@@ -1,42 +1,39 @@
 package com.farestr06.yavpm.util;
 
-import net.minecraft.block.Block;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.EntityType;
-import net.minecraft.fluid.Fluid;
-import net.minecraft.item.Item;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.tag.TagKey;
-import net.minecraft.world.biome.Biome;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.material.Fluid;
 
+import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.LOCATIONS;
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 
 public class YavpmTags {
     public static class Items {
-        public static final TagKey<Item> CARBONFOWL_FOODS = of("carbonfowl_foods");
-        public static final TagKey<Item> TANUKI_FOOD = of("tanuki_foods");
+        public static final TagKey<Item> CARBONFOWL_FOODS = LOCATIONS.itemTag("carbonfowl_foods");
+        public static final TagKey<Item> TANUKI_FOOD = LOCATIONS.itemTag("tanuki_foods");
 
-        public static final TagKey<Item> CRIMSON_MOONGUS_FOOD = of("crimson_moongus_food");
-        public static final TagKey<Item> CRIMSON_MOONGUS_FOOD_CORRUPTED = of("crimson_moongus_food_corrupted");
-        public static final TagKey<Item> WARPED_MOONGUS_FOOD = of("warped_moongus_food");
+        public static final TagKey<Item> CRIMSON_MOONGUS_FOOD = LOCATIONS.itemTag("crimson_moongus_food");
+        public static final TagKey<Item> CRIMSON_MOONGUS_FOOD_CORRUPTED = LOCATIONS.itemTag("crimson_moongus_food_corrupted");
+        public static final TagKey<Item> WARPED_MOONGUS_FOOD = LOCATIONS.itemTag("warped_moongus_food");
 
-        public static final TagKey<Item> ENCHANTABLE_GLIDER = of("enchantable/glider");
-        public static final TagKey<Item> ENCHANTABLE_WOLF_ARMOR = of("enchantable/wolf_armor");
-        public static final TagKey<Item> ENCHANTABLE_HORSE_ARMOR = of("enchantable/horse_armor");
+        public static final TagKey<Item> ENCHANTABLE_GLIDER = LOCATIONS.itemTag("enchantable/glider");
+        public static final TagKey<Item> ENCHANTABLE_WOLF_ARMOR = LOCATIONS.itemTag("enchantable/wolf_armor");
+        public static final TagKey<Item> ENCHANTABLE_HORSE_ARMOR = LOCATIONS.itemTag("enchantable/horse_armor");
 
-        public static final TagKey<Item> REPAIRS_STUDDED_ARMOR = of("repairs_studded_armor");
-        public static final TagKey<Item> REPAIRS_DENSITITE_ARMOR = of("repairs_densitite_armor");
-        public static final TagKey<Item> DENSITITE_TOOL_MATERIALS = of("densitite_tool_materials");
+        public static final TagKey<Item> REPAIRS_STUDDED_ARMOR = LOCATIONS.itemTag("repairs_studded_armor");
+        public static final TagKey<Item> REPAIRS_DENSITITE_ARMOR = LOCATIONS.itemTag("repairs_densitite_armor");
+        public static final TagKey<Item> DENSITITE_TOOL_MATERIALS = LOCATIONS.itemTag("densitite_tool_materials");
 
-        public static final TagKey<Item> REACTOR_RECHARGERS = of("reactor_rechargers");
+        public static final TagKey<Item> REACTOR_RECHARGERS = LOCATIONS.itemTag("reactor_rechargers");
 
-        public static final TagKey<Item> APPLE_LOGS = of("apple_logs");
-        public static final TagKey<Item> PERSIMMON_LOGS = of("persimmon_logs");
-        public static final TagKey<Item> PRICKLE_LOGS = of("spiral_stalks");
-
-        private static TagKey<Item> of(String path) {
-            return TagKey.of(RegistryKeys.ITEM, makeId(path));
-        }
+        public static final TagKey<Item> APPLE_LOGS = LOCATIONS.itemTag("apple_logs");
+        public static final TagKey<Item> PERSIMMON_LOGS = LOCATIONS.itemTag("persimmon_logs");
+        public static final TagKey<Item> PRICKLE_LOGS = LOCATIONS.itemTag("spiral_stalks");
     }
     public static class EntityTypes {
         public static final TagKey<EntityType<?>> SENSITIVE_TO_ILLAGERS_BANE = of("sensitive_to_illagers_bane");
@@ -46,7 +43,7 @@ public class YavpmTags {
         public static final TagKey<EntityType<?>> SENSITIVE_TO_ENDERBANE_100 = of("sensitive_to_enderbane_100");
 
         private static TagKey<EntityType<?>> of(String path) {
-            return TagKey.of(RegistryKeys.ENTITY_TYPE, makeId(path));
+            return TagKey.create(Registries.ENTITY_TYPE, makeId(path));
         }
     }
     public static class Biomes {
@@ -62,7 +59,7 @@ public class YavpmTags {
         public static final TagKey<Biome> FAKE_LOG_IS_MANGROVE = of("fake_log_is_mangrove");
 
         private static TagKey<Biome> of(String path) {
-            return TagKey.of(RegistryKeys.BIOME, makeId(path));
+            return TagKey.create(Registries.BIOME, makeId(path));
         }
     }
     public static class Blocks {
@@ -72,15 +69,12 @@ public class YavpmTags {
         public static final TagKey<Block> RICE_GROWABLE_ON = of("rice_growable_on");
 
         private static TagKey<Block> of(String path) {
-            return TagKey.of(RegistryKeys.BLOCK, makeId(path));
+            return TagKey.create(Registries.BLOCK, makeId(path));
         }
     }
     public static class Fluids {
-        public static final TagKey<Fluid> VOID_WATER = of("void_water");
+        public static final TagKey<Fluid> VOID_WATER = LOCATIONS.fluidTag("void_water"); // of("void_water");
 
-        private static TagKey<Fluid> of(String path) {
-            return TagKey.of(RegistryKeys.FLUID, makeId(path));
-        }
     }
     public static class Enchantments {
         public static final TagKey<Enchantment> END_ENCHANTMENTS = of("end_enchantments");
@@ -88,7 +82,7 @@ public class YavpmTags {
         public static final TagKey<Enchantment> EXCLUSIVE_SET_WOLF_ARMOR_DEFENSE = of("exclusive_set/wolf_armor/defense");
 
         private static TagKey<Enchantment> of(String path) {
-            return TagKey.of(RegistryKeys.ENCHANTMENT, makeId(path));
+            return TagKey.create(Registries.ENCHANTMENT, makeId(path));
         }
     }
 }

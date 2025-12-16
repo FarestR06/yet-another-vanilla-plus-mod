@@ -1,38 +1,38 @@
 package com.farestr06.yavpm.block.custom.fake;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.state.StateManager;
-import net.minecraft.state.property.BooleanProperty;
-import net.minecraft.state.property.EnumProperty;
-import net.minecraft.util.StringIdentifiable;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.random.Random;
+import net.minecraft.core.BlockPos;
+import net.minecraft.util.RandomSource;
+import net.minecraft.util.StringRepresentable;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 
 public class FakeOreBlock extends AbstractFakeBlock {
 
-    public static final EnumProperty<OreType> TYPE = EnumProperty.of("ore_type", OreType.class);
-    public static final BooleanProperty DEEPSLATE = BooleanProperty.of("deepslate");
+    public static final EnumProperty<OreType> TYPE = EnumProperty.create("ore_type", OreType.class);
+    public static final BooleanProperty DEEPSLATE = BooleanProperty.create("deepslate");
 
-    public FakeOreBlock(Settings settings) {
+    public FakeOreBlock(Properties settings) {
         super(Blocks.DIAMOND_ORE, settings);
     }
 
     @Override
-    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
         builder.add(TYPE);
         builder.add(DEEPSLATE);
     }
 
-    public BlockState makeFakeBlockState(Random rand, BlockPos pos) {
+    public BlockState makeFakeBlockState(RandomSource rand, BlockPos pos) {
         if (pos.getY() <= 0) {
-            return this.getDefaultState().with(TYPE, choose(rand)).with(DEEPSLATE, true);
+            return this.defaultBlockState().setValue(TYPE, choose(rand)).setValue(DEEPSLATE, true);
         }
-        return this.getDefaultState().with(TYPE, choose(rand)).with(DEEPSLATE, false);
+        return this.defaultBlockState().setValue(TYPE, choose(rand)).setValue(DEEPSLATE, false);
     }
 
-    private OreType choose(Random rand) {
+    private OreType choose(RandomSource rand) {
         int type = rand.nextInt(8);
         switch (type) {
 
@@ -63,7 +63,7 @@ public class FakeOreBlock extends AbstractFakeBlock {
         }
     }
 
-    public enum OreType implements StringIdentifiable {
+    public enum OreType implements StringRepresentable {
         COAL("coal"),
         IRON("iron"),
         GOLD("gold"),
@@ -80,7 +80,7 @@ public class FakeOreBlock extends AbstractFakeBlock {
         }
 
         @Override
-        public String asString() {
+        public String getSerializedName() {
             return name;
         }
     }

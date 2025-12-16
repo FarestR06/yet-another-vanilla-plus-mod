@@ -1,7 +1,7 @@
 package com.farestr06.yavpm.mixin.item;
 
-import net.minecraft.item.SmithingTemplateItem;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.SmithingTemplateItem;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Invoker;
 
@@ -9,13 +9,13 @@ import java.util.List;
 
 @Mixin(SmithingTemplateItem.class)
 public interface SmithingTemplateItemInvoker {
-    @Invoker("getNetheriteUpgradeEmptyBaseSlotTextures")
-    static List<Identifier> invokeGetNetheriteUpgradeEmptyBaseSlotTextures() {
+    @Invoker("createNetheriteUpgradeIconList")
+    static List<ResourceLocation> invokeGetNetheriteUpgradeEmptyBaseSlotTextures() {
         throw new AssertionError();
     }
 
-    @Invoker("getNetheriteUpgradeEmptyAdditionsSlotTextures")
-    static List<Identifier> invokeGetNetheriteUpgradeEmptyAdditionsSlotTextures() {
+    @Invoker("createNetheriteUpgradeMaterialList")
+    static List<ResourceLocation> invokeGetNetheriteUpgradeEmptyAdditionsSlotTextures() {
         throw new AssertionError();
     }
 }

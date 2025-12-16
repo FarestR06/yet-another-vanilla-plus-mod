@@ -3,11 +3,11 @@ package com.farestr06.yavpm.util;
 import com.farestr06.api.util.registry.NoteblockInstrumentRegistry;
 import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.block.YavpmBlocks;
-import net.minecraft.block.jukebox.JukeboxSong;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.sound.SoundEvent;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.item.JukeboxSong;
 
 import static com.farestr06.api.sound.SoundHelper.makeEvent;
 import static com.farestr06.api.sound.SoundHelper.makeReferenceEvent;
@@ -16,33 +16,33 @@ import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.makeId;
 public class YavpmSounds {
 
     public static final SoundEvent BLOCK_PRICKLE_LOG_PLUCK = makeEvent(makeId("block.prickle_log.pluck"));
-    public static final RegistryEntry.Reference<SoundEvent> BLOCK_NOTE_BLOCK_GRIND = makeReferenceEvent(makeId("block.note_block.grind"));
+    public static final Holder.Reference<SoundEvent> BLOCK_NOTE_BLOCK_GRIND = makeReferenceEvent(makeId("block.note_block.grind"));
 
     public static final SoundEvent BLOCK_PINATA_INSERT = makeEvent(makeId("block.pinata.insert"));
     public static final SoundEvent BLOCK_PINATA_INSERT_FAIL = makeEvent(makeId("block.pinata.insert_fail"));
     public static final SoundEvent BLOCK_PINATA_BREAK = makeEvent(makeId("block.pinata.break"));
     public static final SoundEvent BLOCK_PINATA_OPEN = makeEvent(makeId("block.pinata.open"));
 
-    public static final RegistryEntry<SoundEvent> ENCHANTMENT_FIGURE_EIGHT = makeReferenceEvent(makeId("enchantment.figure_eight"));
+    public static final Holder<SoundEvent> ENCHANTMENT_FIGURE_EIGHT = makeReferenceEvent(makeId("enchantment.figure_eight"));
     
     public static final SoundEvent ITEM_BABY_KEY_SCARED = makeEvent(makeId("item.baby_key.scared"));
     public static final SoundEvent ITEM_BABY_KEY_TURN = makeEvent(makeId("item.baby_key.turn"));
 
-    public static final RegistryEntry<SoundEvent> ITEM_COPPER_HORN_SOUND_BASS_0 = makeReferenceEvent(makeId("item.copper_horn.sound.bass.0"));
-    public static final RegistryEntry<SoundEvent> ITEM_COPPER_HORN_SOUND_HARMONY_0 = makeReferenceEvent(makeId("item.copper_horn.sound.harmony.0"));
-    public static final RegistryEntry<SoundEvent> ITEM_COPPER_HORN_SOUND_MELODY_0 = makeReferenceEvent(makeId("item.copper_horn.sound.melody.0"));
+    public static final Holder<SoundEvent> ITEM_COPPER_HORN_SOUND_BASS_0 = makeReferenceEvent(makeId("item.copper_horn.sound.bass.0"));
+    public static final Holder<SoundEvent> ITEM_COPPER_HORN_SOUND_HARMONY_0 = makeReferenceEvent(makeId("item.copper_horn.sound.harmony.0"));
+    public static final Holder<SoundEvent> ITEM_COPPER_HORN_SOUND_MELODY_0 = makeReferenceEvent(makeId("item.copper_horn.sound.melody.0"));
 
-    public static final RegistryKey<JukeboxSong> MAGNETIC_CIRCUIT_KEY = RegistryKey.of(
-            RegistryKeys.JUKEBOX_SONG,
+    public static final ResourceKey<JukeboxSong> MAGNETIC_CIRCUIT_KEY = ResourceKey.create(
+            Registries.JUKEBOX_SONG,
             makeId("magnetic_circuit")
     );
 
-    public static final RegistryKey<JukeboxSong> HALLAND_DALARNA_KEY = RegistryKey.of(
-            RegistryKeys.JUKEBOX_SONG,
+    public static final ResourceKey<JukeboxSong> HALLAND_DALARNA_KEY = ResourceKey.create(
+            Registries.JUKEBOX_SONG,
             makeId("halland_dalarna")
     );
 
-    public static final RegistryEntry<SoundEvent> MUSIC_OVERWORLD_WITHERED_SCAR = makeReferenceEvent(makeId("music.overworld.withered_scar"));
+    public static final Holder<SoundEvent> MUSIC_OVERWORLD_WITHERED_SCAR = makeReferenceEvent(makeId("music.overworld.withered_scar"));
 
     public static final SoundEvent ENTITY_MOONGUS_SHEAR = makeEvent(makeId("entity.moongus.shear"));
     public static final SoundEvent ENTITY_MOONGUS_EAT = makeEvent(makeId("entity.moongus.eat"));
@@ -60,8 +60,8 @@ public class YavpmSounds {
 
     public static final SoundEvent ENTITY_VILLAGER_WORK_LUMBERJACK = makeEvent(makeId("entity.villager.work_lumberjack"));
 
-    public static final RegistryEntry<SoundEvent> ITEM_ARMOR_EQUIP_STUDDED = makeReferenceEvent(makeId("item.armor.equip_studded"));
-    public static final RegistryEntry<SoundEvent> ITEM_ARMOR_EQUIP_DENSITITE = makeReferenceEvent(makeId("item.armor.equip_densitite"));
+    public static final Holder<SoundEvent> ITEM_ARMOR_EQUIP_STUDDED = makeReferenceEvent(makeId("item.armor.equip_studded"));
+    public static final Holder<SoundEvent> ITEM_ARMOR_EQUIP_DENSITITE = makeReferenceEvent(makeId("item.armor.equip_densitite"));
 
     public static void init() {
         YetAnotherVanillaPlusMod.LOGGER.info("Registering sounds for YAVPM!");

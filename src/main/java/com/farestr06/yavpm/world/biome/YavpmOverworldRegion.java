@@ -1,12 +1,12 @@
 package com.farestr06.yavpm.world.biome;
 
 import com.mojang.datafixers.util.Pair;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.util.Identifier;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeKeys;
-import net.minecraft.world.biome.source.util.MultiNoiseUtil;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.biome.Climate;
 import terrablender.api.ParameterUtils;
 import terrablender.api.Region;
 import terrablender.api.RegionType;
@@ -15,12 +15,12 @@ import terrablender.api.VanillaParameterOverlayBuilder;
 import java.util.function.Consumer;
 
 public class YavpmOverworldRegion extends Region {
-    public YavpmOverworldRegion(Identifier name, int weight) {
+    public YavpmOverworldRegion(ResourceLocation name, int weight) {
         super(name, RegionType.OVERWORLD, weight);
     }
 
     @Override
-    public void addBiomes(Registry<Biome> registry, Consumer<Pair<MultiNoiseUtil.NoiseHypercube, RegistryKey<Biome>>> mapper) {
+    public void addBiomes(Registry<Biome> registry, Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> mapper) {
         VanillaParameterOverlayBuilder builder = new VanillaParameterOverlayBuilder();
         new ParameterUtils.ParameterPointListBuilder()
                 .temperature(ParameterUtils.Temperature.span(ParameterUtils.Temperature.WARM, ParameterUtils.Temperature.HOT))
@@ -41,7 +41,7 @@ public class YavpmOverworldRegion extends Region {
                 .build().forEach(point -> builder.add(point, YavpmBiomes.Overworld.ORCHARD_PEAKS));
 
         addModifiedVanillaOverworldBiomes(mapper, modifiedVanillaOverworldBuilder ->
-                modifiedVanillaOverworldBuilder.replaceBiome(BiomeKeys.DARK_FOREST, YavpmBiomes.Overworld.EBONY_FOREST));
+                modifiedVanillaOverworldBuilder.replaceBiome(Biomes.DARK_FOREST, YavpmBiomes.Overworld.EBONY_FOREST));
 
         // Add our points to the mapper
         builder.build().forEach(mapper);

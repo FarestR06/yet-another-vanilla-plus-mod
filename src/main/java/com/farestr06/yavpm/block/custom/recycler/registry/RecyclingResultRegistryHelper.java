@@ -2,8 +2,8 @@ package com.farestr06.yavpm.block.custom.recycler.registry;
 
 import com.farestr06.yavpm.block.YavpmBlocks;
 import com.farestr06.yavpm.item.YavpmItems;
-import net.minecraft.item.Item;
-import net.minecraft.item.Items;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 
 import static com.farestr06.yavpm.YetAnotherVanillaPlusMod.LOGGER;
 import static com.farestr06.yavpm.block.custom.recycler.registry.RecyclingResultRegistry.INSTANCE;

@@ -4,7 +4,7 @@ import com.farestr06.yavpm.config.YavpmConfig;
 import com.mojang.serialization.MapCodec;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceCondition;
 import net.fabricmc.fabric.api.resource.conditions.v1.ResourceConditionType;
-import net.minecraft.registry.RegistryOps;
+import net.minecraft.resources.RegistryOps;
 import org.jetbrains.annotations.Nullable;
 
 public record RareEquipmentRecipesEnabledResourceCondition() implements ResourceCondition {
@@ -18,7 +18,7 @@ public record RareEquipmentRecipesEnabledResourceCondition() implements Resource
     }
 
     @Override
-    public boolean test(RegistryOps.@Nullable RegistryInfoGetter registryInfo) {
+    public boolean test(RegistryOps.@Nullable RegistryInfoLookup registryInfo) {
         return YavpmConfig.HANDLER.instance().rareEquipmentCraftingRecipes;
     }
 }

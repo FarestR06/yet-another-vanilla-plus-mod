@@ -1,77 +1,80 @@
 package com.farestr06.yavpm.item.custom;
 
-import com.farestr06.yavpm.item.component.CopperInstrument;
-import com.farestr06.yavpm.item.component.YavpmDataComponentTypes;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.consume.UseAction;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.stat.Stats;
-import net.minecraft.util.*;
-import net.minecraft.util.math.Box;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
+import com.farestr06.yavpm.world.component.CopperInstrument;
+import com.farestr06.yavpm.world.component.YavpmDataComponentTypes;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.stats.Stats;
+import net.minecraft.util.Mth;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemUseAnimation;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.entity.EntityTypeTest;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.AABB;
 
 import java.util.*;
 
 public class CopperHornItem extends Item {
-    protected static final Map<Identifier, CopperInstrument> INSTRUMENTS = new HashMap<>();
-    private static final StatusEffectInstance BASS_EFFECT = new StatusEffectInstance(
-            StatusEffects.RESISTANCE, 16 * 20
+    protected static final Map<ResourceLocation, CopperInstrument> INSTRUMENTS = new HashMap<>();
+    private static final MobEffectInstance BASS_EFFECT = new MobEffectInstance(
+            MobEffects.RESISTANCE, 16 * 20
     );
-    private static final StatusEffectInstance HARMONY_EFFECT = new StatusEffectInstance(
-            StatusEffects.STRENGTH, 16 * 20
+    private static final MobEffectInstance HARMONY_EFFECT = new MobEffectInstance(
+            MobEffects.STRENGTH, 16 * 20
     );
-    private static final StatusEffectInstance MELODY_EFFECT = new StatusEffectInstance(
-            StatusEffects.SPEED, 16 * 20
+    private static final MobEffectInstance MELODY_EFFECT = new MobEffectInstance(
+            MobEffects.SPEED, 16 * 20
     );
 
-    public CopperHornItem(Settings settings) {
+    public CopperHornItem(net.minecraft.world.item.Item.Properties settings) {
         super(settings);
     }
 
-    public static void registerCopperInstrument(Identifier id, CopperInstrument instrument) {
+    public static void registerCopperInstrument(ResourceLocation id, CopperInstrument instrument) {
         INSTRUMENTS.put(id, instrument);
     }
 
-    public static Optional<CopperInstrument> getCopperInstrument(Identifier id) {
+    public static Optional<CopperInstrument> getCopperInstrument(ResourceLocation id) {
         if (INSTRUMENTS.containsKey(id)) {
             return Optional.of(INSTRUMENTS.get(id));
         }
         return Optional.empty();
     }
 
-    public static Map<Identifier, CopperInstrument> getCopperInstruments() {
+    public static Map<ResourceLocation, CopperInstrument> getCopperInstruments() {
         return INSTRUMENTS;
     }
 
     public static ItemStack getStackForInstrument(Item item, CopperInstrument instrument) {
         ItemStack stack = new ItemStack(item);
-        stack.set(YavpmDataComponentTypes.COPPER_INSTRUMENT, instrument);
+        stack.set(YavpmDataComponentTypes.Item.COPPER_INSTRUMENT, instrument);
         return stack;
     }
 
-    public static ItemStack getStackForId(Item item, Identifier id) {
+    public static ItemStack getStackForId(Item item, ResourceLocation id) {
         ItemStack stack = new ItemStack(item);
         if (INSTRUMENTS.containsKey(id)) {
-            stack.set(YavpmDataComponentTypes.COPPER_INSTRUMENT, INSTRUMENTS.get(id));
+            stack.set(YavpmDataComponentTypes.Item.COPPER_INSTRUMENT, INSTRUMENTS.get(id));
         }
         return stack;
     }
 
-    private static TootResult playSound(World world, PlayerEntity player, CopperInstrument instrument) {
+    private static TootResult playSound(Level world, Player player, CopperInstrument instrument) {
         SoundEvent soundEvent;
         TootResult result;
-        if (player.isSneaking()) {
+        if (player.isShiftKeyDown()) {
             soundEvent = instrument.bass().value();
             result = TootResult.BASS;
-        } else if (player.getPitch() <= -45) {
+        } else if (player.getXRot() <= -45) {
             soundEvent = instrument.harmony().value();
             result = TootResult.HARMONY;
         } else {
@@ -79,61 +82,61 @@ public class CopperHornItem extends Item {
             result = TootResult.MELODY;
         }
         float f = instrument.range() / 16.0F;
-        world.playSoundFromEntity(player, player, soundEvent, SoundCategory.RECORDS, f, 1.0F);
-        world.emitGameEvent(GameEvent.INSTRUMENT_PLAY, player.getPos(), GameEvent.Emitter.of(player));
+        world.playSound(player, player, soundEvent, SoundSource.RECORDS, f, 1.0F);
+        world.gameEvent(GameEvent.INSTRUMENT_PLAY, player.position(), GameEvent.Context.of(player));
         return result;
     }
 
     @Override
-    public ActionResult use(World world, PlayerEntity user, Hand hand) {
-        if (!world.isClient()) {
-            ItemStack stack = user.getStackInHand(hand);
+    public InteractionResult use(Level world, Player user, InteractionHand hand) {
+        if (!world.isClientSide()) {
+            ItemStack stack = user.getItemInHand(hand);
             Optional<CopperInstrument> optional = this.getInstrument(stack);
             if (optional.isPresent()) {
                 CopperInstrument instrument = optional.get();
-                user.setCurrentHand(hand);
+                user.startUsingItem(hand);
                 affectUser(world, user, playSound(world, user, instrument));
-                user.getItemCooldownManager().set(stack, MathHelper.floor(instrument.useDuration() * 2 * 20f));
-                user.incrementStat(Stats.USED.getOrCreateStat(this));
-                return ActionResult.CONSUME;
-            } else return ActionResult.FAIL;
-        } else return ActionResult.PASS;
+                user.getCooldowns().addCooldown(stack, Mth.floor(instrument.useDuration() * 2 * 20f));
+                user.awardStat(Stats.ITEM_USED.get(this));
+                return InteractionResult.CONSUME;
+            } else return InteractionResult.FAIL;
+        } else return InteractionResult.PASS;
     }
 
-    private void affectUser(World world, PlayerEntity user, TootResult tootResult) {
-        StatusEffectInstance effectInstance = switch (tootResult) {
+    private void affectUser(Level world, Player user, TootResult tootResult) {
+        MobEffectInstance effectInstance = switch (tootResult) {
             case BASS -> BASS_EFFECT;
             case HARMONY -> HARMONY_EFFECT;
             case MELODY -> MELODY_EFFECT;
             case null -> null;
         };
         if (effectInstance != null) {
-            Box box = new Box(user.getX() - 24, user.getY() - 24, user.getZ() - 24,
+            AABB box = new AABB(user.getX() - 24, user.getY() - 24, user.getZ() - 24,
                     user.getX() + 24, user.getY() + 24, user.getZ() + 24);
-            List<PlayerEntity> list = world.getEntitiesByType(TypeFilter.instanceOf(PlayerEntity.class), box, playerEntity -> {
-                if (playerEntity.getScoreboardTeam() != null) {
-                    return playerEntity.isTeammate(user);
+            List<Player> list = world.getEntities(EntityTypeTest.forClass(Player.class), box, playerEntity -> {
+                if (playerEntity.getTeam() != null) {
+                    return playerEntity.isAlliedTo(user);
                 } else return true;
             });
-            for (PlayerEntity player : list) {
-                player.addStatusEffect(effectInstance, user);
+            for (Player player : list) {
+                player.addEffect(effectInstance, user);
             }
         }
     }
 
 
     @Override
-    public int getMaxUseTime(ItemStack stack, LivingEntity user) {
+    public int getUseDuration(ItemStack stack, LivingEntity user) {
         Optional<CopperInstrument> optional = this.getInstrument(stack);
-        return optional.map(instrument -> MathHelper.floor(instrument.useDuration() * 20f)).orElse(0);
+        return optional.map(instrument -> Mth.floor(instrument.useDuration() * 20f)).orElse(0);
     }
 
     private Optional<CopperInstrument> getInstrument(ItemStack stack) {
-        CopperInstrument instrument = stack.get(YavpmDataComponentTypes.COPPER_INSTRUMENT);
+        CopperInstrument instrument = stack.get(YavpmDataComponentTypes.Item.COPPER_INSTRUMENT);
         if (instrument != null) {
             return Optional.of(instrument);
         } else {
-            List<Identifier> ids = new ArrayList<>(INSTRUMENTS.keySet().stream().toList());
+            List<ResourceLocation> ids = new ArrayList<>(INSTRUMENTS.keySet().stream().toList());
             if (!ids.isEmpty()) {
                 Collections.shuffle(ids);
                 return Optional.of(INSTRUMENTS.get(ids.getFirst()));
@@ -143,13 +146,13 @@ public class CopperHornItem extends Item {
     }
 
     @Override
-    public UseAction getUseAction(ItemStack stack) {
-        return UseAction.TOOT_HORN;
+    public ItemUseAnimation getUseAnimation(ItemStack stack) {
+        return ItemUseAnimation.TOOT_HORN;
     }
 
     private enum TootResult {
         BASS,
         HARMONY,
-        MELODY;
+        MELODY
     }
 }

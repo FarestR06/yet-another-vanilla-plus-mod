@@ -7,9 +7,9 @@ import com.farestr06.yavpm.world.feature.placed.YavpmVegetationPlacedFeatures;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.tag.convention.v2.ConventionalBiomeTags;
-import net.minecraft.entity.SpawnGroup;
-import net.minecraft.world.biome.BiomeKeys;
-import net.minecraft.world.gen.GenerationStep;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.levelgen.GenerationStep;
 
 public class YavpmWorldGeneration {
     public static void generateModWorldGen() {
@@ -23,17 +23,17 @@ public class YavpmWorldGeneration {
         YetAnotherVanillaPlusMod.LOGGER.debug("Placing ores...");
         BiomeModifications.addFeature(
                 BiomeSelectors.tag(ConventionalBiomeTags.IS_HOT_OVERWORLD),
-                GenerationStep.Feature.UNDERGROUND_ORES,
+                GenerationStep.Decoration.UNDERGROUND_ORES,
                 YavpmMiscPlacedFeatures.ORE_KIMBERLITE_LOWER
         );
         BiomeModifications.addFeature(
                 BiomeSelectors.tag(ConventionalBiomeTags.IS_HOT_OVERWORLD),
-                GenerationStep.Feature.UNDERGROUND_ORES,
+                GenerationStep.Decoration.UNDERGROUND_ORES,
                 YavpmMiscPlacedFeatures.ORE_KIMBERLITE_UPPER
         );
         BiomeModifications.addFeature(
                 BiomeSelectors.foundInOverworld(),
-                GenerationStep.Feature.UNDERGROUND_ORES,
+                GenerationStep.Decoration.UNDERGROUND_ORES,
                 YavpmMiscPlacedFeatures.ORE_NAHCOLITE_PLACED
         );
     }
@@ -42,7 +42,7 @@ public class YavpmWorldGeneration {
         YetAnotherVanillaPlusMod.LOGGER.debug("Spawning mobs...");
         BiomeModifications.addSpawn(
                 BiomeSelectors.tag(ConventionalBiomeTags.IS_MOUNTAIN),
-                SpawnGroup.CREATURE,
+                MobCategory.CREATURE,
                 YavpmEntities.TANUKI,
                 8,
                 2,
@@ -51,7 +51,7 @@ public class YavpmWorldGeneration {
 
         BiomeModifications.addSpawn(
                 BiomeSelectors.tag(ConventionalBiomeTags.IS_CAVE),
-                SpawnGroup.MONSTER,
+                MobCategory.MONSTER,
                 YavpmEntities.CARBONFOWL,
                 18,
                 1,
@@ -60,7 +60,7 @@ public class YavpmWorldGeneration {
 
         BiomeModifications.addSpawn(
                 BiomeSelectors.tag(ConventionalBiomeTags.IS_NETHER_FOREST),
-                SpawnGroup.CREATURE,
+                MobCategory.CREATURE,
                 YavpmEntities.MOONGUS,
                 15,
                 2,
@@ -69,7 +69,7 @@ public class YavpmWorldGeneration {
 
         BiomeModifications.addSpawn(
                 BiomeSelectors.tag(ConventionalBiomeTags.IS_END),
-                SpawnGroup.MONSTER,
+                MobCategory.MONSTER,
                 YavpmEntities.VOID_PHANTOM,
                 1,
                 1,
@@ -81,13 +81,13 @@ public class YavpmWorldGeneration {
         YetAnotherVanillaPlusMod.LOGGER.debug("Growing trees...");
         BiomeModifications.addFeature(
                 BiomeSelectors.tag(ConventionalBiomeTags.IS_PLAINS),
-                GenerationStep.Feature.VEGETAL_DECORATION,
+                GenerationStep.Decoration.VEGETAL_DECORATION,
                 YavpmVegetationPlacedFeatures.APPLE_VEGETAION_PLACED
         );
 
         BiomeModifications.addFeature(
-                BiomeSelectors.includeByKey(BiomeKeys.END_BARRENS),
-                GenerationStep.Feature.VEGETAL_DECORATION,
+                BiomeSelectors.includeByKey(Biomes.END_BARRENS),
+                GenerationStep.Decoration.VEGETAL_DECORATION,
                 YavpmVegetationPlacedFeatures.PRICKLE_VEGETAION_PLACED
         );
     }

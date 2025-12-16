@@ -3,143 +3,143 @@ package com.farestr06.yavpm.item;
 import com.farestr06.yavpm.YetAnotherVanillaPlusMod;
 import com.farestr06.yavpm.entity.effect.YavpmStatusEffects;
 import net.fabricmc.fabric.api.registry.FabricBrewingRecipeRegistryBuilder;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.Items;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.Potions;
-import net.minecraft.recipe.Ingredient;
-import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
-import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.core.Holder;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.item.crafting.Ingredient;
 
 public class YavpmPotions {
-    private static final Ingredient EXTENDER = Ingredient.ofItems(Items.REDSTONE);
-    private static final Ingredient AMPLIFIER = Ingredient.ofItems(Items.GLOWSTONE_DUST);
+    private static final Ingredient EXTENDER = Ingredient.of(Items.REDSTONE);
+    private static final Ingredient AMPLIFIER = Ingredient.of(Items.GLOWSTONE_DUST);
 
-    public static final RegistryEntry<Potion> WEIRD = register("weird", new Potion("weird"));
+    public static final Holder<Potion> WEIRD = register("weird", new Potion("weird"));
 
-    public static final RegistryEntry<Potion> DECAY = register("decay", new Potion(
+    public static final Holder<Potion> DECAY = register("decay", new Potion(
             "decay",
-            new StatusEffectInstance(
-                    StatusEffects.WITHER,
+            new MobEffectInstance(
+                    MobEffects.WITHER,
                     600
             )
     ));
-    public static final RegistryEntry<Potion> LONG_DECAY = register("long_decay", new Potion(
+    public static final Holder<Potion> LONG_DECAY = register("long_decay", new Potion(
             "decay",
-            new StatusEffectInstance(
-                    StatusEffects.WITHER,
+            new MobEffectInstance(
+                    MobEffects.WITHER,
                     1200
             )
     ));
-    public static final RegistryEntry<Potion> STRONG_DECAY = register("strong_decay", new Potion(
+    public static final Holder<Potion> STRONG_DECAY = register("strong_decay", new Potion(
             "decay",
-            new StatusEffectInstance(
-                    StatusEffects.WITHER,
+            new MobEffectInstance(
+                    MobEffects.WITHER,
                     300,
                     1
             )
     ));
 
 
-    public static final RegistryEntry<Potion> VOID_TOUCHED = register("void_touched", new Potion(
+    public static final Holder<Potion> VOID_TOUCHED = register("void_touched", new Potion(
             "void_touched",
-            new StatusEffectInstance(
+            new MobEffectInstance(
                     YavpmStatusEffects.VOID_TOUCHED,
                     800
             )
     ));
 
-    public static final RegistryEntry<Potion> LONG_VOID_TOUCHED = register("long_void_touched", new Potion(
+    public static final Holder<Potion> LONG_VOID_TOUCHED = register("long_void_touched", new Potion(
             "void_touched",
-            new StatusEffectInstance(
+            new MobEffectInstance(
                     YavpmStatusEffects.VOID_TOUCHED,
                     1600
             )
     ));
 
-    public static final RegistryEntry<Potion> STRONG_VOID_TOUCHED = register("strong_void_touched", new Potion(
+    public static final Holder<Potion> STRONG_VOID_TOUCHED = register("strong_void_touched", new Potion(
             "void_touched",
-            new StatusEffectInstance(
+            new MobEffectInstance(
                     YavpmStatusEffects.VOID_TOUCHED,
                     400,
                     1
             )
     ));
 
-    public static final RegistryEntry<Potion> CHOKING = register("choking", new Potion(
+    public static final Holder<Potion> CHOKING = register("choking", new Potion(
             "choking",
-            new StatusEffectInstance(
+            new MobEffectInstance(
                     YavpmStatusEffects.CHOKING,
                     90
             )
     ));
-    public static final RegistryEntry<Potion> LONG_CHOKING = register("long_choking", new Potion(
+    public static final Holder<Potion> LONG_CHOKING = register("long_choking", new Potion(
             "choking",
-            new StatusEffectInstance(
+            new MobEffectInstance(
                     YavpmStatusEffects.CHOKING,
                     180
             )
     ));
 
-    public static final RegistryEntry<Potion> HASTE = register("haste", new Potion(
+    public static final Holder<Potion> HASTE = register("haste", new Potion(
             "haste",
-            new StatusEffectInstance(
-                    StatusEffects.HASTE,
+            new MobEffectInstance(
+                    MobEffects.HASTE,
                     2400
             )
     ));
-    public static final RegistryEntry<Potion> LONG_HASTE = register("long_haste", new Potion(
+    public static final Holder<Potion> LONG_HASTE = register("long_haste", new Potion(
             "haste",
-            new StatusEffectInstance(
-                    StatusEffects.HASTE,
+            new MobEffectInstance(
+                    MobEffects.HASTE,
                     4800
             )
     ));
 
-    public static final RegistryEntry<Potion> STRONG_HASTE = register("strong_haste", new Potion(
+    public static final Holder<Potion> STRONG_HASTE = register("strong_haste", new Potion(
             "haste",
-            new StatusEffectInstance(
-                    StatusEffects.HASTE,
+            new MobEffectInstance(
+                    MobEffects.HASTE,
                     1200,
                     2
             )
     ));
 
 
-    public static final RegistryEntry<Potion> SILENCE = register("silence", new Potion(
+    public static final Holder<Potion> SILENCE = register("silence", new Potion(
             "silence",
-            new StatusEffectInstance(
+            new MobEffectInstance(
                     YavpmStatusEffects.SILENCE,
                     500
             )
     ));
-    public static final RegistryEntry<Potion> LONG_SILENCE = register("long_silence", new Potion(
+    public static final Holder<Potion> LONG_SILENCE = register("long_silence", new Potion(
             "silence",
-            new StatusEffectInstance(
+            new MobEffectInstance(
                     YavpmStatusEffects.SILENCE,
                     1100
             )
     ));
 
 
-    public static final RegistryEntry<Potion> INTOXICATION = register("intoxication", new Potion(
+    public static final Holder<Potion> INTOXICATION = register("intoxication", new Potion(
             "intoxication",
-            new StatusEffectInstance(
-                    StatusEffects.NAUSEA, 300
+            new MobEffectInstance(
+                    MobEffects.NAUSEA, 300
             )
     ));
 
-    public static final RegistryEntry<Potion> LONG_INTOXICATION = register("long_intoxication", new Potion(
+    public static final Holder<Potion> LONG_INTOXICATION = register("long_intoxication", new Potion(
             "intoxication",
-            new StatusEffectInstance(
-                    StatusEffects.NAUSEA, 900
+            new MobEffectInstance(
+                    MobEffects.NAUSEA, 900
             )
     ));
 
-    private static RegistryEntry<Potion> register(String id, Potion potion) {
-        return Registry.registerReference(Registries.POTION, YetAnotherVanillaPlusMod.makeId(id), potion);
+    private static Holder<Potion> register(String id, Potion potion) {
+        return Registry.registerForHolder(BuiltInRegistries.POTION, YetAnotherVanillaPlusMod.makeId(id), potion);
     }
 
     public static void init() {
@@ -147,8 +147,8 @@ public class YavpmPotions {
 
         FabricBrewingRecipeRegistryBuilder.BUILD.register(builder -> {
             YetAnotherVanillaPlusMod.LOGGER.debug("Creating Potions of Decay...");
-            builder.registerPotionRecipe(Potions.WATER, YavpmItems.WARPED_WART, WEIRD);
-            builder.registerPotionRecipe(WEIRD, Ingredient.ofItems(Items.WITHER_ROSE), DECAY);
+            builder.addMix(Potions.WATER, YavpmItems.WARPED_WART, WEIRD);
+            builder.registerPotionRecipe(WEIRD, Ingredient.of(Items.WITHER_ROSE), DECAY);
             builder.registerPotionRecipe(DECAY, EXTENDER, LONG_DECAY);
             builder.registerPotionRecipe(DECAY, AMPLIFIER, STRONG_DECAY);
 
@@ -160,12 +160,12 @@ public class YavpmPotions {
             YetAnotherVanillaPlusMod.LOGGER.debug("Creating Potions of Choking...");
             builder.registerPotionRecipe(
                     Potions.WATER_BREATHING,
-                    Ingredient.ofItems(Items.FERMENTED_SPIDER_EYE),
+                    Ingredient.of(Items.FERMENTED_SPIDER_EYE),
                     CHOKING
             );
             builder.registerPotionRecipe(
                     Potions.LONG_WATER_BREATHING,
-                    Ingredient.ofItems(Items.FERMENTED_SPIDER_EYE),
+                    Ingredient.of(Items.FERMENTED_SPIDER_EYE),
                     LONG_CHOKING
             );
             builder.registerPotionRecipe(
@@ -177,7 +177,7 @@ public class YavpmPotions {
             YetAnotherVanillaPlusMod.LOGGER.debug("Creating Potions of Silence...");
             builder.registerPotionRecipe(
                     WEIRD,
-                    Ingredient.ofItems(
+                    Ingredient.of(
                             Items.WHITE_WOOL,
                             Items.ORANGE_WOOL,
                             Items.MAGENTA_WOOL,
@@ -206,7 +206,7 @@ public class YavpmPotions {
             YetAnotherVanillaPlusMod.LOGGER.debug("Creating Potions of Haste...");
             builder.registerPotionRecipe(
                     WEIRD,
-                    Ingredient.ofItems(YavpmItems.BITTER_BERRIES),
+                    Ingredient.of(YavpmItems.BITTER_BERRIES),
                     HASTE
             );
             builder.registerPotionRecipe(
@@ -223,7 +223,7 @@ public class YavpmPotions {
             YetAnotherVanillaPlusMod.LOGGER.debug("Creating Potions of Intoxication...");
             builder.registerPotionRecipe(
                     WEIRD,
-                    Ingredient.ofItems(Items.SWEET_BERRIES),
+                    Ingredient.of(Items.SWEET_BERRIES),
                     INTOXICATION
             );
             builder.registerPotionRecipe(
